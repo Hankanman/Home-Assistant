@@ -1,5 +1,0 @@
-devices:
-- '!secret shield_tv'
-- '!secret bedroom_fire_tv'
-- '!secret lounge_tv'
-reconnect_timeout: 90
