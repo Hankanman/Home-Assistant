@@ -23,6 +23,6 @@ repository:
   commit_message: Home Assistant Git Exporter
   email: '!secret github_email'
   password: '!secret github_access_token'
-  pull_before_push: false
+  pull_before_push: true
   url: https://github.com/hankanman/home-assistant.git
   username: '!secret github_username'
