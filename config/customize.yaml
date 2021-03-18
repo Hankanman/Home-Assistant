@@ -1,0 +1,10 @@
+sensor.next_bin_collection:
+  icon: mdi:delete
+sensor.gas_daily_usage:
+  icon: mdi:fire
+sensor.toilet_luminance:
+  icon: mdi:white-balance-sunny
+sensor.toilet_average_lux:
+  icon: mdi:white-balance-sunny
+binary_sensor.shower_occupied:
+  icon: mdi:shower-head

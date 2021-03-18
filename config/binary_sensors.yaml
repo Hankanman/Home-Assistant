@@ -1,0 +1,276 @@
+- platform: template
+  sensors:
+    shower_occupied:
+      friendly_name: "Shower Occupied"
+      device_class: occupancy
+      value_template: >-
+        {{ (states('sensor.bathroom_multisensor_humidity_air')| float > (states('sensor.bathroom_average_humidity')| float + states('input_number.bathroom_humidity_offset')| float)) and states(binary_sensor.bathroom_humidity_trend) }}
+    people_home:
+      friendly_name: "People Home"
+      icon_template: "mdi:home"
+      device_class: presence
+      value_template: >-
+        {{ is_state('person.laura_ward', 'home') or is_state('person.sebastian_burrell', 'home') }}
+####################################
+# Bright Sensors
+####################################
+    study_bright:
+      friendly_name: "Study Bright"
+      device_class: light
+      value_template: >-
+        {{ (states('sensor.study_trisensor_illuminance') | float) >= (states('input_number.study_lux_level') | float) }}
+    hall_bright:
+      friendly_name: "Hall Bright"
+      device_class: light
+      value_template: >-
+        {{ (states('sensor.hall_trisensor_illuminance') | float) >= (states('input_number.hall_lux_level') | float) }}
+    bedroom_bright:
+      friendly_name: "Bedroom Bright"
+      device_class: light
+      value_template: >-
+        {{ (states('sensor.bedroom_trisensor_illuminance') | float) >= (states('input_number.bedroom_lux_level') | float) }}
+    bathroom_bright:
+      friendly_name: "Bathroom Bright"
+      device_class: light
+      value_template: >-
+        {{ (states('sensor.bathroom_multisensor_illuminance') | float) >= (states('input_number.bathroom_lux_level') | float) }}
+    kitchen_bright:
+      friendly_name: "Kitchen Bright"
+      device_class: light
+      value_template: >-
+        {{ (states('sensor.kitchen_trisensor_illuminance') | float) >= (states('input_number.kitchen_lux_level') | float) }}
+    lounge_bright:
+      friendly_name: "Lounge Bright"
+      device_class: light
+      value_template: >-
+        {{ (states('sensor.lounge_trisensor_illuminance') | float) >= (states('input_number.lounge_lux_level') | float) }}
+    toilet_bright:
+      friendly_name: "Toilet Bright"
+      device_class: light
+      value_template: >-
+        {{ (states('sensor.toilet_trisensor_illuminance') | float) >= (states('input_number.toilet_lux_level') | float) }}
+####################################
+# PC Active Sensors
+####################################
+    starrunner_active:
+      friendly_name: "Starrunner Active"
+      device_class: presence
+      value_template: >-
+        {{ states('sensor.time_since_last_active') | int < 5 }}
+####################################
+# Occupancy Sensors
+####################################
+# - platform: 'bayesian'
+#   name: 'Study Occupied'
+#   prior: 0.2
+#   probability_threshold: 0.95
+#   observations:
+#     - platform: 'state'
+#       entity_id: 'binary_sensor.study_motion'
+#       prob_given_true: 0.9
+#       prob_given_false: 0.2
+#       to_state: 'on'
+####################################
+# Trends
+####################################
+- platform: trend
+  sensors:
+    bathroom_humidity_trend:
+      entity_id: sensor.bathroom_multisensor_humidity_air
+      sample_duration: 1800
+      max_samples: 10
+      min_gradient: -0.00083
+      invert: true
+      device_class: moisture
+####################################
+# Date & Calendar Sensors
+####################################
+- platform: workday
+  country: GB
+####################################
+# MQTT
+####################################
+- platform: mqtt
+  name: Hall Motion Camera
+  state_topic: shinobi/home/Hall/trigger
+  json_attributes_topic: shinobi/home/Hall/trigger
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int > 60  %}OFF{%else%}ON{%endif%}"
+  json_attributes_template: "{{ {'Confidence': value_json.details.confidence,'Plugin': value_json.details.plug | title,'Last Motion': as_timestamp(strptime(value_json.currentTimestamp, '%Y-%m-%dT%H:%M:%S%z')) | timestamp_local, 'Motion Area': value_json.details.name | replace('_', ' ') | title, 'Timestamp': as_timestamp(value_json.currentTimestamp), 'Since Last Motion': (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int } | tojson }}"
+  
+- platform: mqtt
+  name: Lounge Motion Camera
+  state_topic: shinobi/home/Lounge/trigger
+  json_attributes_topic: shinobi/home/Lounge/trigger
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int > 60  %}OFF{%else%}ON{%endif%}"
+  json_attributes_template: "{{ {'Confidence': value_json.details.confidence,'Plugin': value_json.details.plug | title,'Last Motion': as_timestamp(strptime(value_json.currentTimestamp, '%Y-%m-%dT%H:%M:%S%z')) | timestamp_local, 'Motion Area': value_json.details.name | replace('_', ' ') | title, 'Timestamp': as_timestamp(value_json.currentTimestamp), 'Since Last Motion': (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int } | tojson }}"
+  
+- platform: mqtt
+  name: Kitchen Motion Camera
+  state_topic: shinobi/home/Kitchen/trigger
+  json_attributes_topic: shinobi/home/Kitchen/trigger
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int > 60  %}OFF{%else%}ON{%endif%}"
+  json_attributes_template: "{{ {'Confidence': value_json.details.confidence,'Plugin': value_json.details.plug | title,'Last Motion': as_timestamp(strptime(value_json.currentTimestamp, '%Y-%m-%dT%H:%M:%S%z')) | timestamp_local, 'Motion Area': value_json.details.name | replace('_', ' ') | title, 'Timestamp': as_timestamp(value_json.currentTimestamp), 'Since Last Motion': (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int } | tojson }}"
+  
+- platform: mqtt
+  name: Entrance Motion Camera
+  state_topic: shinobi/home/Entrance/trigger
+  json_attributes_topic: shinobi/home/Entrance/trigger
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int > 60  %}OFF{%else%}ON{%endif%}"
+  json_attributes_template: "{{ {'Confidence': value_json.details.confidence,'Plugin': value_json.details.plug | title,'Last Motion': as_timestamp(strptime(value_json.currentTimestamp, '%Y-%m-%dT%H:%M:%S%z')) | timestamp_local, 'Motion Area': value_json.details.name | replace('_', ' ') | title, 'Timestamp': as_timestamp(value_json.currentTimestamp), 'Since Last Motion': (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int } | tojson }}"
+
+
+  
+- platform: bayesian
+  name: "Kitchen Occupied"
+  prior: 0.5
+  probability_threshold: 0.7
+  observations:
+    - platform: "state"
+      entity_id: "binary_sensor.kitchen_trisensor_motion"
+      prob_given_true: 0.7
+      prob_given_false: 0.3
+      to_state: "on"
+
+- platform: bayesian
+  name: "Lounge Occupied"
+  prior: 0.5
+  probability_threshold: 0.7
+  observations:
+    - platform: "state"
+      entity_id: "binary_sensor.lounge_motion_camera"
+      prob_given_true: 0.75
+      prob_given_false: 0.5
+      to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.lounge_trisensor_motion"
+      prob_given_true: 0.99
+      prob_given_false: 0.5
+      to_state: "on"
+    - platform: "state"
+      entity_id: "media_player.lounge_tv"
+      prob_given_true: 0.8
+      prob_given_false: 0.5
+      to_state: "playing"
+    - platform: "state"
+      entity_id: "binary_sensor.lounge_motion_camera_tapo"
+      prob_given_true: 0.7
+      prob_given_false: 0.2
+      to_state: "on"
+
+- platform: bayesian
+  name: "Hall Occupied"
+  prior: 0.5
+  probability_threshold: 0.7
+  observations:
+    - platform: "state"
+      entity_id: "binary_sensor.hall_motion_camera"
+      prob_given_true: 0.8
+      prob_given_false: 0.2
+      to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.hall_trisensor_motion"
+      prob_given_true: 0.99
+      prob_given_false: 0.4
+      to_state: "on"
+      
+- platform: bayesian
+  name: "Entrance Occupied"
+  prior: 0.5
+  probability_threshold: 0.7
+  observations:
+    - platform: "state"
+      entity_id: "binary_sensor.entrance_motion_camera"
+      prob_given_true: 0.4
+      prob_given_false: 0.2
+      to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.front_door_motion"
+      prob_given_true: 0.4
+      prob_given_false: 0.2
+      to_state: "on"
+      
+- platform: bayesian
+  name: "Bedroom Occupied"
+  prior: 0.5
+  probability_threshold: 0.7
+  observations:
+    - platform: "state"
+      entity_id: "binary_sensor.bedroom_trisensor_motion"
+      prob_given_true: 0.4
+      prob_given_false: 0.2
+      to_state: "on"
+      
+- platform: bayesian
+  name: "Study Occupied"
+  prior: 0.42
+  probability_threshold: 0.8
+  observations:
+    - platform: "state"
+      entity_id: "binary_sensor.study_trisensor_motion"
+      prob_given_true: 0.6
+      prob_given_false: 0.07
+      to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.starrunner_active"
+      prob_given_true: 0.9
+      prob_given_false: 0.07
+      to_state: "on"
+      
+- platform: bayesian
+  name: "Bathroom Occupied"
+  prior: 0.5
+  probability_threshold: 0.7
+  observations:
+    - platform: "state"
+      entity_id: "binary_sensor.shower_occupied"
+      prob_given_true: 1
+      prob_given_false: 0.6
+      to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.bathroom_multisensor_any"
+      prob_given_true: 1
+      prob_given_false: 0.2
+      to_state: "on"
+
+- platform: bayesian
+  name: "Toilet Occupied"
+  prior: 0.5
+  probability_threshold: 0.7
+  observations:
+    - platform: "state"
+      entity_id: "binary_sensor.toilet_trisensor_motion"
+      prob_given_true: 1
+      prob_given_false: 0.2
+      to_state: "on"
+      
+- platform: bayesian
+  name: "In Bed"
+  prior: 0.25
+  probability_threshold: 0.95
+  observations:
+    - platform: "state"
+      entity_id: "sensor.lounge_trisensor_motion"
+      prob_given_true: 0.4
+      prob_given_false: 0.2
+      to_state: "off"
+    - platform: "state"
+      entity_id: "sensor.kitchen_trisensor_motion"
+      prob_given_true: 0.5
+      prob_given_false: 0.4
+      to_state: "off"
+    - platform: "state"
+      entity_id: "sensor.bedroom_trisensor_motion"
+      prob_given_true: 0.5
+      to_state: "on"
+    - platform: "state"
+      entity_id: "sun.sun"
+      prob_given_true: 0.7
+      to_state: "below_horizon"

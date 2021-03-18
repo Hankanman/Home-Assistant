@@ -1,0 +1,20 @@
+Hass.io Addons by mKeRix:
+  maintainer: Heiko Rothe <me@heikorothe.com>
+  slug: 6e66619d
+  source: https://github.com/mKeRix/hassio-repo
+Home Assistant Community Add-ons:
+  maintainer: Franck Nijhof <frenck@addons.community>
+  slug: a0d7b954
+  source: https://github.com/hassio-addons/repository
+Local add-ons:
+  maintainer: you
+  slug: local
+  source: local
+Official add-ons:
+  maintainer: Home Assistant
+  slug: core
+  source: core
+Poeschl Home Assistant Add-ons:
+  maintainer: Poeschl <Poeschl@users.noreply.github.com>
+  slug: 243ffc37
+  source: https://github.com/Poeschl/Hassio-Addons

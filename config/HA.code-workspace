@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.yaml": "yaml"
+		},
+		"vscode-home-assistant.longLivedAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkMzgzODg2Yzg5YTU0ZDFkOTk3NDZiOGQ3YmIzZjNjOCIsImlhdCI6MTYxNTkyOTY3MiwiZXhwIjoxOTMxMjg5NjcyfQ.4DGJ0CVT5jkAeB_Q0QsdPShaJEge7cnRfy-48iduV3Q",
+		"vscode-home-assistant.hostUrl": "192.168.180.11"
+	},
+	"extensions": {
+		"recommendations": [
+			"keesschollaart.vscode-home-assistant"
+		]
+	}
+}

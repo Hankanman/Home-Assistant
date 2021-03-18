@@ -1,0 +1,26 @@
+platform: command_line
+switches:
+  loungecam_ir:
+    friendly_name: Lounge Camera Night Mode
+    command_on: !secret loungecam_ir_on
+    command_off: !secret loungecam_ir_off
+    command_state: !secret loungecam_ir_state
+    value_template: '{{ value == "1" }}'
+  loungecam_motion:
+    friendly_name: Lounge Camera Motion Detection
+    command_on: !secret loungecam_motion_on
+    command_off: !secret loungecam_motion_off
+    command_state: !secret loungecam_motion_state
+    value_template: '{{ value == "1" }}'
+  hallcam_ir:
+    friendly_name: Lounge Camera Night Mode
+    command_on: !secret hallcam_ir_on
+    command_off: !secret hallcam_ir_off
+    command_state: !secret hallcam_ir_state
+    value_template: '{{ value == "1" }}'
+  hallcam_motion:
+    friendly_name: Lounge Camera Motion Detection
+    command_on: !secret hallcam_motion_on
+    command_off: !secret hallcam_motion_off
+    command_state: !secret hallcam_motion_state
+    value_template: '{{ value == "1" }}'

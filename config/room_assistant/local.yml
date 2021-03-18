@@ -1,0 +1,32 @@
+# You don't need to add the MQTT details for Home Assistant with the add-on installation, it will be auto-discovered!
+global:
+  instanceName: Entrance
+  integrations:
+    - bluetoothLowEnergy
+    - homeAssistant
+cluster:
+  port: 6425
+  timeout: 120
+  quorum: 3
+  autoDiscovery: true
+  weight: 100
+  peerAddresses:
+    - pisces-1.local:6425
+    - pisces-2.local:6425
+    - pisces-3.local:6425
+    - pisces-4.local:6425
+bluetoothLowEnergy:
+  timeout: 120
+  allowlist:
+    - f918c94530f3
+    - 0b268b96bc6b40bb9a678beecd2c22b3-100-1
+    - ca16c924c7714d6d855dd590ab02e152-100-1
+  tagOverrides:
+    f918c94530f3:
+      name: Laura Versa 2
+    0b268b96bc6b40bb9a678beecd2c22b3-100-1:
+      name: Seb Phone BLE
+      measuredPower: -82
+    ca16c924c7714d6d855dd590ab02e152-100-1:
+      name: Laura Phone BLE
+      measuredPower: -65

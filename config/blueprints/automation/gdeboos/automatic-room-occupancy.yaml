@@ -1,0 +1,212 @@
+blueprint:
+  name: '[Occupancy] Auto Room Occupancy'
+  description: "Automatically turn on and off an ocupancy switch for a single room.\n\
+    ------LOGIC------ Occupied when ANY of the following conditions are met (all are\
+    \ optional).\n  - door is shut\n  - any motoion\n  - any media player playing\n\
+    \  - door is shut (for rooms eg bathrooms)\n  - on room presence (eg room-assistant)\n\
+    \nOccupancy is clared under ALL of the following conditions being met (all are\
+    \ optional):\n  - motion off for a set amount of time\n  - no player in room played\
+    \ for a set amount of time\n  - no one in room (TODO//: add a timer)\n\n------HELPERS------\n\
+    \  Uses the following helpers to allow for front end control of timeouts.\n  All\
+    \ default to 10 minutes if not provided.\n    - input_number.motion_occupancy_timeout\n\
+    \    - input_number.media_occupancy_timeout\n    - input_number.bluetooth_occupancy_timeout\
+    \ (NOT IN USE YET)\n\n------TODO------\n  - Use bluetooth timeout input (Help\
+    \ needed)\n"
+  domain: automation
+  input:
+    motion_sensor:
+      name: Motion Sensor
+      description: A motion sensor or group of motion sensors in room. State must
+        be either 'on' or 'off'.
+      default: binary_sensor.none
+      selector:
+        entity: {}
+    door_sensor:
+      name: Door Sensor
+      description: A door sensor or group of door sensors in room. State must be either
+        'on' or 'off'.
+      default: binary_sensor.none
+      selector:
+        entity: {}
+    media_players:
+      name: Media Players (Optional)
+      description: A comma separated list of media_players in room. Include domain
+        and name IE media_player.lounge_echo.
+    media_states:
+      name: Media States to Match (optional)
+      description: A comma separated list of states a Media Player can be in when
+        room is occupied. Default is 'playing'.
+      default: playing
+    presence_entities:
+      name: Room Presence Entities (Optional)
+      description: A comma separated list of room presence entities. Include domain
+        and name IE 'sensor.phone_1_room_presence, sensor.phone_2_room_presence'.
+      default: sensor.none
+    presence_states:
+      name: Room Presence State (Optional)
+      description: A comma separated list of states that presence entity can match.
+        EG 'lounge, lounge2'.
+      default: none
+    occupied_on_motion_enabled:
+      name: Enable Motion Occupancy
+      description: Turn on/off occupancy being set to 'on' via motion.
+      default: true
+      selector:
+        boolean: {}
+    occupied_on_shut_door:
+      name: Enable Door Occupancy
+      description: Turn on/off occupancy being set to 'on' when door is shut.
+      default: false
+      selector:
+        boolean: {}
+    occupied_on_media_enabled:
+      name: Enable Media Occupancy
+      description: Turn on/off occupancy being set to 'on' via media.
+      default: false
+      selector:
+        boolean: {}
+    occupied_on_presence_enabled:
+      name: Enable Presence Occupancy
+      description: Turn on/off occupancy being set to 'on' via presence.
+      default: false
+      selector:
+        boolean: {}
+    disabled_entity_id:
+      name: Disable Mode (Optional)
+      description: An input_boolean to entirely disable this logic. Where 'on' disables.
+      default: none
+      selector:
+        entity:
+          domain: input_boolean
+    household_group:
+      name: Household Group (Optional)
+      description: A grouped set of people in your house. On logic will only run if
+        home.
+      default: none
+      selector:
+        entity:
+          domain: group
+    guest_mode_switch:
+      name: Guest Mode (Optional)
+      description: An input_boolean to allow logic to work when household is away.
+      default: none
+      selector:
+        entity:
+          domain: input_boolean
+    occupancy_switch:
+      name: Occupancy Switch
+      description: An input_boolean that switches occupancy state in target room.
+        On = occupied and Off = not_occupied.
+      selector:
+        entity:
+          domain: input_boolean
+  source_url: https://community.home-assistant.io/t/automatic-room-occupancy/258334
+variables:
+  time_now: '{{ as_timestamp(now()) }}'
+  media_players_str: !input 'media_players'
+  media_players: '{{ media_players_str.split('','') | map(''trim'') | list }}'
+  media_states_str: !input 'media_states'
+  media_states: '{{ media_states_str.split('','') | map(''trim'') | list }}'
+  media_timeout: '{{ states(''input_number.media_occupancy_timeout'') | int(10) }}'
+  media_is_playing: '{{ expand(media_players) | selectattr(''state'',''in'',media_states)
+    | list | count > 0 }}'
+  presence_entities_str: !input 'presence_entities'
+  presence_entities: '{{ presence_entities_str.split('','') | map(''trim'') | list
+    }}'
+  presence_states_str: !input 'presence_states'
+  presence_states: '{{ presence_states_str.split('','') | map(''trim'') | list }}'
+  presence_timeout: '{{ states(''input_number.bluetooth_occupancy_timeout'') | int(10)
+    }}'
+  in_room: '{{ expand(presence_entities) | selectattr(''state'',''in'',presence_states)
+    | list | count > 0 }}'
+  motion_sensor: !input 'motion_sensor'
+  motion_timeout: '{{ states(''input_number.motion_occupancy_timeout'') }}'
+  motion_last_changed: '{{ states[motion_sensor].last_changed.timestamp() | float(0)
+    }}'
+  motion_is_timed_out: '{{ (time_now - motion_last_changed) > motion_timeout | float(10)
+    }}'
+  is_motion: '{{ is_state(motion_sensor, ''on'') }}'
+  door_sensor: !input 'door_sensor'
+  door_shut: '{{ is_state(door_sensor, ''off'') }}'
+  occupied_on_motion_enabled: !input 'occupied_on_motion_enabled'
+  occupied_on_shut_door_enabled: !input 'occupied_on_shut_door'
+  occupied_on_media_enabled: !input 'occupied_on_media_enabled'
+  occupied_on_presence_enabled: !input 'occupied_on_presence_enabled'
+  disabled_entity_id: !input 'disabled_entity_id'
+  blueprint_disabled: '{{ disabled_entity_id != ''none'' and is_state(disabled_entity_id,
+    ''on'') }}'
+  household_group: !input 'household_group'
+  guest_mode_switch: !input 'guest_mode_switch'
+  house_home: '{{ household_group == ''none'' or is_state(household_group, ''home'')
+    }}'
+  guests_home: '{{ guest_mode_switch == ''none'' or is_state(guest_mode_switch, ''on'')
+    }}'
+  at_home: '{{ house_home or guests_home }}'
+mode: parallel
+trigger:
+- platform: state
+  entity_id: !input 'door_sensor'
+- platform: state
+  entity_id: !input 'motion_sensor'
+  to: 'on'
+- platform: state
+  entity_id: !input 'motion_sensor'
+  to: 'off'
+  for:
+    minutes: '{{ states(''input_number.motion_occupancy_timeout'') | int(10) }}'
+- platform: state
+  entity_id: !input 'media_players'
+- platform: state
+  entity_id: !input 'presence_entities'
+condition:
+- '{{ not blueprint_disabled }}'
+action:
+- choose:
+  - conditions:
+    - '{{ occupied_on_shut_door_enabled }}'
+    - '{{ door_shut }}'
+    - '{{ at_home }}'
+    sequence:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: !input 'occupancy_switch'
+  - conditions:
+    - '{{ occupied_on_motion_enabled }}'
+    - '{{ is_motion }}'
+    - '{{ at_home }}'
+    sequence:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: !input 'occupancy_switch'
+  - conditions:
+    - '{{ occupied_on_media_enabled }}'
+    - '{{ media_is_playing }}'
+    - '{{ at_home }}'
+    sequence:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: !input 'occupancy_switch'
+  - conditions:
+    - '{{ occupied_on_presence_enabled }}'
+    - '{{ in_room }}'
+    - '{{ at_home }}'
+    sequence:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: !input 'occupancy_switch'
+  - conditions:
+    - '{{ not is_motion }}'
+    - '{{ motion_is_timed_out }}'
+    - "{% set t = (time_now - media_timeout) * 60 %} {% set ns = namespace(not_playing=[])\
+      \ %} {% for player in media_players %}\n  {% for state in media_states %}\n\
+      \    {% if states[player].last_changed is defined %}\n      {% set timed_out\
+      \ = states[player].last_changed.timestamp() < t %}\n    {% else %}\n      {%\
+      \ set timed_out = true %}\n    {% endif %}\n    {% if states(player) != state\
+      \ and timed_out %}\n      {% set ns.not_playing = ns.not_playing + [ player.entity_id\
+      \ ] %}\n    {% endif %}\n  {% endfor %}\n{% endfor %} {{ ns.not_playing | length\
+      \ >= media_players | length }}\n"
+    - '{{ not in_room }}'
+    sequence:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: !input 'occupancy_switch'
