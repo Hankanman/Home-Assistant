@@ -1,4 +1,4 @@
-scripts:
+script:
   my_computer_wake:
     alias: Star Runner - Startup
     sequence:

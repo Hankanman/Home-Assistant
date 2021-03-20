@@ -1,4 +1,4 @@
-scenes:
+scene:
   - id: '1599502299025'
     name: Disable Automations
     entities:

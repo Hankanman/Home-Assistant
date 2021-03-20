@@ -1,4 +1,4 @@
-automations:
+automation:
   - id: tv-time-bedroom
     alias: Bedroom - Lights
     trigger:

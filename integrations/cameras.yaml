@@ -1,4 +1,4 @@
-cameras:
+camera:
   - platform: foscam
     name: Lounge Foscam
     ip: !secret cam_lounge

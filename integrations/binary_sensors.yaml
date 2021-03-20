@@ -1,4 +1,4 @@
-binary_sensors:  
+binary_sensor:  
   - platform: template
     sensors:
       shower_occupied:

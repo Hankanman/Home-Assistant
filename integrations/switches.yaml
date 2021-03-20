@@ -1,4 +1,4 @@
-switches:
+switch:
   - platform: command_line
     switches:
       loungecam_ir:

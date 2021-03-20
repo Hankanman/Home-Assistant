@@ -1,4 +1,4 @@
-sensors:
+sensor:
   ####################################
   # Thermostats
   ####################################
@@ -49,13 +49,13 @@ sensors:
   ####################################
   - platform: time_date
     display_options:
-      - 'time'
-      - 'date'
-      - 'date_time'
-      - 'date_time_utc'
-      - 'date_time_iso'
-      - 'time_date'
-      - 'time_utc'
+      - "time"
+      - "date"
+      - "date_time"
+      - "date_time_utc"
+      - "date_time_iso"
+      - "time_date"
+      - "time_utc"
   ####################################
   # Energy
   ####################################
@@ -122,7 +122,7 @@ sensors:
     sensors:
       bin_collection:
         friendly_name: Bin Collection
-        value_template:  >
+        value_template: >
           {% set map = {"RECYCLE": "blue", "DOMESTIC": "black", "ORGANIC": "green"} %}
           {{ "The " }}
           {%- for type in state_attr('sensor.bin_collection_data', 'roundTypes') -%}
@@ -300,32 +300,32 @@ sensors:
   - platform: template
     sensors:
       bathroom_occupied_probability:
-          unit_of_measurement: '%'
-          value_template: "{{ state_attr('binary_sensor.bathroom_occupied','probability')*100 | int }}"
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('binary_sensor.bathroom_occupied','probability')*100 | int }}"
       study_occupied_probability:
-          unit_of_measurement: '%'
-          value_template: "{{ state_attr('binary_sensor.study_occupied','probability')*100 | int }}"
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('binary_sensor.study_occupied','probability')*100 | int }}"
       lounge_occupied_probability:
-          unit_of_measurement: '%'
-          value_template: "{{ state_attr('binary_sensor.lounge_occupied','probability')*100 | int }}"
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('binary_sensor.lounge_occupied','probability')*100 | int }}"
       hall_occupied_probability:
-          unit_of_measurement: '%'
-          value_template: "{{ state_attr('binary_sensor.hall_occupied','probability')*100 | int }}"
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('binary_sensor.hall_occupied','probability')*100 | int }}"
       toilet_occupied_probability:
-          unit_of_measurement: '%'
-          value_template: "{{ state_attr('binary_sensor.toilet_occupied','probability')*100 | int }}"
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('binary_sensor.toilet_occupied','probability')*100 | int }}"
       kitchen_occupied_probability:
-          unit_of_measurement: '%'
-          value_template: "{{ state_attr('binary_sensor.kitchen_occupied','probability')*100 | int }}"
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('binary_sensor.kitchen_occupied','probability')*100 | int }}"
       bedroom_occupied_probability:
-          unit_of_measurement: '%'
-          value_template: "{{ state_attr('binary_sensor.bedroom_occupied','probability')*100 | int }}"
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('binary_sensor.bedroom_occupied','probability')*100 | int }}"
       entrance_occupied_probability:
-          unit_of_measurement: '%'
-          value_template: "{{ state_attr('binary_sensor.entrance_occupied','probability')*100 | int }}"
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('binary_sensor.entrance_occupied','probability')*100 | int }}"
       in_bed_probability:
-          unit_of_measurement: '%'
-          value_template: "{{ state_attr('binary_sensor.in_bed','probability')*100 | int }}"
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('binary_sensor.in_bed','probability')*100 | int }}"
 
   ####################################
   # History Stats
@@ -351,7 +351,6 @@ sensors:
     type: ratio
     start: "{{ now() - timedelta(days=7) }}"
     end: "{{ now() }}"
-
   #- platform: fitbit
   #  clock_format: 24H
   #  unit_system: en_GB
