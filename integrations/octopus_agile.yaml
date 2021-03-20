@@ -1,0 +1,6 @@
+octopusagile:
+  region_code: !secret octopus_region
+  mpan: !secret octopus_mpan
+  serial: !secret octopus_serial
+  auth: !secret octopus_auth
+  startdate: "2020-11-12"
