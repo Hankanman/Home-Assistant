@@ -1,148 +1,130 @@
-####################################
-# Thermostats
-####################################
-- platform: template
-  sensors:
-    downstairs_temp:
-      friendly_name: "Downstairs Temperature"
-      device_class: temperature
-      value_template: "{{ state_attr('climate.heating', 'current_temperature') }}"
-    study_temp:
-      friendly_name: "Study Temperature"
-      device_class: temperature
-      value_template: "{{ state_attr('climate.study', 'current_temperature') }}"
-    bathroom_temp:
-      friendly_name: "Bathroom Temperature"
-      device_class: temperature
-      value_template: "{{ state_attr('climate.bathroom', 'current_temperature') }}"
-    bedroom_temp:
-      friendly_name: "Bedroom Temperature"
-      device_class: temperature
-      value_template: "{{ state_attr('climate.bedroom', 'current_temperature') }}"
-    toilet_temp:
-      friendly_name: "Toilet Temperature"
-      device_class: temperature
-      value_template: "{{ state_attr('climate.toilet', 'current_temperature') }}"
-- platform: average
-  name: "Home Temperature"
-  entities:
-    - sensor.downstairs_temp
-    - sensor.study_temp
-    - sensor.bathroom_temp
-    - sensor.bedroom_temp
-    - sensor.toilet_temp
-    - sensor.bathroom_multisensor_temperature_air
-    - sensor.bedroom_trisensor_temperature_air
-    - sensor.hall_trisensor_temperature_air
-    - sensor.kitchen_trisensor_temperature_air
-    - sensor.lounge_trisensor_temperature_air
-    - sensor.study_trisensor_temperature_air
-    - sensor.toilet_trisensor_temperature_air
+sensors:
+  ####################################
+  # Thermostats
+  ####################################
+  - platform: template
+    sensors:
+      downstairs_temp:
+        friendly_name: "Downstairs Temperature"
+        device_class: temperature
+        value_template: "{{ state_attr('climate.heating', 'current_temperature') }}"
+      study_temp:
+        friendly_name: "Study Temperature"
+        device_class: temperature
+        value_template: "{{ state_attr('climate.study', 'current_temperature') }}"
+      bathroom_temp:
+        friendly_name: "Bathroom Temperature"
+        device_class: temperature
+        value_template: "{{ state_attr('climate.bathroom', 'current_temperature') }}"
+      bedroom_temp:
+        friendly_name: "Bedroom Temperature"
+        device_class: temperature
+        value_template: "{{ state_attr('climate.bedroom', 'current_temperature') }}"
+      toilet_temp:
+        friendly_name: "Toilet Temperature"
+        device_class: temperature
+        value_template: "{{ state_attr('climate.toilet', 'current_temperature') }}"
+  - platform: average
+    name: "Home Temperature"
+    entities:
+      - sensor.downstairs_temp
+      - sensor.study_temp
+      - sensor.bathroom_temp
+      - sensor.bedroom_temp
+      - sensor.toilet_temp
+      - sensor.bathroom_multisensor_temperature_air
+      - sensor.bedroom_trisensor_temperature_air
+      - sensor.hall_trisensor_temperature_air
+      - sensor.kitchen_trisensor_temperature_air
+      - sensor.lounge_trisensor_temperature_air
+      - sensor.study_trisensor_temperature_air
+      - sensor.toilet_trisensor_temperature_air
 
-####################################
-# Weather
-####################################
-- platform: season
-####################################
-# Time
-####################################
-- platform: time_date
-  display_options:
-    - 'time'
-    - 'date'
-    - 'date_time'
-    - 'date_time_utc'
-    - 'date_time_iso'
-    - 'time_date'
-    - 'time_utc'
-####################################
-# Energy
-####################################
-- platform: "octopusagile"
-- platform: rest
-  name: Gas Daily Usage
-  device_class: power
-  unit_of_measurement: "kWh"
-  json_attributes_path: "$.results[1]"
-  json_attributes:
-    - interval_start
-    - interval_end
-  value_template: "{{value_json.results[1].consumption}}"
-  resource: !secret octopus_gas
-- platform: rest
-  name: Electricity Daily Usage
-  device_class: power
-  unit_of_measurement: "kWh"
-  json_attributes_path: "$.results[1]"
-  json_attributes:
-    - interval_start
-    - interval_end
-  value_template: "{{value_json.results[1].consumption}}"
-  resource: !secret octopus_electricity
-- platform: template
-  sensors:
-    total_energy_usage:
-      friendly_name: Total Energy Usage
-      device_class: power
-      unit_of_measurement: "kWh"
-      value_template: "{{ states('sensor.gas_daily_usage') | float + states('sensor.electricity_daily_usage') | float }}"
-      attribute_templates:
-        interval_start: "{{ strptime(state_attr('sensor.gas_daily_usage', 'interval_start'),'%Y-%m-%dT%H:%M:%SZ').strftime('%d/%m/%Y') }}"
-        interval_end: "{{ strptime(state_attr('sensor.gas_daily_usage', 'interval_end'),'%Y-%m-%dT%H:%M:%SZ').strftime('%d/%m/%Y') }}"
-####################################
-# Bin Collection
-####################################
-- platform: rest
-  name: Bin Collection Data
-  json_attributes_path: "$.collections[0]"
-  json_attributes:
-    - date
-    - roundTypes
-    - slippedCollection
-  value_template: >
-    {% set map = {"RECYCLE": "blue", "DOMESTIC": "black", "ORGANIC": "green"} %}
-    {{ "The " }}
-    {%- for type in value_json.collections[0].roundTypes -%}
-      {%- if loop.length > 1 -%}
-        {%- if loop.first -%}
-          {{map[type]}}
-        {%- elif loop.last -%}
-          {{ " and " }}{{map[type]}}
-        {%- else -%}
-          {{ ", " }}{{map[type]}}
-        {%- endif -%}
-      {%- else -%}
-        {{map[type]}}
-      {%- endif -%}
-    {%- endfor -%}
-    {{strptime(value_json.collections[0].date,"%Y-%m-%dT%H:%M:%SZ").strftime(" bin will be collected on %A, %b %d")}}
-  resource: !secret bin_collection
-- platform: template
-  sensors:
-    bin_collection:
-      friendly_name: Bin Collection
-      value_template:  >
-        {% set map = {"RECYCLE": "blue", "DOMESTIC": "black", "ORGANIC": "green"} %}
-        {{ "The " }}
-        {%- for type in state_attr('sensor.bin_collection_data', 'roundTypes') -%}
-          {%- if loop.length > 1 -%}
-            {%- if loop.first -%}
-              {{map[type]}}
-            {%- elif loop.last -%}
-              {{ ", and " }}{{map[type]}}
-            {%- else -%}
-              {{ ", " }}{{map[type]}}
-            {%- endif -%}
-          {%- else -%}
+  ####################################
+  # Weather
+  ####################################
+  - platform: season
+  ####################################
+  # Time
+  ####################################
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'date_time_utc'
+      - 'date_time_iso'
+      - 'time_date'
+      - 'time_utc'
+  ####################################
+  # Energy
+  ####################################
+  - platform: "octopusagile"
+  - platform: rest
+    name: Gas Daily Usage
+    device_class: power
+    unit_of_measurement: "kWh"
+    json_attributes_path: "$.results[1]"
+    json_attributes:
+      - interval_start
+      - interval_end
+    value_template: "{{value_json.results[1].consumption}}"
+    resource: !secret octopus_gas
+  - platform: rest
+    name: Electricity Daily Usage
+    device_class: power
+    unit_of_measurement: "kWh"
+    json_attributes_path: "$.results[1]"
+    json_attributes:
+      - interval_start
+      - interval_end
+    value_template: "{{value_json.results[1].consumption}}"
+    resource: !secret octopus_electricity
+  - platform: template
+    sensors:
+      total_energy_usage:
+        friendly_name: Total Energy Usage
+        device_class: power
+        unit_of_measurement: "kWh"
+        value_template: "{{ states('sensor.gas_daily_usage') | float + states('sensor.electricity_daily_usage') | float }}"
+        attribute_templates:
+          interval_start: "{{ strptime(state_attr('sensor.gas_daily_usage', 'interval_start'),'%Y-%m-%dT%H:%M:%SZ').strftime('%d/%m/%Y') }}"
+          interval_end: "{{ strptime(state_attr('sensor.gas_daily_usage', 'interval_end'),'%Y-%m-%dT%H:%M:%SZ').strftime('%d/%m/%Y') }}"
+  ####################################
+  # Bin Collection
+  ####################################
+  - platform: rest
+    name: Bin Collection Data
+    json_attributes_path: "$.collections[0]"
+    json_attributes:
+      - date
+      - roundTypes
+      - slippedCollection
+    value_template: >
+      {% set map = {"RECYCLE": "blue", "DOMESTIC": "black", "ORGANIC": "green"} %}
+      {{ "The " }}
+      {%- for type in value_json.collections[0].roundTypes -%}
+        {%- if loop.length > 1 -%}
+          {%- if loop.first -%}
             {{map[type]}}
+          {%- elif loop.last -%}
+            {{ " and " }}{{map[type]}}
+          {%- else -%}
+            {{ ", " }}{{map[type]}}
           {%- endif -%}
-        {%- endfor -%}
-          {{strptime(state_attr('sensor.bin_collection_data', 'date'),"%Y-%m-%dT%H:%M:%SZ").strftime(" bin will be collected on %A, %b %d")}}
-      attribute_templates:
-        Date: "{{ strptime(state_attr('sensor.bin_collection_data', 'date'),'%Y-%m-%dT%H:%M:%SZ').strftime('%d/%m/%Y') }}"
-        Day: "{{ strptime(state_attr('sensor.bin_collection_data', 'date'),'%Y-%m-%dT%H:%M:%SZ').strftime('%A') }}"
-        Types: >
+        {%- else -%}
+          {{map[type]}}
+        {%- endif -%}
+      {%- endfor -%}
+      {{strptime(value_json.collections[0].date,"%Y-%m-%dT%H:%M:%SZ").strftime(" bin will be collected on %A, %b %d")}}
+    resource: !secret bin_collection
+  - platform: template
+    sensors:
+      bin_collection:
+        friendly_name: Bin Collection
+        value_template:  >
           {% set map = {"RECYCLE": "blue", "DOMESTIC": "black", "ORGANIC": "green"} %}
+          {{ "The " }}
           {%- for type in state_attr('sensor.bin_collection_data', 'roundTypes') -%}
             {%- if loop.length > 1 -%}
               {%- if loop.first -%}
@@ -156,20 +138,18 @@
               {{map[type]}}
             {%- endif -%}
           {%- endfor -%}
-        Delayed: "{% if state_attr('sensor.bin_collection_data', 'slippedCollection') %}Yes{% else %}No{% endif %}"
-        Black: "{% if 'DOMESTIC' in state_attr('sensor.bin_collection_data', 'roundTypes') %}Yes{% else %}No{% endif %}"
-        Blue: "{% if 'RECYCLE' in state_attr('sensor.bin_collection_data', 'roundTypes') %}Yes{% else %}No{% endif %}"
-        Green: "{% if 'ORGANIC' in state_attr('sensor.bin_collection_data', 'roundTypes') %}Yes{% else %}No{% endif %}"
-        Timestamp: "{{ as_timestamp(strptime(state_attr('sensor.bin_collection_data', 'date'),'%Y-%m-%dT%H:%M:%SZ')) }}"
-        Reminder: >
-          {% set map = {"RECYCLE": "blue", "DOMESTIC": "black", "ORGANIC": "green"} %}
-          {{ "The " }}
+            {{strptime(state_attr('sensor.bin_collection_data', 'date'),"%Y-%m-%dT%H:%M:%SZ").strftime(" bin will be collected on %A, %b %d")}}
+        attribute_templates:
+          Date: "{{ strptime(state_attr('sensor.bin_collection_data', 'date'),'%Y-%m-%dT%H:%M:%SZ').strftime('%d/%m/%Y') }}"
+          Day: "{{ strptime(state_attr('sensor.bin_collection_data', 'date'),'%Y-%m-%dT%H:%M:%SZ').strftime('%A') }}"
+          Types: >
+            {% set map = {"RECYCLE": "blue", "DOMESTIC": "black", "ORGANIC": "green"} %}
             {%- for type in state_attr('sensor.bin_collection_data', 'roundTypes') -%}
               {%- if loop.length > 1 -%}
                 {%- if loop.first -%}
                   {{map[type]}}
                 {%- elif loop.last -%}
-                  {{ " and " }}{{map[type]}}
+                  {{ ", and " }}{{map[type]}}
                 {%- else -%}
                   {{ ", " }}{{map[type]}}
                 {%- endif -%}
@@ -177,215 +157,236 @@
                 {{map[type]}}
               {%- endif -%}
             {%- endfor -%}
-            {{" bin will be collected tomorrow, make sure they are out!"}}
-####################################
-# Tracking
-####################################
-- platform: template
-  sensors:
-    laura_distance_from_home:
-      friendly_name: "Laura's Distance from Home"
-      unit_of_measurement: "km"
-      value_template: "{{ distance('person.laura_ward', 'zone.home') | round(2) }}"
-    seb_distance_from_home:
-      friendly_name: "Seb's Distance from Home"
-      unit_of_measurement: "km"
-      value_template: "{{ distance('person.sebastian_burrell', 'zone.home') | round(2) }}"
-####################################
-# Calendar
-####################################
-#- platform: office365calendar
-#  name: seb_work_calendar
-#  client_id: !secret o365_id
-#  client_secret: !secret o365_secret
-#  scan_interval: 300
-#  alt_auth_flow: true
+          Delayed: "{% if state_attr('sensor.bin_collection_data', 'slippedCollection') %}Yes{% else %}No{% endif %}"
+          Black: "{% if 'DOMESTIC' in state_attr('sensor.bin_collection_data', 'roundTypes') %}Yes{% else %}No{% endif %}"
+          Blue: "{% if 'RECYCLE' in state_attr('sensor.bin_collection_data', 'roundTypes') %}Yes{% else %}No{% endif %}"
+          Green: "{% if 'ORGANIC' in state_attr('sensor.bin_collection_data', 'roundTypes') %}Yes{% else %}No{% endif %}"
+          Timestamp: "{{ as_timestamp(strptime(state_attr('sensor.bin_collection_data', 'date'),'%Y-%m-%dT%H:%M:%SZ')) }}"
+          Reminder: >
+            {% set map = {"RECYCLE": "blue", "DOMESTIC": "black", "ORGANIC": "green"} %}
+            {{ "The " }}
+              {%- for type in state_attr('sensor.bin_collection_data', 'roundTypes') -%}
+                {%- if loop.length > 1 -%}
+                  {%- if loop.first -%}
+                    {{map[type]}}
+                  {%- elif loop.last -%}
+                    {{ " and " }}{{map[type]}}
+                  {%- else -%}
+                    {{ ", " }}{{map[type]}}
+                  {%- endif -%}
+                {%- else -%}
+                  {{map[type]}}
+                {%- endif -%}
+              {%- endfor -%}
+              {{" bin will be collected tomorrow, make sure they are out!"}}
+  ####################################
+  # Tracking
+  ####################################
+  - platform: template
+    sensors:
+      laura_distance_from_home:
+        friendly_name: "Laura's Distance from Home"
+        unit_of_measurement: "km"
+        value_template: "{{ distance('person.laura_ward', 'zone.home') | round(2) }}"
+      seb_distance_from_home:
+        friendly_name: "Seb's Distance from Home"
+        unit_of_measurement: "km"
+        value_template: "{{ distance('person.sebastian_burrell', 'zone.home') | round(2) }}"
+  ####################################
+  # Calendar
+  ####################################
+  #- platform: office365calendar
+  #  name: seb_work_calendar
+  #  client_id: !secret o365_id
+  #  client_secret: !secret o365_secret
+  #  scan_interval: 300
+  #  alt_auth_flow: true
 
-####################################
-# Lux Averages
-####################################
-- platform: average
-  name: "Study Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.study_trisensor_illuminance
-- platform: average
-  name: "Bedroom Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.bedroom_trisensor_illuminance
-- platform: average
-  name: "Hall Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.hall_trisensor_illuminance
-- platform: average
-  name: "Bathroom Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.bathroom_multisensor_illuminance
-- platform: average
-  name: "Lounge Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.lounge_trisensor_illuminance
-- platform: average
-  name: "Kitchen Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.kitchen_trisensor_illuminance
-- platform: average
-  name: "Toilet Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.toilet_trisensor_illuminance
+  ####################################
+  # Lux Averages
+  ####################################
+  - platform: average
+    name: "Study Average Lux"
+    precision: 0
+    duration:
+      days: 1
+    entities:
+      - sensor.study_trisensor_illuminance
+  - platform: average
+    name: "Bedroom Average Lux"
+    precision: 0
+    duration:
+      days: 1
+    entities:
+      - sensor.bedroom_trisensor_illuminance
+  - platform: average
+    name: "Hall Average Lux"
+    precision: 0
+    duration:
+      days: 1
+    entities:
+      - sensor.hall_trisensor_illuminance
+  - platform: average
+    name: "Bathroom Average Lux"
+    precision: 0
+    duration:
+      days: 1
+    entities:
+      - sensor.bathroom_multisensor_illuminance
+  - platform: average
+    name: "Lounge Average Lux"
+    precision: 0
+    duration:
+      days: 1
+    entities:
+      - sensor.lounge_trisensor_illuminance
+  - platform: average
+    name: "Kitchen Average Lux"
+    precision: 0
+    duration:
+      days: 1
+    entities:
+      - sensor.kitchen_trisensor_illuminance
+  - platform: average
+    name: "Toilet Average Lux"
+    precision: 0
+    duration:
+      days: 1
+    entities:
+      - sensor.toilet_trisensor_illuminance
 
-####################################
-# Humidity Averages
-####################################
-- platform: average
-  name: "Bathroom Average Humidity"
-  precision: 0
-  duration:
-    hours: 4
-  entities:
-    - sensor.bathroom_multisensor_humidity_air
+  ####################################
+  # Humidity Averages
+  ####################################
+  - platform: average
+    name: "Bathroom Average Humidity"
+    precision: 0
+    duration:
+      hours: 4
+    entities:
+      - sensor.bathroom_multisensor_humidity_air
 
-####################################
-# Monitoring
-####################################
-- platform: template
-  sensors:
-    time_since_last_active:
-      unit_of_measurement: Minutes
-      value_template: "{{ (states('sensor.date_time_iso') | as_timestamp  / 60) | round(0, 'floor') - (states('sensor.last_active') | as_timestamp / 60) | round(0, 'floor') }}"
-####################################
-# Stocks
-####################################
-- platform: alpha_vantage
-  api_key: !secret alpha_vantage_api
-  symbols:
-    - symbol: TSLA
-      name: Tesla
-####################################
-# Networking
-####################################
-- platform: unifigateway
-  host: !secret unifi_cloud_key
-  username: !secret unifi_user
-  password: !secret unifi_password
-  monitored_conditions:
-    - www
-    - wan
-    - alerts
-    - firmware
-####################################
-# Probabilities
-####################################
-- platform: template
-  sensors:
-    bathroom_occupied_probability:
-        unit_of_measurement: '%'
-        value_template: "{{ state_attr('binary_sensor.bathroom_occupied','probability')*100 | int }}"
-    study_occupied_probability:
-        unit_of_measurement: '%'
-        value_template: "{{ state_attr('binary_sensor.study_occupied','probability')*100 | int }}"
-    lounge_occupied_probability:
-        unit_of_measurement: '%'
-        value_template: "{{ state_attr('binary_sensor.lounge_occupied','probability')*100 | int }}"
-    hall_occupied_probability:
-        unit_of_measurement: '%'
-        value_template: "{{ state_attr('binary_sensor.hall_occupied','probability')*100 | int }}"
-    toilet_occupied_probability:
-        unit_of_measurement: '%'
-        value_template: "{{ state_attr('binary_sensor.toilet_occupied','probability')*100 | int }}"
-    kitchen_occupied_probability:
-        unit_of_measurement: '%'
-        value_template: "{{ state_attr('binary_sensor.kitchen_occupied','probability')*100 | int }}"
-    bedroom_occupied_probability:
-        unit_of_measurement: '%'
-        value_template: "{{ state_attr('binary_sensor.bedroom_occupied','probability')*100 | int }}"
-    entrance_occupied_probability:
-        unit_of_measurement: '%'
-        value_template: "{{ state_attr('binary_sensor.entrance_occupied','probability')*100 | int }}"
-    in_bed_probability:
-        unit_of_measurement: '%'
-        value_template: "{{ state_attr('binary_sensor.in_bed','probability')*100 | int }}"
+  ####################################
+  # Monitoring
+  ####################################
+  - platform: template
+    sensors:
+      time_since_last_active:
+        unit_of_measurement: Minutes
+        value_template: "{{ (states('sensor.date_time_iso') | as_timestamp  / 60) | round(0, 'floor') - (states('sensor.last_active') | as_timestamp / 60) | round(0, 'floor') }}"
+  ####################################
+  # Stocks
+  ####################################
+  - platform: alpha_vantage
+    api_key: !secret alpha_vantage_api
+    symbols:
+      - symbol: TSLA
+        name: Tesla
+  ####################################
+  # Networking
+  ####################################
+  - platform: unifigateway
+    host: !secret unifi_cloud_key
+    username: !secret unifi_user
+    password: !secret unifi_password
+    monitored_conditions:
+      - www
+      - wan
+      - alerts
+      - firmware
+  ####################################
+  # Probabilities
+  ####################################
+  - platform: template
+    sensors:
+      bathroom_occupied_probability:
+          unit_of_measurement: '%'
+          value_template: "{{ state_attr('binary_sensor.bathroom_occupied','probability')*100 | int }}"
+      study_occupied_probability:
+          unit_of_measurement: '%'
+          value_template: "{{ state_attr('binary_sensor.study_occupied','probability')*100 | int }}"
+      lounge_occupied_probability:
+          unit_of_measurement: '%'
+          value_template: "{{ state_attr('binary_sensor.lounge_occupied','probability')*100 | int }}"
+      hall_occupied_probability:
+          unit_of_measurement: '%'
+          value_template: "{{ state_attr('binary_sensor.hall_occupied','probability')*100 | int }}"
+      toilet_occupied_probability:
+          unit_of_measurement: '%'
+          value_template: "{{ state_attr('binary_sensor.toilet_occupied','probability')*100 | int }}"
+      kitchen_occupied_probability:
+          unit_of_measurement: '%'
+          value_template: "{{ state_attr('binary_sensor.kitchen_occupied','probability')*100 | int }}"
+      bedroom_occupied_probability:
+          unit_of_measurement: '%'
+          value_template: "{{ state_attr('binary_sensor.bedroom_occupied','probability')*100 | int }}"
+      entrance_occupied_probability:
+          unit_of_measurement: '%'
+          value_template: "{{ state_attr('binary_sensor.entrance_occupied','probability')*100 | int }}"
+      in_bed_probability:
+          unit_of_measurement: '%'
+          value_template: "{{ state_attr('binary_sensor.in_bed','probability')*100 | int }}"
 
-####################################
-# History Stats
-####################################
-- platform: history_stats
-  name: PC Active Time
-  entity_id: binary_sensor.starrunner_active
-  state: "on"
-  type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
-  end: "{{ now() }}"
-- platform: history_stats
-  name: Study Motion Time
-  entity_id: binary_sensor.study_trisensor_motion
-  state: "on"
-  type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
-  end: "{{ now() }}"
-- platform: history_stats
-  name: Seb Study Room Presence Time
-  entity_id: sensor.seb_phone_ble_room_presence
-  state: "Study"
-  type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
-  end: "{{ now() }}"
+  ####################################
+  # History Stats
+  ####################################
+  - platform: history_stats
+    name: PC Active Time
+    entity_id: binary_sensor.starrunner_active
+    state: "on"
+    type: ratio
+    start: "{{ now() - timedelta(days=7) }}"
+    end: "{{ now() }}"
+  - platform: history_stats
+    name: Study Motion Time
+    entity_id: binary_sensor.study_trisensor_motion
+    state: "on"
+    type: ratio
+    start: "{{ now() - timedelta(days=7) }}"
+    end: "{{ now() }}"
+  - platform: history_stats
+    name: Seb Study Room Presence Time
+    entity_id: sensor.seb_phone_ble_room_presence
+    state: "Study"
+    type: ratio
+    start: "{{ now() - timedelta(days=7) }}"
+    end: "{{ now() }}"
 
-#- platform: fitbit
-#  clock_format: 24H
-#  unit_system: en_GB
-#  monitored_resources:
-#      - "activities/activityCalories"
-#      - "activities/calories"
-#      - "activities/caloriesBMR"
-#      - "activities/distance"
-#      - "activities/elevation"
-#      - "activities/floors"
-#      - "activities/heart"
-#      - "activities/minutesFairlyActive"
-#      - "activities/minutesLightlyActive"
-#      - "activities/minutesSedentary"
-#      - "activities/minutesVeryActive"
-#      - "activities/steps"
-#      - "activities/tracker/activityCalories"
-#      - "activities/tracker/calories"
-#      - "activities/tracker/distance"
-#      - "activities/tracker/elevation"
-#      - "activities/tracker/floors"
-#      - "activities/tracker/minutesFairlyActive"
-#      - "activities/tracker/minutesLightlyActive"
-#      - "activities/tracker/minutesSedentary"
-#      - "activities/tracker/minutesVeryActive"
-#      - "activities/tracker/steps"
-#      - "body/bmi"
-#      - "body/fat"
-#      - "body/weight"
-#      - "devices/battery"
-#      - "sleep/awakeningsCount"
-#      - "sleep/efficiency"
-#      - "sleep/minutesAfterWakeup"
-#      - "sleep/minutesAsleep"
-#      - "sleep/minutesAwake"
-#      - "sleep/minutesToFallAsleep"
-#      - "sleep/startTime"
-#      - "sleep/timeInBed"
+  #- platform: fitbit
+  #  clock_format: 24H
+  #  unit_system: en_GB
+  #  monitored_resources:
+  #      - "activities/activityCalories"
+  #      - "activities/calories"
+  #      - "activities/caloriesBMR"
+  #      - "activities/distance"
+  #      - "activities/elevation"
+  #      - "activities/floors"
+  #      - "activities/heart"
+  #      - "activities/minutesFairlyActive"
+  #      - "activities/minutesLightlyActive"
+  #      - "activities/minutesSedentary"
+  #      - "activities/minutesVeryActive"
+  #      - "activities/steps"
+  #      - "activities/tracker/activityCalories"
+  #      - "activities/tracker/calories"
+  #      - "activities/tracker/distance"
+  #      - "activities/tracker/elevation"
+  #      - "activities/tracker/floors"
+  #      - "activities/tracker/minutesFairlyActive"
+  #      - "activities/tracker/minutesLightlyActive"
+  #      - "activities/tracker/minutesSedentary"
+  #      - "activities/tracker/minutesVeryActive"
+  #      - "activities/tracker/steps"
+  #      - "body/bmi"
+  #      - "body/fat"
+  #      - "body/weight"
+  #      - "devices/battery"
+  #      - "sleep/awakeningsCount"
+  #      - "sleep/efficiency"
+  #      - "sleep/minutesAfterWakeup"
+  #      - "sleep/minutesAsleep"
+  #      - "sleep/minutesAwake"
+  #      - "sleep/minutesToFallAsleep"
+  #      - "sleep/startTime"
+  #      - "sleep/timeInBed"

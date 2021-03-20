@@ -1,26 +1,27 @@
-- platform: foscam
-  name: Lounge Foscam
-  ip: !secret cam_lounge
-  port: 88
-  rtsp_port: 88
-  username: !secret cam_user
-  password: !secret cam_password
-- platform: foscam
-  name: Hall Foscam
-  ip: !secret cam_hall
-  port: 88
-  rtsp_port: 88
-  username: !secret cam_user
-  password: !secret cam_password
-- platform: ffmpeg
-  input: !secret cam_lounge_shinobi
-  name: Lounge
-- platform: ffmpeg
-  input: !secret cam_kitchen_shinobi
-  name: Kitchen
-- platform: ffmpeg
-  input: !secret cam_entrance_shinobi
-  name: Entrance
-- platform: ffmpeg
-  input: !secret cam_hall_shinobi
-  name: Hall
+cameras:
+  - platform: foscam
+    name: Lounge Foscam
+    ip: !secret cam_lounge
+    port: 88
+    rtsp_port: 88
+    username: !secret cam_user
+    password: !secret cam_password
+  - platform: foscam
+    name: Hall Foscam
+    ip: !secret cam_hall
+    port: 88
+    rtsp_port: 88
+    username: !secret cam_user
+    password: !secret cam_password
+  - platform: ffmpeg
+    input: !secret cam_lounge_shinobi
+    name: Lounge
+  - platform: ffmpeg
+    input: !secret cam_kitchen_shinobi
+    name: Kitchen
+  - platform: ffmpeg
+    input: !secret cam_entrance_shinobi
+    name: Entrance
+  - platform: ffmpeg
+    input: !secret cam_hall_shinobi
+    name: Hall

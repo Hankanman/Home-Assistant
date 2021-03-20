@@ -1,132 +1,132 @@
-
-- platform: androidtv
-  device_class: firetv
-  name: Bedroom Fire TV ADB
-  host: !secret bedroom_fire_tv
-  adb_server_ip: !secret adb_server_ip
-  adb_server_port: 5037
-  exclude_unnamed_apps: true
-  apps:
-    com.amazon.tv.launcher: "Fire TV Home"
-    uk.co.bbc.iplayer: "BBC iPlayer"
-    com.amazon.firetv.youtube: "YouTube"
-    com.channel4.ondemand: "All 4"
-    air.ITVMobilePlayer: "ITV Hub"
-- platform: androidtv
-  device_class: androidtv
-  name: Shield ADB
-  host: !secret shield_tv
-  adb_server_ip: !secret adb_server_ip
-  adb_server_port: 5037
-  exclude_unnamed_apps: true
-  apps:
-    com.google.android.tvlauncher: "Shield Home"
-    com.amazon.amazonvideo.livingroom: "Prime Video"
-    uk.co.bbc.iplayer: "BBC iPlayer"
-    com.amazon.firetv.youtube: "YouTube"
-    com.android.vending: "Play Store"
-    com.facebook.katana: "Facebook Watch"
-    com.google.android.music: "Google Play Music"
-    com.google.android.videos: "Google Play Movies & TV"
-    com.channel4.ondemand: "All 4"
-    air.ITVMobilePlayer: "ITV Hub"
-    com.google.android.tv: "Live TV"
-    com.nvidia.bbciplayer: "BBC iPlayer"
-    tv.twitch.android.app: "Twitch"
-    com.nvidia.tegrazone3: "Nvidia Games"
-    com.valvesoftware.steamlink: "Steam Link"
-- platform: androidtv
-  device_class: androidtv
-  name: Lounge TV ADB
-  host: !secret lounge_tv
-  adb_server_ip: !secret adb_server_ip
-  adb_server_port: 5037
-  exclude_unnamed_apps: true
-  apps:
-    com.sony.dtv.hbbtvlauncher: "All 4"
-    com.sony.dtv.tvx: "External Source"
-- platform: universal
-  name: Bedroom TV
-  children:
-    - media_player.bedroom_fire_tv_adb
-    - media_player.bedroom_fire_tv
-    - media_player.bedroom_tv_panasonic
-  commands:
-    turn_on:
-      service: media_player.turn_on
-      data:
-        entity_id: media_player.bedroom_fire_tv_adb
-    turn_off:
-      service: media_player.turn_off
-      data:
-        entity_id: media_player.bedroom_tv_panasonic
-    volume_up:
-      service: media_player.volume_up
-      data:
-        entity_id: media_player.bedroom_tv_panasonic
-    volume_down:
-      service: media_player.volume_down
-      data:
-        entity_id: media_player.bedroom_tv_panasonic
-    volume_mute:
-      service: media_player.volume_mute
-      data:
-        entity_id: media_player.bedroom_tv_panasonic
-    select_source:
-      service: media_player.select_source
-      data:
-        entity_id: media_player.bedroom_fire_tv_adb
-        source: '{{ source }}'
-    volume_set:
-      service: media_player.volume_set
-      data:
-        entity_id: media_player.bedroom_tv_panasonic
-        volume_level: '{{ volume_level }}'
-  attributes:
-    is_volume_muted: media_player.bedroom_tv_panasonic|is_volume_muted
-    state: media_player.bedroom_fire_tv_adb
-    source: media_player.bedroom_fire_tv_adb|source
-    source_list: media_player.bedroom_fire_tv_adb|source_list
-- platform: universal
-  name: Lounge TV
-  children:
-    - media_player.shield_adb
-    - media_player.lounge_tv_adb
-    - media_player.lounge_tv_google
-    - media_player.shield_google
-  commands:
-    turn_on:
-      service: media_player.turn_on
-      data:
-        entity_id: media_player.shield_adb
-    turn_off:
-      service: media_player.turn_off
-      data:
-        entity_id: media_player.lounge_tv_adb
-    volume_up:
-      service: media_player.volume_up
-      data:
-        entity_id: media_player.lounge_tv_adb
-    volume_down:
-      service: media_player.volume_down
-      data:
-        entity_id: media_player.lounge_tv_adb
-    volume_mute:
-      service: media_player.volume_mute
-      data:
-        entity_id: media_player.lounge_tv_adb
-    select_source:
-      service: media_player.select_source
-      data:
-        entity_id: media_player.shield_adb
-        source: '{{ source }}'
-    volume_set:
-      service: media_player.volume_set
-      data:
-        entity_id: media_player.lounge_tv_adb
-        volume_level: '{{ volume_level }}'
-  attributes:
-    state: media_player.lounge_tv_adb
-    is_volume_muted: media_player.lounge_tv_adb|is_volume_muted
-    source: media_player.shield_adb|source
-    source_list: media_player.shield_adb|source_list
+media_player:
+  - platform: androidtv
+    device_class: firetv
+    name: Bedroom Fire TV ADB
+    host: !secret bedroom_fire_tv
+    adb_server_ip: !secret adb_server_ip
+    adb_server_port: 5037
+    exclude_unnamed_apps: true
+    apps:
+      com.amazon.tv.launcher: "Fire TV Home"
+      uk.co.bbc.iplayer: "BBC iPlayer"
+      com.amazon.firetv.youtube: "YouTube"
+      com.channel4.ondemand: "All 4"
+      air.ITVMobilePlayer: "ITV Hub"
+  - platform: androidtv
+    device_class: androidtv
+    name: Shield ADB
+    host: !secret shield_tv
+    adb_server_ip: !secret adb_server_ip
+    adb_server_port: 5037
+    exclude_unnamed_apps: true
+    apps:
+      com.google.android.tvlauncher: "Shield Home"
+      com.amazon.amazonvideo.livingroom: "Prime Video"
+      uk.co.bbc.iplayer: "BBC iPlayer"
+      com.amazon.firetv.youtube: "YouTube"
+      com.android.vending: "Play Store"
+      com.facebook.katana: "Facebook Watch"
+      com.google.android.music: "Google Play Music"
+      com.google.android.videos: "Google Play Movies & TV"
+      com.channel4.ondemand: "All 4"
+      air.ITVMobilePlayer: "ITV Hub"
+      com.google.android.tv: "Live TV"
+      com.nvidia.bbciplayer: "BBC iPlayer"
+      tv.twitch.android.app: "Twitch"
+      com.nvidia.tegrazone3: "Nvidia Games"
+      com.valvesoftware.steamlink: "Steam Link"
+  - platform: androidtv
+    device_class: androidtv
+    name: Lounge TV ADB
+    host: !secret lounge_tv
+    adb_server_ip: !secret adb_server_ip
+    adb_server_port: 5037
+    exclude_unnamed_apps: true
+    apps:
+      com.sony.dtv.hbbtvlauncher: "All 4"
+      com.sony.dtv.tvx: "External Source"
+  - platform: universal
+    name: Bedroom TV
+    children:
+      - media_player.bedroom_fire_tv_adb
+      - media_player.bedroom_fire_tv
+      - media_player.bedroom_tv_panasonic
+    commands:
+      turn_on:
+        service: media_player.turn_on
+        data:
+          entity_id: media_player.bedroom_fire_tv_adb
+      turn_off:
+        service: media_player.turn_off
+        data:
+          entity_id: media_player.bedroom_tv_panasonic
+      volume_up:
+        service: media_player.volume_up
+        data:
+          entity_id: media_player.bedroom_tv_panasonic
+      volume_down:
+        service: media_player.volume_down
+        data:
+          entity_id: media_player.bedroom_tv_panasonic
+      volume_mute:
+        service: media_player.volume_mute
+        data:
+          entity_id: media_player.bedroom_tv_panasonic
+      select_source:
+        service: media_player.select_source
+        data:
+          entity_id: media_player.bedroom_fire_tv_adb
+          source: '{{ source }}'
+      volume_set:
+        service: media_player.volume_set
+        data:
+          entity_id: media_player.bedroom_tv_panasonic
+          volume_level: '{{ volume_level }}'
+    attributes:
+      is_volume_muted: media_player.bedroom_tv_panasonic|is_volume_muted
+      state: media_player.bedroom_fire_tv_adb
+      source: media_player.bedroom_fire_tv_adb|source
+      source_list: media_player.bedroom_fire_tv_adb|source_list
+  - platform: universal
+    name: Lounge TV
+    children:
+      - media_player.shield_adb
+      - media_player.lounge_tv_adb
+      - media_player.lounge_tv_google
+      - media_player.shield_google
+    commands:
+      turn_on:
+        service: media_player.turn_on
+        data:
+          entity_id: media_player.shield_adb
+      turn_off:
+        service: media_player.turn_off
+        data:
+          entity_id: media_player.lounge_tv_adb
+      volume_up:
+        service: media_player.volume_up
+        data:
+          entity_id: media_player.lounge_tv_adb
+      volume_down:
+        service: media_player.volume_down
+        data:
+          entity_id: media_player.lounge_tv_adb
+      volume_mute:
+        service: media_player.volume_mute
+        data:
+          entity_id: media_player.lounge_tv_adb
+      select_source:
+        service: media_player.select_source
+        data:
+          entity_id: media_player.shield_adb
+          source: '{{ source }}'
+      volume_set:
+        service: media_player.volume_set
+        data:
+          entity_id: media_player.lounge_tv_adb
+          volume_level: '{{ volume_level }}'
+    attributes:
+      state: media_player.lounge_tv_adb
+      is_volume_muted: media_player.lounge_tv_adb|is_volume_muted
+      source: media_player.shield_adb|source
+      source_list: media_player.shield_adb|source_list

@@ -1,9 +1,10 @@
-loungecam_turn_off: !secret loungecam_turn_off
-loungecam_turn_on: !secret loungecam_turn_on
-loungecam_floor: !secret loungecam_floor
-hallcam_turn_off: !secret hallcam_turn_off
-hallcam_turn_on: !secret hallcam_turn_on
-hallcam_bedroom: !secret hallcam_bedroom
-hallcam_study: !secret hallcam_study
-hallcam_landing: !secret hallcam_landing
-hallcam_stairs: !secret hallcam_stairs
+shell_command:
+  loungecam_turn_off: !secret loungecam_turn_off
+  loungecam_turn_on: !secret loungecam_turn_on
+  loungecam_floor: !secret loungecam_floor
+  hallcam_turn_off: !secret hallcam_turn_off
+  hallcam_turn_on: !secret hallcam_turn_on
+  hallcam_bedroom: !secret hallcam_bedroom
+  hallcam_study: !secret hallcam_study
+  hallcam_landing: !secret hallcam_landing
+  hallcam_stairs: !secret hallcam_stairs

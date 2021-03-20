@@ -1,21 +1,22 @@
-- platform: nfandroidtv
-  name: Bedroom TV
-  host: !secret bedroom_fire_tv
-- platform: nfandroidtv
-  name: Shield
-  host: !secret shield_tv
-- platform: nfandroidtv
-  name: Lounge TV
-  host: !secret lounge_tv
-- name: Devices
-  platform: group
-  services:
-    - service: mobile_app_seb_phone
-    - service: mobile_app_laura_phone
-    - service: lounge_tv
-    - service: bedroom_tv
-- name: Mobiles
-  platform: group
-  services:
-    - service: mobile_app_seb_phone
-    - service: mobile_app_laura_phone
+notify:
+  - platform: nfandroidtv
+    name: Bedroom TV
+    host: !secret bedroom_fire_tv
+  - platform: nfandroidtv
+    name: Shield
+    host: !secret shield_tv
+  - platform: nfandroidtv
+    name: Lounge TV
+    host: !secret lounge_tv
+  - name: Devices
+    platform: group
+    services:
+      - service: mobile_app_seb_phone
+      - service: mobile_app_laura_phone
+      - service: lounge_tv
+      - service: bedroom_tv
+  - name: Mobiles
+    platform: group
+    services:
+      - service: mobile_app_seb_phone
+      - service: mobile_app_laura_phone

@@ -1,260 +1,261 @@
-- id: '1599502299025'
-  name: Disable Automations
-  entities:
-    automation.bathroom_lights:
-      current: 0
-      friendly_name: Bathroom - Lights
-      id: '1597910341178'
-      last_triggered: '2020-09-07T18:04:09.426343+00:00'
-      mode: restart
-      state: 'off'
-    automation.kitchen_lights:
-      current: 0
-      friendly_name: Kitchen - Lights
-      id: '1598895158496'
-      last_triggered: '2020-09-07T18:05:47.025517+00:00'
-      mode: restart
-      state: 'off'
-    automation.lounge_lights:
-      current: 0
-      friendly_name: Lounge - Lights
-      id: Lounge_Lights
-      last_triggered: '2020-09-07T18:11:01.781372+00:00'
-      mode: restart
-      state: 'off'
-    automation.study_lights_2:
-      current: 0
-      friendly_name: Study - Lights
-      id: Study_Lights
-      last_triggered: '2020-09-07T18:11:54.436965+00:00'
-      mode: restart
-      state: 'off'
-    automation.toilet_lights_2:
-      current: 0
-      friendly_name: Toilet - Lights
-      id: Toilet_Lights
-      last_triggered:
-      mode: restart
-      state: 'off'
-    automation.tv_time_bedroom:
-      current: 0
-      friendly_name: Bedroom - Lights
-      id: tv-time-bedroom
-      last_triggered: '2020-05-23T20:15:03.732077+00:00'
-      mode: single
-      state: 'off'
-- id: '1599502497544'
-  name: Enable Automations
-  entities:
-    automation.bathroom_lights:
-      current: 0
-      friendly_name: Bathroom - Lights
-      id: '1597910341178'
-      last_triggered: '2020-09-07T18:04:09.426343+00:00'
-      mode: restart
-      state: 'on'
-    automation.kitchen_lights:
-      current: 0
-      friendly_name: Kitchen - Lights
-      id: '1598895158496'
-      last_triggered: '2020-09-07T18:05:47.025517+00:00'
-      mode: restart
-      state: 'on'
-    automation.lounge_lights:
-      current: 0
-      friendly_name: Lounge - Lights
-      id: Lounge_Lights
-      last_triggered: '2020-09-07T18:11:01.781372+00:00'
-      mode: restart
-      state: 'on'
-    automation.study_lights_2:
-      current: 0
-      friendly_name: Study - Lights
-      id: Study_Lights
-      last_triggered: '2020-09-07T18:11:54.436965+00:00'
-      mode: restart
-      state: 'on'
-    automation.toilet_lights_2:
-      current: 0
-      friendly_name: Toilet - Lights
-      id: Toilet_Lights
-      last_triggered:
-      mode: restart
-      state: 'on'
-    automation.tv_time_bedroom:
-      current: 0
-      friendly_name: Bedroom - Lights
-      id: tv-time-bedroom
-      last_triggered: '2020-05-23T20:15:03.732077+00:00'
-      mode: single
-      state: 'on'
-- id: '1604836494736'
-  name: All Off
-  entities:
-    light.toilet:
-      is_hue_group: true
-      friendly_name: Toilet
-      supported_features: 41
-      state: 'off'
-    light.entrance:
-      is_hue_group: true
-      friendly_name: Entrance
-      supported_features: 41
-      state: 'off'
-    light.lounge:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
-      - random
-      is_hue_group: true
-      friendly_name: Lounge
-      supported_features: 63
-      state: 'off'
-    light.kitchen:
-      min_mireds: 153
-      max_mireds: 500
-      is_hue_group: true
-      friendly_name: Kitchen
-      supported_features: 43
-      state: 'off'
-    light.bedroom:
-      is_hue_group: true
-      friendly_name: Bedroom
-      supported_features: 41
-      state: 'off'
-    light.bathroom:
-      is_hue_group: true
-      friendly_name: Bathroom
-      supported_features: 41
-      state: 'off'
-    light.study:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
-      - random
-      is_hue_group: true
-      friendly_name: Study
-      supported_features: 63
-      state: 'off'
-    light.hall:
-      is_hue_group: true
-      friendly_name: Hall
-      supported_features: 41
-      state: 'off'
-    automation.toilet_lights_2:
-      last_triggered: '2020-11-08T11:42:25.173595+00:00'
-      mode: restart
-      current: 0
-      id: Toilet_Lights
-      friendly_name: Toilet - Lights
-      state: 'off'
-    automation.entrance_lights:
-      last_triggered: '2020-11-08T11:24:42.985490+00:00'
-      mode: restart
-      current: 0
-      id: Entrance_Lights
-      friendly_name: Entrance - Lights
-      state: 'off'
-    automation.hall_lights:
-      last_triggered: '2020-11-08T11:24:06.215095+00:00'
-      mode: restart
-      current: 0
-      id: Hall_Lights
-      friendly_name: Hall - Lights
-      state: 'off'
-    automation.bathroom_lights:
-      last_triggered: '2020-11-08T11:35:49.835245+00:00'
-      mode: restart
-      current: 0
-      id: '1597910341178'
-      friendly_name: Bathroom - Lights
-      state: 'off'
-    automation.lounge_lights:
-      last_triggered: '2020-11-08T11:27:33.560306+00:00'
-      mode: restart
-      current: 0
-      id: Lounge_Lights
-      friendly_name: Lounge - Lights
-      state: 'off'
-    automation.kitchen_lights:
-      last_triggered: '2020-11-08T11:42:25.171668+00:00'
-      mode: restart
-      current: 0
-      id: '1598895158496'
-      friendly_name: Kitchen - Lights
-      state: 'off'
-    automation.study_lights_2:
-      last_triggered: '2020-11-08T11:42:25.172731+00:00'
-      mode: restart
-      current: 0
-      id: Study_Lights
-      friendly_name: Study - Lights
-      state: 'off'
-    automation.tv_time_bedroom:
-      last_triggered: '2020-11-08T11:19:17.334740+00:00'
-      mode: restart
-      current: 0
-      id: tv-time-bedroom
-      friendly_name: Bedroom - Lights
-      state: 'off'
-- id: '1604837548780'
-  name: All On
-  entities:
-    automation.entrance_lights:
-      last_triggered: '2020-11-08T11:24:42.985490+00:00'
-      mode: restart
-      current: 0
-      id: Entrance_Lights
-      friendly_name: Entrance - Lights
-      state: 'on'
-    automation.toilet_lights_2:
-      last_triggered: '2020-11-08T12:11:54.023097+00:00'
-      mode: restart
-      current: 0
-      id: Toilet_Lights
-      friendly_name: Toilet - Lights
-      state: 'on'
-    automation.kitchen_lights:
-      last_triggered: '2020-11-08T12:11:54.023692+00:00'
-      mode: restart
-      current: 0
-      id: '1598895158496'
-      friendly_name: Kitchen - Lights
-      state: 'on'
-    automation.lounge_lights:
-      last_triggered: '2020-11-08T11:27:33.560306+00:00'
-      mode: restart
-      current: 0
-      id: Lounge_Lights
-      friendly_name: Lounge - Lights
-      state: 'on'
-    automation.hall_lights:
-      last_triggered: '2020-11-08T11:24:06.215095+00:00'
-      mode: restart
-      current: 0
-      id: Hall_Lights
-      friendly_name: Hall - Lights
-      state: 'on'
-    automation.study_lights_2:
-      last_triggered: '2020-11-08T12:11:54.024253+00:00'
-      mode: restart
-      current: 0
-      id: Study_Lights
-      friendly_name: Study - Lights
-      state: 'on'
-    automation.bathroom_lights:
-      last_triggered: '2020-11-08T12:05:49.811554+00:00'
-      mode: restart
-      current: 0
-      id: '1597910341178'
-      friendly_name: Bathroom - Lights
-      state: 'on'
-    automation.tv_time_bedroom:
-      last_triggered: '2020-11-08T11:19:17.334740+00:00'
-      mode: restart
-      current: 0
-      id: tv-time-bedroom
-      friendly_name: Bedroom - Lights
-      state: 'on'
+scenes:
+  - id: '1599502299025'
+    name: Disable Automations
+    entities:
+      automation.bathroom_lights:
+        current: 0
+        friendly_name: Bathroom - Lights
+        id: '1597910341178'
+        last_triggered: '2020-09-07T18:04:09.426343+00:00'
+        mode: restart
+        state: 'off'
+      automation.kitchen_lights:
+        current: 0
+        friendly_name: Kitchen - Lights
+        id: '1598895158496'
+        last_triggered: '2020-09-07T18:05:47.025517+00:00'
+        mode: restart
+        state: 'off'
+      automation.lounge_lights:
+        current: 0
+        friendly_name: Lounge - Lights
+        id: Lounge_Lights
+        last_triggered: '2020-09-07T18:11:01.781372+00:00'
+        mode: restart
+        state: 'off'
+      automation.study_lights_2:
+        current: 0
+        friendly_name: Study - Lights
+        id: Study_Lights
+        last_triggered: '2020-09-07T18:11:54.436965+00:00'
+        mode: restart
+        state: 'off'
+      automation.toilet_lights_2:
+        current: 0
+        friendly_name: Toilet - Lights
+        id: Toilet_Lights
+        last_triggered:
+        mode: restart
+        state: 'off'
+      automation.tv_time_bedroom:
+        current: 0
+        friendly_name: Bedroom - Lights
+        id: tv-time-bedroom
+        last_triggered: '2020-05-23T20:15:03.732077+00:00'
+        mode: single
+        state: 'off'
+  - id: '1599502497544'
+    name: Enable Automations
+    entities:
+      automation.bathroom_lights:
+        current: 0
+        friendly_name: Bathroom - Lights
+        id: '1597910341178'
+        last_triggered: '2020-09-07T18:04:09.426343+00:00'
+        mode: restart
+        state: 'on'
+      automation.kitchen_lights:
+        current: 0
+        friendly_name: Kitchen - Lights
+        id: '1598895158496'
+        last_triggered: '2020-09-07T18:05:47.025517+00:00'
+        mode: restart
+        state: 'on'
+      automation.lounge_lights:
+        current: 0
+        friendly_name: Lounge - Lights
+        id: Lounge_Lights
+        last_triggered: '2020-09-07T18:11:01.781372+00:00'
+        mode: restart
+        state: 'on'
+      automation.study_lights_2:
+        current: 0
+        friendly_name: Study - Lights
+        id: Study_Lights
+        last_triggered: '2020-09-07T18:11:54.436965+00:00'
+        mode: restart
+        state: 'on'
+      automation.toilet_lights_2:
+        current: 0
+        friendly_name: Toilet - Lights
+        id: Toilet_Lights
+        last_triggered:
+        mode: restart
+        state: 'on'
+      automation.tv_time_bedroom:
+        current: 0
+        friendly_name: Bedroom - Lights
+        id: tv-time-bedroom
+        last_triggered: '2020-05-23T20:15:03.732077+00:00'
+        mode: single
+        state: 'on'
+  - id: '1604836494736'
+    name: All Off
+    entities:
+      light.toilet:
+        is_hue_group: true
+        friendly_name: Toilet
+        supported_features: 41
+        state: 'off'
+      light.entrance:
+        is_hue_group: true
+        friendly_name: Entrance
+        supported_features: 41
+        state: 'off'
+      light.lounge:
+        min_mireds: 153
+        max_mireds: 500
+        effect_list:
+        - colorloop
+        - random
+        is_hue_group: true
+        friendly_name: Lounge
+        supported_features: 63
+        state: 'off'
+      light.kitchen:
+        min_mireds: 153
+        max_mireds: 500
+        is_hue_group: true
+        friendly_name: Kitchen
+        supported_features: 43
+        state: 'off'
+      light.bedroom:
+        is_hue_group: true
+        friendly_name: Bedroom
+        supported_features: 41
+        state: 'off'
+      light.bathroom:
+        is_hue_group: true
+        friendly_name: Bathroom
+        supported_features: 41
+        state: 'off'
+      light.study:
+        min_mireds: 153
+        max_mireds: 500
+        effect_list:
+        - colorloop
+        - random
+        is_hue_group: true
+        friendly_name: Study
+        supported_features: 63
+        state: 'off'
+      light.hall:
+        is_hue_group: true
+        friendly_name: Hall
+        supported_features: 41
+        state: 'off'
+      automation.toilet_lights_2:
+        last_triggered: '2020-11-08T11:42:25.173595+00:00'
+        mode: restart
+        current: 0
+        id: Toilet_Lights
+        friendly_name: Toilet - Lights
+        state: 'off'
+      automation.entrance_lights:
+        last_triggered: '2020-11-08T11:24:42.985490+00:00'
+        mode: restart
+        current: 0
+        id: Entrance_Lights
+        friendly_name: Entrance - Lights
+        state: 'off'
+      automation.hall_lights:
+        last_triggered: '2020-11-08T11:24:06.215095+00:00'
+        mode: restart
+        current: 0
+        id: Hall_Lights
+        friendly_name: Hall - Lights
+        state: 'off'
+      automation.bathroom_lights:
+        last_triggered: '2020-11-08T11:35:49.835245+00:00'
+        mode: restart
+        current: 0
+        id: '1597910341178'
+        friendly_name: Bathroom - Lights
+        state: 'off'
+      automation.lounge_lights:
+        last_triggered: '2020-11-08T11:27:33.560306+00:00'
+        mode: restart
+        current: 0
+        id: Lounge_Lights
+        friendly_name: Lounge - Lights
+        state: 'off'
+      automation.kitchen_lights:
+        last_triggered: '2020-11-08T11:42:25.171668+00:00'
+        mode: restart
+        current: 0
+        id: '1598895158496'
+        friendly_name: Kitchen - Lights
+        state: 'off'
+      automation.study_lights_2:
+        last_triggered: '2020-11-08T11:42:25.172731+00:00'
+        mode: restart
+        current: 0
+        id: Study_Lights
+        friendly_name: Study - Lights
+        state: 'off'
+      automation.tv_time_bedroom:
+        last_triggered: '2020-11-08T11:19:17.334740+00:00'
+        mode: restart
+        current: 0
+        id: tv-time-bedroom
+        friendly_name: Bedroom - Lights
+        state: 'off'
+  - id: '1604837548780'
+    name: All On
+    entities:
+      automation.entrance_lights:
+        last_triggered: '2020-11-08T11:24:42.985490+00:00'
+        mode: restart
+        current: 0
+        id: Entrance_Lights
+        friendly_name: Entrance - Lights
+        state: 'on'
+      automation.toilet_lights_2:
+        last_triggered: '2020-11-08T12:11:54.023097+00:00'
+        mode: restart
+        current: 0
+        id: Toilet_Lights
+        friendly_name: Toilet - Lights
+        state: 'on'
+      automation.kitchen_lights:
+        last_triggered: '2020-11-08T12:11:54.023692+00:00'
+        mode: restart
+        current: 0
+        id: '1598895158496'
+        friendly_name: Kitchen - Lights
+        state: 'on'
+      automation.lounge_lights:
+        last_triggered: '2020-11-08T11:27:33.560306+00:00'
+        mode: restart
+        current: 0
+        id: Lounge_Lights
+        friendly_name: Lounge - Lights
+        state: 'on'
+      automation.hall_lights:
+        last_triggered: '2020-11-08T11:24:06.215095+00:00'
+        mode: restart
+        current: 0
+        id: Hall_Lights
+        friendly_name: Hall - Lights
+        state: 'on'
+      automation.study_lights_2:
+        last_triggered: '2020-11-08T12:11:54.024253+00:00'
+        mode: restart
+        current: 0
+        id: Study_Lights
+        friendly_name: Study - Lights
+        state: 'on'
+      automation.bathroom_lights:
+        last_triggered: '2020-11-08T12:05:49.811554+00:00'
+        mode: restart
+        current: 0
+        id: '1597910341178'
+        friendly_name: Bathroom - Lights
+        state: 'on'
+      automation.tv_time_bedroom:
+        last_triggered: '2020-11-08T11:19:17.334740+00:00'
+        mode: restart
+        current: 0
+        id: tv-time-bedroom
+        friendly_name: Bedroom - Lights
+        state: 'on'
