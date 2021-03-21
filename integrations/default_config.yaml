@@ -11,3 +11,5 @@
 # zeroconf, person, scene, system_healt, and a lot more.
 #
 default_config:
+http:
+  server_port: !secret server_port # Custom access port for SSL
