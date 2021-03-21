@@ -1,0 +1,34 @@
+####################################
+# Energy
+####################################
+- platform: "octopusagile"
+- platform: rest
+  name: Gas Daily Usage
+  device_class: power
+  unit_of_measurement: "kWh"
+  json_attributes_path: "$.results[1]"
+  json_attributes:
+    - interval_start
+    - interval_end
+  value_template: "{{value_json.results[1].consumption}}"
+  resource: !secret octopus_gas
+- platform: rest
+  name: Electricity Daily Usage
+  device_class: power
+  unit_of_measurement: "kWh"
+  json_attributes_path: "$.results[1]"
+  json_attributes:
+    - interval_start
+    - interval_end
+  value_template: "{{value_json.results[1].consumption}}"
+  resource: !secret octopus_electricity
+- platform: template
+  sensors:
+    total_energy_usage:
+      friendly_name: Total Energy Usage
+      device_class: power
+      unit_of_measurement: "kWh"
+      value_template: "{{ states('sensor.gas_daily_usage') | float + states('sensor.electricity_daily_usage') | float }}"
+      attribute_templates:
+        interval_start: "{{ strptime(state_attr('sensor.gas_daily_usage', 'interval_start'),'%Y-%m-%dT%H:%M:%SZ').strftime('%d/%m/%Y') }}"
+        interval_end: "{{ strptime(state_attr('sensor.gas_daily_usage', 'interval_end'),'%Y-%m-%dT%H:%M:%SZ').strftime('%d/%m/%Y') }}"

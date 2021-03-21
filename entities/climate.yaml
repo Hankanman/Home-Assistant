@@ -1,0 +1,26 @@
+####################################
+# Climate Sensors
+####################################
+- platform: season
+- platform: template
+  sensors:
+    downstairs_temp:
+      friendly_name: "Downstairs Temperature"
+      device_class: temperature
+      value_template: "{{ state_attr('climate.heating', 'current_temperature') }}"
+    study_temp:
+      friendly_name: "Study Temperature"
+      device_class: temperature
+      value_template: "{{ state_attr('climate.study', 'current_temperature') }}"
+    bathroom_temp:
+      friendly_name: "Bathroom Temperature"
+      device_class: temperature
+      value_template: "{{ state_attr('climate.bathroom', 'current_temperature') }}"
+    bedroom_temp:
+      friendly_name: "Bedroom Temperature"
+      device_class: temperature
+      value_template: "{{ state_attr('climate.bedroom', 'current_temperature') }}"
+    toilet_temp:
+      friendly_name: "Toilet Temperature"
+      device_class: temperature
+      value_template: "{{ state_attr('climate.toilet', 'current_temperature') }}"

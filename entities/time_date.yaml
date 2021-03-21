@@ -1,0 +1,22 @@
+---
+# The time and date (time_date) sensor platform.
+# Has the time in various formats, the date, or both.
+#
+# This is usefull for displaying and automation purposes.
+#
+# https://www.home-assistant.io/integrations/time_date/
+#
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'date_time_iso'
+    - 'time_date'
+    - 'time_utc'
+
+- platform: template
+  sensors:
+    time_since_pc_last_active:
+      unit_of_measurement: Minutes
+      value_template: "{{ (states('sensor.date_time_iso') | as_timestamp  / 60) | round(0, 'floor') - (states('sensor.last_active') | as_timestamp / 60) | round(0, 'floor') }}"

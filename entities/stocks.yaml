@@ -1,0 +1,10 @@
+####################################
+# Stocks
+####################################
+- platform: alpha_vantage
+  api_key: !secret alpha_vantage_api
+  symbols:
+    - symbol: TSLA
+      name: Tesla
+    - symbol: GME
+      name: Gamestop
