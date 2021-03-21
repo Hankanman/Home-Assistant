@@ -7,3 +7,11 @@ octopusagile.json
 options.xml
 pyozw.sqlite
 secrets.yaml
+'*.db'
+'*.log'
+__pycache__
+._*
+.DS_Store
+deps/
+known_devices.yaml
+tts/
