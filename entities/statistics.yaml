@@ -1,85 +1,97 @@
 ####################################
 # Statistics Sensors
 ####################################
-- platform: average
-  name: "Home Temperature"
-  entities:
-    - sensor.downstairs_temp
-    - sensor.study_temp
-    - sensor.bathroom_temp
-    - sensor.bedroom_temp
-    - sensor.toilet_temp
-    - sensor.bathroom_multisensor_temperature_air
-    - sensor.bedroom_trisensor_temperature_air
-    - sensor.hall_trisensor_temperature_air
-    - sensor.kitchen_trisensor_temperature_air
-    - sensor.lounge_trisensor_temperature_air
-    - sensor.study_trisensor_temperature_air
-    - sensor.toilet_trisensor_temperature_air
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.downstairs_temp
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.study_temp
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.bathroom_temp
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.bedroom_temp
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.toilet_temp
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.bathroom_multisensor_temperature_air
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.bedroom_trisensor_temperature_air
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.hall_trisensor_temperature_air
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.kitchen_trisensor_temperature_air
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.lounge_trisensor_temperature_air
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.study_trisensor_temperature_air
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.toilet_trisensor_temperature_air
 ####################################
 # Lux Averages
 ####################################
-- platform: average
-  name: "Study Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.study_trisensor_illuminance
-- platform: average
-  name: "Bedroom Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.bedroom_trisensor_illuminance
-- platform: average
-  name: "Hall Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.hall_trisensor_illuminance
-- platform: average
-  name: "Bathroom Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.bathroom_multisensor_illuminance
-- platform: average
-  name: "Lounge Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.lounge_trisensor_illuminance
-- platform: average
-  name: "Kitchen Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.kitchen_trisensor_illuminance
-- platform: average
-  name: "Toilet Average Lux"
-  precision: 0
-  duration:
-    days: 1
-  entities:
-    - sensor.toilet_trisensor_illuminance
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.study_trisensor_illuminance
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.bedroom_trisensor_illuminance
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.hall_trisensor_illuminance
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.bathroom_multisensor_illuminance
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.lounge_trisensor_illuminance
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.kitchen_trisensor_illuminance
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.toilet_trisensor_illuminance
 
 ####################################
 # Humidity Averages
 ####################################
-- platform: average
-  name: "Bathroom Average Humidity"
-  precision: 0
-  duration:
-    hours: 4
-  entities:
-    - sensor.bathroom_multisensor_humidity_air
+- platform: statistics
+  max_age:
+    hours: 24
+  entity_id: sensor.bathroom_multisensor_humidity_air
 
+####################################
+# Ratios
+####################################
 - platform: history_stats
   name: Ratio PC Active
   entity_id: binary_sensor.seb_pc_active
