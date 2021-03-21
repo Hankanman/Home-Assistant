@@ -1,2 +1,16 @@
 recorder:
   db_url: !secret mariadb
+  purge_keep_days: 60
+  exclude:
+    domains:
+      - automation
+      - updater
+    entity_globs:
+      - sensor.weather_*
+    entities:
+      - sensor.date_time
+      - sensor.date_time_iso
+      - sensor.date_time_utc
+      - sensor.time
+      - sensor.time_date
+      - sensor.time_utc
