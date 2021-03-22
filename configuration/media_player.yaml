@@ -1,3 +1,6 @@
+####################################
+# Media Players
+####################################
 media_player:
   - platform: androidtv
     device_class: firetv

@@ -1,6 +1,6 @@
-####################################
-# Trend Binary Sensors
-####################################
+# ####################################
+# # Trend Binary Sensors
+# ####################################
 - platform: trend
   sensors:
     bathroom_humidity_trend:

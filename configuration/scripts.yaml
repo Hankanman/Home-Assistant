@@ -1,6 +1,9 @@
+####################################
+# Scripts
+####################################
 script:
   my_computer_wake:
-    alias: Star Runner - Startup
+    alias: Seb PC - Startup
     sequence:
     - service: wake_on_lan.send_magic_packet
       data:

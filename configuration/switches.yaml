@@ -1,3 +1,6 @@
+####################################
+# Switches
+####################################
 switch:
   - platform: command_line
     switches:

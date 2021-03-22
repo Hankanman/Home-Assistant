@@ -1,3 +1,6 @@
+####################################
+# Shell Commands
+####################################
 shell_command:
   loungecam_turn_off: !secret loungecam_turn_off
   loungecam_turn_on: !secret loungecam_turn_on

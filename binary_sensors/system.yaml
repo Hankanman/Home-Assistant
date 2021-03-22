@@ -1,13 +1,13 @@
-####################################
-# System Binary Sensors
-####################################
+# ####################################
+# # System Binary Sensors
+# ####################################
 - platform: template
   sensors:
-  ####################################
-  # PC Active Sensors
-  ####################################
-      seb_pc_active:
-        friendly_name: "Seb PC Active"
-        device_class: connectivity
-        value_template: >-
-          {{ states('sensor.time_since_last_active') | int < 5 }}
+    ####################################
+    # PC Active Sensors
+    ####################################
+    seb_pc_active:
+      friendly_name: "Seb PC Active"
+      device_class: connectivity
+      value_template: >-
+        {{ states('sensor.time_since_last_active') | int < 5 }}

@@ -1,3 +1,6 @@
+####################################
+# Panasonic TV
+####################################
 panasonic_viera:
   host: !secret panasonic_tv
   name: Bedroom TV Panasonic

@@ -1,4 +1,3 @@
----
 # The default configuration integration.
 #
 # https://www.home-assistant.io/integrations/default_config
@@ -11,7 +10,3 @@
 # zeroconf, person, scene, system_healt, and a lot more.
 #
 default_config:
-# http:
-#   server_port: !secret server_port # Custom access port for SSL
-#   ssl_certificate: /ssl/origin.pem
-#   ssl_key: /ssl/privkey.pem
