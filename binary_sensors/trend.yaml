@@ -1,0 +1,12 @@
+####################################
+# Trend Binary Sensors
+####################################
+- platform: trend
+  sensors:
+    bathroom_humidity_trend:
+      entity_id: sensor.bathroom_multisensor_humidity_air
+      sample_duration: 1800
+      max_samples: 10
+      min_gradient: -0.00083
+      invert: true
+      device_class: moisture

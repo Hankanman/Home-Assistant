@@ -1,6 +1,10 @@
 ####################################
 # Statistics Sensors
 ####################################
+
+####################################
+# Temperature
+####################################
 - platform: statistics
   max_age:
     hours: 24
@@ -49,8 +53,9 @@
   max_age:
     hours: 24
   entity_id: sensor.toilet_trisensor_temperature_air
+
 ####################################
-# Lux Averages
+# Luminance
 ####################################
 - platform: statistics
   max_age:
@@ -82,7 +87,7 @@
   entity_id: sensor.toilet_trisensor_illuminance
 
 ####################################
-# Humidity Averages
+# Humidity
 ####################################
 - platform: statistics
   max_age:
@@ -93,7 +98,7 @@
 # Ratios
 ####################################
 - platform: history_stats
-  name: Ratio PC Active
+  name: Ratio Seb PC Active
   entity_id: binary_sensor.seb_pc_active
   state: "on"
   type: ratio

@@ -1,0 +1,5 @@
+####################################
+# Date & Calendar Sensors
+####################################
+- platform: workday
+  country: GB

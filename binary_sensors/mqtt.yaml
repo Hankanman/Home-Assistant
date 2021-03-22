@@ -1,0 +1,38 @@
+####################################
+# MQTT
+####################################
+# - platform: mqtt
+#   name: Hall Motion Camera
+#   state_topic: shinobi/home/Hall/trigger
+#   json_attributes_topic: shinobi/home/Hall/trigger
+#   device_class: motion
+#   off_delay: 60
+#   value_template: "{% if (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int > 60  %}OFF{%else%}ON{%endif%}"
+#   json_attributes_template: "{{ {'Confidence': value_json.details.confidence,'Plugin': value_json.details.plug | title,'Last Motion': as_timestamp(strptime(value_json.currentTimestamp, '%Y-%m-%dT%H:%M:%S%z')) | timestamp_local, 'Motion Area': value_json.details.name | replace('_', ' ') | title, 'Timestamp': as_timestamp(value_json.currentTimestamp), 'Since Last Motion': (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int } | tojson }}"
+  
+# - platform: mqtt
+#   name: Lounge Motion Camera
+#   state_topic: shinobi/home/Lounge/trigger
+#   json_attributes_topic: shinobi/home/Lounge/trigger
+#   device_class: motion
+#   off_delay: 60
+#   value_template: "{% if (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int > 60  %}OFF{%else%}ON{%endif%}"
+#   json_attributes_template: "{{ {'Confidence': value_json.details.confidence,'Plugin': value_json.details.plug | title,'Last Motion': as_timestamp(strptime(value_json.currentTimestamp, '%Y-%m-%dT%H:%M:%S%z')) | timestamp_local, 'Motion Area': value_json.details.name | replace('_', ' ') | title, 'Timestamp': as_timestamp(value_json.currentTimestamp), 'Since Last Motion': (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int } | tojson }}"
+  
+# - platform: mqtt
+#   name: Kitchen Motion Camera
+#   state_topic: shinobi/home/Kitchen/trigger
+#   json_attributes_topic: shinobi/home/Kitchen/trigger
+#   device_class: motion
+#   off_delay: 60
+#   value_template: "{% if (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int > 60  %}OFF{%else%}ON{%endif%}"
+#   json_attributes_template: "{{ {'Confidence': value_json.details.confidence,'Plugin': value_json.details.plug | title,'Last Motion': as_timestamp(strptime(value_json.currentTimestamp, '%Y-%m-%dT%H:%M:%S%z')) | timestamp_local, 'Motion Area': value_json.details.name | replace('_', ' ') | title, 'Timestamp': as_timestamp(value_json.currentTimestamp), 'Since Last Motion': (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int } | tojson }}"
+  
+# - platform: mqtt
+#   name: Entrance Motion Camera
+#   state_topic: shinobi/home/Entrance/trigger
+#   json_attributes_topic: shinobi/home/Entrance/trigger
+#   device_class: motion
+#   off_delay: 60
+#   value_template: "{% if (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int > 60  %}OFF{%else%}ON{%endif%}"
+#   json_attributes_template: "{{ {'Confidence': value_json.details.confidence,'Plugin': value_json.details.plug | title,'Last Motion': as_timestamp(strptime(value_json.currentTimestamp, '%Y-%m-%dT%H:%M:%S%z')) | timestamp_local, 'Motion Area': value_json.details.name | replace('_', ' ') | title, 'Timestamp': as_timestamp(value_json.currentTimestamp), 'Since Last Motion': (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int } | tojson }}"
