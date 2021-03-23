@@ -1,0 +1,36 @@
+light:
+  - platform: group
+    name: Bathroom
+    entities:
+    - light.bathroom_lamp
+  - platform: group
+    name: Bedroom
+    entities:
+      - light.bedroom_lamp
+  - platform: group
+    name: Entrance
+    entities:
+      - light.entrance_lamp
+  - platform: group
+    name: Hall
+    entities:
+      - light.entrance_lamp
+  - platform: group
+    name: Kitchen
+    entities:
+      - light.kitchen_lamp_1
+      - light.kitchen_lamp_2
+      - light.kitchen_lamp_3
+  - platform: group
+    name: Lounge
+    entities:
+      - light.lounge_lamp
+      - light.sofa_lamp
+  - platform: group
+    name: Study
+    entities:
+      - light.study_lamp
+  - platform: group
+    name: Toilet
+    entities:
+      - light.toilet_lamp

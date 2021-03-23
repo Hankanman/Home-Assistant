@@ -17,7 +17,7 @@
 # # Bayesian Sensors
 # ####################################
 - platform: bayesian
-  name: "Kitchen Occupied"
+  name: "Bathroom Occupied"
   prior: 0.5
   probability_threshold: 0.7
   observations:
@@ -127,25 +127,9 @@
       prob_given_false: 0.07
       to_state: "on"
     - platform: "state"
-      entity_id: "binary_sensor.starrunner_active"
+      entity_id: "binary_sensor.seb_pc_active"
       prob_given_true: 0.9
       prob_given_false: 0.07
-      to_state: "on"
-
-- platform: bayesian
-  name: "Bathroom Occupied"
-  prior: 0.5
-  probability_threshold: 0.7
-  observations:
-    - platform: "state"
-      entity_id: "binary_sensor.shower_occupied"
-      prob_given_true: 1
-      prob_given_false: 0.6
-      to_state: "on"
-    - platform: "state"
-      entity_id: "binary_sensor.bathroom_multisensor_motion"
-      prob_given_true: 1
-      prob_given_false: 0.2
       to_state: "on"
 
 - platform: bayesian

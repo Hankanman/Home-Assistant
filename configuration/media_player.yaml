@@ -6,8 +6,6 @@ media_player:
     device_class: firetv
     name: Bedroom Fire TV ADB
     host: !secret bedroom_fire_tv
-    adb_server_ip: !secret adb_server_ip
-    adb_server_port: 5037
     exclude_unnamed_apps: true
     apps:
       com.amazon.tv.launcher: "Fire TV Home"
@@ -19,8 +17,6 @@ media_player:
     device_class: androidtv
     name: Shield ADB
     host: !secret shield_tv
-    adb_server_ip: !secret adb_server_ip
-    adb_server_port: 5037
     exclude_unnamed_apps: true
     apps:
       com.google.android.tvlauncher: "Shield Home"
@@ -42,8 +38,6 @@ media_player:
     device_class: androidtv
     name: Lounge TV ADB
     host: !secret lounge_tv
-    adb_server_ip: !secret adb_server_ip
-    adb_server_port: 5037
     exclude_unnamed_apps: true
     apps:
       com.sony.dtv.hbbtvlauncher: "All 4"

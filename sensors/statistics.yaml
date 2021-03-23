@@ -6,115 +6,232 @@
 # Temperature
 ####################################
 - platform: statistics
+  name: "Bathroom Climate Temperature Statistics"
   max_age:
-    hours: 24
-  entity_id: sensor.downstairs_temp
+    days: 1
+  entity_id: sensor.bathroom_temperature
+
 - platform: statistics
+  name: "Bedroom Climate Temperature Statistics"
   max_age:
-    hours: 24
-  entity_id: sensor.study_temp
+    days: 1
+  entity_id: sensor.bedroom_temperature
+
 - platform: statistics
+  name: "Central Climate Temperature Statistics"
   max_age:
-    hours: 24
-  entity_id: sensor.bathroom_temp
+    days: 1
+  entity_id: sensor.central_temperature
+
 - platform: statistics
+  name: "Hall Climate Temperature Statistics"
   max_age:
-    hours: 24
-  entity_id: sensor.bedroom_temp
+    days: 1
+  entity_id: sensor.hall_trisensor_air_temperature
+
 - platform: statistics
+  name: "Kitchen Climate Temperature Statistics"
   max_age:
-    hours: 24
-  entity_id: sensor.toilet_temp
+    days: 1
+  entity_id: sensor.kitchen_trisensor_air_temperature
+
 - platform: statistics
+  name: "Lounge Climate Temperature Statistics"
   max_age:
-    hours: 24
-  entity_id: sensor.bathroom_multisensor_temperature_air
+    days: 1
+  entity_id: sensor.lounge_trisensor_air_temperature
+
 - platform: statistics
+  name: "Study Climate Temperature Statistics"
   max_age:
-    hours: 24
-  entity_id: sensor.bedroom_trisensor_temperature_air
+    days: 1
+  entity_id: sensor.study_temperature
+
 - platform: statistics
+  name: "Toilet Climate Temperature Statistics"
   max_age:
-    hours: 24
-  entity_id: sensor.hall_trisensor_temperature_air
-- platform: statistics
-  max_age:
-    hours: 24
-  entity_id: sensor.kitchen_trisensor_temperature_air
-- platform: statistics
-  max_age:
-    hours: 24
-  entity_id: sensor.lounge_trisensor_temperature_air
-- platform: statistics
-  max_age:
-    hours: 24
-  entity_id: sensor.study_trisensor_temperature_air
-- platform: statistics
-  max_age:
-    hours: 24
-  entity_id: sensor.toilet_trisensor_temperature_air
+    days: 1
+  entity_id: sensor.toilet_temperature
 
 ####################################
 # Luminance
 ####################################
 - platform: statistics
+  name: "Bathroom Illuminance Statistics"
   max_age:
-    hours: 24
-  entity_id: sensor.study_trisensor_illuminance
-- platform: statistics
-  max_age:
-    hours: 24
-  entity_id: sensor.bedroom_trisensor_illuminance
-- platform: statistics
-  max_age:
-    hours: 24
-  entity_id: sensor.hall_trisensor_illuminance
-- platform: statistics
-  max_age:
-    hours: 24
+    days: 1
   entity_id: sensor.bathroom_multisensor_illuminance
+
 - platform: statistics
+  name: "Bedroom Illuminance Statistics"
   max_age:
-    hours: 24
-  entity_id: sensor.lounge_trisensor_illuminance
+    days: 1
+  entity_id: sensor.bedroom_trisensor_illuminance
+
 - platform: statistics
+  name: "Hall Illuminance Statistics"
   max_age:
-    hours: 24
+    days: 1
+  entity_id: sensor.hall_trisensor_illuminance
+
+- platform: statistics
+  name: "Kitchen Illuminance Statistics"
+  max_age:
+    days: 1
   entity_id: sensor.kitchen_trisensor_illuminance
+
 - platform: statistics
+  name: "Lounge Illuminance Statistics"
   max_age:
-    hours: 24
+    days: 1
+  entity_id: sensor.lounge_trisensor_illuminance
+
+- platform: statistics
+  name: "Study Illuminance Statistics"
+  max_age:
+    days: 1
+  entity_id: sensor.study_trisensor_illuminance
+
+- platform: statistics
+  name: "Toilet Illuminance Statistics"
+  max_age:
+    days: 1
   entity_id: sensor.toilet_trisensor_illuminance
 
 ####################################
 # Humidity
 ####################################
 - platform: statistics
+  name: "Bathroom Humidity Statistics"
   max_age:
-    hours: 24
-  entity_id: sensor.bathroom_multisensor_humidity_air
+    days: 1
+  entity_id: sensor.bathroom_multisensor_humidity
 
 ####################################
 # Ratios
 ####################################
+# Bathroom
 - platform: history_stats
-  name: Ratio Seb PC Active
+  name: "Ratio Bathroom Motion"
+  entity_id: binary_sensor.bathroom_multisensor_motion
+  state: "on"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+
+# Bedroom
+- platform: history_stats
+  name: "Ratio Bedroom Motion"
+  entity_id: binary_sensor.bedroom_trisensor_motion
+  state: "on"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+- platform: history_stats
+  name: "Ratio Seb Bedroom Presence"
+  entity_id: sensor.seb_phone_ble_room_presence
+  state: "Bedroom"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+- platform: history_stats
+  name: "Ratio Laura Bedroom Presence"
+  entity_id: sensor.laura_phone_ble_room_presence
+  state: "Bedroom"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+
+# Hall
+- platform: history_stats
+  name: "Ratio Hall Motion"
+  entity_id: binary_sensor.hall_trisensor_motion
+  state: "on"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+
+# Kitchen
+- platform: history_stats
+  name: "Ratio Kitchen Motion"
+  entity_id: binary_sensor.kitchen_trisensor_motion
+  state: "on"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+- platform: history_stats
+  name: "Ratio Seb Kitchen Presence"
+  entity_id: sensor.seb_phone_ble_room_presence
+  state: "Kitchen"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+- platform: history_stats
+  name: "Ratio Laura Kitchen Presence"
+  entity_id: sensor.laura_phone_ble_room_presence
+  state: "Kitchen"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+
+# Lounge
+- platform: history_stats
+  name: "Ratio Lounge Motion"
+  entity_id: binary_sensor.lounge_trisensor_motion
+  state: "on"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+- platform: history_stats
+  name: "Ratio Seb Lounge Presence"
+  entity_id: sensor.seb_phone_ble_room_presence
+  state: "Lounge"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+- platform: history_stats
+  name: "Ratio Laura Lounge Presence"
+  entity_id: sensor.laura_phone_ble_room_presence
+  state: "Lounge"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+
+# Study
+- platform: history_stats
+  name: "Ratio Seb PC Active"
   entity_id: binary_sensor.seb_pc_active
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
+  start: "{{ now() - timedelta(days=1) }}"
   end: "{{ now() }}"
 - platform: history_stats
-  name: Ratio Study Motion
+  name: "Ratio Study Motion"
   entity_id: binary_sensor.study_trisensor_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
+  start: "{{ now() - timedelta(days=1) }}"
   end: "{{ now() }}"
 - platform: history_stats
-  name: Ratio Seb Study Presence
+  name: "Ratio Seb Study Presence"
   entity_id: sensor.seb_phone_ble_room_presence
   state: "Study"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+- platform: history_stats
+  name: "Ratio Laura Study Presence"
+  entity_id: sensor.laura_phone_ble_room_presence
+  state: "Study"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
+  end: "{{ now() }}"
+
+# Toilet
+- platform: history_stats
+  name: "Ratio Toilet Motion"
+  entity_id: binary_sensor.toilet_trisensor_motion
+  state: "on"
+  type: ratio
+  start: "{{ now() - timedelta(days=1) }}"
   end: "{{ now() }}"
