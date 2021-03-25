@@ -6,49 +6,49 @@
 # Temperature
 ####################################
 - platform: statistics
-  name: "Bathroom Climate Temperature Statistics"
+  name: "Bathroom Temperature Statistics"
   max_age:
     days: 1
   entity_id: sensor.bathroom_temperature
 
 - platform: statistics
-  name: "Bedroom Climate Temperature Statistics"
+  name: "Bedroom Temperature Statistics"
   max_age:
     days: 1
   entity_id: sensor.bedroom_temperature
 
 - platform: statistics
-  name: "Central Climate Temperature Statistics"
+  name: "Central Temperature Statistics"
   max_age:
     days: 1
   entity_id: sensor.central_temperature
 
 - platform: statistics
-  name: "Hall Climate Temperature Statistics"
+  name: "Hall Temperature Statistics"
   max_age:
     days: 1
   entity_id: sensor.hall_trisensor_air_temperature
 
 - platform: statistics
-  name: "Kitchen Climate Temperature Statistics"
+  name: "Kitchen Temperature Statistics"
   max_age:
     days: 1
   entity_id: sensor.kitchen_trisensor_air_temperature
 
 - platform: statistics
-  name: "Lounge Climate Temperature Statistics"
+  name: "Lounge Temperature Statistics"
   max_age:
     days: 1
   entity_id: sensor.lounge_trisensor_air_temperature
 
 - platform: statistics
-  name: "Study Climate Temperature Statistics"
+  name: "Study Temperature Statistics"
   max_age:
     days: 1
   entity_id: sensor.study_temperature
 
 - platform: statistics
-  name: "Toilet Climate Temperature Statistics"
+  name: "Toilet Temperature Statistics"
   max_age:
     days: 1
   entity_id: sensor.toilet_temperature

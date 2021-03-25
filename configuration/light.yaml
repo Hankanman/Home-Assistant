@@ -14,7 +14,7 @@ light:
   - platform: group
     name: Hall
     entities:
-      - light.entrance_lamp
+      - light.hall_lamp
   - platform: group
     name: Kitchen
     entities:

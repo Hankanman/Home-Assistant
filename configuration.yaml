@@ -1,4 +1,5 @@
-
 homeassistant:
   packages: !include_dir_named configuration
   customize: !include customize.yaml
+
+automation: !include automations.yaml
