@@ -24,3 +24,5 @@ ssl/
 .storage
 .cloud
 startup/
+room_assistant/
+www/tmp/
