@@ -18,5 +18,6 @@
 - platform: template
   sensors:
     time_since_pc_last_active:
+      friendly_name: "Time Since PC Last Active"
       unit_of_measurement: Minutes
       value_template: "{{ (states('sensor.date_time_iso') | as_timestamp  / 60) | round(0, 'floor') - (states('sensor.last_active') | as_timestamp / 60) | round(0, 'floor') }}"
