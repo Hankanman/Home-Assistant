@@ -10,6 +10,7 @@ recorder:
       - updater
     entity_globs:
       - sensor.weather_*
+      - sensor.ugw3_*
     entities:
       - sensor.date_time
       - sensor.date_time_iso
@@ -17,3 +18,35 @@ recorder:
       - sensor.time
       - sensor.time_date
       - sensor.time_utc
+      - sensor.tesla
+      - sensor.gamestop
+      - sensor.bin_collection_data
+      - sensor.season
+      - octopusagile.update_consumption_nextupdate
+      - octopusagile.half_hour_timer_nextupdate
+      - octopusagile.region_code
+      - octopusagile.rates
+      - octopusagile.timers
+      - sun.sun
+      - sensor.detection_fps
+      - sensor.coral_inference_speed
+      - sensor.kitchencam_skipped_fps
+      - sensor.loungecam_skipped_fps
+      - sensor.hallcam_skipped_fps
+      - sensor.entrancecam_skipped_fps
+      - sensor.kitchencam_detection_fps
+      - sensor.loungecam_detection_fps
+      - sensor.hallcam_detection_fps
+      - sensor.entrancecam_detection_fps
+      - sensor.kitchencam_process_fps
+      - sensor.loungecam_process_fps
+      - sensor.hallcam_process_fps
+      - sensor.entrancecam_process_fps
+      - sensor.kitchencam_camera_fps
+      - sensor.loungecam_camera_fps
+      - sensor.hallcam_camera_fps
+      - sensor.entrancecam_camera_fps
+      - sensor.cpu_load
+      - sensor.gpu_load
+      - sensor.gpu_temperature
+      - sensor.memory_load
