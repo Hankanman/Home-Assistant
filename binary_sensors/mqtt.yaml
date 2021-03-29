@@ -1,6 +1,13 @@
 ####################################
 # MQTT
 ####################################
+- platform: mqtt
+  name: Seb PC Online
+  state_topic: homeassistant/sensor/STARRUNNER/availability
+  payload_on: "online"
+  payload_off: "offline"
+  device_class: connectivity
+
 # - platform: mqtt
 #   name: Hall Motion Camera
 #   state_topic: shinobi/home/Hall/trigger
