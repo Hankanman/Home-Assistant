@@ -1,9 +1,17 @@
-# ####################################
-# # Presence Binary Sensors
-# ####################################
-# ####################################
-# # People Home Binary Sensors
-# ####################################
+####################################
+# Presence Binary Sensors
+####################################
+- platform: template
+  sensors:
+    shower_occupied:
+      friendly_name: "Shower Occupied"
+      device_class: occupancy
+      value_template: >-
+        {{ (states('sensor.bathroom_multisensor_humidity')| float > (states('sensor.bathroom_humidity_statistics')| float + states('input_number.bathroom_humidity_offset')| float)) and states(binary_sensor.bathroom_humidity_trend) }}
+
+####################################
+# People Home Binary Sensors
+####################################
 - platform: template
   sensors:
     people_home:
@@ -13,29 +21,112 @@
       value_template: >-
         {{ is_state('person.laura_ward', 'home') or is_state('person.sebastian_burrell', 'home') }}
 
-# ####################################
-# # Bayesian Sensors
-# ####################################
+####################################
+# Bayesian Sensors
+####################################
+# Bathroom
 - platform: bayesian
   name: "Bathroom Occupied"
-  prior: 0.5
-  probability_threshold: 0.7
+  prior: 0.1
+  probability_threshold: 0.4
   observations:
-    - platform: "template"
-      value_template: "{{ (states('sensor.bathroom_multisensor_humidity_air')| float > (states('sensor.bathroom_average_humidity')| float + states('input_number.bathroom_humidity_offset')| float)) }}"
-      prob_given_true: 0.7
-      prob_given_false: 0.3
+    - platform: "state"
+      entity_id: "binary_sensor.shower_occupied"
+      prob_given_true: 0.29
+      prob_given_false: 0.023
+      to_state: "on"
     - platform: "state"
       entity_id: "binary_sensor.bathroom_humidity_trend"
-      prob_given_true: 0.7
-      prob_given_false: 0.3
+      prob_given_true: 0.48
+      prob_given_false: 0.047
+      to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.bathroom_temperature_trend"
+      prob_given_true: 0.48
+      prob_given_false: 0.047
       to_state: "on"
     - platform: "state"
       entity_id: "binary_sensor.bathroom_multisensor_motion"
-      prob_given_true: 1
+      prob_given_true: 0.71
+      prob_given_false: 0.012
+      to_state: "on"
+    - platform: "state"
+      entity_id: "input_boolean.bathroom_schedule"
+      prob_given_true: 0.77
+      prob_given_false: 0.143
+      to_state: "on"
+
+# Bedroom
+- platform: bayesian
+  name: "Bedroom Occupied"
+  prior: 0.5
+  probability_threshold: 0.7
+  observations:
+    - platform: "state"
+      entity_id: "binary_sensor.bedroom_trisensor_motion"
+      prob_given_true: 0.4
       prob_given_false: 0.2
       to_state: "on"
 
+- platform: bayesian
+  name: "In Bed"
+  prior: 0.25
+  probability_threshold: 0.95
+  observations:
+    - platform: "state"
+      entity_id: "sensor.lounge_trisensor_motion"
+      prob_given_true: 0.4
+      prob_given_false: 0.2
+      to_state: "off"
+    - platform: "state"
+      entity_id: "sensor.kitchen_trisensor_motion"
+      prob_given_true: 0.5
+      prob_given_false: 0.4
+      to_state: "off"
+    - platform: "state"
+      entity_id: "input_boolean.sleep_schedule"
+      prob_given_true: 0.5
+      to_state: "on"
+    - platform: "state"
+      entity_id: "sun.sun"
+      prob_given_true: 0.7
+      to_state: "below_horizon"
+
+# Entrance
+- platform: bayesian
+  name: "Entrance Occupied"
+  prior: 0.5
+  probability_threshold: 0.7
+  observations:
+    - platform: "state"
+      entity_id: "binary_sensor.entrance_motion_camera"
+      prob_given_true: 0.4
+      prob_given_false: 0.2
+      to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.front_door_motion"
+      prob_given_true: 0.4
+      prob_given_false: 0.2
+      to_state: "on"
+
+# Hall
+- platform: bayesian
+  name: "Hall Occupied"
+  prior: 0.5
+  probability_threshold: 0.7
+  observations:
+    - platform: "state"
+      entity_id: "binary_sensor.hall_motion_camera"
+      prob_given_true: 0.8
+      prob_given_false: 0.2
+      to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.hall_trisensor_motion"
+      prob_given_true: 0.99
+      prob_given_false: 0.4
+      to_state: "on"
+
+# Kitchen
 - platform: bayesian
   name: "Kitchen Occupied"
   prior: 0.5
@@ -47,6 +138,7 @@
       prob_given_false: 0.3
       to_state: "on"
 
+# Lounge
 - platform: bayesian
   name: "Lounge Occupied"
   prior: 0.5
@@ -73,49 +165,7 @@
       prob_given_false: 0.2
       to_state: "on"
 
-- platform: bayesian
-  name: "Hall Occupied"
-  prior: 0.5
-  probability_threshold: 0.7
-  observations:
-    - platform: "state"
-      entity_id: "binary_sensor.hall_motion_camera"
-      prob_given_true: 0.8
-      prob_given_false: 0.2
-      to_state: "on"
-    - platform: "state"
-      entity_id: "binary_sensor.hall_trisensor_motion"
-      prob_given_true: 0.99
-      prob_given_false: 0.4
-      to_state: "on"
-
-- platform: bayesian
-  name: "Entrance Occupied"
-  prior: 0.5
-  probability_threshold: 0.7
-  observations:
-    - platform: "state"
-      entity_id: "binary_sensor.entrance_motion_camera"
-      prob_given_true: 0.4
-      prob_given_false: 0.2
-      to_state: "on"
-    - platform: "state"
-      entity_id: "binary_sensor.front_door_motion"
-      prob_given_true: 0.4
-      prob_given_false: 0.2
-      to_state: "on"
-
-- platform: bayesian
-  name: "Bedroom Occupied"
-  prior: 0.5
-  probability_threshold: 0.7
-  observations:
-    - platform: "state"
-      entity_id: "binary_sensor.bedroom_trisensor_motion"
-      prob_given_true: 0.4
-      prob_given_false: 0.2
-      to_state: "on"
-
+# Study
 - platform: bayesian
   name: "Study Occupied"
   prior: 0.42
@@ -132,6 +182,7 @@
       prob_given_false: 0.07
       to_state: "on"
 
+# Toilet
 - platform: bayesian
   name: "Toilet Occupied"
   prior: 0.5
@@ -143,26 +194,3 @@
       prob_given_false: 0.2
       to_state: "on"
 
-- platform: bayesian
-  name: "In Bed"
-  prior: 0.25
-  probability_threshold: 0.95
-  observations:
-    - platform: "state"
-      entity_id: "sensor.lounge_trisensor_motion"
-      prob_given_true: 0.4
-      prob_given_false: 0.2
-      to_state: "off"
-    - platform: "state"
-      entity_id: "sensor.kitchen_trisensor_motion"
-      prob_given_true: 0.5
-      prob_given_false: 0.4
-      to_state: "off"
-    - platform: "state"
-      entity_id: "sensor.bedroom_trisensor_motion"
-      prob_given_true: 0.5
-      to_state: "on"
-    - platform: "state"
-      entity_id: "sun.sun"
-      prob_given_true: 0.7
-      to_state: "below_horizon"
