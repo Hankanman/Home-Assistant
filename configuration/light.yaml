@@ -1,8 +1,19 @@
 light:
   - platform: group
+    name: Home
+    entities:
+      - light.bathroom
+      - light.bedroom
+      - light.entrance
+      - light.hall
+      - light.kitchen
+      - light.lounge
+      - light.study
+      - light.toilet
+  - platform: group
     name: Bathroom
     entities:
-    - light.bathroom_lamp
+      - light.bathroom_lamp
   - platform: group
     name: Bedroom
     entities:
