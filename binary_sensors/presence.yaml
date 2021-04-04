@@ -77,14 +77,29 @@
 # Bedroom
 - platform: bayesian
   name: "Bedroom Occupied"
-  prior: 0.5
-  probability_threshold: 0.7
+  prior: 0.46
+  probability_threshold: 0.8
   observations:
     - platform: "state"
       entity_id: "binary_sensor.bedroom_trisensor_motion"
-      prob_given_true: 0.4
-      prob_given_false: 0.2
+      prob_given_true: 0.09
+      prob_given_false: 0.008
       to_state: "on"
+    - platform: "state"
+      entity_id: "sensor.seb_phone_ble_room_presence"
+      prob_given_true: 0.83
+      prob_given_false: 0.115
+      to_state: "Bedroom"
+    - platform: "state"
+      entity_id: "sensor.laura_phone_ble_room_presence"
+      prob_given_true: 0.87
+      prob_given_false: 0.115
+      to_state: "Bedroom"
+    - platform: "state"
+      entity_id: "binary_sensor.in_bed"
+      prob_given_true: 0.81
+      prob_given_false: 0.007
+      to_state: "Bedroom"
 
 - platform: bayesian
   name: "In Bed"
