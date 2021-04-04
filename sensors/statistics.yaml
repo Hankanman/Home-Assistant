@@ -213,6 +213,22 @@
   type: ratio
   start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+- platform: history_stats
+  name: "Ratio Laura Sleeping"
+  entity_id: binary_sensor.laura_sleeping
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Seb Sleeping"
+  entity_id: binary_sensor.seb_sleeping
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Hall
 - platform: history_stats
