@@ -4,12 +4,14 @@
 - platform: trend
   sensors:
     bathroom_humidity_trend:
-      entity_id: sensor.bathroom_multisensor_humidity_air
+      friendly_name: "Bathroom Humidity Trend"
+      entity_id: sensor.bathroom_multisensor_humidity
       sample_duration: 1200
       device_class: moisture
 - platform: trend
   sensors:
     bathroom_temperature_trend:
+      friendly_name: "Bathroom Temperature Trend"
       entity_id: sensor.bathroom_temperature
       sample_duration: 1200
       device_class: heat
