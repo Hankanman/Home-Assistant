@@ -145,18 +145,18 @@
 # Entrance
 - platform: bayesian
   name: "Entrance Occupied"
-  prior: 0.5
+  prior: 0.02
   probability_threshold: 0.7
   observations:
     - platform: "state"
-      entity_id: "binary_sensor.entrance_motion_camera"
-      prob_given_true: 0.4
-      prob_given_false: 0.2
+      entity_id: "binary_sensor.entrance_person_motion"
+      prob_given_true: 0.48
+      prob_given_false: 0.0043
       to_state: "on"
     - platform: "state"
       entity_id: "binary_sensor.front_door_motion"
-      prob_given_true: 0.4
-      prob_given_false: 0.2
+      prob_given_true: 0.05
+      prob_given_false: 0.0043
       to_state: "on"
 
 # Hall
