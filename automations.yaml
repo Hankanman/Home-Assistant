@@ -578,3 +578,18 @@
         ttl: 0
         priority: high
   mode: single
+- id: '1617181757452'
+  alias: Dismiss New Devices Notification
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: persistent_notification.config_entry_discovery
+    to: notifying
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: persistent_notification.dismiss
+    data:
+      notification_id: config_entry_discovery
+  mode: single
