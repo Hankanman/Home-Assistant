@@ -1,0 +1,57 @@
+{
+    "version": 1,
+    "key": "input_boolean",
+    "data": {
+        "items": [
+            {
+                "icon": "mdi:sleep",
+                "id": "guest_sleep_mode",
+                "name": "Guest Sleep Mode"
+            },
+            {
+                "icon": "mdi:account-multiple",
+                "id": "guest_mode",
+                "name": "Guest Mode"
+            },
+            {
+                "icon": "mdi:sleep",
+                "id": "sleep_mode",
+                "name": "Sleep Mode"
+            },
+            {
+                "name": "Study Occupied",
+                "id": "study_occupied"
+            },
+            {
+                "name": "Bathroom Schedule",
+                "id": "bathroom_schedule",
+                "icon": "mdi:clock"
+            },
+            {
+                "name": "Bedroom Schedule",
+                "id": "bedroom_schedule",
+                "icon": "mdi:clock"
+            },
+            {
+                "name": "Study Schedule",
+                "icon": "mdi:clock",
+                "id": "study_schedule"
+            },
+            {
+                "name": "Kitchen Schedule",
+                "icon": "mdi:clock",
+                "id": "kitchen_schedule"
+            },
+            {
+                "name": "Lounge Schedule",
+                "icon": "mdi:clock",
+                "id": "lounge_schedule"
+            },
+            {
+                "name": "Sleep Schedule",
+                "icon": "mdi:clock",
+                "id": "sleep_schedule"
+            }
+        ]
+    }
+}

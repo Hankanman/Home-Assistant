@@ -1,0 +1,108 @@
+{
+    "version": 1,
+    "key": "input_number",
+    "data": {
+        "items": [
+            {
+                "icon": "mdi:white-balance-sunny",
+                "id": "room_brightness_offset",
+                "max": 100.0,
+                "min": 0.0,
+                "mode": "slider",
+                "name": "Room Brightness Offset",
+                "step": 1.0,
+                "unit_of_measurement": "%"
+            },
+            {
+                "icon": "mdi:water-percent",
+                "id": "bathroom_humidity_offset",
+                "max": 50.0,
+                "min": -50.0,
+                "mode": "slider",
+                "name": "Bathroom Humidity Offset",
+                "step": 1.0,
+                "unit_of_measurement": "%"
+            },
+            {
+                "min": 0.0,
+                "max": 100.0,
+                "name": "Kitchen Lux Level",
+                "unit_of_measurement": "Lux",
+                "mode": "slider",
+                "step": 1.0,
+                "id": "kitchen_lux_level",
+                "icon": "mdi:white-balance-sunny"
+            },
+            {
+                "min": 0.0,
+                "max": 100.0,
+                "name": "Study Lux Level",
+                "icon": "mdi:white-balance-sunny",
+                "unit_of_measurement": "Lux",
+                "mode": "slider",
+                "step": 1.0,
+                "id": "study_lux_level"
+            },
+            {
+                "min": 0.0,
+                "max": 100.0,
+                "name": "Toilet Lux Level",
+                "icon": "mdi:white-balance-sunny",
+                "unit_of_measurement": "Lux",
+                "mode": "slider",
+                "step": 1.0,
+                "id": "toilet_lux_level"
+            },
+            {
+                "min": 0.0,
+                "max": 100.0,
+                "name": "Bedroom Lux Level",
+                "icon": "mdi:white-balance-sunny",
+                "unit_of_measurement": "Lux",
+                "mode": "slider",
+                "step": 1.0,
+                "id": "bedroom_lux_level"
+            },
+            {
+                "min": 0.0,
+                "max": 100.0,
+                "name": "Bathroom Lux Level",
+                "icon": "mdi:white-balance-sunny",
+                "unit_of_measurement": "Lux",
+                "mode": "slider",
+                "step": 1.0,
+                "id": "bathroom_lux_level"
+            },
+            {
+                "min": 0.0,
+                "max": 100.0,
+                "name": "Lounge Lux Level",
+                "icon": "mdi:white-balance-sunny",
+                "unit_of_measurement": "Lux",
+                "mode": "slider",
+                "step": 1.0,
+                "id": "lounge_lux_level"
+            },
+            {
+                "min": 0.0,
+                "max": 100.0,
+                "name": "Hall Lux Level",
+                "icon": "mdi:white-balance-sunny",
+                "unit_of_measurement": "Lux",
+                "mode": "slider",
+                "step": 1.0,
+                "id": "hall_lux_level"
+            },
+            {
+                "min": 15.0,
+                "max": 25.0,
+                "mode": "box",
+                "name": "Target Temperature",
+                "icon": "mdi:thermometer",
+                "unit_of_measurement": "\u00b0C",
+                "step": 1.0,
+                "id": "target_temperature"
+            }
+        ]
+    }
+}

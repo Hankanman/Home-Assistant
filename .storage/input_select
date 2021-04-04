@@ -1,0 +1,16 @@
+{
+    "data": {
+        "items": [
+            {
+                "icon": "mdi:home",
+                "id": "home_mode",
+                "name": "Home Mode",
+                "options": [
+                    "Sleep"
+                ]
+            }
+        ]
+    },
+    "key": "input_select",
+    "version": 1
+}
