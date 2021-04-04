@@ -3,7 +3,7 @@
 ####################################
 recorder:
   db_url: !secret mariadb
-  purge_keep_days: 60
+  purge_keep_days: 367
   exclude:
     domains:
       - automation
@@ -11,6 +11,7 @@ recorder:
     entity_globs:
       - sensor.weather_*
       - sensor.ugw3_*
+      - sensor.ratio_*
     entities:
       - sensor.date_time
       - sensor.date_time_iso
