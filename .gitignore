@@ -1,11 +1,7 @@
 HA (GitHub).code-workspace
 .vscode/
-zwcfg_0xdf2c8a93.xml
 fitbit.conf
-OZW_Log.txt
 octopusagile.json
-options.xml
-pyozw.sqlite
 secrets.yaml
 '*.db'
 '*.log'
@@ -21,8 +17,21 @@ home-assistant_v2.db-shm
 home-assistant_v2.db-wal
 .HA_VERSION
 ssl/
-.storage
 .cloud
 startup/
 room_assistant/
 www/tmp/
+.storage/hacs/
+.storage/room_assistant/
+.storage/androidtv_*
+.storage/auth*
+.storage/core.*
+.storage/frontend.*
+.storage/hacs.*
+.storage/alexa_media.*
+.storage/hassio
+.storage/http
+.storage/image
+.storage/onboarding
+.storage/person
+.storage/zone
