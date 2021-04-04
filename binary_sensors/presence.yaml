@@ -52,18 +52,22 @@
     - platform: "state"
       entity_id: "binary_sensor.bathroom_humidity_trend"
       prob_given_true: 0.48
-      prob_given_false: 0.047
+      prob_given_false: 0.093
       to_state: "on"
     - platform: "state"
       entity_id: "binary_sensor.bathroom_temperature_trend"
       prob_given_true: 0.48
-      prob_given_false: 0.047
+      prob_given_false: 0.093
       to_state: "on"
     - platform: "state"
       entity_id: "binary_sensor.bathroom_multisensor_motion"
-      prob_given_true: 0.71
-      prob_given_false: 0.012
+      prob_given_true: 0.50
+      prob_given_false: 0.005
       to_state: "on"
+    - platform: "template"
+      value_template: "{{ now().timestamp() - states.binary_sensor.bathroom_multisensor_motion.last_changed.timestamp() < 180 | float }}"
+      prob_given_true: 0.6
+      prob_given_false: 0.01
     - platform: "state"
       entity_id: "input_boolean.bathroom_schedule"
       prob_given_true: 0.77
