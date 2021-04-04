@@ -22,6 +22,20 @@
         {{ is_state('person.laura_ward', 'home') or is_state('person.sebastian_burrell', 'home') }}
 
 ####################################
+# Sleeping Binary Sensors
+####################################
+- platform: template
+  sensors:
+    laura_sleeping:
+      friendly_name: "Laura Sleeping"
+      icon_template: "mdi:sleep"
+      value_template: "{{ states('sensor.laura_phone_sleep_confidence') | int > 90 }}"
+    seb_sleeping:
+      friendly_name: "Seb Sleeping"
+      icon_template: "mdi:sleep"
+      value_template: "{{ states('sensor.seb_phone_sleep_confidence') | int > 90 }}"
+
+####################################
 # Bayesian Sensors
 ####################################
 # Bathroom
