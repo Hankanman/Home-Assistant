@@ -116,36 +116,41 @@
   entity_id: binary_sensor.entrance_dog_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Entrance Person Motion"
   entity_id: binary_sensor.entrance_person_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Entrance Door Open"
   entity_id: binary_sensor.entrance_door
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Entrance Door Motion"
   entity_id: binary_sensor.front_door_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Entrance Door Ding"
   entity_id: binary_sensor.front_door_ding
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Bathroom
 - platform: history_stats
@@ -153,29 +158,33 @@
   entity_id: binary_sensor.bathroom_multisensor_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Shower Occupied"
   entity_id: binary_sensor.shower_occupied
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Bathroom Humidity Trend"
   entity_id: binary_sensor.bathroom_humidity_trend
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Bathroom Temperature Trend"
   entity_id: binary_sensor.bathroom_temperature_trend
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Bedroom
 - platform: history_stats
@@ -183,36 +192,41 @@
   entity_id: binary_sensor.bedroom_trisensor_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Bedroom Person Motion"
   entity_id: binary_sensor.bedroom_person_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Bedroom Dog Motion"
   entity_id: binary_sensor.bedroom_person_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Seb Bedroom Presence"
   entity_id: sensor.seb_phone_ble_room_presence
   state: "Bedroom"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Laura Bedroom Presence"
   entity_id: sensor.laura_phone_ble_room_presence
   state: "Bedroom"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Laura Sleeping"
   entity_id: binary_sensor.laura_sleeping
@@ -236,22 +250,25 @@
   entity_id: binary_sensor.hall_trisensor_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Hall Dog Motion"
   entity_id: binary_sensor.hall_dog_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Hall Person Motion"
   entity_id: binary_sensor.hall_person_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Kitchen
 - platform: history_stats
@@ -259,36 +276,41 @@
   entity_id: binary_sensor.kitchen_trisensor_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Seb Kitchen Presence"
   entity_id: sensor.seb_phone_ble_room_presence
   state: "Kitchen"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Laura Kitchen Presence"
   entity_id: sensor.laura_phone_ble_room_presence
   state: "Kitchen"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Kitchen Dog Motion"
   entity_id: binary_sensor.kitchen_dog_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Kitchen Person Motion"
   entity_id: binary_sensor.kitchen_person_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Lounge
 - platform: history_stats
@@ -296,36 +318,41 @@
   entity_id: binary_sensor.lounge_trisensor_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Seb Lounge Presence"
   entity_id: sensor.seb_phone_ble_room_presence
   state: "Lounge"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Laura Lounge Presence"
   entity_id: sensor.laura_phone_ble_room_presence
   state: "Lounge"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Lounge Dog Motion"
   entity_id: binary_sensor.lounge_dog_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Lounge Person Motion"
   entity_id: binary_sensor.lounge_person_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Stairs
 - platform: history_stats
@@ -333,15 +360,17 @@
   entity_id: binary_sensor.stairs_dog_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Stairs Person Motion"
   entity_id: binary_sensor.stairs_person_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 
 
 # Study
@@ -350,43 +379,49 @@
   entity_id: binary_sensor.seb_pc_active
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Study Motion"
   entity_id: binary_sensor.study_trisensor_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Seb Study Presence"
   entity_id: sensor.seb_phone_ble_room_presence
   state: "Study"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Laura Study Presence"
   entity_id: sensor.laura_phone_ble_room_presence
   state: "Study"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Study Dog Motion"
   entity_id: binary_sensor.study_dog_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 - platform: history_stats
   name: "Ratio Study Person Motion"
   entity_id: binary_sensor.study_person_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Toilet
 - platform: history_stats
@@ -394,5 +429,6 @@
   entity_id: binary_sensor.toilet_trisensor_motion
   state: "on"
   type: ratio
-  start: "{{ now() - timedelta(days=7) }}"
   end: "{{ now() }}"
+  duration:
+    days: 7
