@@ -103,26 +103,43 @@
 
 - platform: bayesian
   name: "In Bed"
-  prior: 0.25
-  probability_threshold: 0.95
+  prior: 0.42
+  probability_threshold: 0.9
   observations:
     - platform: "state"
-      entity_id: "sensor.lounge_trisensor_motion"
-      prob_given_true: 0.4
-      prob_given_false: 0.2
-      to_state: "off"
-    - platform: "state"
-      entity_id: "sensor.kitchen_trisensor_motion"
-      prob_given_true: 0.5
-      prob_given_false: 0.4
-      to_state: "off"
+      entity_id: "binary_sensor.bedroom_trisensor_motion"
+      prob_given_true: 0.1
+      prob_given_false: 0.023
+      to_state: "on"
     - platform: "state"
       entity_id: "input_boolean.sleep_schedule"
-      prob_given_true: 0.5
+      prob_given_true: 0.84
+      prob_given_false: 0.185
+      to_state: "on"
+    - platform: "state"
+      entity_id: "sensor.Laura_phone_ble_room_presence"
+      prob_given_true: 0.86
+      prob_given_false: 0.071
+      to_state: "Bedroom"
+    - platform: "state"
+      entity_id: "sensor.seb_phone_ble_room_presence"
+      prob_given_true: 0.86
+      prob_given_false: 0.071
+      to_state: "Bedroom"
+    - platform: "state"
+      entity_id: "binary_sensor.seb_sleeping"
+      prob_given_true: 0.72
+      prob_given_false: 0.071
+      to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.laura_sleeping"
+      prob_given_true: 0.72
+      prob_given_false: 0.071
       to_state: "on"
     - platform: "state"
       entity_id: "sun.sun"
-      prob_given_true: 0.7
+      prob_given_true: 0.89
+      prob_given_false: 0.214
       to_state: "below_horizon"
 
 # Entrance
