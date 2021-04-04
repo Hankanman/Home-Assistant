@@ -7,7 +7,7 @@
       friendly_name: "Shower Occupied"
       device_class: occupancy
       value_template: >-
-        {{ (states('sensor.bathroom_multisensor_humidity')| float > (states('sensor.bathroom_humidity_statistics')| float + states('input_number.bathroom_humidity_offset')| float)) and states(binary_sensor.bathroom_humidity_trend) }}
+        {{ (states('sensor.bathroom_multisensor_humidity')| float > (states('sensor.bathroom_humidity_statistics')| float + states('input_number.bathroom_humidity_offset')| float)) and states('binary_sensor.bathroom_humidity_trend') }}
 
 ####################################
 # People Home Binary Sensors
