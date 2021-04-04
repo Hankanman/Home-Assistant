@@ -593,3 +593,15 @@
     data:
       notification_id: config_entry_discovery
   mode: single
+- id: '1617544596388'
+  alias: Set Theme on HA Start
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: frontend.set_theme
+    data:
+      name: Home
+  mode: single
