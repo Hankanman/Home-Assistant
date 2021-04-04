@@ -1,0 +1,247 @@
+{
+    "version": 1,
+    "key": "scheduler.storage",
+    "data": {
+        "schedules": [
+            {
+                "schedule_id": "2157a6",
+                "timeslots": [
+                    {
+                        "start": "00:00:00",
+                        "stop": "06:30:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.bathroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "06:30:00",
+                        "stop": "09:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.bathroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "09:00:00",
+                        "stop": "18:30:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.bathroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "18:30:00",
+                        "stop": "20:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.bathroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "20:00:00",
+                        "stop": "23:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.bathroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "23:00:00",
+                        "stop": "00:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.bathroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    }
+                ],
+                "weekdays": [
+                    "daily"
+                ],
+                "repeat_type": "repeat",
+                "name": "",
+                "enabled": true
+            },
+            {
+                "schedule_id": "eb0079",
+                "timeslots": [
+                    {
+                        "start": "00:00:00",
+                        "stop": "09:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.bedroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "09:00:00",
+                        "stop": "21:30:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.bedroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "21:30:00",
+                        "stop": "00:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.bedroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    }
+                ],
+                "weekdays": [
+                    "workday"
+                ],
+                "repeat_type": "repeat",
+                "name": "",
+                "enabled": true
+            },
+            {
+                "schedule_id": "de45a1",
+                "timeslots": [
+                    {
+                        "start": "00:00:00",
+                        "stop": "10:30:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.bedroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "10:30:00",
+                        "stop": "22:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.bedroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "22:00:00",
+                        "stop": "00:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.bedroom_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    }
+                ],
+                "weekdays": [
+                    "weekend"
+                ],
+                "repeat_type": "repeat",
+                "name": null,
+                "enabled": true
+            },
+            {
+                "schedule_id": "339281",
+                "timeslots": [
+                    {
+                        "start": "00:00:00",
+                        "stop": "09:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.sleep_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "09:00:00",
+                        "stop": "22:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.sleep_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "22:00:00",
+                        "stop": "00:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.sleep_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    }
+                ],
+                "weekdays": [
+                    "daily"
+                ],
+                "repeat_type": "repeat",
+                "name": null,
+                "enabled": true
+            }
+        ]
+    }
+}
