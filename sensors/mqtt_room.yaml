@@ -8,5 +8,5 @@
   state_topic: mqtt-room
 - platform: mqtt_room
   device_id: ble-ca16c924c7714d6d855dd590ab02e152-100-1
-  name: Laura Phone 2 MQTT Room Presence
+  name: Laura Phone MQTT Room Presence
   state_topic: mqtt-room
