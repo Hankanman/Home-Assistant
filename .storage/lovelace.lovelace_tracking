@@ -1,0 +1,513 @@
+{
+    "version": 1,
+    "key": "lovelace.lovelace_tracking",
+    "data": {
+        "config": {
+            "custom_header": {
+                "compact_mode": true,
+                "button_text": {
+                    "options": "{{ hours24 }}:{{ minutesLZ }}"
+                }
+            },
+            "background": "var(--background-image)",
+            "views": [
+                {
+                    "title": "Bayesian Graphs",
+                    "path": "bayesian-graphs",
+                    "layout": {
+                        "max_cols": 10,
+                        "width": 400
+                    },
+                    "type": "custom:horizontal-layout",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "glance",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.study_occupied",
+                                    "name": "Study"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_occupied",
+                                    "name": "Bathroom"
+                                },
+                                {
+                                    "entity": "binary_sensor.bedroom_occupied",
+                                    "name": "Bedroom"
+                                },
+                                {
+                                    "entity": "binary_sensor.entrance_occupied",
+                                    "name": "Entrance"
+                                },
+                                {
+                                    "entity": "binary_sensor.hall_occupied",
+                                    "name": "Hall"
+                                },
+                                {
+                                    "entity": "binary_sensor.kitchen_occupied",
+                                    "name": "Kitchen"
+                                },
+                                {
+                                    "entity": "binary_sensor.lounge_occupied",
+                                    "name": "Lounge"
+                                },
+                                {
+                                    "entity": "binary_sensor.toilet_occupied",
+                                    "name": "Toilet"
+                                }
+                            ],
+                            "show_name": true,
+                            "show_icon": true,
+                            "show_state": false,
+                            "state_color": true
+                        },
+                        {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.bathroom_occupied"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Bathroom",
+                                    "animate": true,
+                                    "show": {
+                                        "legend": false,
+                                        "icon": false,
+                                        "name": false
+                                    },
+                                    "line_width": 1,
+                                    "points_per_hour": 60,
+                                    "hours_to_show": 1,
+                                    "entities": [
+                                        "sensor.bathroom_occupied_probability",
+                                        "binary_sensor.bathroom_occupied"
+                                    ]
+                                },
+                                {
+                                    "type": "entity-filter",
+                                    "card": {
+                                        "type": "glance",
+                                        "show_icon": false
+                                    },
+                                    "state_filter": [
+                                        "on"
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.shower_occupied",
+                                            "name": "Shower"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.bathroom_multisensor_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.bathroom_humidity_trend",
+                                            "name": "Humidity"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.bathroom_temperature_trend",
+                                            "name": "Temp"
+                                        },
+                                        {
+                                            "entity": "input_boolean.bathroom_schedule",
+                                            "name": "Schedule"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "glance",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ratio_bathroom_humidity_trend",
+                                            "name": "Humidity"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_bathroom_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_bathroom_temperature_trend",
+                                            "name": "Temp"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_shower_occupied",
+                                            "name": "Shower"
+                                        }
+                                    ],
+                                    "show_icon": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.bedroom_occupied"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "animate": true,
+                                    "show": {
+                                        "state": false,
+                                        "legend": false,
+                                        "icon": false,
+                                        "name": false
+                                    },
+                                    "line_width": 1,
+                                    "points_per_hour": 60,
+                                    "hours_to_show": 1,
+                                    "entities": [
+                                        "sensor.bedroom_occupied_probability"
+                                    ]
+                                },
+                                {
+                                    "type": "entity-filter",
+                                    "card": {
+                                        "type": "glance",
+                                        "show_icon": false
+                                    },
+                                    "state_filter": [
+                                        "on"
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.bedroom_trisensor_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.seb_phone_ble_room_presence",
+                                            "name": "Seb BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.laura_phone_ble_room_presence",
+                                            "name": "Laura BLE"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.seb_sleeping",
+                                            "name": "S Sleep"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.laura_sleeping",
+                                            "name": "L Sleep"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.in_bed",
+                                            "name": "In Bed"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "glance",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ratio_bedroom_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_seb_bedroom_presence",
+                                            "name": "Seb BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_seb_bedroom_presence",
+                                            "name": "Laura BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_seb_sleeping",
+                                            "name": "S Sleep"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_laura_sleeping",
+                                            "name": "L Sleep"
+                                        }
+                                    ],
+                                    "show_icon": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "In Bed",
+                                    "animate": true,
+                                    "line_width": 1,
+                                    "points_per_hour": 60,
+                                    "hours_to_show": 1,
+                                    "entities": [
+                                        "sensor.in_bed_probability"
+                                    ]
+                                },
+                                {
+                                    "type": "glance",
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.in_bed",
+                                            "name": "State"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.bedroom_trisensor_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.seb_phone_ble_room_presence",
+                                            "name": "Seb BLE"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.seb_sleeping",
+                                            "name": "Seb Sleep"
+                                        },
+                                        {
+                                            "entity": "sensor.laura_phone_ble_room_presence",
+                                            "name": "Laura BLE"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.laura_sleeping",
+                                            "name": "Laura Sleep"
+                                        },
+                                        {
+                                            "entity": "sun.sun",
+                                            "name": "Sun"
+                                        },
+                                        {
+                                            "entity": "input_boolean.sleep_schedule",
+                                            "name": "Schedule"
+                                        }
+                                    ],
+                                    "show_state": true,
+                                    "show_icon": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:mini-graph-card",
+                            "name": "Entrance",
+                            "smoothing": false,
+                            "animate": true,
+                            "line_width": 1,
+                            "points_per_hour": 60,
+                            "hours_to_show": 1,
+                            "entities": [
+                                "sensor.entrance_occupied_probability"
+                            ]
+                        },
+                        {
+                            "type": "custom:mini-graph-card",
+                            "name": "Hall",
+                            "smoothing": false,
+                            "animate": true,
+                            "line_width": 1,
+                            "points_per_hour": 60,
+                            "hours_to_show": 1,
+                            "show": {
+                                "extrema": true
+                            },
+                            "entities": [
+                                "sensor.hall_occupied_probability"
+                            ]
+                        },
+                        {
+                            "type": "custom:mini-graph-card",
+                            "name": "Kitchen",
+                            "smoothing": false,
+                            "animate": true,
+                            "line_width": 1,
+                            "points_per_hour": 60,
+                            "hours_to_show": 1,
+                            "show": {
+                                "extrema": true
+                            },
+                            "entities": [
+                                "sensor.kitchen_occupied_probability"
+                            ]
+                        },
+                        {
+                            "type": "custom:mini-graph-card",
+                            "name": "Lounge",
+                            "smoothing": false,
+                            "animate": true,
+                            "line_width": 1,
+                            "points_per_hour": 60,
+                            "hours_to_show": 1,
+                            "show": {
+                                "extrema": true
+                            },
+                            "entities": [
+                                "sensor.lounge_occupied_probability"
+                            ]
+                        },
+                        {
+                            "type": "custom:mini-graph-card",
+                            "name": "Study",
+                            "smoothing": false,
+                            "animate": true,
+                            "line_width": 1,
+                            "points_per_hour": 60,
+                            "hours_to_show": 0.5,
+                            "show": {
+                                "extrema": true
+                            },
+                            "entities": [
+                                "sensor.study_occupied_probability"
+                            ]
+                        },
+                        {
+                            "type": "custom:mini-graph-card",
+                            "name": "Toilet",
+                            "smoothing": false,
+                            "animate": true,
+                            "line_width": 1,
+                            "points_per_hour": 60,
+                            "hours_to_show": 1,
+                            "show": {
+                                "extrema": true
+                            },
+                            "entities": [
+                                "sensor.toilet_occupied_probability"
+                            ]
+                        },
+                        {
+                            "type": "glance",
+                            "entities": [
+                                {
+                                    "entity": "sensor.ratio_laura_bedroom_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_laura_kitchen_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_laura_lounge_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_laura_study_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_seb_bedroom_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_seb_kitchen_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_seb_lounge_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_seb_study_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_seb_pc_active"
+                                },
+                                {
+                                    "entity": "sensor.ratio_bathroom_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_bedroom_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_hall_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_kitchen_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_lounge_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_study_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_toilet_motion"
+                                }
+                            ],
+                            "show_name": true,
+                            "show_state": true,
+                            "show_icon": true,
+                            "state_color": false
+                        }
+                    ]
+                },
+                {
+                    "panel": true,
+                    "title": "Ratios",
+                    "path": "ratios",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "glance",
+                            "entities": [
+                                {
+                                    "entity": "sensor.ratio_laura_bedroom_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_laura_kitchen_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_laura_lounge_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_laura_study_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_seb_bedroom_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_seb_kitchen_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_seb_lounge_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_seb_study_presence"
+                                },
+                                {
+                                    "entity": "sensor.ratio_seb_pc_active"
+                                },
+                                {
+                                    "entity": "sensor.ratio_bathroom_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_bedroom_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_hall_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_kitchen_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_lounge_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_study_motion"
+                                },
+                                {
+                                    "entity": "sensor.ratio_toilet_motion"
+                                },
+                                {
+                                    "entity": "sensor.bathroom_humidity_statistics"
+                                },
+                                {
+                                    "entity": "sensor.ratio_bathroom_humidity_trend"
+                                },
+                                {
+                                    "entity": "sensor.ratio_bathroom_temperature_trend"
+                                },
+                                {
+                                    "entity": "sensor.ratio_shower_occupied"
+                                }
+                            ],
+                            "show_name": true,
+                            "show_state": true,
+                            "show_icon": true,
+                            "state_color": false
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

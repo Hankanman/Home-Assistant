@@ -1,0 +1,194 @@
+{
+    "version": 1,
+    "key": "lovelace.home_config",
+    "data": {
+        "config": {
+            "title": "Home",
+            "views": [
+                {
+                    "title": "Bright Sensors",
+                    "path": "bright-sensors",
+                    "type": "custom:horizontal-layout",
+                    "panel": false,
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.bathroom_bright"
+                                },
+                                {
+                                    "type": "sensor",
+                                    "entity": "sensor.bathroom_multisensor_illuminance",
+                                    "detail": 1,
+                                    "graph": "line",
+                                    "hours_to_show": 12
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "entity": "input_number.bathroom_lux_level",
+                                    "icon_plus": "mdi:chevron-up",
+                                    "icon_minus": "mdi:chevron-down"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.bedroom_bright"
+                                },
+                                {
+                                    "type": "sensor",
+                                    "graph": "line",
+                                    "entity": "sensor.bedroom_trisensor_illuminance",
+                                    "detail": 2,
+                                    "hours_to_show": 12
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "entity": "input_number.bedroom_lux_level",
+                                    "icon_plus": "mdi:chevron-up",
+                                    "icon_minus": "mdi:chevron-down"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.hall_bright"
+                                },
+                                {
+                                    "type": "sensor",
+                                    "graph": "line",
+                                    "entity": "sensor.hall_trisensor_illuminance",
+                                    "detail": 2,
+                                    "hours_to_show": 12
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "entity": "input_number.hall_lux_level",
+                                    "icon_plus": "mdi:chevron-up",
+                                    "icon_minus": "mdi:chevron-down"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.kitchen_bright"
+                                },
+                                {
+                                    "type": "sensor",
+                                    "graph": "line",
+                                    "entity": "sensor.kitchen_trisensor_illuminance",
+                                    "detail": 2,
+                                    "hours_to_show": 12
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "entity": "input_number.kitchen_lux_level",
+                                    "icon_plus": "mdi:chevron-up",
+                                    "icon_minus": "mdi:chevron-down"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.lounge_bright"
+                                },
+                                {
+                                    "type": "sensor",
+                                    "graph": "line",
+                                    "entity": "sensor.lounge_trisensor_illuminance",
+                                    "detail": 2,
+                                    "hours_to_show": 12
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "entity": "input_number.lounge_lux_level",
+                                    "icon_plus": "mdi:chevron-up",
+                                    "icon_minus": "mdi:chevron-down"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.study_bright"
+                                },
+                                {
+                                    "type": "sensor",
+                                    "graph": "line",
+                                    "entity": "sensor.study_trisensor_illuminance",
+                                    "detail": 2,
+                                    "hours_to_show": 12
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "entity": "input_number.study_lux_level",
+                                    "icon_plus": "mdi:chevron-up",
+                                    "icon_minus": "mdi:chevron-down"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.toilet_bright"
+                                },
+                                {
+                                    "type": "sensor",
+                                    "graph": "line",
+                                    "entity": "sensor.toilet_trisensor_illuminance",
+                                    "detail": 2,
+                                    "hours_to_show": 12
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "entity": "input_number.toilet_lux_level",
+                                    "icon_plus": "mdi:chevron-up",
+                                    "icon_minus": "mdi:chevron-down"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Scheduler",
+                    "path": "scheduler",
+                    "panel": true,
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:scheduler-card",
+                            "time_step": 30,
+                            "include": [
+                                "input_boolean.bathroom_schedule",
+                                "input_boolean.bedroom_schedule",
+                                "input_boolean.kitchen_schedule",
+                                "input_boolean.lounge_schedule",
+                                "input_boolean.sleep_schedule",
+                                "input_boolean.study_schedule"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

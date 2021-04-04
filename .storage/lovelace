@@ -1,0 +1,2368 @@
+{
+    "version": 1,
+    "key": "lovelace",
+    "data": {
+        "config": {
+            "background": "var(--background-image)",
+            "swipe_nav": {
+                "animate": "swipe",
+                "prevent_default": true,
+                "swipe_amount": 15,
+                "wrap": true
+            },
+            "title": "Home",
+            "views": [
+                {
+                    "icon": "mdi:home",
+                    "path": "default_view",
+                    "title": "Home",
+                    "type": "custom:horizontal-layout",
+                    "layout": {
+                        "max_cols": 10
+                    },
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "card": {
+                                        "artwork": "cover",
+                                        "entity": "media_player.spotify_hankanman",
+                                        "hide": {
+                                            "power": true,
+                                            "volume": true,
+                                            "source": true,
+                                            "icon": true
+                                        },
+                                        "name": "Sebs Spotify",
+                                        "type": "custom:mini-media-player"
+                                    },
+                                    "conditions": [
+                                        {
+                                            "entity": "media_player.spotify_hankanman",
+                                            "state": "playing"
+                                        }
+                                    ],
+                                    "type": "conditional"
+                                },
+                                {
+                                    "card": {
+                                        "artwork": "cover",
+                                        "entity": "media_player.spotify_laura",
+                                        "hide": {
+                                            "power": true,
+                                            "volume": true,
+                                            "source": true,
+                                            "icon": true
+                                        },
+                                        "name": "Lauras Spotify",
+                                        "type": "custom:mini-media-player"
+                                    },
+                                    "conditions": [
+                                        {
+                                            "entity": "media_player.spotify_laura",
+                                            "state": "playing"
+                                        }
+                                    ],
+                                    "type": "conditional"
+                                },
+                                {
+                                    "card": {
+                                        "artwork": "cover",
+                                        "entity": "media_player.bedroom_echo",
+                                        "hide": {
+                                            "volume": true,
+                                            "source": true,
+                                            "icon": true
+                                        },
+                                        "type": "custom:mini-media-player"
+                                    },
+                                    "conditions": [
+                                        {
+                                            "entity": "media_player.bedroom_echo",
+                                            "state": "playing"
+                                        }
+                                    ],
+                                    "type": "conditional"
+                                },
+                                {
+                                    "card": {
+                                        "artwork": "cover",
+                                        "entity": "media_player.study_echo",
+                                        "hide": {
+                                            "volume": true,
+                                            "source": true,
+                                            "icon": true
+                                        },
+                                        "type": "custom:mini-media-player"
+                                    },
+                                    "conditions": [
+                                        {
+                                            "entity": "media_player.study_echo",
+                                            "state": "playing"
+                                        },
+                                        {
+                                            "entity": "media_player.spotify_hankanman",
+                                            "state_not": "playing"
+                                        },
+                                        {
+                                            "entity": "media_player.spotify_laura",
+                                            "state_not": "playing"
+                                        }
+                                    ],
+                                    "type": "conditional"
+                                },
+                                {
+                                    "card": {
+                                        "artwork": "cover",
+                                        "entity": "media_player.lounge_tv",
+                                        "hide": {
+                                            "volume": true,
+                                            "source": true,
+                                            "icon": true
+                                        },
+                                        "type": "custom:mini-media-player"
+                                    },
+                                    "conditions": [
+                                        {
+                                            "entity": "media_player.lounge_tv",
+                                            "state_not": "off"
+                                        }
+                                    ],
+                                    "type": "conditional"
+                                },
+                                {
+                                    "type": "conditional",
+                                    "conditions": [
+                                        {
+                                            "entity": "media_player.bedroom_tv",
+                                            "state": "playing"
+                                        }
+                                    ],
+                                    "card": {
+                                        "artwork": "cover",
+                                        "entity": "media_player.bedroom_tv",
+                                        "hide": {
+                                            "volume": true,
+                                            "source": true,
+                                            "icon": true
+                                        },
+                                        "type": "custom:mini-media-player"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        "person.laura_ward",
+                                        "person.sebastian_burrell"
+                                    ]
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "entity",
+                                            "entity": "sensor.laura_phone_ble_room_presence",
+                                            "icon": "mdi:none",
+                                            "name": "Laura"
+                                        },
+                                        {
+                                            "type": "entity",
+                                            "entity": "sensor.seb_phone_ble_room_presence",
+                                            "name": "Seb",
+                                            "icon": "mdi:none"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "script.play_rain_sounds",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "icon": "mdi:weather-pouring",
+                                            "name": "Rain Sounds",
+                                            "show_icon": true,
+                                            "show_name": false,
+                                            "show_state": false,
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "button",
+                                            "icon_height": "30px"
+                                        },
+                                        {
+                                            "entity": "input_boolean.sleep_mode",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "show_icon": true,
+                                            "show_name": false,
+                                            "show_state": false,
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "button",
+                                            "icon_height": "30px"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.entrance_door",
+                                            "show_icon": true,
+                                            "show_name": false,
+                                            "show_state": false,
+                                            "type": "button",
+                                            "icon_height": "30px"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "light.home",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "icon": "mdi:house",
+                                    "label": "All Lights",
+                                    "show_icon": false,
+                                    "show_label": true,
+                                    "show_name": false,
+                                    "card_mod": {
+                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                    }
+                                },
+                                {
+                                    "type": "custom:layout-card",
+                                    "layout": {
+                                        "grid-template-columns": "30% auto",
+                                        "grid-template-areas": "\"room slider\"\n"
+                                    },
+                                    "layout_type": "grid",
+                                    "cards": [
+                                        {
+                                            "type": "custom:paper-buttons-row",
+                                            "buttons": [
+                                                {
+                                                    "entity": "light.bathroom",
+                                                    "icon": "mdi:shower-head",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    }
+                                                }
+                                            ],
+                                            "view_layout": {
+                                                "grid-area": "room"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "entity": "light.bathroom",
+                                            "hide_state": true,
+                                            "full_row": true,
+                                            "view_layout": {
+                                                "grid-area": "slider"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:layout-card",
+                                    "layout": {
+                                        "grid-template-columns": "30% auto",
+                                        "grid-template-areas": "\"room slider\"\n"
+                                    },
+                                    "layout_type": "grid",
+                                    "cards": [
+                                        {
+                                            "type": "custom:paper-buttons-row",
+                                            "buttons": [
+                                                {
+                                                    "entity": "light.bedroom",
+                                                    "icon": "mdi:bed-king",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    }
+                                                }
+                                            ],
+                                            "view_layout": {
+                                                "grid-area": "room"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "entity": "light.bedroom",
+                                            "hide_state": true,
+                                            "full_row": true,
+                                            "view_layout": {
+                                                "grid-area": "slider"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:layout-card",
+                                    "layout": {
+                                        "grid-template-columns": "30% auto",
+                                        "grid-template-areas": "\"room slider\"\n"
+                                    },
+                                    "layout_type": "grid",
+                                    "cards": [
+                                        {
+                                            "type": "custom:paper-buttons-row",
+                                            "buttons": [
+                                                {
+                                                    "entity": "light.entrance",
+                                                    "icon": "mdi:door-open",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    }
+                                                }
+                                            ],
+                                            "view_layout": {
+                                                "grid-area": "room"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "entity": "light.entrance",
+                                            "hide_state": true,
+                                            "full_row": true,
+                                            "view_layout": {
+                                                "grid-area": "slider"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:layout-card",
+                                    "layout": {
+                                        "grid-template-columns": "30% auto",
+                                        "grid-template-areas": "\"room slider\"\n"
+                                    },
+                                    "layout_type": "grid",
+                                    "cards": [
+                                        {
+                                            "type": "custom:paper-buttons-row",
+                                            "buttons": [
+                                                {
+                                                    "entity": "light.hall",
+                                                    "icon": "mdi:stairs",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    }
+                                                }
+                                            ],
+                                            "view_layout": {
+                                                "grid-area": "room"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "entity": "light.hall",
+                                            "hide_state": true,
+                                            "full_row": true,
+                                            "view_layout": {
+                                                "grid-area": "slider"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:layout-card",
+                                    "layout": {
+                                        "grid-template-columns": "30% auto",
+                                        "grid-template-areas": "\"room slider\"\n"
+                                    },
+                                    "layout_type": "grid",
+                                    "cards": [
+                                        {
+                                            "type": "custom:paper-buttons-row",
+                                            "buttons": [
+                                                {
+                                                    "entity": "light.kitchen",
+                                                    "icon": "mdi:fridge",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    }
+                                                }
+                                            ],
+                                            "view_layout": {
+                                                "grid-area": "room"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "entity": "light.kitchen",
+                                            "hide_state": true,
+                                            "full_row": true,
+                                            "view_layout": {
+                                                "grid-area": "slider"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:layout-card",
+                                    "layout": {
+                                        "grid-template-columns": "30% auto",
+                                        "grid-template-areas": "\"room slider\"\n"
+                                    },
+                                    "layout_type": "grid",
+                                    "cards": [
+                                        {
+                                            "type": "custom:paper-buttons-row",
+                                            "buttons": [
+                                                {
+                                                    "entity": "light.lounge",
+                                                    "icon": "mdi:sofa",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    }
+                                                }
+                                            ],
+                                            "view_layout": {
+                                                "grid-area": "room"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "entity": "light.lounge",
+                                            "hide_state": true,
+                                            "full_row": true,
+                                            "view_layout": {
+                                                "grid-area": "slider"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:layout-card",
+                                    "layout": {
+                                        "grid-template-columns": "30% auto",
+                                        "grid-template-areas": "\"room slider\"\n"
+                                    },
+                                    "layout_type": "grid",
+                                    "cards": [
+                                        {
+                                            "type": "custom:paper-buttons-row",
+                                            "buttons": [
+                                                {
+                                                    "entity": "light.study",
+                                                    "icon": "mdi:desktop-tower",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    }
+                                                }
+                                            ],
+                                            "view_layout": {
+                                                "grid-area": "room"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "entity": "light.study",
+                                            "hide_state": true,
+                                            "full_row": true,
+                                            "view_layout": {
+                                                "grid-area": "slider"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:layout-card",
+                                    "layout": {
+                                        "grid-template-columns": "30% auto",
+                                        "grid-template-areas": "\"room slider\"\n"
+                                    },
+                                    "layout_type": "grid",
+                                    "cards": [
+                                        {
+                                            "type": "custom:paper-buttons-row",
+                                            "buttons": [
+                                                {
+                                                    "entity": "light.toilet",
+                                                    "icon": "mdi:toilet",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    }
+                                                }
+                                            ],
+                                            "view_layout": {
+                                                "grid-area": "room"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "entity": "light.toilet",
+                                            "hide_state": true,
+                                            "full_row": true,
+                                            "view_layout": {
+                                                "grid-area": "slider"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "entity": "weather.home",
+                                    "type": "custom:simple-weather-card"
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "climate.bedroom",
+                                            "type": "thermostat"
+                                        },
+                                        {
+                                            "entity": "climate.bathroom",
+                                            "type": "thermostat"
+                                        },
+                                        {
+                                            "entity": "climate.study",
+                                            "type": "thermostat"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "climate.central",
+                                            "name": "Downstairs",
+                                            "type": "thermostat"
+                                        },
+                                        {
+                                            "entity": "climate.toilet",
+                                            "type": "thermostat"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "entity": "input_number.target_temperature",
+                                    "name": "Target Temperature",
+                                    "icon": "mdi:fire"
+                                }
+                            ],
+                            "type": "custom:stack-in-card"
+                        },
+                        {
+                            "type": "custom:apexcharts-card",
+                            "span": {
+                                "start": "day"
+                            },
+                            "graph_span": "24hours",
+                            "now": {
+                                "show": true,
+                                "label": "Now"
+                            },
+                            "series": [
+                                {
+                                    "entity": "sensor.octopus_agile_current_rate",
+                                    "name": "Current Rate",
+                                    "extend_to_end": false,
+                                    "show": {
+                                        "extremas": true
+                                    },
+                                    "type": "area",
+                                    "stroke_width": 2,
+                                    "group_by": {
+                                        "func": "max",
+                                        "duration": "30min"
+                                    }
+                                },
+                                {
+                                    "entity": "octopusagile.rates",
+                                    "name": "Average Rate",
+                                    "color": "gray",
+                                    "group_by": {
+                                        "func": "avg",
+                                        "duration": "24hr"
+                                    },
+                                    "unit": "p/kWh",
+                                    "type": "line",
+                                    "stroke_width": 2,
+                                    "data_generator": "let res = [];\nfor (const [key, value] of Object.entries(entity.attributes)) {\n  res.push([new Date(key).getTime(), value]);\n}\nreturn res.sort((a, b) => { return a[0] - b[0] });\n"
+                                },
+                                {
+                                    "entity": "octopusagile.rates",
+                                    "name": "Next Rate",
+                                    "extend_to_end": true,
+                                    "show": {
+                                        "extremas": true
+                                    },
+                                    "unit": "p/kWh",
+                                    "type": "area",
+                                    "stroke_width": 2,
+                                    "data_generator": "let res = [];\nfor (const [key, value] of Object.entries(entity.attributes)) {\n  res.push([new Date(key).getTime(), value]);\n}\nreturn res.sort((a, b) => { return a[0] - b[0] });\n"
+                                }
+                            ],
+                            "apex_config": {
+                                "legend": {
+                                    "show": false
+                                },
+                                "grid": {
+                                    "show": false
+                                },
+                                "yaxis": {
+                                    "show": false
+                                }
+                            }
+                        },
+                        {
+                            "type": "map",
+                            "entities": [
+                                {
+                                    "entity": "person.sebastian_burrell"
+                                },
+                                {
+                                    "entity": "person.laura_ward"
+                                }
+                            ],
+                            "hours_to_show": 12,
+                            "dark_mode": true,
+                            "aspect_ratio": "21:9"
+                        }
+                    ]
+                },
+                {
+                    "panel": true,
+                    "path": "lounge",
+                    "title": "Lounge",
+                    "icon": "mdi:sofa",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.lounge_trisensor_illuminance",
+                                            "name": "Brightness"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.lounge_bright",
+                                            "name": "Bright"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.lounge_trisensor_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.lounge_person_motion"
+                                        }
+                                    ],
+                                    "type": "glance",
+                                    "state_color": true
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "light.lounge",
+                                            "name": " ",
+                                            "type": "light"
+                                        },
+                                        {
+                                            "type": "thermostat",
+                                            "entity": "climate.central",
+                                            "name": " "
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "artwork": "cover",
+                                    "entity": "media_player.lounge_tv",
+                                    "icon": "mdi:television",
+                                    "type": "custom:mini-media-player"
+                                },
+                                {
+                                    "camera_image": "camera.loungecam",
+                                    "camera_view": "live",
+                                    "elements": [
+                                        {
+                                            "icon": "mdi:arrow-up",
+                                            "style": {
+                                                "bottom": "50px",
+                                                "right": "25px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.lounge_foscam",
+                                                    "movement": "up"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-down",
+                                            "style": {
+                                                "bottom": "0px",
+                                                "right": "25px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.lounge_foscam",
+                                                    "movement": "down"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-left",
+                                            "style": {
+                                                "bottom": "25px",
+                                                "right": "50px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.lounge_foscam",
+                                                    "movement": "left"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-right",
+                                            "style": {
+                                                "bottom": "25px",
+                                                "right": "0px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.lounge_foscam",
+                                                    "movement": "right"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-top-left",
+                                            "style": {
+                                                "bottom": "50px",
+                                                "right": "50px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.lounge_foscam",
+                                                    "movement": "top_left"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-top-right",
+                                            "style": {
+                                                "bottom": "50px",
+                                                "right": "0px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.lounge_foscam",
+                                                    "movement": "top_right"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-bottom-left",
+                                            "style": {
+                                                "bottom": "0px",
+                                                "right": "50px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.lounge_foscam",
+                                                    "movement": "bottom_left"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-bottom-right",
+                                            "style": {
+                                                "bottom": "0px",
+                                                "right": "0px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.lounge_foscam",
+                                                    "movement": "bottom_right"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:fullscreen",
+                                            "entity": "camera.lounge",
+                                            "style": {
+                                                "top": "25px",
+                                                "right": "0px"
+                                            },
+                                            "tap_action": {
+                                                "action": "more-info"
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "style": {
+                                                "bottom": "-15px",
+                                                "right": "80px"
+                                            },
+                                            "service": "shell_command.loungecam_turn_on",
+                                            "type": "service-button",
+                                            "title": "Reset"
+                                        },
+                                        {
+                                            "style": {
+                                                "bottom": "-15px",
+                                                "right": "40px"
+                                            },
+                                            "service": "shell_command.loungecam_turn_off",
+                                            "type": "service-button",
+                                            "title": "Off"
+                                        },
+                                        {
+                                            "style": {
+                                                "bottom": "10px",
+                                                "right": "57px"
+                                            },
+                                            "entity": "switch.loungecam_ir",
+                                            "type": "state-label",
+                                            "prefix": "IR ",
+                                            "tap_action": {
+                                                "action": "toggle",
+                                                "service": "switch.toggle",
+                                                "service_data": {
+                                                    "entity_id": "switch.loungecam_ir"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "style": {
+                                                "bottom": "40px",
+                                                "right": "42px"
+                                            },
+                                            "entity": "switch.loungecam_motion",
+                                            "type": "state-label",
+                                            "prefix": "Motion ",
+                                            "tap_action": {
+                                                "action": "toggle",
+                                                "service": "switch.toggle",
+                                                "service_data": {
+                                                    "entity_id": "switch.loungecam_motion"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "entity": "camera.loungecam",
+                                    "type": "picture-elements",
+                                    "tap_action": "more-info"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Air Temperature",
+                                    "line_width": 1,
+                                    "hours_to_show": 168,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.study_trisensor_temperature_air"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Light Level",
+                                    "line_width": 1,
+                                    "hours_to_show": 168,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.lounge_trisensor_illuminance"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "entity": "input_number.lounge_lux_level",
+                                    "icon_plus": "mdi:chevron-up",
+                                    "icon_minus": "mdi:chevron-down",
+                                    "name": "Minimum Lux",
+                                    "border": true
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        }
+                    ]
+                },
+                {
+                    "icon": "mdi:fridge",
+                    "panel": true,
+                    "path": "kitchen",
+                    "title": "Kitchen",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.kitchen_temperature_statistics",
+                                            "name": "Average"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.kitchen_bright",
+                                            "name": "Bright"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.kitchen_trisensor_motion"
+                                        },
+                                        {
+                                            "entity": "sensor.kitchen_trisensor_illuminance"
+                                        }
+                                    ],
+                                    "type": "glance",
+                                    "columns": 4,
+                                    "state_color": true
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "light",
+                                            "entity": "light.kitchen",
+                                            "name": " "
+                                        },
+                                        {
+                                            "type": "thermostat",
+                                            "entity": "climate.central",
+                                            "name": " "
+                                        }
+                                    ]
+                                },
+                                {
+                                    "artwork": "cover",
+                                    "entity": "media_player.kitchen_show",
+                                    "type": "custom:mini-media-player"
+                                },
+                                {
+                                    "camera_image": "camera.kitchencam",
+                                    "camera_view": "live",
+                                    "elements": [
+                                        {
+                                            "icon": "mdi:arrow-up",
+                                            "style": {
+                                                "bottom": "50px",
+                                                "right": "25px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.kitchen_foscam",
+                                                    "movement": "up"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-down",
+                                            "style": {
+                                                "bottom": "0px",
+                                                "right": "25px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.kitchen_foscam",
+                                                    "movement": "down"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-left",
+                                            "style": {
+                                                "bottom": "25px",
+                                                "right": "50px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.kitchen_foscam",
+                                                    "movement": "left"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-right",
+                                            "style": {
+                                                "bottom": "25px",
+                                                "right": "0px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.kitchen_foscam",
+                                                    "movement": "right"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-top-left",
+                                            "style": {
+                                                "bottom": "50px",
+                                                "right": "50px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.kitchen_foscam",
+                                                    "movement": "top_left"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-top-right",
+                                            "style": {
+                                                "bottom": "50px",
+                                                "right": "0px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.kitchen_foscam",
+                                                    "movement": "top_right"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-bottom-left",
+                                            "style": {
+                                                "bottom": "0px",
+                                                "right": "50px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.kitchen_foscam",
+                                                    "movement": "bottom_left"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-bottom-right",
+                                            "style": {
+                                                "bottom": "0px",
+                                                "right": "0px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.kitchen_foscam",
+                                                    "movement": "bottom_right"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        }
+                                    ],
+                                    "entity": "camera.kitchencam",
+                                    "type": "picture-elements"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Air Temperature",
+                                    "line_width": 1,
+                                    "hours_to_show": 168,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.kitchen_trisensor_air_temperature"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Illuminance",
+                                    "line_width": 1,
+                                    "hours_to_show": 168,
+                                    "legend": false,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.kitchen_trisensor_illuminance"
+                                        },
+                                        {
+                                            "entity": "sensor.kitchen_temperature_statistics"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "entity": "input_number.kitchen_lux_level",
+                                    "icon_plus": "mdi:chevron-up",
+                                    "icon_minus": "mdi:chevron-down",
+                                    "name": "Minimum Lux",
+                                    "border": true
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        }
+                    ]
+                },
+                {
+                    "icon": "mdi:desktop-tower",
+                    "panel": true,
+                    "path": "study",
+                    "title": "Study",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.study_trisensor_air_temperature",
+                                            "name": "Temp"
+                                        },
+                                        {
+                                            "entity": "sensor.study_illuminance_statistics",
+                                            "name": "Average"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.study_bright",
+                                            "name": "Bright"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.study_trisensor_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.seb_pc_active"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.seb_pc_online"
+                                        }
+                                    ],
+                                    "type": "glance",
+                                    "state_color": true,
+                                    "columns": 6
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "light.study",
+                                            "name": " ",
+                                            "type": "light"
+                                        },
+                                        {
+                                            "entity": "climate.study",
+                                            "name": " ",
+                                            "type": "thermostat"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "color_thresholds": [
+                                                {
+                                                    "color": "#228B22",
+                                                    "value": 0
+                                                },
+                                                {
+                                                    "color": "#d35400",
+                                                    "value": 50
+                                                },
+                                                {
+                                                    "color": "#c0392b",
+                                                    "value": 80
+                                                }
+                                            ],
+                                            "color_thresholds_transition": "hard",
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.retaliator_cpu_usage"
+                                                }
+                                            ],
+                                            "hours_to_show": 0.16,
+                                            "icon": "mdi:cpu-64-bit",
+                                            "name": "CPU Usage",
+                                            "points_per_hour": 100,
+                                            "type": "custom:mini-graph-card"
+                                        },
+                                        {
+                                            "color_thresholds": [
+                                                {
+                                                    "color": "#228B22",
+                                                    "value": 0
+                                                },
+                                                {
+                                                    "color": "#d35400",
+                                                    "value": 50
+                                                },
+                                                {
+                                                    "color": "#c0392b",
+                                                    "value": 80
+                                                }
+                                            ],
+                                            "color_thresholds_transition": "hard",
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.retaliator_memory_usage"
+                                                }
+                                            ],
+                                            "hours_to_show": 0.16,
+                                            "icon": "mdi:chip",
+                                            "name": "RAM Usage",
+                                            "points_per_hour": 100,
+                                            "type": "custom:mini-graph-card"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "artwork": "cover",
+                                    "entity": "media_player.spotify_hankanman",
+                                    "name": "Spotify - Seb",
+                                    "type": "custom:mini-media-player"
+                                },
+                                {
+                                    "artwork": "cover",
+                                    "icon": "mdi:speaker",
+                                    "type": "custom:mini-media-player",
+                                    "source": "icon",
+                                    "sound_mode": "icon",
+                                    "group": false,
+                                    "volume_stateless": true,
+                                    "info": "scroll",
+                                    "entity": "media_player.study_echo"
+                                },
+                                {
+                                    "type": "vertical-stack",
+                                    "cards": [
+                                        {
+                                            "type": "horizontal-stack",
+                                            "cards": [
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "switch.lockmachine",
+                                                    "name": "Lock",
+                                                    "show_icon": false
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "switch.logoffmachine",
+                                                    "name": "Log Off",
+                                                    "show_icon": false
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "switch.restartmachine",
+                                                    "name": "Restart",
+                                                    "show_icon": false
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "switch.shutdownmachine",
+                                                    "name": "Shutdown",
+                                                    "show_icon": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "horizontal-stack",
+                                            "cards": [
+                                                {
+                                                    "type": "conditional",
+                                                    "conditions": [
+                                                        {
+                                                            "entity": "sensor.cpu_load",
+                                                            "state_not": "unavailable"
+                                                        }
+                                                    ],
+                                                    "card": {
+                                                        "entity": "sensor.cpu_load",
+                                                        "max": 100,
+                                                        "min": 0,
+                                                        "name": "CPU",
+                                                        "severity": {
+                                                            "green": 0,
+                                                            "red": 75,
+                                                            "yellow": 60
+                                                        },
+                                                        "type": "gauge"
+                                                    }
+                                                },
+                                                {
+                                                    "entity": "sensor.memory_load",
+                                                    "max": 100,
+                                                    "name": "RAM",
+                                                    "severity": {
+                                                        "green": 0,
+                                                        "red": 75,
+                                                        "yellow": 60
+                                                    },
+                                                    "type": "gauge",
+                                                    "min": 0
+                                                },
+                                                {
+                                                    "entity": "sensor.gpu_load",
+                                                    "max": 100,
+                                                    "min": 0,
+                                                    "name": "GPU",
+                                                    "severity": {
+                                                        "green": 0,
+                                                        "red": 75,
+                                                        "yellow": 60
+                                                    },
+                                                    "type": "gauge"
+                                                },
+                                                {
+                                                    "entity": "sensor.gpu_temperature",
+                                                    "max": 100,
+                                                    "min": 0,
+                                                    "name": "GPU",
+                                                    "severity": {
+                                                        "green": 0,
+                                                        "red": 75,
+                                                        "yellow": 60
+                                                    },
+                                                    "type": "gauge"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "animate": true,
+                                            "color_thresholds": [
+                                                {
+                                                    "color": "red",
+                                                    "value": 70
+                                                },
+                                                {
+                                                    "color": "yellow",
+                                                    "value": 50
+                                                },
+                                                {
+                                                    "color": "green",
+                                                    "value": 0
+                                                }
+                                            ],
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.cpu_load",
+                                                    "name": "CPU Load"
+                                                }
+                                            ],
+                                            "hours_to_show": 0.5,
+                                            "icon": "mdi:chip",
+                                            "line_width": 1,
+                                            "name": "CPU",
+                                            "show": {
+                                                "labels": true,
+                                                "points": false
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "animate": true,
+                                            "color_thresholds": [
+                                                {
+                                                    "color": "red",
+                                                    "value": 70
+                                                },
+                                                {
+                                                    "color": "yellow",
+                                                    "value": 50
+                                                },
+                                                {
+                                                    "color": "green",
+                                                    "value": 0
+                                                }
+                                            ],
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.gpu_load",
+                                                    "name": "GPU Load"
+                                                }
+                                            ],
+                                            "hours_to_show": 0.5,
+                                            "icon": "mdi:expansion-card",
+                                            "line_width": 1,
+                                            "lower_bound": 0,
+                                            "name": "GPU",
+                                            "points_per_hour": 3600,
+                                            "show": {
+                                                "labels": true,
+                                                "legend": false,
+                                                "points": false
+                                            },
+                                            "update_interval": 1,
+                                            "upper_bound": 100
+                                        },
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "animate": true,
+                                            "color_thresholds": [
+                                                {
+                                                    "color": "#c0392b",
+                                                    "value": 70
+                                                },
+                                                {
+                                                    "color": "#d35400",
+                                                    "value": 60
+                                                },
+                                                {
+                                                    "color": "#1A89F5",
+                                                    "value": 50
+                                                }
+                                            ],
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.memory_load",
+                                                    "name": "Memory Load"
+                                                }
+                                            ],
+                                            "hours_to_show": 0.5,
+                                            "icon": "mdi:thermometer",
+                                            "line_width": 1,
+                                            "lower_bound": 50,
+                                            "name": "RAM",
+                                            "points_per_hour": 3600,
+                                            "show": {
+                                                "labels": true,
+                                                "legend": false,
+                                                "points": false
+                                            },
+                                            "update_interval": 1,
+                                            "upper_bound": 100
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Air Temperature",
+                                    "hours_to_show": 168,
+                                    "line_width": 1,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.study_trisensor_air_temperature"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Illuminance",
+                                    "hours_to_show": 168,
+                                    "line_width": 1,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.study_trisensor_illuminance"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "entity": "input_number.study_lux_level",
+                                    "icon_plus": "mdi:chevron-up",
+                                    "icon_minus": "mdi:chevron-down",
+                                    "name": "Minimum Lux",
+                                    "border": true
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        }
+                    ]
+                },
+                {
+                    "panel": true,
+                    "path": "bedroom",
+                    "title": "Bedroom",
+                    "icon": "mdi:bed-king",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.bedroom_temperature_statistics",
+                                            "name": "Temp"
+                                        },
+                                        {
+                                            "entity": "sensor.bedroom_trisensor_illuminance",
+                                            "name": "Brightness"
+                                        },
+                                        {
+                                            "entity": "sensor.bedroom_illuminance_statistics",
+                                            "name": "Average"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.bedroom_bright",
+                                            "name": "Bright"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.bedroom_trisensor_motion",
+                                            "name": "Motion"
+                                        }
+                                    ],
+                                    "type": "glance",
+                                    "state_color": true
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "light.bedroom",
+                                            "name": " ",
+                                            "type": "light"
+                                        },
+                                        {
+                                            "entity": "climate.bedroom",
+                                            "name": " ",
+                                            "type": "thermostat"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "artwork": "cover",
+                                    "entity": "media_player.bedroom_tv",
+                                    "icon": "mdi:television",
+                                    "type": "custom:mini-media-player"
+                                },
+                                {
+                                    "artwork": "cover",
+                                    "hide": {
+                                        "source": true
+                                    },
+                                    "icon": "mdi:speaker",
+                                    "type": "custom:mini-media-player",
+                                    "entity": "media_player.bedroom_echo"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Air Temperature",
+                                    "hours_to_show": 168,
+                                    "line_width": 1,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.bedroom_trisensor_air_temperature"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:numberbox-card",
+                                    "border": false,
+                                    "entity": "input_number.bedroom_lux_level"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        }
+                    ]
+                },
+                {
+                    "panel": true,
+                    "path": "bathroom",
+                    "title": "Bathroom",
+                    "icon": "mdi:shower-head",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.bathroom_temperature_statistics",
+                                            "name": "Temp"
+                                        },
+                                        {
+                                            "entity": "sensor.bathroom_humidity_statistics",
+                                            "name": "Brightness"
+                                        },
+                                        {
+                                            "entity": "sensor.bathroom_illuminance_statistics",
+                                            "name": "Average"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.bathroom_bright",
+                                            "name": "Bright"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.bathroom_multisensor_motion",
+                                            "name": "Motion"
+                                        }
+                                    ],
+                                    "type": "glance",
+                                    "state_color": true,
+                                    "columns": 5
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "light.bathroom",
+                                            "name": " ",
+                                            "type": "light"
+                                        },
+                                        {
+                                            "entity": "climate.bathroom",
+                                            "name": " ",
+                                            "type": "thermostat"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "type": "entity",
+                                    "entity": "sensor.bathroom_humidity_statistics",
+                                    "name": "Average Humidity",
+                                    "icon": "hass:water-percent"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Humidity",
+                                    "hours_to_show": 168,
+                                    "line_width": 1,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.bathroom_multisensor_humidity"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Air Temperature",
+                                    "hours_to_show": 168,
+                                    "line_width": 1,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.bathroom_air_temperature"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.bathroom_lux_level",
+                                            "name": "Min Light Level"
+                                        },
+                                        {
+                                            "entity": "input_number.bathroom_humidity_offset",
+                                            "name": "Humidity Offset"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        }
+                    ]
+                },
+                {
+                    "panel": true,
+                    "path": "hall",
+                    "title": "Hall",
+                    "icon": "mdi:stairs",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.hall_temperature_statistics",
+                                            "name": "Temp"
+                                        },
+                                        {
+                                            "entity": "sensor.hall_illuminance_statistics",
+                                            "name": "Brightness"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.hall_bright",
+                                            "name": "Bright"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.hall_trisensor_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.hall_trisensor_illuminance"
+                                        }
+                                    ],
+                                    "type": "glance",
+                                    "state_color": true
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "light.hall",
+                                            "name": " ",
+                                            "type": "light"
+                                        },
+                                        {
+                                            "entity": "climate.central",
+                                            "name": " ",
+                                            "type": "thermostat"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "camera_image": "camera.hallcam",
+                                    "camera_view": "live",
+                                    "elements": [
+                                        {
+                                            "icon": "mdi:arrow-up",
+                                            "style": {
+                                                "bottom": "50px",
+                                                "right": "25px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.hall",
+                                                    "movement": "up"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-down",
+                                            "style": {
+                                                "bottom": "0px",
+                                                "right": "25px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.hall",
+                                                    "movement": "down"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-left",
+                                            "style": {
+                                                "bottom": "25px",
+                                                "right": "50px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.hall",
+                                                    "movement": "left"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-right",
+                                            "style": {
+                                                "bottom": "25px",
+                                                "right": "0px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.hall",
+                                                    "movement": "right"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-top-left",
+                                            "style": {
+                                                "bottom": "50px",
+                                                "right": "50px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.hall",
+                                                    "movement": "top_left"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-top-right",
+                                            "style": {
+                                                "bottom": "50px",
+                                                "right": "0px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.hall",
+                                                    "movement": "top_right"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-bottom-left",
+                                            "style": {
+                                                "bottom": "0px",
+                                                "right": "50px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.hall",
+                                                    "movement": "bottom_left"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:arrow-bottom-right",
+                                            "style": {
+                                                "bottom": "0px",
+                                                "right": "0px"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "foscam.ptz",
+                                                "service_data": {
+                                                    "entity_id": "camera.hall",
+                                                    "movement": "bottom_right"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "icon": "mdi:fullscreen",
+                                            "entity": "camera.hall",
+                                            "style": {
+                                                "top": "25px",
+                                                "right": "0px"
+                                            },
+                                            "tap_action": {
+                                                "action": "more-info"
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "style": {
+                                                "bottom": "-15px",
+                                                "right": "80px"
+                                            },
+                                            "service": "shell_command.hallcam_turn_on",
+                                            "type": "service-button",
+                                            "title": "Reset"
+                                        },
+                                        {
+                                            "style": {
+                                                "bottom": "-15px",
+                                                "right": "40px"
+                                            },
+                                            "service": "shell_command.hallcam_turn_off",
+                                            "type": "service-button",
+                                            "title": "Off"
+                                        },
+                                        {
+                                            "style": {
+                                                "bottom": "10px",
+                                                "right": "57px"
+                                            },
+                                            "entity": "switch.hallcam_ir",
+                                            "type": "state-label",
+                                            "prefix": "IR ",
+                                            "tap_action": {
+                                                "action": "toggle",
+                                                "service": "switch.toggle",
+                                                "service_data": {
+                                                    "entity_id": "switch.hallcam_ir"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "style": {
+                                                "bottom": "40px",
+                                                "right": "42px"
+                                            },
+                                            "entity": "switch.hallcam_motion",
+                                            "type": "state-label",
+                                            "prefix": "Motion ",
+                                            "tap_action": {
+                                                "action": "toggle",
+                                                "service": "switch.toggle",
+                                                "service_data": {
+                                                    "entity_id": "switch.hallcam_motion"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "entity": "camera.hallcam",
+                                    "type": "picture-elements",
+                                    "tap_action": "more-info"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Air Temperature",
+                                    "hours_to_show": 168,
+                                    "line_width": 1,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.hall_air_temperature"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.hall_lux_level",
+                                            "name": "Min Light Level"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        }
+                    ]
+                },
+                {
+                    "panel": true,
+                    "path": "toilet",
+                    "title": "Toilet",
+                    "icon": "mdi:toilet",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.toilet_temperature_statistics",
+                                            "name": "Temp"
+                                        },
+                                        {
+                                            "entity": "sensor.toilet_illuminance_statistics",
+                                            "name": "Brightness"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.toilet_bright",
+                                            "name": "Bright"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.toilet_trisensor_motion",
+                                            "name": "Motion"
+                                        }
+                                    ],
+                                    "type": "glance",
+                                    "state_color": true
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "light.toilet",
+                                            "name": " ",
+                                            "type": "light"
+                                        },
+                                        {
+                                            "entity": "climate.toilet",
+                                            "name": " ",
+                                            "type": "thermostat"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Air Temperature",
+                                    "hours_to_show": 168,
+                                    "line_width": 1,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.toilet_trisensor_air_temperature"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Air Temperature",
+                                    "hours_to_show": 168,
+                                    "line_width": 1,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 19,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 22,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.toilet_trisensor_illuminance"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.toilet_lux_level",
+                                            "name": "Min Light Level"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        }
+                    ]
+                },
+                {
+                    "panel": true,
+                    "path": "entrance",
+                    "title": "Entrance",
+                    "icon": "mdi:door",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.front_door_last_motion",
+                                            "name": "Last Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.front_door_last_ding",
+                                            "name": "Last Ring"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.front_door",
+                                            "name": "Front Door"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.front_door_motion",
+                                            "name": "Motion"
+                                        }
+                                    ],
+                                    "type": "glance"
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "light.entrance",
+                                            "name": " ",
+                                            "type": "light"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "aspect_ratio": "50%",
+                                    "camera_view": "live",
+                                    "entity": "camera.front_door",
+                                    "show_name": false,
+                                    "show_state": false,
+                                    "type": "picture-entity"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "name": "Air Temperature",
+                                    "hours_to_show": 168,
+                                    "line_width": 1,
+                                    "color_thresholds": [
+                                        {
+                                            "value": 0,
+                                            "color": "#1A89F5"
+                                        },
+                                        {
+                                            "value": 15,
+                                            "color": "#d35400"
+                                        },
+                                        {
+                                            "value": 20,
+                                            "color": "#c0392b"
+                                        }
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.openweathermap_temperature"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
