@@ -110,47 +110,6 @@
 ####################################
 # Ratios
 ####################################
-# Entrance
-- platform: history_stats
-  name: "Ratio Entrance Dog Motion"
-  entity_id: binary_sensor.entrance_dog_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Entrance Person Motion"
-  entity_id: binary_sensor.entrance_person_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Entrance Door Open"
-  entity_id: binary_sensor.entrance_door
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Entrance Door Motion"
-  entity_id: binary_sensor.front_door_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Entrance Door Ding"
-  entity_id: binary_sensor.front_door_ding
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
 
 # Bathroom
 - platform: history_stats
@@ -243,6 +202,64 @@
   end: "{{ now() }}"
   duration:
     days: 7
+- platform: history_stats
+  name: "Ratio Bedroom TV Playing"
+  entity_id: media_player.bedroom_tv
+  state: "playing"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Bedroom Speaker Playing"
+  entity_id: media_player.bedroom_echo
+  state: "playing"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+
+# Entrance
+- platform: history_stats
+  name: "Ratio Entrance Dog Motion"
+  entity_id: binary_sensor.entrance_dog_motion
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Entrance Person Motion"
+  entity_id: binary_sensor.entrance_person_motion
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Entrance Door Open"
+  entity_id: binary_sensor.entrance_door
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Entrance Door Motion"
+  entity_id: binary_sensor.front_door_motion
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Entrance Door Ding"
+  entity_id: binary_sensor.front_door_ding
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Hall
 - platform: history_stats
@@ -311,6 +328,14 @@
   end: "{{ now() }}"
   duration:
     days: 7
+- platform: history_stats
+  name: "Ratio Kitchen Temperature Trend"
+  entity_id: binary_sensor.kitchen_temperature_trend
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Lounge
 - platform: history_stats
@@ -349,6 +374,14 @@
   name: "Ratio Lounge Person Motion"
   entity_id: binary_sensor.lounge_person_motion
   state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Lounge TV Playing"
+  entity_id: media_player.lounge_tv
+  state: "playing"
   type: ratio
   end: "{{ now() }}"
   duration:
