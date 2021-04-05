@@ -17,5 +17,14 @@
       entity_id: sensor.bathroom_temperature
       sample_duration: 1200
       max_samples: 6
-      min_gradient: 0.011
+      min_gradient: 0.0017
+      device_class: heat
+- platform: trend
+  sensors:
+    kitchen_temperature_trend:
+      friendly_name: "Kitchen Temperature Trend"
+      entity_id: sensor.kitchen_temperature
+      sample_duration: 1200
+      max_samples: 6
+      min_gradient: 0.0017
       device_class: heat
