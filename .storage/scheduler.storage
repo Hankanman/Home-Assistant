@@ -197,7 +197,7 @@
                 "timeslots": [
                     {
                         "start": "00:00:00",
-                        "stop": "09:00:00",
+                        "stop": "08:00:00",
                         "conditions": [],
                         "condition_type": null,
                         "actions": [
@@ -209,7 +209,7 @@
                         ]
                     },
                     {
-                        "start": "09:00:00",
+                        "start": "08:00:00",
                         "stop": "22:00:00",
                         "conditions": [],
                         "condition_type": null,
@@ -239,7 +239,7 @@
                     "daily"
                 ],
                 "repeat_type": "repeat",
-                "name": null,
+                "name": "",
                 "enabled": true
             }
         ]
