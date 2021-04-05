@@ -1866,6 +1866,9 @@
                                     "entities": [
                                         {
                                             "entity": "sensor.bathroom_air_temperature"
+                                        },
+                                        {
+                                            "entity": "sensor.bathroom_humidity_statistics"
                                         }
                                     ]
                                 },

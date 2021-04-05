@@ -14,11 +14,6 @@
                 {
                     "title": "Bayesian Graphs",
                     "path": "bayesian-graphs",
-                    "layout": {
-                        "max_cols": 10,
-                        "width": 400
-                    },
-                    "type": "custom:horizontal-layout",
                     "badges": [],
                     "cards": [
                         {
@@ -55,6 +50,9 @@
                                 {
                                     "entity": "binary_sensor.toilet_occupied",
                                     "name": "Toilet"
+                                },
+                                {
+                                    "entity": "binary_sensor.in_bed"
                                 }
                             ],
                             "show_name": true,
@@ -64,6 +62,9 @@
                         },
                         {
                             "type": "custom:stack-in-card",
+                            "view_layout": {
+                                "grid-area": "graph"
+                            },
                             "cards": [
                                 {
                                     "type": "entity",
@@ -144,6 +145,9 @@
                         },
                         {
                             "type": "custom:stack-in-card",
+                            "view_layout": {
+                                "grid-area": "graph"
+                            },
                             "cards": [
                                 {
                                     "type": "entity",
@@ -153,7 +157,6 @@
                                     "type": "custom:mini-graph-card",
                                     "animate": true,
                                     "show": {
-                                        "state": false,
                                         "legend": false,
                                         "icon": false,
                                         "name": false
@@ -172,7 +175,9 @@
                                         "show_icon": false
                                     },
                                     "state_filter": [
-                                        "on"
+                                        "on",
+                                        "Bedroom",
+                                        "playing"
                                     ],
                                     "entities": [
                                         {
@@ -198,6 +203,14 @@
                                         {
                                             "entity": "binary_sensor.in_bed",
                                             "name": "In Bed"
+                                        },
+                                        {
+                                            "entity": "media_player.bedroom_echo",
+                                            "name": "Speaker"
+                                        },
+                                        {
+                                            "entity": "media_player.bedroom_tv",
+                                            "name": "TV"
                                         }
                                     ]
                                 },
@@ -223,6 +236,14 @@
                                         {
                                             "entity": "sensor.ratio_laura_sleeping",
                                             "name": "L Sleep"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_bedroom_speaker_playing",
+                                            "name": "Speaker"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_bedroom_tv_playing",
+                                            "name": "TV"
                                         }
                                     ],
                                     "show_icon": false
@@ -231,11 +252,22 @@
                         },
                         {
                             "type": "custom:stack-in-card",
+                            "view_layout": {
+                                "grid-area": "graph"
+                            },
                             "cards": [
                                 {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.in_bed"
+                                },
+                                {
                                     "type": "custom:mini-graph-card",
-                                    "name": "In Bed",
                                     "animate": true,
+                                    "show": {
+                                        "legend": false,
+                                        "icon": false,
+                                        "name": false
+                                    },
                                     "line_width": 1,
                                     "points_per_hour": 60,
                                     "hours_to_show": 1,
@@ -244,12 +276,18 @@
                                     ]
                                 },
                                 {
-                                    "type": "glance",
+                                    "type": "entity-filter",
+                                    "card": {
+                                        "type": "glance",
+                                        "show_icon": false
+                                    },
+                                    "state_filter": [
+                                        "on",
+                                        "below_horizon",
+                                        "Bedroom",
+                                        "playing"
+                                    ],
                                     "entities": [
-                                        {
-                                            "entity": "binary_sensor.in_bed",
-                                            "name": "State"
-                                        },
                                         {
                                             "entity": "binary_sensor.bedroom_trisensor_motion",
                                             "name": "Motion"
@@ -277,156 +315,496 @@
                                         {
                                             "entity": "input_boolean.sleep_schedule",
                                             "name": "Schedule"
+                                        },
+                                        {
+                                            "entity": "media_player.bedroom_echo",
+                                            "name": "Speaker"
+                                        },
+                                        {
+                                            "entity": "media_player.bedroom_tv",
+                                            "name": "TV"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "glance",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ratio_bedroom_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_bedroom_person_motion",
+                                            "name": "People"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_seb_bedroom_presence",
+                                            "name": "Seb BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_seb_sleeping",
+                                            "name": "Seb Sleep"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_laura_bedroom_presence",
+                                            "name": "Laura BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_laura_sleeping",
+                                            "name": "Laura Sleep"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_bedroom_speaker_playing",
+                                            "name": "Speaker"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_bedroom_tv_playing",
+                                            "name": "TV"
                                         }
                                     ],
-                                    "show_state": true,
                                     "show_icon": false
                                 }
                             ]
                         },
                         {
-                            "type": "custom:mini-graph-card",
-                            "name": "Entrance",
-                            "smoothing": false,
-                            "animate": true,
-                            "line_width": 1,
-                            "points_per_hour": 60,
-                            "hours_to_show": 1,
-                            "entities": [
-                                "sensor.entrance_occupied_probability"
-                            ]
-                        },
-                        {
-                            "type": "custom:mini-graph-card",
-                            "name": "Hall",
-                            "smoothing": false,
-                            "animate": true,
-                            "line_width": 1,
-                            "points_per_hour": 60,
-                            "hours_to_show": 1,
-                            "show": {
-                                "extrema": true
+                            "type": "custom:stack-in-card",
+                            "view_layout": {
+                                "grid-area": "graph"
                             },
-                            "entities": [
-                                "sensor.hall_occupied_probability"
-                            ]
-                        },
-                        {
-                            "type": "custom:mini-graph-card",
-                            "name": "Kitchen",
-                            "smoothing": false,
-                            "animate": true,
-                            "line_width": 1,
-                            "points_per_hour": 60,
-                            "hours_to_show": 1,
-                            "show": {
-                                "extrema": true
-                            },
-                            "entities": [
-                                "sensor.kitchen_occupied_probability"
-                            ]
-                        },
-                        {
-                            "type": "custom:mini-graph-card",
-                            "name": "Lounge",
-                            "smoothing": false,
-                            "animate": true,
-                            "line_width": 1,
-                            "points_per_hour": 60,
-                            "hours_to_show": 1,
-                            "show": {
-                                "extrema": true
-                            },
-                            "entities": [
-                                "sensor.lounge_occupied_probability"
-                            ]
-                        },
-                        {
-                            "type": "custom:mini-graph-card",
-                            "name": "Study",
-                            "smoothing": false,
-                            "animate": true,
-                            "line_width": 1,
-                            "points_per_hour": 60,
-                            "hours_to_show": 0.5,
-                            "show": {
-                                "extrema": true
-                            },
-                            "entities": [
-                                "sensor.study_occupied_probability"
-                            ]
-                        },
-                        {
-                            "type": "custom:mini-graph-card",
-                            "name": "Toilet",
-                            "smoothing": false,
-                            "animate": true,
-                            "line_width": 1,
-                            "points_per_hour": 60,
-                            "hours_to_show": 1,
-                            "show": {
-                                "extrema": true
-                            },
-                            "entities": [
-                                "sensor.toilet_occupied_probability"
-                            ]
-                        },
-                        {
-                            "type": "glance",
-                            "entities": [
+                            "cards": [
                                 {
-                                    "entity": "sensor.ratio_laura_bedroom_presence"
+                                    "type": "entity",
+                                    "entity": "binary_sensor.entrance_occupied"
                                 },
                                 {
-                                    "entity": "sensor.ratio_laura_kitchen_presence"
+                                    "type": "custom:mini-graph-card",
+                                    "animate": true,
+                                    "show": {
+                                        "legend": false,
+                                        "icon": false,
+                                        "name": false
+                                    },
+                                    "line_width": 1,
+                                    "points_per_hour": 60,
+                                    "hours_to_show": 1,
+                                    "entities": [
+                                        "sensor.entrance_occupied_probability"
+                                    ]
                                 },
                                 {
-                                    "entity": "sensor.ratio_laura_lounge_presence"
+                                    "type": "entity-filter",
+                                    "card": {
+                                        "type": "glance",
+                                        "show_icon": false
+                                    },
+                                    "state_filter": [
+                                        "on"
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.entrance_person_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.front_door_motion",
+                                            "name": "Outside Motion"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.entrance_door",
+                                            "name": "Door Open"
+                                        }
+                                    ]
                                 },
                                 {
-                                    "entity": "sensor.ratio_laura_study_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_seb_bedroom_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_seb_kitchen_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_seb_lounge_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_seb_study_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_seb_pc_active"
-                                },
-                                {
-                                    "entity": "sensor.ratio_bathroom_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_bedroom_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_hall_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_kitchen_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_lounge_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_study_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_toilet_motion"
+                                    "type": "glance",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ratio_entrance_person_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_entrance_door_motion",
+                                            "name": "Outside Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_entrance_door_open",
+                                            "name": "Door Open"
+                                        }
+                                    ],
+                                    "show_icon": false
                                 }
-                            ],
-                            "show_name": true,
-                            "show_state": true,
-                            "show_icon": true,
-                            "state_color": false
+                            ]
+                        },
+                        {
+                            "type": "custom:stack-in-card",
+                            "view_layout": {
+                                "grid-area": "graph"
+                            },
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.hall_occupied"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "animate": true,
+                                    "show": {
+                                        "legend": false,
+                                        "icon": false,
+                                        "name": false
+                                    },
+                                    "line_width": 1,
+                                    "points_per_hour": 60,
+                                    "hours_to_show": 1,
+                                    "entities": [
+                                        "sensor.hall_occupied_probability"
+                                    ]
+                                },
+                                {
+                                    "type": "entity-filter",
+                                    "card": {
+                                        "type": "glance",
+                                        "show_icon": false
+                                    },
+                                    "state_filter": [
+                                        "on"
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.hall_trisensor_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.hall_person_motion",
+                                            "name": "People"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "glance",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ratio_hall_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_hall_person_motion",
+                                            "name": "People"
+                                        }
+                                    ],
+                                    "show_icon": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:stack-in-card",
+                            "view_layout": {
+                                "grid-area": "graph"
+                            },
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.kitchen_occupied"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "animate": true,
+                                    "show": {
+                                        "legend": false,
+                                        "icon": false,
+                                        "name": false
+                                    },
+                                    "line_width": 1,
+                                    "points_per_hour": 60,
+                                    "hours_to_show": 1,
+                                    "entities": [
+                                        "sensor.kitchen_occupied_probability"
+                                    ]
+                                },
+                                {
+                                    "type": "entity-filter",
+                                    "card": {
+                                        "type": "glance",
+                                        "show_icon": false
+                                    },
+                                    "state_filter": [
+                                        "on"
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.kitchen_trisensor_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.kitchen_person_motion",
+                                            "name": "People"
+                                        },
+                                        {
+                                            "entity": "sensor.seb_phone_ble_room_presence",
+                                            "name": "Seb BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.laura_phone_ble_room_presence",
+                                            "name": "Laura BLE"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.kitchen_temperature_trend",
+                                            "name": "Temp"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "glance",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ratio_kitchen_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_kitchen_person_motion",
+                                            "name": "People"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_seb_kitchen_presence",
+                                            "name": "Seb BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_laura_kitchen_presence",
+                                            "name": "Laura BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_kitchen_temperature_trend",
+                                            "name": "Temp"
+                                        }
+                                    ],
+                                    "show_icon": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:stack-in-card",
+                            "view_layout": {
+                                "grid-area": "graph"
+                            },
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.lounge_occupied"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "animate": true,
+                                    "show": {
+                                        "legend": false,
+                                        "icon": false,
+                                        "name": false
+                                    },
+                                    "line_width": 1,
+                                    "points_per_hour": 60,
+                                    "hours_to_show": 1,
+                                    "entities": [
+                                        "sensor.lounge_occupied_probability"
+                                    ]
+                                },
+                                {
+                                    "type": "entity-filter",
+                                    "card": {
+                                        "type": "glance",
+                                        "show_icon": false
+                                    },
+                                    "state_filter": [
+                                        "on",
+                                        "Lounge",
+                                        "playing"
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.lounge_trisensor_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.lounge_person_motion",
+                                            "name": "People"
+                                        },
+                                        {
+                                            "entity": "sensor.seb_phone_ble_room_presence",
+                                            "name": "Seb BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.laura_phone_ble_room_presence",
+                                            "name": "Laura BLE"
+                                        },
+                                        {
+                                            "entity": "media_player.lounge_tv",
+                                            "name": "TV"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "glance",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ratio_lounge_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_lounge_person_motion",
+                                            "name": "People"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_seb_lounge_presence",
+                                            "name": "Seb BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_laura_lounge_presence",
+                                            "name": "Laura BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_lounge_tv_playing",
+                                            "name": "TV"
+                                        }
+                                    ],
+                                    "show_icon": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:stack-in-card",
+                            "view_layout": {
+                                "grid-area": "graph"
+                            },
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.study_occupied"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "animate": true,
+                                    "show": {
+                                        "legend": false,
+                                        "icon": false,
+                                        "name": false
+                                    },
+                                    "line_width": 1,
+                                    "points_per_hour": 60,
+                                    "hours_to_show": 1,
+                                    "entities": [
+                                        "sensor.study_occupied_probability"
+                                    ]
+                                },
+                                {
+                                    "type": "entity-filter",
+                                    "card": {
+                                        "type": "glance",
+                                        "show_icon": false
+                                    },
+                                    "state_filter": [
+                                        "on"
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.study_person_motion",
+                                            "name": "Person"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.study_trisensor_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.seb_pc_active",
+                                            "name": "PC"
+                                        },
+                                        {
+                                            "entity": "sensor.seb_phone_ble_room_presence",
+                                            "name": "Seb BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.laura_phone_ble_room_presence",
+                                            "name": "Laura BLE"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "glance",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ratio_study_person_motion",
+                                            "name": "Person"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_study_motion",
+                                            "name": "Motion"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_seb_pc_active",
+                                            "name": "PC"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_seb_study_presence",
+                                            "name": "Seb BLE"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_laura_study_presence",
+                                            "name": "Laura BLE"
+                                        }
+                                    ],
+                                    "show_icon": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:stack-in-card",
+                            "view_layout": {
+                                "grid-area": "graph"
+                            },
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.toilet_occupied"
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "animate": true,
+                                    "show": {
+                                        "legend": false,
+                                        "icon": false,
+                                        "name": false
+                                    },
+                                    "line_width": 1,
+                                    "points_per_hour": 60,
+                                    "hours_to_show": 1,
+                                    "entities": [
+                                        "sensor.toilet_occupied_probability"
+                                    ]
+                                },
+                                {
+                                    "type": "entity-filter",
+                                    "card": {
+                                        "type": "glance",
+                                        "show_icon": false
+                                    },
+                                    "state_filter": [
+                                        "on"
+                                    ],
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.toilet_trisensor_motion",
+                                            "name": "Motion"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "glance",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ratio_toilet_motion",
+                                            "name": "Motion"
+                                        }
+                                    ],
+                                    "show_icon": false
+                                }
+                            ]
                         }
                     ]
                 },
