@@ -2,7 +2,7 @@
 
 ## The Objective
 
->"Remove the need to manage my home, touch a switch and stay energy efficient without annoying the missus too much"
+The ultimate goal, as with any smart home is to have something like J.A.R.V.I.S running your home, so you can focus on builidng the Iron Man suit, naturally. In lieu of a super intelligent near sentient AI, get as close as possible :)
 
 ## Tools of Choice
 
@@ -24,9 +24,13 @@
 
   **Unraid Servers and Docker Containers:**
 
-  - [Frigate](https://blakeblackshear.github.io/frigate/)
+  | [Frigate](https://blakeblackshear.github.io/frigate/) | |
+  | --- | --- |
+  | <img src=".storage/images/Frigate-icon.svg" height="50"> |Frigate is a local Network Video Recorder (NVR) designed for HomeAssistant with AI object detection. Uses OpenCV and Tensorflow to perform realtime object detection locally for IP cameras.|
 
-    Frigate is a local Network Video Recorder (NVR) designed for HomeAssistant with AI object detection. Uses OpenCV and Tensorflow to perform realtime object detection locally for IP cameras.
+  | [AMP](https://cubecoders.com/AMP) | |
+  | --- | --- |
+  | <img src=".storage/images/AMP-icon.png" width="50" height="50"> |Frigate is a local Network Video Recorder (NVR) designed for HomeAssistant with AI object detection. Uses OpenCV and Tensorflow to perform realtime object detection locally for IP cameras.|
 
 - [Home Assistant](https://www.home-assistant.io/)
 - [Home Assistant](https://www.home-assistant.io/)
