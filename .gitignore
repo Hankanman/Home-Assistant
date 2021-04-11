@@ -22,6 +22,7 @@ startup/
 room_assistant/
 www/tmp/
 .storage/hacs/
+.storage/unraid/
 .storage/room_assistant/
 .storage/androidtv_*
 .storage/auth*
