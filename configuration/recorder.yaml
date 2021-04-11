@@ -47,7 +47,7 @@ recorder:
       - sensor.loungecam_camera_fps
       - sensor.hallcam_camera_fps
       - sensor.entrancecam_camera_fps
-      - sensor.cpu_load
-      - sensor.gpu_load
-      - sensor.gpu_temperature
-      - sensor.memory_load
+      # - sensor.cpu_load
+      # - sensor.gpu_load
+      # - sensor.gpu_temperature
+      # - sensor.memory_load
