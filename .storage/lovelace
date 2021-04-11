@@ -199,7 +199,6 @@
                                             "icon_height": "30px"
                                         },
                                         {
-                                            "entity": "input_boolean.sleep_mode",
                                             "hold_action": {
                                                 "action": "more-info"
                                             },
@@ -207,10 +206,11 @@
                                             "show_name": false,
                                             "show_state": false,
                                             "tap_action": {
-                                                "action": "toggle"
+                                                "action": "more-info"
                                             },
                                             "type": "button",
-                                            "icon_height": "30px"
+                                            "icon_height": "30px",
+                                            "entity": "binary_sensor.shower_occupied"
                                         },
                                         {
                                             "entity": "binary_sensor.entrance_door",
@@ -218,7 +218,10 @@
                                             "show_name": false,
                                             "show_state": false,
                                             "type": "button",
-                                            "icon_height": "30px"
+                                            "icon_height": "30px",
+                                            "tap_action": {
+                                                "action": "more-info"
+                                            }
                                         }
                                     ],
                                     "type": "horizontal-stack"
@@ -687,6 +690,19 @@
                             "hours_to_show": 12,
                             "dark_mode": true,
                             "aspect_ratio": "21:9"
+                        },
+                        {
+                            "type": "custom:simple-thermostat",
+                            "entity": "climate.central",
+                            "header": false,
+                            "control": false,
+                            "layout": {
+                                "step": "row"
+                            },
+                            "step_size": "1",
+                            "view_layout": {
+                                "step": "row"
+                            }
                         }
                     ]
                 },
@@ -1239,7 +1255,7 @@
                                             "entity": "sensor.kitchen_trisensor_illuminance"
                                         },
                                         {
-                                            "entity": "sensor.kitchen_temperature_statistics"
+                                            "entity": "sensor.kitchen_illuminance_statistics"
                                         }
                                     ]
                                 },
@@ -1370,9 +1386,9 @@
                                 },
                                 {
                                     "artwork": "cover",
-                                    "entity": "media_player.spotify_hankanman",
                                     "name": "Spotify - Seb",
-                                    "type": "custom:mini-media-player"
+                                    "type": "custom:mini-media-player",
+                                    "entity": "media_player.spotify_hankanman"
                                 },
                                 {
                                     "artwork": "cover",
@@ -1386,61 +1402,61 @@
                                     "entity": "media_player.study_echo"
                                 },
                                 {
-                                    "type": "vertical-stack",
-                                    "cards": [
+                                    "type": "conditional",
+                                    "conditions": [
                                         {
-                                            "type": "horizontal-stack",
-                                            "cards": [
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
+                                            "entity": "binary_sensor.seb_pc_online",
+                                            "state_not": "off"
+                                        }
+                                    ],
+                                    "card": {
+                                        "type": "vertical-stack",
+                                        "cards": [
+                                            {
+                                                "type": "horizontal-stack",
+                                                "cards": [
+                                                    {
+                                                        "type": "button",
+                                                        "tap_action": {
+                                                            "action": "toggle"
+                                                        },
+                                                        "entity": "switch.lockmachine",
+                                                        "name": "Lock",
+                                                        "show_icon": false
                                                     },
-                                                    "entity": "switch.lockmachine",
-                                                    "name": "Lock",
-                                                    "show_icon": false
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
+                                                    {
+                                                        "type": "button",
+                                                        "tap_action": {
+                                                            "action": "toggle"
+                                                        },
+                                                        "entity": "switch.logoffmachine",
+                                                        "name": "Log Off",
+                                                        "show_icon": false
                                                     },
-                                                    "entity": "switch.logoffmachine",
-                                                    "name": "Log Off",
-                                                    "show_icon": false
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
+                                                    {
+                                                        "type": "button",
+                                                        "tap_action": {
+                                                            "action": "toggle"
+                                                        },
+                                                        "entity": "switch.restartmachine",
+                                                        "name": "Restart",
+                                                        "show_icon": false
                                                     },
-                                                    "entity": "switch.restartmachine",
-                                                    "name": "Restart",
-                                                    "show_icon": false
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "switch.shutdownmachine",
-                                                    "name": "Shutdown",
-                                                    "show_icon": false
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "horizontal-stack",
-                                            "cards": [
-                                                {
-                                                    "type": "conditional",
-                                                    "conditions": [
-                                                        {
-                                                            "entity": "sensor.cpu_load",
-                                                            "state_not": "unavailable"
-                                                        }
-                                                    ],
-                                                    "card": {
+                                                    {
+                                                        "type": "button",
+                                                        "tap_action": {
+                                                            "action": "toggle"
+                                                        },
+                                                        "entity": "switch.shutdownmachine",
+                                                        "name": "Shutdown",
+                                                        "show_icon": false
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "horizontal-stack",
+                                                "cards": [
+                                                    {
                                                         "entity": "sensor.cpu_load",
                                                         "max": 100,
                                                         "min": 0,
@@ -1451,153 +1467,157 @@
                                                             "yellow": 60
                                                         },
                                                         "type": "gauge"
+                                                    },
+                                                    {
+                                                        "entity": "sensor.memory_load",
+                                                        "max": 100,
+                                                        "name": "RAM",
+                                                        "severity": {
+                                                            "green": 0,
+                                                            "red": 75,
+                                                            "yellow": 60
+                                                        },
+                                                        "type": "gauge",
+                                                        "min": 0
+                                                    },
+                                                    {
+                                                        "entity": "sensor.gpu_load",
+                                                        "max": 100,
+                                                        "min": 0,
+                                                        "name": "GPU",
+                                                        "severity": {
+                                                            "green": 0,
+                                                            "red": 75,
+                                                            "yellow": 60
+                                                        },
+                                                        "type": "gauge"
+                                                    },
+                                                    {
+                                                        "entity": "sensor.gpu_temperature",
+                                                        "max": 100,
+                                                        "min": 0,
+                                                        "name": "GPU",
+                                                        "severity": {
+                                                            "green": 0,
+                                                            "red": 75,
+                                                            "yellow": 60
+                                                        },
+                                                        "type": "gauge"
                                                     }
-                                                },
-                                                {
-                                                    "entity": "sensor.memory_load",
-                                                    "max": 100,
-                                                    "name": "RAM",
-                                                    "severity": {
-                                                        "green": 0,
-                                                        "red": 75,
-                                                        "yellow": 60
+                                                ]
+                                            },
+                                            {
+                                                "type": "custom:mini-graph-card",
+                                                "animate": true,
+                                                "color_thresholds": [
+                                                    {
+                                                        "color": "red",
+                                                        "value": 70
                                                     },
-                                                    "type": "gauge",
-                                                    "min": 0
-                                                },
-                                                {
-                                                    "entity": "sensor.gpu_load",
-                                                    "max": 100,
-                                                    "min": 0,
-                                                    "name": "GPU",
-                                                    "severity": {
-                                                        "green": 0,
-                                                        "red": 75,
-                                                        "yellow": 60
+                                                    {
+                                                        "color": "yellow",
+                                                        "value": 50
                                                     },
-                                                    "type": "gauge"
+                                                    {
+                                                        "color": "green",
+                                                        "value": 0
+                                                    }
+                                                ],
+                                                "entities": [
+                                                    {
+                                                        "entity": "sensor.cpu_load",
+                                                        "name": "CPU Load"
+                                                    }
+                                                ],
+                                                "hours_to_show": 0.5,
+                                                "icon": "mdi:chip",
+                                                "line_width": 1,
+                                                "lower_bound": 0,
+                                                "name": "CPU",
+                                                "points_per_hour": 3600,
+                                                "show": {
+                                                    "labels": true,
+                                                    "legend": false,
+                                                    "points": false
                                                 },
-                                                {
-                                                    "entity": "sensor.gpu_temperature",
-                                                    "max": 100,
-                                                    "min": 0,
-                                                    "name": "GPU",
-                                                    "severity": {
-                                                        "green": 0,
-                                                        "red": 75,
-                                                        "yellow": 60
+                                                "update_interval": 1,
+                                                "upper_bound": 100
+                                            },
+                                            {
+                                                "type": "custom:mini-graph-card",
+                                                "animate": true,
+                                                "color_thresholds": [
+                                                    {
+                                                        "color": "red",
+                                                        "value": 70
                                                     },
-                                                    "type": "gauge"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "custom:mini-graph-card",
-                                            "animate": true,
-                                            "color_thresholds": [
-                                                {
-                                                    "color": "red",
-                                                    "value": 70
+                                                    {
+                                                        "color": "yellow",
+                                                        "value": 50
+                                                    },
+                                                    {
+                                                        "color": "green",
+                                                        "value": 0
+                                                    }
+                                                ],
+                                                "entities": [
+                                                    {
+                                                        "entity": "sensor.gpu_load",
+                                                        "name": "GPU Load"
+                                                    }
+                                                ],
+                                                "hours_to_show": 0.5,
+                                                "icon": "mdi:expansion-card",
+                                                "line_width": 1,
+                                                "lower_bound": 0,
+                                                "name": "GPU",
+                                                "points_per_hour": 3600,
+                                                "show": {
+                                                    "labels": true,
+                                                    "legend": false,
+                                                    "points": false
                                                 },
-                                                {
-                                                    "color": "yellow",
-                                                    "value": 50
+                                                "update_interval": 1,
+                                                "upper_bound": 100
+                                            },
+                                            {
+                                                "type": "custom:mini-graph-card",
+                                                "animate": true,
+                                                "color_thresholds": [
+                                                    {
+                                                        "color": "red",
+                                                        "value": 70
+                                                    },
+                                                    {
+                                                        "color": "yellow",
+                                                        "value": 50
+                                                    },
+                                                    {
+                                                        "color": "green",
+                                                        "value": 0
+                                                    }
+                                                ],
+                                                "entities": [
+                                                    {
+                                                        "entity": "sensor.memory_load"
+                                                    }
+                                                ],
+                                                "hours_to_show": 0.5,
+                                                "icon": "mdi:memory",
+                                                "line_width": 1,
+                                                "lower_bound": 0,
+                                                "name": "Memory",
+                                                "points_per_hour": 3600,
+                                                "show": {
+                                                    "labels": true,
+                                                    "legend": false,
+                                                    "points": false
                                                 },
-                                                {
-                                                    "color": "green",
-                                                    "value": 0
-                                                }
-                                            ],
-                                            "entities": [
-                                                {
-                                                    "entity": "sensor.cpu_load",
-                                                    "name": "CPU Load"
-                                                }
-                                            ],
-                                            "hours_to_show": 0.5,
-                                            "icon": "mdi:chip",
-                                            "line_width": 1,
-                                            "name": "CPU",
-                                            "show": {
-                                                "labels": true,
-                                                "points": false
+                                                "update_interval": 1,
+                                                "upper_bound": 100
                                             }
-                                        },
-                                        {
-                                            "type": "custom:mini-graph-card",
-                                            "animate": true,
-                                            "color_thresholds": [
-                                                {
-                                                    "color": "red",
-                                                    "value": 70
-                                                },
-                                                {
-                                                    "color": "yellow",
-                                                    "value": 50
-                                                },
-                                                {
-                                                    "color": "green",
-                                                    "value": 0
-                                                }
-                                            ],
-                                            "entities": [
-                                                {
-                                                    "entity": "sensor.gpu_load",
-                                                    "name": "GPU Load"
-                                                }
-                                            ],
-                                            "hours_to_show": 0.5,
-                                            "icon": "mdi:expansion-card",
-                                            "line_width": 1,
-                                            "lower_bound": 0,
-                                            "name": "GPU",
-                                            "points_per_hour": 3600,
-                                            "show": {
-                                                "labels": true,
-                                                "legend": false,
-                                                "points": false
-                                            },
-                                            "update_interval": 1,
-                                            "upper_bound": 100
-                                        },
-                                        {
-                                            "type": "custom:mini-graph-card",
-                                            "animate": true,
-                                            "color_thresholds": [
-                                                {
-                                                    "color": "#c0392b",
-                                                    "value": 70
-                                                },
-                                                {
-                                                    "color": "#d35400",
-                                                    "value": 60
-                                                },
-                                                {
-                                                    "color": "#1A89F5",
-                                                    "value": 50
-                                                }
-                                            ],
-                                            "entities": [
-                                                {
-                                                    "entity": "sensor.memory_load",
-                                                    "name": "Memory Load"
-                                                }
-                                            ],
-                                            "hours_to_show": 0.5,
-                                            "icon": "mdi:thermometer",
-                                            "line_width": 1,
-                                            "lower_bound": 50,
-                                            "name": "RAM",
-                                            "points_per_hour": 3600,
-                                            "show": {
-                                                "labels": true,
-                                                "legend": false,
-                                                "points": false
-                                            },
-                                            "update_interval": 1,
-                                            "upper_bound": 100
-                                        }
-                                    ]
+                                        ]
+                                    }
                                 },
                                 {
                                     "type": "custom:mini-graph-card",

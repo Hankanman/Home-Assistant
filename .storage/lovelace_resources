@@ -142,6 +142,16 @@
                 "url": "/hacsfiles/scheduler-card/scheduler-card.js",
                 "type": "module",
                 "id": "01c43bfc3789415191e201df51fac355"
+            },
+            {
+                "url": "/hacsfiles/simple-thermostat/simple-thermostat.js",
+                "type": "module",
+                "id": "9a50e444d8494c41b9e8728b975cb662"
+            },
+            {
+                "url": "/hacsfiles/atomic-calendar-revive/atomic-calendar-revive.js",
+                "type": "module",
+                "id": "886d37446cc449d5aa391373dfe2becd"
             }
         ]
     }
