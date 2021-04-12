@@ -59,43 +59,43 @@
 - platform: statistics
   name: "Bathroom Illuminance Statistics"
   max_age:
-    days: 1
+    days: 7
   entity_id: sensor.bathroom_multisensor_illuminance
 
 - platform: statistics
   name: "Bedroom Illuminance Statistics"
   max_age:
-    days: 1
+    days: 7
   entity_id: sensor.bedroom_trisensor_illuminance
 
 - platform: statistics
   name: "Hall Illuminance Statistics"
   max_age:
-    days: 1
+    days: 7
   entity_id: sensor.hall_trisensor_illuminance
 
 - platform: statistics
   name: "Kitchen Illuminance Statistics"
   max_age:
-    days: 1
+    days: 7
   entity_id: sensor.kitchen_trisensor_illuminance
 
 - platform: statistics
   name: "Lounge Illuminance Statistics"
   max_age:
-    days: 1
+    days: 7
   entity_id: sensor.lounge_trisensor_illuminance
 
 - platform: statistics
   name: "Study Illuminance Statistics"
   max_age:
-    days: 1
+    days: 7
   entity_id: sensor.study_trisensor_illuminance
 
 - platform: statistics
   name: "Toilet Illuminance Statistics"
   max_age:
-    days: 1
+    days: 7
   entity_id: sensor.toilet_trisensor_illuminance
 
 ####################################
