@@ -11,7 +11,7 @@
 })();
 
 var name = "simple-thermostat";
-var version = "2.2.2";
+var version = "2.3.0";
 
 /**
  * @license
@@ -2822,6 +2822,12 @@ const OptionsStepSize = [0.5, 1];
 const OptionsStepLayout = ['column', 'row'];
 const includeDomains = ['climate'];
 const GithubReadMe = 'https://github.com/nervetattoo/simple-thermostat/blob/master/README.md';
+const stub = {
+    header: {},
+    layout: {
+        modes: {},
+    },
+};
 class SimpleThermostatEditor extends LitElement {
     static get styles() {
         return css_248z;
@@ -2830,15 +2836,10 @@ class SimpleThermostatEditor extends LitElement {
         return { hass: {}, config: {} };
     }
     static getStubConfig() {
-        return {
-            header: {},
-            layout: {
-                modes: {},
-            },
-        };
+        return Object.assign({}, stub);
     }
     setConfig(config) {
-        this.config = config;
+        this.config = config || Object.assign({}, stub);
     }
     _openLink() {
         window.open(GithubReadMe);
@@ -3304,16 +3305,23 @@ function renderToggle(toggle, openEntityPopover, toggleEntityChanged) {
 
 // Preset mode can be  one of: none, eco, away, boost, comfort, home, sleep, activity
 // See https://github.com/home-assistant/home-assistant/blob/dev/homeassistant/components/climate/const.py#L36-L57
-function renderInfoItem({ hide = false, state, details, localize, openEntityPopover, }) {
+function renderInfoItem({ hide = false, hass, state, details, localize, openEntityPopover, }) {
     var _a, _b;
     if (hide || typeof state === 'undefined')
         return;
-    const { heading, icon, unit, decimals } = details;
+    const { type, heading, icon, unit, decimals } = details;
     let valueCell;
     if (process.env.DEBUG) {
         console.log('ST: infoItem', { state, details });
     }
-    if (typeof state === 'object') {
+    if (type === 'relativetime') {
+        valueCell = html `
+      <div class="sensor-value">
+        <ha-relative-time .datetime=${state} .hass=${hass}></ha-relative-time>
+      </div>
+    `;
+    }
+    else if (typeof state === 'object') {
         const [domain] = state.entity_id.split('.');
         const prefix = [
             'component',
@@ -3351,23 +3359,25 @@ function renderInfoItem({ hide = false, state, details, localize, openEntityPopo
   `;
 }
 
-function renderSensors({ _hide, entity, unit, sensors, config, localize, openEntityPopover, }) {
+function renderSensors({ _hide, entity, unit, hass, sensors, config, localize, openEntityPopover, }) {
     var _a, _b, _c, _d, _e, _f;
     const { state, attributes: { hvac_action: action, current_temperature: current }, } = entity;
     const { type, labels: showLabels } = (_b = (_a = config === null || config === void 0 ? void 0 : config.layout) === null || _a === void 0 ? void 0 : _a.sensors) !== null && _b !== void 0 ? _b : {
         type: 'table',
         labels: true,
     };
-    const stateString = [
-        localize(action, 'state_attributes.climate.hvac_action.'),
-        ' (',
-        localize(state, 'component.climate.state._.'),
-        ')',
-    ].join('');
+    let stateString = localize(state, 'component.climate.state._.');
+    if (action) {
+        stateString = [
+            localize(action, 'state_attributes.climate.hvac_action.'),
+            ` (${stateString})`,
+        ].join('');
+    }
     const sensorHtml = [
         renderInfoItem({
             hide: _hide.temperature,
             state: `${formatNumber(current, config)}${unit || ''}`,
+            hass,
             details: {
                 heading: showLabels
                     ? (_d = (_c = config === null || config === void 0 ? void 0 : config.label) === null || _c === void 0 ? void 0 : _c.temperature) !== null && _d !== void 0 ? _d : localize('ui.card.climate.currently')
@@ -3377,6 +3387,7 @@ function renderSensors({ _hide, entity, unit, sensors, config, localize, openEnt
         renderInfoItem({
             hide: _hide.state,
             state: stateString,
+            hass,
             details: {
                 heading: showLabels
                     ? (_f = (_e = config === null || config === void 0 ? void 0 : config.label) === null || _e === void 0 ? void 0 : _e.state) !== null && _f !== void 0 ? _f : localize('ui.panel.lovelace.editor.card.generic.state')
@@ -3387,6 +3398,7 @@ function renderSensors({ _hide, entity, unit, sensors, config, localize, openEnt
             var { name, state } = _a, rest = __rest(_a, ["name", "state"]);
             return renderInfoItem({
                 state,
+                hass,
                 localize,
                 openEntityPopover,
                 details: Object.assign(Object.assign({}, rest), { heading: showLabels && name }),
@@ -3801,6 +3813,7 @@ class SimpleThermostat extends LitElement {
             ? renderSensors({
                 _hide: this._hide,
                 unit,
+                hass: this._hass,
                 entity: this.entity,
                 sensors: this.sensors,
                 config: this.config,
@@ -3814,7 +3827,7 @@ class SimpleThermostat extends LitElement {
             return html `
               <div class="current-wrapper ${stepLayout}">
                 <ha-icon-button
-                  ?disabled=${maxTemp && value >= maxTemp}
+                  ?disabled=${maxTemp !== null && value >= maxTemp}
                   class="thermostat-trigger"
                   icon=${row ? ICONS.PLUS : ICONS.UP}
                   @click="${() => this.setTemperature(this._stepSize, field)}"
@@ -3833,7 +3846,7 @@ class SimpleThermostat extends LitElement {
                 : nothing}
                 </h3>
                 <ha-icon-button
-                  ?disabled=${minTemp && value <= minTemp}
+                  ?disabled=${minTemp !== null && value <= minTemp}
                   class="thermostat-trigger"
                   icon=${row ? ICONS.MINUS : ICONS.DOWN}
                   @click="${() => this.setTemperature(-this._stepSize, field)}"
