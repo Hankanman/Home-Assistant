@@ -51,6 +51,51 @@
                 "name": "Sleep Schedule",
                 "icon": "mdi:clock",
                 "id": "sleep_schedule"
+            },
+            {
+                "name": "Bathroom Automations",
+                "icon": "mdi:lock-pattern",
+                "id": "bathroom_automations"
+            },
+            {
+                "name": "Bedroom Automations",
+                "icon": "mdi:lock-pattern",
+                "id": "bedroom_automations"
+            },
+            {
+                "name": "Entrance Automations",
+                "icon": "mdi:lock-pattern",
+                "id": "entrance_automations"
+            },
+            {
+                "name": "Hall Automations",
+                "icon": "mdi:lock-pattern",
+                "id": "hall_automations"
+            },
+            {
+                "name": "Kitchen Automations",
+                "icon": "mdi:lock-pattern",
+                "id": "kitchen_automations"
+            },
+            {
+                "name": "Lounge Automations",
+                "icon": "mdi:lock-pattern",
+                "id": "lounge_automations"
+            },
+            {
+                "name": "Study Automations",
+                "icon": "mdi:lock-pattern",
+                "id": "study_automations"
+            },
+            {
+                "name": "Study Automations",
+                "icon": "mdi:lock-pattern",
+                "id": "study_automations_2"
+            },
+            {
+                "name": "Toilet Automations",
+                "icon": "mdi:lock-pattern",
+                "id": "toilet_automations"
             }
         ]
     }
