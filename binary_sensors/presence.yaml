@@ -42,6 +42,7 @@
 - platform: bayesian
   name: "Bathroom Occupied"
   prior: 0.1
+  device_class: occupancy
   probability_threshold: 0.4
   observations:
     - platform: "state"
@@ -64,10 +65,6 @@
       prob_given_true: 0.50
       prob_given_false: 0.005
       to_state: "on"
-    - platform: "template"
-      value_template: "{{ now().timestamp() - states.binary_sensor.bathroom_multisensor_motion.last_changed.timestamp() < 180 | float }}"
-      prob_given_true: 0.6
-      prob_given_false: 0.01
     - platform: "state"
       entity_id: "input_boolean.bathroom_schedule"
       prob_given_true: 0.77
@@ -78,6 +75,7 @@
 - platform: bayesian
   name: "Bedroom Occupied"
   prior: 0.46
+  device_class: occupancy
   probability_threshold: 0.8
   observations:
     - platform: "state"
@@ -114,6 +112,7 @@
 - platform: bayesian
   name: "In Bed"
   prior: 0.42
+  device_class: occupancy
   probability_threshold: 0.9
   observations:
     - platform: "state"
@@ -166,6 +165,7 @@
 - platform: bayesian
   name: "Entrance Occupied"
   prior: 0.02
+  device_class: occupancy
   probability_threshold: 0.7
   observations:
     - platform: "state"
@@ -188,6 +188,7 @@
 - platform: bayesian
   name: "Hall Occupied"
   prior: 0.02
+  device_class: occupancy
   probability_threshold: 0.8
   observations:
     - platform: "state"
@@ -205,6 +206,7 @@
 - platform: bayesian
   name: "Kitchen Occupied"
   prior: 0.13
+  device_class: occupancy
   probability_threshold: 0.8
   observations:
     - platform: "state"
@@ -237,6 +239,7 @@
 - platform: bayesian
   name: "Lounge Occupied"
   prior: 0.29
+  device_class: occupancy
   probability_threshold: 0.8
   observations:
     - platform: "state"
@@ -269,6 +272,7 @@
 - platform: bayesian
   name: "Study Occupied"
   prior: 0.33
+  device_class: occupancy
   probability_threshold: 0.8
   observations:
     - platform: "state"
@@ -301,7 +305,8 @@
 - platform: bayesian
   name: "Toilet Occupied"
   prior: 0.02
-  probability_threshold: 0.7
+  device_class: occupancy
+  probability_threshold: 0.6
   observations:
     - platform: "state"
       entity_id: "binary_sensor.toilet_trisensor_motion"
