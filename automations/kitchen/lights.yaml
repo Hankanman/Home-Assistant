@@ -1,0 +1,47 @@
+alias: Room - Kitchen - Lights
+id: c7c321fd-d55a-46fe-8b1f-052f54371ec9
+description: ""
+mode: queued
+
+trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+      - binary_sensor.kitchen_trisensor_motion
+      - sun.sun
+      - binary_sensor.kitchen_bright
+      - input_number.kitchen_lux_level
+      - sensor.kitchen_trisensor_illuminance
+
+condition: []
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.kitchen_trisensor_motion
+            state: "on"
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: binary_sensor.kitchen_bright
+                state: "off"
+              - condition: state
+                entity_id: sun.sun
+                state: below_horizon
+        sequence:
+          - service: light.turn_on
+            data:
+              brightness_pct: 100
+              transition: 3
+            target:
+              entity_id: light.kitchen
+    default:
+      - service: light.turn_off
+        data:
+          transition: 3
+        target:
+          entity_id: light.kitchen

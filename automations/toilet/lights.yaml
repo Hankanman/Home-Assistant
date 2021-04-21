@@ -1,0 +1,38 @@
+alias: Room - Toilet - Lights
+id: 2c269b98-6364-4fdb-bb79-ea5b7796b2f5
+description: ""
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.toilet_trisensor_motion
+  - platform: state
+    entity_id: binary_sensor.toilet_bright
+  - platform: state
+    entity_id: sun.sun
+
+condition: []
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.toilet_trisensor_motion
+            state: "on"
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: sun.sun
+                state: below_horizon
+              - condition: state
+                entity_id: binary_sensor.toilet_bright
+                state: "off"
+        sequence:
+          - service: light.turn_on
+            data: {}
+            target:
+              entity_id: light.toilet
+    default:
+      - service: light.turn_off
+        data: {}
+        entity_id: light.toilet

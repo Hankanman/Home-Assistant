@@ -1,0 +1,57 @@
+alias: Room - Study - Lights
+id: 436d5a1c-3313-46f5-91af-c7964998b2a0
+description: ""
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.study_trisensor_motion
+  - entity_id: binary_sensor.study_bright
+    platform: state
+  - platform: state
+    entity_id: sun.sun
+  - platform: state
+    entity_id: binary_sensor.seb_pc_active
+
+condition: []
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.study_trisensor_motion
+            state: "on"
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: binary_sensor.study_bright
+                state: "off"
+              - condition: state
+                entity_id: sun.sun
+                state: below_horizon
+        sequence:
+          - service: light.turn_on
+            data:
+              transition: 3
+              brightness_pct: 100
+            target:
+              area_id: study
+    default:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.study_trisensor_motion
+            state: "off"
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: binary_sensor.seb_pc_active
+                state: "off"
+              - condition: state
+                entity_id: binary_sensor.seb_pc_active
+                state: unavailable
+      - service: light.turn_off
+        data:
+          transition: 3
+        target:
+          area_id: study

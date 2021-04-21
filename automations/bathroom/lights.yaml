@@ -1,0 +1,32 @@
+alias: Room - Bathroom - Lights
+id: c87f8826-584c-4459-ac6e-8d3615702dad
+description: ""
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: sensor.bathroom_multisensor_humidity
+  - platform: state
+    entity_id: binary_sensor.bathroom_occupied
+
+condition: []
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            state: "on"
+            entity_id: binary_sensor.bathroom_occupied
+        sequence:
+          - service: light.turn_on
+            data:
+              brightness_pct: 100
+              transition: 2
+            target:
+              area_id: bathroom
+    default:
+      - service: light.turn_off
+        target:
+          area_id: bathroom
+        data:
+          transition: 5

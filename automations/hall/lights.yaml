@@ -1,0 +1,66 @@
+alias: Room - Hall - Lights
+id: d0cccb19-ad9a-407e-9e5b-e5bb81f23cc9
+description: ""
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.hall_trisensor_motion
+  - platform: state
+    entity_id: input_boolean.sleep_mode
+  - platform: state
+    entity_id: binary_sensor.hall_bright
+
+condition: []
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.hall_trisensor_motion
+            state: "on"
+          - condition: state
+            entity_id: input_boolean.sleep_mode
+            state: "off"
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: sun.sun
+                state: below_horizon
+              - condition: state
+                entity_id: binary_sensor.hall_bright
+                state: "off"
+        sequence:
+          - service: light.turn_on
+            data:
+              brightness_pct: 60
+              transition: 3
+            target:
+              entity_id: light.hall
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.hall_trisensor_motion
+            state: "on"
+          - condition: state
+            entity_id: input_boolean.sleep_mode
+            state: "on"
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: sun.sun
+                state: below_horizon
+              - condition: state
+                entity_id: binary_sensor.hall_bright
+                state: "off"
+        sequence:
+          - service: light.turn_on
+            data:
+              brightness_pct: 1
+            target:
+              entity_id: light.hall
+    default:
+      - service: light.turn_off
+        data:
+          transition: 3
+        target:
+          entity_id: light.hall

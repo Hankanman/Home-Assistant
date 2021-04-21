@@ -1,0 +1,34 @@
+alias: Room - Lounge - Camera
+id: 9e2baebd-3627-4aa5-b86b-e121b92b23ea
+description: ""
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.lounge_bright
+  - platform: state
+    entity_id: sun.sun
+  - platform: state
+    entity_id: light.lounge
+
+condition: []
+
+action:
+  - choose:
+      - conditions:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: light.lounge
+                state: "on"
+              - condition: state
+                entity_id: sun.sun
+                state: above_horizon
+        sequence:
+          - service: switch.turn_off
+            data: {}
+            entity_id: switch.loungecam_ir
+    default:
+      - service: switch.turn_on
+        data: {}
+        entity_id: switch.loungecam_ir

@@ -1,0 +1,38 @@
+alias: Room - Entrance - Lights
+id: f26a8757-9178-4334-b2dc-07fda3f01c30
+description: ""
+mode: queued
+
+trigger:
+  - entity_id: binary_sensor.entrance_door
+    platform: state
+    to: "on"
+  - entity_id: binary_sensor.entrance_door
+    for: 00:00:30
+    platform: state
+    to: "off"
+
+condition: []
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.entrance_door
+            state: "on"
+          - condition: state
+            entity_id: sun.sun
+            state: below_horizon
+        sequence:
+          - service: light.turn_on
+            data:
+              transition: 3
+              brightness_pct: 100
+            target:
+              entity_id: light.entrance
+    default:
+      - service: light.turn_off
+        data:
+          transition: 3
+        target:
+          entity_id: light.entrance

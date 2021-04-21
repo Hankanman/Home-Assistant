@@ -1,0 +1,43 @@
+alias: Room - Bedroom - Lights
+id: bf065214-cd47-43f8-a537-d39686045b26
+description: ""
+mode: queued
+
+trigger:
+  - entity_id: media_player.bedroom_tv
+    platform: state
+  - platform: state
+    entity_id: binary_sensor.bedroom_trisensor_motion
+  - entity_id: binary_sensor.bedroom_bright
+    platform: state
+  - entity_id: input_boolean.sleep_mode
+    platform: state
+
+condition: []
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: media_player.bedroom_tv
+            state: "on"
+          - condition: state
+            entity_id: input_boolean.sleep_mode
+            state: "off"
+        sequence:
+          - service: light.turn_on
+            data:
+              brightness_pct: 20
+              transition: 3
+            target:
+              entity_id: light.bedroom
+    default:
+      - condition: state
+        entity_id: binary_sensor.bedroom_trisensor_motion
+        state: "off"
+        for: 00:20:00
+      - service: light.turn_off
+        data:
+          transition: 3
+        target:
+          entity_id: light.bedroom

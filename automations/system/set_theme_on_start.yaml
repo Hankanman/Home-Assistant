@@ -1,0 +1,15 @@
+alias: System - Set Theme On Start
+id: 996547ef-a234-4b77-9976-91049bddb575
+description: ""
+mode: single
+
+trigger:
+  - platform: homeassistant
+    event: start
+
+condition: []
+
+action:
+  - service: frontend.set_theme
+    data:
+      name: Home

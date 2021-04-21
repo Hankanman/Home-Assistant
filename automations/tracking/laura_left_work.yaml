@@ -1,0 +1,10 @@
+alias: Tracking - Laura Left Work
+id: 9b010243-296f-4e7c-8796-8c39f6ed520b
+description: ""
+
+use_blueprint:
+  path: homeassistant/notify_leaving_zone.yaml
+  input:
+    person_entity: person.laura_ward
+    notify_device: a7476c800b5711eb974f83193b2e2ce2
+    zone_entity: zone.work
