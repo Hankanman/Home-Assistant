@@ -338,7 +338,7 @@
                                             "name": "Motion"
                                         },
                                         {
-                                            "entity": "sensor.ratio_bedroom_person_motion",
+                                            "entity": "sensor.ratio_people_bedroom",
                                             "name": "People"
                                         },
                                         {
@@ -407,7 +407,7 @@
                                     "entities": [
                                         {
                                             "entity": "binary_sensor.people_entrance",
-                                            "name": "Motion"
+                                            "name": "People"
                                         },
                                         {
                                             "entity": "binary_sensor.front_door_motion",
@@ -423,8 +423,8 @@
                                     "type": "glance",
                                     "entities": [
                                         {
-                                            "entity": "sensor.ratio_entrance_person_motion",
-                                            "name": "Motion"
+                                            "entity": "sensor.ratio_people_entrance",
+                                            "name": "People"
                                         },
                                         {
                                             "entity": "sensor.ratio_entrance_door_motion",
@@ -479,7 +479,7 @@
                                             "name": "Motion"
                                         },
                                         {
-                                            "entity": "binary_sensor.hall_person_motion",
+                                            "entity": "binary_sensor.people_hall",
                                             "name": "People"
                                         }
                                     ]
@@ -492,7 +492,7 @@
                                             "name": "Motion"
                                         },
                                         {
-                                            "entity": "sensor.ratio_hall_person_motion",
+                                            "entity": "sensor.ratio_people_hall",
                                             "name": "People"
                                         }
                                     ],
@@ -540,7 +540,7 @@
                                             "name": "Motion"
                                         },
                                         {
-                                            "entity": "binary_sensor.kitchen_person_motion",
+                                            "entity": "binary_sensor.people_kitchen",
                                             "name": "People"
                                         },
                                         {
@@ -561,11 +561,11 @@
                                     "type": "glance",
                                     "entities": [
                                         {
-                                            "entity": "sensor.ratio_kitchen_motion",
+                                            "entity": "sensor.ratio_people_kitchen",
                                             "name": "Motion"
                                         },
                                         {
-                                            "entity": "sensor.ratio_kitchen_person_motion",
+                                            "entity": "sensor.ratio_people_kitchen",
                                             "name": "People"
                                         },
                                         {
@@ -627,7 +627,7 @@
                                             "name": "Motion"
                                         },
                                         {
-                                            "entity": "binary_sensor.lounge_person_motion",
+                                            "entity": "binary_sensor.people_lounge",
                                             "name": "People"
                                         },
                                         {
@@ -652,7 +652,7 @@
                                             "name": "Motion"
                                         },
                                         {
-                                            "entity": "sensor.ratio_lounge_person_motion",
+                                            "entity": "sensor.ratio_people_lounge",
                                             "name": "People"
                                         },
                                         {
@@ -708,7 +708,7 @@
                                     ],
                                     "entities": [
                                         {
-                                            "entity": "binary_sensor.study_person_motion",
+                                            "entity": "binary_sensor.people_study",
                                             "name": "Person"
                                         },
                                         {
@@ -733,8 +733,8 @@
                                     "type": "glance",
                                     "entities": [
                                         {
-                                            "entity": "sensor.ratio_study_person_motion",
-                                            "name": "Person"
+                                            "entity": "sensor.ratio_people_study",
+                                            "name": "People"
                                         },
                                         {
                                             "entity": "sensor.ratio_study_motion",
