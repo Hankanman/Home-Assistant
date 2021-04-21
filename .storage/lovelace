@@ -10,10 +10,6 @@
                     "icon": "mdi:home",
                     "path": "default_view",
                     "title": "Home",
-                    "type": "custom:horizontal-layout",
-                    "layout": {
-                        "max_cols": 5
-                    },
                     "badges": [],
                     "cards": [
                         {
@@ -231,635 +227,1456 @@
                             ]
                         },
                         {
-                            "type": "custom:stack-in-card",
+                            "type": "grid",
                             "cards": [
                                 {
-                                    "type": "custom:button-card",
-                                    "entity": "light.home",
-                                    "hold_action": {
-                                        "action": "none"
-                                    },
-                                    "icon": "mdi:house",
-                                    "label": "All Lights",
-                                    "show_icon": false,
-                                    "show_label": true,
-                                    "show_name": false,
-                                    "card_mod": {
-                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                    }
-                                },
-                                {
-                                    "type": "custom:layout-card",
-                                    "layout": {
-                                        "grid-template-columns": "30% auto",
-                                        "grid-template-areas": "\"room slider\"\n"
-                                    },
-                                    "layout_type": "grid",
+                                    "type": "custom:stack-in-card",
                                     "cards": [
                                         {
-                                            "type": "custom:paper-buttons-row",
-                                            "buttons": [
+                                            "type": "custom:layout-card",
+                                            "layout": {
+                                                "grid-template-columns": "25% 25% 25% 25%",
+                                                "grid-template-areas": "\"title title title toggle\"\n\"humid spacer spacer climate\"\n\"motion bright temp climate\"\n\"slider slider slider slider\"\n"
+                                            },
+                                            "layout_type": "grid",
+                                            "cards": [
                                                 {
+                                                    "type": "markdown",
+                                                    "content": " ",
+                                                    "view_layout": {
+                                                        "grid-area": "spacer"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "markdown",
+                                                    "content": "## <ha-icon icon=\"mdi:shower-head\"></ha-icon> Bathroom",
+                                                    "view_layout": {
+                                                        "grid-area": "title"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:simple-thermostat",
+                                                    "entity": "climate.bathroom",
+                                                    "header": false,
+                                                    "sensors": false,
+                                                    "control": false,
+                                                    "layout": {
+                                                        "step": "column"
+                                                    },
+                                                    "view_layout": {
+                                                        "grid-area": "climate"
+                                                    },
+                                                    "style": "ha-card {\n  --st-font-size-xl: 20px;\n  --st-font-size-m: 10px;\n  --st-font-size-l: 16px;\n  --st-spacing: 0px;\n  --mdc-icon-size: 18px;\n  --mdc-icon-button-size: 48px;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n}\n"
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "color": "rgba(255,255,255,1)",
+                                                    "entity": "input_boolean.bathroom_automations",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    },
+                                                    "state": [
+                                                        {
+                                                            "value": "off",
+                                                            "color": "red"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "toggle"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  padding-top: 10px !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\nha-icon {\n    width: 50% !important;\n}\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.bathroom_occupied_probability'].state + \"%\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:walk",
+                                                    "entity": "binary_sensor.bathroom_occupied",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "green"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "motion"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.bathroom_multisensor_illuminance'].state + \" Lux\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "height": "24px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:brightness-7",
+                                                    "entity": "binary_sensor.bathroom_bright",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "yellow"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "bright"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.bathroom_multisensor_humidity'].state + \"%\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "width": "24px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:water",
+                                                    "entity": "binary_sensor.bathroom_humidity_trend",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "blue"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "humid"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.bathroom_temperature'].state + \"\u00b0C\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "width": "19px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:thermometer",
+                                                    "entity": "binary_sensor.bathroom_temperature_trend",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "orange"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "temp"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:slider-card",
+                                                    "view_layout": {
+                                                        "grid-area": "slider"
+                                                    },
                                                     "entity": "light.bathroom",
-                                                    "icon": "mdi:shower-head",
-                                                    "hold_action": {
-                                                        "action": "more-info"
+                                                    "height": "30px",
+                                                    "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                                    "secondarySliderColor": "rgba(0, 0, 0, 0.2)",
+                                                    "thumbHorizontalPadding": "0px",
+                                                    "thumbWidth": "10px",
+                                                    "thumbColor": "rgba(255, 255, 255, 0.3)",
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
                                                     }
                                                 }
-                                            ],
-                                            "view_layout": {
-                                                "grid-area": "room"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:slider-card",
-                                            "entity": "light.bathroom",
-                                            "height": "40px",
-                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
-                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
-                                            "thumbHorizontalPadding": "0px",
-                                            "thumbWidth": "10px",
-                                            "thumbColor": "#ffffff",
-                                            "view_layout": {
-                                                "grid-area": "slider"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
+                                            ]
                                         }
                                     ]
                                 },
                                 {
-                                    "type": "custom:layout-card",
-                                    "layout": {
-                                        "grid-template-columns": "30% auto",
-                                        "grid-template-areas": "\"room slider\"\n"
-                                    },
-                                    "layout_type": "grid",
+                                    "type": "custom:stack-in-card",
                                     "cards": [
                                         {
-                                            "type": "custom:paper-buttons-row",
-                                            "buttons": [
+                                            "type": "custom:layout-card",
+                                            "layout": {
+                                                "grid-template-columns": "25% 25% 25% 25%",
+                                                "grid-template-areas": "\"title title title toggle\"\n\"spacer spacer spacer climate\"\n\"motion bright temp climate\"\n\"slider slider slider slider\"\n"
+                                            },
+                                            "layout_type": "grid",
+                                            "cards": [
                                                 {
-                                                    "entity": "light.bedroom",
-                                                    "icon": "mdi:bed-king",
+                                                    "type": "markdown",
+                                                    "content": " ",
+                                                    "view_layout": {
+                                                        "grid-area": "spacer"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "markdown",
+                                                    "content": "## <ha-icon icon=\"mdi:sofa\"></ha-icon> Lounge",
+                                                    "view_layout": {
+                                                        "grid-area": "title"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:simple-thermostat",
+                                                    "entity": "climate.central",
+                                                    "header": false,
+                                                    "sensors": false,
+                                                    "control": false,
+                                                    "layout": {
+                                                        "step": "column"
+                                                    },
+                                                    "view_layout": {
+                                                        "grid-area": "climate"
+                                                    },
+                                                    "style": "ha-card {\n  --st-font-size-xl: 20px;\n  --st-font-size-m: 10px;\n  --st-font-size-l: 16px;\n  --st-spacing: 0px;\n  --mdc-icon-size: 18px;\n  --mdc-icon-button-size: 48px;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n}\n"
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "color": "rgba(255,255,255,1)",
+                                                    "entity": "input_boolean.lounge_automations",
                                                     "hold_action": {
                                                         "action": "more-info"
+                                                    },
+                                                    "state": [
+                                                        {
+                                                            "value": "off",
+                                                            "color": "red"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "toggle"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  padding-top: 10px !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\nha-icon {\n    width: 50% !important;\n}\n"
                                                     }
-                                                }
-                                            ],
-                                            "view_layout": {
-                                                "grid-area": "room"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:slider-card",
-                                            "entity": "light.bedroom",
-                                            "height": "40px",
-                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
-                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
-                                            "thumbHorizontalPadding": "0px",
-                                            "thumbWidth": "10px",
-                                            "thumbColor": "#ffffff",
-                                            "view_layout": {
-                                                "grid-area": "slider"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "custom:layout-card",
-                                    "layout": {
-                                        "grid-template-columns": "30% auto",
-                                        "grid-template-areas": "\"room slider\"\n"
-                                    },
-                                    "layout_type": "grid",
-                                    "cards": [
-                                        {
-                                            "type": "custom:paper-buttons-row",
-                                            "buttons": [
+                                                },
                                                 {
-                                                    "entity": "light.entrance",
-                                                    "icon": "mdi:door-open",
-                                                    "hold_action": {
-                                                        "action": "more-info"
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.lounge_occupied_probability'].state + \"%\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:walk",
+                                                    "entity": "binary_sensor.lounge_occupied",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "green"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "motion"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
                                                     }
-                                                }
-                                            ],
-                                            "view_layout": {
-                                                "grid-area": "room"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:slider-card",
-                                            "entity": "light.entrance",
-                                            "height": "40px",
-                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
-                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
-                                            "thumbHorizontalPadding": "0px",
-                                            "thumbWidth": "10px",
-                                            "thumbColor": "#ffffff",
-                                            "view_layout": {
-                                                "grid-area": "slider"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "custom:layout-card",
-                                    "layout": {
-                                        "grid-template-columns": "30% auto",
-                                        "grid-template-areas": "\"room slider\"\n"
-                                    },
-                                    "layout_type": "grid",
-                                    "cards": [
-                                        {
-                                            "type": "custom:paper-buttons-row",
-                                            "buttons": [
+                                                },
                                                 {
-                                                    "entity": "light.hall",
-                                                    "icon": "mdi:stairs",
-                                                    "hold_action": {
-                                                        "action": "more-info"
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.lounge_trisensor_illuminance'].state + \" Lux\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "height": "24px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:brightness-7",
+                                                    "entity": "binary_sensor.lounge_bright",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "yellow"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "bright"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
                                                     }
-                                                }
-                                            ],
-                                            "view_layout": {
-                                                "grid-area": "room"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:slider-card",
-                                            "entity": "light.hall",
-                                            "height": "40px",
-                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
-                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
-                                            "thumbHorizontalPadding": "0px",
-                                            "thumbWidth": "10px",
-                                            "thumbColor": "#ffffff",
-                                            "view_layout": {
-                                                "grid-area": "slider"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "custom:layout-card",
-                                    "layout": {
-                                        "grid-template-columns": "30% auto",
-                                        "grid-template-areas": "\"room slider\"\n"
-                                    },
-                                    "layout_type": "grid",
-                                    "cards": [
-                                        {
-                                            "type": "custom:paper-buttons-row",
-                                            "buttons": [
+                                                },
                                                 {
-                                                    "entity": "light.kitchen",
-                                                    "icon": "mdi:fridge",
-                                                    "hold_action": {
-                                                        "action": "more-info"
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.lounge_temperature'].state + \"\u00b0C\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "width": "19px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:thermometer",
+                                                    "entity": "sensor.lounge_temperature",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "orange"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "temp"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
                                                     }
-                                                }
-                                            ],
-                                            "view_layout": {
-                                                "grid-area": "room"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:slider-card",
-                                            "entity": "light.kitchen",
-                                            "height": "40px",
-                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
-                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
-                                            "thumbHorizontalPadding": "0px",
-                                            "thumbWidth": "10px",
-                                            "thumbColor": "#ffffff",
-                                            "view_layout": {
-                                                "grid-area": "slider"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "custom:layout-card",
-                                    "layout": {
-                                        "grid-template-columns": "30% auto",
-                                        "grid-template-areas": "\"room slider\"\n"
-                                    },
-                                    "layout_type": "grid",
-                                    "cards": [
-                                        {
-                                            "type": "custom:paper-buttons-row",
-                                            "buttons": [
+                                                },
                                                 {
+                                                    "type": "custom:slider-card",
+                                                    "view_layout": {
+                                                        "grid-area": "slider"
+                                                    },
                                                     "entity": "light.lounge",
-                                                    "icon": "mdi:sofa",
-                                                    "hold_action": {
-                                                        "action": "more-info"
+                                                    "height": "30px",
+                                                    "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                                    "secondarySliderColor": "rgba(0, 0, 0, 0.2)",
+                                                    "thumbHorizontalPadding": "0px",
+                                                    "thumbWidth": "10px",
+                                                    "thumbColor": "rgba(255, 255, 255, 0.3)",
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
                                                     }
                                                 }
-                                            ],
-                                            "view_layout": {
-                                                "grid-area": "room"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:slider-card",
-                                            "entity": "light.lounge",
-                                            "height": "40px",
-                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
-                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
-                                            "thumbHorizontalPadding": "0px",
-                                            "thumbWidth": "10px",
-                                            "thumbColor": "#ffffff",
-                                            "view_layout": {
-                                                "grid-area": "slider"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
+                                            ]
                                         }
                                     ]
                                 },
                                 {
-                                    "type": "custom:layout-card",
-                                    "layout": {
-                                        "grid-template-columns": "30% auto",
-                                        "grid-template-areas": "\"room slider\"\n"
-                                    },
-                                    "layout_type": "grid",
+                                    "type": "custom:stack-in-card",
                                     "cards": [
                                         {
-                                            "type": "custom:paper-buttons-row",
-                                            "buttons": [
+                                            "type": "custom:layout-card",
+                                            "layout": {
+                                                "grid-template-columns": "25% 25% 25% 25%",
+                                                "grid-template-areas": "\"title title title toggle\"\n\"spacer spacer spacer climate\"\n\"motion bright temp climate\"\n\"slider slider slider slider\"\n"
+                                            },
+                                            "layout_type": "grid",
+                                            "cards": [
                                                 {
+                                                    "type": "markdown",
+                                                    "content": " ",
+                                                    "view_layout": {
+                                                        "grid-area": "spacer"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "markdown",
+                                                    "content": "## <ha-icon icon=\"mdi:stairs\"></ha-icon> Hall",
+                                                    "view_layout": {
+                                                        "grid-area": "title"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:simple-thermostat",
+                                                    "entity": "climate.central",
+                                                    "header": false,
+                                                    "sensors": false,
+                                                    "control": false,
+                                                    "layout": {
+                                                        "step": "column"
+                                                    },
+                                                    "view_layout": {
+                                                        "grid-area": "climate"
+                                                    },
+                                                    "style": "ha-card {\n  --st-font-size-xl: 20px;\n  --st-font-size-m: 10px;\n  --st-font-size-l: 16px;\n  --st-spacing: 0px;\n  --mdc-icon-size: 18px;\n  --mdc-icon-button-size: 48px;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n}\n"
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "color": "rgba(255,255,255,1)",
+                                                    "entity": "input_boolean.hall_automations",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    },
+                                                    "state": [
+                                                        {
+                                                            "value": "off",
+                                                            "color": "red"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "toggle"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  padding-top: 10px !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\nha-icon {\n    width: 50% !important;\n}\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.hall_occupied_probability'].state + \"%\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:walk",
+                                                    "entity": "binary_sensor.hall_occupied",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "green"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "motion"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.hall_trisensor_illuminance'].state + \" Lux\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "height": "24px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:brightness-7",
+                                                    "entity": "binary_sensor.hall_bright",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "yellow"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "bright"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.hall_temperature'].state + \"\u00b0C\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "width": "19px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:thermometer",
+                                                    "entity": "sensor.hall_temperature",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "orange"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "temp"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:slider-card",
+                                                    "view_layout": {
+                                                        "grid-area": "slider"
+                                                    },
+                                                    "entity": "light.hall",
+                                                    "height": "30px",
+                                                    "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                                    "secondarySliderColor": "rgba(0, 0, 0, 0.2)",
+                                                    "thumbHorizontalPadding": "0px",
+                                                    "thumbWidth": "10px",
+                                                    "thumbColor": "rgba(255, 255, 255, 0.3)",
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:stack-in-card",
+                                    "cards": [
+                                        {
+                                            "type": "custom:layout-card",
+                                            "layout": {
+                                                "grid-template-columns": "25% 25% 25% 25%",
+                                                "grid-template-areas": "\"title title title toggle\"\n\"spacer spacer spacer climate\"\n\"motion bright temp climate\"\n\"slider slider slider slider\"\n"
+                                            },
+                                            "layout_type": "grid",
+                                            "cards": [
+                                                {
+                                                    "type": "markdown",
+                                                    "content": " ",
+                                                    "view_layout": {
+                                                        "grid-area": "spacer"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "markdown",
+                                                    "content": "## <ha-icon icon=\"mdi:bed-king\"></ha-icon> Bedroom",
+                                                    "view_layout": {
+                                                        "grid-area": "title"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:simple-thermostat",
+                                                    "entity": "climate.bedroom",
+                                                    "header": false,
+                                                    "sensors": false,
+                                                    "control": false,
+                                                    "layout": {
+                                                        "step": "column"
+                                                    },
+                                                    "view_layout": {
+                                                        "grid-area": "climate"
+                                                    },
+                                                    "style": "ha-card {\n  --st-font-size-xl: 20px;\n  --st-font-size-m: 10px;\n  --st-font-size-l: 16px;\n  --st-spacing: 0px;\n  --mdc-icon-size: 18px;\n  --mdc-icon-button-size: 48px;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n}\n"
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "color": "rgba(255,255,255,1)",
+                                                    "entity": "input_boolean.bedroom_automations",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    },
+                                                    "state": [
+                                                        {
+                                                            "value": "off",
+                                                            "color": "red"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "toggle"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  padding-top: 10px !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\nha-icon {\n    width: 50% !important;\n}\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.bedroom_occupied_probability'].state + \"%\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:walk",
+                                                    "entity": "binary_sensor.bedroom_occupied",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "green"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "motion"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.bedroom_trisensor_illuminance'].state + \" Lux\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "height": "24px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:brightness-7",
+                                                    "entity": "binary_sensor.bedroom_bright",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "yellow"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "bright"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.bedroom_temperature'].state + \"\u00b0C\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "width": "19px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:thermometer",
+                                                    "entity": "sensor.bedroom_temperature",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "orange"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "temp"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:slider-card",
+                                                    "view_layout": {
+                                                        "grid-area": "slider"
+                                                    },
+                                                    "entity": "light.bedroom",
+                                                    "height": "30px",
+                                                    "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                                    "secondarySliderColor": "rgba(0, 0, 0, 0.2)",
+                                                    "thumbHorizontalPadding": "0px",
+                                                    "thumbWidth": "10px",
+                                                    "thumbColor": "rgba(255, 255, 255, 0.3)",
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:stack-in-card",
+                                    "cards": [
+                                        {
+                                            "type": "custom:layout-card",
+                                            "layout": {
+                                                "grid-template-columns": "25% 25% 25% 25%",
+                                                "grid-template-areas": "\"title title title toggle\"\n\"spacer spacer spacer climate\"\n\"motion bright temp climate\"\n\"slider slider slider slider\"\n"
+                                            },
+                                            "layout_type": "grid",
+                                            "cards": [
+                                                {
+                                                    "type": "markdown",
+                                                    "content": " ",
+                                                    "view_layout": {
+                                                        "grid-area": "spacer"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "markdown",
+                                                    "content": "## <ha-icon icon=\"mdi:desk-lamp\"></ha-icon> Study",
+                                                    "view_layout": {
+                                                        "grid-area": "title"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:simple-thermostat",
+                                                    "entity": "climate.study",
+                                                    "header": false,
+                                                    "sensors": false,
+                                                    "control": false,
+                                                    "layout": {
+                                                        "step": "column"
+                                                    },
+                                                    "view_layout": {
+                                                        "grid-area": "climate"
+                                                    },
+                                                    "style": "ha-card {\n  --st-font-size-xl: 20px;\n  --st-font-size-m: 10px;\n  --st-font-size-l: 16px;\n  --st-spacing: 0px;\n  --mdc-icon-size: 18px;\n  --mdc-icon-button-size: 48px;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n}\n"
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "color": "rgba(255,255,255,1)",
+                                                    "entity": "input_boolean.study_automations",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    },
+                                                    "state": [
+                                                        {
+                                                            "value": "off",
+                                                            "color": "red"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "toggle"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  padding-top: 10px !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\nha-icon {\n    width: 50% !important;\n}\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.study_occupied_probability'].state + \"%\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:walk",
+                                                    "entity": "binary_sensor.study_occupied",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "green"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "motion"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.study_trisensor_illuminance'].state + \" Lux\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "height": "24px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:brightness-7",
+                                                    "entity": "binary_sensor.study_bright",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "yellow"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "bright"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.study_temperature'].state + \"\u00b0C\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "width": "19px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:thermometer",
+                                                    "entity": "sensor.study_temperature",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "orange"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "temp"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:slider-card",
+                                                    "view_layout": {
+                                                        "grid-area": "slider"
+                                                    },
                                                     "entity": "light.study",
-                                                    "icon": "mdi:desktop-tower",
-                                                    "hold_action": {
-                                                        "action": "more-info"
+                                                    "height": "30px",
+                                                    "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                                    "secondarySliderColor": "rgba(0, 0, 0, 0.2)",
+                                                    "thumbHorizontalPadding": "0px",
+                                                    "thumbWidth": "10px",
+                                                    "thumbColor": "rgba(255, 255, 255, 0.3)",
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
                                                     }
                                                 }
-                                            ],
-                                            "view_layout": {
-                                                "grid-area": "room"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:slider-card",
-                                            "entity": "light.study",
-                                            "height": "40px",
-                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
-                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
-                                            "thumbHorizontalPadding": "0px",
-                                            "thumbWidth": "10px",
-                                            "thumbColor": "#ffffff",
-                                            "view_layout": {
-                                                "grid-area": "slider"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
+                                            ]
                                         }
                                     ]
                                 },
                                 {
-                                    "type": "custom:layout-card",
-                                    "layout": {
-                                        "grid-template-columns": "30% auto",
-                                        "grid-template-areas": "\"room slider\"\n"
-                                    },
-                                    "layout_type": "grid",
+                                    "type": "custom:stack-in-card",
                                     "cards": [
                                         {
-                                            "type": "custom:paper-buttons-row",
-                                            "buttons": [
+                                            "type": "custom:layout-card",
+                                            "layout": {
+                                                "grid-template-columns": "25% 25% 25% 25%",
+                                                "grid-template-areas": "\"title title title toggle\"\n\"spacer spacer spacer climate\"\n\"motion bright temp climate\"\n\"slider slider slider slider\"\n"
+                                            },
+                                            "layout_type": "grid",
+                                            "cards": [
                                                 {
+                                                    "type": "markdown",
+                                                    "content": " ",
+                                                    "view_layout": {
+                                                        "grid-area": "spacer"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "markdown",
+                                                    "content": "## <ha-icon icon=\"mdi:toilet\"></ha-icon> Toilet",
+                                                    "view_layout": {
+                                                        "grid-area": "title"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:simple-thermostat",
+                                                    "entity": "climate.toilet",
+                                                    "header": false,
+                                                    "sensors": false,
+                                                    "control": false,
+                                                    "layout": {
+                                                        "step": "column"
+                                                    },
+                                                    "view_layout": {
+                                                        "grid-area": "climate"
+                                                    },
+                                                    "style": "ha-card {\n  --st-font-size-xl: 20px;\n  --st-font-size-m: 10px;\n  --st-font-size-l: 16px;\n  --st-spacing: 0px;\n  --mdc-icon-size: 18px;\n  --mdc-icon-button-size: 48px;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n}\n"
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "color": "rgba(255,255,255,1)",
+                                                    "entity": "input_boolean.toilet_automations",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    },
+                                                    "state": [
+                                                        {
+                                                            "value": "off",
+                                                            "color": "red"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "toggle"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  padding-top: 10px !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\nha-icon {\n    width: 50% !important;\n}\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.toilet_occupied_probability'].state + \"%\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:walk",
+                                                    "entity": "binary_sensor.toilet_occupied",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "green"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "motion"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.toilet_trisensor_illuminance'].state + \" Lux\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "height": "24px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:brightness-7",
+                                                    "entity": "binary_sensor.toilet_bright",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "yellow"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "bright"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.toilet_temperature'].state + \"\u00b0C\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "width": "19px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:thermometer",
+                                                    "entity": "sensor.toilet_temperature",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "orange"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "temp"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:slider-card",
+                                                    "view_layout": {
+                                                        "grid-area": "slider"
+                                                    },
                                                     "entity": "light.toilet",
-                                                    "icon": "mdi:toilet",
+                                                    "height": "30px",
+                                                    "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                                    "secondarySliderColor": "rgba(0, 0, 0, 0.2)",
+                                                    "thumbHorizontalPadding": "0px",
+                                                    "thumbWidth": "10px",
+                                                    "thumbColor": "rgba(255, 255, 255, 0.3)",
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:stack-in-card",
+                                    "cards": [
+                                        {
+                                            "type": "custom:layout-card",
+                                            "layout": {
+                                                "grid-template-columns": "25% 25% 25% 25%",
+                                                "grid-template-areas": "\"title title title toggle\"\n\"spacer spacer spacer climate\"\n\"motion bright temp climate\"\n\"slider slider slider slider\"\n"
+                                            },
+                                            "layout_type": "grid",
+                                            "cards": [
+                                                {
+                                                    "type": "markdown",
+                                                    "content": " ",
+                                                    "view_layout": {
+                                                        "grid-area": "spacer"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "markdown",
+                                                    "content": "## <ha-icon icon=\"mdi:fridge\"></ha-icon> Kitchen",
+                                                    "view_layout": {
+                                                        "grid-area": "title"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:simple-thermostat",
+                                                    "entity": "climate.central",
+                                                    "header": false,
+                                                    "sensors": false,
+                                                    "control": false,
+                                                    "layout": {
+                                                        "step": "column"
+                                                    },
+                                                    "view_layout": {
+                                                        "grid-area": "climate"
+                                                    },
+                                                    "style": "ha-card {\n  --st-font-size-xl: 20px;\n  --st-font-size-m: 10px;\n  --st-font-size-l: 16px;\n  --st-spacing: 0px;\n  --mdc-icon-size: 18px;\n  --mdc-icon-button-size: 48px;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n}\n"
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "color": "rgba(255,255,255,1)",
+                                                    "entity": "input_boolean.kitchen_automations",
                                                     "hold_action": {
                                                         "action": "more-info"
+                                                    },
+                                                    "state": [
+                                                        {
+                                                            "value": "off",
+                                                            "color": "red"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "toggle"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  padding-top: 10px !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\nha-icon {\n    width: 50% !important;\n}\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.kitchen_occupied_probability'].state + \"%\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:walk",
+                                                    "entity": "binary_sensor.kitchen_occupied",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "green"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "motion"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.kitchen_trisensor_illuminance'].state + \" Lux\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "height": "24px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:brightness-7",
+                                                    "entity": "binary_sensor.kitchen_bright",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "yellow"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "bright"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.kitchen_temperature'].state + \"\u00b0C\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ],
+                                                        "icon": [
+                                                            {
+                                                                "width": "19px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:thermometer",
+                                                    "entity": "sensor.kitchen_temperature",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "orange"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "temp"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:slider-card",
+                                                    "view_layout": {
+                                                        "grid-area": "slider"
+                                                    },
+                                                    "entity": "light.kitchen",
+                                                    "height": "30px",
+                                                    "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                                    "secondarySliderColor": "rgba(0, 0, 0, 0.2)",
+                                                    "thumbHorizontalPadding": "0px",
+                                                    "thumbWidth": "10px",
+                                                    "thumbColor": "rgba(255, 255, 255, 0.3)",
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
                                                     }
                                                 }
-                                            ],
-                                            "view_layout": {
-                                                "grid-area": "room"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:slider-card",
-                                            "entity": "light.toilet",
-                                            "height": "40px",
-                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
-                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
-                                            "thumbHorizontalPadding": "0px",
-                                            "thumbWidth": "10px",
-                                            "thumbColor": "#ffffff",
-                                            "view_layout": {
-                                                "grid-area": "slider"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "cards": [
-                                {
-                                    "entity": "weather.home",
-                                    "type": "custom:simple-weather-card"
-                                },
-                                {
-                                    "cards": [
-                                        {
-                                            "entity": "climate.bedroom",
-                                            "type": "thermostat"
-                                        },
-                                        {
-                                            "entity": "climate.bathroom",
-                                            "type": "thermostat"
-                                        },
-                                        {
-                                            "entity": "climate.study",
-                                            "type": "thermostat"
-                                        }
-                                    ],
-                                    "type": "horizontal-stack"
-                                },
-                                {
-                                    "cards": [
-                                        {
-                                            "entity": "climate.central",
-                                            "name": "Downstairs",
-                                            "type": "thermostat"
-                                        },
-                                        {
-                                            "entity": "climate.toilet",
-                                            "type": "thermostat"
-                                        }
-                                    ],
-                                    "type": "horizontal-stack"
-                                },
-                                {
-                                    "type": "custom:numberbox-card",
-                                    "entity": "input_number.target_temperature",
-                                    "name": "Target Temperature",
-                                    "icon": "mdi:fire"
-                                }
-                            ],
-                            "type": "custom:stack-in-card"
-                        },
-                        {
-                            "type": "custom:apexcharts-card",
-                            "span": {
-                                "start": "day"
-                            },
-                            "graph_span": "24hours",
-                            "now": {
-                                "show": true,
-                                "label": "Now"
-                            },
-                            "series": [
-                                {
-                                    "entity": "sensor.octopus_agile_current_rate",
-                                    "name": "Current Rate",
-                                    "extend_to_end": false,
-                                    "show": {
-                                        "extremas": true
-                                    },
-                                    "type": "area",
-                                    "stroke_width": 2,
-                                    "group_by": {
-                                        "func": "max",
-                                        "duration": "30min"
-                                    }
-                                },
-                                {
-                                    "entity": "octopusagile.rates",
-                                    "name": "Average Rate",
-                                    "color": "gray",
-                                    "group_by": {
-                                        "func": "avg",
-                                        "duration": "24hr"
-                                    },
-                                    "unit": "p/kWh",
-                                    "type": "line",
-                                    "stroke_width": 2,
-                                    "data_generator": "let res = [];\nfor (const [key, value] of Object.entries(entity.attributes)) {\n  res.push([new Date(key).getTime(), value]);\n}\nreturn res.sort((a, b) => { return a[0] - b[0] });\n"
-                                },
-                                {
-                                    "entity": "octopusagile.rates",
-                                    "name": "Next Rate",
-                                    "extend_to_end": true,
-                                    "show": {
-                                        "extremas": true
-                                    },
-                                    "unit": "p/kWh",
-                                    "type": "area",
-                                    "stroke_width": 2,
-                                    "data_generator": "let res = [];\nfor (const [key, value] of Object.entries(entity.attributes)) {\n  res.push([new Date(key).getTime(), value]);\n}\nreturn res.sort((a, b) => { return a[0] - b[0] });\n"
-                                }
-                            ],
-                            "apex_config": {
-                                "legend": {
-                                    "show": false
-                                },
-                                "grid": {
-                                    "show": false
-                                },
-                                "yaxis": {
-                                    "show": false
-                                }
-                            }
-                        },
-                        {
-                            "type": "map",
-                            "entities": [
-                                {
-                                    "entity": "person.sebastian_burrell"
-                                },
-                                {
-                                    "entity": "person.laura_ward"
-                                }
-                            ],
-                            "hours_to_show": 12,
-                            "dark_mode": true,
-                            "aspect_ratio": "21:9"
-                        },
-                        {
-                            "type": "custom:stack-in-card",
-                            "cards": [
-                                {
-                                    "type": "custom:layout-card",
-                                    "layout": {
-                                        "grid-template-columns": "auto auto auto auto 65px",
-                                        "grid-template-areas": "\"title title title title temp\"\n\"title title title title temp\"\n\"light auto cold heat temp\"\n"
-                                    },
-                                    "layout_type": "grid",
-                                    "cards": [
-                                        {
-                                            "type": "custom:simple-thermostat",
-                                            "view_layout": {
-                                                "grid-area": "temp"
-                                            },
-                                            "entity": "climate.bathroom",
-                                            "header": false,
-                                            "sensors": false,
-                                            "control": false,
-                                            "style": "ha-card {\n  --st-font-size-xl: 24px;\n  --st-font-size-m: 15px;\n  --st-font-size-sensors: 30px;\n  --st-spacing: 0px;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n}\n"
-                                        },
-                                        {
-                                            "type": "markdown",
-                                            "content": "## Bathroom <ha-icon icon=\"mdi:{% if is_state('binary_sensor.bathroom_occupied','on') %}check-circle{% else %}checkbox-blank-circle-outline{% endif %}\"></ha-icon>\n<ha-icon icon=\"mdi:walk\"></ha-icon> {{ states('sensor.bathroom_occupied_probability') }}% <ha-icon icon=\"mdi:brightness-7\"></ha-icon> {{ states('sensor.bathroom_multisensor_illuminance') | round(0) }}Lux <ha-icon icon=\"mdi:water-percent\"></ha-icon> {{ states('sensor.bathroom_multisensor_humidity') | round(0) }}% <ha-icon icon=\"mdi:thermometer\"></ha-icon> {{ ((states('sensor.bathroom_current_temperature') | float + states('sensor.bathroom_multisensor_air_temperature') | float) / 2) | round(1) }}\u00b0C",
-                                            "view_layout": {
-                                                "grid-area": "title"
-                                            },
-                                            "style": {
-                                                "ha-markdown": {
-                                                    "$": "h1 {\n  font-weight: normal !important;\n}\n",
-                                                    ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-bottom: 0px !important;\n}\n"
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:button-card",
-                                            "show_name": false,
-                                            "color": "rgba(255,255,255,1)",
-                                            "entity": "input_boolean.bathroom_automations",
-                                            "hold_action": {
-                                                "action": "more-info"
-                                            },
-                                            "state": [
-                                                {
-                                                    "value": "off",
-                                                    "color": "red"
-                                                }
-                                            ],
-                                            "view_layout": {
-                                                "grid-area": "auto"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 30px !important;\n  box-shadow: none;\n  }\nha-icon {\n    width: 90% !important;\n}\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:button-card",
-                                            "show_name": false,
-                                            "entity": "light.bathroom",
-                                            "icon": "mdi:lightbulb",
-                                            "hold_action": {
-                                                "action": "more-info"
-                                            },
-                                            "view_layout": {
-                                                "grid-area": "light"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 30px !important;\n  box-shadow: none;\n  }\nha-icon {\n    width: 90% !important;\n}\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:button-card",
-                                            "show_name": false,
-                                            "entity": "climate.bathroom",
-                                            "icon": "mdi:fire-off",
-                                            "tap_action": {
-                                                "action": "call-service",
-                                                "service_data": {
-                                                    "service": "climate.turn_off",
-                                                    "target": {
-                                                        "entity_id": "climate.bathroom"
-                                                    }
-                                                }
-                                            },
-                                            "view_layout": {
-                                                "grid-area": "cold"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 30px !important;\n  box-shadow: none;\n  }\nha-icon {\n    width: 90% !important;\n}\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:button-card",
-                                            "show_name": false,
-                                            "icon": "mdi:fire",
-                                            "entity": "climate.bathroom",
-                                            "tap_action": {
-                                                "action": "call-service",
-                                                "service_data": {
-                                                    "service": "climate.set_temperature",
-                                                    "entity_id": "climate.bathroom",
-                                                    "temperature": "{{ states('sensor.bathroom_target_temperature') }}'",
-                                                    "hvac_mode": "heat"
-                                                }
-                                            },
-                                            "state": [
-                                                {
-                                                    "value": "heat",
-                                                    "color": "orange"
-                                                }
-                                            ],
-                                            "view_layout": {
-                                                "grid-area": "heat"
-                                            },
-                                            "card_mod": {
-                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 30px !important;\n  box-shadow: none;\n  }\nha-icon {\n    width: 90% !important;\n}\n"
-                                            }
+                                            ]
                                         }
                                     ]
                                 },
                                 {
-                                    "type": "custom:slider-card",
-                                    "entity": "light.bathroom",
-                                    "height": "30px",
-                                    "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
-                                    "secondarySliderColor": "rgba(0, 0, 0, 0.2)",
-                                    "thumbHorizontalPadding": "0px",
-                                    "thumbWidth": "10px",
-                                    "thumbColor": "rgba(255, 255, 255, 0.3)",
-                                    "card_mod": {
-                                        "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
-                                    }
+                                    "type": "custom:stack-in-card",
+                                    "cards": [
+                                        {
+                                            "type": "custom:layout-card",
+                                            "layout": {
+                                                "grid-template-columns": "25% 25% 25% 25%",
+                                                "grid-template-areas": "\"title title title toggle\"\n\"spacer spacer spacer climate\"\n\"motion spacer2 spacer2 climate\"\n\"slider slider slider slider\"\n"
+                                            },
+                                            "layout_type": "grid",
+                                            "cards": [
+                                                {
+                                                    "type": "markdown",
+                                                    "content": " ",
+                                                    "view_layout": {
+                                                        "grid-area": "spacer"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "markdown",
+                                                    "content": " ",
+                                                    "view_layout": {
+                                                        "grid-area": "spacer2"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "markdown",
+                                                    "content": "## <ha-icon icon=\"mdi:door-open\"></ha-icon> Entrance",
+                                                    "view_layout": {
+                                                        "grid-area": "title"
+                                                    },
+                                                    "style": {
+                                                        "ha-markdown": {
+                                                            "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                            ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-left: 5px !important;\n  padding-bottom: 0px !important;\n}\n"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:simple-thermostat",
+                                                    "entity": "climate.central",
+                                                    "header": false,
+                                                    "sensors": false,
+                                                    "control": false,
+                                                    "layout": {
+                                                        "step": "column"
+                                                    },
+                                                    "view_layout": {
+                                                        "grid-area": "climate"
+                                                    },
+                                                    "style": "ha-card {\n  --st-font-size-xl: 20px;\n  --st-font-size-m: 10px;\n  --st-font-size-l: 16px;\n  --st-spacing: 0px;\n  --mdc-icon-size: 18px;\n  --mdc-icon-button-size: 48px;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n}\n"
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "color": "rgba(255,255,255,1)",
+                                                    "entity": "input_boolean.entrance_automations",
+                                                    "hold_action": {
+                                                        "action": "more-info"
+                                                    },
+                                                    "state": [
+                                                        {
+                                                            "value": "off",
+                                                            "color": "red"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "toggle"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  padding-top: 10px !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\nha-icon {\n    width: 50% !important;\n}\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:button-card",
+                                                    "show_name": false,
+                                                    "show_label": true,
+                                                    "label": "[[[ return states['sensor.entrance_occupied_probability'].state + \"%\"; ]]]\n",
+                                                    "styles": {
+                                                        "label": [
+                                                            {
+                                                                "font-size": "10px"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "icon": "mdi:walk",
+                                                    "entity": "binary_sensor.entrance_occupied",
+                                                    "state": [
+                                                        {
+                                                            "value": "on",
+                                                            "color": "green"
+                                                        }
+                                                    ],
+                                                    "view_layout": {
+                                                        "grid-area": "motion"
+                                                    },
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 50px !important;\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "custom:slider-card",
+                                                    "view_layout": {
+                                                        "grid-area": "slider"
+                                                    },
+                                                    "entity": "light.entrance",
+                                                    "height": "30px",
+                                                    "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                                    "secondarySliderColor": "rgba(0, 0, 0, 0.2)",
+                                                    "thumbHorizontalPadding": "0px",
+                                                    "thumbWidth": "10px",
+                                                    "thumbColor": "rgba(255, 255, 255, 0.3)",
+                                                    "card_mod": {
+                                                        "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
                                 }
-                            ]
+                            ],
+                            "square": false,
+                            "columns": 2
                         }
                     ]
                 },
