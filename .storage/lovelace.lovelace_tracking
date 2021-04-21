@@ -226,12 +226,12 @@
                                             "name": "Seb BLE"
                                         },
                                         {
-                                            "entity": "sensor.ratio_seb_bedroom_presence",
-                                            "name": "Laura BLE"
-                                        },
-                                        {
                                             "entity": "sensor.ratio_seb_sleeping",
                                             "name": "S Sleep"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_laura_bedroom_presence",
+                                            "name": "Laura BLE"
                                         },
                                         {
                                             "entity": "sensor.ratio_laura_sleeping",
@@ -240,6 +240,10 @@
                                         {
                                             "entity": "sensor.ratio_bedroom_speaker_playing",
                                             "name": "Speaker"
+                                        },
+                                        {
+                                            "entity": "sensor.ratio_bedroom_in_bed",
+                                            "name": "In Bed"
                                         },
                                         {
                                             "entity": "sensor.ratio_bedroom_tv_playing",
@@ -402,7 +406,7 @@
                                     ],
                                     "entities": [
                                         {
-                                            "entity": "binary_sensor.entrance_person_motion",
+                                            "entity": "binary_sensor.people_entrance",
                                             "name": "Motion"
                                         },
                                         {

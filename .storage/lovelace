@@ -4,12 +4,6 @@
     "data": {
         "config": {
             "background": "var(--background-image)",
-            "swipe_nav": {
-                "animate": "swipe",
-                "prevent_default": true,
-                "swipe_amount": 15,
-                "wrap": true
-            },
             "title": "Home",
             "views": [
                 {
@@ -18,7 +12,7 @@
                     "title": "Home",
                     "type": "custom:horizontal-layout",
                     "layout": {
-                        "max_cols": 10
+                        "max_cols": 5
                     },
                     "badges": [],
                     "cards": [
@@ -222,6 +216,14 @@
                                             "tap_action": {
                                                 "action": "more-info"
                                             }
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "switch.endeavor_docker_frigate",
+                                            "show_name": false
                                         }
                                     ],
                                     "type": "horizontal-stack"
@@ -273,10 +275,14 @@
                                             }
                                         },
                                         {
-                                            "type": "custom:slider-entity-row",
+                                            "type": "custom:slider-card",
                                             "entity": "light.bathroom",
-                                            "hide_state": true,
-                                            "full_row": true,
+                                            "height": "40px",
+                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
+                                            "thumbHorizontalPadding": "0px",
+                                            "thumbWidth": "10px",
+                                            "thumbColor": "#ffffff",
                                             "view_layout": {
                                                 "grid-area": "slider"
                                             },
@@ -313,10 +319,14 @@
                                             }
                                         },
                                         {
-                                            "type": "custom:slider-entity-row",
+                                            "type": "custom:slider-card",
                                             "entity": "light.bedroom",
-                                            "hide_state": true,
-                                            "full_row": true,
+                                            "height": "40px",
+                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
+                                            "thumbHorizontalPadding": "0px",
+                                            "thumbWidth": "10px",
+                                            "thumbColor": "#ffffff",
                                             "view_layout": {
                                                 "grid-area": "slider"
                                             },
@@ -353,10 +363,14 @@
                                             }
                                         },
                                         {
-                                            "type": "custom:slider-entity-row",
+                                            "type": "custom:slider-card",
                                             "entity": "light.entrance",
-                                            "hide_state": true,
-                                            "full_row": true,
+                                            "height": "40px",
+                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
+                                            "thumbHorizontalPadding": "0px",
+                                            "thumbWidth": "10px",
+                                            "thumbColor": "#ffffff",
                                             "view_layout": {
                                                 "grid-area": "slider"
                                             },
@@ -393,10 +407,14 @@
                                             }
                                         },
                                         {
-                                            "type": "custom:slider-entity-row",
+                                            "type": "custom:slider-card",
                                             "entity": "light.hall",
-                                            "hide_state": true,
-                                            "full_row": true,
+                                            "height": "40px",
+                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
+                                            "thumbHorizontalPadding": "0px",
+                                            "thumbWidth": "10px",
+                                            "thumbColor": "#ffffff",
                                             "view_layout": {
                                                 "grid-area": "slider"
                                             },
@@ -433,10 +451,14 @@
                                             }
                                         },
                                         {
-                                            "type": "custom:slider-entity-row",
+                                            "type": "custom:slider-card",
                                             "entity": "light.kitchen",
-                                            "hide_state": true,
-                                            "full_row": true,
+                                            "height": "40px",
+                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
+                                            "thumbHorizontalPadding": "0px",
+                                            "thumbWidth": "10px",
+                                            "thumbColor": "#ffffff",
                                             "view_layout": {
                                                 "grid-area": "slider"
                                             },
@@ -473,10 +495,14 @@
                                             }
                                         },
                                         {
-                                            "type": "custom:slider-entity-row",
+                                            "type": "custom:slider-card",
                                             "entity": "light.lounge",
-                                            "hide_state": true,
-                                            "full_row": true,
+                                            "height": "40px",
+                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
+                                            "thumbHorizontalPadding": "0px",
+                                            "thumbWidth": "10px",
+                                            "thumbColor": "#ffffff",
                                             "view_layout": {
                                                 "grid-area": "slider"
                                             },
@@ -513,10 +539,14 @@
                                             }
                                         },
                                         {
-                                            "type": "custom:slider-entity-row",
+                                            "type": "custom:slider-card",
                                             "entity": "light.study",
-                                            "hide_state": true,
-                                            "full_row": true,
+                                            "height": "40px",
+                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
+                                            "thumbHorizontalPadding": "0px",
+                                            "thumbWidth": "10px",
+                                            "thumbColor": "#ffffff",
                                             "view_layout": {
                                                 "grid-area": "slider"
                                             },
@@ -553,10 +583,14 @@
                                             }
                                         },
                                         {
-                                            "type": "custom:slider-entity-row",
+                                            "type": "custom:slider-card",
                                             "entity": "light.toilet",
-                                            "hide_state": true,
-                                            "full_row": true,
+                                            "height": "40px",
+                                            "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                            "secondarySliderColor": "rgba(0, 0, 0, 0.1)",
+                                            "thumbHorizontalPadding": "0px",
+                                            "thumbWidth": "10px",
+                                            "thumbColor": "#ffffff",
                                             "view_layout": {
                                                 "grid-area": "slider"
                                             },
@@ -692,17 +726,140 @@
                             "aspect_ratio": "21:9"
                         },
                         {
-                            "type": "custom:simple-thermostat",
-                            "entity": "climate.central",
-                            "header": false,
-                            "control": false,
-                            "layout": {
-                                "step": "row"
-                            },
-                            "step_size": "1",
-                            "view_layout": {
-                                "step": "row"
-                            }
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                                {
+                                    "type": "custom:layout-card",
+                                    "layout": {
+                                        "grid-template-columns": "auto auto auto auto 65px",
+                                        "grid-template-areas": "\"title title title title temp\"\n\"title title title title temp\"\n\"light auto cold heat temp\"\n"
+                                    },
+                                    "layout_type": "grid",
+                                    "cards": [
+                                        {
+                                            "type": "custom:simple-thermostat",
+                                            "view_layout": {
+                                                "grid-area": "temp"
+                                            },
+                                            "entity": "climate.bathroom",
+                                            "header": false,
+                                            "sensors": false,
+                                            "control": false,
+                                            "style": "ha-card {\n  --st-font-size-xl: 24px;\n  --st-font-size-m: 15px;\n  --st-font-size-sensors: 30px;\n  --st-spacing: 0px;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n}\n"
+                                        },
+                                        {
+                                            "type": "markdown",
+                                            "content": "## Bathroom <ha-icon icon=\"mdi:{% if is_state('binary_sensor.bathroom_occupied','on') %}check-circle{% else %}checkbox-blank-circle-outline{% endif %}\"></ha-icon>\n<ha-icon icon=\"mdi:walk\"></ha-icon> {{ states('sensor.bathroom_occupied_probability') }}% <ha-icon icon=\"mdi:brightness-7\"></ha-icon> {{ states('sensor.bathroom_multisensor_illuminance') | round(0) }}Lux <ha-icon icon=\"mdi:water-percent\"></ha-icon> {{ states('sensor.bathroom_multisensor_humidity') | round(0) }}% <ha-icon icon=\"mdi:thermometer\"></ha-icon> {{ ((states('sensor.bathroom_current_temperature') | float + states('sensor.bathroom_multisensor_air_temperature') | float) / 2) | round(1) }}\u00b0C",
+                                            "view_layout": {
+                                                "grid-area": "title"
+                                            },
+                                            "style": {
+                                                "ha-markdown": {
+                                                    "$": "h1 {\n  font-weight: normal !important;\n}\n",
+                                                    ".": "ha-card {\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  padding: 0px\n}\nha-markdown {\n  padding-bottom: 0px !important;\n}\n"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:button-card",
+                                            "show_name": false,
+                                            "color": "rgba(255,255,255,1)",
+                                            "entity": "input_boolean.bathroom_automations",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "state": [
+                                                {
+                                                    "value": "off",
+                                                    "color": "red"
+                                                }
+                                            ],
+                                            "view_layout": {
+                                                "grid-area": "auto"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 30px !important;\n  box-shadow: none;\n  }\nha-icon {\n    width: 90% !important;\n}\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:button-card",
+                                            "show_name": false,
+                                            "entity": "light.bathroom",
+                                            "icon": "mdi:lightbulb",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "view_layout": {
+                                                "grid-area": "light"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 30px !important;\n  box-shadow: none;\n  }\nha-icon {\n    width: 90% !important;\n}\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:button-card",
+                                            "show_name": false,
+                                            "entity": "climate.bathroom",
+                                            "icon": "mdi:fire-off",
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service_data": {
+                                                    "service": "climate.turn_off",
+                                                    "target": {
+                                                        "entity_id": "climate.bathroom"
+                                                    }
+                                                }
+                                            },
+                                            "view_layout": {
+                                                "grid-area": "cold"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 30px !important;\n  box-shadow: none;\n  }\nha-icon {\n    width: 90% !important;\n}\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:button-card",
+                                            "show_name": false,
+                                            "icon": "mdi:fire",
+                                            "entity": "climate.bathroom",
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service_data": {
+                                                    "service": "climate.set_temperature",
+                                                    "entity_id": "climate.bathroom",
+                                                    "temperature": "{{ states('sensor.bathroom_target_temperature') }}'",
+                                                    "hvac_mode": "heat"
+                                                }
+                                            },
+                                            "state": [
+                                                {
+                                                    "value": "heat",
+                                                    "color": "orange"
+                                                }
+                                            ],
+                                            "view_layout": {
+                                                "grid-area": "heat"
+                                            },
+                                            "card_mod": {
+                                                "style": "ha-card {\n  background: rgba(0,0,0,0);\n  height: 30px !important;\n  box-shadow: none;\n  }\nha-icon {\n    width: 90% !important;\n}\n"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:slider-card",
+                                    "entity": "light.bathroom",
+                                    "height": "30px",
+                                    "mainSliderColor": "var(--paper-item-icon-active-color, #fdd835)",
+                                    "secondarySliderColor": "rgba(0, 0, 0, 0.2)",
+                                    "thumbHorizontalPadding": "0px",
+                                    "thumbWidth": "10px",
+                                    "thumbColor": "rgba(255, 255, 255, 0.3)",
+                                    "card_mod": {
+                                        "style": "ha-card {\n  --paper-progress-active-color: #ffd60a !important;\n  background: rgba(0,0,0,0);\n  box-shadow: none;\n  }\n"
+                                    }
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1736,7 +1893,9 @@
                                     "artwork": "cover",
                                     "entity": "media_player.bedroom_tv",
                                     "icon": "mdi:television",
-                                    "type": "custom:mini-media-player"
+                                    "type": "custom:mini-media-player",
+                                    "volume_stateless": true,
+                                    "group": true
                                 },
                                 {
                                     "artwork": "cover",
