@@ -8,15 +8,124 @@
   payload_off: "offline"
   device_class: connectivity
 
-# - platform: mqtt
-#   name: Hall Motion Camera
-#   state_topic: shinobi/home/Hall/trigger
-#   json_attributes_topic: shinobi/home/Hall/trigger
-#   device_class: motion
-#   off_delay: 60
-#   value_template: "{% if (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int > 60  %}OFF{%else%}ON{%endif%}"
-#   json_attributes_template: "{{ {'Confidence': value_json.details.confidence,'Plugin': value_json.details.plug | title,'Last Motion': as_timestamp(strptime(value_json.currentTimestamp, '%Y-%m-%dT%H:%M:%S%z')) | timestamp_local, 'Motion Area': value_json.details.name | replace('_', ' ') | title, 'Timestamp': as_timestamp(value_json.currentTimestamp), 'Since Last Motion': (as_timestamp(now()) - as_timestamp(value_json.currentTimestamp)) | int } | tojson }}"
+####################################
+# People
+####################################
+- platform: mqtt
+  name: People Entrance
+  availability_topic: frigate/available
+  state_topic: frigate/Entrance/person
+  device_class: motion
+  off_delay: 30
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+
+- platform: mqtt
+  name: People Hall
+  availability_topic: frigate/available
+  state_topic: frigate/Hall/person
+  device_class: motion
+  off_delay: 30
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+
+- platform: mqtt
+  name: People Kitchen
+  availability_topic: frigate/available
+  state_topic: frigate/Kitchen/person
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+
+- platform: mqtt
+  name: People Lounge
+  availability_topic: frigate/available
+  state_topic: frigate/Lounge/person
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
   
+- platform: mqtt
+  name: People Study
+  availability_topic: frigate/available
+  state_topic: frigate/Study/person
+  device_class: motion
+  off_delay: 30
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+  
+- platform: mqtt
+  name: People Bedroom
+  availability_topic: frigate/available
+  state_topic: frigate/Bedroom/person
+  device_class: motion
+  off_delay: 30
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+  
+- platform: mqtt
+  name: People Stairs
+  availability_topic: frigate/available
+  state_topic: frigate/Stairs/person
+  device_class: motion
+  off_delay: 30
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+
+####################################
+# Dogs
+####################################
+- platform: mqtt
+  name: Dogs Entrance
+  availability_topic: frigate/available
+  state_topic: frigate/Entrance/dog
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+
+- platform: mqtt
+  name: Dogs Hall
+  availability_topic: frigate/available
+  state_topic: frigate/Hall/dog
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+
+- platform: mqtt
+  name: Dogs Kitchen
+  availability_topic: frigate/available
+  state_topic: frigate/Kitchen/dog
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+
+- platform: mqtt
+  name: Dogs Lounge
+  availability_topic: frigate/available
+  state_topic: frigate/Lounge/dog
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+  
+- platform: mqtt
+  name: Dogs Study
+  availability_topic: frigate/available
+  state_topic: frigate/Study/dog
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+  
+- platform: mqtt
+  name: Dogs Bedroom
+  availability_topic: frigate/available
+  state_topic: frigate/Bedroom/dog
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+  
+- platform: mqtt
+  name: Dogs Stairs
+  availability_topic: frigate/available
+  state_topic: frigate/Stairs/dog
+  device_class: motion
+  off_delay: 60
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+
 # - platform: mqtt
 #   name: Lounge Motion Camera
 #   state_topic: shinobi/home/Lounge/trigger
