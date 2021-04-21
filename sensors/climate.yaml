@@ -27,3 +27,19 @@
       friendly_name: "Toilet Temperature"
       device_class: temperature
       value_template: "{{ ((states('sensor.toilet_current_temperature') | float + states('sensor.toilet_trisensor_air_temperature') | float)/2) | round(1) }}"
+    lounge_temperature:
+      friendly_name: "Lounge Temperature"
+      device_class: temperature
+      value_template: "{{ ((states('sensor.central_current_temperature') | float + states('sensor.lounge_trisensor_air_temperature') | float)/2) | round(1) }}"
+    kitchen_temperature:
+      friendly_name: "Kitchen Temperature"
+      device_class: temperature
+      value_template: "{{ ((states('sensor.central_current_temperature') | float + states('sensor.kitchen_trisensor_air_temperature') | float)/2) | round(1) }}"
+    hall_temperature:
+      friendly_name: "Hall Temperature"
+      device_class: temperature
+      value_template: "{{ ((states('sensor.central_current_temperature') | float + states('sensor.hall_trisensor_air_temperature') | float)/2) | round(1) }}"
+    entrance_temperature:
+      friendly_name: "Entrance Temperature"
+      device_class: temperature
+      value_template: "{{ (states('sensor.central_current_temperature') | float ) | round(1) }}"
