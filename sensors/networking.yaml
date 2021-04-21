@@ -5,8 +5,11 @@
   host: !secret unifi_cloud_key
   username: !secret unifi_user
   password: !secret unifi_password
+  version: UDMP-unifiOS
   monitored_conditions:
     - www
     - wan
     - alerts
     - firmware
+    - lan
+    - wlan
