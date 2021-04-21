@@ -169,7 +169,7 @@
   probability_threshold: 0.7
   observations:
     - platform: "state"
-      entity_id: "binary_sensor.entrance_person_motion"
+      entity_id: "binary_sensor.people_entrance"
       prob_given_true: 0.48
       prob_given_false: 0.0043
       to_state: "on"
@@ -192,7 +192,7 @@
   probability_threshold: 0.8
   observations:
     - platform: "state"
-      entity_id: "binary_sensor.hall_motion_camera"
+      entity_id: "binary_sensor.people_hall"
       prob_given_true: 0.58
       prob_given_false: 0.0085
       to_state: "on"
@@ -215,7 +215,7 @@
       prob_given_false: 0.014
       to_state: "on"
     - platform: "state"
-      entity_id: "binary_sensor.kitchen_person_motion"
+      entity_id: "binary_sensor.people_kitchen"
       prob_given_true: 0.46
       prob_given_false: 0.01
       to_state: "on"
@@ -248,7 +248,7 @@
       prob_given_false: 0.0176
       to_state: "on"
     - platform: "state"
-      entity_id: "binary_sensor.lounge_person_motion"
+      entity_id: "binary_sensor.people_lounge"
       prob_given_true: 0.59
       prob_given_false: 0.0294
       to_state: "on"
@@ -296,7 +296,7 @@
       prob_given_false: 0.0125
       to_state: "Study"
     - platform: "state"
-      entity_id: "binary_sensor.study_person_motion"
+      entity_id: "binary_sensor.people_study"
       prob_given_true: 0.01
       prob_given_false: 0.0006
       to_state: "on"
