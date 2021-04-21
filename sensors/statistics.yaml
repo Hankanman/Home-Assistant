@@ -155,16 +155,16 @@
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Bedroom Person Motion"
-  entity_id: binary_sensor.bedroom_person_motion
+  name: "Ratio People Bedroom"
+  entity_id: binary_sensor.people_bedroom
   state: "on"
   type: ratio
   end: "{{ now() }}"
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Bedroom Dog Motion"
-  entity_id: binary_sensor.bedroom_person_motion
+  name: "Ratio Dogs Bedroom"
+  entity_id: binary_sensor.dogs_bedroom
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -218,19 +218,27 @@
   end: "{{ now() }}"
   duration:
     days: 7
+- platform: history_stats
+  name: "Ratio Bedroom In Bed"
+  entity_id: binary_sensor.in_bed
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Entrance
 - platform: history_stats
-  name: "Ratio Entrance Dog Motion"
-  entity_id: binary_sensor.entrance_dog_motion
+  name: "Ratio Dogs Entrance"
+  entity_id: binary_sensor.dogs_entrance
   state: "on"
   type: ratio
   end: "{{ now() }}"
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Entrance Person Motion"
-  entity_id: binary_sensor.entrance_person_motion
+  name: "Ratio People Entrance"
+  entity_id: binary_sensor.people_entrance
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -271,16 +279,16 @@
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Hall Dog Motion"
-  entity_id: binary_sensor.hall_dog_motion
+  name: "Ratio Dogs Hall"
+  entity_id: binary_sensor.dogs_hall
   state: "on"
   type: ratio
   end: "{{ now() }}"
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Hall Person Motion"
-  entity_id: binary_sensor.hall_person_motion
+  name: "Ratio People Hall"
+  entity_id: binary_sensor.people_hall
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -313,16 +321,16 @@
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Kitchen Dog Motion"
-  entity_id: binary_sensor.kitchen_dog_motion
+  name: "Ratio Dogs Kitchen"
+  entity_id: binary_sensor.dogs_kitchen
   state: "on"
   type: ratio
   end: "{{ now() }}"
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Kitchen Person Motion"
-  entity_id: binary_sensor.kitchen_person_motion
+  name: "Ratio People Kitchen"
+  entity_id: binary_sensor.people_kitchen
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -363,16 +371,16 @@
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Lounge Dog Motion"
-  entity_id: binary_sensor.lounge_dog_motion
+  name: "Ratio Dogs Lounge"
+  entity_id: binary_sensor.dogs_lounge
   state: "on"
   type: ratio
   end: "{{ now() }}"
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Lounge Person Motion"
-  entity_id: binary_sensor.lounge_person_motion
+  name: "Ratio People Lounge"
+  entity_id: binary_sensor.people_lounge
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -389,16 +397,16 @@
 
 # Stairs
 - platform: history_stats
-  name: "Ratio Stairs Dog Motion"
-  entity_id: binary_sensor.stairs_dog_motion
+  name: "Ratio Dogs Stairs"
+  entity_id: binary_sensor.dogs_stairs
   state: "on"
   type: ratio
   end: "{{ now() }}"
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Stairs Person Motion"
-  entity_id: binary_sensor.stairs_person_motion
+  name: "Ratio People Stairs"
+  entity_id: binary_sensor.people_stairs
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -440,16 +448,16 @@
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Study Dog Motion"
-  entity_id: binary_sensor.study_dog_motion
+  name: "Ratio Dogs Study"
+  entity_id: binary_sensor.dogs_study
   state: "on"
   type: ratio
   end: "{{ now() }}"
   duration:
     days: 7
 - platform: history_stats
-  name: "Ratio Study Person Motion"
-  entity_id: binary_sensor.study_person_motion
+  name: "Ratio People Study"
+  entity_id: binary_sensor.people_study
   state: "on"
   type: ratio
   end: "{{ now() }}"
