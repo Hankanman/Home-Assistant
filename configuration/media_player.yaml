@@ -89,8 +89,6 @@ media_player:
     children:
       - media_player.shield_adb
       - media_player.lounge_tv_adb
-      - media_player.lounge_tv_google
-      - media_player.shield_google
     commands:
       turn_on:
         service: media_player.turn_on
@@ -123,7 +121,7 @@ media_player:
           entity_id: media_player.lounge_tv_adb
           volume_level: '{{ volume_level }}'
     attributes:
-      state: media_player.lounge_tv_adb
+      state: media_player.shield_adb
       is_volume_muted: media_player.lounge_tv_adb|is_volume_muted
       source: media_player.shield_adb|source
       source_list: media_player.shield_adb|source_list
