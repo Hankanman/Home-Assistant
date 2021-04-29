@@ -38,3 +38,4 @@ www/tmp/
 .storage/zone
 google_calendars.yaml
 .google.token
+.storage/camera
