@@ -10,19 +10,23 @@ trigger:
     event_type: automation_reloaded
   - platform: state
     entity_id:
+      - binary_sensor.kitchen_occupied
       - binary_sensor.kitchen_trisensor_motion
       - sun.sun
       - binary_sensor.kitchen_bright
       - input_number.kitchen_lux_level
       - sensor.kitchen_trisensor_illuminance
 
-condition: []
+condition:
+  - condition: state
+    entity_id: input_boolean.kitchen_automations
+    state: "on"
 
 action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.kitchen_trisensor_motion
+            entity_id: binary_sensor.kitchen_occupied
             state: "on"
           - condition: or
             conditions:

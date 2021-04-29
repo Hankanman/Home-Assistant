@@ -11,7 +11,10 @@ trigger:
   - platform: state
     entity_id: light.lounge
 
-condition: []
+condition:
+  - condition: state
+    entity_id: input_boolean.lounge_automations
+    state: "on"
 
 action:
   - choose:

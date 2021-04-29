@@ -5,15 +5,16 @@ mode: queued
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.study_trisensor_motion
-  - entity_id: binary_sensor.study_bright
-    platform: state
-  - platform: state
-    entity_id: sun.sun
-  - platform: state
-    entity_id: binary_sensor.seb_pc_active
+    entity_id:
+      - binary_sensor.study_trisensor_motion
+      - binary_sensor.study_bright
+      - binary_sensor.seb_pc_active
+      - sun.sun
 
-condition: []
+condition:
+  - condition: state
+    entity_id: input_boolean.study_automations
+    state: "on"
 
 action:
   - choose:

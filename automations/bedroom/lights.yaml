@@ -4,16 +4,17 @@ description: ""
 mode: queued
 
 trigger:
-  - entity_id: media_player.bedroom_tv
-    platform: state
   - platform: state
-    entity_id: binary_sensor.bedroom_trisensor_motion
-  - entity_id: binary_sensor.bedroom_bright
-    platform: state
-  - entity_id: input_boolean.sleep_mode
-    platform: state
+    entity_id:
+      - media_player.bedroom_tv
+      - binary_sensor.bedroom_trisensor_motion
+      - binary_sensor.bedroom_bright
+      - input_boolean.sleep_mode
 
-condition: []
+condition:
+  - condition: state
+    entity_id: input_boolean.bedroom_automations
+    state: "on"
 
 action:
   - choose:

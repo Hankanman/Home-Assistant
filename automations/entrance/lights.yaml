@@ -12,7 +12,10 @@ trigger:
     platform: state
     to: "off"
 
-condition: []
+condition:
+  - condition: state
+    entity_id: input_boolean.entrance_automations
+    state: "on"
 
 action:
   - choose:

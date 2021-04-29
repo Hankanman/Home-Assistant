@@ -11,7 +11,10 @@ trigger:
   - platform: state
     entity_id: sun.sun
 
-condition: []
+condition:
+  - condition: state
+    entity_id: input_boolean.toilet_automations
+    state: "on"
 
 action:
   - choose:

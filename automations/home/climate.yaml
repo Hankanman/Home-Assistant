@@ -14,6 +14,9 @@ condition:
   - condition: state
     entity_id: binary_sensor.people_home
     state: "on"
+  - condition: state
+    entity_id: input_boolean.home_automations
+    state: "on"
 
 action:
   - service: climate.turn_on

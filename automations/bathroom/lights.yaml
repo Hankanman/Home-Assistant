@@ -5,11 +5,14 @@ mode: queued
 
 trigger:
   - platform: state
-    entity_id: sensor.bathroom_multisensor_humidity
-  - platform: state
-    entity_id: binary_sensor.bathroom_occupied
+    entity_id:
+      - sensor.bathroom_multisensor_humidity
+      - binary_sensor.bathroom_occupied
 
-condition: []
+condition:
+  - condition: state
+    entity_id: input_boolean.bathroom_automations
+    state: "on"
 
 action:
   - choose:

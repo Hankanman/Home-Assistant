@@ -5,13 +5,15 @@ mode: queued
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.hall_trisensor_motion
-  - platform: state
-    entity_id: input_boolean.sleep_mode
-  - platform: state
-    entity_id: binary_sensor.hall_bright
+    entity_id:
+      - binary_sensor.hall_trisensor_motion
+      - input_boolean.sleep_mode
+      - binary_sensor.hall_bright
 
-condition: []
+condition:
+  - condition: state
+    entity_id: input_boolean.hall_automations
+    state: "on"
 
 action:
   - choose:
