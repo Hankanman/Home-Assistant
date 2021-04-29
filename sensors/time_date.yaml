@@ -20,4 +20,4 @@
     time_since_seb_pc_last_active:
       friendly_name: "Time Since Seb PC Last Active"
       unit_of_measurement: Minutes
-      value_template: "{{ (states('sensor.date_time_iso') | as_timestamp  / 60) | round(0, 'floor') - (states('sensor.last_active') | as_timestamp / 60) | round(0, 'floor') }}"
+      value_template: "{{ (now() | as_timestamp  / 60) | round(0, 'floor') - (states('sensor.last_active') | as_timestamp / 60) | round(0, 'floor') }}"
