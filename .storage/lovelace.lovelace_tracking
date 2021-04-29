@@ -14,6 +14,7 @@
                 {
                     "title": "Bayesian Graphs",
                     "path": "bayesian-graphs",
+                    "icon": "mdi:percent",
                     "badges": [],
                     "cards": [
                         {
@@ -813,79 +814,22 @@
                     ]
                 },
                 {
-                    "panel": true,
-                    "title": "Ratios",
-                    "path": "ratios",
+                    "title": "Systems",
+                    "path": "systems",
+                    "icon": "mdi:raspberry-pi",
                     "badges": [],
                     "cards": [
                         {
                             "type": "glance",
                             "entities": [
                                 {
-                                    "entity": "sensor.ratio_laura_bedroom_presence"
+                                    "entity": "switch.endeavor_docker_amp"
                                 },
                                 {
-                                    "entity": "sensor.ratio_laura_kitchen_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_laura_lounge_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_laura_study_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_seb_bedroom_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_seb_kitchen_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_seb_lounge_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_seb_study_presence"
-                                },
-                                {
-                                    "entity": "sensor.ratio_seb_pc_active"
-                                },
-                                {
-                                    "entity": "sensor.ratio_bathroom_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_bedroom_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_hall_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_kitchen_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_lounge_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_study_motion"
-                                },
-                                {
-                                    "entity": "sensor.ratio_toilet_motion"
-                                },
-                                {
-                                    "entity": "sensor.bathroom_humidity_statistics"
-                                },
-                                {
-                                    "entity": "sensor.ratio_bathroom_humidity_trend"
-                                },
-                                {
-                                    "entity": "sensor.ratio_bathroom_temperature_trend"
-                                },
-                                {
-                                    "entity": "sensor.ratio_shower_occupied"
+                                    "entity": "switch.endeavor_docker_code"
                                 }
                             ],
-                            "show_name": true,
-                            "show_state": true,
-                            "show_icon": true,
-                            "state_color": false
+                            "state_color": true
                         }
                     ]
                 }

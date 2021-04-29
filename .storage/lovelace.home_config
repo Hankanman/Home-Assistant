@@ -27,10 +27,13 @@
                                     "hours_to_show": 12
                                 },
                                 {
-                                    "type": "custom:numberbox-card",
-                                    "entity": "input_number.bathroom_lux_level",
-                                    "icon_plus": "mdi:chevron-up",
-                                    "icon_minus": "mdi:chevron-down"
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.bathroom_lux_level"
+                                        }
+                                    ],
+                                    "show_header_toggle": false
                                 }
                             ]
                         },
@@ -49,10 +52,12 @@
                                     "hours_to_show": 12
                                 },
                                 {
-                                    "type": "custom:numberbox-card",
-                                    "entity": "input_number.bedroom_lux_level",
-                                    "icon_plus": "mdi:chevron-up",
-                                    "icon_minus": "mdi:chevron-down"
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.bedroom_lux_level"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -178,13 +183,24 @@
                             "type": "custom:scheduler-card",
                             "time_step": 30,
                             "include": [
+                                "climate",
+                                "input_boolean.bathroom_automations",
                                 "input_boolean.bathroom_schedule",
+                                "input_boolean.bedroom_automations",
                                 "input_boolean.bedroom_schedule",
+                                "input_boolean.entrance_automations",
+                                "input_boolean.hall_automations",
+                                "input_boolean.home_automations",
+                                "input_boolean.kitchen_automations",
                                 "input_boolean.kitchen_schedule",
+                                "input_boolean.lounge_automations",
                                 "input_boolean.lounge_schedule",
                                 "input_boolean.sleep_schedule",
-                                "input_boolean.study_schedule"
-                            ]
+                                "input_boolean.study_automations",
+                                "input_boolean.study_schedule",
+                                "input_boolean.toilet_automations"
+                            ],
+                            "title": false
                         }
                     ]
                 }
