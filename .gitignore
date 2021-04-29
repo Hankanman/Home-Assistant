@@ -36,3 +36,5 @@ www/tmp/
 .storage/onboarding
 .storage/person
 .storage/zone
+google_calendars.yaml
+.google.token
