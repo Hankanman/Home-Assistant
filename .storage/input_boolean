@@ -4,11 +4,6 @@
     "data": {
         "items": [
             {
-                "icon": "mdi:sleep",
-                "id": "guest_sleep_mode",
-                "name": "Guest Sleep Mode"
-            },
-            {
                 "icon": "mdi:account-multiple",
                 "id": "guest_mode",
                 "name": "Guest Mode"
@@ -17,10 +12,6 @@
                 "icon": "mdi:sleep",
                 "id": "sleep_mode",
                 "name": "Sleep Mode"
-            },
-            {
-                "name": "Study Occupied",
-                "id": "study_occupied"
             },
             {
                 "name": "Bathroom Schedule",
@@ -88,7 +79,7 @@
                 "id": "study_automations"
             },
             {
-                "name": "Study Automations",
+                "name": "Home Automations",
                 "icon": "mdi:lock-pattern",
                 "id": "study_automations_2"
             },

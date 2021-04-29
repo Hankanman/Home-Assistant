@@ -4,16 +4,6 @@
     "data": {
         "items": [
             {
-                "icon": "mdi:white-balance-sunny",
-                "id": "room_brightness_offset",
-                "max": 100.0,
-                "min": 0.0,
-                "mode": "slider",
-                "name": "Room Brightness Offset",
-                "step": 1.0,
-                "unit_of_measurement": "%"
-            },
-            {
                 "icon": "mdi:water-percent",
                 "id": "bathroom_humidity_offset",
                 "max": 50.0,

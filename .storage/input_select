@@ -1,4 +1,6 @@
 {
+    "version": 1,
+    "key": "input_select",
     "data": {
         "items": [
             {
@@ -10,7 +12,5 @@
                 ]
             }
         ]
-    },
-    "key": "input_select",
-    "version": 1
+    }
 }

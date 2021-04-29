@@ -19,29 +19,10 @@
             },
             {
                 "has_time": true,
-                "has_date": false,
-                "name": "Heating Active",
-                "icon": "mdi:radiator",
-                "id": "heating_active"
-            },
-            {
-                "has_time": true,
-                "has_date": false,
-                "name": "Heating Inactive",
-                "icon": "mdi:radiator-off",
-                "id": "heating_inactive"
-            },
-            {
-                "has_time": true,
-                "has_date": false,
-                "name": "Morning - Startup",
-                "id": "morning_startup"
-            },
-            {
-                "has_time": true,
                 "has_date": true,
                 "name": "Bin Reminder",
-                "id": "bin_reminder"
+                "id": "bin_reminder",
+                "icon": "mdi:trash-can"
             }
         ]
     }
