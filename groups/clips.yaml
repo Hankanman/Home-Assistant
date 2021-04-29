@@ -1,0 +1,7 @@
+clip_recording:
+  name: Clip Recording
+  entities:
+    - switch.kitchencam_clips
+    - switch.entrancecam_clips
+    - switch.loungecam_clips
+    - switch.hallcam_clips

@@ -1,0 +1,7 @@
+snapshots:
+  name: Snapshots
+  entities:
+    - switch.kitchencam_snapshots
+    - switch.entrancecam_snapshots
+    - switch.loungecam_snapshots
+    - switch.hallcam_snapshots

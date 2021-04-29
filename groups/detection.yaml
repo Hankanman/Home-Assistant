@@ -1,0 +1,7 @@
+object_detection:
+  name: Object Detection
+  entities:
+    - switch.kitchencam_detect
+    - switch.entrancecam_detect
+    - switch.loungecam_detect
+    - switch.hallcam_detect
