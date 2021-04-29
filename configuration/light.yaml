@@ -11,6 +11,20 @@ light:
       - light.study
       - light.toilet
   - platform: group
+    name: Downstairs
+    entities:
+      - light.entrance
+      - light.kitchen
+      - light.lounge
+      - light.toilet
+  - platform: group
+    name: Upstairs
+    entities:
+      - light.bathroom
+      - light.bedroom
+      - light.hall
+      - light.study
+  - platform: group
     name: Bathroom
     entities:
       - light.bathroom_lamp
