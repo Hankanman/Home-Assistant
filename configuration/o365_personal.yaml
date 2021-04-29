@@ -1,0 +1,4 @@
+o365:
+  client_secret: !secret o365_personal_client_id
+  client_id: !secret o365_personal_secret
+  alt_auth_flow: true
