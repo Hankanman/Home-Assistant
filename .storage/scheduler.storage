@@ -89,7 +89,7 @@
                     "daily"
                 ],
                 "repeat_type": "repeat",
-                "name": "",
+                "name": "Bathroom",
                 "enabled": true
             },
             {
@@ -139,7 +139,7 @@
                     "workday"
                 ],
                 "repeat_type": "repeat",
-                "name": "",
+                "name": "Bedroom",
                 "enabled": true
             },
             {
@@ -189,7 +189,7 @@
                     "weekend"
                 ],
                 "repeat_type": "repeat",
-                "name": null,
+                "name": "Bedroom Weekends",
                 "enabled": true
             },
             {
@@ -239,7 +239,313 @@
                     "daily"
                 ],
                 "repeat_type": "repeat",
-                "name": "",
+                "name": "Sleep",
+                "enabled": true
+            },
+            {
+                "schedule_id": "471cd0",
+                "timeslots": [
+                    {
+                        "start": "00:00:00",
+                        "stop": null,
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.bathroom_automations",
+                                "service_data": {}
+                            },
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.bedroom_automations",
+                                "service_data": {}
+                            },
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.entrance_automations",
+                                "service_data": {}
+                            },
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.kitchen_automations",
+                                "service_data": {}
+                            },
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.lounge_automations",
+                                "service_data": {}
+                            },
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.hall_automations",
+                                "service_data": {}
+                            },
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.study_automations",
+                                "service_data": {}
+                            },
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.toilet_automations",
+                                "service_data": {}
+                            },
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.home_automations",
+                                "service_data": {}
+                            }
+                        ]
+                    }
+                ],
+                "weekdays": [
+                    "daily"
+                ],
+                "repeat_type": "repeat",
+                "name": "Reactivate Automations",
+                "enabled": true
+            },
+            {
+                "schedule_id": "82ffc7",
+                "timeslots": [
+                    {
+                        "start": "00:00:00",
+                        "stop": "06:00:00",
+                        "conditions": [
+                            {
+                                "entity_id": "input_boolean.home_automations",
+                                "attribute": "state",
+                                "value": "on",
+                                "match_type": "is"
+                            }
+                        ],
+                        "condition_type": "or",
+                        "actions": [
+                            {
+                                "service": "climate.set_hvac_mode",
+                                "entity_id": "climate.central",
+                                "service_data": {
+                                    "hvac_mode": "off"
+                                }
+                            },
+                            {
+                                "service": "climate.set_hvac_mode",
+                                "entity_id": "climate.bedroom",
+                                "service_data": {
+                                    "hvac_mode": "off"
+                                }
+                            },
+                            {
+                                "service": "climate.set_hvac_mode",
+                                "entity_id": "climate.bathroom",
+                                "service_data": {
+                                    "hvac_mode": "off"
+                                }
+                            },
+                            {
+                                "service": "climate.set_hvac_mode",
+                                "entity_id": "climate.study",
+                                "service_data": {
+                                    "hvac_mode": "off"
+                                }
+                            },
+                            {
+                                "service": "climate.set_hvac_mode",
+                                "entity_id": "climate.toilet",
+                                "service_data": {
+                                    "hvac_mode": "off"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "start": "06:00:00",
+                        "stop": "16:00:00",
+                        "conditions": [
+                            {
+                                "entity_id": "input_boolean.home_automations",
+                                "attribute": "state",
+                                "value": "on",
+                                "match_type": "is"
+                            }
+                        ],
+                        "condition_type": "or",
+                        "actions": [
+                            {
+                                "service": "climate.set_temperature",
+                                "entity_id": "climate.central",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 18.5
+                                }
+                            },
+                            {
+                                "service": "climate.set_temperature",
+                                "entity_id": "climate.bedroom",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 18.5
+                                }
+                            },
+                            {
+                                "service": "climate.set_temperature",
+                                "entity_id": "climate.bathroom",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 18.5
+                                }
+                            },
+                            {
+                                "service": "climate.set_temperature",
+                                "entity_id": "climate.study",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 18.5
+                                }
+                            },
+                            {
+                                "service": "climate.set_temperature",
+                                "entity_id": "climate.toilet",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 18.5
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "start": "16:00:00",
+                        "stop": "00:00:00",
+                        "conditions": [
+                            {
+                                "entity_id": "input_boolean.home_automations",
+                                "attribute": "state",
+                                "value": "on",
+                                "match_type": "is"
+                            }
+                        ],
+                        "condition_type": "or",
+                        "actions": [
+                            {
+                                "service": "climate.set_hvac_mode",
+                                "entity_id": "climate.central",
+                                "service_data": {
+                                    "hvac_mode": "off"
+                                }
+                            },
+                            {
+                                "service": "climate.set_hvac_mode",
+                                "entity_id": "climate.bedroom",
+                                "service_data": {
+                                    "hvac_mode": "off"
+                                }
+                            },
+                            {
+                                "service": "climate.set_hvac_mode",
+                                "entity_id": "climate.bathroom",
+                                "service_data": {
+                                    "hvac_mode": "off"
+                                }
+                            },
+                            {
+                                "service": "climate.set_hvac_mode",
+                                "entity_id": "climate.study",
+                                "service_data": {
+                                    "hvac_mode": "off"
+                                }
+                            },
+                            {
+                                "service": "climate.set_hvac_mode",
+                                "entity_id": "climate.toilet",
+                                "service_data": {
+                                    "hvac_mode": "off"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "weekdays": [
+                    "daily"
+                ],
+                "repeat_type": "repeat",
+                "name": "Heating",
+                "enabled": true
+            },
+            {
+                "schedule_id": "5fcc64",
+                "timeslots": [
+                    {
+                        "start": "00:00:00",
+                        "stop": "07:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.kitchen_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "07:00:00",
+                        "stop": "09:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.kitchen_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "09:00:00",
+                        "stop": "17:30:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.kitchen_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "17:30:00",
+                        "stop": "20:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.kitchen_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "start": "20:00:00",
+                        "stop": "00:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.kitchen_schedule",
+                                "service_data": {}
+                            }
+                        ]
+                    }
+                ],
+                "weekdays": [
+                    "daily"
+                ],
+                "repeat_type": "repeat",
+                "name": "Kitchen",
                 "enabled": true
             }
         ]
