@@ -1,0 +1,10 @@
+card-mod:  # This is the name you'll use in your theme.
+  # Header
+  card-mod-root-yaml: |
+    paper-tabs$: |
+      .not-visible {
+        display: none;
+      }
+      #selectionBar {
+        bottom: unset !important;
+      }
