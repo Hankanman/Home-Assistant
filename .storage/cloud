@@ -1,0 +1,340 @@
+{
+    "version": 1,
+    "key": "cloud",
+    "data": {
+        "alexa_default_expose": [
+            "climate",
+            "cover",
+            "fan",
+            "humidifier",
+            "light",
+            "lock",
+            "script",
+            "switch",
+            "vacuum",
+            "water_heater",
+            "camera"
+        ],
+        "alexa_entity_configs": {
+            "switch.schedule_bathroom": {
+                "should_expose": false
+            },
+            "sensor.bathroom_current_temperature": {
+                "should_expose": true
+            },
+            "switch.schedule_bedroom": {
+                "should_expose": false
+            },
+            "sensor.bedroom_current_temperature": {
+                "should_expose": true
+            },
+            "switch.bedroom_echo_do_not_disturb_switch": {
+                "should_expose": false
+            },
+            "switch.bedroom_echo_repeat_switch": {
+                "should_expose": false
+            },
+            "switch.bedroom_echo_shuffle_switch": {
+                "should_expose": false
+            },
+            "switch.bedroom_fire_tv_do_not_disturb_switch": {
+                "should_expose": false
+            },
+            "light.bedroom_lamp": {
+                "should_expose": false
+            },
+            "light.bathroom_lamp": {
+                "should_expose": false
+            },
+            "switch.bedroom_bluetooth_inquiries": {
+                "should_expose": false
+            },
+            "switch.schedule_bedroom_weekends": {
+                "should_expose": false
+            },
+            "sensor.central_current_temperature": {
+                "should_expose": true
+            },
+            "switch.endeavor_docker_code": {
+                "should_expose": false
+            },
+            "switch.endeavor_docker_file_browser": {
+                "should_expose": false
+            },
+            "switch.endeavor_docker_filebot": {
+                "should_expose": false
+            },
+            "switch.endeavor_docker_mariadb": {
+                "should_expose": false
+            },
+            "switch.endeavor_docker_unraid_api": {
+                "should_expose": false
+            },
+            "switch.endeavor_docker_phpmyadmin": {
+                "should_expose": false
+            },
+            "switch.endeavor_docker_qbittorrent": {
+                "should_expose": false
+            },
+            "switch.endeavor_vm_herald": {
+                "should_expose": false
+            },
+            "switch.endeavor_vm_herald_usb_intel_corp": {
+                "should_expose": false
+            },
+            "switch.endeavor_vm_herald_usb_micro_star_international_mystic_light": {
+                "should_expose": false
+            },
+            "light.entrance_lamp": {
+                "should_expose": false
+            },
+            "switch.entrance_tablet_do_not_disturb_switch": {
+                "should_expose": false
+            },
+            "switch.entrancecam_clips": {
+                "should_expose": false
+            },
+            "switch.entrancecam_detect": {
+                "should_expose": false
+            },
+            "switch.entrancecam_snapshots": {
+                "should_expose": false
+            },
+            "switch.everywhere_do_not_disturb_switch": {
+                "should_expose": false
+            },
+            "switch.everywhere_repeat_switch": {
+                "should_expose": false
+            },
+            "switch.everywhere_shuffle_switch": {
+                "should_expose": false
+            },
+            "sensor.gpu_temperature": {
+                "should_expose": true
+            },
+            "light.hall_lamp": {
+                "should_expose": false
+            },
+            "switch.hallcam_clips": {
+                "should_expose": false
+            },
+            "switch.hallcam_detect": {
+                "should_expose": false
+            },
+            "switch.hallcam_snapshots": {
+                "should_expose": false
+            },
+            "switch.schedule_heating": {
+                "should_expose": false
+            },
+            "switch.schedule_kitchen": {
+                "should_expose": false
+            },
+            "switch.kitchen_echo_show_do_not_disturb_switch": {
+                "should_expose": false
+            },
+            "switch.kitchen_echo_show_repeat_switch": {
+                "should_expose": false
+            },
+            "switch.kitchen_echo_show_shuffle_switch": {
+                "should_expose": false
+            },
+            "light.kitchen_lamp_1": {
+                "should_expose": false
+            },
+            "light.kitchen_lamp_2": {
+                "should_expose": false
+            },
+            "light.kitchen_lamp_3": {
+                "should_expose": false
+            },
+            "switch.kitchencam_clips": {
+                "should_expose": false
+            },
+            "switch.kitchencam_detect": {
+                "should_expose": false
+            },
+            "switch.kitchencam_snapshots": {
+                "should_expose": false
+            },
+            "switch.loungecam_motion": {
+                "should_expose": false
+            },
+            "switch.hallcam_motion": {
+                "should_expose": false
+            },
+            "switch.loungecam_ir": {
+                "should_expose": false
+            },
+            "switch.hallcam_ir": {
+                "should_expose": false
+            },
+            "switch.lounge_echo_do_not_disturb_switch": {
+                "should_expose": false
+            },
+            "switch.lounge_echo_repeat_switch": {
+                "should_expose": false
+            },
+            "switch.lounge_echo_shuffle_switch": {
+                "should_expose": false
+            },
+            "light.lounge_lamp": {
+                "should_expose": false
+            },
+            "switch.loungecam_clips": {
+                "should_expose": false
+            },
+            "switch.loungecam_detect": {
+                "should_expose": false
+            },
+            "switch.loungecam_snapshots": {
+                "should_expose": false
+            },
+            "switch.schedule_reactivate_automations": {
+                "should_expose": false
+            },
+            "switch.schedule_sleep": {
+                "should_expose": false
+            },
+            "light.sofa_lamp": {
+                "should_expose": false
+            },
+            "sensor.study_current_temperature": {
+                "should_expose": true
+            },
+            "switch.study_echo_do_not_disturb_switch": {
+                "should_expose": false
+            },
+            "switch.study_echo_repeat_switch": {
+                "should_expose": false
+            },
+            "switch.study_echo_shuffle_switch": {
+                "should_expose": false
+            },
+            "light.study_lamp": {
+                "should_expose": false
+            },
+            "sensor.toilet_current_temperature": {
+                "should_expose": true
+            },
+            "light.toilet_lamp": {
+                "should_expose": false
+            },
+            "switch.endeavor_vm_herald_usb_logitech_gaming_keyboard_g110": {
+                "should_expose": false
+            },
+            "switch.endeavor_vm_herald_usb_logitech_gaming_keyboard_g110_g_keys": {
+                "should_expose": false
+            },
+            "switch.endeavor_vm_herald_usb_logitech_unifying_receiver": {
+                "should_expose": false
+            },
+            "switch.endeavor_array": {
+                "should_expose": false
+            },
+            "switch.endeavor_mover": {
+                "should_expose": false
+            },
+            "switch.endeavor_partitycheck": {
+                "should_expose": false
+            },
+            "switch.endeavor_power_off": {
+                "should_expose": false
+            },
+            "switch.endeavor_reboot": {
+                "should_expose": false
+            },
+            "camera.entrance": {
+                "should_expose": false
+            },
+            "camera.entrance_tapo_hd": {
+                "should_expose": false
+            },
+            "camera.entrance_tapo_sd": {
+                "should_expose": false
+            },
+            "camera.entrancecam_dog": {
+                "should_expose": false
+            },
+            "camera.entrancecam_person": {
+                "should_expose": false
+            },
+            "camera.hall": {
+                "should_expose": false
+            },
+            "camera.hall_foscam": {
+                "should_expose": false
+            },
+            "camera.hallcam_dog": {
+                "should_expose": false
+            },
+            "camera.hallcam_person": {
+                "should_expose": false
+            },
+            "camera.kitchen": {
+                "should_expose": false
+            },
+            "camera.kitchen_tapo_hd": {
+                "should_expose": false
+            },
+            "camera.kitchen_tapo_sd": {
+                "should_expose": false
+            },
+            "camera.kitchencam_dog": {
+                "should_expose": false
+            },
+            "camera.kitchencam_person": {
+                "should_expose": false
+            },
+            "camera.lounge": {
+                "should_expose": false
+            },
+            "camera.lounge_foscam": {
+                "should_expose": false
+            },
+            "camera.loungecam_dog": {
+                "should_expose": false
+            },
+            "camera.loungecam_person": {
+                "should_expose": false
+            },
+            "group.all_automations": {
+                "should_expose": true
+            },
+            "input_boolean.bathroom_automations": {
+                "should_expose": true
+            },
+            "binary_sensor.entrance_door": {
+                "should_expose": true
+            }
+        },
+        "cloud_user": "23f150650884457387ef37fb70cb0958",
+        "cloudhooks": {},
+        "alexa_enabled": true,
+        "google_enabled": false,
+        "remote_enabled": false,
+        "google_default_expose": [
+            "climate",
+            "cover",
+            "fan",
+            "humidifier",
+            "light",
+            "lock",
+            "scene",
+            "script",
+            "sensor",
+            "switch",
+            "vacuum",
+            "water_heater"
+        ],
+        "google_entity_configs": {},
+        "google_local_webhook_id": "c6381cdb82893125ba6a9954f3ccc005997e700a31f472c9c32cba0da97223e2",
+        "google_secure_devices_pin": null,
+        "username": "cf1b6f2e-b796-4f00-8fd4-3c15b559e743",
+        "tts_default_voice": [
+            "en-GB",
+            "female"
+        ],
+        "alexa_report_state": true
+    }
+}
