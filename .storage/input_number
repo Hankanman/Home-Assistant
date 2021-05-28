@@ -18,7 +18,7 @@
                 "max": 100.0,
                 "name": "Kitchen Lux Level",
                 "unit_of_measurement": "Lux",
-                "mode": "slider",
+                "mode": "box",
                 "step": 1.0,
                 "id": "kitchen_lux_level",
                 "icon": "mdi:white-balance-sunny"
@@ -29,7 +29,7 @@
                 "name": "Study Lux Level",
                 "icon": "mdi:white-balance-sunny",
                 "unit_of_measurement": "Lux",
-                "mode": "slider",
+                "mode": "box",
                 "step": 1.0,
                 "id": "study_lux_level"
             },
@@ -39,7 +39,7 @@
                 "name": "Toilet Lux Level",
                 "icon": "mdi:white-balance-sunny",
                 "unit_of_measurement": "Lux",
-                "mode": "slider",
+                "mode": "box",
                 "step": 1.0,
                 "id": "toilet_lux_level"
             },
@@ -49,7 +49,7 @@
                 "name": "Bedroom Lux Level",
                 "icon": "mdi:white-balance-sunny",
                 "unit_of_measurement": "Lux",
-                "mode": "slider",
+                "mode": "box",
                 "step": 1.0,
                 "id": "bedroom_lux_level"
             },
@@ -59,7 +59,7 @@
                 "name": "Bathroom Lux Level",
                 "icon": "mdi:white-balance-sunny",
                 "unit_of_measurement": "Lux",
-                "mode": "slider",
+                "mode": "box",
                 "step": 1.0,
                 "id": "bathroom_lux_level"
             },
@@ -69,7 +69,7 @@
                 "name": "Lounge Lux Level",
                 "icon": "mdi:white-balance-sunny",
                 "unit_of_measurement": "Lux",
-                "mode": "slider",
+                "mode": "box",
                 "step": 1.0,
                 "id": "lounge_lux_level"
             },
@@ -79,7 +79,7 @@
                 "name": "Hall Lux Level",
                 "icon": "mdi:white-balance-sunny",
                 "unit_of_measurement": "Lux",
-                "mode": "slider",
+                "mode": "box",
                 "step": 1.0,
                 "id": "hall_lux_level"
             },
@@ -92,6 +92,16 @@
                 "unit_of_measurement": "\u00b0C",
                 "step": 1.0,
                 "id": "target_temperature"
+            },
+            {
+                "min": 0.0,
+                "max": 100.0,
+                "icon": "mdi:white-balance-sunny",
+                "name": "Entrance Lux Level",
+                "mode": "box",
+                "unit_of_measurement": "Lux",
+                "step": 1.0,
+                "id": "entrance_lux_level"
             }
         ]
     }
