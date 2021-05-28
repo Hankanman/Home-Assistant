@@ -6,38 +6,43 @@
 ####################################
 - platform: template
   sensors:
-    study_bright:
-      friendly_name: "Study Bright"
-      device_class: light
-      value_template: >-
-        {{ (states('sensor.study_trisensor_illuminance') | float) >= (states('input_number.study_lux_level') | float) }}
-    hall_bright:
-      friendly_name: "Hall Bright"
-      device_class: light
-      value_template: >-
-        {{ (states('sensor.hall_trisensor_illuminance') | float) >= (states('input_number.hall_lux_level') | float) }}
-    bedroom_bright:
-      friendly_name: "Bedroom Bright"
-      device_class: light
-      value_template: >-
-        {{ (states('sensor.bedroom_trisensor_illuminance') | float) >= (states('input_number.bedroom_lux_level') | float) }}
     bathroom_bright:
       friendly_name: "Bathroom Bright"
       device_class: light
       value_template: >-
-        {{ (states('sensor.bathroom_multisensor_illuminance') | float) >= (states('input_number.bathroom_lux_level') | float) }}
+        {{ (states('sensor.bathroom_multisensor_illuminance') | float) >= (states('input_number.bathroom_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.bathroom', 'off')) }}
+    bedroom_bright:
+      friendly_name: "Bedroom Bright"
+      device_class: light
+      value_template: >-
+        {{ (states('sensor.bedroom_trisensor_illuminance') | float) >= (states('input_number.bedroom_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.bedroom', 'off')) }}
+    entrance_bright:
+      friendly_name: "Entrance Bright"
+      device_class: light
+      value_template: >-
+        {{ (states('sensor.fire_tablet_illuminance') | float) >= (states('input_number.entrance_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.entrance', 'off')) }}
+    hall_bright:
+      friendly_name: "Hall Bright"
+      device_class: light
+      value_template: >-
+        {{ (states('sensor.hall_trisensor_illuminance') | float) >= (states('input_number.hall_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.hall', 'off')) }}
     kitchen_bright:
       friendly_name: "Kitchen Bright"
       device_class: light
       value_template: >-
-        {{ (states('sensor.kitchen_trisensor_illuminance') | float) >= (states('input_number.kitchen_lux_level') | float) }}
+        {{ (states('sensor.kitchen_trisensor_illuminance') | float) >= (states('input_number.kitchen_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.kitchen', 'off')) }}
     lounge_bright:
       friendly_name: "Lounge Bright"
       device_class: light
       value_template: >-
-        {{ (states('sensor.lounge_trisensor_illuminance') | float) >= (states('input_number.lounge_lux_level') | float) }}
+        {{ (states('sensor.lounge_trisensor_illuminance') | float) >= (states('input_number.lounge_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.lounge', 'off')) }}
+    study_bright:
+      friendly_name: "Study Bright"
+      device_class: light
+      value_template: >-
+        {{ (states('sensor.study_trisensor_illuminance') | float) >= (states('input_number.study_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.study', 'off')) }}
     toilet_bright:
       friendly_name: "Toilet Bright"
       device_class: light
       value_template: >-
-        {{ (states('sensor.toilet_trisensor_illuminance') | float) >= (states('input_number.toilet_lux_level') | float) }}
+        {{ (states('sensor.toilet_trisensor_illuminance') | float) >= (states('input_number.toilet_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.toilet', 'off')) }}
