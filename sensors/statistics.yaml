@@ -69,6 +69,12 @@
   entity_id: sensor.bedroom_trisensor_illuminance
 
 - platform: statistics
+  name: "Entrance Illuminance Statistics"
+  max_age:
+    days: 7
+  entity_id: sensor.fire_tablet_illuminance
+
+- platform: statistics
   name: "Hall Illuminance Statistics"
   max_age:
     days: 7
@@ -139,6 +145,14 @@
 - platform: history_stats
   name: "Ratio Bathroom Temperature Trend"
   entity_id: binary_sensor.bathroom_temperature_trend
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Bathroom Bright"
+  entity_id: binary_sensor.bathroom_bright
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -226,6 +240,14 @@
   end: "{{ now() }}"
   duration:
     days: 7
+- platform: history_stats
+  name: "Ratio Bedroom Bright"
+  entity_id: binary_sensor.bedroom_bright
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Entrance
 - platform: history_stats
@@ -268,6 +290,22 @@
   end: "{{ now() }}"
   duration:
     days: 7
+- platform: history_stats
+  name: "Ratio Entrance Bright"
+  entity_id: binary_sensor.entrance_bright
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Entrance Fire Tablet Motion"
+  entity_id: binary_sensor.fire_tablet_motion
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Hall
 - platform: history_stats
@@ -289,6 +327,14 @@
 - platform: history_stats
   name: "Ratio People Hall"
   entity_id: binary_sensor.people_hall
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Hall Bright"
+  entity_id: binary_sensor.hall_bright
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -344,6 +390,14 @@
   end: "{{ now() }}"
   duration:
     days: 7
+- platform: history_stats
+  name: "Ratio Kitchen Bright"
+  entity_id: binary_sensor.kitchen_bright
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Lounge
 - platform: history_stats
@@ -390,6 +444,14 @@
   name: "Ratio Lounge TV Playing"
   entity_id: media_player.lounge_tv
   state: "playing"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Lounge Bright"
+  entity_id: binary_sensor.lounge_bright
+  state: "on"
   type: ratio
   end: "{{ now() }}"
   duration:
@@ -463,11 +525,27 @@
   end: "{{ now() }}"
   duration:
     days: 7
+- platform: history_stats
+  name: "Ratio Study Bright"
+  entity_id: binary_sensor.study_bright
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
 
 # Toilet
 - platform: history_stats
   name: "Ratio Toilet Motion"
   entity_id: binary_sensor.toilet_trisensor_motion
+  state: "on"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: "Ratio Toilet Bright"
+  entity_id: binary_sensor.toilet_bright
   state: "on"
   type: ratio
   end: "{{ now() }}"
