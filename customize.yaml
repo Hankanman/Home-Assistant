@@ -10,3 +10,18 @@ binary_sensor.shower_occupied:
   icon: mdi:shower-head
 sensor.bathroom_humidity_statistics:
   icon: mdi:water-percent
+binary_sensor.win_01_state:
+  device_class: window
+  Location: Study - North West
+  Battery Type: CR2032
+binary_sensor.win_02_state:
+  device_class: window
+  Location: Study - North East
+  Battery Type: CR2032
+binary_sensor.win_03_state:
+  device_class: window
+  Location: South
+  Battery Type: CR2032
+binary_sensor.mot_01_state:
+  Location: Bathroom - West Wall
+  Battery Type: CR2450 (3V)
