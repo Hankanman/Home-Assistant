@@ -8,6 +8,11 @@ trigger:
     entity_id:
       - sensor.bathroom_multisensor_humidity
       - binary_sensor.bathroom_occupied
+      - binary_sensor.shower_occupied
+      - binary_sensor.bathroom_humidity_trend
+      - binary_sensor.bathroom_temperature_trend
+      - binary_sensor.bathroom_multisensor_motion
+      - input_boolean.bathroom_schedule
 
 condition:
   - condition: state
@@ -28,6 +33,9 @@ action:
             target:
               area_id: bathroom
     default:
+      - condition: state
+        entity_id: binary_sensor.bathroom_occupied
+        state: "off"
       - service: light.turn_off
         target:
           area_id: bathroom

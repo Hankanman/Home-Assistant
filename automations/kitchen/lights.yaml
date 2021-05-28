@@ -16,6 +16,10 @@ trigger:
       - binary_sensor.kitchen_bright
       - input_number.kitchen_lux_level
       - sensor.kitchen_trisensor_illuminance
+      - binary_sensor.people_kitchen
+      - sensor.seb_phone_ble_room_presence
+      - sensor.laura_phone_ble_room_presence
+      - binary_sensor.kitchen_temperature_trend
 
 condition:
   - condition: state
@@ -44,8 +48,11 @@ action:
             target:
               entity_id: light.kitchen
     default:
+      - condition: state
+        entity_id: binary_sensor.kitchen_occupied
+        state: "off"
       - service: light.turn_off
-        data:
-          transition: 3
         target:
-          entity_id: light.kitchen
+          area_id: kitchen
+        data:
+          transition: 5
