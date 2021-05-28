@@ -1,0 +1,5 @@
+ panel_iframe:
+   zigbee:
+     title: 'Zigbee Config'
+     url: 'http://192.168.181.50/#/'
+     icon: 'mdi:graphql'
