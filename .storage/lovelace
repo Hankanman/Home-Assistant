@@ -389,7 +389,19 @@
                                                 "type": "custom:atomic-calendar-revive",
                                                 "entities": [
                                                     {
-                                                        "entity": "calendar.family"
+                                                        "entity": "calendar.family_google"
+                                                    },
+                                                    {
+                                                        "entity": "calendar.seb_google"
+                                                    },
+                                                    {
+                                                        "entity": "calendar.seb_outlook"
+                                                    },
+                                                    {
+                                                        "entity": "calendar.home_assistant_devs"
+                                                    },
+                                                    {
+                                                        "entity": "calendar.uk_holidays"
                                                     },
                                                     {
                                                         "entity": "calendar.bin_collection"
@@ -2839,6 +2851,10 @@
                                 }
                             ],
                             "columns": 1
+                        },
+                        {
+                            "type": "custom:webrtc-camera",
+                            "entity": "camera.kitchen_tapo_hd"
                         }
                     ]
                 },

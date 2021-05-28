@@ -82,6 +82,26 @@
                 "url": "/hacsfiles/Homekit-panel-card/homekit-panel-card.js",
                 "type": "module",
                 "id": "a3184d652e054867b730d4e795317ae0"
+            },
+            {
+                "url": "/hacsfiles/PlexMeetsHomeAssistant/plex-meets-homeassistant.js",
+                "type": "module",
+                "id": "3a45a1e331c849f79e48514a2f10e89d"
+            },
+            {
+                "url": "/hacsfiles/lovelace-html-card/html-card.js",
+                "type": "module",
+                "id": "99f734ba45fe4ff28e555f57e7514537"
+            },
+            {
+                "url": "/hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js",
+                "type": "module",
+                "id": "4ff177bfa3464bfdb8f1c719cd1e323e"
+            },
+            {
+                "url": "/webrtc/webrtc-camera.js?v2.0.2",
+                "type": "module",
+                "id": "ec25a9aad8d7497db3c1e257d7428f4e"
             }
         ]
     }

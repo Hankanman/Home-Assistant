@@ -76,10 +76,12 @@
                                     "hours_to_show": 12
                                 },
                                 {
-                                    "type": "custom:numberbox-card",
-                                    "entity": "input_number.hall_lux_level",
-                                    "icon_plus": "mdi:chevron-up",
-                                    "icon_minus": "mdi:chevron-down"
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.hall_lux_level"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -98,10 +100,12 @@
                                     "hours_to_show": 12
                                 },
                                 {
-                                    "type": "custom:numberbox-card",
-                                    "entity": "input_number.kitchen_lux_level",
-                                    "icon_plus": "mdi:chevron-up",
-                                    "icon_minus": "mdi:chevron-down"
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.kitchen_lux_level"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -120,10 +124,12 @@
                                     "hours_to_show": 12
                                 },
                                 {
-                                    "type": "custom:numberbox-card",
-                                    "entity": "input_number.lounge_lux_level",
-                                    "icon_plus": "mdi:chevron-up",
-                                    "icon_minus": "mdi:chevron-down"
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.lounge_lux_level"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -142,10 +148,12 @@
                                     "hours_to_show": 12
                                 },
                                 {
-                                    "type": "custom:numberbox-card",
-                                    "entity": "input_number.study_lux_level",
-                                    "icon_plus": "mdi:chevron-up",
-                                    "icon_minus": "mdi:chevron-down"
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.study_lux_level"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -164,10 +172,37 @@
                                     "hours_to_show": 12
                                 },
                                 {
-                                    "type": "custom:numberbox-card",
-                                    "entity": "input_number.toilet_lux_level",
-                                    "icon_plus": "mdi:chevron-up",
-                                    "icon_minus": "mdi:chevron-down"
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.toilet_lux_level"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entity",
+                                    "entity": "binary_sensor.entrance_bright"
+                                },
+                                {
+                                    "type": "sensor",
+                                    "name": "Entrance Illuminance",
+                                    "graph": "line",
+                                    "entity": "sensor.fire_tablet_illuminance",
+                                    "detail": 2,
+                                    "hours_to_show": 12
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.entrance_lux_level"
+                                        }
+                                    ]
                                 }
                             ]
                         }
