@@ -39,3 +39,10 @@ www/tmp/
 google_calendars.yaml
 .google.token
 .storage/camera
+o365_calendars.yaml
+.O365-token-cache/o365.token
+zigbee.db
+zigbee2mqtt/log
+image
+rtsp2webrtc_v4_aarch64
+*.pem
