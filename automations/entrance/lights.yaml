@@ -29,13 +29,10 @@ action:
         sequence:
           - service: light.turn_on
             data:
-              transition: 3
               brightness_pct: 100
             target:
-              entity_id: light.entrance
+              entity_id: light.entrance_lights
     default:
       - service: light.turn_off
-        data:
-          transition: 3
         target:
-          entity_id: light.entrance
+          entity_id: light.entrance_lights

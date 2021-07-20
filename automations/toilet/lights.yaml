@@ -34,8 +34,8 @@ action:
           - service: light.turn_on
             data: {}
             target:
-              entity_id: light.toilet
+              entity_id: light.toilet_lights
     default:
       - service: light.turn_off
         data: {}
-        entity_id: light.toilet
+        entity_id: light.toilet_lights

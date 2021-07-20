@@ -31,10 +31,9 @@ action:
         sequence:
           - data:
               brightness_pct: 100
-              transition: 3
             service: light.turn_on
             target:
-              entity_id: light.lounge
+              entity_id: light.lounge_lights
       - conditions:
           - condition: not
             conditions:
@@ -47,23 +46,18 @@ action:
         sequence:
           - data:
               brightness_pct: 30
-              transition: 3
             service: light.turn_on
             target:
-              entity_id: light.lounge
+              entity_id: light.lounge_lights
       - conditions:
           - condition: state
             entity_id: binary_sensor.lounge_bright
             state: "on"
         sequence:
-          - data:
-              transition: 3
-            service: light.turn_off
+          - service: light.turn_off
             target:
-              entity_id: light.lounge
+              entity_id: light.lounge_lights
     default:
       - service: light.turn_off
-        data:
-          transition: 3
         target:
-          entity_id: light.lounge
+          entity_id: light.lounge_lights

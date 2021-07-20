@@ -44,9 +44,8 @@ action:
           - service: light.turn_on
             data:
               brightness_pct: 100
-              transition: 3
             target:
-              entity_id: light.kitchen
+              entity_id: light.kitchen_lights
     default:
       - condition: state
         entity_id: binary_sensor.kitchen_occupied
@@ -54,5 +53,3 @@ action:
       - service: light.turn_off
         target:
           area_id: kitchen
-        data:
-          transition: 5

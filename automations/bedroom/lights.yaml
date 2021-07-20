@@ -29,16 +29,13 @@ action:
           - service: light.turn_on
             data:
               brightness_pct: 20
-              transition: 3
             target:
-              entity_id: light.bedroom
+              entity_id: light.bedroom_lights
     default:
       - condition: state
         entity_id: binary_sensor.bedroom_trisensor_motion
         state: "off"
         for: 00:20:00
       - service: light.turn_off
-        data:
-          transition: 3
         target:
-          entity_id: light.bedroom
+          entity_id: light.bedroom_lights

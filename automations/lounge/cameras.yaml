@@ -9,7 +9,7 @@ trigger:
   - platform: state
     entity_id: sun.sun
   - platform: state
-    entity_id: light.lounge
+    entity_id: light.lounge_lights
 
 condition:
   - condition: state
@@ -22,7 +22,7 @@ action:
           - condition: or
             conditions:
               - condition: state
-                entity_id: light.lounge
+                entity_id: light.lounge_lights
                 state: "on"
               - condition: state
                 entity_id: sun.sun

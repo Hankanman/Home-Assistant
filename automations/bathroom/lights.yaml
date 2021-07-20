@@ -12,6 +12,7 @@ trigger:
       - binary_sensor.bathroom_humidity_trend
       - binary_sensor.bathroom_temperature_trend
       - binary_sensor.bathroom_multisensor_motion
+      - binary_sensor.mot_01_occupancy
       - input_boolean.bathroom_schedule
 
 condition:
@@ -29,7 +30,6 @@ action:
           - service: light.turn_on
             data:
               brightness_pct: 100
-              transition: 2
             target:
               area_id: bathroom
     default:
@@ -39,5 +39,3 @@ action:
       - service: light.turn_off
         target:
           area_id: bathroom
-        data:
-          transition: 5

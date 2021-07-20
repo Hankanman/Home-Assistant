@@ -35,10 +35,9 @@ action:
         sequence:
           - service: light.turn_on
             data:
-              brightness_pct: 60
-              transition: 3
+              brightness_pct: 6
             target:
-              entity_id: light.hall
+              entity_id: light.hall_lights
       - conditions:
           - condition: state
             entity_id: binary_sensor.hall_trisensor_motion
@@ -59,10 +58,8 @@ action:
             data:
               brightness_pct: 1
             target:
-              entity_id: light.hall
+              entity_id: light.hall_lights
     default:
       - service: light.turn_off
-        data:
-          transition: 3
         target:
-          entity_id: light.hall
+          entity_id: light.hall_lights
