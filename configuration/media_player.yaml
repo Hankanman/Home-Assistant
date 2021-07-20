@@ -14,6 +14,10 @@ media_player:
       com.channel4.ondemand: "All 4"
       air.ITVMobilePlayer: "ITV Hub"
   - platform: androidtv
+    device_class: firetv
+    name: Study Fire TV ADB
+    host: !secret study_fire_tv
+  - platform: androidtv
     device_class: androidtv
     name: Shield ADB
     host: !secret shield_tv
@@ -47,40 +51,34 @@ media_player:
     children:
       - media_player.bedroom_fire_tv_adb
       - media_player.bedroom_fire_tv
-      - media_player.bedroom_tv_panasonic
     commands:
       turn_on:
-        service: media_player.turn_on
-        data:
-          entity_id: media_player.bedroom_fire_tv_adb
+        service: switch.toggle
+        target:
+          entity_id: switch.bedroom_tv_power
       turn_off:
-        service: media_player.turn_off
-        data:
-          entity_id: media_player.bedroom_tv_panasonic
+        service: switch.toggle
+        target:
+          entity_id: switch.bedroom_tv_power
       volume_up:
-        service: media_player.volume_up
-        data:
-          entity_id: media_player.bedroom_tv_panasonic
+        service: switch.toggle
+        target:
+          entity_id: switch.bedroom_soundbar_volume_up
       volume_down:
-        service: media_player.volume_down
-        data:
-          entity_id: media_player.bedroom_tv_panasonic
+        service: switch.toggle
+        target:
+          entity_id: switch.bedroom_soundbar_volume_down
       volume_mute:
-        service: media_player.volume_mute
+        service: switch.toggle
         data:
-          entity_id: media_player.bedroom_tv_panasonic
+          entity_id: switch.bedroom_soundbar_mute
       select_source:
         service: media_player.select_source
         data:
           entity_id: media_player.bedroom_fire_tv_adb
           source: '{{ source }}'
-      volume_set:
-        service: media_player.volume_set
-        data:
-          entity_id: media_player.bedroom_tv_panasonic
-          volume_level: '{{ volume_level }}'
     attributes:
-      is_volume_muted: media_player.bedroom_tv_panasonic|is_volume_muted
+      is_volume_muted: media_player.bedroom_fire_tv_adb|is_volume_muted
       state: media_player.bedroom_fire_tv_adb
       source: media_player.bedroom_fire_tv_adb|source
       source_list: media_player.bedroom_fire_tv_adb|source_list
