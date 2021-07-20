@@ -1,5 +1,11 @@
  panel_iframe:
    zigbee:
-     title: 'Zigbee Config'
-     url: 'http://192.168.181.50/#/'
+     title: 'Zigbee'
+     url: 'https://zigbee2mqtt.sbhost.co.uk/'
      icon: 'mdi:graphql'
+     require_admin: true
+   nginx:
+     title: 'Proxy'
+     url: 'https://proxy.sbhost.co.uk/'
+     icon: 'mdi:call-split'
+     require_admin: true
