@@ -1,8 +1,0 @@
-home:
-  name: Home
-  entities:
-    - climate.bathroom
-    - climate.bedroom
-    - climate.central
-    - climate.study
-    - climate.toilet

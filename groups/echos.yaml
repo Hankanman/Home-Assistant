@@ -1,0 +1,10 @@
+echos:
+  name: Echos
+  entities:
+    - media_player.bedroom_echo
+    - media_player.bedroom_fire_tv
+    - media_player.entrance_tablet
+    - media_player.kitchen_echo_show
+    - media_player.lounge_echo
+    - media_player.study_echo
+    - media_player.study_fire_tv
