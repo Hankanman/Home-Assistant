@@ -8,16 +8,6 @@
 #
 - platform: time_date
   display_options:
-    - 'time'
     - 'date'
     - 'date_time'
     - 'date_time_iso'
-    - 'time_date'
-    - 'time_utc'
-
-- platform: template
-  sensors:
-    time_since_seb_pc_last_active:
-      friendly_name: "Time Since Seb PC Last Active"
-      unit_of_measurement: Minutes
-      value_template: "{{ ((now() | as_timestamp) | int / 60) | round(0, 'floor') - ((states('sensor.last_active') | as_timestamp) | int / 60) | round(0, 'floor') }}"

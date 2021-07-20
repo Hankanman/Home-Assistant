@@ -1,0 +1,12 @@
+####################################
+# PC Active Sensors
+####################################
+- unique_id: seb_pc_active
+  name: "Seb PC Active"
+  device_class: connectivity
+  state: >-
+    {% if is_state('binary_sensor.seb_pc_online', 'off' ) %}
+      'off'
+    {% else %}
+      {{ states('sensor.time_since_seb_pc_last_active') | int < 5 }}
+    {% endif %}

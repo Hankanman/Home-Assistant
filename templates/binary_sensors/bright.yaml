@@ -1,0 +1,46 @@
+####################################
+# Bright Sensors
+####################################
+####################################
+# Bright Binary Sensors
+####################################
+- unique_id: bathroom_bright
+  name: "Bathroom Bright"
+  device_class: light
+  state: >-
+    {{ (states('sensor.bathroom_multisensor_illuminance') | float) >= (states('input_number.bathroom_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.bathrom_lights', 'off')) }}
+- unique_id: bedroom_bright
+  name: "Bedroom Bright"
+  device_class: light
+  state: >-
+    {{ (states('sensor.bedroom_trisensor_illuminance') | float) >= (states('input_number.bedroom_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.bedroom_lights', 'off')) }}
+- unique_id: entrance_bright
+  name: "Entrance Bright"
+  device_class: light
+  state: >-
+    {{ (states('sensor.fire_tablet_illuminance') | float) >= (states('input_number.entrance_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.entrance_lights', 'off')) }}
+- unique_id: hall_bright
+  name: "Hall Bright"
+  device_class: light
+  state: >-
+    {{ (states('sensor.hall_trisensor_illuminance') | float) >= (states('input_number.hall_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.hall_lights', 'off')) }}
+- unique_id: kitchen_bright
+  name: "Kitchen Bright"
+  device_class: light
+  state: >-
+    {{ (states('sensor.kitchen_trisensor_illuminance') | float) >= (states('input_number.kitchen_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.kitchen_lights', 'off')) }}
+- unique_id: lounge_bright
+  name: "Lounge Bright"
+  device_class: light
+  state: >-
+    {{ (states('sensor.lounge_trisensor_illuminance') | float) >= (states('input_number.lounge_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.lounge_lights', 'off')) }}
+- unique_id: study_bright
+  name: "Study Bright"
+  device_class: light
+  state: >-
+    {{ (states('sensor.study_trisensor_illuminance') | float) >= (states('input_number.study_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.study_lights', 'off')) }}
+- unique_id: toilet_bright
+  name: "Toilet Bright"
+  device_class: light
+  state: >-
+    {{ (states('sensor.toilet_trisensor_illuminance') | float) >= (states('input_number.toilet_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.toilet_lights', 'off')) }}

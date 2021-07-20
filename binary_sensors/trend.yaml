@@ -5,7 +5,7 @@
   sensors:
     bathroom_humidity_trend:
       friendly_name: "Bathroom Humidity Trend"
-      entity_id: sensor.bathroom_multisensor_humidity
+      entity_id: sensor.bathroom_humidity
       sample_duration: 1200
       max_samples: 6
       min_gradient: 0.011
@@ -19,6 +19,15 @@
       max_samples: 6
       min_gradient: 0.0017
       device_class: heat
+- platform: trend
+  sensors:
+    bathroom_humidity_trend:
+      friendly_name: "Kitchen Humidity Trend"
+      entity_id: sensor.kitchen_humidity
+      sample_duration: 1200
+      max_samples: 6
+      min_gradient: 0.011
+      device_class: moisture
 - platform: trend
   sensors:
     kitchen_temperature_trend:

@@ -1,0 +1,4 @@
+- unique_id: time_since_seb_pc_last_active
+  name: "Time Since Seb PC Last Active"
+  unit_of_measurement: Minutes
+  state: "{{ ((now() | as_timestamp) | int / 60) | round(0, 'floor') - ((states('sensor.last_active') | as_timestamp) | int / 60) | round(0, 'floor') }}"

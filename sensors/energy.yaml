@@ -22,13 +22,3 @@
     - interval_end
   value_template: "{{value_json.results[1].consumption}}"
   resource: !secret octopus_electricity
-- platform: template
-  sensors:
-    total_energy_usage:
-      friendly_name: Total Energy Usage
-      device_class: power
-      unit_of_measurement: "kWh"
-      value_template: "{{ (states('sensor.gas_daily_usage') | float + states('sensor.electricity_daily_usage') | float) | round(2) }}"
-      attribute_templates:
-        interval_start: "{{ as_timestamp(state_attr('sensor.gas_daily_usage', 'interval_start')) | timestamp_local }}"
-        interval_end: "{{ as_timestamp(state_attr('sensor.gas_daily_usage', 'interval_end')) | timestamp_local }}"

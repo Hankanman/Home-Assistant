@@ -1,0 +1,90 @@
+####################################
+# Temperature
+####################################
+- platform: min_max
+  name: Bathroom Temperature
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.tmp_02_temperature
+    - sensor.rad_01_temperature
+    - sensor.bathroom_multisensor_air_temperature
+- platform: min_max
+  name: Bedroom Temperature
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.rad_02_temperature
+    - sensor.bedroom_trisensor_air_temperature
+- platform: min_max
+  name: Entrance Temperature
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.tst_01_temperature
+    - sensor.toilet_trisensor_air_temperature
+- platform: min_max
+  name: Hall Temperature
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.tst_01_temperature
+    - sensor.hall_trisensor_air_temperature
+- platform: min_max
+  name: Kitchen Temperature
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.kitchen_trisensor_air_temperature
+    - sensor.tmp_03_temperature
+- platform: min_max
+  name: Lounge Temperature
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.lounge_trisensor_air_temperature
+- platform: min_max
+  name: Study Temperature
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.rad_03_temperature
+    - sensor.study_trisensor_air_temperature
+- platform: min_max
+  name: Toilet Temperature
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.rad_04_temperature
+    - sensor.toilet_trisensor_air_temperature
+- platform: min_max
+  name: Shed Temperature
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.tmp_01_temperature
+    - sensor.outside_temperature
+####################################
+# Humidity
+####################################
+- platform: min_max
+  name: Bathroom Humidity
+  type: mean
+  round_digits: 0
+  entity_ids:
+    - sensor.tmp_02_humidity
+    - sensor.bathroom_multisensor_humidity
+- platform: min_max
+  name: Kitchen Humidity
+  type: mean
+  round_digits: 0
+  entity_ids:
+    - sensor.tmp_03_humidity
+    - sensor.outside_humidity
+- platform: min_max
+  name: Shed Humidity
+  type: mean
+  round_digits: 0
+  entity_ids:
+    - sensor.tmp_01_humidity
+    - sensor.outside_humidity

@@ -1,0 +1,11 @@
+####################################
+# Energy
+####################################
+- unique_id: total_energy_usage
+  name: Total Energy Usage
+  device_class: power
+  unit_of_measurement: "kWh"
+  state: "{{ (states('sensor.gas_daily_usage') | float + states('sensor.electricity_daily_usage') | float) | round(2) }}"
+  attributes:
+    interval_start: "{{ as_timestamp(state_attr('sensor.gas_daily_usage', 'interval_start')) | timestamp_local }}"
+    interval_end: "{{ as_timestamp(state_attr('sensor.gas_daily_usage', 'interval_end')) | timestamp_local }}"

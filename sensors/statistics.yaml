@@ -1,553 +1,553 @@
-####################################
-# Statistics Sensors
-####################################
+# ####################################
+# # Statistics Sensors
+# ####################################
 
-####################################
-# Temperature
-####################################
-- platform: statistics
-  name: "Bathroom Temperature Statistics"
-  max_age:
-    days: 1
-  entity_id: sensor.bathroom_temperature
+# ####################################
+# # Temperature
+# ####################################
+# - platform: statistics
+#   name: "Bathroom Temperature Statistics"
+#   max_age:
+#     days: 1
+#   entity_id: sensor.bathroom_temperature
 
-- platform: statistics
-  name: "Bedroom Temperature Statistics"
-  max_age:
-    days: 1
-  entity_id: sensor.bedroom_temperature
+# - platform: statistics
+#   name: "Bedroom Temperature Statistics"
+#   max_age:
+#     days: 1
+#   entity_id: sensor.bedroom_temperature
 
-- platform: statistics
-  name: "Central Temperature Statistics"
-  max_age:
-    days: 1
-  entity_id: sensor.central_temperature
+# - platform: statistics
+#   name: "Central Temperature Statistics"
+#   max_age:
+#     days: 1
+#   entity_id: sensor.central_temperature
 
-- platform: statistics
-  name: "Hall Temperature Statistics"
-  max_age:
-    days: 1
-  entity_id: sensor.hall_trisensor_air_temperature
+# - platform: statistics
+#   name: "Hall Temperature Statistics"
+#   max_age:
+#     days: 1
+#   entity_id: sensor.hall_trisensor_air_temperature
 
-- platform: statistics
-  name: "Kitchen Temperature Statistics"
-  max_age:
-    days: 1
-  entity_id: sensor.kitchen_trisensor_air_temperature
+# - platform: statistics
+#   name: "Kitchen Temperature Statistics"
+#   max_age:
+#     days: 1
+#   entity_id: sensor.kitchen_trisensor_air_temperature
 
-- platform: statistics
-  name: "Lounge Temperature Statistics"
-  max_age:
-    days: 1
-  entity_id: sensor.lounge_trisensor_air_temperature
+# - platform: statistics
+#   name: "Lounge Temperature Statistics"
+#   max_age:
+#     days: 1
+#   entity_id: sensor.lounge_trisensor_air_temperature
 
-- platform: statistics
-  name: "Study Temperature Statistics"
-  max_age:
-    days: 1
-  entity_id: sensor.study_temperature
+# - platform: statistics
+#   name: "Study Temperature Statistics"
+#   max_age:
+#     days: 1
+#   entity_id: sensor.study_temperature
 
-- platform: statistics
-  name: "Toilet Temperature Statistics"
-  max_age:
-    days: 1
-  entity_id: sensor.toilet_temperature
+# - platform: statistics
+#   name: "Toilet Temperature Statistics"
+#   max_age:
+#     days: 1
+#   entity_id: sensor.toilet_temperature
 
-####################################
-# Luminance
-####################################
-- platform: statistics
-  name: "Bathroom Illuminance Statistics"
-  max_age:
-    days: 7
-  entity_id: sensor.bathroom_multisensor_illuminance
+# ####################################
+# # Luminance
+# ####################################
+# - platform: statistics
+#   name: "Bathroom Illuminance Statistics"
+#   max_age:
+#     days: 7
+#   entity_id: sensor.bathroom_multisensor_illuminance
 
-- platform: statistics
-  name: "Bedroom Illuminance Statistics"
-  max_age:
-    days: 7
-  entity_id: sensor.bedroom_trisensor_illuminance
+# - platform: statistics
+#   name: "Bedroom Illuminance Statistics"
+#   max_age:
+#     days: 7
+#   entity_id: sensor.bedroom_trisensor_illuminance
 
-- platform: statistics
-  name: "Entrance Illuminance Statistics"
-  max_age:
-    days: 7
-  entity_id: sensor.fire_tablet_illuminance
+# - platform: statistics
+#   name: "Entrance Illuminance Statistics"
+#   max_age:
+#     days: 7
+#   entity_id: sensor.fire_tablet_illuminance
 
-- platform: statistics
-  name: "Hall Illuminance Statistics"
-  max_age:
-    days: 7
-  entity_id: sensor.hall_trisensor_illuminance
+# - platform: statistics
+#   name: "Hall Illuminance Statistics"
+#   max_age:
+#     days: 7
+#   entity_id: sensor.hall_trisensor_illuminance
 
-- platform: statistics
-  name: "Kitchen Illuminance Statistics"
-  max_age:
-    days: 7
-  entity_id: sensor.kitchen_trisensor_illuminance
+# - platform: statistics
+#   name: "Kitchen Illuminance Statistics"
+#   max_age:
+#     days: 7
+#   entity_id: sensor.kitchen_trisensor_illuminance
 
-- platform: statistics
-  name: "Lounge Illuminance Statistics"
-  max_age:
-    days: 7
-  entity_id: sensor.lounge_trisensor_illuminance
+# - platform: statistics
+#   name: "Lounge Illuminance Statistics"
+#   max_age:
+#     days: 7
+#   entity_id: sensor.lounge_trisensor_illuminance
 
-- platform: statistics
-  name: "Study Illuminance Statistics"
-  max_age:
-    days: 7
-  entity_id: sensor.study_trisensor_illuminance
+# - platform: statistics
+#   name: "Study Illuminance Statistics"
+#   max_age:
+#     days: 7
+#   entity_id: sensor.study_trisensor_illuminance
 
-- platform: statistics
-  name: "Toilet Illuminance Statistics"
-  max_age:
-    days: 7
-  entity_id: sensor.toilet_trisensor_illuminance
+# - platform: statistics
+#   name: "Toilet Illuminance Statistics"
+#   max_age:
+#     days: 7
+#   entity_id: sensor.toilet_trisensor_illuminance
 
-####################################
-# Humidity
-####################################
-- platform: statistics
-  name: "Bathroom Humidity Statistics"
-  max_age:
-    days: 1
-  entity_id: sensor.bathroom_multisensor_humidity
+# ####################################
+# # Humidity
+# ####################################
+# - platform: statistics
+#   name: "Bathroom Humidity Statistics"
+#   max_age:
+#     days: 1
+#   entity_id: sensor.bathroom_multisensor_humidity
 
-####################################
-# Ratios
-####################################
+# ####################################
+# # Ratios
+# ####################################
 
-# Bathroom
-- platform: history_stats
-  name: "Ratio Bathroom Motion"
-  entity_id: binary_sensor.bathroom_multisensor_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Shower Occupied"
-  entity_id: binary_sensor.shower_occupied
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Bathroom Humidity Trend"
-  entity_id: binary_sensor.bathroom_humidity_trend
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Bathroom Temperature Trend"
-  entity_id: binary_sensor.bathroom_temperature_trend
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Bathroom Bright"
-  entity_id: binary_sensor.bathroom_bright
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
+# # Bathroom
+# - platform: history_stats
+#   name: "Ratio Bathroom Motion"
+#   entity_id: binary_sensor.mot_01_occupancy
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Shower Occupied"
+#   entity_id: binary_sensor.shower_occupied
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Bathroom Humidity Trend"
+#   entity_id: binary_sensor.bathroom_humidity_trend
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Bathroom Temperature Trend"
+#   entity_id: binary_sensor.bathroom_temperature_trend
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Bathroom Bright"
+#   entity_id: binary_sensor.bathroom_bright
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
 
-# Bedroom
-- platform: history_stats
-  name: "Ratio Bedroom Motion"
-  entity_id: binary_sensor.bedroom_trisensor_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio People Bedroom"
-  entity_id: binary_sensor.people_bedroom
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Dogs Bedroom"
-  entity_id: binary_sensor.dogs_bedroom
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Seb Bedroom Presence"
-  entity_id: sensor.seb_phone_ble_room_presence
-  state: "Bedroom"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Laura Bedroom Presence"
-  entity_id: sensor.laura_phone_ble_room_presence
-  state: "Bedroom"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Laura Sleeping"
-  entity_id: binary_sensor.laura_sleeping
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Seb Sleeping"
-  entity_id: binary_sensor.seb_sleeping
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Bedroom TV Playing"
-  entity_id: media_player.bedroom_tv
-  state: "playing"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Bedroom Speaker Playing"
-  entity_id: media_player.bedroom_echo
-  state: "playing"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Bedroom In Bed"
-  entity_id: binary_sensor.in_bed
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Bedroom Bright"
-  entity_id: binary_sensor.bedroom_bright
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
+# # Bedroom
+# - platform: history_stats
+#   name: "Ratio Bedroom Motion"
+#   entity_id: binary_sensor.bedroom_trisensor_motion
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio People Bedroom"
+#   entity_id: binary_sensor.people_bedroom
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Dogs Bedroom"
+#   entity_id: binary_sensor.dogs_bedroom
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Seb Bedroom Presence"
+#   entity_id: sensor.seb_phone_ble_room_presence
+#   state: "Bedroom"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Laura Bedroom Presence"
+#   entity_id: sensor.laura_phone_ble_room_presence
+#   state: "Bedroom"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Laura Sleeping"
+#   entity_id: binary_sensor.laura_sleeping
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Seb Sleeping"
+#   entity_id: binary_sensor.seb_sleeping
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Bedroom TV Playing"
+#   entity_id: media_player.bedroom_tv
+#   state: "playing"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Bedroom Speaker Playing"
+#   entity_id: media_player.bedroom_echo
+#   state: "playing"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Bedroom In Bed"
+#   entity_id: binary_sensor.in_bed
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Bedroom Bright"
+#   entity_id: binary_sensor.bedroom_bright
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
 
-# Entrance
-- platform: history_stats
-  name: "Ratio Dogs Entrance"
-  entity_id: binary_sensor.dogs_entrance
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio People Entrance"
-  entity_id: binary_sensor.people_entrance
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Entrance Door Open"
-  entity_id: binary_sensor.entrance_door
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Entrance Door Motion"
-  entity_id: binary_sensor.front_door_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Entrance Door Ding"
-  entity_id: binary_sensor.front_door_ding
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Entrance Bright"
-  entity_id: binary_sensor.entrance_bright
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Entrance Fire Tablet Motion"
-  entity_id: binary_sensor.fire_tablet_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
+# # Entrance
+# - platform: history_stats
+#   name: "Ratio Dogs Entrance"
+#   entity_id: binary_sensor.dogs_entrance
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio People Entrance"
+#   entity_id: binary_sensor.people_entrance
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Entrance Door Open"
+#   entity_id: binary_sensor.entrance_door
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Entrance Door Motion"
+#   entity_id: binary_sensor.front_door_motion
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Entrance Door Ding"
+#   entity_id: binary_sensor.front_door_ding
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Entrance Bright"
+#   entity_id: binary_sensor.entrance_bright
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Entrance Fire Tablet Motion"
+#   entity_id: binary_sensor.fire_tablet_motion
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
 
-# Hall
-- platform: history_stats
-  name: "Ratio Hall Motion"
-  entity_id: binary_sensor.hall_trisensor_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Dogs Hall"
-  entity_id: binary_sensor.dogs_hall
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio People Hall"
-  entity_id: binary_sensor.people_hall
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Hall Bright"
-  entity_id: binary_sensor.hall_bright
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
+# # Hall
+# - platform: history_stats
+#   name: "Ratio Hall Motion"
+#   entity_id: binary_sensor.hall_trisensor_motion
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Dogs Hall"
+#   entity_id: binary_sensor.dogs_hall
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio People Hall"
+#   entity_id: binary_sensor.people_hall
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Hall Bright"
+#   entity_id: binary_sensor.hall_bright
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
 
-# Kitchen
-- platform: history_stats
-  name: "Ratio Kitchen Motion"
-  entity_id: binary_sensor.kitchen_trisensor_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Seb Kitchen Presence"
-  entity_id: sensor.seb_phone_ble_room_presence
-  state: "Kitchen"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Laura Kitchen Presence"
-  entity_id: sensor.laura_phone_ble_room_presence
-  state: "Kitchen"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Dogs Kitchen"
-  entity_id: binary_sensor.dogs_kitchen
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio People Kitchen"
-  entity_id: binary_sensor.people_kitchen
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Kitchen Temperature Trend"
-  entity_id: binary_sensor.kitchen_temperature_trend
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Kitchen Bright"
-  entity_id: binary_sensor.kitchen_bright
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
+# # Kitchen
+# - platform: history_stats
+#   name: "Ratio Kitchen Motion"
+#   entity_id: binary_sensor.kitchen_trisensor_motion
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Seb Kitchen Presence"
+#   entity_id: sensor.seb_phone_ble_room_presence
+#   state: "Kitchen"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Laura Kitchen Presence"
+#   entity_id: sensor.laura_phone_ble_room_presence
+#   state: "Kitchen"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Dogs Kitchen"
+#   entity_id: binary_sensor.dogs_kitchen
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio People Kitchen"
+#   entity_id: binary_sensor.people_kitchen
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Kitchen Temperature Trend"
+#   entity_id: binary_sensor.kitchen_temperature_trend
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Kitchen Bright"
+#   entity_id: binary_sensor.kitchen_bright
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
 
-# Lounge
-- platform: history_stats
-  name: "Ratio Lounge Motion"
-  entity_id: binary_sensor.lounge_trisensor_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Seb Lounge Presence"
-  entity_id: sensor.seb_phone_ble_room_presence
-  state: "Lounge"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Laura Lounge Presence"
-  entity_id: sensor.laura_phone_ble_room_presence
-  state: "Lounge"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Dogs Lounge"
-  entity_id: binary_sensor.dogs_lounge
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio People Lounge"
-  entity_id: binary_sensor.people_lounge
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Lounge TV Playing"
-  entity_id: media_player.lounge_tv
-  state: "playing"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Lounge Bright"
-  entity_id: binary_sensor.lounge_bright
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
+# # Lounge
+# - platform: history_stats
+#   name: "Ratio Lounge Motion"
+#   entity_id: binary_sensor.lounge_trisensor_motion
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Seb Lounge Presence"
+#   entity_id: sensor.seb_phone_ble_room_presence
+#   state: "Lounge"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Laura Lounge Presence"
+#   entity_id: sensor.laura_phone_ble_room_presence
+#   state: "Lounge"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Dogs Lounge"
+#   entity_id: binary_sensor.dogs_lounge
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio People Lounge"
+#   entity_id: binary_sensor.people_lounge
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Lounge TV Playing"
+#   entity_id: media_player.lounge_tv
+#   state: "playing"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Lounge Bright"
+#   entity_id: binary_sensor.lounge_bright
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
 
-# Stairs
-- platform: history_stats
-  name: "Ratio Dogs Stairs"
-  entity_id: binary_sensor.dogs_stairs
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio People Stairs"
-  entity_id: binary_sensor.people_stairs
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
+# # Stairs
+# - platform: history_stats
+#   name: "Ratio Dogs Stairs"
+#   entity_id: binary_sensor.dogs_stairs
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio People Stairs"
+#   entity_id: binary_sensor.people_stairs
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
 
 
-# Study
-- platform: history_stats
-  name: "Ratio Seb PC Active"
-  entity_id: binary_sensor.seb_pc_active
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Study Motion"
-  entity_id: binary_sensor.study_trisensor_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Seb Study Presence"
-  entity_id: sensor.seb_phone_ble_room_presence
-  state: "Study"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Laura Study Presence"
-  entity_id: sensor.laura_phone_ble_room_presence
-  state: "Study"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Dogs Study"
-  entity_id: binary_sensor.dogs_study
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio People Study"
-  entity_id: binary_sensor.people_study
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Study Bright"
-  entity_id: binary_sensor.study_bright
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
+# # Study
+# - platform: history_stats
+#   name: "Ratio Seb PC Active"
+#   entity_id: binary_sensor.seb_pc_active
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Study Motion"
+#   entity_id: binary_sensor.study_trisensor_motion
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Seb Study Presence"
+#   entity_id: sensor.seb_phone_ble_room_presence
+#   state: "Study"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Laura Study Presence"
+#   entity_id: sensor.laura_phone_ble_room_presence
+#   state: "Study"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Dogs Study"
+#   entity_id: binary_sensor.dogs_study
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio People Study"
+#   entity_id: binary_sensor.people_study
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Study Bright"
+#   entity_id: binary_sensor.study_bright
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
 
-# Toilet
-- platform: history_stats
-  name: "Ratio Toilet Motion"
-  entity_id: binary_sensor.toilet_trisensor_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: "Ratio Toilet Bright"
-  entity_id: binary_sensor.toilet_bright
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
+# # Toilet
+# - platform: history_stats
+#   name: "Ratio Toilet Motion"
+#   entity_id: binary_sensor.toilet_trisensor_motion
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7
+# - platform: history_stats
+#   name: "Ratio Toilet Bright"
+#   entity_id: binary_sensor.toilet_bright
+#   state: "on"
+#   type: ratio
+#   end: "{{ now() }}"
+#   duration:
+#     days: 7

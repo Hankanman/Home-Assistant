@@ -1,0 +1,41 @@
+####################################
+# Climate Temperature
+####################################
+- unique_id: rad_01_temperature
+  name: "RAD-01 Temperature"
+  unit_of_measurement: °C
+  device_class: temperature
+  state: "{{ state_attr('climate.rad_01', 'current_temperature') }}"
+- unique_id: rad_02_temperature
+  name: "RAD-02 Temperature"
+  unit_of_measurement: °C
+  device_class: temperature
+  state: "{{ state_attr('climate.rad_02', 'current_temperature') }}"
+- unique_id: rad_03_temperature
+  name: "RAD-03 Temperature"
+  unit_of_measurement: °C
+  device_class: temperature
+  state: "{{ state_attr('climate.rad_03', 'current_temperature') }}"
+- unique_id: rad_04_temperature
+  name: "RAD-04 Temperature"
+  unit_of_measurement: °C
+  device_class: temperature
+  state: "{{ state_attr('climate.rad_04', 'current_temperature') }}"
+- unique_id: tst_01_temperature
+  name: "TST-01 Temperature"
+  unit_of_measurement: °C
+  device_class: temperature
+  state: "{{ state_attr('climate.tst_01', 'current_temperature') }}"
+- unique_id: outside_temperature
+  name: "Outside Temperature"
+  unit_of_measurement: °C
+  device_class: temperature
+  state: "{{state_attr('weather.home', 'temperature')}}"
+####################################
+# Climate Humidity
+####################################
+- unique_id: outside_humidity
+  name: "Outside Humidity"
+  unit_of_measurement: "%"
+  device_class: humidity
+  state: "{{state_attr('weather.home', 'humidity')}}"
