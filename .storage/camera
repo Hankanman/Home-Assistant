@@ -2,16 +2,16 @@
     "version": 1,
     "key": "camera",
     "data": {
-        "camera.hallcam": {
+        "camera.kitchen": {
             "preload_stream": true
         },
-        "camera.loungecam": {
+        "camera.lounge": {
             "preload_stream": true
         },
-        "camera.kitchencam": {
+        "camera.hall": {
             "preload_stream": true
         },
-        "camera.entrancecam": {
+        "camera.entrance": {
             "preload_stream": true
         }
     }
