@@ -12,16 +12,51 @@ sensor.bathroom_humidity_statistics:
   icon: mdi:water-percent
 binary_sensor.win_01_state:
   device_class: window
-  Location: Study - North West
+  Area: Study
+  Location: North West Window
   Battery Type: CR2032
 binary_sensor.win_02_state:
   device_class: window
-  Location: Study - North East
+  Area: Study
+  Location: North East Window
   Battery Type: CR2032
 binary_sensor.win_03_state:
   device_class: window
-  Location: South
+  Area: Bedroom
+  Location: South Window
+  Battery Type: CR2032
+binary_sensor.win_04_state:
+  device_class: window
+  Area: Toilet
+  Location: North Window
+  Battery Type: CR2032
+binary_sensor.dor_01_state:
+  device_class: door
+  Area: Lounge
+  Location: East Back Door
+  Battery Type: CR2032
+binary_sensor.dor_02_state:
+  device_class: door
+  Area: Lounge
+  Location: West Back Door
   Battery Type: CR2032
 binary_sensor.mot_01_state:
-  Location: Bathroom - West Wall
-  Battery Type: CR2450 (3V)
+  Area: Bathroom
+  Location: West Wall
+  Battery Type: CR2450
+sensor.lux_01_illuminance_lux:
+  Area: Kitchen
+  Location: Extractor
+  Battery Type: CR2450
+sensor.tmp_01_temperature:
+  Area: Shed
+  Location: Hutch
+  Battery Type: CR2450
+sensor.tmp_02_temperature:
+  Area: Bathroom
+  Location: East Wall
+  Battery Type: CR2450
+sensor.tmp_03_temperature:
+  Area: Kitchen
+  Location: Above Hob
+  Battery Type: CR2450
