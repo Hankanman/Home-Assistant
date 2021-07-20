@@ -1,0 +1,64 @@
+{
+    "version": 1,
+    "key": "esphome.ddc5e3b7f6fd5b6f7b08483ebfc31894",
+    "data": {
+        "device_info": {
+            "uses_password": false,
+            "name": "irb-02",
+            "mac_address": "48:3F:DA:13:BF:EB",
+            "compilation_time": "Jul 11 2021, 18:50:08",
+            "model": "PLATFORMIO_ESP01_1M",
+            "has_deep_sleep": false,
+            "esphome_version": "1.19.4",
+            "project_name": "",
+            "project_version": ""
+        },
+        "services": [],
+        "api_version": {
+            "major": 1,
+            "minor": 5
+        },
+        "switch": [
+            {
+                "object_id": "study_soundbar_power",
+                "key": 608114537,
+                "name": "Study Soundbar Power",
+                "unique_id": "irb-02switchstudy_soundbar_power",
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_soundbar_volume_up",
+                "key": 281832868,
+                "name": "Study Soundbar Volume Up",
+                "unique_id": "irb-02switchstudy_soundbar_volume_up",
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_soundbar_volume_down",
+                "key": 1369838851,
+                "name": "Study Soundbar Volume Down",
+                "unique_id": "irb-02switchstudy_soundbar_volume_down",
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_soundbar_tv_input",
+                "key": 1413793053,
+                "name": "Study Soundbar TV Input",
+                "unique_id": "irb-02switchstudy_soundbar_tv_input",
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_soundbar_hdmi_input",
+                "key": 2285054457,
+                "name": "Study Soundbar HDMI Input",
+                "unique_id": "irb-02switchstudy_soundbar_hdmi_input",
+                "icon": "",
+                "assumed_state": false
+            }
+        ]
+    }
+}

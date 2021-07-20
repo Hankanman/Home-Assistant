@@ -1,0 +1,61 @@
+esphome:
+  name: irb-02
+  platform: ESP8266
+  board: esp01_1m
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: !secret esp_ota
+
+wifi:
+  ssid: !secret iot_ssid
+  password: !secret iot_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Irb-01 Fallback Hotspot"
+    password: "wkrExUpjSG3h"
+
+captive_portal:
+
+remote_receiver:
+  pin:
+    number: GPIO05
+    inverted: True
+  dump: all
+  
+remote_transmitter:
+  pin: GPIO14
+  carrier_duty_percent: 50%
+  
+switch:
+  - platform: template
+    name: Study Soundbar Power
+    turn_on_action:
+    - remote_transmitter.transmit_raw:
+        code: [8996, -2263, 559]
+  - platform: template
+    name: Study Soundbar Volume Up
+    turn_on_action:
+      - remote_transmitter.transmit_raw:
+          code: [8991, -2263, 559]
+  - platform: template
+    name: Study Soundbar Volume Down
+    turn_on_action:
+      - remote_transmitter.transmit_raw:
+          code: [8988, -2261, 559]
+  - platform: template
+    name: Study Soundbar TV Input
+    turn_on_action:
+      - remote_transmitter.transmit_raw:
+          code: [9002, -2248, 572]
+  - platform: template
+    name: Study Soundbar HDMI Input
+    turn_on_action:
+      - remote_transmitter.transmit_raw:
+          code: [8965, -2286, 535]
