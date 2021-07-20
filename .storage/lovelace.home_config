@@ -145,7 +145,7 @@
                                     "graph": "line",
                                     "entity": "sensor.study_trisensor_illuminance",
                                     "detail": 2,
-                                    "hours_to_show": 12
+                                    "hours_to_show": 24
                                 },
                                 {
                                     "type": "entities",
@@ -236,6 +236,124 @@
                                 "input_boolean.toilet_automations"
                             ],
                             "title": false
+                        }
+                    ]
+                },
+                {
+                    "title": "Mobile",
+                    "path": "mobile",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "map",
+                            "entities": [
+                                "device_tracker.seb_phone",
+                                "device_tracker.laura_phone"
+                            ],
+                            "dark_mode": true,
+                            "hours_to_show": 12
+                        },
+                        {
+                            "type": "custom:slider-button-card",
+                            "entity": "light.bedroom_lamp",
+                            "slider": {
+                                "direction": "left-right",
+                                "background": "solid",
+                                "use_state_color": true,
+                                "use_percentage_bg_opacity": true,
+                                "show_track": false,
+                                "toggle_on_click": false,
+                                "force_square": false
+                            },
+                            "show_name": true,
+                            "show_state": false,
+                            "icon": {
+                                "show": true,
+                                "use_state_color": false,
+                                "tap_action": {
+                                    "action": "toggle"
+                                },
+                                "icon": ""
+                            },
+                            "action_button": {
+                                "mode": "toggle",
+                                "icon": "mdi:power",
+                                "show": false,
+                                "show_spinner": true,
+                                "tap_action": {
+                                    "action": "toggle"
+                                }
+                            }
+                        },
+                        {
+                            "type": "custom:digital-clock"
+                        },
+                        {
+                            "type": "custom:simple-thermostat",
+                            "entity": "climate.study",
+                            "layout": {
+                                "mode": {
+                                    "headings": false,
+                                    "icons": false,
+                                    "names": true
+                                },
+                                "step": "row"
+                            },
+                            "header": false,
+                            "step_size": "0.5",
+                            "fallback": "10",
+                            "view_layout": {
+                                "mode": {
+                                    "headings": false,
+                                    "icons": true,
+                                    "names": true
+                                },
+                                "step": "row"
+                            }
+                        },
+                        {
+                            "type": "custom:sun-card"
+                        },
+                        {
+                            "type": "custom:uptime-card",
+                            "entity": "binary_sensor.seb_pc_online",
+                            "name": "PC Uptime",
+                            "blink": {
+                                "effect": "fade",
+                                "target": "icon"
+                            },
+                            "alignment": {
+                                "header": "left",
+                                "icon_first": true,
+                                "tooltip_first": true,
+                                "status": "spaced"
+                            },
+                            "tap_action": {
+                                "action": "call-service",
+                                "haptic": "success"
+                            },
+                            "tooltip": {
+                                "hour24": true
+                            },
+                            "alias": {
+                                "ok": "Online",
+                                "ko": "Offline"
+                            },
+                            "show": {
+                                "header": false,
+                                "title": false,
+                                "footer": true,
+                                "average": true,
+                                "timeline": true,
+                                "status": true,
+                                "icon": false
+                            },
+                            "title_adaptive_color": true,
+                            "status_adaptive_color": true,
+                            "icon_adaptive_color": false,
+                            "tooltip_adaptive_color": false,
+                            "bar": {},
+                            "color": {}
                         }
                     ]
                 }

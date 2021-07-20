@@ -15,6 +15,7 @@
                     "title": "Bayesian Graphs",
                     "path": "bayesian-graphs",
                     "icon": "mdi:percent",
+                    "type": "custom:horizontal-layout",
                     "badges": [],
                     "cards": [
                         {
@@ -908,6 +909,25 @@
                             "type": "iframe",
                             "url": "/local/tsla.html",
                             "aspect_ratio": "50%"
+                        }
+                    ]
+                },
+                {
+                    "icon": "mdi:graphql",
+                    "path": "networkmap",
+                    "panel": true,
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:zigbee2mqtt-networkmap",
+                            "entity": "sensor.zigbee2mqtt_networkmap",
+                            "mqtt_base_topic": "zigbee2mqtt",
+                            "force": 3000,
+                            "height": 1000,
+                            "node_size": 16,
+                            "font_size": 10,
+                            "link_width": 1,
+                            "css": ":host {\n  --zigbee2mqtt-networkmap-node-color: rgba(18, 120, 98, .7);\n  --zigbee2mqtt-networkmap-node-fill-color: #dcfaf3;\n  --zigbee2mqtt-networkmap-node-pinned-color: rgba(190, 56, 93, .6);\n  --zigbee2mqtt-networkmap-link-color: rgba(100, 100, 100, .5);\n  --zigbee2mqtt-networkmap-hover-color: #be385d;\n  --zigbee2mqtt-networkmap-link-selected-color: rgba(202, 164, 85, .6);\n  --zigbee2mqtt-networkmap-label-color: #ffffff;\n  --zigbee2mqtt-networkmap-arrow-color: rgba(18, 120, 98, 0.7);\n  --zigbee2mqtt-networkmap-node-coordinator-color: rgba(224, 78, 93, .7);\n  --zigbee2mqtt-networkmap-node-router-color: rgba(0, 165, 255, .7);\n}\n"
                         }
                     ]
                 }

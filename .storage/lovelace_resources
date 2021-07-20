@@ -4,104 +4,84 @@
     "data": {
         "items": [
             {
-                "id": "5cf73c1edfae43a78866fa95feaf1fb5",
-                "type": "module",
-                "url": "/hacsfiles/button-card/button-card.js"
-            },
-            {
-                "id": "06c83f8c9a884dc0b4d0d158d8892c4f",
-                "type": "module",
-                "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js"
-            },
-            {
                 "id": "7cf521ef1c8c4485a9a4b62fd89d525a",
                 "type": "module",
-                "url": "/hacsfiles/mini-media-player/mini-media-player-bundle.js"
+                "url": "/hacsfiles/mini-media-player/mini-media-player-bundle.js?hacstag=1485208381121"
             },
             {
                 "id": "bd6c13e5749f4e60898f8693e76aae44",
                 "type": "module",
-                "url": "/hacsfiles/simple-weather-card/simple-weather-card-bundle.js"
+                "url": "/hacsfiles/simple-weather-card/simple-weather-card-bundle.js?hacstag=172998062082"
             },
             {
-                "id": "21fa0503b6bb4d9ca58459e26f383b11",
-                "type": "module",
-                "url": "/hacsfiles/lovelace-time-picker-card/time-picker-card.js"
-            },
-            {
-                "id": "537bd4ea15f04286b8995352196b50c7",
-                "type": "module",
-                "url": "/hacsfiles/lovelace-card-mod/card-mod.js"
-            },
-            {
-                "url": "/hacsfiles/lovelace-layout-card/layout-card.js",
-                "type": "module",
-                "id": "9a171cd4e39640f9a4e835c54feda73e"
-            },
-            {
-                "url": "/hacsfiles/stack-in-card/stack-in-card.js",
+                "url": "/hacsfiles/stack-in-card/stack-in-card.js?hacstag=248954055020",
                 "type": "module",
                 "id": "0a31cc23a4a14311aace25cf9c7e1532"
             },
             {
-                "url": "/hacsfiles/apexcharts-card/apexcharts-card.js",
-                "type": "module",
-                "id": "2e510d4eba4d4484873c01605636ba73"
-            },
-            {
-                "url": "/hacsfiles/uptime-card/uptime-card.js",
+                "url": "/hacsfiles/uptime-card/uptime-card.js?hacstag=350509867060",
                 "type": "module",
                 "id": "df536f2786f94223bf07f15ab634a207"
             },
             {
-                "url": "/hacsfiles/scheduler-card/scheduler-card.js",
-                "type": "module",
-                "id": "01c43bfc3789415191e201df51fac355"
-            },
-            {
-                "url": "/hacsfiles/simple-thermostat/simple-thermostat.js",
-                "type": "module",
-                "id": "9a50e444d8494c41b9e8728b975cb662"
-            },
-            {
-                "url": "/hacsfiles/atomic-calendar-revive/atomic-calendar-revive.js",
+                "url": "/hacsfiles/atomic-calendar-revive/atomic-calendar-revive.js?hacstag=246549747450",
                 "type": "module",
                 "id": "886d37446cc449d5aa391373dfe2becd"
             },
             {
-                "url": "/local/slider-card.js",
+                "url": "/hacsfiles/slider-button-card/slider-button-card.js?hacstag=3754399611103",
                 "type": "module",
-                "id": "f83b7e49b2bb4e46a80decd7b412cb7a"
+                "id": "359f282a10934762bc70670ba67a7b9c"
             },
             {
-                "url": "/hacsfiles/config-template-card/config-template-card.js",
+                "url": "/hacsfiles/timer-bar-card/timer-bar-card.js?hacstag=37690451719",
                 "type": "module",
-                "id": "fe42693d438e4157aaabffe91c64f170"
+                "id": "182b1e7e3aaf403aa9fff1daa0348e65"
             },
             {
-                "url": "/hacsfiles/Homekit-panel-card/homekit-panel-card.js",
-                "type": "module",
-                "id": "a3184d652e054867b730d4e795317ae0"
+                "url": "/local/font.css",
+                "type": "css",
+                "id": "e336eb66ac244ddda0b7bc9039a0bd61"
             },
             {
-                "url": "/hacsfiles/PlexMeetsHomeAssistant/plex-meets-homeassistant.js",
+                "url": "/hacsfiles/custom-brand-icons/custom-brand-icons.js?hacstag=3668620311010",
                 "type": "module",
-                "id": "3a45a1e331c849f79e48514a2f10e89d"
+                "id": "34815d70e661467fa686248a3cc1e1b5"
             },
             {
-                "url": "/hacsfiles/lovelace-html-card/html-card.js",
+                "url": "/hacsfiles/lovelace-layout-card/layout-card.js?hacstag=156434866230",
                 "type": "module",
-                "id": "99f734ba45fe4ff28e555f57e7514537"
+                "id": "163a89f3d4ad43bd84db44dc8bec0477"
             },
             {
-                "url": "/hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js",
+                "url": "/hacsfiles/apexcharts-card/apexcharts-card.js?hacstag=331701152190",
                 "type": "module",
-                "id": "4ff177bfa3464bfdb8f1c719cd1e323e"
+                "id": "2b7174a55f354a0b905847f3c0280eb0"
             },
             {
-                "url": "/webrtc/webrtc-camera.js?v2.0.2",
+                "url": "/hacsfiles/button-card/button-card.js?hacstag=146194325342",
                 "type": "module",
-                "id": "ec25a9aad8d7497db3c1e257d7428f4e"
+                "id": "2636c138f7904a629b3d6da6ab3b45bb"
+            },
+            {
+                "url": "/hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js?hacstag=366482637014",
+                "type": "module",
+                "id": "70f761481bde48b28f6b66ed5f32a362"
+            },
+            {
+                "url": "/hacsfiles/lovelace-card-mod/card-mod.js?hacstag=1909275243012",
+                "type": "module",
+                "id": "f25018ac05944095bd3bcd46bafb2764"
+            },
+            {
+                "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js?hacstag=1512800620100",
+                "type": "module",
+                "id": "f9a196bebd9f49fe9f2cd007440032de"
+            },
+            {
+                "url": "/hacsfiles/scheduler-card/scheduler-card.js?hacstag=286270157214",
+                "type": "module",
+                "id": "cfa740bc027b48ae99f9c35a77520425"
             }
         ]
     }

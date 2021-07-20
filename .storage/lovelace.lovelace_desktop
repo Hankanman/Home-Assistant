@@ -1060,6 +1060,21 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "title": "tes",
+                    "path": "tes",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "calendar",
+                            "entities": [
+                                "calendar.bin_collection",
+                                "calendar.family_google"
+                            ],
+                            "initial_view": "dayGridMonth"
+                        }
+                    ]
                 }
             ]
         }
