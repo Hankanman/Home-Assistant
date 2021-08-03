@@ -1,0 +1,6 @@
+####################################
+# Echo Sensors
+####################################
+- unique_id: last_echo
+  name: Last Echo
+  state: "{{ expand(states.group.echos) | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first | default }}"

@@ -26,16 +26,16 @@
   unit_of_measurement: °C
   device_class: temperature
   state: "{{ state_attr('climate.tst_01', 'current_temperature') }}"
-- unique_id: outside_temperature
-  name: "Outside Temperature"
+- unique_id: area_outside_temperature
+  name: "Area - Outside Temperature"
   unit_of_measurement: °C
   device_class: temperature
   state: "{{state_attr('weather.home', 'temperature')}}"
 ####################################
 # Climate Humidity
 ####################################
-- unique_id: outside_humidity
-  name: "Outside Humidity"
+- unique_id: area_outside_humidity
+  name: "Area - Outside Humidity"
   unit_of_measurement: "%"
   device_class: humidity
   state: "{{state_attr('weather.home', 'humidity')}}"

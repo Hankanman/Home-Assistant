@@ -1,75 +1,75 @@
-- unique_id: sidebar
-  state: template
-  attributes:
-    time: |
-      {%- set hours = '<span>' + now().strftime('%H') + '<span>' %}
-      {%- set minutes = '</span>' + now().strftime('%M') + '</span>' %}
-      {{ hours }}:{{ minutes }}
-    date: |
-      <font color='#6a7377'><b>
-      {%- if strptime(states('sensor.date'), '%Y-%m-%d').day != null %}
-      {%- set days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %}
-      {%- set months = ['January', 'February', 'March', 'April', 'May', 'June', 
-      'July', 'August', 'September', 'October', 'November', 'December'] %}
-        {{- days[now().weekday()] }}<br>
-        {{- strptime(states('sensor.date'), '%Y-%m-%d').day }} {{ months[now().month-1] }}
-      {%- endif -%}
-      </b></font>
-    greet: |
-      <b>
-      {%- set time = now().hour %}
-      {%- if time <= 1 -%} Goodnight {{'\U0001F611'}}
-      {%- elif time <= 3 -%} Goodnight {{'\U0001F62A'}}
-      {%- elif time <= 5 -%} Goodnight {{'\U0001F634'}}
-      {%- elif time <= 7 -%} Good Morning {{'\U0001F4A9'}}
-      {%- elif time <= 9 -%} Good Morning {{'\u2615\uFE0F'}}
-      {%- elif time <= 10 -%} Good Morning {{'\U0001F642'}}
-      {%- elif time <= 13 -%} Good Day {{'\U0001F60A'}}
-      {%- elif time <= 15 -%} Good Day {{'\U0001F60E'}}
-      {%- elif time <= 17 -%} Good Day {{'\U0001F44B\U0001F3FB'}}
-      {%- elif time <= 19 -%} Good Evening {{'\U0001F44B\U0001F3FB'}}
-      {%- elif time <= 22 -%} Good Evening {{'\U0001F60C'}}
-      {%- elif time <= 23 -%} Good Evening {{'\U0001F974'}}
-      {%- else %} Good Evening {{'\U0001F974'}}
-      {%- endif -%}
-      </b>
-    active: |
-      <b>
-      {%- set lights = [
-        states.light.bathrom_lights,
-        states.light.bedroom_lights,
-        states.light.entrance_lights,
-        states.light.hall_lights,
-        states.light.kitchen_lights,
-        states.light.lounge_lights,
-        states.light.study_lights,
-        states.light.toilet_lights
-      ] %}
-      {%- set switches = [
-        states.switch.hallcam_snapshots,
-        states.switch.kitchencam_snapshots,
-        states.switch.loungecam_snapshots,
-        states.switch.entrancecam_snapshots
-      ] %}
-      {%- set lights_on = lights | selectattr('state','eq','on') | list %}
-      {%- set lights_name = lights | selectattr('state','eq','on') | map(attribute='name') | join(', ') %}
-      {%- set switches_on = switches | selectattr('state','eq','on') | list %} 
-      {%- set switches_name = switches | selectattr('state','eq','on') | map(attribute='name') | join(', ') %}
-      {%- if (lights_on | length == 0) and (switches_on | length > 0) -%} 
-        {{ switches_name | regex_replace(',([^,]*)$',' on\\1') }} is
-      {%- elif (lights_on | length == 1) and (switches_on | length == 1) -%}
-        {{ lights_name }} och {{switches_name }} is
-      {%- elif (lights_on | length == 1) and (switches_on | length > 1) -%}
-        {{ lights_name }}, {{ switches_name | regex_replace(',([^,]*)$',' on\\1') }} is
-      {%- elif (lights_on | length > 1) and (switches_on | length == 1) -%}
-        {{ lights_on | length }} lights and {{ switches_name }} is
-      {%- elif (lights_on | length > 1) and (switches_on | length > 1) -%}
-        {{ lights_on | length }} lights, {{ switches_name | regex_replace(',([^,]*)$',' on\\1') }} is
-      {%- elif (lights_on | length == 1) and (switches_on | length == 0) -%}
-        {{ lights_name }} is
-      {%- elif (lights_on | length > 1) and (switches_on | length == 0) -%}
-        {{ lights_on | length }} on
-      {%- else %}
-        <font color='#6a7377'>All Lights Off</font>
-      {%- endif -%}
-      </b>
+# - unique_id: sidebar
+#   state: template
+#   attributes:
+#     time: |
+#       {%- set hours = '<span>' + now().strftime('%H') + '<span>' %}
+#       {%- set minutes = '</span>' + now().strftime('%M') + '</span>' %}
+#       {{ hours }}:{{ minutes }}
+#     date: |
+#       <font color='#6a7377'><b>
+#       {%- if strptime(states('sensor.date'), '%Y-%m-%d').day != null %}
+#       {%- set days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %}
+#       {%- set months = ['January', 'February', 'March', 'April', 'May', 'June', 
+#       'July', 'August', 'September', 'October', 'November', 'December'] %}
+#         {{- days[now().weekday()] }}<br>
+#         {{- strptime(states('sensor.date'), '%Y-%m-%d').day }} {{ months[now().month-1] }}
+#       {%- endif -%}
+#       </b></font>
+#     greet: |
+#       <b>
+#       {%- set time = now().hour %}
+#       {%- if time <= 1 -%} Goodnight {{'\U0001F611'}}
+#       {%- elif time <= 3 -%} Goodnight {{'\U0001F62A'}}
+#       {%- elif time <= 5 -%} Goodnight {{'\U0001F634'}}
+#       {%- elif time <= 7 -%} Good Morning {{'\U0001F4A9'}}
+#       {%- elif time <= 9 -%} Good Morning {{'\u2615\uFE0F'}}
+#       {%- elif time <= 10 -%} Good Morning {{'\U0001F642'}}
+#       {%- elif time <= 13 -%} Good Day {{'\U0001F60A'}}
+#       {%- elif time <= 15 -%} Good Day {{'\U0001F60E'}}
+#       {%- elif time <= 17 -%} Good Day {{'\U0001F44B\U0001F3FB'}}
+#       {%- elif time <= 19 -%} Good Evening {{'\U0001F44B\U0001F3FB'}}
+#       {%- elif time <= 22 -%} Good Evening {{'\U0001F60C'}}
+#       {%- elif time <= 23 -%} Good Evening {{'\U0001F974'}}
+#       {%- else %} Good Evening {{'\U0001F974'}}
+#       {%- endif -%}
+#       </b>
+#     active: |
+#       <b>
+#       {%- set lights = [
+#         states.light.bathrom_lights,
+#         states.light.bedroom_lights,
+#         states.light.entrance_lights,
+#         states.light.hall_lights,
+#         states.light.kitchen_lights,
+#         states.light.lounge_lights,
+#         states.light.study_lights,
+#         states.light.toilet_lights
+#       ] %}
+#       {%- set switches = [
+#         states.switch.hallcam_snapshots,
+#         states.switch.kitchencam_snapshots,
+#         states.switch.loungecam_snapshots,
+#         states.switch.entrancecam_snapshots
+#       ] %}
+#       {%- set lights_on = lights | selectattr('state','eq','on') | list %}
+#       {%- set lights_name = lights | selectattr('state','eq','on') | map(attribute='name') | join(', ') %}
+#       {%- set switches_on = switches | selectattr('state','eq','on') | list %} 
+#       {%- set switches_name = switches | selectattr('state','eq','on') | map(attribute='name') | join(', ') %}
+#       {%- if (lights_on | length == 0) and (switches_on | length > 0) -%} 
+#         {{ switches_name | regex_replace(',([^,]*)$',' on\\1') }} is
+#       {%- elif (lights_on | length == 1) and (switches_on | length == 1) -%}
+#         {{ lights_name }} och {{switches_name }} is
+#       {%- elif (lights_on | length == 1) and (switches_on | length > 1) -%}
+#         {{ lights_name }}, {{ switches_name | regex_replace(',([^,]*)$',' on\\1') }} is
+#       {%- elif (lights_on | length > 1) and (switches_on | length == 1) -%}
+#         {{ lights_on | length }} lights and {{ switches_name }} is
+#       {%- elif (lights_on | length > 1) and (switches_on | length > 1) -%}
+#         {{ lights_on | length }} lights, {{ switches_name | regex_replace(',([^,]*)$',' on\\1') }} is
+#       {%- elif (lights_on | length == 1) and (switches_on | length == 0) -%}
+#         {{ lights_name }} is
+#       {%- elif (lights_on | length > 1) and (switches_on | length == 0) -%}
+#         {{ lights_on | length }} on
+#       {%- else %}
+#         <font color='#6a7377'>All Lights Off</font>
+#       {%- endif -%}
+#       </b>

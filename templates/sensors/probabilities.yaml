@@ -1,30 +1,57 @@
 ####################################
 # Probabilities
 ####################################
-- unique_id: bathroom_occupied_probability
+# Areas
+- unique_id: area_bathroom_probability
+  name: Area - Bathroom Probability
+  state_class: measurement
   unit_of_measurement: "%"
-  state: "{{ (state_attr('binary_sensor.bathroom_occupied','probability')*100 | int) | round(0) }}"
-- unique_id: study_occupied_probability
+  state: "{{ (state_attr('binary_sensor.area_bathroom_occupied','probability')*100 | int) | round(0) }}"
+
+- unique_id: area_bedroom
+  name: Area - Bedroom Probability
+  state_class: measurement
   unit_of_measurement: "%"
-  state: "{{ (state_attr('binary_sensor.study_occupied','probability')*100 | int) | round(0) }}"
-- unique_id: lounge_occupied_probability
+  state: "{{ (state_attr('binary_sensor.area_bedroom_occupied','probability')*100 | int) | round(0) }}"
+
+- unique_id: area_entrance_probability
+  name: Area - Entrance Probability
+  state_class: measurement
   unit_of_measurement: "%"
-  state: "{{ (state_attr('binary_sensor.lounge_occupied','probability')*100 | int) | round(0) }}"
-- unique_id: hall_occupied_probability
+  state: "{{ (state_attr('binary_sensor.area_entrance_occupied','probability')*100 | int) | round(0) }}"
+
+- unique_id: area_hall_probability
+  name: Area - Hall Probability
   unit_of_measurement: "%"
-  state: "{{ (state_attr('binary_sensor.hall_occupied','probability')*100 | int) | round(0) }}"
-- unique_id: toilet_occupied_probability
+  state: "{{ (state_attr('binary_sensor.area_hall_occupied','probability')*100 | int) | round(0) }}"
+
+- unique_id: area_kitchen_probability
+  name: Area - Kitchen Probability
+  state_class: measurement
   unit_of_measurement: "%"
-  state: "{{ (state_attr('binary_sensor.toilet_occupied','probability')*100 | int) | round(0) }}"
-- unique_id: kitchen_occupied_probability
+  state: "{{ (state_attr('binary_sensor.area_kitchen_occupied','probability')*100 | int) | round(0) }}"
+
+- unique_id: area_lounge_probability
+  name: Area - Lounge Probability
+  state_class: measurement
   unit_of_measurement: "%"
-  state: "{{ (state_attr('binary_sensor.kitchen_occupied','probability')*100 | int) | round(0) }}"
-- unique_id: bedroom_occupied_probability
+  state: "{{ (state_attr('binary_sensor.area_lounge_occupied','probability')*100 | int) | round(0) }}"
+
+- unique_id: area_study_probability
+  name: Area - Study Probability
+  state_class: measurement
   unit_of_measurement: "%"
-  state: "{{ (state_attr('binary_sensor.bedroom_occupied','probability')*100 | int) | round(0) }}"
-- unique_id: entrance_occupied_probability
+  state: "{{ (state_attr('binary_sensor.area_study_occupied','probability')*100 | int) | round(0) }}"
+
+- unique_id: area_toilet_probability
+  name: Area - Toilet Probability
+  state_class: measurement
   unit_of_measurement: "%"
-  state: "{{ (state_attr('binary_sensor.entrance_occupied','probability')*100 | int) | round(0) }}"
+  state: "{{ (state_attr('binary_sensor.area_toilet_occupied','probability')*100 | int) | round(0) }}"
+
+# Other
 - unique_id: in_bed_probability
+  name: In Bed Probability
+  state_class: measurement
   unit_of_measurement: "%"
-  state: "{{ (state_attr('binary_sensor.in_bed','probability')*100 | int) | round(0) }}"
+  state: "{{ (state_attr('binary_sensor.bed_occupied','probability')*100 | int) | round(0) }}"

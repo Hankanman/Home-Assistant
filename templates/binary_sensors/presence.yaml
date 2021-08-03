@@ -1,12 +1,6 @@
 ####################################
-# Presence Binary Sensors
+# Presence
 ####################################
-- unique_id: shower_occupied
-  name: "Shower Occupied"
-  device_class: occupancy
-  state: >-
-    {{ (states('sensor.bathroom_multisensor_humidity')| float > (states('sensor.bathroom_humidity_statistics')| float + states('input_number.bathroom_humidity_offset')| float)) and states('binary_sensor.bathroom_humidity_trend') }}
-
 ####################################
 # People Home Binary Sensors
 ####################################
@@ -14,7 +8,7 @@
   name: "People Home"
   icon: "mdi:home"
   device_class: presence
-  state: "{{ is_state('person.laura_ward', 'home') or is_state('person.sebastian_burrell', 'home') }}"
+  state: "{{ is_state_attr('sensor.laura_location', 'Location', 'Home') or is_state_attr('sensor.seb_location', 'Location', 'home') }}"
 
 ####################################
 # Sleeping Binary Sensors
