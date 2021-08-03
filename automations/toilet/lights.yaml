@@ -5,7 +5,7 @@ mode: queued
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.toilet_trisensor_motion
+    entity_id: binary_sensor.area_toilet_occupied
   - platform: state
     entity_id: binary_sensor.toilet_bright
   - platform: state
@@ -13,14 +13,14 @@ trigger:
 
 condition:
   - condition: state
-    entity_id: input_boolean.toilet_automations
+    entity_id: input_boolean.area_toilet_automations
     state: "on"
 
 action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.toilet_trisensor_motion
+            entity_id: binary_sensor.area_toilet_occupied
             state: "on"
           - condition: or
             conditions:
@@ -28,7 +28,7 @@ action:
                 entity_id: sun.sun
                 state: below_horizon
               - condition: state
-                entity_id: binary_sensor.toilet_bright
+                entity_id: binary_sensor.area_toilet_bright
                 state: "off"
         sequence:
           - service: light.turn_on

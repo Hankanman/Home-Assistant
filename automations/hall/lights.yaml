@@ -6,32 +6,25 @@ mode: queued
 trigger:
   - platform: state
     entity_id:
-      - binary_sensor.hall_trisensor_motion
-      - input_boolean.sleep_mode
-      - binary_sensor.hall_bright
+      - binary_sensor.area_hall_occupied
 
 condition:
   - condition: state
-    entity_id: input_boolean.hall_automations
+    entity_id: input_boolean.area_hall_automations
     state: "on"
 
 action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.hall_trisensor_motion
+            entity_id: binary_sensor.area_hall_occupied
             state: "on"
           - condition: state
             entity_id: input_boolean.sleep_mode
             state: "off"
-          - condition: or
-            conditions:
-              - condition: state
-                entity_id: sun.sun
-                state: below_horizon
-              - condition: state
-                entity_id: binary_sensor.hall_bright
-                state: "off"
+          - condition: state
+            entity_id: sun.sun
+            state: below_horizon
         sequence:
           - service: light.turn_on
             data:
@@ -40,19 +33,14 @@ action:
               entity_id: light.hall_lights
       - conditions:
           - condition: state
-            entity_id: binary_sensor.hall_trisensor_motion
+            entity_id: binary_sensor.area_hall_occupied
             state: "on"
           - condition: state
             entity_id: input_boolean.sleep_mode
             state: "on"
-          - condition: or
-            conditions:
-              - condition: state
-                entity_id: sun.sun
-                state: below_horizon
-              - condition: state
-                entity_id: binary_sensor.hall_bright
-                state: "off"
+          - condition: state
+            entity_id: sun.sun
+            state: below_horizon
         sequence:
           - service: light.turn_on
             data:

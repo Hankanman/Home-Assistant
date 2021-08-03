@@ -6,26 +6,24 @@ mode: queued
 trigger:
   - platform: state
     entity_id:
-      - binary_sensor.study_trisensor_motion
-      - binary_sensor.study_bright
-      - binary_sensor.seb_pc_active
+      - binary_sensor.area_study_occupied
       - sun.sun
 
 condition:
   - condition: state
-    entity_id: input_boolean.study_automations
+    entity_id: input_boolean.area_study_automations
     state: "on"
 
 action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.study_trisensor_motion
+            entity_id: binary_sensor.area_study_occupied
             state: "on"
           - condition: or
             conditions:
               - condition: state
-                entity_id: binary_sensor.study_bright
+                entity_id: binary_sensor.area_study_bright
                 state: "off"
               - condition: state
                 entity_id: sun.sun
@@ -35,20 +33,20 @@ action:
             data:
               brightness_pct: 100
             target:
-              area_id: study
+              entity_id: light.study_lights
     default:
       - condition: and
         conditions:
           - condition: state
-            entity_id: binary_sensor.study_trisensor_motion
+            entity_id: binary_sensor.area_study_occupied
             state: "off"
           - condition: or
             conditions:
               - condition: state
-                entity_id: binary_sensor.seb_pc_active
+                entity_id: binary_sensor.starrunner_active
                 state: "off"
               - condition: state
-                entity_id: binary_sensor.seb_pc_active
+                entity_id: binary_sensor.starrunner_active
                 state: unavailable
       - service: light.turn_off
         target:

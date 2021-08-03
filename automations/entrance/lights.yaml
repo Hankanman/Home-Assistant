@@ -4,24 +4,24 @@ description: ""
 mode: queued
 
 trigger:
-  - entity_id: binary_sensor.entrance_door
+  - entity_id: binary_sensor.dor_03_contact
     platform: state
     to: "on"
-  - entity_id: binary_sensor.entrance_door
+  - entity_id: binary_sensor.dor_03_contact
     for: 00:00:30
     platform: state
     to: "off"
 
 condition:
   - condition: state
-    entity_id: input_boolean.entrance_automations
+    entity_id: input_boolean.area_entrance_automations
     state: "on"
 
 action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.entrance_door
+            entity_id: binary_sensor.dor_03_contact
             state: "on"
           - condition: state
             entity_id: sun.sun

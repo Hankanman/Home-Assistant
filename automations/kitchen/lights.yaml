@@ -10,32 +10,23 @@ trigger:
     event_type: automation_reloaded
   - platform: state
     entity_id:
-      - binary_sensor.kitchen_occupied
-      - binary_sensor.kitchen_trisensor_motion
-      - sun.sun
-      - binary_sensor.kitchen_bright
-      - input_number.kitchen_lux_level
-      - sensor.kitchen_trisensor_illuminance
-      - binary_sensor.people_kitchen
-      - sensor.seb_phone_ble_room_presence
-      - sensor.laura_phone_ble_room_presence
-      - binary_sensor.kitchen_temperature_trend
+      - binary_sensor.area_kitchen_occupied
 
 condition:
   - condition: state
-    entity_id: input_boolean.kitchen_automations
+    entity_id: input_boolean.area_kitchen_automations
     state: "on"
 
 action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.kitchen_occupied
+            entity_id: binary_sensor.area_kitchen_occupied
             state: "on"
           - condition: or
             conditions:
               - condition: state
-                entity_id: binary_sensor.kitchen_bright
+                entity_id: binary_sensor.area_kitchen_bright
                 state: "off"
               - condition: state
                 entity_id: sun.sun
@@ -48,7 +39,7 @@ action:
               entity_id: light.kitchen_lights
     default:
       - condition: state
-        entity_id: binary_sensor.kitchen_occupied
+        entity_id: binary_sensor.area_kitchen_occupied
         state: "off"
       - service: light.turn_off
         target:

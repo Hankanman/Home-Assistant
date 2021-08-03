@@ -6,18 +6,11 @@ mode: queued
 trigger:
   - platform: state
     entity_id:
-      - sensor.bathroom_multisensor_humidity
-      - binary_sensor.bathroom_occupied
-      - binary_sensor.shower_occupied
-      - binary_sensor.bathroom_humidity_trend
-      - binary_sensor.bathroom_temperature_trend
-      - binary_sensor.bathroom_multisensor_motion
-      - binary_sensor.mot_01_occupancy
-      - input_boolean.bathroom_schedule
+      - binary_sensor.area_bathroom_occupied
 
 condition:
   - condition: state
-    entity_id: input_boolean.bathroom_automations
+    entity_id: input_boolean.area_bathroom_automations
     state: "on"
 
 action:
@@ -25,7 +18,7 @@ action:
       - conditions:
           - condition: state
             state: "on"
-            entity_id: binary_sensor.bathroom_occupied
+            entity_id: binary_sensor.area_bathroom_occupied
         sequence:
           - service: light.turn_on
             data:
@@ -34,7 +27,7 @@ action:
               area_id: bathroom
     default:
       - condition: state
-        entity_id: binary_sensor.bathroom_occupied
+        entity_id: binary_sensor.area_bathroom_occupied
         state: "off"
       - service: light.turn_off
         target:
