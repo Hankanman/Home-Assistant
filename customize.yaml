@@ -60,3 +60,25 @@ sensor.tmp_03_temperature:
   Area: Kitchen
   Location: Above Hob
   Battery Type: CR2450
+sensor.bedroom_trisensor_illuminance:
+  unit_of_measurement: lx
+sensor.bathroom_multisensor_illuminance:
+  unit_of_measurement: lx
+sensor.hall_trisensor_illuminance:
+  unit_of_measurement: lx
+sensor.kitchen_trisensor_illuminance:
+  unit_of_measurement: lx
+sensor.lounge_trisensor_illuminance:
+  unit_of_measurement: lx
+sensor.study_trisensor_illuminance:
+  unit_of_measurement: lx
+sensor.toilet_trisensor_illuminance:
+  unit_of_measurement: lx
+binary_sensor.win_01_contact:
+  device_class: window
+binary_sensor.win_02_contact:
+  device_class: window
+binary_sensor.win_03_contact:
+  device_class: window
+binary_sensor.win_04_contact:
+  device_class: window
