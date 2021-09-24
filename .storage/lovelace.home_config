@@ -8,7 +8,6 @@
                 {
                     "title": "Bright Sensors",
                     "path": "bright-sensors",
-                    "type": "custom:horizontal-layout",
                     "panel": false,
                     "badges": [],
                     "cards": [
@@ -16,24 +15,30 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.bathroom_bright"
-                                },
-                                {
-                                    "type": "sensor",
-                                    "entity": "sensor.bathroom_multisensor_illuminance",
-                                    "detail": 1,
-                                    "graph": "line",
-                                    "hours_to_show": 12
-                                },
-                                {
                                     "type": "entities",
                                     "entities": [
                                         {
-                                            "entity": "input_number.bathroom_lux_level"
+                                            "entity": "binary_sensor.area_bathroom_bright",
+                                            "type": "custom:secondaryinfo-entity-row",
+                                            "secondary_info": "Now at {{ state_attr('binary_sensor.area_bathroom_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.area_bathroom_bright', 'light_state') }}"
                                         }
                                     ],
                                     "show_header_toggle": false
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "input_number.area_bathroom_lux_level"
+                                        }
+                                    ],
+                                    "show_header_toggle": false,
+                                    "footer": {
+                                        "type": "graph",
+                                        "entity": "sensor.area_bathroom_illuminance",
+                                        "hours_to_show": 24,
+                                        "detail": 2
+                                    }
                                 }
                             ]
                         },
@@ -41,23 +46,30 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.bedroom_bright"
-                                },
-                                {
-                                    "type": "sensor",
-                                    "graph": "line",
-                                    "entity": "sensor.bedroom_trisensor_illuminance",
-                                    "detail": 2,
-                                    "hours_to_show": 12
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.area_bedroom_bright",
+                                            "type": "custom:secondaryinfo-entity-row",
+                                            "secondary_info": "Now at {{ state_attr('binary_sensor.area_bedroom_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.area_bedroom_bright', 'light_state') }}"
+                                        }
+                                    ],
+                                    "show_header_toggle": false
                                 },
                                 {
                                     "type": "entities",
                                     "entities": [
                                         {
-                                            "entity": "input_number.bedroom_lux_level"
+                                            "entity": "input_number.area_bedroom_lux_level"
                                         }
-                                    ]
+                                    ],
+                                    "show_header_toggle": false,
+                                    "footer": {
+                                        "type": "graph",
+                                        "entity": "sensor.area_bedroom_illuminance",
+                                        "hours_to_show": 24,
+                                        "detail": 2
+                                    }
                                 }
                             ]
                         },
@@ -65,23 +77,30 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.hall_bright"
-                                },
-                                {
-                                    "type": "sensor",
-                                    "graph": "line",
-                                    "entity": "sensor.hall_trisensor_illuminance",
-                                    "detail": 2,
-                                    "hours_to_show": 12
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.area_entrance_bright",
+                                            "type": "custom:secondaryinfo-entity-row",
+                                            "secondary_info": "Now at {{ state_attr('binary_sensor.area_entrance_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.area_entrance_bright', 'light_state') }}"
+                                        }
+                                    ],
+                                    "show_header_toggle": false
                                 },
                                 {
                                     "type": "entities",
                                     "entities": [
                                         {
-                                            "entity": "input_number.hall_lux_level"
+                                            "entity": "input_number.area_entrance_lux_level"
                                         }
-                                    ]
+                                    ],
+                                    "show_header_toggle": false,
+                                    "footer": {
+                                        "type": "graph",
+                                        "entity": "sensor.area_entrance_illuminance",
+                                        "hours_to_show": 24,
+                                        "detail": 2
+                                    }
                                 }
                             ]
                         },
@@ -89,23 +108,30 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.kitchen_bright"
-                                },
-                                {
-                                    "type": "sensor",
-                                    "graph": "line",
-                                    "entity": "sensor.kitchen_trisensor_illuminance",
-                                    "detail": 2,
-                                    "hours_to_show": 12
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.area_hall_bright",
+                                            "type": "custom:secondaryinfo-entity-row",
+                                            "secondary_info": "Now at {{ state_attr('binary_sensor.area_hall_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.area_hall_bright', 'light_state') }}"
+                                        }
+                                    ],
+                                    "show_header_toggle": false
                                 },
                                 {
                                     "type": "entities",
                                     "entities": [
                                         {
-                                            "entity": "input_number.kitchen_lux_level"
+                                            "entity": "input_number.area_hall_lux_level"
                                         }
-                                    ]
+                                    ],
+                                    "show_header_toggle": false,
+                                    "footer": {
+                                        "type": "graph",
+                                        "entity": "sensor.area_hall_illuminance",
+                                        "hours_to_show": 24,
+                                        "detail": 2
+                                    }
                                 }
                             ]
                         },
@@ -113,23 +139,30 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.lounge_bright"
-                                },
-                                {
-                                    "type": "sensor",
-                                    "graph": "line",
-                                    "entity": "sensor.lounge_trisensor_illuminance",
-                                    "detail": 2,
-                                    "hours_to_show": 12
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.area_kitchen_bright",
+                                            "type": "custom:secondaryinfo-entity-row",
+                                            "secondary_info": "Now at {{ state_attr('binary_sensor.area_kitchen_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.area_kitchen_bright', 'light_state') }}"
+                                        }
+                                    ],
+                                    "show_header_toggle": false
                                 },
                                 {
                                     "type": "entities",
                                     "entities": [
                                         {
-                                            "entity": "input_number.lounge_lux_level"
+                                            "entity": "input_number.area_kitchen_lux_level"
                                         }
-                                    ]
+                                    ],
+                                    "show_header_toggle": false,
+                                    "footer": {
+                                        "type": "graph",
+                                        "entity": "sensor.area_kitchen_illuminance",
+                                        "hours_to_show": 24,
+                                        "detail": 2
+                                    }
                                 }
                             ]
                         },
@@ -137,23 +170,30 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.study_bright"
-                                },
-                                {
-                                    "type": "sensor",
-                                    "graph": "line",
-                                    "entity": "sensor.study_trisensor_illuminance",
-                                    "detail": 2,
-                                    "hours_to_show": 24
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.area_lounge_bright",
+                                            "type": "custom:secondaryinfo-entity-row",
+                                            "secondary_info": "Now at {{ state_attr('binary_sensor.area_lounge_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.area_lounge_bright', 'light_state') }}"
+                                        }
+                                    ],
+                                    "show_header_toggle": false
                                 },
                                 {
                                     "type": "entities",
                                     "entities": [
                                         {
-                                            "entity": "input_number.study_lux_level"
+                                            "entity": "input_number.area_lounge_lux_level"
                                         }
-                                    ]
+                                    ],
+                                    "show_header_toggle": false,
+                                    "footer": {
+                                        "type": "graph",
+                                        "entity": "sensor.area_lounge_illuminance",
+                                        "hours_to_show": 24,
+                                        "detail": 2
+                                    }
                                 }
                             ]
                         },
@@ -161,23 +201,30 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.toilet_bright"
-                                },
-                                {
-                                    "type": "sensor",
-                                    "graph": "line",
-                                    "entity": "sensor.toilet_trisensor_illuminance",
-                                    "detail": 2,
-                                    "hours_to_show": 12
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.area_study_bright",
+                                            "type": "custom:secondaryinfo-entity-row",
+                                            "secondary_info": "Now at {{ state_attr('binary_sensor.area_study_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.area_study_bright', 'light_state') }}"
+                                        }
+                                    ],
+                                    "show_header_toggle": false
                                 },
                                 {
                                     "type": "entities",
                                     "entities": [
                                         {
-                                            "entity": "input_number.toilet_lux_level"
+                                            "entity": "input_number.area_study_lux_level"
                                         }
-                                    ]
+                                    ],
+                                    "show_header_toggle": false,
+                                    "footer": {
+                                        "type": "graph",
+                                        "entity": "sensor.area_study_illuminance",
+                                        "hours_to_show": 24,
+                                        "detail": 2
+                                    }
                                 }
                             ]
                         },
@@ -185,24 +232,30 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.entrance_bright"
-                                },
-                                {
-                                    "type": "sensor",
-                                    "name": "Entrance Illuminance",
-                                    "graph": "line",
-                                    "entity": "sensor.fire_tablet_illuminance",
-                                    "detail": 2,
-                                    "hours_to_show": 12
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.area_toilet_bright",
+                                            "type": "custom:secondaryinfo-entity-row",
+                                            "secondary_info": "Now at {{ state_attr('binary_sensor.area_toilet_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.area_toilet_bright', 'light_state') }}"
+                                        }
+                                    ],
+                                    "show_header_toggle": false
                                 },
                                 {
                                     "type": "entities",
                                     "entities": [
                                         {
-                                            "entity": "input_number.entrance_lux_level"
+                                            "entity": "input_number.area_toilet_lux_level"
                                         }
-                                    ]
+                                    ],
+                                    "show_header_toggle": false,
+                                    "footer": {
+                                        "type": "graph",
+                                        "entity": "sensor.area_toilet_illuminance",
+                                        "hours_to_show": 24,
+                                        "detail": 2
+                                    }
                                 }
                             ]
                         }
@@ -219,141 +272,10 @@
                             "time_step": 30,
                             "include": [
                                 "climate",
-                                "input_boolean.bathroom_automations",
-                                "input_boolean.bathroom_schedule",
-                                "input_boolean.bedroom_automations",
-                                "input_boolean.bedroom_schedule",
-                                "input_boolean.entrance_automations",
-                                "input_boolean.hall_automations",
-                                "input_boolean.home_automations",
-                                "input_boolean.kitchen_automations",
-                                "input_boolean.kitchen_schedule",
-                                "input_boolean.lounge_automations",
-                                "input_boolean.lounge_schedule",
-                                "input_boolean.sleep_schedule",
-                                "input_boolean.study_automations",
-                                "input_boolean.study_schedule",
-                                "input_boolean.toilet_automations"
+                                "input_boolean"
                             ],
-                            "title": false
-                        }
-                    ]
-                },
-                {
-                    "title": "Mobile",
-                    "path": "mobile",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "map",
-                            "entities": [
-                                "device_tracker.seb_phone",
-                                "device_tracker.laura_phone"
-                            ],
-                            "dark_mode": true,
-                            "hours_to_show": 12
-                        },
-                        {
-                            "type": "custom:slider-button-card",
-                            "entity": "light.bedroom_lamp",
-                            "slider": {
-                                "direction": "left-right",
-                                "background": "solid",
-                                "use_state_color": true,
-                                "use_percentage_bg_opacity": true,
-                                "show_track": false,
-                                "toggle_on_click": false,
-                                "force_square": false
-                            },
-                            "show_name": true,
-                            "show_state": false,
-                            "icon": {
-                                "show": true,
-                                "use_state_color": false,
-                                "tap_action": {
-                                    "action": "toggle"
-                                },
-                                "icon": ""
-                            },
-                            "action_button": {
-                                "mode": "toggle",
-                                "icon": "mdi:power",
-                                "show": false,
-                                "show_spinner": true,
-                                "tap_action": {
-                                    "action": "toggle"
-                                }
-                            }
-                        },
-                        {
-                            "type": "custom:digital-clock"
-                        },
-                        {
-                            "type": "custom:simple-thermostat",
-                            "entity": "climate.study",
-                            "layout": {
-                                "mode": {
-                                    "headings": false,
-                                    "icons": false,
-                                    "names": true
-                                },
-                                "step": "row"
-                            },
-                            "header": false,
-                            "step_size": "0.5",
-                            "fallback": "10",
-                            "view_layout": {
-                                "mode": {
-                                    "headings": false,
-                                    "icons": true,
-                                    "names": true
-                                },
-                                "step": "row"
-                            }
-                        },
-                        {
-                            "type": "custom:sun-card"
-                        },
-                        {
-                            "type": "custom:uptime-card",
-                            "entity": "binary_sensor.seb_pc_online",
-                            "name": "PC Uptime",
-                            "blink": {
-                                "effect": "fade",
-                                "target": "icon"
-                            },
-                            "alignment": {
-                                "header": "left",
-                                "icon_first": true,
-                                "tooltip_first": true,
-                                "status": "spaced"
-                            },
-                            "tap_action": {
-                                "action": "call-service",
-                                "haptic": "success"
-                            },
-                            "tooltip": {
-                                "hour24": true
-                            },
-                            "alias": {
-                                "ok": "Online",
-                                "ko": "Offline"
-                            },
-                            "show": {
-                                "header": false,
-                                "title": false,
-                                "footer": true,
-                                "average": true,
-                                "timeline": true,
-                                "status": true,
-                                "icon": false
-                            },
-                            "title_adaptive_color": true,
-                            "status_adaptive_color": true,
-                            "icon_adaptive_color": false,
-                            "tooltip_adaptive_color": false,
-                            "bar": {},
-                            "color": {}
+                            "title": false,
+                            "discover_existing": true
                         }
                     ]
                 }

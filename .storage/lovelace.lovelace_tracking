@@ -3,931 +3,1113 @@
     "key": "lovelace.lovelace_tracking",
     "data": {
         "config": {
-            "custom_header": {
-                "compact_mode": true,
-                "button_text": {
-                    "options": "{{ hours24 }}:{{ minutesLZ }}"
-                }
-            },
-            "background": "var(--background-image)",
             "views": [
                 {
                     "title": "Bayesian Graphs",
                     "path": "bayesian-graphs",
                     "icon": "mdi:percent",
-                    "type": "custom:horizontal-layout",
-                    "badges": [],
-                    "cards": [
+                    "layout": {},
+                    "type": "sidebar",
+                    "badges": [
                         {
-                            "type": "glance",
-                            "entities": [
-                                {
-                                    "entity": "binary_sensor.study_occupied",
-                                    "name": "Study"
-                                },
-                                {
-                                    "entity": "binary_sensor.bathroom_occupied",
-                                    "name": "Bathroom"
-                                },
-                                {
-                                    "entity": "binary_sensor.bedroom_occupied",
-                                    "name": "Bedroom"
-                                },
-                                {
-                                    "entity": "binary_sensor.entrance_occupied",
-                                    "name": "Entrance"
-                                },
-                                {
-                                    "entity": "binary_sensor.hall_occupied",
-                                    "name": "Hall"
-                                },
-                                {
-                                    "entity": "binary_sensor.kitchen_occupied",
-                                    "name": "Kitchen"
-                                },
-                                {
-                                    "entity": "binary_sensor.lounge_occupied",
-                                    "name": "Lounge"
-                                },
-                                {
-                                    "entity": "binary_sensor.toilet_occupied",
-                                    "name": "Toilet"
-                                },
-                                {
-                                    "entity": "binary_sensor.in_bed"
-                                }
-                            ],
-                            "show_name": true,
-                            "show_icon": true,
-                            "show_state": false,
-                            "state_color": true
+                            "entity": "binary_sensor.area_bathroom_occupied"
                         },
                         {
-                            "type": "custom:stack-in-card",
-                            "view_layout": {
-                                "grid-area": "graph"
-                            },
-                            "cards": [
-                                {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.bathroom_occupied"
-                                },
-                                {
-                                    "type": "custom:mini-graph-card",
-                                    "name": "Bathroom",
-                                    "animate": true,
-                                    "show": {
-                                        "legend": false,
-                                        "icon": false,
-                                        "name": false
-                                    },
-                                    "line_width": 1,
-                                    "points_per_hour": 60,
-                                    "hours_to_show": 1,
-                                    "entities": [
-                                        "sensor.bathroom_occupied_probability",
-                                        "binary_sensor.bathroom_occupied"
-                                    ]
-                                },
-                                {
-                                    "type": "entity-filter",
-                                    "card": {
-                                        "type": "glance",
-                                        "show_icon": false
-                                    },
-                                    "state_filter": [
-                                        "on"
-                                    ],
-                                    "entities": [
-                                        {
-                                            "entity": "binary_sensor.shower_occupied",
-                                            "name": "Shower"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.bathroom_multisensor_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.bathroom_humidity_trend",
-                                            "name": "Humidity"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.bathroom_temperature_trend",
-                                            "name": "Temp"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.bathroom_bright",
-                                            "name": "Bright"
-                                        },
-                                        {
-                                            "entity": "input_boolean.bathroom_schedule",
-                                            "name": "Schedule"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "glance",
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.ratio_bathroom_humidity_trend",
-                                            "name": "Humidity"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_bathroom_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_bathroom_temperature_trend",
-                                            "name": "Temp"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_bathroom_bright",
-                                            "name": "Bright"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_shower_occupied",
-                                            "name": "Shower"
-                                        }
-                                    ],
-                                    "show_icon": false
-                                }
-                            ]
+                            "entity": "binary_sensor.area_bedroom_occupied"
                         },
                         {
-                            "type": "custom:stack-in-card",
-                            "view_layout": {
-                                "grid-area": "graph"
-                            },
-                            "cards": [
-                                {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.bedroom_occupied"
-                                },
-                                {
-                                    "type": "custom:mini-graph-card",
-                                    "animate": true,
-                                    "show": {
-                                        "legend": false,
-                                        "icon": false,
-                                        "name": false
-                                    },
-                                    "line_width": 1,
-                                    "points_per_hour": 60,
-                                    "hours_to_show": 1,
-                                    "entities": [
-                                        "sensor.bedroom_occupied_probability"
-                                    ]
-                                },
-                                {
-                                    "type": "entity-filter",
-                                    "card": {
-                                        "type": "glance",
-                                        "show_icon": false
-                                    },
-                                    "state_filter": [
-                                        "on",
-                                        "Bedroom",
-                                        "playing"
-                                    ],
-                                    "entities": [
-                                        {
-                                            "entity": "binary_sensor.bedroom_trisensor_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "sensor.seb_phone_ble_room_presence",
-                                            "name": "Seb BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.laura_phone_ble_room_presence",
-                                            "name": "Laura BLE"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.seb_sleeping",
-                                            "name": "S Sleep"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.laura_sleeping",
-                                            "name": "L Sleep"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.in_bed",
-                                            "name": "In Bed"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.bedroom_bright",
-                                            "name": "Bright"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.people_bedroom",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "media_player.bedroom_echo",
-                                            "name": "Speaker"
-                                        },
-                                        {
-                                            "entity": "media_player.bedroom_tv",
-                                            "name": "TV"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "glance",
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.ratio_bedroom_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_seb_bedroom_presence",
-                                            "name": "Seb BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_seb_sleeping",
-                                            "name": "S Sleep"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_laura_bedroom_presence",
-                                            "name": "Laura BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_laura_sleeping",
-                                            "name": "L Sleep"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_bedroom_in_bed",
-                                            "name": "In Bed"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_bedroom_bright",
-                                            "name": "Bright"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_people_bedroom",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_bedroom_speaker_playing",
-                                            "name": "Speaker"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_bedroom_tv_playing",
-                                            "name": "TV"
-                                        }
-                                    ],
-                                    "show_icon": false
-                                }
-                            ]
+                            "entity": "binary_sensor.area_entrance_occupied"
                         },
                         {
-                            "type": "custom:stack-in-card",
-                            "view_layout": {
-                                "grid-area": "graph"
-                            },
-                            "cards": [
-                                {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.in_bed"
-                                },
-                                {
-                                    "type": "custom:mini-graph-card",
-                                    "animate": true,
-                                    "show": {
-                                        "legend": false,
-                                        "icon": false,
-                                        "name": false
-                                    },
-                                    "line_width": 1,
-                                    "points_per_hour": 60,
-                                    "hours_to_show": 1,
-                                    "entities": [
-                                        "sensor.in_bed_probability"
-                                    ]
-                                },
-                                {
-                                    "type": "entity-filter",
-                                    "card": {
-                                        "type": "glance",
-                                        "show_icon": false
-                                    },
-                                    "state_filter": [
-                                        "on",
-                                        "below_horizon",
-                                        "Bedroom",
-                                        "playing"
-                                    ],
-                                    "entities": [
-                                        {
-                                            "entity": "binary_sensor.bedroom_trisensor_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "sensor.seb_phone_ble_room_presence",
-                                            "name": "Seb BLE"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.seb_sleeping",
-                                            "name": "Seb Sleep"
-                                        },
-                                        {
-                                            "entity": "sensor.laura_phone_ble_room_presence",
-                                            "name": "Laura BLE"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.laura_sleeping",
-                                            "name": "Laura Sleep"
-                                        },
-                                        {
-                                            "entity": "sun.sun",
-                                            "name": "Sun"
-                                        },
-                                        {
-                                            "entity": "input_boolean.sleep_schedule",
-                                            "name": "Schedule"
-                                        },
-                                        {
-                                            "entity": "media_player.bedroom_echo",
-                                            "name": "Speaker"
-                                        },
-                                        {
-                                            "entity": "media_player.bedroom_tv",
-                                            "name": "TV"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "glance",
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.ratio_bedroom_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_people_bedroom",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_seb_bedroom_presence",
-                                            "name": "Seb BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_seb_sleeping",
-                                            "name": "Seb Sleep"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_laura_bedroom_presence",
-                                            "name": "Laura BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_laura_sleeping",
-                                            "name": "Laura Sleep"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_bedroom_speaker_playing",
-                                            "name": "Speaker"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_bedroom_tv_playing",
-                                            "name": "TV"
-                                        }
-                                    ],
-                                    "show_icon": false
-                                }
-                            ]
+                            "entity": "binary_sensor.area_hall_occupied"
                         },
                         {
-                            "type": "custom:stack-in-card",
-                            "view_layout": {
-                                "grid-area": "graph"
-                            },
-                            "cards": [
-                                {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.entrance_occupied"
-                                },
-                                {
-                                    "type": "custom:mini-graph-card",
-                                    "animate": true,
-                                    "show": {
-                                        "legend": false,
-                                        "icon": false,
-                                        "name": false
-                                    },
-                                    "line_width": 1,
-                                    "points_per_hour": 60,
-                                    "hours_to_show": 1,
-                                    "entities": [
-                                        "sensor.entrance_occupied_probability"
-                                    ]
-                                },
-                                {
-                                    "type": "entity-filter",
-                                    "card": {
-                                        "type": "glance",
-                                        "show_icon": false
-                                    },
-                                    "state_filter": [
-                                        "on"
-                                    ],
-                                    "entities": [
-                                        {
-                                            "entity": "binary_sensor.people_entrance",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.front_door_motion",
-                                            "name": "Outside Motion"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.entrance_door",
-                                            "name": "Door Open"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "glance",
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.ratio_people_entrance",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_entrance_door_motion",
-                                            "name": "Outside Motion"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_entrance_door_open",
-                                            "name": "Door Open"
-                                        }
-                                    ],
-                                    "show_icon": false
-                                }
-                            ]
+                            "entity": "binary_sensor.area_kitchen_occupied"
                         },
                         {
-                            "type": "custom:stack-in-card",
-                            "view_layout": {
-                                "grid-area": "graph"
-                            },
-                            "cards": [
-                                {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.hall_occupied"
-                                },
-                                {
-                                    "type": "custom:mini-graph-card",
-                                    "animate": true,
-                                    "show": {
-                                        "legend": false,
-                                        "icon": false,
-                                        "name": false
-                                    },
-                                    "line_width": 1,
-                                    "points_per_hour": 60,
-                                    "hours_to_show": 1,
-                                    "entities": [
-                                        "sensor.hall_occupied_probability"
-                                    ]
-                                },
-                                {
-                                    "type": "entity-filter",
-                                    "card": {
-                                        "type": "glance",
-                                        "show_icon": false
-                                    },
-                                    "state_filter": [
-                                        "on"
-                                    ],
-                                    "entities": [
-                                        {
-                                            "entity": "binary_sensor.hall_trisensor_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.people_hall",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.hall_bright",
-                                            "name": "Bright"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "glance",
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.ratio_hall_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_people_hall",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_hall_bright",
-                                            "name": "Bright"
-                                        }
-                                    ],
-                                    "show_icon": false
-                                }
-                            ]
+                            "entity": "binary_sensor.area_lounge_occupied"
                         },
                         {
-                            "type": "custom:stack-in-card",
-                            "view_layout": {
-                                "grid-area": "graph"
-                            },
-                            "cards": [
-                                {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.kitchen_occupied"
-                                },
-                                {
-                                    "type": "custom:mini-graph-card",
-                                    "animate": true,
-                                    "show": {
-                                        "legend": false,
-                                        "icon": false,
-                                        "name": false
-                                    },
-                                    "line_width": 1,
-                                    "points_per_hour": 60,
-                                    "hours_to_show": 1,
-                                    "entities": [
-                                        "sensor.kitchen_occupied_probability"
-                                    ]
-                                },
-                                {
-                                    "type": "entity-filter",
-                                    "card": {
-                                        "type": "glance",
-                                        "show_icon": false
-                                    },
-                                    "state_filter": [
-                                        "on"
-                                    ],
-                                    "entities": [
-                                        {
-                                            "entity": "binary_sensor.kitchen_trisensor_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.people_kitchen",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "sensor.seb_phone_ble_room_presence",
-                                            "name": "Seb BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.laura_phone_ble_room_presence",
-                                            "name": "Laura BLE"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.kitchen_temperature_trend",
-                                            "name": "Temp"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.kitchen_bright",
-                                            "name": "Bright"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "glance",
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.ratio_people_kitchen",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_people_kitchen",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_seb_kitchen_presence",
-                                            "name": "Seb BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_laura_kitchen_presence",
-                                            "name": "Laura BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_kitchen_temperature_trend",
-                                            "name": "Temp"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_kitchen_bright",
-                                            "name": "Bright"
-                                        }
-                                    ],
-                                    "show_icon": false
-                                }
-                            ]
+                            "entity": "binary_sensor.area_study_occupied"
                         },
                         {
-                            "type": "custom:stack-in-card",
-                            "view_layout": {
-                                "grid-area": "graph"
-                            },
-                            "cards": [
-                                {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.lounge_occupied"
-                                },
-                                {
-                                    "type": "custom:mini-graph-card",
-                                    "animate": true,
-                                    "show": {
-                                        "legend": false,
-                                        "icon": false,
-                                        "name": false
-                                    },
-                                    "line_width": 1,
-                                    "points_per_hour": 60,
-                                    "hours_to_show": 1,
-                                    "entities": [
-                                        "sensor.lounge_occupied_probability"
-                                    ]
-                                },
-                                {
-                                    "type": "entity-filter",
-                                    "card": {
-                                        "type": "glance",
-                                        "show_icon": false
-                                    },
-                                    "state_filter": [
-                                        "on",
-                                        "Lounge",
-                                        "playing"
-                                    ],
-                                    "entities": [
-                                        {
-                                            "entity": "binary_sensor.lounge_trisensor_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.people_lounge",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "sensor.seb_phone_ble_room_presence",
-                                            "name": "Seb BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.laura_phone_ble_room_presence",
-                                            "name": "Laura BLE"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.lounge_bright",
-                                            "name": "Bright"
-                                        },
-                                        {
-                                            "entity": "media_player.lounge_tv",
-                                            "name": "TV"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "glance",
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.ratio_lounge_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_people_lounge",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_seb_lounge_presence",
-                                            "name": "Seb BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_laura_lounge_presence",
-                                            "name": "Laura BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_lounge_bright",
-                                            "name": "Bright"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_lounge_tv_playing",
-                                            "name": "TV"
-                                        }
-                                    ],
-                                    "show_icon": false
-                                }
-                            ]
-                        },
-                        {
-                            "type": "custom:stack-in-card",
-                            "view_layout": {
-                                "grid-area": "graph"
-                            },
-                            "cards": [
-                                {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.study_occupied"
-                                },
-                                {
-                                    "type": "custom:mini-graph-card",
-                                    "animate": true,
-                                    "show": {
-                                        "legend": false,
-                                        "icon": false,
-                                        "name": false
-                                    },
-                                    "line_width": 1,
-                                    "points_per_hour": 60,
-                                    "hours_to_show": 1,
-                                    "entities": [
-                                        "sensor.study_occupied_probability"
-                                    ]
-                                },
-                                {
-                                    "type": "entity-filter",
-                                    "card": {
-                                        "type": "glance",
-                                        "show_icon": false
-                                    },
-                                    "state_filter": [
-                                        "on"
-                                    ],
-                                    "entities": [
-                                        {
-                                            "entity": "binary_sensor.people_study",
-                                            "name": "Person"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.study_trisensor_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.seb_pc_active",
-                                            "name": "PC"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.study_bright",
-                                            "name": "Bright"
-                                        },
-                                        {
-                                            "entity": "sensor.seb_phone_ble_room_presence",
-                                            "name": "Seb BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.laura_phone_ble_room_presence",
-                                            "name": "Laura BLE"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "glance",
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.ratio_people_study",
-                                            "name": "People"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_study_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_seb_pc_active",
-                                            "name": "PC"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_study_bright",
-                                            "name": "Bright"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_seb_study_presence",
-                                            "name": "Seb BLE"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_laura_study_presence",
-                                            "name": "Laura BLE"
-                                        }
-                                    ],
-                                    "show_icon": false
-                                }
-                            ]
-                        },
-                        {
-                            "type": "custom:stack-in-card",
-                            "view_layout": {
-                                "grid-area": "graph"
-                            },
-                            "cards": [
-                                {
-                                    "type": "entity",
-                                    "entity": "binary_sensor.toilet_occupied"
-                                },
-                                {
-                                    "type": "custom:mini-graph-card",
-                                    "animate": true,
-                                    "show": {
-                                        "legend": false,
-                                        "icon": false,
-                                        "name": false
-                                    },
-                                    "line_width": 1,
-                                    "points_per_hour": 60,
-                                    "hours_to_show": 1,
-                                    "entities": [
-                                        "sensor.toilet_occupied_probability"
-                                    ]
-                                },
-                                {
-                                    "type": "entity-filter",
-                                    "card": {
-                                        "type": "glance",
-                                        "show_icon": false
-                                    },
-                                    "state_filter": [
-                                        "on"
-                                    ],
-                                    "entities": [
-                                        {
-                                            "entity": "binary_sensor.toilet_trisensor_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "binary_sensor.toilet_bright",
-                                            "name": "Bright"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "glance",
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.ratio_toilet_motion",
-                                            "name": "Motion"
-                                        },
-                                        {
-                                            "entity": "sensor.ratio_toilet_bright",
-                                            "name": "Bright"
-                                        }
-                                    ],
-                                    "show_icon": false
-                                }
-                            ]
+                            "entity": "binary_sensor.area_toilet_occupied"
                         }
-                    ]
-                },
-                {
-                    "title": "Systems",
-                    "path": "systems",
-                    "icon": "mdi:raspberry-pi",
-                    "badges": [],
+                    ],
                     "cards": [
                         {
-                            "type": "glance",
-                            "entities": [
+                            "type": "custom:layout-card",
+                            "layout_type": "grid-layout",
+                            "layout": {
+                                "grid-template-columns": "repeat(auto-fill, minmax(30rem, 1fr))",
+                                "grid-auto-rows": "auto",
+                                "grid-auto-flow": "row",
+                                "mediaquery": {
+                                    "(max-width: 800px)": {
+                                        "grid-template-columns": "1fr"
+                                    }
+                                }
+                            },
+                            "cards": [
                                 {
-                                    "entity": "switch.endeavor_docker_amp"
+                                    "type": "custom:vertical-stack-in-card",
+                                    "title": "Bathroom",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "show": {
+                                                "name": false,
+                                                "icon": false
+                                            },
+                                            "line_width": 1,
+                                            "points_per_hour": 60,
+                                            "hours_to_show": 3,
+                                            "entities": [
+                                                "sensor.area_bathroom_probability"
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*bathroom*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "on"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "binary_sensor.area_bathroom_occupied"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*.stats_bathroom_*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "sensor.area_bathroom_probability"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*bathroom*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "off"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": {
+                                                            "type": "section",
+                                                            "label": "Other Entities"
+                                                        }
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "view_layout": {
+                                        "position": "main"
+                                    }
                                 },
                                 {
-                                    "entity": "switch.endeavor_docker_code"
+                                    "type": "custom:vertical-stack-in-card",
+                                    "title": "Bedroom",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "show": {
+                                                "name": false,
+                                                "icon": false
+                                            },
+                                            "line_width": 1,
+                                            "points_per_hour": 60,
+                                            "hours_to_show": 3,
+                                            "entities": [
+                                                "sensor.area_bedroom_probability"
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*bedroom*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "on"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "binary_sensor.area_bedroom_occupied"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*.stats_bedroom_*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "sensor.area_bedroom_probability"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*bedroom*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "off"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": {
+                                                            "type": "section",
+                                                            "label": "Other Entities"
+                                                        }
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "view_layout": {
+                                        "position": "main"
+                                    }
+                                },
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "title": "Entrance",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "show": {
+                                                "name": false,
+                                                "icon": false
+                                            },
+                                            "line_width": 1,
+                                            "points_per_hour": 60,
+                                            "hours_to_show": 3,
+                                            "entities": [
+                                                "sensor.area_entrance_probability"
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*entrance*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "on"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "binary_sensor.area_entrance_occupied"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*.stats_entrance_*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "sensor.area_entrance_probability"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*entrance*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "off"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": {
+                                                            "type": "section",
+                                                            "label": "Other Entities"
+                                                        }
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "view_layout": {
+                                        "position": "main"
+                                    }
+                                },
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "title": "Hall",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "show": {
+                                                "name": false,
+                                                "icon": false
+                                            },
+                                            "line_width": 1,
+                                            "points_per_hour": 60,
+                                            "hours_to_show": 3,
+                                            "entities": [
+                                                "sensor.area_hall_probability"
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*hall*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "on"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "binary_sensor.area_hall_occupied"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*.stats_hall_*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "sensor.area_hall_probability"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*hall*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "off"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": {
+                                                            "type": "section",
+                                                            "label": "Other Entities"
+                                                        }
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "view_layout": {
+                                        "position": "main"
+                                    }
+                                },
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "title": "Kitchen",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "show": {
+                                                "name": false,
+                                                "icon": false
+                                            },
+                                            "line_width": 1,
+                                            "points_per_hour": 60,
+                                            "hours_to_show": 3,
+                                            "entities": [
+                                                "sensor.area_kitchen_probability"
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*kitchen*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "on"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "binary_sensor.area_kitchen_occupied"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*.stats_kitchen_*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "sensor.area_kitchen_probability"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*kitchen*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "off"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": {
+                                                            "type": "section",
+                                                            "label": "Other Entities"
+                                                        }
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "view_layout": {
+                                        "position": "main"
+                                    }
+                                },
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "title": "Lounge",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "show": {
+                                                "name": false,
+                                                "icon": false
+                                            },
+                                            "line_width": 1,
+                                            "points_per_hour": 60,
+                                            "hours_to_show": 3,
+                                            "entities": [
+                                                "sensor.area_lounge_probability"
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*lounge*",
+                                                                "state": "on"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "binary_sensor.area_lounge_occupied"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*.stats_lounge_*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "sensor.area_lounge_probability"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*lounge*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "off"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": {
+                                                            "type": "section",
+                                                            "label": "Other Entities"
+                                                        }
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "view_layout": {
+                                        "position": "main"
+                                    }
+                                },
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "title": "Study",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "show": {
+                                                "name": false,
+                                                "icon": false
+                                            },
+                                            "line_width": 1,
+                                            "points_per_hour": 60,
+                                            "hours_to_show": 3,
+                                            "entities": [
+                                                "sensor.area_study_probability"
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*study*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "on"
+                                                            },
+                                                            {
+                                                                "entity_id": "*starrunner*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "on"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "binary_sensor.area_study_occupied"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*.stats_study_*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "sensor.area_study_probability"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*study*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "off"
+                                                            },
+                                                            {
+                                                                "entity_id": "*starrunner*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "off"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": {
+                                                            "type": "section",
+                                                            "label": "Other Entities"
+                                                        }
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "view_layout": {
+                                        "position": "main"
+                                    }
+                                },
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "title": "Toilet",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "show": {
+                                                "name": false,
+                                                "icon": false
+                                            },
+                                            "line_width": 1,
+                                            "points_per_hour": 60,
+                                            "hours_to_show": 3,
+                                            "entities": [
+                                                "sensor.area_toilet_probability"
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*toilet*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "on"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "binary_sensor.area_toilet_occupied"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*.stats_toilet_*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": "sensor.area_toilet_probability"
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "entities",
+                                            "card_mod": {
+                                                "class": "noblur"
+                                            },
+                                            "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:auto-entities",
+                                                    "filter": {
+                                                        "include": [
+                                                            {
+                                                                "entity_id": "*toilet*",
+                                                                "domain": "binary_sensor",
+                                                                "state": "off"
+                                                            }
+                                                        ],
+                                                        "exclude": [
+                                                            {
+                                                                "entity_id": "*occupied*"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "card": {
+                                                        "type": "custom:fold-entity-row",
+                                                        "head": {
+                                                            "type": "section",
+                                                            "label": "Other Entities"
+                                                        }
+                                                    },
+                                                    "sort": {
+                                                        "method": "state",
+                                                        "numeric": true,
+                                                        "reverse": true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "view_layout": {
+                                        "position": "main"
+                                    }
                                 }
-                            ],
-                            "state_color": true
-                        }
-                    ]
-                },
-                {
-                    "title": "Stocks",
-                    "path": "stocks",
-                    "icon": "mdi:graph",
-                    "panel": true,
-                    "badges": [],
-                    "cards": [
+                            ]
+                        },
                         {
-                            "type": "iframe",
-                            "url": "/local/tsla.html",
-                            "aspect_ratio": "50%"
-                        }
-                    ]
-                },
-                {
-                    "icon": "mdi:graphql",
-                    "path": "networkmap",
-                    "panel": true,
-                    "badges": [],
-                    "cards": [
+                            "type": "custom:auto-entities",
+                            "class": "testclass",
+                            "card": {
+                                "type": "entities",
+                                "title": "Occupied Areas"
+                            },
+                            "filter": {
+                                "include": [
+                                    {
+                                        "entity_id": "*_occupied",
+                                        "domain": "binary_sensor"
+                                    }
+                                ],
+                                "exclude": []
+                            },
+                            "sort": {
+                                "method": "state",
+                                "reverse": true,
+                                "numeric": false
+                            },
+                            "view_layout": {
+                                "position": "sidebar"
+                            }
+                        },
                         {
-                            "type": "custom:zigbee2mqtt-networkmap",
-                            "entity": "sensor.zigbee2mqtt_networkmap",
-                            "mqtt_base_topic": "zigbee2mqtt",
-                            "force": 3000,
-                            "height": 1000,
-                            "node_size": 16,
-                            "font_size": 10,
-                            "link_width": 1,
-                            "css": ":host {\n  --zigbee2mqtt-networkmap-node-color: rgba(18, 120, 98, .7);\n  --zigbee2mqtt-networkmap-node-fill-color: #dcfaf3;\n  --zigbee2mqtt-networkmap-node-pinned-color: rgba(190, 56, 93, .6);\n  --zigbee2mqtt-networkmap-link-color: rgba(100, 100, 100, .5);\n  --zigbee2mqtt-networkmap-hover-color: #be385d;\n  --zigbee2mqtt-networkmap-link-selected-color: rgba(202, 164, 85, .6);\n  --zigbee2mqtt-networkmap-label-color: #ffffff;\n  --zigbee2mqtt-networkmap-arrow-color: rgba(18, 120, 98, 0.7);\n  --zigbee2mqtt-networkmap-node-coordinator-color: rgba(224, 78, 93, .7);\n  --zigbee2mqtt-networkmap-node-router-color: rgba(0, 165, 255, .7);\n}\n"
+                            "type": "custom:auto-entities",
+                            "filter": {
+                                "include": [
+                                    {
+                                        "entity_id": "*_room_pre*"
+                                    }
+                                ]
+                            },
+                            "card": {
+                                "type": "entities"
+                            },
+                            "view_layout": {
+                                "position": "sidebar"
+                            }
                         }
                     ]
                 }

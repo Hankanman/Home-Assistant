@@ -38,6 +38,15 @@
                 "url_path": "home-config",
                 "mode": "storage",
                 "id": "home_config"
+            },
+            {
+                "require_admin": true,
+                "show_in_sidebar": true,
+                "title": "Testing",
+                "url_path": "lovelace-testing",
+                "mode": "storage",
+                "id": "lovelace_testing",
+                "icon": "mdi:alert"
             }
         ]
     }

@@ -3,906 +3,510 @@
     "key": "lovelace",
     "data": {
         "config": {
+            "button_card_templates": {
+                "base": {
+                    "aspect_ratio": "1/1",
+                    "class": "acrylic",
+                    "tap_action": {
+                        "action": "toggle"
+                    },
+                    "custom_fields": {
+                        "grid": {
+                            "card": {
+                                "type": "custom:layout-card",
+                                "layout_type": "grid",
+                                "layout": {
+                                    "grid-template-columns": "repeat(3, 1fr)",
+                                    "grid-template-rows": "repeat(2, 1fr)"
+                                }
+                            }
+                        }
+                    },
+                    "styles": {
+                        "grid": [
+                            {
+                                "grid-template-columns": "repeat(3, 1fr)"
+                            },
+                            {
+                                "grid-template-rows": "repeat(4, 1fr)"
+                            },
+                            {
+                                "grid-template-areas": "\"title title title\"\n\"grid  grid  grid \"\n\"grid  grid  grid \"\n\"light light light\"\n"
+                            }
+                        ],
+                        "card": [
+                            {
+                                "padding": 0
+                            }
+                        ]
+                    }
+                },
+                "title": {
+                    "variables": {
+                        "name": "Study",
+                        "icon": "mdi:desk-lamp",
+                        "entity": "input_boolean.area_study_automations"
+                    },
+                    "custom_fields": {
+                        "title": {
+                            "card": {
+                                "type": "custom:button-card",
+                                "style": {
+                                    "background": "none",
+                                    "backdrop-filter": "unset"
+                                },
+                                "icon": "[[[ return variables.icon ]]]",
+                                "name": "[[[ return variables.name ]]]",
+                                "entity": "[[[ return variables.entity ]]]",
+                                "state": [
+                                    {
+                                        "value": "off",
+                                        "color": "var(--color-red)"
+                                    },
+                                    {
+                                        "value": "on",
+                                        "color": "white"
+                                    }
+                                ],
+                                "styles": {
+                                    "card": [
+                                        {
+                                            "background": "none"
+                                        },
+                                        {
+                                            "backdrop-filter": "none"
+                                        },
+                                        {
+                                            "border-radius": 0
+                                        },
+                                        {
+                                            "box-shadow": "none"
+                                        }
+                                    ],
+                                    "name": [
+                                        {
+                                            "font-size": "1.7rem"
+                                        },
+                                        {
+                                            "justify-self": "start"
+                                        },
+                                        {
+                                            "padding": 0
+                                        }
+                                    ],
+                                    "icon": [
+                                        {
+                                            "padding": 0
+                                        },
+                                        {
+                                            "width": "50%"
+                                        }
+                                    ],
+                                    "grid": [
+                                        {
+                                            "grid-template-columns": "repeat(3, 1fr)"
+                                        },
+                                        {
+                                            "grid-template-areas": "\"i n n\"\n"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "light": {
+                    "variables": {
+                        "light": "light.study_lights"
+                    },
+                    "custom_fields": {
+                        "light": {
+                            "card": {
+                                "type": "custom:slider-button-card",
+                                "entity": "[[[ return variables.light ]]]",
+                                "name": "Lights",
+                                "compact": true,
+                                "slider": {
+                                    "direction": "left-right",
+                                    "background": "gradient",
+                                    "use_state_color": true
+                                },
+                                "action_button": {
+                                    "show": true,
+                                    "mode": "custom",
+                                    "show_spinner": true,
+                                    "tap_action": {
+                                        "action": "toggle"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "styles": {
+                        "custom_fields": {
+                            "light": [
+                                {
+                                    "height": "100%"
+                                },
+                                {
+                                    "align-self": "end"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "bright": {
+                    "variables": {
+                        "bright": "binary_sensor.area_study_bright"
+                    },
+                    "custom_fields": {
+                        "grid": {
+                            "card": {
+                                "cards": [
+                                    {
+                                        "type": "custom:button-card",
+                                        "entity": "[[[ return variables.bright ]]]",
+                                        "icon": "mdi:white-balance-sunny",
+                                        "color": "[[[ if (states[variables.bright].state == 'on') return 'var(--color-yellow)'; return 'var(--disabled-text-color)'; ]]]",
+                                        "name": "[[[ return states[variables.bright].attributes.current_illuminance + \"Lx\" ]]]",
+                                        "styles": {
+                                            "card": [
+                                                {
+                                                    "background": "none"
+                                                },
+                                                {
+                                                    "backdrop-filter": "none"
+                                                },
+                                                {
+                                                    "border-radius": 0
+                                                },
+                                                {
+                                                    "box-shadow": "none"
+                                                }
+                                            ],
+                                            "name": [
+                                                {
+                                                    "font-size": "1rem"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "motion": {
+                    "variables": {
+                        "occupied": "binary_sensor.area_study_occupied"
+                    },
+                    "custom_fields": {
+                        "grid": {
+                            "card": {
+                                "cards": [
+                                    {
+                                        "type": "custom:button-card",
+                                        "entity": "[[[ return variables.occupied ]]]",
+                                        "icon": "mdi:walk",
+                                        "color": "[[[ if (states[variables.occupied].state == 'on') return 'var(--color-green)'; return 'var(--disabled-text-color)'; ]]]",
+                                        "name": "[[[\n  return Math.round(states[variables.occupied].attributes.probability * 100) + '%';\n]]]\n",
+                                        "styles": {
+                                            "card": [
+                                                {
+                                                    "background": "none"
+                                                },
+                                                {
+                                                    "backdrop-filter": "none"
+                                                },
+                                                {
+                                                    "border-radius": 0
+                                                },
+                                                {
+                                                    "box-shadow": "none"
+                                                }
+                                            ],
+                                            "name": [
+                                                {
+                                                    "font-size": "1rem"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "temp": {
+                    "variables": {
+                        "climate": "climate.area_study_climate",
+                        "temp": "sensor.area_study_temperature",
+                        "temp_trend": "binary_sensor.area_study_temperature_trend"
+                    },
+                    "custom_fields": {
+                        "grid": {
+                            "card": {
+                                "cards": [
+                                    {
+                                        "type": "custom:button-card",
+                                        "entity": "[[[ return variables.climate ]]]",
+                                        "icon": "mdi:thermometer",
+                                        "name": "[[[ return states[variables.temp].state + '/' + states[variables.climate].attributes.temperature + '\u00b0C'; ]]]",
+                                        "color": "[[[ if (states[variables.temp_trend].state == 'on') return 'var(--color-orange)';]]]",
+                                        "styles": {
+                                            "card": [
+                                                {
+                                                    "background": "none"
+                                                },
+                                                {
+                                                    "backdrop-filter": "none"
+                                                },
+                                                {
+                                                    "border-radius": 0
+                                                },
+                                                {
+                                                    "box-shadow": "none"
+                                                }
+                                            ],
+                                            "name": [
+                                                {
+                                                    "font-size": "0.8rem"
+                                                },
+                                                {
+                                                    "text-overflow": "unset"
+                                                },
+                                                {
+                                                    "overflow": "visible"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
             "title": "Home",
             "views": [
                 {
                     "title": "Home",
                     "path": "default_view",
-                    "panel": false,
                     "type": "custom:grid-layout",
                     "layout": {
-                        "grid-auto-rows": "1fr",
-                        "grid-gap": "1em",
-                        "grid-template-columns": "0fr repeat(5, 1fr) 0fr",
-                        "grid-template-rows": "0fr 1fr 2fr 1fr 0fr",
-                        "grid-template-areas": "\". . . . . . .\"\n\". people status status status status .\"\n\". calendar areas areas areas areas .\"\n\". settings media media media media .\"\n\". . . . . . .\"\n"
+                        "grid-template-columns": "repeat(auto-fill, minmax(22rem, 1fr))",
+                        "grid-auto-rows": "auto",
+                        "grid-auto-flow": "row",
+                        "mediaquery": {
+                            "(max-width: 800px)": {
+                                "grid-template-columns": "1fr 1fr"
+                            },
+                            "(max-width: 1200px)": {
+                                "grid-template-columns": "repeat(auto-fill, minmax(20%, 1fr))"
+                            }
+                        }
                     },
                     "badges": [],
                     "cards": [
                         {
-                            "type": "custom:layout-card",
-                            "layout_type": "grid",
-                            "layout": {
-                                "grid-template-columns": "repeat(4, 1fr)",
-                                "grid-template-rows": "repeat(2, 1fr)",
-                                "grid-gap": "1em 1em",
-                                "grid-template-areas": "\"bathroom bedroom hall study\"\n\"entrance kitchen lounge toilet\"\n"
-                            },
-                            "cards": [
-                                {
-                                    "type": "custom:layout-card",
-                                    "layout_type": "grid",
-                                    "cards": [
-                                        {
-                                            "type": "custom:button-card",
-                                            "name": "Bathroom",
-                                            "color": "rgba(255,255,255,1)",
-                                            "icon": "mdi:shower-head",
-                                            "layout": "icon_name",
-                                            "entity": "input_boolean.bathroom_automations",
-                                            "hold_action": {
-                                                "action": "more-info"
-                                            },
-                                            "state": [
+                            "type": "custom:button-card",
+                            "aspect_ratio": "1/1",
+                            "custom_fields": {
+                                "laura": {
+                                    "card": {
+                                        "type": "custom:button-card",
+                                        "entity": "person.laura_ward",
+                                        "show_entity_picture": true,
+                                        "styles": {
+                                            "card": [
                                                 {
-                                                    "value": "off",
-                                                    "color": "red"
+                                                    "background": "none"
+                                                },
+                                                {
+                                                    "backdrop-filter": "none"
+                                                },
+                                                {
+                                                    "border-radius": 0
+                                                },
+                                                {
+                                                    "box-shadow": "none"
+                                                },
+                                                {
+                                                    "padding": "0 0.8rem"
                                                 }
                                             ],
-                                            "view_layout": {
-                                                "grid-area": "title"
-                                            }
+                                            "entity_picture": [
+                                                {
+                                                    "border-radius": "0.8rem"
+                                                },
+                                                {
+                                                    "ratio": "1/1"
+                                                }
+                                            ],
+                                            "icon": [
+                                                {
+                                                    "width": "80%"
+                                                }
+                                            ],
+                                            "name": [
+                                                {
+                                                    "margin": "0 0.8rem"
+                                                },
+                                                {
+                                                    "justify-self": "start"
+                                                },
+                                                {
+                                                    "text-align": "start"
+                                                },
+                                                {
+                                                    "font-size": "1.2rem"
+                                                },
+                                                {
+                                                    "white-space": "initial"
+                                                },
+                                                {
+                                                    "text-overflow": "initial"
+                                                },
+                                                {
+                                                    "overflow": "initial"
+                                                }
+                                            ],
+                                            "grid": [
+                                                {
+                                                    "grid-template-columns": "0.5fr 1fr"
+                                                },
+                                                {
+                                                    "grid-template-areas": "\"i n\"\n"
+                                                }
+                                            ]
                                         },
-                                        {
-                                            "type": "custom:slider-button-card",
-                                            "entity": "light.bathroom_lights",
-                                            "slider": {
-                                                "direction": "left-right",
-                                                "background": "gradient",
-                                                "use_state_color": true,
-                                                "use_percentage_bg_opacity": true
+                                        "name": "[[[ return states[\"sensor.laura_location\"].state ]]]"
+                                    }
+                                },
+                                "seb": {
+                                    "card": {
+                                        "type": "custom:button-card",
+                                        "entity": "person.sebastian_burrell",
+                                        "show_entity_picture": true,
+                                        "styles": {
+                                            "card": [
+                                                {
+                                                    "background": "none"
+                                                },
+                                                {
+                                                    "backdrop-filter": "none"
+                                                },
+                                                {
+                                                    "border-radius": 0
+                                                },
+                                                {
+                                                    "box-shadow": "none"
+                                                },
+                                                {
+                                                    "padding": "0 0.8rem"
+                                                }
+                                            ],
+                                            "entity_picture": [
+                                                {
+                                                    "border-radius": "0.8rem"
+                                                },
+                                                {
+                                                    "ratio": "1/1"
+                                                }
+                                            ],
+                                            "icon": [
+                                                {
+                                                    "width": "80%"
+                                                }
+                                            ],
+                                            "name": [
+                                                {
+                                                    "margin": "0 0.8rem"
+                                                },
+                                                {
+                                                    "justify-self": "start"
+                                                },
+                                                {
+                                                    "text-align": "start"
+                                                },
+                                                {
+                                                    "font-size": "1.2rem"
+                                                },
+                                                {
+                                                    "white-space": "initial"
+                                                },
+                                                {
+                                                    "text-overflow": "initial"
+                                                },
+                                                {
+                                                    "overflow": "initial"
+                                                }
+                                            ],
+                                            "grid": [
+                                                {
+                                                    "grid-template-columns": "0.5fr 1fr"
+                                                },
+                                                {
+                                                    "grid-template-areas": "\"i n\"\n"
+                                                }
+                                            ]
+                                        },
+                                        "name": "[[[ return states[\"sensor.seb_location\"].state ]]]"
+                                    }
+                                }
+                            },
+                            "styles": {
+                                "grid": [
+                                    {
+                                        "grid-template-columns": "1fr"
+                                    },
+                                    {
+                                        "grid-template-rows": "50%"
+                                    },
+                                    {
+                                        "grid-template-areas": "\"seb\"\n\"laura\"\n"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "aspect_ratio": "1/1",
+                            "tap_action": {
+                                "action": "toggle"
+                            },
+                            "custom_fields": {
+                                "grid": {
+                                    "card": {
+                                        "type": "custom:layout-card",
+                                        "layout_type": "grid",
+                                        "layout": {
+                                            "grid-template-columns": "repeat(2, 1fr)",
+                                            "grid-template-rows": "repeat(3, 1fr)"
+                                        },
+                                        "cards": [
+                                            {
+                                                "type": "custom:button-card",
+                                                "entity": "calendar.bin_collection",
+                                                "show_name": false,
+                                                "icon": "mdi:trash-can",
+                                                "tap_action": {
+                                                    "action": "more-info"
+                                                }
                                             },
-                                            "show_name": false,
-                                            "show_state": false,
-                                            "compact": true,
-                                            "icon": {
-                                                "show": true,
-                                                "use_state_color": true,
+                                            {
+                                                "type": "custom:button-card",
+                                                "entity": "input_boolean.area_home_automations",
+                                                "show_name": false,
+                                                "color": "var(--color-green)",
+                                                "state": [
+                                                    {
+                                                        "value": "off",
+                                                        "color": "red"
+                                                    }
+                                                ],
                                                 "tap_action": {
                                                     "action": "toggle"
-                                                },
-                                                "icon": ""
-                                            },
-                                            "action_button": {
-                                                "show": false
-                                            },
-                                            "view_layout": {
-                                                "grid-area": "light"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:button-card",
-                                            "show_name": false,
-                                            "show_label": true,
-                                            "label": "[[[ return states['sensor.bedroom_occupied_probability'].state + \"%\"; ]]]\n",
-                                            "icon": "mdi:walk",
-                                            "entity": "binary_sensor.bedroom_occupied",
-                                            "styles": {
-                                                "card": [
-                                                    {
-                                                        "height": "100%"
-                                                    }
-                                                ]
-                                            },
-                                            "state": [
-                                                {
-                                                    "value": "on",
-                                                    "color": "green"
-                                                }
-                                            ],
-                                            "view_layout": {
-                                                "grid-area": "motion"
-                                            }
-                                        }
-                                    ],
-                                    "layout": {
-                                        "grid-template-columns": "repeat(4, 1fr)",
-                                        "grid-template-rows": "repeat(3, 1fr)",
-                                        "grid-template-areas": "\"title title title title\"\n\"bright temp motion other\"\n\"light light light light\"\n"
-                                    },
-                                    "view_layout": {
-                                        "grid-area": "bathroom"
-                                    }
-                                },
-                                {
-                                    "type": "custom:slider-button-card",
-                                    "view_layout": {
-                                        "grid-area": "bedroom"
-                                    },
-                                    "entity": "light.bedroom_lights",
-                                    "slider": {
-                                        "direction": "left-right",
-                                        "background": "gradient",
-                                        "use_state_color": true,
-                                        "use_percentage_bg_opacity": false,
-                                        "show_track": false,
-                                        "toggle_on_click": false,
-                                        "force_square": false
-                                    },
-                                    "show_name": true,
-                                    "show_state": true,
-                                    "compact": false,
-                                    "icon": {
-                                        "show": true,
-                                        "use_state_color": true,
-                                        "tap_action": {
-                                            "action": "more-info"
-                                        },
-                                        "icon": ""
-                                    },
-                                    "action_button": {
-                                        "mode": "toggle",
-                                        "icon": "mdi:power",
-                                        "show": true,
-                                        "show_spinner": true,
-                                        "tap_action": {
-                                            "action": "toggle"
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "custom:slider-button-card",
-                                    "view_layout": {
-                                        "grid-area": "hall"
-                                    },
-                                    "entity": "light.hall_lights",
-                                    "slider": {
-                                        "direction": "left-right",
-                                        "background": "gradient",
-                                        "use_state_color": true,
-                                        "use_percentage_bg_opacity": false,
-                                        "show_track": false,
-                                        "toggle_on_click": false,
-                                        "force_square": false
-                                    },
-                                    "show_name": true,
-                                    "show_state": true,
-                                    "compact": false,
-                                    "icon": {
-                                        "show": true,
-                                        "use_state_color": true,
-                                        "tap_action": {
-                                            "action": "more-info"
-                                        },
-                                        "icon": ""
-                                    },
-                                    "action_button": {
-                                        "mode": "toggle",
-                                        "icon": "mdi:power",
-                                        "show": true,
-                                        "show_spinner": true,
-                                        "tap_action": {
-                                            "action": "toggle"
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "custom:slider-button-card",
-                                    "view_layout": {
-                                        "grid-area": "study"
-                                    },
-                                    "entity": "light.study_lights",
-                                    "slider": {
-                                        "direction": "left-right",
-                                        "background": "gradient",
-                                        "use_state_color": true,
-                                        "use_percentage_bg_opacity": false,
-                                        "show_track": false,
-                                        "toggle_on_click": false,
-                                        "force_square": false
-                                    },
-                                    "show_name": true,
-                                    "show_state": true,
-                                    "compact": false,
-                                    "icon": {
-                                        "show": true,
-                                        "use_state_color": true,
-                                        "tap_action": {
-                                            "action": "more-info"
-                                        },
-                                        "icon": ""
-                                    },
-                                    "action_button": {
-                                        "mode": "toggle",
-                                        "icon": "mdi:power",
-                                        "show": true,
-                                        "show_spinner": true,
-                                        "tap_action": {
-                                            "action": "toggle"
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "custom:slider-button-card",
-                                    "view_layout": {
-                                        "grid-area": "lounge"
-                                    },
-                                    "entity": "light.lounge_lights",
-                                    "slider": {
-                                        "direction": "left-right",
-                                        "background": "gradient",
-                                        "use_state_color": true,
-                                        "use_percentage_bg_opacity": false,
-                                        "show_track": false,
-                                        "toggle_on_click": false,
-                                        "force_square": false
-                                    },
-                                    "show_name": true,
-                                    "show_state": true,
-                                    "compact": false,
-                                    "icon": {
-                                        "show": true,
-                                        "use_state_color": true,
-                                        "tap_action": {
-                                            "action": "more-info"
-                                        },
-                                        "icon": ""
-                                    },
-                                    "action_button": {
-                                        "mode": "toggle",
-                                        "icon": "mdi:power",
-                                        "show": true,
-                                        "show_spinner": true,
-                                        "tap_action": {
-                                            "action": "toggle"
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "custom:slider-button-card",
-                                    "view_layout": {
-                                        "grid-area": "kitchen"
-                                    },
-                                    "entity": "light.kitchen_lights",
-                                    "slider": {
-                                        "direction": "left-right",
-                                        "background": "gradient",
-                                        "use_state_color": true,
-                                        "use_percentage_bg_opacity": false,
-                                        "show_track": false,
-                                        "toggle_on_click": false,
-                                        "force_square": false
-                                    },
-                                    "show_name": true,
-                                    "show_state": true,
-                                    "compact": false,
-                                    "icon": {
-                                        "show": true,
-                                        "use_state_color": true,
-                                        "tap_action": {
-                                            "action": "more-info"
-                                        },
-                                        "icon": ""
-                                    },
-                                    "action_button": {
-                                        "mode": "toggle",
-                                        "icon": "mdi:power",
-                                        "show": true,
-                                        "show_spinner": true,
-                                        "tap_action": {
-                                            "action": "toggle"
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "custom:slider-button-card",
-                                    "view_layout": {
-                                        "grid-area": "entrance"
-                                    },
-                                    "entity": "light.entrance_lights",
-                                    "slider": {
-                                        "direction": "left-right",
-                                        "background": "gradient",
-                                        "use_state_color": true,
-                                        "use_percentage_bg_opacity": false,
-                                        "show_track": false,
-                                        "toggle_on_click": false,
-                                        "force_square": false
-                                    },
-                                    "show_name": true,
-                                    "show_state": true,
-                                    "compact": false,
-                                    "icon": {
-                                        "show": true,
-                                        "use_state_color": true,
-                                        "tap_action": {
-                                            "action": "more-info"
-                                        },
-                                        "icon": ""
-                                    },
-                                    "action_button": {
-                                        "mode": "toggle",
-                                        "icon": "mdi:power",
-                                        "show": true,
-                                        "show_spinner": true,
-                                        "tap_action": {
-                                            "action": "toggle"
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "custom:slider-button-card",
-                                    "view_layout": {
-                                        "grid-area": "toilet"
-                                    },
-                                    "entity": "light.toilet_lights",
-                                    "slider": {
-                                        "direction": "left-right",
-                                        "background": "gradient",
-                                        "use_state_color": true,
-                                        "use_percentage_bg_opacity": false,
-                                        "show_track": false,
-                                        "toggle_on_click": false,
-                                        "force_square": false
-                                    },
-                                    "show_name": true,
-                                    "show_state": true,
-                                    "compact": false,
-                                    "icon": {
-                                        "show": true,
-                                        "use_state_color": true,
-                                        "tap_action": {
-                                            "action": "more-info"
-                                        },
-                                        "icon": ""
-                                    },
-                                    "action_button": {
-                                        "mode": "toggle",
-                                        "icon": "mdi:power",
-                                        "show": true,
-                                        "show_spinner": true,
-                                        "tap_action": {
-                                            "action": "toggle"
-                                        }
-                                    }
-                                }
-                            ],
-                            "view_layout": {
-                                "grid-area": "areas"
-                            }
-                        },
-                        {
-                            "type": "custom:stack-in-card",
-                            "view_layout": {
-                                "grid-area": "people"
-                            },
-                            "cards": [
-                                {
-                                    "type": "custom:mod-card",
-                                    "card_mod": {
-                                        "style": {
-                                            ".": "ha-card {\n  height: 100%;\n  background: var(--ha-card-background);\n}\n",
-                                            "layout-card$": {
-                                                "grid-layout$": "#root {\n  height: 100%;\n  margin: 0px !important;\n  --ha-card-box-shadow: none;\n}\n#root > * {\n  height: 100%;\n  --masonry-view-card-margin: 0;\n  --ha-card-border-radius: 0px;\n}\n"
-                                            }
-                                        }
-                                    },
-                                    "card": {
-                                        "type": "custom:layout-card",
-                                        "layout_type": "grid",
-                                        "layout_options": {
-                                            "grid-template-columns": "repeat(6, 1fr)",
-                                            "grid-template-rows": "repeat(4, 25%)"
-                                        },
-                                        "cards": [
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "person.sebastian_burrell",
-                                                "show_name": false,
-                                                "show_entity_picture": true,
-                                                "view_layout": {
-                                                    "grid-area": "2/1/3/2"
-                                                },
-                                                "styles": {
-                                                    "entity_picture": [
-                                                        {
-                                                            "border-radius": "50%"
-                                                        },
-                                                        {
-                                                            "width": "3rem"
-                                                        },
-                                                        {
-                                                            "height": "3rem"
-                                                        }
-                                                    ],
-                                                    "card": [
-                                                        {
-                                                            "height": "5rem"
-                                                        },
-                                                        {
-                                                            "width": "5rem"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "person.sebastian_burrell",
-                                                "show_icon": false,
-                                                "name": "[[[\n  if (states[\"device_tracker.seb_phone\"].state == \"home\" && states[\"sensor.seb_phone_ble_room_presence\"].state != \"not_home\")\n    return \"Seb's in the \" + states[\"sensor.seb_phone_ble_room_presence\"].state.toLowerCase();\n  else if (states[\"device_tracker.seb_phone\"].state == \"not_home\")\n    return \"Seb is out\";\n  else return \"Seb is at \" + states[\"device_tracker.seb_phone\"].state;\n]]]\n",
-                                                "view_layout": {
-                                                    "grid-area": "2/2/3/5"
-                                                },
-                                                "styles": {
-                                                    "name": [
-                                                        {
-                                                            "justify-self": "start"
-                                                        },
-                                                        {
-                                                            "align-self": "center"
-                                                        },
-                                                        {
-                                                            "white-space": "normal"
-                                                        },
-                                                        {
-                                                            "padding-right": "10px"
-                                                        },
-                                                        {
-                                                            "text-align": "left"
-                                                        }
-                                                    ],
-                                                    "card": [
-                                                        {
-                                                            "height": "100%"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "person.laura_ward",
-                                                "show_name": false,
-                                                "show_entity_picture": true,
-                                                "view_layout": {
-                                                    "grid-area": "1/1/2/2"
-                                                },
-                                                "styles": {
-                                                    "entity_picture": [
-                                                        {
-                                                            "border-radius": "50%"
-                                                        },
-                                                        {
-                                                            "width": "3rem"
-                                                        },
-                                                        {
-                                                            "height": "3rem"
-                                                        }
-                                                    ],
-                                                    "card": [
-                                                        {
-                                                            "height": "5rem"
-                                                        },
-                                                        {
-                                                            "width": "5rem"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "person.laura_ward",
-                                                "show_icon": false,
-                                                "name": "[[[\n  if (states[\"device_tracker.laura_phone\"].state == \"home\" && states[\"sensor.laura_phone_ble_room_presence\"].state != \"not_home\")\n    return \"Laura's in the \" + states[\"sensor.laura_phone_ble_room_presence\"].state.toLowerCase();\n  else if (states[\"device_tracker.laura_phone\"].state == \"not_home\")\n    return \"Laura is out\";\n  else return \"Laura is at \" + states[\"device_tracker.laura_phone\"].state;\n]]]\n",
-                                                "view_layout": {
-                                                    "grid-area": "1/2/2/5"
-                                                },
-                                                "styles": {
-                                                    "name": [
-                                                        {
-                                                            "justify-self": "start"
-                                                        },
-                                                        {
-                                                            "align-self": "center"
-                                                        },
-                                                        {
-                                                            "white-space": "normal"
-                                                        },
-                                                        {
-                                                            "padding-right": "10px"
-                                                        },
-                                                        {
-                                                            "text-align": "left"
-                                                        }
-                                                    ],
-                                                    "card": [
-                                                        {
-                                                            "height": "100%"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            "type": "custom:layout-card",
-                            "layout_type": "grid",
-                            "cards": [
-                                {
-                                    "type": "conditional",
-                                    "conditions": [
-                                        {
-                                            "entity": "media_player.spotify_seb",
-                                            "state": "playing"
-                                        }
-                                    ],
-                                    "card": {
-                                        "type": "custom:mini-media-player",
-                                        "entity": "media_player.spotify_seb",
-                                        "name": "Seb's Spotify",
-                                        "info": "scroll",
-                                        "artwork": "cover",
-                                        "style": "ha-card {\n  height: 100%;\n}\n"
-                                    }
-                                },
-                                {
-                                    "type": "conditional",
-                                    "conditions": [
-                                        {
-                                            "entity": "media_player.spotify_laura",
-                                            "state": "playing"
-                                        }
-                                    ],
-                                    "card": {
-                                        "type": "custom:mini-media-player",
-                                        "entity": "media_player.spotify_laura",
-                                        "name": "Laura's Spotify",
-                                        "info": "scroll",
-                                        "artwork": "cover",
-                                        "hide": {
-                                            "source": true,
-                                            "power": true,
-                                            "icon": true
-                                        },
-                                        "style": "ha-card {\n  height: 100%;\n}\n"
-                                    }
-                                },
-                                {
-                                    "type": "conditional",
-                                    "conditions": [
-                                        {
-                                            "entity": "media_player.bedroom_echo",
-                                            "state": "playing"
-                                        }
-                                    ],
-                                    "card": {
-                                        "type": "custom:mini-media-player",
-                                        "entity": "media_player.bedroom_echo",
-                                        "name": "Bedroom Echo",
-                                        "info": "scroll",
-                                        "artwork": "cover",
-                                        "hide": {
-                                            "source": true,
-                                            "power": true,
-                                            "icon": true
-                                        },
-                                        "style": "ha-card {\n  height: 100%;\n}\n"
-                                    }
-                                },
-                                {
-                                    "type": "conditional",
-                                    "conditions": [
-                                        {
-                                            "entity": "media_player.kitchen_echo_show",
-                                            "state": "playing"
-                                        }
-                                    ],
-                                    "card": {
-                                        "type": "custom:mini-media-player",
-                                        "entity": "media_player.kitchen_echo_show",
-                                        "name": "Kitchen Show",
-                                        "info": "scroll",
-                                        "artwork": "cover",
-                                        "hide": {
-                                            "source": true,
-                                            "power": true,
-                                            "icon": true
-                                        },
-                                        "style": "ha-card {\n  height: 100%;\n}\n"
-                                    }
-                                },
-                                {
-                                    "type": "conditional",
-                                    "conditions": [
-                                        {
-                                            "entity": "media_player.lounge_tv",
-                                            "state": "playing"
-                                        }
-                                    ],
-                                    "card": {
-                                        "type": "custom:mini-media-player",
-                                        "entity": "media_player.lounge_tv",
-                                        "name": "Lounge TV",
-                                        "info": "scroll",
-                                        "artwork": "cover",
-                                        "hide": {
-                                            "source": true,
-                                            "power": true,
-                                            "icon": true
-                                        },
-                                        "style": "ha-card {\n  height: 100%;\n}\n"
-                                    }
-                                },
-                                {
-                                    "type": "conditional",
-                                    "conditions": [
-                                        {
-                                            "entity": "media_player.shield_adb",
-                                            "state": "playing"
-                                        }
-                                    ],
-                                    "card": {
-                                        "type": "custom:mini-media-player",
-                                        "entity": "media_player.shield_adb",
-                                        "name": "Lounge TV",
-                                        "info": "scroll",
-                                        "artwork": "cover",
-                                        "hide": {
-                                            "source": true,
-                                            "power": true,
-                                            "icon": true
-                                        },
-                                        "style": "ha-card {\n  height: 100%;\n}\n"
-                                    }
-                                },
-                                {
-                                    "type": "conditional",
-                                    "conditions": [
-                                        {
-                                            "entity": "media_player.bedroom_tv",
-                                            "state": "playing"
-                                        }
-                                    ],
-                                    "card": {
-                                        "type": "custom:mini-media-player",
-                                        "entity": "media_player.bedroom_tv",
-                                        "name": "Bedroom TV",
-                                        "info": "scroll",
-                                        "artwork": "cover",
-                                        "hide": {
-                                            "source": true,
-                                            "power": true,
-                                            "icon": true
-                                        },
-                                        "style": "ha-card {\n  height: 100%;\n}\n"
-                                    }
-                                }
-                            ],
-                            "layout": {
-                                "grid-template-columns": "repeat(auto-fill, minmax(40%,1fr)",
-                                "grid-gap": "1em"
-                            },
-                            "view_layout": {
-                                "grid-area": "media"
-                            }
-                        },
-                        {
-                            "type": "custom:atomic-calendar-revive",
-                            "entities": [
-                                {
-                                    "entity": "calendar.family_google"
-                                },
-                                {
-                                    "entity": "calendar.seb_google"
-                                },
-                                {
-                                    "entity": "calendar.seb_outlook"
-                                },
-                                {
-                                    "entity": "calendar.home_assistant_devs"
-                                },
-                                {
-                                    "entity": "calendar.uk_holidays"
-                                },
-                                {
-                                    "entity": "calendar.bin_collection"
-                                }
-                            ],
-                            "firstDayOfWeek": 1,
-                            "maxDaysToShow": 2,
-                            "defaultMode": "Event",
-                            "showLoader": false,
-                            "showRelativeTime": false,
-                            "sortByStartTime": true,
-                            "disableCalEventLink": true,
-                            "disableCalLocationLink": true,
-                            "disableCalLink": true,
-                            "calShowDescription": false,
-                            "showLocation": false,
-                            "showNoEventDays": true,
-                            "showCurrentEventLine": true,
-                            "showWeekDay": true,
-                            "style": {
-                                ".": ".event-left {\n  padding-right: 0 !important;\n  padding-left: 0 !important;\n}\ntd {\n  padding-right: 0 !important;\n  padding-left: 0 !important;\n}\n"
-                            },
-                            "view_layout": {
-                                "grid-area": "calendar"
-                            }
-                        },
-                        {
-                            "type": "custom:stack-in-card",
-                            "view_layout": {
-                                "grid-area": "status"
-                            },
-                            "cards": [
-                                {
-                                    "type": "custom:mod-card",
-                                    "card_mod": {
-                                        "style": {
-                                            ".": "ha-card {\n  height: 100%;\n  background: var(--ha-card-background);\n}\n",
-                                            "layout-card$": {
-                                                "grid-layout$": "#root {\n  height: 100%;\n  margin: 0px !important;\n  --ha-card-box-shadow: none;\n}\n#root > * {\n  height: 100%;\n  --masonry-view-card-margin: 0;\n  --ha-card-border-radius: 0px;\n}\n"
-                                            }
-                                        }
-                                    },
-                                    "card": {
-                                        "type": "custom:layout-card",
-                                        "layout_type": "grid",
-                                        "layout_options": {
-                                            "grid-template-columns": "repeat(6, 1fr)",
-                                            "grid-template-rows": "repeat(4, 25%)"
-                                        },
-                                        "cards": [
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "person.sebastian_burrell",
-                                                "show_name": false,
-                                                "show_entity_picture": true,
-                                                "view_layout": {
-                                                    "grid-area": "2/1/3/2"
-                                                },
-                                                "styles": {
-                                                    "entity_picture": [
-                                                        {
-                                                            "border-radius": "50%"
-                                                        },
-                                                        {
-                                                            "width": "3rem"
-                                                        },
-                                                        {
-                                                            "height": "3rem"
-                                                        }
-                                                    ],
-                                                    "card": [
-                                                        {
-                                                            "height": "5rem"
-                                                        },
-                                                        {
-                                                            "width": "5rem"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "person.sebastian_burrell",
-                                                "show_icon": false,
-                                                "name": "[[[\n  if (states[\"device_tracker.seb_phone\"].state == \"home\" && states[\"sensor.seb_phone_ble_room_presence\"].state != \"not_home\")\n    return \"Seb's in the \" + states[\"sensor.seb_phone_ble_room_presence\"].state.toLowerCase();\n  else if (states[\"device_tracker.seb_phone\"].state == \"not_home\")\n    return \"Seb is out\";\n  else return \"Seb is at \" + states[\"device_tracker.seb_phone\"].state;\n]]]\n",
-                                                "view_layout": {
-                                                    "grid-area": "2/2/3/5"
-                                                },
-                                                "styles": {
-                                                    "name": [
-                                                        {
-                                                            "justify-self": "start"
-                                                        },
-                                                        {
-                                                            "align-self": "center"
-                                                        },
-                                                        {
-                                                            "white-space": "normal"
-                                                        },
-                                                        {
-                                                            "padding-right": "10px"
-                                                        },
-                                                        {
-                                                            "text-align": "left"
-                                                        }
-                                                    ],
-                                                    "card": [
-                                                        {
-                                                            "height": "100%"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "person.laura_ward",
-                                                "show_name": false,
-                                                "show_entity_picture": true,
-                                                "view_layout": {
-                                                    "grid-area": "1/1/2/2"
-                                                },
-                                                "styles": {
-                                                    "entity_picture": [
-                                                        {
-                                                            "border-radius": "50%"
-                                                        },
-                                                        {
-                                                            "width": "3rem"
-                                                        },
-                                                        {
-                                                            "height": "3rem"
-                                                        }
-                                                    ],
-                                                    "card": [
-                                                        {
-                                                            "height": "5rem"
-                                                        },
-                                                        {
-                                                            "width": "5rem"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "person.laura_ward",
-                                                "show_icon": false,
-                                                "name": "[[[\n  if (states[\"device_tracker.laura_phone\"].state == \"home\" && states[\"sensor.laura_phone_ble_room_presence\"].state != \"not_home\")\n    return \"Laura's in the \" + states[\"sensor.laura_phone_ble_room_presence\"].state.toLowerCase();\n  else if (states[\"device_tracker.laura_phone\"].state == \"not_home\")\n    return \"Laura is out\";\n  else return \"Laura is at \" + states[\"device_tracker.laura_phone\"].state;\n]]]\n",
-                                                "view_layout": {
-                                                    "grid-area": "1/2/2/5"
-                                                },
-                                                "styles": {
-                                                    "name": [
-                                                        {
-                                                            "justify-self": "start"
-                                                        },
-                                                        {
-                                                            "align-self": "center"
-                                                        },
-                                                        {
-                                                            "white-space": "normal"
-                                                        },
-                                                        {
-                                                            "padding-right": "10px"
-                                                        },
-                                                        {
-                                                            "text-align": "left"
-                                                        }
-                                                    ],
-                                                    "card": [
-                                                        {
-                                                            "height": "100%"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
                                                 }
                                             },
                                             {
@@ -912,267 +516,7 @@
                                                 "entity": "script.play_rain_sounds",
                                                 "tap_action": {
                                                     "action": "toggle"
-                                                },
-                                                "view_layout": {
-                                                    "grid-area": "2/6/3/7"
-                                                },
-                                                "styles": {
-                                                    "card": [
-                                                        {
-                                                            "height": "100%"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
                                                 }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "show_name": false,
-                                                "entity": "binary_sensor.entrance_door",
-                                                "tap_action": {
-                                                    "action": "toggle"
-                                                },
-                                                "view_layout": {
-                                                    "grid-area": "2/5/3/6"
-                                                },
-                                                "styles": {
-                                                    "card": [
-                                                        {
-                                                            "height": "100%"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "show_name": false,
-                                                "entity": "binary_sensor.shower_occupied",
-                                                "tap_action": {
-                                                    "action": "toggle"
-                                                },
-                                                "view_layout": {
-                                                    "grid-area": "1/5/2/6"
-                                                },
-                                                "styles": {
-                                                    "card": [
-                                                        {
-                                                            "height": "100%"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "group.all_automations",
-                                                "color": "rgba(255,255,255,1)",
-                                                "hold_action": {
-                                                    "action": "more-info"
-                                                },
-                                                "state": [
-                                                    {
-                                                        "value": "off",
-                                                        "color": "red"
-                                                    }
-                                                ],
-                                                "show_name": false,
-                                                "icon": "mdi:lock-pattern",
-                                                "tap_action": {
-                                                    "action": "toggle"
-                                                },
-                                                "view_layout": {
-                                                    "grid-area": "1/6/2/7"
-                                                },
-                                                "styles": {
-                                                    "card": [
-                                                        {
-                                                            "height": "100%"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "input_boolean.home_automations",
-                                                "color": "white",
-                                                "hold_action": {
-                                                    "action": "more-info"
-                                                },
-                                                "state": [
-                                                    {
-                                                        "value": "off",
-                                                        "color": "red"
-                                                    }
-                                                ],
-                                                "show_name": false,
-                                                "icon": "mdi:home-analytics",
-                                                "tap_action": {
-                                                    "action": "toggle"
-                                                },
-                                                "view_layout": {
-                                                    "grid-area": "3/5/4/6"
-                                                },
-                                                "styles": {
-                                                    "card": [
-                                                        {
-                                                            "height": "100%"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "sensor.bin_collection",
-                                                "show_name": false,
-                                                "icon": "mdi:trash-can",
-                                                "tap_action": {
-                                                    "action": "more-info"
-                                                },
-                                                "view_layout": {
-                                                    "grid-area": "3/6/4/7"
-                                                },
-                                                "styles": {
-                                                    "card": [
-                                                        {
-                                                            "height": "100%"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "entity": "light.home",
-                                                "layout": "icon_name",
-                                                "name": "All Lights",
-                                                "tap_action": {
-                                                    "action": "toggle"
-                                                },
-                                                "view_layout": {
-                                                    "grid-area": "4/5/5/7"
-                                                },
-                                                "styles": {
-                                                    "card": [
-                                                        {
-                                                            "height": "100%"
-                                                        },
-                                                        {
-                                                            "background": "none"
-                                                        }
-                                                    ],
-                                                    "name": [
-                                                        {
-                                                            "place-self": "start"
-                                                        },
-                                                        {
-                                                            "align-self": "center"
-                                                        },
-                                                        {
-                                                            "padding-left": "5px"
-                                                        }
-                                                    ],
-                                                    "icon": [
-                                                        {
-                                                            "padding-right": "15px"
-                                                        }
-                                                    ],
-                                                    "img_cell": [
-                                                        {
-                                                            "padding-left": "20px"
-                                                        },
-                                                        {
-                                                            "justify-content": "flex-end"
-                                                        }
-                                                    ]
-                                                }
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "title": "test",
-                    "path": "test",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "custom:button-card",
-                            "aspect_ratio": "1/1",
-                            "icon": "mdi:shower-head",
-                            "name": "Bathroom",
-                            "custom_fields": {
-                                "bright": {
-                                    "card": {
-                                        "type": "custom:button-card",
-                                        "entity": "binary_sensor.bedroom_bright",
-                                        "icon": "mdi:white-balance-sunny",
-                                        "name": "[[[ return Math.round(states['sensor.bathroom_trisensor_illuminance'].state) + \" Lx\"; ]]]\n",
-                                        "styles": {
-                                            "icon": [
-                                                {
-                                                    "width": "30%"
-                                                },
-                                                {
-                                                    "padding-bottom": "0.5em"
-                                                }
-                                            ],
-                                            "name": [
-                                                {
-                                                    "font-size": "1rem"
-                                                }
-                                            ]
-                                        },
-                                        "state": [
-                                            {
-                                                "value": "on",
-                                                "color": "yellow"
-                                            }
-                                        ]
-                                    }
-                                },
-                                "temp": {
-                                    "card": {
-                                        "type": "custom:button-card",
-                                        "entity": "binary_sensor.bedroom_temperature_trend",
-                                        "icon": "mdi:thermometer",
-                                        "name": "[[[ return states['sensor.bedroom_temperature'].state + \"\u00b0C\"; ]]]\n",
-                                        "styles": {
-                                            "icon": [
-                                                {
-                                                    "width": "30%"
-                                                },
-                                                {
-                                                    "padding-bottom": "0.5em"
-                                                }
-                                            ],
-                                            "name": [
-                                                {
-                                                    "font-size": "1rem"
-                                                }
-                                            ]
-                                        },
-                                        "state": [
-                                            {
-                                                "value": "on",
-                                                "color": "orange"
                                             }
                                         ]
                                     }
@@ -1180,94 +524,494 @@
                                 "light": {
                                     "card": {
                                         "type": "custom:slider-button-card",
-                                        "entity": "light.bathroom_lights",
+                                        "entity": "light.home_lights",
+                                        "name": "All Lights",
+                                        "compact": true,
                                         "slider": {
                                             "direction": "left-right",
                                             "background": "gradient",
-                                            "use_state_color": true,
-                                            "use_percentage_bg_opacity": true
+                                            "use_state_color": true
                                         },
-                                        "show_name": false,
-                                        "show_state": false,
-                                        "compact": true,
-                                        "icon": {
+                                        "action_button": {
                                             "show": true,
-                                            "use_state_color": true,
+                                            "mode": "custom",
+                                            "show_spinner": true,
                                             "tap_action": {
                                                 "action": "toggle"
                                             }
-                                        },
-                                        "action_button": {
-                                            "show": false
                                         }
                                     }
                                 }
                             },
                             "styles": {
                                 "custom_fields": {
+                                    "grid": [
+                                        {
+                                            "padding-top": "1rem"
+                                        }
+                                    ],
                                     "light": [
                                         {
                                             "height": "100%"
+                                        },
+                                        {
+                                            "align-self": "end"
                                         }
                                     ]
                                 },
-                                "img_cell": [
+                                "grid": [
                                     {
-                                        "align-items": "start"
+                                        "grid-template-rows": "repeat(4, 1fr)"
                                     },
                                     {
-                                        "align-self": "start"
-                                    },
-                                    {
-                                        "margin": "none"
-                                    },
-                                    {
-                                        "justify-content": "center"
-                                    }
-                                ],
-                                "icon": [
-                                    {
-                                        "width": "75%"
-                                    },
-                                    {
-                                        "align-self": "start"
-                                    },
-                                    {
-                                        "margin": "none"
-                                    }
-                                ],
-                                "name": [
-                                    {
-                                        "justify-self": "start"
-                                    },
-                                    {
-                                        "font-size": "1.5em"
-                                    },
-                                    {
-                                        "font-weight": "bold"
+                                        "grid-template-areas": "\"grid \"\n\"grid \"\n\"grid \"\n\"light\"\n"
                                     }
                                 ],
                                 "card": [
                                     {
-                                        "overflow": "unset"
-                                    }
-                                ],
-                                "grid": [
-                                    {
-                                        "grid-template-columns": "repeat(2, 0.5fr) repeat(3, 1fr)"
-                                    },
-                                    {
-                                        "grid-template-rows": "0.3fr repeat(3, 1fr)"
-                                    },
-                                    {
-                                        "grid-template-areas": "\"i n n n n\"\n\"bright bright temp motion climate\"\n\"bright-graph bright-graph temp-graph motion-graph climate\"\n\"light light light light light\"\n"
+                                        "padding": "4px 0 0 0"
                                     }
                                 ]
-                            },
-                            "entity": "light.test_light",
-                            "hold_action": {
-                                "action": "more-info"
                             }
+                        },
+                        {
+                            "type": "conditional",
+                            "conditions": [
+                                {
+                                    "entity": "media_player.spotify_seb",
+                                    "state": "playing"
+                                }
+                            ],
+                            "card": {
+                                "type": "grid",
+                                "columns": 1,
+                                "cards": [
+                                    {
+                                        "type": "custom:mini-media-player",
+                                        "entity": "media_player.spotify_seb",
+                                        "name": "Seb's Spotify",
+                                        "hide": {
+                                            "source": true,
+                                            "power": true,
+                                            "icon": true
+                                        },
+                                        "style": "ha-card {\n  height: 100%;\n}\n",
+                                        "info": "scroll",
+                                        "volume_stateless": false,
+                                        "toggle_power": true,
+                                        "artwork": "cover"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "conditional",
+                            "conditions": [
+                                {
+                                    "entity": "media_player.spotify_laura",
+                                    "state": "playing"
+                                }
+                            ],
+                            "card": {
+                                "type": "grid",
+                                "columns": 1,
+                                "cards": [
+                                    {
+                                        "type": "custom:mini-media-player",
+                                        "entity": "media_player.spotify_laura",
+                                        "name": "Laura's Spotify",
+                                        "info": "scroll",
+                                        "hide": {
+                                            "source": true,
+                                            "power": true,
+                                            "icon": true
+                                        },
+                                        "style": "ha-card {\n  height: 100%;\n}\n",
+                                        "artwork": "cover"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "variables": {
+                                "name": "Study",
+                                "icon": "mdi:desk-lamp",
+                                "entity": "input_boolean.area_study_automations",
+                                "light": "light.study_lights",
+                                "bright": "binary_sensor.area_study_bright",
+                                "occupied": "binary_sensor.area_study_occupied",
+                                "climate": "climate.area_study_climate",
+                                "temp": "sensor.area_study_temperature",
+                                "temp_trend": "binary_sensor.area_study_temperature_trend"
+                            },
+                            "template": [
+                                "base",
+                                "title",
+                                "light",
+                                "bright",
+                                "motion",
+                                "temp"
+                            ]
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "variables": {
+                                "name": "Bathroom",
+                                "icon": "mdi:shower-head",
+                                "entity": "input_boolean.area_bathroom_automations",
+                                "light": "light.bathroom_lights",
+                                "bright": "binary_sensor.area_bathroom_bright",
+                                "occupied": "binary_sensor.area_bathroom_occupied",
+                                "climate": "climate.area_bathroom_climate",
+                                "temp": "sensor.area_bathroom_temperature",
+                                "temp_trend": "binary_sensor.area_bathroom_temperature_trend"
+                            },
+                            "template": [
+                                "base",
+                                "title",
+                                "light",
+                                "bright",
+                                "motion",
+                                "temp"
+                            ]
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "variables": {
+                                "name": "Bedroom",
+                                "icon": "mdi:bed-king",
+                                "entity": "input_boolean.area_bedroom_automations",
+                                "light": "light.bedroom_lights",
+                                "bright": "binary_sensor.area_bedroom_bright",
+                                "occupied": "binary_sensor.area_bedroom_occupied",
+                                "climate": "climate.area_bedroom_climate",
+                                "temp": "sensor.area_bedroom_temperature",
+                                "temp_trend": "binary_sensor.area_bedroom_temperature_trend"
+                            },
+                            "template": [
+                                "base",
+                                "title",
+                                "light",
+                                "bright",
+                                "motion",
+                                "temp"
+                            ]
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "variables": {
+                                "name": "Hall",
+                                "icon": "mdi:stairs",
+                                "entity": "input_boolean.area_hall_automations",
+                                "light": "light.hall_lights",
+                                "bright": "binary_sensor.area_hall_bright",
+                                "occupied": "binary_sensor.area_hall_occupied",
+                                "climate": "climate.area_hall_climate",
+                                "temp": "sensor.area_hall_temperature",
+                                "temp_trend": "binary_sensor.area_hall_temperature_trend"
+                            },
+                            "template": [
+                                "base",
+                                "title",
+                                "light",
+                                "bright",
+                                "motion",
+                                "temp"
+                            ]
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "variables": {
+                                "name": "Kitchen",
+                                "icon": "mdi:fridge",
+                                "entity": "input_boolean.area_kitchen_automations",
+                                "light": "light.kitchen_lights",
+                                "bright": "binary_sensor.area_kitchen_bright",
+                                "occupied": "binary_sensor.area_kitchen_occupied",
+                                "climate": "climate.area_kitchen_climate",
+                                "temp": "sensor.area_kitchen_temperature",
+                                "temp_trend": "binary_sensor.area_kitchen_temperature_trend"
+                            },
+                            "template": [
+                                "base",
+                                "title",
+                                "light",
+                                "bright",
+                                "motion",
+                                "temp"
+                            ]
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "variables": {
+                                "name": "Entrance",
+                                "icon": "mdi:door-open",
+                                "entity": "input_boolean.area_entrance_automations",
+                                "light": "light.entrance_lights",
+                                "bright": "binary_sensor.area_entrance_bright",
+                                "occupied": "binary_sensor.area_entrance_occupied",
+                                "climate": "climate.area_entrance_climate",
+                                "temp": "sensor.area_entrance_temperature",
+                                "temp_trend": "binary_sensor.area_entrance_temperature_trend"
+                            },
+                            "template": [
+                                "base",
+                                "title",
+                                "light",
+                                "bright",
+                                "motion",
+                                "temp"
+                            ]
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "variables": {
+                                "name": "Lounge",
+                                "icon": "mdi:fridge",
+                                "entity": "input_boolean.area_lounge_automations",
+                                "light": "light.lounge_lights",
+                                "bright": "binary_sensor.area_lounge_bright",
+                                "occupied": "binary_sensor.area_lounge_occupied",
+                                "climate": "climate.area_lounge_climate",
+                                "temp": "sensor.area_lounge_temperature",
+                                "temp_trend": "binary_sensor.area_lounge_temperature_trend"
+                            },
+                            "template": [
+                                "base",
+                                "title",
+                                "light",
+                                "bright",
+                                "motion",
+                                "temp"
+                            ]
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "variables": {
+                                "name": "Toilet",
+                                "icon": "mdi:toilet",
+                                "entity": "input_boolean.area_toilet_automations",
+                                "light": "light.toilet_lights",
+                                "bright": "binary_sensor.area_toilet_bright",
+                                "occupied": "binary_sensor.area_toilet_occupied",
+                                "climate": "climate.area_toilet_climate",
+                                "temp": "sensor.area_toilet_temperature",
+                                "temp_trend": "binary_sensor.area_toilet_temperature_trend"
+                            },
+                            "template": [
+                                "base",
+                                "title",
+                                "light",
+                                "bright",
+                                "motion",
+                                "temp"
+                            ]
+                        },
+                        {
+                            "type": "grid",
+                            "columns": 1,
+                            "square": true,
+                            "cards": [
+                                {
+                                    "type": "map",
+                                    "entities": [
+                                        "device_tracker.seb_phone",
+                                        "device_tracker.laura_phone"
+                                    ],
+                                    "aspect_ratio": "1:1",
+                                    "dark_mode": true,
+                                    "hours_to_show": 12,
+                                    "card_mod": {
+                                        "style": {
+                                            "ha-map$": ".leaflet-control-attribution {\n  display: none;\n}\n"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "conditional",
+                            "conditions": [
+                                {
+                                    "entity": "media_player.bedroom_echo",
+                                    "state": "playing"
+                                }
+                            ],
+                            "card": {
+                                "type": "grid",
+                                "columns": 1,
+                                "cards": [
+                                    {
+                                        "type": "custom:mini-media-player",
+                                        "entity": "media_player.bedroom_echo",
+                                        "name": "Bedroom Echo",
+                                        "info": "scroll",
+                                        "hide": {
+                                            "source": true,
+                                            "power": true,
+                                            "icon": true
+                                        },
+                                        "artwork": "cover",
+                                        "style": "ha-card {\n  height: 100%;\n}\n"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "conditional",
+                            "conditions": [
+                                {
+                                    "entity": "media_player.kitchen_echo_show",
+                                    "state": "playing"
+                                }
+                            ],
+                            "card": {
+                                "type": "grid",
+                                "columns": 1,
+                                "cards": [
+                                    {
+                                        "type": "custom:mini-media-player",
+                                        "entity": "media_player.kitchen_echo_show",
+                                        "name": "Kitchen Show",
+                                        "info": "scroll",
+                                        "hide": {
+                                            "source": true,
+                                            "power": true,
+                                            "icon": true
+                                        },
+                                        "style": "ha-card {\n  height: 100%;\n}\n",
+                                        "artwork": "cover"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "conditional",
+                            "conditions": [
+                                {
+                                    "entity": "media_player.lounge_tv",
+                                    "state": "playing"
+                                }
+                            ],
+                            "card": {
+                                "type": "grid",
+                                "columns": 1,
+                                "cards": [
+                                    {
+                                        "type": "custom:mini-media-player",
+                                        "entity": "media_player.lounge_tv",
+                                        "name": "Lounge TV",
+                                        "info": "scroll",
+                                        "hide": {
+                                            "source": true,
+                                            "power": true,
+                                            "icon": true
+                                        },
+                                        "style": "ha-card {\n  height: 100%;\n}\n",
+                                        "artwork": "cover"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "conditional",
+                            "conditions": [
+                                {
+                                    "entity": "media_player.bedroom_tv",
+                                    "state": "playing"
+                                }
+                            ],
+                            "card": {
+                                "type": "grid",
+                                "columns": 1,
+                                "cards": [
+                                    {
+                                        "type": "custom:mini-media-player",
+                                        "entity": "media_player.bedroom_tv",
+                                        "name": "Bedroom TV",
+                                        "info": "scroll",
+                                        "hide": {
+                                            "source": true,
+                                            "power": true,
+                                            "icon": true
+                                        },
+                                        "style": "ha-card {\n  height: 100%;\n}\n",
+                                        "artwork": "cover"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "conditional",
+                            "conditions": [
+                                {
+                                    "entity": "media_player.starrunner",
+                                    "state": "playing"
+                                }
+                            ],
+                            "card": {
+                                "type": "grid",
+                                "columns": 1,
+                                "cards": [
+                                    {
+                                        "type": "custom:mini-media-player",
+                                        "entity": "media_player.starrunner",
+                                        "name": "Study PC",
+                                        "info": "scroll",
+                                        "hide": {
+                                            "source": true,
+                                            "power": true,
+                                            "icon": true
+                                        },
+                                        "style": "ha-card {\n  height: 100%;\n}\n",
+                                        "artwork": "cover"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "title": "Cameras",
+                    "path": "cameras",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "picture-entity",
+                            "entity": "camera.entrance",
+                            "camera_view": "live",
+                            "show_state": false,
+                            "show_name": false
+                        },
+                        {
+                            "type": "picture-entity",
+                            "entity": "camera.stairs",
+                            "camera_view": "live",
+                            "show_state": false,
+                            "show_name": false,
+                            "aspect_ratio": "1.75"
+                        },
+                        {
+                            "type": "picture-entity",
+                            "entity": "camera.lounge",
+                            "camera_view": "live",
+                            "show_state": false,
+                            "show_name": false
+                        },
+                        {
+                            "type": "picture-entity",
+                            "entity": "camera.kitchen",
+                            "camera_view": "live",
+                            "show_state": false,
+                            "show_name": false
+                        },
+                        {
+                            "type": "picture-entity",
+                            "entity": "camera.hall",
+                            "camera_view": "live",
+                            "show_state": false,
+                            "show_name": false
                         }
                     ]
                 }
