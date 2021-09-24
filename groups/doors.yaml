@@ -1,0 +1,41 @@
+# area_bathroom_doors:
+#   name: Area - Bathroom Doors
+#   icon: mdi:door
+#   entities:
+#     - 
+# area_bedroom_doors:
+#   name: Area - Bedroom Doors
+#   icon: mdi:door
+#   entities:
+#     - 
+area_entrance_doors:
+  name: Area - Entrance Doors
+  icon: mdi:door
+  entities:
+    - binary_sensor.dor_03_contact
+# area_hall_doors:
+#   name: Area - Hall Doors
+#   icon: mdi:door
+#   entities:
+#     - 
+# area_kitchen_doors:
+#   name: Area - Kitchen Doors
+#   icon: mdi:door
+#   entities:
+#     - 
+area_lounge_doors:
+  name: Area - Lounge Doors
+  icon: mdi:door
+  entities:
+    - binary_sensor.dor_01_contact
+    - binary_sensor.dor_02_contact
+# area_study_doors:
+#   name: Area - Study Doors
+#   icon: mdi:door
+#   entities:
+#     - 
+# area_toilet_doors:
+#   name: Area - Toilet Doors
+#   icon: mdi:door
+#   entities:
+#     - 

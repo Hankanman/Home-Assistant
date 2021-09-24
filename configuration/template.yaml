@@ -5,5 +5,5 @@
 # https://www.home-assistant.io/integrations/sensor/
 #
 template:
-  sensor: !include_dir_merge_list ../templates/sensors
-  binary_sensor: !include_dir_merge_list ../templates/binary_sensors
+ binary_sensor: !include_dir_merge_list ../templates/binary_sensors
+ sensor: !include_dir_merge_list ../templates/sensors

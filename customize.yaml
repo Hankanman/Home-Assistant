@@ -82,3 +82,5 @@ binary_sensor.win_03_contact:
   device_class: window
 binary_sensor.win_04_contact:
   device_class: window
+sensor.octopus_agile_current_rate:
+  state_class: measurement

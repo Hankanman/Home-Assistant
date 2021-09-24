@@ -1,7 +1,7 @@
 ####################################
 # Energy
 ####################################
-- platform: "octopusagile"
+- platform: octopusagile
 - platform: rest
   name: Gas Daily Usage
   device_class: power
@@ -22,3 +22,11 @@
     - interval_end
   value_template: "{{value_json.results[1].consumption}}"
   resource: !secret octopus_electricity
+- platform: integration
+  source: sensor.mainsexport
+  name: Total Grid Export
+  unit_prefix: k
+- platform: integration
+  source: sensor.mainsconsumption
+  name: Total Grid Consumption
+  unit_prefix: k

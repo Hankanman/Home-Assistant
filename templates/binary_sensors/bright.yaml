@@ -11,7 +11,7 @@
     current_illuminance: "{{ (states('sensor.area_bathroom_illuminance') | float) }}"
     light_state: "{{ states('light.bathroom_lights') }}"
     sun: "{{ states('sun.sun') }}"
-  state: "{{ (states('sensor.area_bathroom_illuminance') | float) >= (states('input_number.area_bathroom_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.bathroom_lights', 'off')) }}"
+  state: "{{ (states('sensor.area_bathroom_illuminance') | int > states('input_number.area_bathroom_lux_level') | int) and (is_state('sun.sun', 'above_horizon') or is_state('light.bathroom_lights', 'off')) }}"
 
 - unique_id: area_bedroom_bright
   name: "Area - Bedroom Bright"
@@ -20,7 +20,7 @@
     current_illuminance: "{{ (states('sensor.area_bedroom_illuminance') | float) }}"
     light_state: "{{ states('light.bedroom_lights') }}"
     sun: "{{ states('sun.sun') }}"
-  state: "{{ (states('sensor.area_bedroom_illuminance') | float) >= (states('input_number.area_bedroom_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.bedroom_lights', 'off')) }}"
+  state: "{{ (states('sensor.area_bedroom_illuminance') | int > states('input_number.area_bedroom_lux_level') | int) and (is_state('sun.sun', 'above_horizon') or is_state('light.bedroom_lights', 'off')) }}"
 
 - unique_id: area_entrance_bright
   name: "Area - Entrance Bright"
@@ -29,7 +29,7 @@
     current_illuminance: "{{ (states('sensor.area_entrance_illuminance') | float) }}"
     light_state: "{{ states('light.entrance_lights') }}"
     sun: "{{ states('sun.sun') }}"
-  state: "{{ (states('sensor.area_entrance_illuminance') | float) >= (states('input_number.area_entrance_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.entrance_lights', 'off')) }}"
+  state: "{{ (states('sensor.area_entrance_illuminance') | int > states('input_number.area_entrance_lux_level') | int) and (is_state('sun.sun', 'above_horizon') or is_state('light.entrance_lights', 'off')) }}"
 
 - unique_id: area_hall_bright
   name: "Area - Hall Bright"
@@ -38,7 +38,7 @@
     current_illuminance: "{{ (states('sensor.area_hall_illuminance') | float) }}"
     light_state: "{{ states('light.hall_lights') }}"
     sun: "{{ states('sun.sun') }}"
-  state: "{{ (states('sensor.area_hall_illuminance') | float) >= (states('input_number.area_hall_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.hall_lights', 'off')) }}"
+  state: "{{ (states('sensor.area_hall_illuminance') | int > states('input_number.area_hall_lux_level') | int) and (is_state('sun.sun', 'above_horizon') or is_state('light.hall_lights', 'off')) }}"
 
 - unique_id: area_kitchen_bright
   name: "Area - Kitchen Bright"
@@ -47,7 +47,7 @@
     current_illuminance: "{{ (states('sensor.area_kitchen_illuminance') | float) }}"
     light_state: "{{ states('light.kitchen_lights') }}"
     sun: "{{ states('sun.sun') }}"
-  state: "{{ (states('sensor.area_kitchen_illuminance') | float) >= (states('input_number.area_kitchen_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.kitchen_lights', 'off')) }}"
+  state: "{{ (states('sensor.area_kitchen_illuminance') | int > states('input_number.area_kitchen_lux_level') | int) and (is_state('sun.sun', 'above_horizon') or is_state('light.kitchen_lights', 'off')) }}"
 
 - unique_id: area_lounge_bright
   name: "Area - Lounge Bright"
@@ -56,8 +56,14 @@
     current_illuminance: "{{ (states('sensor.area_lounge_illuminance') | float) }}"
     light_state: "{{ states('light.lounge_lights') }}"
     sun: "{{ states('sun.sun') }}"
-  state: "{{ (states('sensor.area_lounge_illuminance') | float) >= (states('input_number.area_lounge_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.lounge_lights', 'off')) }}"
-
+  state: |
+    {% if states('sensor.area_lounge_illuminance') | int > (states('input_number.area_lounge_lux_level') | int * 1.5) and is_state('light.lounge_lights', 'off') %}
+      True
+    {% elif ((states('input_number.area_lounge_lux_level') | int < states('sensor.area_lounge_illuminance') | int < (states('input_number.area_lounge_lux_level') | int * 1.5 ))) and (as_timestamp(now())-as_timestamp(states.binary_sensor.area_lounge_bright.last_changed) < 300) %}
+      {{ states('binary_sensor.area_lounge_bright') }}
+    {% elif states('sensor.area_lounge_illuminance') | int < states('input_number.area_lounge_lux_level') | int %}
+      False
+    {% endif %}
 - unique_id: area_study_bright
   name: "Area - Study Bright"
   device_class: light
@@ -65,7 +71,7 @@
     current_illuminance: "{{ (states('sensor.area_study_illuminance') | float) }}"
     light_state: "{{ states('light.study_lights') }}"
     sun: "{{ states('sun.sun') }}"
-  state: "{{ (states('sensor.area_study_illuminance') | float) >= (states('input_number.area_study_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.study_lights', 'off')) }}"
+  state: "{{ (states('sensor.area_study_illuminance') | int > states('input_number.area_study_lux_level') | int) and (is_state('sun.sun', 'above_horizon') or is_state('light.study_lights', 'off')) }}"
 
 - unique_id: area_toilet_bright
   name: "Area - Toilet Bright"
@@ -74,4 +80,4 @@
     current_illuminance: "{{ (states('sensor.area_toilet_illuminance') | float) }}"
     light_state: "{{ states('light.toilet_lights') }}"
     sun: "{{ states('sun.sun') }}"
-  state: "{{ (states('sensor.area_toilet_illuminance') | float) >= (states('input_number.area_toilet_lux_level') | float) and (is_state('sun.sun', 'above_horizon') or is_state('light.toilet_lights', 'off')) }}"
+  state: "{{ (states('sensor.area_toilet_illuminance') | int > states('input_number.area_toilet_lux_level') | int) and (is_state('sun.sun', 'above_horizon') or is_state('light.toilet_lights', 'off')) }}"

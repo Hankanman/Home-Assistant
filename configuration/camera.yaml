@@ -1,0 +1,5 @@
+camera:
+  - platform: generic
+    name: Front Door
+    still_image_url: http://localhost:8123{{ states.camera.front_door_snapshot.attribute.entity_picture }}
+    stream_source: rtsp://03cabcc9-ring-mqtt.local.hass.io:8554/4c2498413923_live

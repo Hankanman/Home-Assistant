@@ -2,6 +2,7 @@
 # Media Players
 ####################################
 media_player:
+  # Bedroom Fire TV ADB
   - platform: androidtv
     device_class: firetv
     name: Bedroom Fire TV ADB
@@ -13,31 +14,14 @@ media_player:
       com.amazon.firetv.youtube: "YouTube"
       com.channel4.ondemand: "All 4"
       air.ITVMobilePlayer: "ITV Hub"
+
+  # Lounge Fire TV ADB
   - platform: androidtv
     device_class: firetv
-    name: Study Fire TV ADB
-    host: !secret study_fire_tv
-  - platform: androidtv
-    device_class: androidtv
-    name: Shield ADB
-    host: !secret shield_tv
-    exclude_unnamed_apps: true
-    apps:
-      com.google.android.tvlauncher: "Shield Home"
-      com.amazon.amazonvideo.livingroom: "Prime Video"
-      uk.co.bbc.iplayer: "BBC iPlayer"
-      com.amazon.firetv.youtube: "YouTube"
-      com.android.vending: "Play Store"
-      com.facebook.katana: "Facebook Watch"
-      com.google.android.music: "Google Play Music"
-      com.google.android.videos: "Google Play Movies & TV"
-      com.channel4.ondemand: "All 4"
-      air.ITVMobilePlayer: "ITV Hub"
-      com.google.android.tv: "Live TV"
-      com.nvidia.bbciplayer: "BBC iPlayer"
-      tv.twitch.android.app: "Twitch"
-      com.nvidia.tegrazone3: "Nvidia Games"
-      com.valvesoftware.steamlink: "Steam Link"
+    name: Lounge Fire TV ADB
+    host: !secret lounge_fire_tv
+
+  # Lounge TV ADB
   - platform: androidtv
     device_class: androidtv
     name: Lounge TV ADB
@@ -46,6 +30,8 @@ media_player:
     apps:
       com.sony.dtv.hbbtvlauncher: "All 4"
       com.sony.dtv.tvx: "External Source"
+
+  # Bedroom TV
   - platform: universal
     name: Bedroom TV
     children:
@@ -76,22 +62,24 @@ media_player:
         service: media_player.select_source
         data:
           entity_id: media_player.bedroom_fire_tv_adb
-          source: '{{ source }}'
+          source: "{{ source }}"
     attributes:
       is_volume_muted: media_player.bedroom_fire_tv_adb|is_volume_muted
       state: media_player.bedroom_fire_tv_adb
       source: media_player.bedroom_fire_tv_adb|source
       source_list: media_player.bedroom_fire_tv_adb|source_list
+
+  # Lounge TV
   - platform: universal
     name: Lounge TV
     children:
-      - media_player.shield_adb
+      - media_player.lounge_fire_tv_adb
       - media_player.lounge_tv_adb
     commands:
       turn_on:
         service: media_player.turn_on
         data:
-          entity_id: media_player.shield_adb
+          entity_id: media_player.lounge_tv_adb
       turn_off:
         service: media_player.turn_off
         data:
@@ -111,15 +99,60 @@ media_player:
       select_source:
         service: media_player.select_source
         data:
-          entity_id: media_player.shield_adb
-          source: '{{ source }}'
+          entity_id: media_player.lounge_fire_tv_adb
+          source: "{{ source }}"
       volume_set:
         service: media_player.volume_set
         data:
           entity_id: media_player.lounge_tv_adb
-          volume_level: '{{ volume_level }}'
+          volume_level: "{{ volume_level }}"
     attributes:
-      state: media_player.shield_adb
+      state: media_player.lounge_fire_tv_adb
       is_volume_muted: media_player.lounge_tv_adb|is_volume_muted
-      source: media_player.shield_adb|source
-      source_list: media_player.shield_adb|source_list
+      source: media_player.lounge_fire_tv_adb|source
+      source_list: media_player.lounge_fire_tv_adb|source_list
+
+  # Starrunner
+  - platform: universal
+    name: Starrunner
+    state_template: >
+      {% if is_state('binary_sensor.starrunner_online', 'on')  and  is_state_attr('media_player.spotify_seb', 'source', 'STARRUNNER') %}
+        {% if is_state('media_player.spotify_seb', 'playing') %}
+          playing
+        {% else %}
+          paused
+        {% endif %}
+      {% else %}
+        idle
+      {% endif %}
+    children:
+      - media_player.spotify_seb
+    commands:
+      media_play:
+        service: switch.toggle
+        target:
+          entity_id: switch.starrunner_media_play_pause
+      media_pause:
+        service: switch.toggle
+        target:
+          entity_id: switch.starrunner_media_play_pause
+      media_next_track:
+        service: switch.toggle
+        target:
+          entity_id: switch.starrunner_media_next
+      media_previous_track:
+        service: switch.toggle
+        target:
+          entity_id: switch.starrunner_media_previous
+      volume_up:
+        service: switch.toggle
+        target:
+          entity_id: switch.starrunner_media_volume_up
+      volume_down:
+        service: switch.toggle
+        target:
+          entity_id: switch.starrunner_media_volume_down
+      volume_mute:
+        service: switch.toggle
+        target:
+          entity_id: switch.starrunner_media_mute

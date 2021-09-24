@@ -1,7 +1,9 @@
 object_detection:
   name: Object Detection
+  icon: mdi:camera-account
   entities:
-    - switch.kitchencam_detect
-    - switch.entrancecam_detect
-    - switch.loungecam_detect
-    - switch.hallcam_detect
+    - switch.kitchen_detect
+    - switch.entrance_detect
+    - switch.lounge_detect
+    - switch.hall_detect
+    - switch.stairs_detect

@@ -1,0 +1,6 @@
+utility_meter:
+  daily_electricity:
+    source: sensor.electricity_daily_usage
+    cycle: daily
+  monthly_elecricity:
+    source: octopusagile.monthly_usage

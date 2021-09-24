@@ -1,5 +1,6 @@
 echos:
   name: Echos
+  icon: mdi:amazon-alexa
   entities:
     - media_player.bedroom_echo
     - media_player.bedroom_fire_tv

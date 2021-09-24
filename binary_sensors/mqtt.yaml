@@ -2,7 +2,7 @@
 # MQTT
 ####################################
 - platform: mqtt
-  name: Seb PC Online
+  name: Starrunner Online
   state_topic: homeassistant/sensor/STARRUNNER/availability
   payload_on: "online"
   payload_off: "offline"
@@ -12,7 +12,7 @@
 # People
 ####################################
 - platform: mqtt
-  name: People Entrance
+  name: Area - Entrance People
   availability_topic: frigate/available
   state_topic: "frigate/Area - Entrance/person"
   device_class: motion
@@ -20,7 +20,7 @@
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: People Hall
+  name: Area - Hall People
   availability_topic: frigate/available
   state_topic: "frigate/Area - Hall/person"
   device_class: motion
@@ -28,7 +28,7 @@
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: People Kitchen
+  name: Area - Kitchen People
   availability_topic: frigate/available
   state_topic: "frigate/Area - Kitchen/person"
   device_class: motion
@@ -36,7 +36,7 @@
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: People Lounge
+  name: Area - Lounge People
   availability_topic: frigate/available
   state_topic: "frigate/Area - Lounge/person"
   device_class: motion
@@ -44,7 +44,7 @@
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: People Stairs
+  name: Area - Stairs People
   availability_topic: frigate/available
   state_topic: "frigate/Area - Stairs/person"
   device_class: motion
@@ -55,7 +55,7 @@
 # Dogs
 ####################################
 - platform: mqtt
-  name: Dogs Entrance
+  name: Area - Entrance Dogs
   availability_topic: frigate/available
   state_topic: "frigate/Area - Entrance/dog"
   device_class: motion
@@ -63,7 +63,7 @@
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: Dogs Hall
+  name: Area - Hall Dogs
   availability_topic: frigate/available
   state_topic: "frigate/Area - Hall/dog"
   device_class: motion
@@ -71,7 +71,7 @@
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: Dogs Kitchen
+  name: Area - Kitchen Dogs
   availability_topic: frigate/available
   state_topic: "frigate/Area - Kitchen/dog"
   device_class: motion
@@ -79,7 +79,7 @@
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: Dogs Lounge
+  name: Area - Lounge Dogs
   availability_topic: frigate/available
   state_topic: "frigate/Area - Lounge/dog"
   device_class: motion
@@ -87,7 +87,7 @@
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: Dogs Stairs
+  name: Area - Stairs Dogs
   availability_topic: frigate/available
   state_topic: "frigate/Area - Stairs/dog"
   device_class: motion

@@ -4,8 +4,8 @@
      url: 'https://zigbee2mqtt.sbhost.co.uk/'
      icon: 'mdi:graphql'
      require_admin: true
-   nginx:
-     title: 'Proxy'
-     url: 'https://proxy.sbhost.co.uk/'
-     icon: 'mdi:call-split'
-     require_admin: true
+  #  nginx:
+  #    title: 'Proxy'
+  #    url: 'https://proxy.sbhost.co.uk/'
+  #    icon: 'mdi:call-split'
+  #    require_admin: true

@@ -1,7 +1,9 @@
 snapshots:
   name: Snapshots
+  icon: mdi:camera-image
   entities:
-    - switch.kitchencam_snapshots
-    - switch.entrancecam_snapshots
-    - switch.loungecam_snapshots
-    - switch.hallcam_snapshots
+    - switch.kitchen_snapshots
+    - switch.entrance_snapshots
+    - switch.lounge_snapshots
+    - switch.hall_snapshots
+    - switch.stairs_snapshots

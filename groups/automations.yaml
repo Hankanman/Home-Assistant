@@ -1,12 +1,13 @@
 all_automations:
   name: All Automations
+  icon: mdi:robot
   entities:
-    - input_boolean.bathroom_automations
-    - input_boolean.bedroom_automations
-    - input_boolean.entrance_automations
-    - input_boolean.hall_automations
-    - input_boolean.home_automations
-    - input_boolean.kitchen_automations
-    - input_boolean.lounge_automations
-    - input_boolean.study_automations
-    - input_boolean.toilet_automations
+    - input_boolean.area_bathroom_automations
+    - input_boolean.area_bedroom_automations
+    - input_boolean.area_entrance_automations
+    - input_boolean.area_hall_automations
+    - input_boolean.area_home_automations
+    - input_boolean.area_kitchen_automations
+    - input_boolean.area_lounge_automations
+    - input_boolean.area_study_automations
+    - input_boolean.area_toilet_automations

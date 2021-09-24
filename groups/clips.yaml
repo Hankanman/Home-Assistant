@@ -1,7 +1,9 @@
 clip_recording:
   name: Clip Recording
+  icon: mdi:camera-party-mode
   entities:
-    - switch.kitchencam_clips
-    - switch.entrancecam_clips
-    - switch.loungecam_clips
-    - switch.hallcam_clips
+    - switch.kitchen_clips
+    - switch.entrance_clips
+    - switch.lounge_clips
+    - switch.hall_clips
+    - switch.stairs_clips

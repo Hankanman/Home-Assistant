@@ -1,0 +1,46 @@
+area_bathroom_motion:
+  name: Area - Bathroom Motion
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.bathroom_multisensor_motion
+    - binary_sensor.mot_01_occupancy
+area_bedroom_motion:
+  name: Area - Bedroom Motion
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.bedroom_trisensor_motion
+area_entrance_motion:
+  name: Area - Entrance Motion
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.area_entrance_person_motion
+    - binary_sensor.entrance_tablet_motion
+area_hall_motion:
+  name: Area - Hall Motion
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.area_hall_person_motion
+    - binary_sensor.hall_trisensor_motion
+area_kitchen_motion:
+  name: Area - Kitchen Motion
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.kitchen_trisensor_motion
+    - binary_sensor.area_kitchen_person_motion
+area_lounge_motion:
+  name: Area - Lounge Motion
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.mot_02_occupancy
+    - binary_sensor.mot_03_occupancy
+    - binary_sensor.area_lounge_person_motion
+area_study_motion:
+  name: Area - Study Motion
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.study_trisensor_motion
+area_toilet_motion:
+  name: Area - Toilet Motion
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.toilet_trisensor_motion
