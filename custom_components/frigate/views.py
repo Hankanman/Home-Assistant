@@ -1,58 +1,146 @@
-import logging
-import urllib.parse
+"""Frigate HTTP views."""
+from __future__ import annotations
+
 from ipaddress import ip_address
-from typing import Dict, Union
+import logging
+from typing import Any, Optional, cast
 
 import aiohttp
 from aiohttp import hdrs, web
-from aiohttp.web_exceptions import HTTPBadGateway
+from aiohttp.web_exceptions import HTTPBadGateway, HTTPUnauthorized
+import jwt
 from multidict import CIMultiDict
+from yarl import URL
 
+from custom_components.frigate.const import (
+    ATTR_CLIENT_ID,
+    ATTR_CONFIG,
+    ATTR_MQTT,
+    CONF_NOTIFICATION_PROXY_ENABLE,
+    DOMAIN,
+)
 from homeassistant.components.http import HomeAssistantView
+from homeassistant.components.http.auth import DATA_SIGN_SECRET, SIGN_QUERY_PARAM
+from homeassistant.components.http.const import KEY_HASS
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import (
+    CONF_URL,
+    HTTP_BAD_REQUEST,
+    HTTP_FORBIDDEN,
+    HTTP_NOT_FOUND,
+)
+from homeassistant.core import HomeAssistant
 
-_LOGGER: logging.Logger = logging.getLogger(__package__)
+_LOGGER: logging.Logger = logging.getLogger(__name__)
 
 
-class ClipsProxy(HomeAssistantView):
-    """Hass.io view to handle base part."""
+def get_default_config_entry(hass: HomeAssistant) -> ConfigEntry | None:
+    """Get the default Frigate config entry.
 
-    name = "api:frigate:clips"
-    url = "/api/frigate/clips/{path:.*}"
+    This is for backwards compatibility for when only a single instance was
+    supported. If there's more than one instance configured, then there is no
+    default and the user must specify explicitly which instance they want.
+    """
+    frigate_entries = hass.config_entries.async_entries(DOMAIN)
+    if len(frigate_entries) == 1:
+        return frigate_entries[0]
+    return None
+
+
+def get_frigate_instance_id(config: dict[str, Any]) -> str | None:
+    """Get the Frigate instance id from a Frigate configuration."""
+
+    # Use the MQTT client_id as a way to separate the frigate instances, rather
+    # than just using the config_entry_id, in order to make URLs maximally
+    # relatable/findable by the user. The MQTT client_id value is configured by
+    # the user in their Frigate configuration and will be unique per Frigate
+    # instance (enforced in practice on the Frigate/MQTT side).
+    return cast(Optional[str], config.get(ATTR_MQTT, {}).get(ATTR_CLIENT_ID))
+
+
+def get_config_entry_for_frigate_instance_id(
+    hass: HomeAssistant, frigate_instance_id: str
+) -> ConfigEntry | None:
+    """Get a ConfigEntry for a given frigate_instance_id."""
+
+    for config_entry in hass.config_entries.async_entries(DOMAIN):
+        config = hass.data[DOMAIN].get(config_entry.entry_id, {}).get(ATTR_CONFIG, {})
+        if config and get_frigate_instance_id(config) == frigate_instance_id:
+            return config_entry
+    return None
+
+
+def get_frigate_instance_id_for_config_entry(
+    hass: HomeAssistant,
+    config_entry: ConfigEntry,
+) -> ConfigEntry | None:
+    """Get a frigate_instance_id for a ConfigEntry."""
+
+    config = hass.data[DOMAIN].get(config_entry.entry_id, {}).get(ATTR_CONFIG, {})
+    return get_frigate_instance_id(config) if config else None
+
+
+class ProxyView(HomeAssistantView):  # type: ignore[misc]
+    """HomeAssistant view."""
+
     requires_auth = True
 
-    def __init__(self, host: str, websession: aiohttp.ClientSession):
+    def __init__(self, websession: aiohttp.ClientSession):
         """Initialize the frigate clips proxy view."""
-        self._host = host
         self._websession = websession
 
-    def _create_url(self, path: str) -> str:
-        """Create URL to service."""
-        return urllib.parse.urljoin(self._host, f"/clips/{path}")
+    def _get_config_entry_for_request(
+        self, request: web.Request, frigate_instance_id: str | None
+    ) -> ConfigEntry | None:
+        """Get a ConfigEntry for a given request."""
+        hass = request.app[KEY_HASS]
 
-    async def _handle(
-        self, request: web.Request, path: str
-    ) -> Union[web.Response, web.StreamResponse, web.WebSocketResponse]:
+        if frigate_instance_id:
+            return get_config_entry_for_frigate_instance_id(hass, frigate_instance_id)
+        return get_default_config_entry(hass)
+
+    def _create_path(self, path: str, **kwargs: Any) -> str | None:
+        """Create path."""
+        raise NotImplementedError  # pragma: no cover
+
+    def _permit_request(self, request: web.Request, config_entry: ConfigEntry) -> bool:
+        """Determine whether to permit a request."""
+        return True
+
+    async def get(
+        self,
+        request: web.Request,
+        **kwargs: Any,
+    ) -> web.Response | web.StreamResponse | web.WebSocketResponse:
         """Route data to service."""
         try:
-            return await self._handle_request(request, path)
+            return await self._handle_request(request, **kwargs)
 
         except aiohttp.ClientError as err:
-            _LOGGER.debug("Reverse proxy error with %s: %s", path, err)
+            _LOGGER.debug("Reverse proxy error for %s: %s", request.rel_url, err)
 
         raise HTTPBadGateway() from None
 
-    get = _handle
-    post = _handle
-    put = _handle
-    delete = _handle
-    patch = _handle
-    options = _handle
-
     async def _handle_request(
-        self, request: web.Request, path: str
-    ) -> Union[web.Response, web.StreamResponse]:
+        self,
+        request: web.Request,
+        path: str,
+        frigate_instance_id: str | None = None,
+        **kwargs: Any,
+    ) -> web.Response | web.StreamResponse:
         """Handle route for request."""
-        url = self._create_url(path)
+        config_entry = self._get_config_entry_for_request(request, frigate_instance_id)
+        if not config_entry:
+            return web.Response(status=HTTP_BAD_REQUEST)
+
+        if not self._permit_request(request, config_entry):
+            return web.Response(status=HTTP_FORBIDDEN)
+
+        full_path = self._create_path(path=path, **kwargs)
+        if not full_path:
+            return web.Response(status=HTTP_NOT_FOUND)
+
+        url = str(URL(config_entry.data[CONF_URL]) / full_path)
         data = await request.read()
         source_header = _init_header(request)
 
@@ -76,159 +164,124 @@ class ClipsProxy(HomeAssistantView):
                     await response.write(data)
 
             except (aiohttp.ClientError, aiohttp.ClientPayloadError) as err:
-                _LOGGER.debug("Stream error %s: %s", path, err)
+                _LOGGER.debug("Stream error for %s: %s", request.rel_url, err)
+            except ConnectionResetError:
+                # Connection is reset/closed by peer.
+                pass
 
             return response
 
 
-class RecordingsProxy(HomeAssistantView):
-    """Hass.io view to handle base part."""
+class SnapshotsProxyView(ProxyView):
+    """A proxy for snapshots."""
 
-    name = "api:frigate:recordings"
-    url = "/api/frigate/recordings/{path:.*}"
-    requires_auth = True
+    url = "/api/frigate/{frigate_instance_id:.+}/clips/{path:.*}"
+    extra_urls = ["/api/frigate/clips/{path:.*}"]
 
-    def __init__(self, host: str, websession: aiohttp.ClientSession):
-        """Initialize the frigate recordings proxy view."""
-        self._host = host
-        self._websession = websession
+    name = "api:frigate:snapshots"
 
-    def _create_url(self, path: str) -> str:
-        """Create URL to service."""
-        return urllib.parse.urljoin(self._host, f"/recordings/{path}")
-
-    async def _handle(
-        self, request: web.Request, path: str
-    ) -> Union[web.Response, web.StreamResponse, web.WebSocketResponse]:
-        """Route data to service."""
-        try:
-            return await self._handle_request(request, path)
-
-        except aiohttp.ClientError as err:
-            _LOGGER.debug("Reverse proxy error with %s: %s", path, err)
-
-        raise HTTPBadGateway() from None
-
-    get = _handle
-    post = _handle
-    put = _handle
-    delete = _handle
-    patch = _handle
-    options = _handle
-
-    async def _handle_request(
-        self, request: web.Request, path: str
-    ) -> Union[web.Response, web.StreamResponse]:
-        """Handle route for request."""
-        url = self._create_url(path)
-        data = await request.read()
-        source_header = _init_header(request)
-
-        async with self._websession.request(
-            request.method,
-            url,
-            headers=source_header,
-            params=request.query,
-            allow_redirects=False,
-            data=data,
-        ) as result:
-            headers = _response_header(result)
-
-            # Stream response
-            response = web.StreamResponse(status=result.status, headers=headers)
-            response.content_type = result.content_type
-
-            try:
-                await response.prepare(request)
-                async for data in result.content.iter_chunked(4096):
-                    await response.write(data)
-
-            except (aiohttp.ClientError, aiohttp.ClientPayloadError) as err:
-                _LOGGER.debug("Stream error %s: %s", path, err)
-
-            return response
+    def _create_path(self, path: str, **kwargs: Any) -> str:
+        """Create path."""
+        return f"clips/{path}"
 
 
-class NotificationProxy(HomeAssistantView):
-    """Hass.io view to handle base part."""
+class NotificationsProxyView(ProxyView):
+    """A proxy for notifications."""
 
-    url = "/api/frigate/notifications/{event_id}/{path:.*}"
+    url = "/api/frigate/{frigate_instance_id:.+}/notifications/{event_id}/{path:.*}"
+    extra_urls = ["/api/frigate/notifications/{event_id}/{path:.*}"]
+
     name = "api:frigate:notification"
     requires_auth = False
 
-    def __init__(self, host: str, websession: aiohttp.ClientSession):
-        """Initialize the frigate clips proxy view."""
-        self._host = host
-        self._websession = websession
-
-    def _create_url(self, event_id: str, path: str) -> str:
-        """Create URL to service."""
+    def _create_path(self, path: str, **kwargs: Any) -> str | None:
+        """Create path."""
+        event_id = kwargs["event_id"]
         if path == "thumbnail.jpg":
-            return urllib.parse.urljoin(self._host, f"/api/events/{event_id}/thumbnail.jpg")
+            return f"api/events/{event_id}/thumbnail.jpg"
+
         if path == "snapshot.jpg":
-            return urllib.parse.urljoin(self._host, f"/api/events/{event_id}/snapshot.jpg")
+            return f"api/events/{event_id}/snapshot.jpg"
 
-        camera = path.split("/")[0]
         if path.endswith("clip.mp4"):
-            return urllib.parse.urljoin(self._host, f"/clips/{camera}-{event_id}.mp4")
+            return f"api/events/{event_id}/clip.mp4"
+        return None
 
-        raise ValueError
+    def _permit_request(self, request: web.Request, config_entry: ConfigEntry) -> bool:
+        """Determine whether to permit a request."""
+        return bool(config_entry.options.get(CONF_NOTIFICATION_PROXY_ENABLE, True))
 
-    async def _handle(
-        self, request: web.Request, event_id: str, path: str
-    ) -> Union[web.Response, web.StreamResponse, web.WebSocketResponse]:
-        """Route data to service."""
+
+class VodProxyView(ProxyView):
+    """A proxy for vod playlists."""
+
+    url = "/api/frigate/{frigate_instance_id:.+}/vod/{path:.+}/{manifest:.+}.m3u8"
+    extra_urls = ["/api/frigate/vod/{path:.+}/{manifest:.+}.m3u8"]
+
+    name = "api:frigate:vod:mainfest"
+
+    def _create_path(self, path: str, **kwargs: Any) -> str | None:
+        """Create path."""
+        manifest = kwargs["manifest"]
+
+        return f"vod/{path}/{manifest}.m3u8"
+
+
+class VodSegmentProxyView(ProxyView):
+    """A proxy for vod segments."""
+
+    url = "/api/frigate/{frigate_instance_id:.+}/vod/{path:.+}/{segment:.+}.ts"
+    extra_urls = ["/api/frigate/vod/{path:.+}/{segment:.+}.ts"]
+
+    name = "api:frigate:vod:segment"
+    requires_auth = False
+
+    def _create_path(self, path: str, **kwargs: Any) -> str | None:
+        """Create path."""
+        segment = kwargs["segment"]
+
+        return f"vod/{path}/{segment}.ts"
+
+    async def _async_validate_signed_manifest(self, request: web.Request) -> bool:
+        """Validate the signature for the manifest of this segment."""
+        hass = request.app[KEY_HASS]
+        secret = hass.data.get(DATA_SIGN_SECRET)
+        signature = request.query.get(SIGN_QUERY_PARAM)
+
+        if signature is None:
+            _LOGGER.warning("Missing authSig query parameter on VOD segment request.")
+            return False
+
         try:
-            url = self._create_url(event_id, path)
-            return await self._handle_request(request, url)
+            claims = jwt.decode(
+                signature, secret, algorithms=["HS256"], options={"verify_iss": False}
+            )
+        except jwt.InvalidTokenError:
+            _LOGGER.warning("Invalid JWT token for VOD segment request.")
+            return False
 
-        except aiohttp.ClientError as err:
-            _LOGGER.debug("Reverse proxy error with %s: %s", event_id, err)
+        # Check that the base path is the same as what was signed
+        check_path = request.path.rsplit("/", maxsplit=1)[0]
+        if not claims["path"].startswith(check_path):
+            _LOGGER.warning("%s does not start with %s", claims["path"], check_path)
+            return False
 
-        raise HTTPBadGateway() from None
+        return True
 
-    get = _handle
-    post = _handle
-    put = _handle
-    delete = _handle
-    patch = _handle
-    options = _handle
+    async def get(
+        self,
+        request: web.Request,
+        **kwargs: Any,
+    ) -> web.Response | web.StreamResponse | web.WebSocketResponse:
+        """Route data to service."""
 
-    async def _handle_request(
-        self, request: web.Request, url: str
-    ) -> Union[web.Response, web.StreamResponse]:
-        """Handle route for request."""
-        data = await request.read()
-        source_header = _init_header(request)
+        if not await self._async_validate_signed_manifest(request):
+            raise HTTPUnauthorized()
 
-        async with self._websession.request(
-            request.method,
-            url,
-            headers=source_header,
-            params=request.query,
-            allow_redirects=False,
-            data=data,
-        ) as result:
-            headers = _response_header(result)
-
-            # Stream response
-            response = web.StreamResponse(status=result.status, headers=headers)
-            response.content_type = result.content_type
-
-            try:
-                await response.prepare(request)
-                async for data in result.content.iter_chunked(4096):
-                    await response.write(data)
-
-            except (aiohttp.ClientError, aiohttp.ClientPayloadError) as err:
-                _LOGGER.debug("Stream error %s: %s", url, err)
-
-            return response
+        return await super().get(request, **kwargs)
 
 
-def _init_header(
-    request: web.Request
-) -> Union[CIMultiDict, Dict[str, str]]:
+def _init_header(request: web.Request) -> CIMultiDict | dict[str, str]:
     """Create initial header."""
     headers = {}
 
@@ -241,12 +294,14 @@ def _init_header(
             hdrs.SEC_WEBSOCKET_PROTOCOL,
             hdrs.SEC_WEBSOCKET_VERSION,
             hdrs.SEC_WEBSOCKET_KEY,
+            hdrs.HOST,
         ):
             continue
         headers[name] = value
 
     # Set X-Forwarded-For
     forward_for = request.headers.get(hdrs.X_FORWARDED_FOR)
+    assert request.transport
     connected_ip = ip_address(request.transport.get_extra_info("peername")[0])
     if forward_for:
         forward_for = f"{forward_for}, {connected_ip!s}"
@@ -269,7 +324,7 @@ def _init_header(
     return headers
 
 
-def _response_header(response: aiohttp.ClientResponse) -> Dict[str, str]:
+def _response_header(response: aiohttp.ClientResponse) -> dict[str, str]:
     """Create response header."""
     headers = {}
 

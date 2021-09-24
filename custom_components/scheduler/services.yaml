@@ -42,7 +42,21 @@ add:
       name: Weekdays
       description: Days of the week for which the schedule should be repeated
       example: '["daily"]'
-      required: true
+      required: false
+      selector:
+        object:
+    start_date:
+      name: Start date
+      description: Date from which schedule should be executed
+      example: '["2021-01-01"]'
+      required: false
+      selector:
+        object:
+    end_date:
+      name: End date
+      description: Date until which schedule should be executed
+      example: '["2021-12-31"]'
+      required: false
       selector:
         object:
     timeslots:
@@ -73,7 +87,7 @@ add:
 
 edit:
   name: Edit
-  description: Edit a schedule entitity
+  description: Edit a schedule entity
   fields:
     entity_id:
       name: Entity
@@ -88,7 +102,21 @@ edit:
       name: Weekdays
       description: Days of the week for which the schedule should be repeated
       example: '["daily"]'
-      required: true
+      required: false
+      selector:
+        object:
+    start_date:
+      name: Start date
+      description: Date from which schedule should be executed
+      example: '["2021-01-01"]'
+      required: false
+      selector:
+        object:
+    end_date:
+      name: End date
+      description: Date until which schedule should be executed
+      example: '["2021-12-31"]'
+      required: false
       selector:
         object:
     timeslots:
@@ -112,6 +140,27 @@ edit:
     name:
       name: Name
       description: Friendly name for the schedule
+      required: false
+      example: 'My schedule'
+      selector:
+        text:
+
+copy:
+  name: Copy
+  description: Duplicate a schedule entity
+  fields:
+    entity_id:
+      name: Entity
+      description: Identifier of the scheduler entity.
+      example: "switch.schedule_abcdef"
+      required: true
+      selector:
+        entity:
+          integration: scheduler
+          domain: switch
+    name:
+      name: Name
+      description: Friendly name for the copied schedule
       required: false
       example: 'My schedule'
       selector:
