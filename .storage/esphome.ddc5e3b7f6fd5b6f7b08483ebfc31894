@@ -6,17 +6,17 @@
             "uses_password": false,
             "name": "irb-02",
             "mac_address": "48:3F:DA:13:BF:EB",
-            "compilation_time": "Jul 11 2021, 18:50:08",
+            "compilation_time": "Sep 11 2021, 12:49:17",
             "model": "PLATFORMIO_ESP01_1M",
             "has_deep_sleep": false,
-            "esphome_version": "1.19.4",
+            "esphome_version": "2021.8.2",
             "project_name": "",
             "project_version": ""
         },
         "services": [],
         "api_version": {
             "major": 1,
-            "minor": 5
+            "minor": 6
         },
         "switch": [
             {
@@ -24,6 +24,7 @@
                 "key": 608114537,
                 "name": "Study Soundbar Power",
                 "unique_id": "irb-02switchstudy_soundbar_power",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             },
@@ -32,6 +33,7 @@
                 "key": 281832868,
                 "name": "Study Soundbar Volume Up",
                 "unique_id": "irb-02switchstudy_soundbar_volume_up",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             },
@@ -40,6 +42,7 @@
                 "key": 1369838851,
                 "name": "Study Soundbar Volume Down",
                 "unique_id": "irb-02switchstudy_soundbar_volume_down",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             },
@@ -48,6 +51,7 @@
                 "key": 1413793053,
                 "name": "Study Soundbar TV Input",
                 "unique_id": "irb-02switchstudy_soundbar_tv_input",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             },
@@ -56,6 +60,88 @@
                 "key": 2285054457,
                 "name": "Study Soundbar HDMI Input",
                 "unique_id": "irb-02switchstudy_soundbar_hdmi_input",
+                "disabled_by_default": false,
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_soundbar_net_input",
+                "key": 3194150398,
+                "name": "Study Soundbar NET Input",
+                "unique_id": "irb-02switchstudy_soundbar_net_input",
+                "disabled_by_default": false,
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_soundbar_bt_input",
+                "key": 2725753949,
+                "name": "Study Soundbar BT Input",
+                "unique_id": "irb-02switchstudy_soundbar_bt_input",
+                "disabled_by_default": false,
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_soundbar_mute",
+                "key": 3832327065,
+                "name": "Study Soundbar Mute",
+                "unique_id": "irb-02switchstudy_soundbar_mute",
+                "disabled_by_default": false,
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_fan_light_on",
+                "key": 2908395457,
+                "name": "Study Fan Light On",
+                "unique_id": "irb-02switchstudy_fan_light_on",
+                "disabled_by_default": false,
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_fan_light_off",
+                "key": 2929520909,
+                "name": "Study Fan Light Off",
+                "unique_id": "irb-02switchstudy_fan_light_off",
+                "disabled_by_default": false,
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_fan_off",
+                "key": 2295304284,
+                "name": "Study Fan Off",
+                "unique_id": "irb-02switchstudy_fan_off",
+                "disabled_by_default": false,
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_fan_speed_1",
+                "key": 1127616934,
+                "name": "Study Fan Speed 1",
+                "unique_id": "irb-02switchstudy_fan_speed_1",
+                "disabled_by_default": false,
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_fan_speed_2",
+                "key": 1127616933,
+                "name": "Study Fan Speed 2",
+                "unique_id": "irb-02switchstudy_fan_speed_2",
+                "disabled_by_default": false,
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "study_fan_speed_3",
+                "key": 1127616932,
+                "name": "Study Fan Speed 3",
+                "unique_id": "irb-02switchstudy_fan_speed_3",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             }

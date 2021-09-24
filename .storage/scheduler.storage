@@ -14,7 +14,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
-                                "entity_id": "input_boolean.bathroom_schedule",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -27,7 +27,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.bathroom_schedule",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -40,7 +40,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
-                                "entity_id": "input_boolean.bathroom_schedule",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -53,7 +53,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.bathroom_schedule",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -66,7 +66,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
-                                "entity_id": "input_boolean.bathroom_schedule",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -79,7 +79,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.bathroom_schedule",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -103,7 +103,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.bedroom_schedule",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -116,7 +116,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
-                                "entity_id": "input_boolean.bedroom_schedule",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -129,7 +129,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.bedroom_schedule",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -153,7 +153,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.bedroom_schedule",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -166,7 +166,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
-                                "entity_id": "input_boolean.bedroom_schedule",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -179,7 +179,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.bedroom_schedule",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -253,47 +253,47 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.bathroom_automations",
+                                "entity_id": "input_boolean.area_bathroom_automations",
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.bedroom_automations",
+                                "entity_id": "input_boolean.area_bedroom_automations",
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.entrance_automations",
+                                "entity_id": "input_boolean.area_entrance_automations",
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.kitchen_automations",
+                                "entity_id": "input_boolean.area_kitchen_automations",
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.lounge_automations",
+                                "entity_id": "input_boolean.area_lounge_automations",
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.hall_automations",
+                                "entity_id": "input_boolean.area_hall_automations",
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.study_automations",
+                                "entity_id": "input_boolean.area_study_automations",
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.toilet_automations",
+                                "entity_id": "input_boolean.area_toilet_automations",
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.home_automations",
+                                "entity_id": "input_boolean.area_home_automations",
                                 "service_data": {}
                             }
                         ]
@@ -314,7 +314,7 @@
                         "stop": "06:00:00",
                         "conditions": [
                             {
-                                "entity_id": "input_boolean.home_automations",
+                                "entity_id": "input_boolean.area_home_automations",
                                 "attribute": "state",
                                 "value": "on",
                                 "match_type": "is"
@@ -364,7 +364,7 @@
                         "stop": "16:00:00",
                         "conditions": [
                             {
-                                "entity_id": "input_boolean.home_automations",
+                                "entity_id": "input_boolean.area_home_automations",
                                 "attribute": "state",
                                 "value": "on",
                                 "match_type": "is"
@@ -419,7 +419,7 @@
                         "stop": "00:00:00",
                         "conditions": [
                             {
-                                "entity_id": "input_boolean.home_automations",
+                                "entity_id": "input_boolean.area_home_automations",
                                 "attribute": "state",
                                 "value": "on",
                                 "match_type": "is"
@@ -483,7 +483,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
-                                "entity_id": "input_boolean.kitchen_schedule",
+                                "entity_id": "input_boolean.area_kitchen_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -496,7 +496,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.kitchen_schedule",
+                                "entity_id": "input_boolean.area_kitchen_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -509,7 +509,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
-                                "entity_id": "input_boolean.kitchen_schedule",
+                                "entity_id": "input_boolean.area_kitchen_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -522,7 +522,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
-                                "entity_id": "input_boolean.kitchen_schedule",
+                                "entity_id": "input_boolean.area_kitchen_schedule",
                                 "service_data": {}
                             }
                         ]
@@ -535,7 +535,7 @@
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
-                                "entity_id": "input_boolean.kitchen_schedule",
+                                "entity_id": "input_boolean.area_kitchen_schedule",
                                 "service_data": {}
                             }
                         ]

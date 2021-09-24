@@ -6,17 +6,17 @@
             "uses_password": false,
             "name": "irb-01",
             "mac_address": "48:3F:DA:13:BF:FD",
-            "compilation_time": "Jul 11 2021, 18:00:26",
+            "compilation_time": "Sep 11 2021, 12:32:28",
             "model": "PLATFORMIO_ESP01_1M",
             "has_deep_sleep": false,
-            "esphome_version": "1.19.4",
+            "esphome_version": "2021.8.2",
             "project_name": "",
             "project_version": ""
         },
         "services": [],
         "api_version": {
             "major": 1,
-            "minor": 5
+            "minor": 6
         },
         "switch": [
             {
@@ -24,6 +24,7 @@
                 "key": 2563700138,
                 "name": "Bedroom TV Power",
                 "unique_id": "irb-01switchbedroom_tv_power",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             },
@@ -32,6 +33,7 @@
                 "key": 878689927,
                 "name": "Bedroom TV Volume Up",
                 "unique_id": "irb-01switchbedroom_tv_volume_up",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             },
@@ -40,6 +42,7 @@
                 "key": 1941511692,
                 "name": "Bedroom TV Volume Down",
                 "unique_id": "irb-01switchbedroom_tv_volume_down",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             },
@@ -48,6 +51,7 @@
                 "key": 1360023700,
                 "name": "Bedroom TV Mute",
                 "unique_id": "irb-01switchbedroom_tv_mute",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             },
@@ -56,6 +60,7 @@
                 "key": 4056361776,
                 "name": "Bedroom Soundbar Power",
                 "unique_id": "irb-01switchbedroom_soundbar_power",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             },
@@ -64,6 +69,7 @@
                 "key": 513251701,
                 "name": "Bedroom Soundbar Volume Up",
                 "unique_id": "irb-01switchbedroom_soundbar_volume_up",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             },
@@ -72,6 +78,7 @@
                 "key": 3591586862,
                 "name": "Bedroom Soundbar Volume Down",
                 "unique_id": "irb-01switchbedroom_soundbar_volume_down",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             },
@@ -80,6 +87,7 @@
                 "key": 2779842418,
                 "name": "Bedroom Soundbar Mute",
                 "unique_id": "irb-01switchbedroom_soundbar_mute",
+                "disabled_by_default": false,
                 "icon": "",
                 "assumed_state": false
             }

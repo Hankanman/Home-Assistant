@@ -51,7 +51,7 @@
                 "should_expose": true
             },
             "light.home_lights": {
-                "should_expose": true
+                "should_expose": false
             },
             "light.kitchen_lights": {
                 "should_expose": true
@@ -79,11 +79,117 @@
             },
             "light.toilet_lights": {
                 "should_expose": true
+            },
+            "sensor.area_bathroom_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_bathroom_automations": {
+                "should_expose": true
+            },
+            "input_boolean.area_bedroom_automations": {
+                "should_expose": true
+            },
+            "sensor.area_bedroom_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_entrance_automations": {
+                "should_expose": true
+            },
+            "sensor.area_entrance_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_hall_automations": {
+                "should_expose": true
+            },
+            "sensor.area_hall_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_kitchen_automations": {
+                "should_expose": true
+            },
+            "sensor.area_kitchen_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_lounge_automations": {
+                "should_expose": true
+            },
+            "sensor.area_lounge_temperature": {
+                "should_expose": true
+            },
+            "sensor.area_shed_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_study_automations": {
+                "should_expose": true
+            },
+            "sensor.area_study_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_toilet_automations": {
+                "should_expose": true
+            },
+            "sensor.area_toilet_temperature": {
+                "should_expose": true
+            },
+            "sensor.bathroom_multisensor_air_temperature": {
+                "should_expose": false
+            },
+            "camera.entrance": {
+                "should_expose": true
+            },
+            "camera.hall": {
+                "should_expose": true
+            },
+            "camera.kitchen": {
+                "should_expose": true
+            },
+            "camera.lounge": {
+                "should_expose": true
+            },
+            "camera.stairs": {
+                "should_expose": true
+            },
+            "climate.area_bathroom_climate": {
+                "should_expose": true
+            },
+            "climate.area_bedroom_climate": {
+                "should_expose": true
+            },
+            "climate.area_entrance_climate": {
+                "should_expose": true
+            },
+            "climate.area_hall_climate": {
+                "should_expose": true
+            },
+            "climate.area_home_climate": {
+                "should_expose": true
+            },
+            "input_boolean.area_home_automations": {
+                "should_expose": true
+            },
+            "climate.area_kitchen_climate": {
+                "should_expose": true
+            },
+            "climate.area_lounge_climate": {
+                "should_expose": true
+            },
+            "climate.area_study_climate": {
+                "should_expose": true
+            },
+            "climate.area_toilet_climate": {
+                "should_expose": true
             }
         },
         "cloud_user": "11c0a158be96488890c846c33fa6bfdc",
-        "cloudhooks": {},
-        "alexa_enabled": false,
+        "cloudhooks": {
+            "0fe44674bff373aacdd1d96359d61796e8cf395ca544151637d6461003ff588a": {
+                "webhook_id": "0fe44674bff373aacdd1d96359d61796e8cf395ca544151637d6461003ff588a",
+                "cloudhook_id": "b107c1ff17b24b1aa71e431e03f1ad90",
+                "cloudhook_url": "https://hooks.nabu.casa/gAAAAABhHPIGJo72koXdw1Cay7Nxq6qmrNrkPP9qA1pd5QrAmiG7CmNGaxa9uJK8cIZ6kDHKbpeQeBnrdevr1uB2n-7R-VoKrBNrpSBSAVsRsmekH5Had9VPNACIm41sRq9-xQ-8403QEiEsY9pHNJs7mnACwxfgunoIEP-920gpTxBJtVZB_14=",
+                "managed": true
+            }
+        },
+        "alexa_enabled": true,
         "google_enabled": false,
         "remote_enabled": false,
         "google_default_expose": [
@@ -107,6 +213,7 @@
         "tts_default_voice": [
             "en-GB",
             "female"
-        ]
+        ],
+        "alexa_report_state": true
     }
 }

@@ -14,27 +14,27 @@
                 "name": "Sleep Mode"
             },
             {
-                "name": "Bathroom Schedule",
+                "name": "Area - Bathroom Schedule",
                 "id": "bathroom_schedule",
                 "icon": "mdi:clock"
             },
             {
-                "name": "Bedroom Schedule",
+                "name": "Area - Bedroom Schedule",
                 "id": "bedroom_schedule",
                 "icon": "mdi:clock"
             },
             {
-                "name": "Study Schedule",
+                "name": "Area - Study Schedule",
                 "icon": "mdi:clock",
                 "id": "study_schedule"
             },
             {
-                "name": "Kitchen Schedule",
+                "name": "Area - Kitchen Schedule",
                 "icon": "mdi:clock",
                 "id": "kitchen_schedule"
             },
             {
-                "name": "Lounge Schedule",
+                "name": "Area - Lounge Schedule",
                 "icon": "mdi:clock",
                 "id": "lounge_schedule"
             },
@@ -44,47 +44,47 @@
                 "id": "sleep_schedule"
             },
             {
-                "name": "Bathroom Automations",
+                "name": "Area - Bathroom Automations",
                 "icon": "mdi:lock-pattern",
                 "id": "bathroom_automations"
             },
             {
-                "name": "Bedroom Automations",
+                "name": "Area - Bedroom Automations",
                 "icon": "mdi:lock-pattern",
                 "id": "bedroom_automations"
             },
             {
-                "name": "Entrance Automations",
+                "name": "Area - Entrance Automations",
                 "icon": "mdi:lock-pattern",
                 "id": "entrance_automations"
             },
             {
-                "name": "Hall Automations",
+                "name": "Area - Hall Automations",
                 "icon": "mdi:lock-pattern",
                 "id": "hall_automations"
             },
             {
-                "name": "Kitchen Automations",
+                "name": "Area - Kitchen Automations",
                 "icon": "mdi:lock-pattern",
                 "id": "kitchen_automations"
             },
             {
-                "name": "Lounge Automations",
+                "name": "Area - Lounge Automations",
                 "icon": "mdi:lock-pattern",
                 "id": "lounge_automations"
             },
             {
-                "name": "Study Automations",
+                "name": "Area - Study Automations",
                 "icon": "mdi:lock-pattern",
                 "id": "study_automations"
             },
             {
-                "name": "Home Automations",
+                "name": "Area - Home Automations",
                 "icon": "mdi:lock-pattern",
                 "id": "study_automations_2"
             },
             {
-                "name": "Toilet Automations",
+                "name": "Area - Toilet Automations",
                 "icon": "mdi:lock-pattern",
                 "id": "toilet_automations"
             }

@@ -12,6 +12,12 @@
             "preload_stream": true
         },
         "camera.entrance": {
+            "preload_stream": false
+        },
+        "camera.stairs": {
+            "preload_stream": true
+        },
+        "camera.door": {
             "preload_stream": true
         }
     }

@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "key": "energy",
+    "data": {
+        "energy_sources": [
+            {
+                "type": "grid",
+                "flow_from": [
+                    {
+                        "stat_energy_from": "sensor.total_grid_consumption",
+                        "stat_cost": null,
+                        "entity_energy_from": "sensor.total_grid_consumption",
+                        "entity_energy_price": "sensor.current_electricity_price",
+                        "number_energy_price": null
+                    }
+                ],
+                "flow_to": [],
+                "cost_adjustment_day": 0.0
+            }
+        ],
+        "device_consumption": [
+            {
+                "stat_consumption": "sensor.lounge_media_energy"
+            }
+        ]
+    }
+}

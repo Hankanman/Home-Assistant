@@ -2,7 +2,7 @@
     "version": 1,
     "key": "frontend_theme",
     "data": {
-        "frontend_default_theme": "custom",
-        "frontend_default_dark_theme": "custom"
+        "frontend_default_theme": "Windows 11",
+        "frontend_default_dark_theme": "Windows 11"
     }
 }
