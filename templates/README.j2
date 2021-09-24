@@ -1,0 +1,50 @@
+{%- set custom_component_descriptions = {"readme": "Generates this readme file."} -%}
+# Welcome !
+
+This is my Home Assistant installation.
+
+## Some statistics about my installation:
+
+Description | value
+-- | --
+Number of entities | {{states | count}}
+Number of sensors | {{states.sensor | count}}
+
+Type | Qty
+-- | --
+Alarm Control Panel | {{states.alarm_control_panel | count}}
+Alert | {{states.alert | count}}
+Automation | {{states.automation | count}}
+Binary Sensor | {{states.binary_sensor | count}}
+Camera | {{ states.camera | count }}
+Device Tracker | {{ states.device_tracker | count }}
+Group | {{ states.group | count }}
+Input Boolean | {{ states.input_boolean | count }}
+Input Datetime | {{ states.input_datetime | count }}
+Input Text | {{ states.input_text | count }}
+Light | {{ states.light | count }}
+Media Player | {{ states.media_player | count }}
+Person | {{ states.person | count }}
+Scene | {{ states.scene | count }}
+Script | {{ states.script | count }}
+Sensor | {{states.sensor | count}}
+Sun | {{ states.sun | count }}
+Switch | {{ states.switch | count }}
+Weather | {{ states.weather | count }}
+Zone | {{ states.zone | count }}
+
+***
+
+## HACS installed components
+
+### Integrations
+{%- for component in hacs_components | selectattr('category', 'equalto', 'integration') | selectattr('installed', 'equalto', True) | sort(attribute='name') %}
+  - [{{component.name}}]({{component.documentation}})
+{%- endfor %}
+
+### Lovelace
+{%- for component in hacs_components | selectattr('category', 'equalto', 'plugin') | selectattr('installed', 'equalto', True) | sort(attribute='name') %}
+  - [{{component.name}}]({{component.documentation}})
+{%- endfor %}
+
+***

@@ -1,0 +1,27 @@
+esphome:
+  name: rel-01
+  platform: ESP8266
+  board: esp01_1m
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: !secret esp_ota
+
+wifi:
+  ssid: !secret iot_ssid
+  password: !secret iot_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "REL-01 Fallback Hotspot"
+    password: "hhYjKnDFCEvf"
+
+captive_portal:
+
+web_server:
+  port: 80
