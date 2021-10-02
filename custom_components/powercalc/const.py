@@ -26,6 +26,8 @@ CONF_MIN_POWER = "min_power"
 CONF_MAX_POWER = "max_power"
 CONF_WATT = "watt"
 CONF_STATES_POWER = "states_power"
+CONF_STANDBY_POWER = "standby_power"
+CONF_DISABLE_STANDBY_POWER = "disable_standby_power"
 CONF_STANDBY_USAGE = "standby_usage"
 CONF_DISABLE_STANDBY_USAGE = "disable_standby_usage"
 CONF_CUSTOM_MODEL_DIRECTORY = "custom_model_directory"
@@ -61,5 +63,6 @@ MODEL_DIRECTORY_MAPPING = {
         "TRADFRI bulb GU10 W 400lm": "LED1650R5",
         "TRADFRI bulb E27 WS opal 1000lm": "LED1732G11",
         "TRADFRI bulb GU10 WW 400lm": "LED1837R5",
+        "TRADFRI bulb E27 WW 806lm": "LED1836G9",
     }
 }
