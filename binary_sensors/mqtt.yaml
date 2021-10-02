@@ -12,41 +12,41 @@
 # People
 ####################################
 - platform: mqtt
-  name: Area - Entrance People
+  name: Zone - Entrance People
   availability_topic: frigate/available
-  state_topic: "frigate/Area - Entrance/person"
+  state_topic: "frigate/Zone - Entrance/person"
   device_class: motion
   off_delay: 30
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: Area - Hall People
+  name: Zone - Hall People
   availability_topic: frigate/available
-  state_topic: "frigate/Area - Hall/person"
+  state_topic: "frigate/Zone - Hall/person"
   device_class: motion
   off_delay: 30
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: Area - Kitchen People
+  name: Zone - Kitchen People
   availability_topic: frigate/available
-  state_topic: "frigate/Area - Kitchen/person"
+  state_topic: "frigate/Zone - Kitchen/person"
+  device_class: motion
+  off_delay: 180
+  value_template: "{% if value_json > 0 %}ON{% endif %}"
+
+- platform: mqtt
+  name: Zone - Lounge People
+  availability_topic: frigate/available
+  state_topic: "frigate/Zone - Lounge/person"
   device_class: motion
   off_delay: 60
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: Area - Lounge People
+  name: Zone - Stairs People
   availability_topic: frigate/available
-  state_topic: "frigate/Area - Lounge/person"
-  device_class: motion
-  off_delay: 60
-  value_template: "{% if value_json > 0 %}ON{% endif %}"
-
-- platform: mqtt
-  name: Area - Stairs People
-  availability_topic: frigate/available
-  state_topic: "frigate/Area - Stairs/person"
+  state_topic: "frigate/Zone - Stairs/person"
   device_class: motion
   off_delay: 30
   value_template: "{% if value_json > 0 %}ON{% endif %}"
@@ -55,41 +55,41 @@
 # Dogs
 ####################################
 - platform: mqtt
-  name: Area - Entrance Dogs
+  name: Zone - Entrance Dogs
   availability_topic: frigate/available
-  state_topic: "frigate/Area - Entrance/dog"
+  state_topic: "frigate/Zone - Entrance/dog"
   device_class: motion
   off_delay: 60
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: Area - Hall Dogs
+  name: Zone - Hall Dogs
   availability_topic: frigate/available
-  state_topic: "frigate/Area - Hall/dog"
+  state_topic: "frigate/Zone - Hall/dog"
   device_class: motion
   off_delay: 60
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: Area - Kitchen Dogs
+  name: Zone - Kitchen Dogs
   availability_topic: frigate/available
-  state_topic: "frigate/Area - Kitchen/dog"
+  state_topic: "frigate/Zone - Kitchen/dog"
   device_class: motion
   off_delay: 60
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: Area - Lounge Dogs
+  name: Zone - Lounge Dogs
   availability_topic: frigate/available
-  state_topic: "frigate/Area - Lounge/dog"
+  state_topic: "frigate/Zone - Lounge/dog"
   device_class: motion
   off_delay: 60
   value_template: "{% if value_json > 0 %}ON{% endif %}"
 
 - platform: mqtt
-  name: Area - Stairs Dogs
+  name: Zone - Stairs Dogs
   availability_topic: frigate/available
-  state_topic: "frigate/Area - Stairs/dog"
+  state_topic: "frigate/Zone - Stairs/dog"
   device_class: motion
   off_delay: 60
   value_template: "{% if value_json > 0 %}ON{% endif %}"
