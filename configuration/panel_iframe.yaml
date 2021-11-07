@@ -1,11 +1,15 @@
- panel_iframe:
-   zigbee:
-     title: 'Zigbee'
-     url: 'https://zigbee2mqtt.sbhost.co.uk/'
-     icon: 'mdi:graphql'
-     require_admin: true
-  #  nginx:
-  #    title: 'Proxy'
-  #    url: 'https://proxy.sbhost.co.uk/'
-  #    icon: 'mdi:call-split'
-  #    require_admin: true
+panel_iframe:
+  networkmap:
+    title: "Device Map"
+    url: "/local/community/zigbee2mqtt_networkmap/map.html"
+    icon: "mdi:graphql"
+#    zigbee:
+#      title: 'Zigbee'
+#      url: 'https://zigbee2mqtt.sbhost.co.uk/'
+#      icon: 'mdi:graphql'
+#      require_admin: true
+#  nginx:
+#    title: 'Proxy'
+#    url: 'https://proxy.sbhost.co.uk/'
+#    icon: 'mdi:call-split'
+#    require_admin: true
