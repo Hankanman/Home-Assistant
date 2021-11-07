@@ -4,9 +4,18 @@ description: ""
 mode: queued
 
 trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
   - platform: state
     entity_id:
       - binary_sensor.area_bathroom_occupied
+      - binary_sensor.area_bathroom_bright
+      - input_boolean.area_bathroom_automations
+      - binary_sensor.area_bathroom_humidity_trend
+      - binary_sensor.area_bathroom_temperature_trend
+      - binary_sensor.people_home
 
 condition:
   - condition: state
@@ -19,16 +28,22 @@ action:
           - condition: state
             state: "on"
             entity_id: binary_sensor.area_bathroom_occupied
+          - condition: state
+            state: "off"
+            entity_id: binary_sensor.area_bathroom_bright
+          - condition: state
+            state: "on"
+            entity_id: binary_sensor.people_home
         sequence:
           - service: light.turn_on
-            data:
-              brightness_pct: 100
             target:
               area_id: bathroom
+            data:
+              transition: 3
+              brightness_pct: "{{ state_attr('switch.adaptive_lighting_adaptive_lights', 'brightness_pct') | int }}"
     default:
-      - condition: state
-        entity_id: binary_sensor.area_bathroom_occupied
-        state: "off"
       - service: light.turn_off
         target:
           area_id: bathroom
+        data:
+          transition: 3

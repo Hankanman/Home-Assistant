@@ -4,12 +4,16 @@ description: ""
 mode: queued
 
 trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
   - platform: state
-    entity_id: binary_sensor.area_toilet_occupied
-  - platform: state
-    entity_id: binary_sensor.toilet_bright
-  - platform: state
-    entity_id: sun.sun
+    entity_id:
+      - binary_sensor.area_toilet_occupied
+      - binary_sensor.area_toilet_bright
+      - input_boolean.area_toilet_automations
+      - binary_sensor.people_home
 
 condition:
   - condition: state
@@ -20,22 +24,24 @@ action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.area_toilet_occupied
             state: "on"
-          - condition: or
-            conditions:
-              - condition: state
-                entity_id: sun.sun
-                state: below_horizon
-              - condition: state
-                entity_id: binary_sensor.area_toilet_bright
-                state: "off"
+            entity_id: binary_sensor.area_toilet_occupied
+          - condition: state
+            state: "off"
+            entity_id: binary_sensor.area_toilet_bright
+          - condition: state
+            state: "on"
+            entity_id: binary_sensor.people_home
         sequence:
           - service: light.turn_on
-            data: {}
             target:
-              entity_id: light.toilet_lights
+              area_id: toilet
+            data:
+              transition: 3
+              brightness_pct: "{{ state_attr('switch.adaptive_lighting_adaptive_lights', 'brightness_pct') | int }}"
     default:
       - service: light.turn_off
-        data: {}
-        entity_id: light.toilet_lights
+        target:
+          area_id: toilet
+        data:
+          transition: 3

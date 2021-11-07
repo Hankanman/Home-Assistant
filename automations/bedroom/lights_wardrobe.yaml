@@ -1,5 +1,5 @@
-alias: Room - Bedroom - Lights
-id: bf065214-cd47-43f8-a537-d39686045b26
+alias: Room - Bedroom - Wardrobe - Lights
+id: d7b2ff77-0e4f-4efb-820f-9a4b67399a3b
 description: ""
 mode: queued
 
@@ -10,8 +10,7 @@ trigger:
     event_type: automation_reloaded
   - platform: state
     entity_id:
-      - binary_sensor.area_bedroom_occupied
-      - binary_sensor.area_bedroom_bright
+      - binary_sensor.area_wardrobe_occupied
       - input_boolean.area_bedroom_automations
       - binary_sensor.people_home
       - binary_sensor.sleeping
@@ -24,23 +23,26 @@ condition:
 action:
   - choose:
       - conditions:
-        - condition: template
-          value_template: "{{ as_timestamp(now())-as_timestamp(states.binary_sensor.sleeping.last_changed) < 600 }}"
+          - condition: state
+            state: "on"
+            entity_id: binary_sensor.area_wardrobe_occupied
+          - condition: state
+            state: "on"
+            entity_id: binary_sensor.people_home
+          - condition: state
+            state: "on"
+            entity_id: binary_sensor.sleeping
         sequence:
           - service: light.turn_on
             target:
-              area_id: bedroom
+              area_id: wardrobe
             data:
               transition: 3
-              color_temp: "{{ state_attr('switch.adaptive_lighting_adaptive_lights', 'color_temp_mired') }}"
-              brightness_pct: 10
+              brightness_pct: 5
       - conditions:
           - condition: state
             state: "on"
-            entity_id: binary_sensor.area_bedroom_occupied
-          - condition: state
-            state: "off"
-            entity_id: binary_sensor.area_bedroom_bright
+            entity_id: binary_sensor.area_wardrobe_occupied
           - condition: state
             state: "on"
             entity_id: binary_sensor.people_home
@@ -50,14 +52,13 @@ action:
         sequence:
           - service: light.turn_on
             target:
-              area_id: bedroom
+              area_id: wardrobe
             data:
               transition: 3
-              color_temp: "{{ state_attr('switch.adaptive_lighting_adaptive_lights', 'color_temp_mired') }}"
               brightness_pct: "{{ state_attr('switch.adaptive_lighting_adaptive_lights', 'brightness_pct') | int }}"
     default:
       - service: light.turn_off
         target:
-          area_id: bedroom
+          area_id: wardrobe
         data:
           transition: 3

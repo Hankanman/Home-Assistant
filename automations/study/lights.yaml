@@ -4,10 +4,16 @@ description: ""
 mode: queued
 
 trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
   - platform: state
     entity_id:
       - binary_sensor.area_study_occupied
-      - sun.sun
+      - binary_sensor.area_study_bright
+      - input_boolean.area_study_automations
+      - binary_sensor.people_home
 
 condition:
   - condition: state
@@ -18,36 +24,25 @@ action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.area_study_occupied
             state: "on"
-          - condition: or
-            conditions:
-              - condition: state
-                entity_id: binary_sensor.area_study_bright
-                state: "off"
-              - condition: state
-                entity_id: sun.sun
-                state: below_horizon
+            entity_id: binary_sensor.area_study_occupied
+          - condition: state
+            state: "off"
+            entity_id: binary_sensor.area_study_bright
+          - condition: state
+            state: "on"
+            entity_id: binary_sensor.people_home
         sequence:
           - service: light.turn_on
-            data:
-              brightness_pct: 100
             target:
-              entity_id: light.study_lights
+              area_id: study
+            data:
+              transition: 3
+              color_temp: "{{ state_attr('switch.adaptive_lighting_adaptive_lights', 'color_temp_mired') }}"
+              brightness_pct: "{{ state_attr('switch.adaptive_lighting_adaptive_lights', 'brightness_pct') | int }}"
     default:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: binary_sensor.area_study_occupied
-            state: "off"
-          - condition: or
-            conditions:
-              - condition: state
-                entity_id: binary_sensor.starrunner_active
-                state: "off"
-              - condition: state
-                entity_id: binary_sensor.starrunner_active
-                state: unavailable
       - service: light.turn_off
         target:
           area_id: study
+        data:
+          transition: 3

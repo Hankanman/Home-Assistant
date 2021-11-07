@@ -4,6 +4,10 @@ description: ""
 mode: queued
 
 trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
   - entity_id: binary_sensor.dor_03_contact
     platform: state
     to: "on"
@@ -11,6 +15,12 @@ trigger:
     for: 00:00:30
     platform: state
     to: "off"
+  - platform: state
+    entity_id:
+      - binary_sensor.area_entrance_occupied
+      - binary_sensor.area_entrance_bright
+      - input_boolean.area_entrance_automations
+      - binary_sensor.people_home
 
 condition:
   - condition: state
@@ -20,19 +30,32 @@ condition:
 action:
   - choose:
       - conditions:
+          - condition: or
+            conditions:
+              - condition: and
+                conditions:
+                  - condition: state
+                    state: "on"
+                    entity_id: binary_sensor.area_entrance_occupied
+                  - condition: state
+                    state: "on"
+                    entity_id: binary_sensor.people_home
+              - condition: state
+                state: "on"
+                entity_id: binary_sensor.dor_03_contact
           - condition: state
-            entity_id: binary_sensor.dor_03_contact
-            state: "on"
-          - condition: state
-            entity_id: sun.sun
-            state: below_horizon
+            state: "off"
+            entity_id: binary_sensor.area_entrance_bright
         sequence:
           - service: light.turn_on
-            data:
-              brightness_pct: 100
             target:
-              entity_id: light.entrance_lights
+              area_id: entrance
+            data:
+              transition: 3
+              brightness_pct: "{{ state_attr('switch.adaptive_lighting_adaptive_lights', 'brightness_pct') | int }}"
     default:
       - service: light.turn_off
         target:
-          entity_id: light.entrance_lights
+          area_id: entrance
+        data:
+          transition: 3

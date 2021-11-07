@@ -4,9 +4,16 @@ description: ""
 mode: queued
 
 trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
   - platform: state
     entity_id:
       - binary_sensor.area_hall_occupied
+      - binary_sensor.area_hall_bright
+      - input_boolean.area_hall_automations
+      - binary_sensor.people_home
 
 condition:
   - condition: state
@@ -17,37 +24,24 @@ action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.area_hall_occupied
             state: "on"
+            entity_id: binary_sensor.area_hall_occupied
           - condition: state
-            entity_id: input_boolean.sleep_mode
             state: "off"
+            entity_id: binary_sensor.area_hall_bright
           - condition: state
-            entity_id: sun.sun
-            state: below_horizon
+            state: "on"
+            entity_id: binary_sensor.people_home
         sequence:
           - service: light.turn_on
-            data:
-              brightness_pct: 6
             target:
-              entity_id: light.hall_lights
-      - conditions:
-          - condition: state
-            entity_id: binary_sensor.area_hall_occupied
-            state: "on"
-          - condition: state
-            entity_id: input_boolean.sleep_mode
-            state: "on"
-          - condition: state
-            entity_id: sun.sun
-            state: below_horizon
-        sequence:
-          - service: light.turn_on
+              area_id: hall
             data:
-              brightness_pct: 1
-            target:
-              entity_id: light.hall_lights
+              transition: 3
+              brightness_pct: "{{ state_attr('switch.adaptive_lighting_adaptive_lights', 'brightness_pct') | int }}"
     default:
       - service: light.turn_off
         target:
-          entity_id: light.hall_lights
+          area_id: hall
+        data:
+          transition: 3
