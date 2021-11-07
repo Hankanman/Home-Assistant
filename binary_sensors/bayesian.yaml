@@ -4,19 +4,29 @@
 # Bathroom
 - platform: bayesian
   name: Area - Bathroom Occupied
-  prior: 0.2083
+  prior: 0.0810
   device_class: occupancy
   probability_threshold: 0.70
   observations:
     - platform: "state"
       entity_id: "binary_sensor.area_bathroom_humidity_trend"
-      prob_given_true: 0.0768
-      prob_given_false: 0.0020
+      prob_given_true: 0.2346
+      prob_given_false: 0.0062
+      to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.area_bathroom_temperature_trend"
+      prob_given_true: 0.2346
+      prob_given_false: 0.0093
+      to_state: "on"
+    - platform: "state"
+      entity_id: binary_sensor.area_bathroom_humid
+      prob_given_true: 0.3086
+      prob_given_false: 0.0027
       to_state: "on"
     - platform: "state"
       entity_id: "group.area_bathroom_motion"
-      prob_given_true: 0.6720
-      prob_given_false: 0.0531
+      prob_given_true: 0.8272
+      prob_given_false: 0.0109
       to_state: "on"
     - platform: "state"
       entity_id: "binary_sensor.area_bathroom_bright"
@@ -25,8 +35,8 @@
       to_state: "on"
     - platform: "state"
       entity_id: "input_boolean.bathroom_schedule"
-      prob_given_true: 0.3840
-      prob_given_false: 0.0707
+      prob_given_true: 2.0247
+      prob_given_false: 0.1428
       to_state: "on"
 
 # Bedroom
@@ -41,16 +51,6 @@
       prob_given_true: 0.0300
       prob_given_false: 0.0015
       to_state: "playing"
-    - platform: "state"
-      entity_id: "binary_sensor.laura_sleeping"
-      prob_given_true: 0.5940
-      prob_given_false: 0.0891
-      to_state: "on"
-    - platform: "state"
-      entity_id: "binary_sensor.seb_sleeping"
-      prob_given_true: 0.9680
-      prob_given_false: 0.1452
-      to_state: "on"
     - platform: "state"
       entity_id: "media_player.bedroom_echo"
       prob_given_true: 0.0720
@@ -76,14 +76,9 @@
       prob_given_true: 0.4040
       prob_given_false: 0.3838
       to_state: "on"
-    - platform: "state"
-      entity_id: "sun.sun"
-      prob_given_true: 0.98
-      prob_given_false: 0.6860
-      to_state: "below_horizon"
 
 - platform: bayesian
-  name: "Bed Occupied"
+  name: Area - Bedroom - Bed Occupied
   prior: 0.42
   device_class: occupancy
   probability_threshold: 0.9
@@ -98,21 +93,16 @@
       prob_given_true: 0.93
       prob_given_false: 0.173
       to_state: "on"
-    - platform: "state"
-      entity_id: "binary_sensor.seb_sleeping"
-      prob_given_true: 0.8
-      prob_given_false: 0.0667
-      to_state: "on"
-    - platform: "state"
-      entity_id: "binary_sensor.laura_sleeping"
-      prob_given_true: 0.8
-      prob_given_false: 0.0667
-      to_state: "on"
-    - platform: "state"
-      entity_id: "sun.sun"
-      prob_given_true: 0.99
-      prob_given_false: 0.2
-      to_state: "below_horizon"
+    - platform: template
+      value_template: >
+        {{ is_state('binary_sensor.seb_sleeping', 'on') and is_state('person.sebastian_burrell','home') }}
+      prob_given_true: 0.5940
+      prob_given_false: 0.0891
+    - platform: template
+      value_template: >
+        {{ is_state('binary_sensor.laura_sleeping', 'on') and is_state('person.laura_ward','home') }}
+      prob_given_true: 0.9680
+      prob_given_false: 0.1452
     - platform: "state"
       entity_id: "media_player.bedroom_echo"
       prob_given_true: 0.11
@@ -137,7 +127,12 @@
       prob_given_false: 0.0001
       to_state: "on"
     - platform: "state"
-      entity_id: "binary_sensor.people_entrance"
+      entity_id: "binary_sensor.zone_entrance_person_motion"
+      prob_given_true: 0.9600
+      prob_given_false: 0.0010
+      to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.zone_stairs_person_motion"
       prob_given_true: 0.9600
       prob_given_false: 0.0010
       to_state: "on"
@@ -169,6 +164,11 @@
       prob_given_true: 0.96
       prob_given_false: 0.004
       to_state: "on"
+    - platform: "state"
+      entity_id: "binary_sensor.zone_hall_person_motion"
+      prob_given_true: 0.9600
+      prob_given_false: 0.0010
+      to_state: "on"
 
 # Kitchen
 - platform: bayesian
@@ -183,7 +183,7 @@
       prob_given_false: 0.014
       to_state: "on"
     - platform: "state"
-      entity_id: "binary_sensor.area_kitchen_people"
+      entity_id: "binary_sensor.zone_kitchen_person_motion"
       prob_given_true: 0.46
       prob_given_false: 0.01
       to_state: "on"
@@ -211,14 +211,14 @@
       prob_given_false: 0.0176
       to_state: "on"
     - platform: "state"
-      entity_id: "binary_sensor.area_lounge_people"
+      entity_id: "binary_sensor.zone_lounge_person_motion"
       prob_given_true: 0.59
       prob_given_false: 0.0294
       to_state: "on"
     - platform: "state"
       entity_id: "media_player.lounge_tv"
-      prob_given_true: 0.59
-      prob_given_false: 0.0294
+      prob_given_true: 0.3189
+      prob_given_false: 0.0394
       to_state: "playing"
 
 # Study
@@ -238,11 +238,6 @@
       prob_given_true: 0.77
       prob_given_false: 0.0938
       to_state: "on"
-    - platform: "state"
-      entity_id: "binary_sensor.people_study"
-      prob_given_true: 0.01
-      prob_given_false: 0.0006
-      to_state: "on"
 
 # Toilet
 - platform: bayesian
@@ -253,6 +248,19 @@
   observations:
     - platform: "state"
       entity_id: "group.area_toilet_motion"
+      prob_given_true: 0.48
+      prob_given_false: 0.0043
+      to_state: "on"
+
+# Wardrobe
+- platform: bayesian
+  name: Area - Wardrobe Occupied
+  prior: 0.02
+  device_class: occupancy
+  probability_threshold: 0.6
+  observations:
+    - platform: "state"
+      entity_id: "group.area_wardrobe_motion"
       prob_given_true: 0.48
       prob_given_false: 0.0043
       to_state: "on"
