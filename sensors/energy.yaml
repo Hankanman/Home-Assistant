@@ -1,10 +1,9 @@
 ####################################
 # Energy
 ####################################
-- platform: octopusagile
 - platform: rest
   name: Gas Daily Usage
-  device_class: power
+  device_class: energy
   unit_of_measurement: "kWh"
   json_attributes_path: "$.results[1]"
   json_attributes:
@@ -14,7 +13,7 @@
   resource: !secret octopus_gas
 - platform: rest
   name: Electricity Daily Usage
-  device_class: power
+  device_class: energy
   unit_of_measurement: "kWh"
   json_attributes_path: "$.results[1]"
   json_attributes:
@@ -22,6 +21,18 @@
     - interval_end
   value_template: "{{value_json.results[1].consumption}}"
   resource: !secret octopus_electricity
+- platform: rest
+  name: Electricity Unit Cost
+  device_class: monetary
+  unit_of_measurement: "p/kWh"
+  json_attributes_path: "$.results[0]"
+  json_attributes:
+    - value_exc_vat
+    - value_inc_vat
+    - valid_from
+    - valid_to
+  value_template: "{{value_json.results[0].value_inc_vat}}"
+  resource: !secret octopus_variable_tariff
 - platform: integration
   source: sensor.mainsexport
   name: Total Grid Export
