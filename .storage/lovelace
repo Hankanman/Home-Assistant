@@ -496,7 +496,7 @@
                                             },
                                             {
                                                 "type": "custom:button-card",
-                                                "entity": "input_boolean.area_home_automations",
+                                                "entity": "group.all_automations",
                                                 "show_name": false,
                                                 "color": "var(--color-green)",
                                                 "state": [
@@ -853,7 +853,8 @@
                                             "icon": true
                                         },
                                         "artwork": "cover",
-                                        "style": "ha-card {\n  height: 100%;\n}\n"
+                                        "style": "ha-card {\n  height: 100%;\n}\n",
+                                        "volume_stateless": false
                                     }
                                 ]
                             }
@@ -969,6 +970,19 @@
                                     }
                                 ]
                             }
+                        },
+                        {
+                            "type": "grid",
+                            "cards": [
+                                {
+                                    "type": "sensor",
+                                    "graph": "line",
+                                    "entity": "sensor.tmp_01_temperature",
+                                    "name": "Shed Temperature",
+                                    "detail": 2
+                                }
+                            ],
+                            "columns": 1
                         }
                     ]
                 },
@@ -1012,6 +1026,18 @@
                             "camera_view": "live",
                             "show_state": false,
                             "show_name": false
+                        }
+                    ]
+                },
+                {
+                    "title": "ToDo",
+                    "path": "todo",
+                    "type": "panel",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "shopping-list",
+                            "title": "To Do"
                         }
                     ]
                 }

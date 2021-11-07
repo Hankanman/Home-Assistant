@@ -1,5 +1,5 @@
 {
-    "version": 1,
+    "version": 2,
     "key": "scheduler.storage",
     "data": {
         "schedules": [
@@ -88,6 +88,8 @@
                 "weekdays": [
                     "daily"
                 ],
+                "start_date": null,
+                "end_date": null,
                 "repeat_type": "repeat",
                 "name": "Bathroom",
                 "enabled": true
@@ -138,6 +140,8 @@
                 "weekdays": [
                     "workday"
                 ],
+                "start_date": null,
+                "end_date": null,
                 "repeat_type": "repeat",
                 "name": "Bedroom",
                 "enabled": true
@@ -188,6 +192,8 @@
                 "weekdays": [
                     "weekend"
                 ],
+                "start_date": null,
+                "end_date": null,
                 "repeat_type": "repeat",
                 "name": "Bedroom Weekends",
                 "enabled": true
@@ -238,6 +244,8 @@
                 "weekdays": [
                     "daily"
                 ],
+                "start_date": null,
+                "end_date": null,
                 "repeat_type": "repeat",
                 "name": "Sleep",
                 "enabled": true
@@ -302,6 +310,8 @@
                 "weekdays": [
                     "daily"
                 ],
+                "start_date": null,
+                "end_date": null,
                 "repeat_type": "repeat",
                 "name": "Reactivate Automations",
                 "enabled": true
@@ -468,6 +478,8 @@
                 "weekdays": [
                     "daily"
                 ],
+                "start_date": null,
+                "end_date": null,
                 "repeat_type": "repeat",
                 "name": "Heating",
                 "enabled": true
@@ -544,10 +556,13 @@
                 "weekdays": [
                     "daily"
                 ],
+                "start_date": null,
+                "end_date": null,
                 "repeat_type": "repeat",
                 "name": "Kitchen",
                 "enabled": true
             }
-        ]
+        ],
+        "tags": []
     }
 }

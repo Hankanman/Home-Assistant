@@ -11,7 +11,7 @@ __pycache__
 deps/
 known_devices.yaml
 tts/
-home-assistant.log
+home-assistant.log*
 home-assistant_v2.db
 home-assistant_v2.db-shm
 home-assistant_v2.db-wal
@@ -50,3 +50,7 @@ rtsp2webrtc_v4_aarch64
 .google_fit.token
 .storage/.edgeos
 .Seb_google_fit.token
+zigbee2mqtt/
+.storage/zwave_js.legacy_zwave_migration
+.shopping_list.json
+.storage/trace.saved_traces
