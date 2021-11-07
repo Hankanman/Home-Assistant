@@ -25,7 +25,6 @@ CONFIG_SCHEMA = vol.Schema(
 
 STATE_BASED_ENTITY_DOMAINS = [
     climate.DOMAIN,
-    input_number.DOMAIN,
     vacuum.DOMAIN,
 ]
 
@@ -64,5 +63,5 @@ class FixedStrategy(PowerCalculationStrategyInterface):
             and self._per_state_power is None
         ):
             raise StrategyConfigurationError(
-                "This entity can only work with 'state_power' not 'power'"
+                "This entity can only work with 'states_power' not 'power'"
             )
