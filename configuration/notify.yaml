@@ -23,3 +23,7 @@ notify:
     services:
       - service: mobile_app_seb_phone
       - service: mobile_app_laura_phone
+  - platform: file
+    name: entity_log
+    filename: /config/www/entity_log.txt
+    timestamp: false
