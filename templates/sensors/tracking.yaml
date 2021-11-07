@@ -15,6 +15,8 @@
       Seb's at {{ states('person.sebastian_burrell') | lower }}
     {% endif %}
   attributes:
+    Zone: >
+      {{state_attr('sensor.double_take_seb','zones')[0] | regex_replace(find='Zone - ', replace='', ignorecase=False)}}
     Location: |
       {% if is_state('person.sebastian_burrell', 'home')  and  is_state_attr('sensor.seb_location', 'devices_home', 'Yes') %}
         {{ state_attr('sensor.seb_location', 'last_area') }}
@@ -29,7 +31,7 @@
       {% endif %}
     Last Area: >
       {% set x =  [ states.sensor.seb_phone_ble_room_presence,
-                states.sensor.seb_smartwatch_room_presence]
+                states.sensor.ble_seb_watch_room_presence]
         | selectattr('state', 'ne', 'not_home')
         | sort(reverse=true, attribute='last_changed')
         | list %}
@@ -39,7 +41,7 @@
         {{ state_attr('sensor.seb_location', 'last_area') }}
       {% endif %}
     Devices Home: >
-      {% if not (is_state('sensor.seb_phone_ble_room_presence', 'not_home') and is_state('sensor.seb_smartwatch_room_presence', 'not_home')) %}
+      {% if not (is_state('sensor.seb_phone_ble_room_presence', 'not_home') and is_state('sensor.ble_seb_watch_room_presence', 'not_home')) %}
         Yes
       {% else %}
         No
@@ -121,6 +123,8 @@
       Laura's at {{ states('person.laura_ward') | lower }}
     {% endif %}
   attributes:
+    Zone: >
+      {{state_attr('sensor.double_take_laura','zones')[0] | regex_replace(find='Zone - ', replace='', ignorecase=False)}}
     Location: |
       {% if is_state('person.laura_ward', 'home')  and  is_state_attr('sensor.laura_location', 'devices_home', 'Yes') %}
         {{ state_attr('sensor.laura_location', 'last_area') }}
@@ -135,7 +139,7 @@
       {% endif %}
     Last Area: >
       {% set x =  [ states.sensor.laura_phone_ble_room_presence,
-                states.sensor.laura_smartwatch_room_presence]
+                states.sensor.ble_laura_watch_room_presence]
         | selectattr('state', 'ne', 'not_home')
         | sort(reverse=true, attribute='last_changed')
         | list %}
@@ -145,7 +149,7 @@
         {{ state_attr('sensor.laura_location', 'last_area') }}
       {% endif %}
     Devices Home: >
-      {% if not (is_state('sensor.laura_phone_ble_room_presence', 'not_home') and is_state('sensor.laura_smartwatch_room_presence', 'not_home')) %}
+      {% if not (is_state('sensor.laura_phone_ble_room_presence', 'not_home') and is_state('sensor.ble_laura_watch_room_presence', 'not_home')) %}
         Yes
       {% else %}
         No
