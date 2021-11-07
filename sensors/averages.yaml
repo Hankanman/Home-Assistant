@@ -8,7 +8,6 @@
   entity_ids:
     - sensor.tmp_02_temperature
     - sensor.rad_01_temperature
-    - sensor.bathroom_multisensor_air_temperature
 
 - platform: min_max
   name: Area - Bedroom Temperature
@@ -16,7 +15,7 @@
   round_digits: 1
   entity_ids:
     - sensor.rad_02_temperature
-    - sensor.bedroom_trisensor_air_temperature
+    - sensor.mot_01_temperature
 
 - platform: min_max
   name: Area - Entrance Temperature
@@ -24,7 +23,6 @@
   round_digits: 1
   entity_ids:
     - sensor.tst_01_temperature
-    - sensor.toilet_trisensor_air_temperature
 
 - platform: min_max
   name: Area - Hall Temperature
@@ -32,14 +30,12 @@
   round_digits: 1
   entity_ids:
     - sensor.tst_01_temperature
-    - sensor.hall_trisensor_air_temperature
 
 - platform: min_max
   name: Area - Kitchen Temperature
   type: mean
   round_digits: 1
   entity_ids:
-    - sensor.kitchen_trisensor_air_temperature
     - sensor.tmp_03_temperature
 
 - platform: min_max
@@ -47,7 +43,7 @@
   type: mean
   round_digits: 1
   entity_ids:
-    - sensor.lounge_trisensor_air_temperature
+    - sensor.tst_01_temperature
 
 - platform: min_max
   name: Area - Study Temperature
@@ -55,7 +51,7 @@
   round_digits: 1
   entity_ids:
     - sensor.rad_03_temperature
-    - sensor.study_trisensor_air_temperature
+    - sensor.tmp_04_temperature
 
 - platform: min_max
   name: Area - Toilet Temperature
@@ -63,7 +59,6 @@
   round_digits: 1
   entity_ids:
     - sensor.rad_04_temperature
-    - sensor.toilet_trisensor_air_temperature
 
 - platform: min_max
   name: Area - Shed Temperature
@@ -82,7 +77,6 @@
   round_digits: 1
   entity_ids:
     - sensor.tmp_02_humidity
-    - sensor.bathroom_multisensor_humidity
 
 - platform: min_max
   name: Area - Kitchen Humidity
@@ -100,6 +94,13 @@
     - sensor.tmp_01_humidity
     - sensor.area_outside_humidity
 
+- platform: min_max
+  name: Area - Study Humidity
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.tmp_04_humidity
+
 ####################################
 # Illuminance
 ####################################
@@ -108,7 +109,6 @@
   type: mean
   round_digits: 1
   entity_ids:
-    - sensor.bathroom_multisensor_illuminance
     - sensor.lux_02_illuminance_lux
 
 - platform: min_max
@@ -116,8 +116,8 @@
   type: mean
   round_digits: 1
   entity_ids:
-    - sensor.bedroom_trisensor_illuminance
     - sensor.lux_05_illuminance_lux
+    - sensor.mot_01_illuminance_lux
 
 - platform: min_max
   name: Area - Entrance Illuminance
@@ -132,7 +132,6 @@
   type: mean
   round_digits: 1
   entity_ids:
-    - sensor.hall_trisensor_illuminance
     - sensor.lux_07_illuminance_lux
 
 - platform: min_max
@@ -140,7 +139,6 @@
   type: mean
   round_digits: 1
   entity_ids:
-    - sensor.kitchen_trisensor_illuminance
     - sensor.lux_01_illuminance_lux
 
 - platform: min_max
@@ -148,7 +146,6 @@
   type: mean
   round_digits: 1
   entity_ids:
-    - sensor.lounge_trisensor_illuminance
     - sensor.lux_08_illuminance_lux
 
 - platform: min_max
@@ -156,7 +153,6 @@
   type: mean
   round_digits: 1
   entity_ids:
-    - sensor.study_trisensor_illuminance
     - sensor.lux_09_illuminance_lux
 
 - platform: min_max
@@ -164,7 +160,6 @@
   type: mean
   round_digits: 1
   entity_ids:
-    - sensor.toilet_trisensor_illuminance
     - sensor.lux_06_illuminance_lux
 
 - platform: min_max
