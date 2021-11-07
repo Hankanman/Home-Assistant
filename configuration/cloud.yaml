@@ -1,1 +1,13 @@
 cloud:
+  alexa:
+    entity_config:
+      camera.entrance:
+        name: Area - Entrance - Camera
+      camera.kitchen:
+        name: Area - Kitchen - Camera
+      camera.lounge:
+        name: Area - Lounge - Camera
+      camera.hall:
+        name: Area - Hall - Camera
+      camera.stairs:
+        name: Area - Stairs - Camera
