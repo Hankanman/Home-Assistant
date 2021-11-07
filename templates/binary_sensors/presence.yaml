@@ -16,8 +16,12 @@
 - unique_id: laura_sleeping
   name: "Laura Sleeping"
   icon: "mdi:sleep"
-  state: "{{ states('sensor.laura_phone_sleep_confidence') | int > 90 }}"
+  state: "{{ (states('sensor.laura_phone_sleep_confidence') | int > 90 and is_state('person.laura_ward','home')) }}"
 - unique_id: seb_sleeping
   name: "Seb Sleeping"
   icon: "mdi:sleep"
-  state: "{{ states('sensor.seb_phone_sleep_confidence') | int > 90 }}"
+  state: "{{ (states('sensor.seb_phone_sleep_confidence') | int > 90 and is_state('person.sebastian_burrell','home')) }}"
+- unique_id: sleeping
+  name: "Sleeping"
+  icon: "mdi:sleep"
+  state: "{{ ((is_state('binary_sensor.seb_sleeping', 'on') and is_state('person.sebastian_burrell','home')) or (is_state('binary_sensor.laura_sleeping', 'on') and is_state('person.laura_ward','home'))) and  is_state('binary_sensor.area_bedroom_bed_occupied', 'on')}}"
