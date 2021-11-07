@@ -54,4 +54,4 @@
   name: In Bed Probability
   state_class: measurement
   unit_of_measurement: "%"
-  state: "{{ (state_attr('binary_sensor.bed_occupied','probability')*100 | int) | round(0) }}"
+  state: "{{ (state_attr('binary_sensor.area_bedroom_bed_occupied','probability')*100 | int) | round(0) }}"
