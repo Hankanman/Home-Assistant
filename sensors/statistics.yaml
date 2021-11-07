@@ -6,16 +6,16 @@
 
 ## Area Entities
 - platform: history_stats
-  name: Stats - Bathroom Bright
-  entity_id: binary_sensor.area_bathroom_bright
+  name: Stats - Bathroom Humidity Trend
+  entity_id: binary_sensor.area_bathroom_humidity_trend
   state: "on"
   type: ratio
   end: "{{ now() }}"
   duration:
     days: 7
 - platform: history_stats
-  name: Stats - Bathroom Humidity Trend
-  entity_id: binary_sensor.area_bathroom_humidity_trend
+  name: Stats - Bathroom Humid
+  entity_id: binary_sensor.area_bathroom_humid
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -47,25 +47,7 @@
     days: 7
 - platform: history_stats
   name: Stats - Bathroom Schedule
-  entity_id: input_boolean.bathroom_schedule
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-
-## Device Entities
-- platform: history_stats
-  name: Stats - Bathroom MOT-01 occupancy
-  entity_id: binary_sensor.mot_01_occupancy
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: Stats - Bathroom Multisensor Motion
-  entity_id: binary_sensor.bathroom_multisensor_motion
+  entity_id: input_boolean.area_bathroom_schedule
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -121,12 +103,18 @@
   end: "{{ now() }}"
   duration:
     days: 7
-
-## Device Entities
 - platform: history_stats
-  name: Stats - Bedroom Trisensor Motion
-  entity_id: binary_sensor.bedroom_trisensor_motion
-  state: "on"
+  name: Stats - Bedroom TV
+  entity_id: media_player.bedroom_tv
+  state: "playing"
+  type: ratio
+  end: "{{ now() }}"
+  duration:
+    days: 7
+- platform: history_stats
+  name: Stats - Bedroom Echo
+  entity_id: media_player.bedroom_echo
+  state: "playing"
   type: ratio
   end: "{{ now() }}"
   duration:
@@ -167,25 +155,23 @@
     days: 7
 - platform: history_stats
   name: Stats - Entrance Door
-  entity_id: binary_sensor.entrance_door
+  entity_id: binary_sensor.dor_03_contact
   state: "on"
   type: ratio
   end: "{{ now() }}"
   duration:
     days: 7
 - platform: history_stats
-  name: Stats - Entrance People
-  entity_id: binary_sensor.area_entrance_people
+  name: Stats - Entrance Person Motion
+  entity_id: binary_sensor.zone_entrance_person_motion
   state: "on"
   type: ratio
   end: "{{ now() }}"
   duration:
     days: 7
-
-## Device Entities
 - platform: history_stats
-  name: Stats - Entrance Tablet Motion
-  entity_id: binary_sensor.entrance_tablet_motion
+  name: Stats - Entrance Stairs Person Motion
+  entity_id: binary_sensor.zone_stairs_person_motion
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -226,18 +212,8 @@
   duration:
     days: 7
 - platform: history_stats
-  name: Stats - Hall People
-  entity_id: binary_sensor.area_hall_people
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-
-## Device Entities
-- platform: history_stats
-  name: Stats - Hall Trisensor Motion
-  entity_id: binary_sensor.hall_trisensor_motion
+  name: Stats - Hall Person Motion
+  entity_id: binary_sensor.zone_hall_person_motion
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -286,8 +262,8 @@
   duration:
     days: 7
 - platform: history_stats
-  name: Stats - Kitchen People
-  entity_id: binary_sensor.area_kitchen_people
+  name: Stats - Kitchen Person Motion
+  entity_id: binary_sensor.zone_kitchen_person_motion
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -301,12 +277,10 @@
   end: "{{ now() }}"
   duration:
     days: 7
-
-## Device Entities
 - platform: history_stats
-  name: Stats - Kitchen Trisensor Motion
-  entity_id: binary_sensor.kitchen_trisensor_motion
-  state: "on"
+  name: Stats - Kitchen Echo Show
+  entity_id: media_player.kitchen_echo_show
+  state: "playing"
   type: ratio
   end: "{{ now() }}"
   duration:
@@ -346,8 +320,8 @@
   duration:
     days: 7
 - platform: history_stats
-  name: Stats - Lounge People
-  entity_id: binary_sensor.area_lounge_people
+  name: Stats - Lounge Person Motion
+  entity_id: binary_sensor.zone_lounge_person_motion
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -369,20 +343,10 @@
   end: "{{ now() }}"
   duration:
     days: 7
-
-## Device Entities
 - platform: history_stats
-  name: Stats - Lounge MOT-02 Motion
-  entity_id: binary_sensor.mot_02_occupancy
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: Stats - Lounge MOT-03 Motion
-  entity_id: binary_sensor.mot_03_occupancy
-  state: "on"
+  name: Stats - Lounge TV
+  entity_id: media_player.lounge_tv
+  state: "playing"
   type: ratio
   end: "{{ now() }}"
   duration:
@@ -416,14 +380,6 @@
 - platform: history_stats
   name: Stats - Study Motion
   entity_id: group.area_study_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
-- platform: history_stats
-  name: Stats - Study People
-  entity_id: binary_sensor.area_study_people
   state: "on"
   type: ratio
   end: "{{ now() }}"
@@ -479,14 +435,6 @@
   end: "{{ now() }}"
   duration:
     days: 7
-- platform: history_stats
-  name: Stats - Study Trisensor Motion
-  entity_id: binary_sensor.study_trisensor_motion
-  state: "on"
-  type: ratio
-  end: "{{ now() }}"
-  duration:
-    days: 7
 
 # Toilet
 - platform: history_stats
@@ -530,10 +478,10 @@
   duration:
     days: 7
 
-## Device Entities
+# Wardbrobe
 - platform: history_stats
-  name: Stats - Toilet Trisensor Motion
-  entity_id: binary_sensor.toilet_trisensor_motion
+  name: Stats - Wardrobe Motion
+  entity_id: group.area_wardrobe_motion
   state: "on"
   type: ratio
   end: "{{ now() }}"
