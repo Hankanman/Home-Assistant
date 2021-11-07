@@ -1,0 +1,5 @@
+- unique_id: area_bathroom_humid
+  name: "Area - Bathroom Humid"
+  device_class: moisture
+  state: "{{states('sensor.area_bathroom_humidity') | int > 93}}"
+
