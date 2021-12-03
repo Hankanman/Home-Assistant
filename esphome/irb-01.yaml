@@ -27,7 +27,7 @@ remote_receiver:
   pin:
     number: GPIO05
     inverted: True
-  dump: sony
+  dump: all
   
   
 remote_transmitter:
