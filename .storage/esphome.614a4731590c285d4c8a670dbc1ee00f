@@ -6,12 +6,13 @@
             "uses_password": false,
             "name": "irb-01",
             "mac_address": "48:3F:DA:13:BF:FD",
-            "compilation_time": "Sep 11 2021, 12:32:28",
-            "model": "PLATFORMIO_ESP01_1M",
+            "compilation_time": "Nov 30 2021, 18:39:59",
+            "model": "esp01_1m",
             "has_deep_sleep": false,
-            "esphome_version": "2021.8.2",
+            "esphome_version": "2021.11.4",
             "project_name": "",
-            "project_version": ""
+            "project_version": "",
+            "webserver_port": 0
         },
         "services": [],
         "api_version": {
@@ -26,6 +27,7 @@
                 "unique_id": "irb-01switchbedroom_tv_power",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -35,6 +37,7 @@
                 "unique_id": "irb-01switchbedroom_tv_volume_up",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -44,6 +47,7 @@
                 "unique_id": "irb-01switchbedroom_tv_volume_down",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -53,6 +57,7 @@
                 "unique_id": "irb-01switchbedroom_tv_mute",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -62,6 +67,7 @@
                 "unique_id": "irb-01switchbedroom_soundbar_power",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -71,6 +77,7 @@
                 "unique_id": "irb-01switchbedroom_soundbar_volume_up",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -80,6 +87,7 @@
                 "unique_id": "irb-01switchbedroom_soundbar_volume_down",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -89,6 +97,7 @@
                 "unique_id": "irb-01switchbedroom_soundbar_mute",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             }
         ]

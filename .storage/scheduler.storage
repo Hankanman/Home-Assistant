@@ -314,162 +314,87 @@
                 "end_date": null,
                 "repeat_type": "repeat",
                 "name": "Reactivate Automations",
-                "enabled": true
+                "enabled": false
             },
             {
                 "schedule_id": "82ffc7",
                 "timeslots": [
                     {
-                        "start": "00:00:00",
-                        "stop": "06:00:00",
-                        "conditions": [
-                            {
-                                "entity_id": "input_boolean.area_home_automations",
-                                "attribute": "state",
-                                "value": "on",
-                                "match_type": "is"
-                            }
-                        ],
-                        "condition_type": "or",
-                        "actions": [
-                            {
-                                "service": "climate.set_hvac_mode",
-                                "entity_id": "climate.central",
-                                "service_data": {
-                                    "hvac_mode": "off"
-                                }
-                            },
-                            {
-                                "service": "climate.set_hvac_mode",
-                                "entity_id": "climate.bedroom",
-                                "service_data": {
-                                    "hvac_mode": "off"
-                                }
-                            },
-                            {
-                                "service": "climate.set_hvac_mode",
-                                "entity_id": "climate.bathroom",
-                                "service_data": {
-                                    "hvac_mode": "off"
-                                }
-                            },
-                            {
-                                "service": "climate.set_hvac_mode",
-                                "entity_id": "climate.study",
-                                "service_data": {
-                                    "hvac_mode": "off"
-                                }
-                            },
-                            {
-                                "service": "climate.set_hvac_mode",
-                                "entity_id": "climate.toilet",
-                                "service_data": {
-                                    "hvac_mode": "off"
-                                }
-                            }
-                        ]
-                    },
-                    {
                         "start": "06:00:00",
-                        "stop": "16:00:00",
-                        "conditions": [
-                            {
-                                "entity_id": "input_boolean.area_home_automations",
-                                "attribute": "state",
-                                "value": "on",
-                                "match_type": "is"
-                            }
-                        ],
-                        "condition_type": "or",
+                        "stop": null,
+                        "conditions": [],
+                        "condition_type": null,
                         "actions": [
                             {
                                 "service": "climate.set_temperature",
-                                "entity_id": "climate.central",
+                                "entity_id": "climate.area_bathroom_climate",
                                 "service_data": {
                                     "hvac_mode": "heat",
-                                    "temperature": 18.5
+                                    "temperature": 19.5
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
-                                "entity_id": "climate.bedroom",
+                                "entity_id": "climate.area_bedroom_climate",
                                 "service_data": {
                                     "hvac_mode": "heat",
-                                    "temperature": 18.5
+                                    "temperature": 19.5
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
-                                "entity_id": "climate.bathroom",
+                                "entity_id": "climate.area_entrance_climate",
                                 "service_data": {
                                     "hvac_mode": "heat",
-                                    "temperature": 18.5
+                                    "temperature": 19.5
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
-                                "entity_id": "climate.study",
+                                "entity_id": "climate.area_hall_climate",
                                 "service_data": {
                                     "hvac_mode": "heat",
-                                    "temperature": 18.5
+                                    "temperature": 19.5
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
-                                "entity_id": "climate.toilet",
+                                "entity_id": "climate.area_home_climate",
                                 "service_data": {
                                     "hvac_mode": "heat",
-                                    "temperature": 18.5
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "start": "16:00:00",
-                        "stop": "00:00:00",
-                        "conditions": [
-                            {
-                                "entity_id": "input_boolean.area_home_automations",
-                                "attribute": "state",
-                                "value": "on",
-                                "match_type": "is"
-                            }
-                        ],
-                        "condition_type": "or",
-                        "actions": [
-                            {
-                                "service": "climate.set_hvac_mode",
-                                "entity_id": "climate.central",
-                                "service_data": {
-                                    "hvac_mode": "off"
+                                    "temperature": 19.5
                                 }
                             },
                             {
-                                "service": "climate.set_hvac_mode",
-                                "entity_id": "climate.bedroom",
+                                "service": "climate.set_temperature",
+                                "entity_id": "climate.area_kitchen_climate",
                                 "service_data": {
-                                    "hvac_mode": "off"
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
                                 }
                             },
                             {
-                                "service": "climate.set_hvac_mode",
-                                "entity_id": "climate.bathroom",
+                                "service": "climate.set_temperature",
+                                "entity_id": "climate.area_lounge_climate",
                                 "service_data": {
-                                    "hvac_mode": "off"
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
                                 }
                             },
                             {
-                                "service": "climate.set_hvac_mode",
-                                "entity_id": "climate.study",
+                                "service": "climate.set_temperature",
+                                "entity_id": "climate.area_study_climate",
                                 "service_data": {
-                                    "hvac_mode": "off"
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
                                 }
                             },
                             {
-                                "service": "climate.set_hvac_mode",
-                                "entity_id": "climate.toilet",
+                                "service": "climate.set_temperature",
+                                "entity_id": "climate.area_toilet_climate",
                                 "service_data": {
-                                    "hvac_mode": "off"
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
                                 }
                             }
                         ]

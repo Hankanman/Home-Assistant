@@ -1,0 +1,706 @@
+button_card_templates:
+  base:
+    aspect_ratio: 1/1
+    class: acrylic
+    tap_action:
+      action: toggle
+    custom_fields:
+      grid:
+        card:
+          type: custom:layout-card
+          layout_type: grid
+          layout:
+            grid-template-columns: repeat(3, 1fr)
+            grid-template-rows: repeat(2, 1fr)
+    styles:
+      grid:
+        - grid-template-columns: repeat(3, 1fr)
+        - grid-template-rows: repeat(4, 1fr)
+        - grid-template-areas: |
+            "title title title"
+            "grid  grid  grid "
+            "grid  grid  grid "
+            "light light light"
+      card:
+        - padding: 0
+  title:
+    variables:
+      name: Study
+      icon: mdi:desk-lamp
+      entity: input_boolean.area_study_automations
+    custom_fields:
+      title:
+        card:
+          type: custom:button-card
+          style:
+            background: none
+            backdrop-filter: unset
+          icon: '[[[ return variables.icon ]]]'
+          name: '[[[ return variables.name ]]]'
+          entity: '[[[ return variables.entity ]]]'
+          state:
+            - value: 'off'
+              color: var(--color-red)
+            - value: 'on'
+              color: white
+          styles:
+            card:
+              - background: none
+              - backdrop-filter: none
+              - border-radius: 0
+              - box-shadow: none
+            name:
+              - font-size: 1.7rem
+              - justify-self: start
+              - padding: 0
+            icon:
+              - padding: 0
+              - width: 50%
+            grid:
+              - grid-template-columns: repeat(3, 1fr)
+              - grid-template-areas: |
+                  "i n n"
+  light:
+    variables:
+      light: light.study
+    custom_fields:
+      light:
+        card:
+          type: custom:slider-button-card
+          entity: '[[[ return variables.light ]]]'
+          name: Lights
+          compact: true
+          slider:
+            direction: left-right
+            background: gradient
+            use_state_color: true
+          action_button:
+            show: true
+            mode: custom
+            show_spinner: true
+            tap_action:
+              action: toggle
+    styles:
+      custom_fields:
+        light:
+          - height: 100%
+          - align-self: end
+  bright:
+    variables:
+      bright: binary_sensor.area_study_bright
+    custom_fields:
+      grid:
+        card:
+          cards:
+            - type: custom:button-card
+              entity: '[[[ return variables.bright ]]]'
+              icon: mdi:white-balance-sunny
+              color: >-
+                [[[ if (states[variables.bright].state == 'on') return
+                'var(--color-yellow)'; return 'var(--disabled-text-color)'; ]]]
+              name: >-
+                [[[ return
+                states[variables.bright].attributes.current_illuminance + "Lx"
+                ]]]
+              styles:
+                card:
+                  - background: none
+                  - backdrop-filter: none
+                  - border-radius: 0
+                  - box-shadow: none
+                name:
+                  - font-size: 1rem
+  motion:
+    variables:
+      occupied: binary_sensor.area_study_occupied
+    custom_fields:
+      grid:
+        card:
+          cards:
+            - type: custom:button-card
+              entity: '[[[ return variables.occupied ]]]'
+              icon: mdi:walk
+              color: >-
+                [[[ if (states[variables.occupied].state == 'on') return
+                'var(--color-green)'; return 'var(--disabled-text-color)'; ]]]
+              name: |
+                [[[
+                  return Math.round(states[variables.occupied].attributes.probability * 100) + '%';
+                ]]]
+              styles:
+                card:
+                  - background: none
+                  - backdrop-filter: none
+                  - border-radius: 0
+                  - box-shadow: none
+                name:
+                  - font-size: 1rem
+  temp:
+    variables:
+      climate: climate.area_study_climate
+      temp: sensor.area_study_temperature
+      temp_trend: binary_sensor.area_study_temperature_trend
+    custom_fields:
+      grid:
+        card:
+          cards:
+            - type: custom:button-card
+              entity: '[[[ return variables.climate ]]]'
+              icon: mdi:thermometer
+              name: >-
+                [[[ return states[variables.temp].state + '/' +
+                states[variables.climate].attributes.temperature + '°C'; ]]]
+              color: >-
+                [[[ if (states[variables.temp_trend].state == 'on') return
+                'var(--color-orange)';]]]
+              styles:
+                card:
+                  - background: none
+                  - backdrop-filter: none
+                  - border-radius: 0
+                  - box-shadow: none
+                name:
+                  - font-size: 0.8rem
+                  - text-overflow: unset
+                  - overflow: visible
+title: Home
+views:
+  - title: Home
+    path: default_view
+    type: custom:grid-layout
+    layout:
+      grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr))
+      grid-auto-rows: auto
+      grid-auto-flow: row
+      mediaquery:
+        '(max-width: 800px)':
+          grid-template-columns: 1fr 1fr
+        '(max-width: 1200px)':
+          grid-template-columns: repeat(auto-fill, minmax(20%, 1fr))
+    badges: []
+    cards:
+      - type: custom:button-card
+        aspect_ratio: 1/1
+        custom_fields:
+          laura:
+            card:
+              type: custom:button-card
+              entity: person.laura_ward
+              show_entity_picture: true
+              styles:
+                card:
+                  - background: none
+                  - backdrop-filter: none
+                  - border-radius: 0
+                  - box-shadow: none
+                  - padding: 0 0.8rem
+                entity_picture:
+                  - border-radius: 0.8rem
+                  - ratio: 1/1
+                icon:
+                  - width: 80%
+                name:
+                  - margin: 0 0.8rem
+                  - justify-self: start
+                  - text-align: start
+                  - font-size: 1.2rem
+                  - white-space: initial
+                  - text-overflow: initial
+                  - overflow: initial
+                grid:
+                  - grid-template-columns: 0.5fr 1fr
+                  - grid-template-areas: |
+                      "i n"
+              name: '[[[ return states["sensor.laura_location"].state ]]]'
+          seb:
+            card:
+              type: custom:button-card
+              entity: person.sebastian_burrell
+              show_entity_picture: true
+              styles:
+                card:
+                  - background: none
+                  - backdrop-filter: none
+                  - border-radius: 0
+                  - box-shadow: none
+                  - padding: 0 0.8rem
+                entity_picture:
+                  - border-radius: 0.8rem
+                  - ratio: 1/1
+                icon:
+                  - width: 80%
+                name:
+                  - margin: 0 0.8rem
+                  - justify-self: start
+                  - text-align: start
+                  - font-size: 1.2rem
+                  - white-space: initial
+                  - text-overflow: initial
+                  - overflow: initial
+                grid:
+                  - grid-template-columns: 0.5fr 1fr
+                  - grid-template-areas: |
+                      "i n"
+              name: '[[[ return states["sensor.seb_location"].state ]]]'
+        styles:
+          grid:
+            - grid-template-columns: 1fr
+            - grid-template-rows: 50%
+            - grid-template-areas: |
+                "seb"
+                "laura"
+      - type: custom:button-card
+        aspect_ratio: 1/1
+        tap_action:
+          action: toggle
+        custom_fields:
+          grid:
+            card:
+              type: custom:layout-card
+              layout_type: grid
+              layout:
+                grid-template-columns: repeat(2, 1fr)
+                grid-template-rows: repeat(3, 1fr)
+              cards:
+                - type: custom:button-card
+                  entity: calendar.bin_collection
+                  show_name: false
+                  icon: mdi:trash-can
+                  tap_action:
+                    action: more-info
+                - type: custom:button-card
+                  entity: group.all_automations
+                  show_name: false
+                  color: var(--color-green)
+                  state:
+                    - value: 'off'
+                      color: red
+                  tap_action:
+                    action: toggle
+                - type: custom:button-card
+                  entity: switch.adaptive_lighting_adaptive_lights
+                  show_name: false
+                  tap_action:
+                    action: toggle
+                - type: custom:button-card
+                  icon: mdi:weather-pouring
+                  show_name: false
+                  entity: script.play_rain_sounds
+                  tap_action:
+                    action: toggle
+          light:
+            card:
+              type: custom:slider-button-card
+              entity: light.all
+              name: All Lights
+              compact: true
+              slider:
+                direction: left-right
+                background: gradient
+                use_state_color: true
+              action_button:
+                show: true
+                mode: custom
+                show_spinner: true
+                tap_action:
+                  action: toggle
+        styles:
+          custom_fields:
+            grid:
+              - padding-top: 1rem
+            light:
+              - height: 100%
+              - align-self: end
+          grid:
+            - grid-template-rows: repeat(4, 1fr)
+            - grid-template-areas: |
+                "grid "
+                "grid "
+                "grid "
+                "light"
+          card:
+            - padding: 4px 0 0 0
+      - type: conditional
+        conditions:
+          - entity: media_player.spotify_seb
+            state: playing
+        card:
+          type: grid
+          columns: 1
+          cards:
+            - type: custom:mini-media-player
+              entity: media_player.spotify_seb
+              name: Seb's Spotify
+              hide:
+                source: true
+                power: true
+                icon: true
+              style: |
+                ha-card {
+                  height: 100%;
+                }
+              info: scroll
+              volume_stateless: false
+              toggle_power: true
+              artwork: cover
+      - type: conditional
+        conditions:
+          - entity: media_player.spotify_laura
+            state: playing
+        card:
+          type: grid
+          columns: 1
+          cards:
+            - type: custom:mini-media-player
+              entity: media_player.spotify_laura
+              name: Laura's Spotify
+              info: scroll
+              hide:
+                source: true
+                power: true
+                icon: true
+              style: |
+                ha-card {
+                  height: 100%;
+                }
+              artwork: cover
+      - type: custom:button-card
+        variables:
+          name: Study
+          icon: mdi:desk-lamp
+          entity: input_boolean.area_study_automations
+          light: light.study
+          bright: binary_sensor.area_study_bright
+          occupied: binary_sensor.area_study_occupied
+          climate: climate.area_study_climate
+          temp: sensor.area_study_temperature
+          temp_trend: binary_sensor.area_study_temperature_trend
+        template:
+          - base
+          - title
+          - light
+          - bright
+          - motion
+          - temp
+      - type: custom:button-card
+        variables:
+          name: Bathroom
+          icon: mdi:shower-head
+          entity: input_boolean.area_bathroom_automations
+          light: light.bathroom
+          bright: binary_sensor.area_bathroom_bright
+          occupied: binary_sensor.area_bathroom_occupied
+          climate: climate.area_bathroom_climate
+          temp: sensor.area_bathroom_temperature
+          temp_trend: binary_sensor.area_bathroom_temperature_trend
+        template:
+          - base
+          - title
+          - light
+          - bright
+          - motion
+          - temp
+      - type: custom:button-card
+        variables:
+          name: Bedroom
+          icon: mdi:bed-king
+          entity: input_boolean.area_bedroom_automations
+          light: light.bedroom
+          bright: binary_sensor.area_bedroom_bright
+          occupied: binary_sensor.area_bedroom_occupied
+          climate: climate.area_bedroom_climate
+          temp: sensor.area_bedroom_temperature
+          temp_trend: binary_sensor.area_bedroom_temperature_trend
+        template:
+          - base
+          - title
+          - light
+          - bright
+          - motion
+          - temp
+      - type: custom:button-card
+        variables:
+          name: Hall
+          icon: mdi:stairs
+          entity: input_boolean.area_hall_automations
+          light: light.hall
+          bright: binary_sensor.area_hall_bright
+          occupied: binary_sensor.area_hall_occupied
+          climate: climate.area_hall_climate
+          temp: sensor.area_hall_temperature
+          temp_trend: binary_sensor.area_hall_temperature_trend
+        template:
+          - base
+          - title
+          - light
+          - bright
+          - motion
+          - temp
+      - type: custom:button-card
+        variables:
+          name: Kitchen
+          icon: mdi:fridge
+          entity: input_boolean.area_kitchen_automations
+          light: light.kitchen
+          bright: binary_sensor.area_kitchen_bright
+          occupied: binary_sensor.area_kitchen_occupied
+          climate: climate.area_kitchen_climate
+          temp: sensor.area_kitchen_temperature
+          temp_trend: binary_sensor.area_kitchen_temperature_trend
+        template:
+          - base
+          - title
+          - light
+          - bright
+          - motion
+          - temp
+      - type: custom:button-card
+        variables:
+          name: Entrance
+          icon: mdi:door-open
+          entity: input_boolean.area_entrance_automations
+          light: light.entrance
+          bright: binary_sensor.area_entrance_bright
+          occupied: binary_sensor.area_entrance_occupied
+          climate: climate.area_entrance_climate
+          temp: sensor.area_entrance_temperature
+          temp_trend: binary_sensor.area_entrance_temperature_trend
+        template:
+          - base
+          - title
+          - light
+          - bright
+          - motion
+          - temp
+      - type: custom:button-card
+        variables:
+          name: Lounge
+          icon: mdi:fridge
+          entity: input_boolean.area_lounge_automations
+          light: light.lounge
+          bright: binary_sensor.area_lounge_bright
+          occupied: binary_sensor.area_lounge_occupied
+          climate: climate.area_lounge_climate
+          temp: sensor.area_lounge_temperature
+          temp_trend: binary_sensor.area_lounge_temperature_trend
+        template:
+          - base
+          - title
+          - light
+          - bright
+          - motion
+          - temp
+      - type: custom:button-card
+        variables:
+          name: Toilet
+          icon: mdi:toilet
+          entity: input_boolean.area_toilet_automations
+          light: light.toilet
+          bright: binary_sensor.area_toilet_bright
+          occupied: binary_sensor.area_toilet_occupied
+          climate: climate.area_toilet_climate
+          temp: sensor.area_toilet_temperature
+          temp_trend: binary_sensor.area_toilet_temperature_trend
+        template:
+          - base
+          - title
+          - light
+          - bright
+          - motion
+          - temp
+      - type: grid
+        columns: 1
+        square: true
+        cards:
+          - type: map
+            entities:
+              - device_tracker.seb_phone
+              - device_tracker.laura_phone
+            aspect_ratio: '1:1'
+            dark_mode: true
+            hours_to_show: 12
+            card_mod:
+              style:
+                ha-map$: |
+                  .leaflet-control-attribution {
+                    display: none;
+                  }
+      - type: conditional
+        conditions:
+          - entity: media_player.bedroom_echo
+            state: playing
+        card:
+          type: grid
+          columns: 1
+          cards:
+            - type: custom:mini-media-player
+              entity: media_player.bedroom_echo
+              name: Bedroom Echo
+              info: scroll
+              hide:
+                source: true
+                power: true
+                icon: true
+              artwork: cover
+              style: |
+                ha-card {
+                  height: 100%;
+                }
+              volume_stateless: false
+      - type: conditional
+        conditions:
+          - entity: media_player.kitchen_echo_show
+            state: playing
+        card:
+          type: grid
+          columns: 1
+          cards:
+            - type: custom:mini-media-player
+              entity: media_player.kitchen_echo_show
+              name: Kitchen Show
+              info: scroll
+              hide:
+                source: true
+                power: true
+                icon: true
+              style: |
+                ha-card {
+                  height: 100%;
+                }
+              artwork: cover
+      - type: conditional
+        conditions:
+          - entity: media_player.lounge_tv
+            state: playing
+        card:
+          type: grid
+          columns: 1
+          cards:
+            - type: custom:mini-media-player
+              entity: media_player.lounge_tv
+              name: Lounge TV
+              info: scroll
+              hide:
+                source: true
+                power: true
+                icon: true
+              style: |
+                ha-card {
+                  height: 100%;
+                }
+              artwork: cover
+      - type: conditional
+        conditions:
+          - entity: media_player.bedroom_tv
+            state: playing
+        card:
+          type: grid
+          columns: 1
+          cards:
+            - type: custom:mini-media-player
+              entity: media_player.bedroom_tv
+              name: Bedroom TV
+              info: scroll
+              hide:
+                source: true
+                power: true
+                icon: true
+              style: |
+                ha-card {
+                  height: 100%;
+                }
+              artwork: cover
+      - type: conditional
+        conditions:
+          - entity: media_player.starrunner
+            state: playing
+        card:
+          type: grid
+          columns: 1
+          cards:
+            - type: custom:mini-media-player
+              entity: media_player.starrunner
+              name: Study PC
+              info: scroll
+              hide:
+                source: true
+                power: true
+                icon: true
+              style: |
+                ha-card {
+                  height: 100%;
+                }
+              artwork: cover
+      - type: grid
+        cards:
+          - type: sensor
+            graph: line
+            entity: sensor.shed_tmp_01_temperature
+            name: Shed Temperature
+            detail: 2
+        columns: 1
+  - title: Cameras
+    path: cameras
+    badges: []
+    cards:
+      - type: picture-entity
+        entity: camera.entrance
+        camera_view: live
+        show_state: false
+        show_name: false
+      - type: picture-entity
+        entity: camera.stairs
+        camera_view: live
+        show_state: false
+        show_name: false
+        aspect_ratio: '1.75'
+      - type: picture-entity
+        entity: camera.lounge
+        camera_view: live
+        show_state: false
+        show_name: false
+      - type: picture-entity
+        entity: camera.kitchen
+        camera_view: live
+        show_state: false
+        show_name: false
+      - type: picture-entity
+        entity: camera.hall
+        camera_view: live
+        show_state: false
+        show_name: false
+      - type: custom:frigate-card
+        camera_entity: camera.kitchen
+        view:
+          default: live
+        live:
+          preload: true
+  - title: ToDo
+    path: todo
+    type: panel
+    badges: []
+    cards:
+      - type: shopping-list
+        title: To Do
+  - title: alt
+    path: alt
+    badges: []
+    cards:
+      - type: light
+        entity: light.bedroom
+      - type: button
+        tap_action:
+          action: toggle
+        entity: script.play_rain_sounds
+      - type: entities
+        entities:
+          - entity: input_boolean.area_bathroom_sleep_mode
+          - entity: input_boolean.area_bedroom_sleep_mode
+          - entity: input_boolean.area_entrance_sleep_mode
+          - entity: input_boolean.area_hall_sleep_mode
+          - entity: input_boolean.area_kitchen_sleep_mode
+          - entity: input_boolean.area_lounge_sleep_mode
+          - entity: input_boolean.area_study_sleep_mode
+          - entity: input_boolean.area_toilet_sleep_mode
+          - entity: input_boolean.area_wardrobe_sleep_mode
+        state_color: true

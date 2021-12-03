@@ -6,12 +6,13 @@
             "uses_password": false,
             "name": "irb-02",
             "mac_address": "48:3F:DA:13:BF:EB",
-            "compilation_time": "Sep 11 2021, 12:49:17",
-            "model": "PLATFORMIO_ESP01_1M",
+            "compilation_time": "Dec  2 2021, 19:10:18",
+            "model": "esp01_1m",
             "has_deep_sleep": false,
-            "esphome_version": "2021.8.2",
+            "esphome_version": "2021.11.4",
             "project_name": "",
-            "project_version": ""
+            "project_version": "",
+            "webserver_port": 0
         },
         "services": [],
         "api_version": {
@@ -26,6 +27,7 @@
                 "unique_id": "irb-02switchstudy_soundbar_power",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -35,6 +37,7 @@
                 "unique_id": "irb-02switchstudy_soundbar_volume_up",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -44,6 +47,7 @@
                 "unique_id": "irb-02switchstudy_soundbar_volume_down",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -53,6 +57,7 @@
                 "unique_id": "irb-02switchstudy_soundbar_tv_input",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -62,6 +67,7 @@
                 "unique_id": "irb-02switchstudy_soundbar_hdmi_input",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -71,6 +77,7 @@
                 "unique_id": "irb-02switchstudy_soundbar_net_input",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -80,6 +87,7 @@
                 "unique_id": "irb-02switchstudy_soundbar_bt_input",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -89,6 +97,7 @@
                 "unique_id": "irb-02switchstudy_soundbar_mute",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -98,6 +107,7 @@
                 "unique_id": "irb-02switchstudy_fan_light_on",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -107,6 +117,7 @@
                 "unique_id": "irb-02switchstudy_fan_light_off",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -116,6 +127,7 @@
                 "unique_id": "irb-02switchstudy_fan_off",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -125,6 +137,7 @@
                 "unique_id": "irb-02switchstudy_fan_speed_1",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -134,6 +147,7 @@
                 "unique_id": "irb-02switchstudy_fan_speed_2",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             },
             {
@@ -143,6 +157,7 @@
                 "unique_id": "irb-02switchstudy_fan_speed_3",
                 "disabled_by_default": false,
                 "icon": "",
+                "entity_category": 0,
                 "assumed_state": false
             }
         ]

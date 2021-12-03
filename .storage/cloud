@@ -17,7 +17,7 @@
             "group.all_automations": {
                 "should_expose": true
             },
-            "light.bathroom_lights": {
+            "light.bathroom": {
                 "should_expose": true
             },
             "input_boolean.bathroom_automations": {
@@ -26,13 +26,13 @@
             "input_boolean.bedroom_automations": {
                 "should_expose": true
             },
-            "light.bedroom_lights": {
+            "light.bedroom": {
                 "should_expose": true
             },
             "input_boolean.entrance_automations": {
                 "should_expose": true
             },
-            "light.entrance_lights": {
+            "light.entrance": {
                 "should_expose": true
             },
             "camera.entrancecam": {
@@ -41,7 +41,7 @@
             "input_boolean.hall_automations": {
                 "should_expose": true
             },
-            "light.hall_lights": {
+            "light.hall": {
                 "should_expose": true
             },
             "input_boolean.home_automations": {
@@ -50,10 +50,10 @@
             "input_boolean.kitchen_automations": {
                 "should_expose": true
             },
-            "light.home_lights": {
+            "light.home": {
                 "should_expose": false
             },
-            "light.kitchen_lights": {
+            "light.kitchen": {
                 "should_expose": true
             },
             "camera.kitchencam": {
@@ -65,7 +65,7 @@
             "input_boolean.lounge_automations": {
                 "should_expose": true
             },
-            "light.lounge_lights": {
+            "light.lounge": {
                 "should_expose": true
             },
             "media_player.lounge_tv": {
@@ -74,10 +74,10 @@
             "camera.loungecam": {
                 "should_expose": true
             },
-            "light.study_lights": {
+            "light.study": {
                 "should_expose": true
             },
-            "light.toilet_lights": {
+            "light.toilet": {
                 "should_expose": true
             },
             "sensor.area_bathroom_temperature": {
@@ -181,7 +181,20 @@
             }
         },
         "cloud_user": "11c0a158be96488890c846c33fa6bfdc",
-        "cloudhooks": {},
+        "cloudhooks": {
+            "6e9164cefefdea6dcd74f7d944319862f9ae0b0fb0d0096d1ae16c60f7599b5e": {
+                "webhook_id": "6e9164cefefdea6dcd74f7d944319862f9ae0b0fb0d0096d1ae16c60f7599b5e",
+                "cloudhook_id": "2e3d19cd7e3a4e5e97003d0db81ea8a1",
+                "cloudhook_url": "https://hooks.nabu.casa/gAAAAABhoRL_3QOXCmKX_bnLfFibNTG2IxWyYaGC-NGs712DtQU2bkbY1gmEyEjHPgZG9J2UuxIDg9H_0EpdNa1TXeu4E_roKT-oxq1JujwM1GDKqwc3VRtjm9BYuNPWKHe0rQDZw6_LMM13FHdMcmwGj2BKTsCVWVDZGHJ6lvW5QacmbzsZiXs=",
+                "managed": true
+            },
+            "604e5896ad4b37c4342131242222b7873126b146bfbfff70c7f5685aa2f24886": {
+                "webhook_id": "604e5896ad4b37c4342131242222b7873126b146bfbfff70c7f5685aa2f24886",
+                "cloudhook_id": "2f728176ccd14fd186c3d9fef9dae7dc",
+                "cloudhook_url": "https://hooks.nabu.casa/gAAAAABhqlgrVrjwgD7yFrJlpivc7p4FQRWbCP4XaV3rv5DOwpO65kuNSMMzGfDAcbE-oIVMZxQ71JNV2arA7wrELHEILv3zwuLeUdSCdBb0Nzf7qYGXSvjqnGsvIfOI-LiqYvVunS5onlQlUh7NeghjEIplRTKkfq_xUBQx4NGRiTnaF_LYW8U=",
+                "managed": true
+            }
+        },
         "alexa_enabled": true,
         "google_enabled": false,
         "remote_enabled": false,

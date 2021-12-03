@@ -306,14 +306,14 @@
                                         {
                                             "type": "custom:mini-graph-card",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "show": {
                                                 "name": false,
                                                 "icon": false
                                             },
                                             "line_width": 1,
-                                            "points_per_hour": 60,
+                                            "points_per_hour": 20,
                                             "hours_to_show": 3,
                                             "entities": [
                                                 "sensor.area_bathroom_probability"
@@ -322,7 +322,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -379,7 +379,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -407,7 +407,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
                                             "entities": [
@@ -478,14 +478,14 @@
                                         {
                                             "type": "custom:mini-graph-card",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "show": {
                                                 "name": false,
                                                 "icon": false
                                             },
                                             "line_width": 1,
-                                            "points_per_hour": 60,
+                                            "points_per_hour": 20,
                                             "hours_to_show": 3,
                                             "entities": [
                                                 "sensor.area_bedroom_probability"
@@ -494,7 +494,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -551,7 +551,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -579,7 +579,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
                                             "entities": [
@@ -650,14 +650,14 @@
                                         {
                                             "type": "custom:mini-graph-card",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "show": {
                                                 "name": false,
                                                 "icon": false
                                             },
                                             "line_width": 1,
-                                            "points_per_hour": 60,
+                                            "points_per_hour": 20,
                                             "hours_to_show": 3,
                                             "entities": [
                                                 "sensor.area_entrance_probability"
@@ -666,7 +666,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -723,7 +723,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -751,7 +751,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
                                             "entities": [
@@ -822,14 +822,14 @@
                                         {
                                             "type": "custom:mini-graph-card",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "show": {
                                                 "name": false,
                                                 "icon": false
                                             },
                                             "line_width": 1,
-                                            "points_per_hour": 60,
+                                            "points_per_hour": 20,
                                             "hours_to_show": 3,
                                             "entities": [
                                                 "sensor.area_hall_probability"
@@ -838,7 +838,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -895,7 +895,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -923,7 +923,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
                                             "entities": [
@@ -994,14 +994,14 @@
                                         {
                                             "type": "custom:mini-graph-card",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "show": {
                                                 "name": false,
                                                 "icon": false
                                             },
                                             "line_width": 1,
-                                            "points_per_hour": 60,
+                                            "points_per_hour": 20,
                                             "hours_to_show": 3,
                                             "entities": [
                                                 "sensor.area_kitchen_probability"
@@ -1010,7 +1010,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -1067,7 +1067,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -1095,7 +1095,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
                                             "entities": [
@@ -1166,14 +1166,14 @@
                                         {
                                             "type": "custom:mini-graph-card",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "show": {
                                                 "name": false,
                                                 "icon": false
                                             },
                                             "line_width": 1,
-                                            "points_per_hour": 60,
+                                            "points_per_hour": 20,
                                             "hours_to_show": 3,
                                             "entities": [
                                                 "sensor.area_lounge_probability"
@@ -1182,7 +1182,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -1238,7 +1238,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -1266,7 +1266,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
                                             "entities": [
@@ -1337,14 +1337,14 @@
                                         {
                                             "type": "custom:mini-graph-card",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "show": {
                                                 "name": false,
                                                 "icon": false
                                             },
                                             "line_width": 1,
-                                            "points_per_hour": 60,
+                                            "points_per_hour": 20,
                                             "hours_to_show": 3,
                                             "entities": [
                                                 "sensor.area_study_probability"
@@ -1353,7 +1353,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -1420,7 +1420,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -1448,7 +1448,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
                                             "entities": [
@@ -1523,14 +1523,14 @@
                                         {
                                             "type": "custom:mini-graph-card",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "show": {
                                                 "name": false,
                                                 "icon": false
                                             },
                                             "line_width": 1,
-                                            "points_per_hour": 60,
+                                            "points_per_hour": 20,
                                             "hours_to_show": 3,
                                             "entities": [
                                                 "sensor.area_toilet_probability"
@@ -1539,7 +1539,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0.8rem 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -1596,7 +1596,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0 0.8rem;\n}\n",
                                             "entities": [
@@ -1624,7 +1624,7 @@
                                         {
                                             "type": "entities",
                                             "card_mod": {
-                                                "class": "noblur"
+                                                "class": "nobg"
                                             },
                                             "style": ".card-content {\n  padding: 0 0.8rem 0.8rem 0.8rem;\n}\n",
                                             "entities": [
@@ -1701,6 +1701,10 @@
                                 "include": [
                                     {
                                         "entity_id": "*_occupied",
+                                        "domain": "binary_sensor"
+                                    },
+                                    {
+                                        "entity_id": "*sleeping*",
                                         "domain": "binary_sensor"
                                     }
                                 ],

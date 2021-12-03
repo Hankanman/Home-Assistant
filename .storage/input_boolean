@@ -11,7 +11,7 @@
             {
                 "icon": "mdi:sleep",
                 "id": "sleep_mode",
-                "name": "Sleep Mode"
+                "name": "Area - Bedroom Sleep Mode"
             },
             {
                 "name": "Area - Bathroom Schedule",
@@ -87,6 +87,16 @@
                 "name": "Area - Toilet Automations",
                 "icon": "mdi:lock-pattern",
                 "id": "toilet_automations"
+            },
+            {
+                "name": "Area - Study Sleep Mode",
+                "icon": "mdi:sleep",
+                "id": "area_study_sleep_mode"
+            },
+            {
+                "name": "Area - Lounge Sleep Mode",
+                "icon": "mdi:sleep",
+                "id": "area_lounge_sleep_mode"
             }
         ]
     }
