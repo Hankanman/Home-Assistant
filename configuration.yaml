@@ -1,8 +1,33 @@
+default_config:
+history:
+wake_on_lan:
+webhook:
+zigbee2mqtt_networkmap:
+
+# o365:
+#   client_secret: !secret o365_personal_secret
+#   client_id: !secret o365_personal_client_id
+
+# google:
+#   client_id: !secret google_client_id
+#   client_secret: !secret google_secret
+
+spotify:
+  client_id: !secret spotify_clientid
+  client_secret: !secret spotify_secret
+
+home_connect:
+  client_id: !secret homeconnect_id
+  client_secret: !secret homeconnect_secret
+
 homeassistant:
-  packages: !include_dir_named configuration
+  packages: !include_dir_merge_named configuration/
   customize: !include customize.yaml
 
 automation: !include automations.yaml
+script: !include scripts.yaml
 
 frontend:
+  extra_module_url:
+    - /hacsfiles/lovelace-card-mod/card-mod.js
   themes: !include_dir_merge_named themes

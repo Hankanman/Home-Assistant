@@ -10,53 +10,53 @@ binary_sensor.shower_occupied:
   icon: mdi:shower-head
 sensor.bathroom_humidity_statistics:
   icon: mdi:water-percent
-binary_sensor.win_01_state:
+binary_sensor.study_win_01_state:
   device_class: window
   Area: Study
   Location: North West Window
   Battery Type: CR2032
-binary_sensor.win_02_state:
+binary_sensor.study_win_02_state:
   device_class: window
   Area: Study
   Location: North East Window
   Battery Type: CR2032
-binary_sensor.win_03_state:
+binary_sensor.bedroom_win_03_state:
   device_class: window
   Area: Bedroom
   Location: South Window
   Battery Type: CR2032
-binary_sensor.win_04_state:
+binary_sensor.toilet_win_04_state:
   device_class: window
   Area: Toilet
   Location: North Window
   Battery Type: CR2032
-binary_sensor.dor_01_state:
+binary_sensor.lounge_dor_01_state:
   device_class: door
   Area: Lounge
   Location: East Back Door
   Battery Type: CR2032
-binary_sensor.dor_02_state:
+binary_sensor.lounge_dor_02_state:
   device_class: door
   Area: Lounge
   Location: West Back Door
   Battery Type: CR2032
-binary_sensor.mot_01_state:
+binary_sensor.bedroom_mot_01_state:
   Area: Bathroom
   Location: West Wall
   Battery Type: CR2450
-sensor.lux_01_illuminance_lux:
+sensor.kitchen_lux_01_illuminance_lux:
   Area: Kitchen
   Location: Extractor
   Battery Type: CR2450
-sensor.tmp_01_temperature:
+sensor.shed_tmp_01_temperature:
   Area: Shed
   Location: Hutch
   Battery Type: CR2450
-sensor.tmp_02_temperature:
+sensor.bathroom_tmp_02_temperature:
   Area: Bathroom
   Location: East Wall
   Battery Type: CR2450
-sensor.tmp_03_temperature:
+sensor.kitchen_tmp_03_temperature:
   Area: Kitchen
   Location: Above Hob
   Battery Type: CR2450
@@ -74,13 +74,13 @@ sensor.study_trisensor_illuminance:
   unit_of_measurement: lx
 sensor.toilet_trisensor_illuminance:
   unit_of_measurement: lx
-binary_sensor.win_01_contact:
+binary_sensor.study_win_01_contact:
   device_class: window
-binary_sensor.win_02_contact:
+binary_sensor.study_win_02_contact:
   device_class: window
-binary_sensor.win_03_contact:
+binary_sensor.bedroom_win_03_contact:
   device_class: window
-binary_sensor.win_04_contact:
+binary_sensor.toilet_win_04_contact:
   device_class: window
 sensor.octopus_agile_current_rate:
   state_class: measurement

@@ -1,0 +1,201 @@
+bedroom:
+  # Binary Sensors
+  binary_sensor:
+    - platform: bayesian
+      name: Area - Bedroom Occupied
+      prior: 0.5
+      device_class: occupancy
+      probability_threshold: 0.7
+      observations:
+        - platform: "state"
+          entity_id: "media_player.bedroom_tv"
+          prob_given_true: 0.0300
+          prob_given_false: 0.0015
+          to_state: "playing"
+        - platform: "state"
+          entity_id: "media_player.bedroom_echo"
+          prob_given_true: 0.0720
+          prob_given_false: 0.0144
+          to_state: "playing"
+        - platform: "state"
+          entity_id: "input_boolean.sleep_schedule"
+          prob_given_true: 0.8
+          prob_given_false: 0.16
+          to_state: "on"
+        - platform: "state"
+          entity_id: "group.area_bedroom_motion"
+          prob_given_true: 0.1960
+          prob_given_false: 0.0392
+          to_state: "on"
+        - platform: "state"
+          entity_id: "input_boolean.bedroom_schedule"
+          prob_given_true: 0.9400
+          prob_given_false: 0.3290
+          to_state: "on"
+        - platform: "state"
+          entity_id: "binary_sensor.area_bedroom_bright"
+          prob_given_true: 0.4040
+          prob_given_false: 0.3838
+          to_state: "on"
+    - platform: bayesian
+      name: Area - Bedroom - Bed Occupied
+      prior: 0.42
+      device_class: occupancy
+      probability_threshold: 0.9
+      observations:
+        - platform: "state"
+          entity_id: "group.area_bedroom_motion"
+          prob_given_true: 0.11
+          prob_given_false: 0.0267
+          to_state: "on"
+        - platform: "state"
+          entity_id: "input_boolean.sleep_schedule"
+          prob_given_true: 0.93
+          prob_given_false: 0.173
+          to_state: "on"
+        - platform: template
+          value_template: >
+            {{ is_state('binary_sensor.seb_sleeping', 'on') and is_state('person.sebastian_burrell','home') }}
+          prob_given_true: 0.5940
+          prob_given_false: 0.0891
+        - platform: template
+          value_template: >
+            {{ is_state('binary_sensor.laura_sleeping', 'on') and is_state('person.laura_ward','home') }}
+          prob_given_true: 0.9680
+          prob_given_false: 0.1452
+        - platform: "state"
+          entity_id: "media_player.bedroom_echo"
+          prob_given_true: 0.11
+          prob_given_false: 0.0333
+          to_state: "playing"
+        - platform: "state"
+          entity_id: "media_player.bedroom_tv"
+          prob_given_true: 0.21
+          prob_given_false: 0.0667
+          to_state: "playing"
+    ####################################
+    # Trend Binary Sensors
+    ####################################
+    - platform: trend
+      sensors:
+        # Humidity
+        area_bedroom_humidity_trend:
+          friendly_name: Area - Bedroom Humidity Trend
+          entity_id: sensor.area_bedroom_humidity
+          sample_duration: 1200
+          max_samples: 6
+          min_gradient: 0.011
+          device_class: moisture
+        # Temperature
+        area_bedroom_temperature_trend:
+          friendly_name: Area - Bedroom Temperature Trend
+          entity_id: sensor.area_bedroom_temperature
+          sample_duration: 1200
+          max_samples: 6
+          min_gradient: 0.0017
+          device_class: heat
+  # Sensors
+  sensor:
+    - platform: min_max
+      name: Area - Bedroom Temperature
+      type: mean
+      round_digits: 1
+      entity_ids:
+        - sensor.bedroom_rad_02_temperature
+        - sensor.bedroom_mot_01_temperature
+    - platform: min_max
+      name: Area - Bedroom Illuminance
+      type: mean
+      round_digits: 1
+      entity_ids:
+        - sensor.bedroom_lux_05_illuminance_lux
+        - sensor.bedroom_mot_01_illuminance_lux
+
+  # Template
+  template:
+    # Binary Sensors
+    binary_sensor:
+
+    # Sensors
+    sensor:
+
+  # Groups
+  group:
+    area_bedroom_motion:
+      name: Area - Bedroom Motion
+      icon: mdi:motion-sensor
+      entities:
+        - binary_sensor.bedroom_mot_01_occupancy
+    area_bedroom_windows:
+      name: Area - Bedroom Windows
+      icon: mdi:window-closed
+      entities:
+        - binary_sensor.bedroom_win_03_contact
+  # Climate
+  climate:
+    - platform: climate_group
+      name: Area - Bedroom Climate
+      temperature_unit: C
+      entities:
+        - climate.bedroom_rad_02
+        - climate.stairs_tst_01
+
+  # Media Player
+  media_player:
+    - platform: androidtv
+      device_class: firetv
+      name: Bedroom Fire TV ADB
+      host: !secret bedroom_fire_tv
+      exclude_unnamed_apps: true
+      apps:
+        com.amazon.tv.launcher: "Fire TV Home"
+        uk.co.bbc.iplayer: "BBC iPlayer"
+        com.amazon.firetv.youtube: "YouTube"
+        com.channel4.ondemand: "All 4"
+        air.ITVMobilePlayer: "ITV Hub"
+    - platform: universal
+      device_class: tv
+      name: Bedroom TV
+      children:
+        - media_player.bedroom_fire_tv_adb
+        - media_player.bedroom_fire_tv
+      commands:
+        turn_on:
+          service: switch.toggle
+          target:
+            entity_id: switch.bedroom_tv_power
+        turn_off:
+          service: switch.toggle
+          target:
+            entity_id: switch.bedroom_tv_power
+        volume_up:
+          service: switch.toggle
+          target:
+            entity_id: switch.bedroom_soundbar_volume_up
+        volume_down:
+          service: switch.toggle
+          target:
+            entity_id: switch.bedroom_soundbar_volume_down
+        volume_mute:
+          service: switch.toggle
+          data:
+            entity_id: switch.bedroom_soundbar_mute
+        select_source:
+          service: media_player.select_source
+          data:
+            entity_id: media_player.bedroom_fire_tv_adb
+            source: "{{ source }}"
+      attributes:
+        is_volume_muted: media_player.bedroom_fire_tv_adb|is_volume_muted
+        state: media_player.bedroom_fire_tv_adb
+        source: media_player.bedroom_fire_tv_adb|source
+        source_list: media_player.bedroom_fire_tv_adb|source_list
+
+  # Notify
+  notify:
+
+  # Shell Command
+  shell_command:
+
+  # Switches
+  switch:

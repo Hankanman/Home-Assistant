@@ -1,9 +1,0 @@
-calendar:
-  - platform: entities_calendar
-    calendars:
-      - name: Bin Collection
-        entities:
-          - entity: sensor.bin_collection_data
-            name: Bin Collection
-            start_time:
-              timestamp_attribute: date

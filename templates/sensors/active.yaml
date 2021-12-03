@@ -1,7 +1,0 @@
-####################################
-# Activity & Availability
-####################################
-- unique_id: starrunner_idle_time
-  name: "Starrunner Idle Time"
-  unit_of_measurement: Minutes
-  state: "{{ ((now() | as_timestamp) | int / 60) | round(0, 'floor') - ((states('sensor.starrunner_last_active') | as_timestamp) | int / 60) | round(0, 'floor') }}"

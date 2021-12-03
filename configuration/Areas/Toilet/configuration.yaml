@@ -1,0 +1,90 @@
+toilet:
+  # Binary Sensors
+  binary_sensor:
+    - platform: bayesian
+      name: Area - Toilet Occupied
+      prior: 0.02
+      device_class: occupancy
+      probability_threshold: 0.6
+      observations:
+        - platform: "state"
+          entity_id: "group.area_toilet_motion"
+          prob_given_true: 0.48
+          prob_given_false: 0.0043
+          to_state: "on"
+    ####################################
+    # Trend Binary Sensors
+    ####################################
+    - platform: trend
+      sensors:
+        # Humidity
+        area_toilet_humidity_trend:
+          friendly_name: Area - Toilet Humidity Trend
+          entity_id: sensor.area_toilet_humidity
+          sample_duration: 1200
+          max_samples: 6
+          min_gradient: 0.011
+          device_class: moisture
+        # Temperature
+        area_toilet_temperature_trend:
+          friendly_name: Area - Toilet Temperature Trend
+          entity_id: sensor.area_toilet_temperature
+          sample_duration: 1200
+          max_samples: 6
+          min_gradient: 0.0017
+          device_class: heat
+  # Sensors
+  sensor:
+    - platform: min_max
+      name: Area - Toilet Temperature
+      type: mean
+      round_digits: 1
+      entity_ids:
+        - sensor.rad_04_temperature
+    - platform: min_max
+      name: Area - Toilet Illuminance
+      type: mean
+      round_digits: 1
+      entity_ids:
+        - sensor.toilet_lux_06_illuminance_lux
+
+  # Template
+  template:
+    # Binary Sensors
+    binary_sensor:
+
+    # Sensors
+    sensor:
+
+  # Groups
+  group:
+    area_toilet_motion:
+      name: Area - Toilet Motion
+      icon: mdi:motion-sensor
+      entities:
+        - binary_sensor.toilet_mot_07_occupancy
+    area_toilet_windows:
+      name: Area - Toilet Windows
+      icon: mdi:window-closed
+      entities:
+        - binary_sensor.toilet_win_04_contact
+  # Climate
+  climate:
+    - platform: climate_group
+      name: Area - Toilet Climate
+      temperature_unit: C
+      entities:
+        - climate.toilet_rad_04
+        - climate.stairs_tst_01
+
+  # Media Player
+  media_player:
+
+  # Notify
+  notify:
+
+  # Shell Command
+  shell_command:
+
+  # Switches
+  switch:

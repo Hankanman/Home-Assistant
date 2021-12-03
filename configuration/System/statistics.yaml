@@ -1,0 +1,490 @@
+####################################
+# Statistics Sensors
+####################################
+statistics:
+  sensor:
+    # Bathroom
+
+    ## Area Entities
+    - platform: history_stats
+      name: Stats - Bathroom Humidity Trend
+      entity_id: binary_sensor.area_bathroom_humidity_trend
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bathroom Humid
+      entity_id: binary_sensor.area_bathroom_humid
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bathroom Occupied
+      entity_id: binary_sensor.area_bathroom_occupied
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bathroom Temperature Trend
+      entity_id: binary_sensor.area_bathroom_temperature_trend
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bathroom Motion
+      entity_id: group.area_bathroom_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bathroom Schedule
+      entity_id: input_boolean.area_bathroom_schedule
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+
+    # Bedroom
+    - platform: history_stats
+      name: Stats - Bedroom Bright
+      entity_id: binary_sensor.area_bedroom_bright
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bedroom Occupied
+      entity_id: binary_sensor.area_bedroom_occupied
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bedroom Temperature Trend
+      entity_id: binary_sensor.area_bedroom_temperature_trend
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bedroom Motion
+      entity_id: group.area_bedroom_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bedroom Windows
+      entity_id: group.area_bedroom_windows
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bedroom Schedule
+      entity_id: input_boolean.area_bedroom_schedule
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bedroom TV
+      entity_id: media_player.bedroom_tv
+      state: "playing"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Bedroom Echo
+      entity_id: media_player.bedroom_echo
+      state: "playing"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+
+    # Entrance
+    - platform: history_stats
+      name: Stats - Entrance Bright
+      entity_id: binary_sensor.area_entrance_bright
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Entrance Occupied
+      entity_id: binary_sensor.area_entrance_occupied
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Entrance Temperature Trend
+      entity_id: binary_sensor.area_entrance_temperature_trend
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Entrance Motion
+      entity_id: group.area_entrance_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Entrance Door
+      entity_id: binary_sensor.entrance_dor_03_contact
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Entrance Person Motion
+      entity_id: binary_sensor.zone_entrance_person_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Entrance Stairs Person Motion
+      entity_id: binary_sensor.zone_stairs_person_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+
+    # Hall
+    - platform: history_stats
+      name: Stats - Hall Bright
+      entity_id: binary_sensor.area_hall_bright
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Hall Occupied
+      entity_id: binary_sensor.area_hall_occupied
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Hall Temperature Trend
+      entity_id: binary_sensor.area_hall_temperature_trend
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Hall Motion
+      entity_id: group.area_hall_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Hall Person Motion
+      entity_id: binary_sensor.zone_hall_person_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+
+    # Kitchen
+    - platform: history_stats
+      name: Stats - Kitchen Bright
+      entity_id: binary_sensor.area_kitchen_bright
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Kitchen Occupied
+      entity_id: binary_sensor.area_kitchen_occupied
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Kitchen Temperature Trend
+      entity_id: binary_sensor.area_kitchen_temperature_trend
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Kitchen Humidity Trend
+      entity_id: binary_sensor.area_kitchen_humidity_trend
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Kitchen Motion
+      entity_id: group.area_kitchen_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Kitchen Person Motion
+      entity_id: binary_sensor.zone_kitchen_person_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Kitchen Schedule
+      entity_id: input_boolean.area_kitchen_schedule
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Kitchen Echo Show
+      entity_id: media_player.kitchen_echo_show
+      state: "playing"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+
+    # Lounge
+    - platform: history_stats
+      name: Stats - Lounge Bright
+      entity_id: binary_sensor.area_lounge_bright
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Lounge Occupied
+      entity_id: binary_sensor.area_lounge_occupied
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Lounge Temperature Trend
+      entity_id: binary_sensor.area_lounge_temperature_trend
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Lounge Motion
+      entity_id: group.area_lounge_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Lounge Person Motion
+      entity_id: binary_sensor.zone_lounge_person_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Lounge Doors
+      entity_id: group.area_lounge_doors
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Lounge Schedule
+      entity_id: input_boolean.area_lounge_schedule
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Lounge TV
+      entity_id: media_player.lounge_tv
+      state: "playing"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+
+    # Study
+    - platform: history_stats
+      name: Stats - Study Bright
+      entity_id: binary_sensor.area_study_bright
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Study Occupied
+      entity_id: binary_sensor.area_study_occupied
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Study Temperature Trend
+      entity_id: binary_sensor.area_study_temperature_trend
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Study Motion
+      entity_id: group.area_study_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Study Windows
+      entity_id: group.area_study_windows
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Study Schedule
+      entity_id: input_boolean.area_study_schedule
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+
+    ## Device Entities
+    - platform: history_stats
+      name: Stats - Starrunner Online
+      entity_id: binary_sensor.starrunner_online
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Starrunner Active
+      entity_id: binary_sensor.starrunner_active
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Starrunner Webcam Active
+      entity_id: binary_sensor.starrunner_webcam_active
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Starrunner Microphone Active
+      entity_id: binary_sensor.starrunner_microphone_active
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+
+    # Toilet
+    - platform: history_stats
+      name: Stats - Toilet Bright
+      entity_id: binary_sensor.area_toilet_bright
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Toilet Occupied
+      entity_id: binary_sensor.area_toilet_occupied
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Toilet Temperature Trend
+      entity_id: binary_sensor.area_toilet_temperature_trend
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Toilet Motion
+      entity_id: group.area_toilet_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+    - platform: history_stats
+      name: Stats - Toilet Windows
+      entity_id: group.area_toilet_windows
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7
+
+    # Wardbrobe
+    - platform: history_stats
+      name: Stats - Wardrobe Motion
+      entity_id: group.area_wardrobe_motion
+      state: "on"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        days: 7

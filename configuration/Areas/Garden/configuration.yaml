@@ -1,0 +1,32 @@
+garden:
+  # Binary Sensors
+  binary_sensor:
+
+  # Sensors
+  sensor:
+
+  # Template
+  template:
+  # Binary Sensors
+    binary_sensor:
+
+  # Sensors
+    sensor:
+    
+  # Groups
+  group:
+
+  # Climate
+  climate:
+
+  # Media Player
+  media_player:
+
+  # Notify
+  notify:
+
+  # Shell Command
+  shell_command:
+
+  # Switches
+  switch:

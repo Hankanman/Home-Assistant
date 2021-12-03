@@ -1,0 +1,103 @@
+####################################
+# Recorder https://www.home-assistant.io/integrations/recorder/
+####################################
+# recorder:
+#   db_url: !secret mariadb
+#   purge_keep_days: 367
+  # include:
+  #   entity_globs: 
+  #     - sensor.area_*
+  #     - binary_sensor.area_*
+  #     - group.area_*
+  #     - sensor.laura_
+  #     - sensor.seb_
+  #     - sensor.iotawatt_*
+  #     - binary_sensor.laura_
+  #     - binary_sensor.seb_
+  #     - sensor.starrunner_
+  #     - binary_sensor.starrunner_
+  #     - switch.schedule_*
+  #     - switch.starrunner_*
+  #   entities:
+  #     - binary_sensor.people_home
+  #     - sensor.gas_daily_usage
+  #     - sensor.electricity_daily_usage
+  #     - sensor.total_energy_usage
+  #   domains:
+  #     - media_player
+  #     - person
+  #     - device_tracker
+  #     - light
+  #     - octopusagile
+#     # Temperature
+#       - sensor.area_bathroom_temperature
+#       - sensor.area_bedroom_temperature
+#       - sensor.area_entrance_temperature
+#       - sensor.area_hall_temperature
+#       - sensor.area_kitchen_temperature
+#       - sensor.area_lounge_temperature
+#       - sensor.area_area_outside_temperature
+#       - sensor.area_shed_temperature
+#       - sensor.area_study_temperature
+#       - sensor.area_toilet_temperature
+#     # Humidity
+#       - sensor.area_bathroom_humidity
+#       - sensor.area_kitchen_humidity
+#       - sensor.area_outside_humidity
+#       - sensor.area_shed_humidity
+#     # Occupancy
+#       - binary_sensor.bathroom_occupied
+#       - binary_sensor.bedroom_occupied
+#       - binary_sensor.entrance_occupied
+#       - binary_sensor.hall_occupied
+#       - binary_sensor.kitchen_occupied
+#       - binary_sensor.lounge_occupied
+#       - binary_sensor.study_occupied
+#       - binary_sensor.toilet_occupied
+#   # exclude:
+#   #   domains:
+#   #     - automation
+#   #     - updater
+#   #   entity_globs:
+#   #     - sensor.weather_*
+#   #     - sensor.ugw3_*
+#   #     - sensor.ratio_*
+#   #   entities:
+#   #     - sensor.date_time
+#   #     - sensor.date_time_iso
+#   #     - sensor.date_time_utc
+#   #     - sensor.time
+#   #     - sensor.time_date
+#   #     - sensor.time_utc
+#   #     - sensor.tesla
+#   #     - sensor.gamestop
+#   #     - sensor.bin_collection_data
+#   #     - sensor.season
+#   #     - octopusagile.update_consumption_nextupdate
+#   #     - octopusagile.half_hour_timer_nextupdate
+#   #     - octopusagile.region_code
+#   #     - octopusagile.rates
+#   #     - octopusagile.timers
+#   #     - sun.sun
+#   #     - sensor.detection_fps
+#   #     - sensor.coral_inference_speed
+#   #     - sensor.kitchencam_skipped_fps
+#   #     - sensor.loungecam_skipped_fps
+#   #     - sensor.hallcam_skipped_fps
+#   #     - sensor.entrancecam_skipped_fps
+#   #     - sensor.kitchencam_detection_fps
+#   #     - sensor.loungecam_detection_fps
+#   #     - sensor.hallcam_detection_fps
+#   #     - sensor.entrancecam_detection_fps
+#   #     - sensor.kitchencam_process_fps
+#   #     - sensor.loungecam_process_fps
+#   #     - sensor.hallcam_process_fps
+#   #     - sensor.entrancecam_process_fps
+#   #     - sensor.kitchencam_camera_fps
+#   #     - sensor.loungecam_camera_fps
+#   #     - sensor.hallcam_camera_fps
+#   #     - sensor.entrancecam_camera_fps
+#   #     - sensor.cpu_load
+#   #     - sensor.gpu_load
+#   #     - sensor.gpu_temperature
+#   #     - sensor.memory_load

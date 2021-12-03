@@ -86,8 +86,8 @@ group:
   area_lounge_motion:
     name: Area - Lounge Motion
     entities:
-      - binary_sensor.mot_02_occupancy # First zigbee motion (PIR) sensor
-      - binary_sensor.mot_03_occupancy # Second zigbee motion (PIR) sensor
+      - binary_sensor.lounge_mot_02_occupancy # First zigbee motion (PIR) sensor
+      - binary_sensor.lounge_mot_03_occupancy # Second zigbee motion (PIR) sensor
       - binary_sensor.area_lounge_person_motion # Result of camera object recognition
 ```
 
@@ -99,8 +99,8 @@ group:
     name: Area - Lounge Doors
     icon: mdi:door
     entities:
-      - binary_sensor.dor_01_contact
-      - binary_sensor.dor_02_contact
+      - binary_sensor.lounge_dor_01_contact
+      - binary_sensor.lounge_dor_02_contact
 ```
 
 Area - Lounge Illuminance (a min_max sensor set up to provide an average):
@@ -113,8 +113,8 @@ sensor:
     type: mean # Use mean to find the average between the sensor values
     round_digits: 1 # Make sure the value is rounded so we don't end up with lots of decimal places
     entity_ids:
-      - sensor.lux_07_illuminance_lux # First zigbee illuminance sensor
-      - sensor.lux_08_illuminance_lux # Second zigbee illuminance sensor
+      - sensor.hall_lux_07_illuminance_lux # First zigbee illuminance sensor
+      - sensor.lounge_lux_08_illuminance_lux # Second zigbee illuminance sensor
 ```
 
 There are two other sensors that work the same as illuminance (averages):

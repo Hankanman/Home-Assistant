@@ -1,0 +1,148 @@
+home:
+  # Binary Sensors
+  binary_sensor:
+
+  # Sensors
+  sensor:
+    - platform: season
+    - platform: rest
+      name: Gas Daily Usage
+      device_class: energy
+      unit_of_measurement: "kWh"
+      json_attributes_path: "$.results[1]"
+      json_attributes:
+        - interval_start
+        - interval_end
+      value_template: "{{value_json.results[1].consumption}}"
+      resource: !secret octopus_gas
+    - platform: rest
+      name: Electricity Daily Usage
+      device_class: energy
+      unit_of_measurement: "kWh"
+      json_attributes_path: "$.results[1]"
+      json_attributes:
+        - interval_start
+        - interval_end
+      value_template: "{{value_json.results[1].consumption}}"
+      resource: !secret octopus_electricity
+    - platform: rest
+      name: Electricity Unit Cost
+      device_class: monetary
+      unit_of_measurement: "p/kWh"
+      json_attributes_path: "$.results[0]"
+      json_attributes:
+        - value_exc_vat
+        - value_inc_vat
+        - valid_from
+        - valid_to
+      value_template: "{{value_json.results[0].value_inc_vat}}"
+      resource: !secret octopus_variable_tariff
+    - platform: integration
+      source: sensor.mainsexport
+      name: Total Grid Export
+      unit_prefix: k
+    - platform: integration
+      source: sensor.mainsconsumption
+      name: Total Grid Consumption
+      unit_prefix: k
+    - platform: min_max
+      name: Area - Home Incoming Illuminance
+      type: mean
+      round_digits: 1
+      entity_ids:
+        - sensor.lounge_lux_03_illuminance_lux
+        - sensor.entrance_lux_04_illuminance_lux
+    - platform: rest
+      name: Bin Collection Data
+      json_attributes_path: "$.collections[0]"
+      json_attributes:
+        - date
+        - roundTypes
+        - slippedCollection
+      value_template: >
+        {% set map = {"RECYCLE": "blue", "DOMESTIC": "black", "ORGANIC": "green"} %}
+        {{ "The " }}
+        {%- for type in value_json.collections[0].roundTypes -%}
+          {%- if loop.length > 1 -%}
+            {%- if loop.first -%}
+              {{map[type]}}
+            {%- elif loop.last -%}
+              {{ " and " }}{{map[type]}}
+            {%- else -%}
+              {{ ", " }}{{map[type]}}
+            {%- endif -%}
+          {%- else -%}
+            {{map[type]}}
+          {%- endif -%}
+        {%- endfor -%}
+        {{strptime(value_json.collections[0].date,"%Y-%m-%dT%H:%M:%SZ").strftime(" bin will be collected on %A, %b %d")}}
+      resource: !secret bin_collection
+
+  # Template
+  template:
+    # Binary Sensors
+    binary_sensor:
+
+    # Sensors
+    sensor:
+
+  # Groups
+  group:
+    echos:
+      name: Echos
+      icon: mdi:amazon-alexa
+      entities:
+        - media_player.bedroom_echo
+        - media_player.bedroom_fire_tv
+        - media_player.downstairs
+        - media_player.everywhere
+        - media_player.entrance_tablet
+        - media_player.kitchen_echo_show
+        - media_player.lounge_echo
+        - media_player.lounge_fire_tv
+        - media_player.study_echo
+
+  light:
+    - platform: group
+      name: All
+      unique_id: all_lights
+      entities:
+        - light.bathroom
+        - light.bedroom
+        - light.entrance
+        - light.hall
+        - light.kitchen
+        - light.lounge
+        - light.study
+        - light.toilet
+        - light.wardrobe
+
+  # Climate
+  climate:
+    - platform: climate_group
+      name: Area - Home Climate
+      temperature_unit: C
+      entities:
+        - climate.bathroom_rad_01
+        - climate.bedroom_rad_02
+        - climate.study_rad_03
+        - climate.toilet_rad_04
+        - climate.stairs_tst_01
+
+  # Media Player
+  media_player:
+
+  # Notify
+  notify:
+
+  # Shell Command
+  shell_command:
+
+  # Switches
+  switch:
+
+  # Utility Meterssssssssss
+  utility_meter:
+    daily_electricity:
+      source: sensor.electricity_daily_usage
+      cycle: daily

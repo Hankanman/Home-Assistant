@@ -54,3 +54,6 @@ zigbee2mqtt/
 .storage/zwave_js.legacy_zwave_migration
 .shopping_list.json
 .storage/trace.saved_traces
+.storage/unifi_data
+.ms_todo_auth.json
+.storage/unifi_data

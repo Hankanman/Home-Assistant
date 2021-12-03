@@ -1,0 +1,66 @@
+shed:
+  # Binary Sensors
+  binary_sensor:
+    ####################################
+    # Trend Binary Sensors
+    ####################################
+    - platform: trend
+      sensors:
+        # Humidity
+        area_shed_humidity_trend:
+          friendly_name: Area - Shed Humidity Trend
+          entity_id: sensor.area_shed_humidity
+          sample_duration: 1200
+          max_samples: 6
+          min_gradient: 0.011
+          device_class: moisture
+        # Temperature
+        area_shed_temperature_trend:
+          friendly_name: Area - Shed Temperature Trend
+          entity_id: sensor.area_shed_temperature
+          sample_duration: 1200
+          max_samples: 6
+          min_gradient: 0.0017
+          device_class: heat
+  # Sensors
+  sensor:
+    - platform: min_max
+      name: Area - Shed Temperature
+      type: mean
+      round_digits: 1
+      entity_ids:
+        - sensor.shed_tmp_01_temperature
+        - sensor.area_outside_temperature
+    - platform: min_max
+      name: Area - Shed Humidity
+      type: mean
+      round_digits: 1
+      entity_ids:
+        - sensor.shed_tmp_01_humidity
+        - sensor.area_outside_humidity
+
+  # Template
+  template:
+    # Binary Sensors
+    binary_sensor:
+
+    # Sensors
+    sensor:
+
+  # Groups
+  group:
+
+  # Climate
+  climate:
+
+  # Media Player
+  media_player:
+
+  # Notify
+  notify:
+
+  # Shell Command
+  shell_command:
+
+  # Switches
+  switch:

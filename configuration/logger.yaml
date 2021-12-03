@@ -1,5 +1,0 @@
-logger: 
-  default: error
-  filters:
-    homeassistant.helpers.template:
-      - "value_json.collections[0].roundTypes"

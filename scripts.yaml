@@ -1,0 +1,58 @@
+play_rain_sounds:
+  alias: Play Rain Sounds
+  sequence:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.bedroom_echo
+    data:
+      media_content_id: amzn1.ask.skill.89bb8c9b-6f47-4f93-9a40-7c572ade7ea3
+      media_content_type: skill
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.area_bedroom_sleep_mode
+        state: 'off'
+      sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.area_bedroom_sleep_mode
+    default: []
+  mode: single
+  icon: mdi:weather-pouring
+starrunner_wake:
+  alias: Starrunner - Wake
+  sequence:
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret starrunner_mac_1gb'
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret starrunner_mac_2gb'
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret starrunner_mac_wifi'
+  mode: single
+  icon: mdi:power
+print_entities_to_file:
+  alias: Print Entities To File
+  sequence:
+  - service: notify.entity_log
+    data:
+      message: "{% for state in states %}\n  - {{- state.entity_id -}}\n{% endfor\
+        \ %}\n"
+  mode: single
+  icon: mdi:math-log
+endeavor_wake:
+  alias: Endeavor - Wake
+  sequence:
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret endeavor_mac_management'
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret endeavor_mac_eth1'
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret endeavor_mac_eth2'
+  mode: single
+  icon: mdi:power
