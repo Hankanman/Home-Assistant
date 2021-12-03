@@ -12,6 +12,7 @@
         "switch",
         "binary_sensor",
         "light",
+        "group",
         "template"
     ],
     "documentation": "https://github.com/bramstroker/homeassistant-powercalc",
@@ -22,5 +23,5 @@
     "requirements": [
         "numpy>=1.21.1"
     ],
-    "version": "v0.10.4"
+    "version": "v0.12.1"
 }
