@@ -1,5 +1,6 @@
 {
     "version": 1,
+    "minor_version": 1,
     "key": "lovelace_dashboards",
     "data": {
         "items": [
@@ -11,15 +12,6 @@
                 "url_path": "lovelace-calendar",
                 "mode": "storage",
                 "id": "lovelace_calendar"
-            },
-            {
-                "require_admin": true,
-                "show_in_sidebar": true,
-                "title": "Tablet",
-                "url_path": "lovelace-desktop",
-                "mode": "storage",
-                "id": "lovelace_desktop",
-                "icon": "mdi:tablet"
             },
             {
                 "require_admin": false,

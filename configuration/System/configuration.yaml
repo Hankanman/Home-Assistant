@@ -87,11 +87,11 @@ system:
       filename: /config/www/entity_log.txt
       timestamp: false
 
-  panel_iframe:
-    networkmap:
-      title: "Device Map"
-      url: "/local/community/zigbee2mqtt_networkmap/map.html"
-      icon: "mdi:graphql"
+  # panel_iframe:
+  #   networkmap:
+  #     title: "Device Map"
+  #     url: "/local/community/zigbee2mqtt_networkmap/map.html"
+  #     icon: "mdi:graphql"
   #  nginx:
   #    title: 'Proxy'
   #    url: 'https://proxy.sbhost.co.uk/'

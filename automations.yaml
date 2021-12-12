@@ -139,7 +139,13 @@
             brightness_pct: 100
     default:
     - delay:
-        seconds: 30
+        hours: 0
+        minutes: 1
+        seconds: 0
+        milliseconds: 0
+    - condition: state
+      entity_id: binary_sensor.area_bathroom_occupied
+      state: 'off'
     - service: light.turn_off
       target:
         entity_id: light.bathroom
@@ -198,6 +204,9 @@
             - condition: state
               entity_id: media_player.bedroom_tv
               state: standby
+          - condition: sun
+            before: sunrise
+            after: sunset
           sequence:
           - service: light.turn_on
             target:
@@ -804,8 +813,8 @@
         data:
           media_content_id: amzn1.ask.skill.89bb8c9b-6f47-4f93-9a40-7c572ade7ea3
           media_content_type: skill
-    default:
-    - service: media_player.media_stop
-      target:
-        entity_id: media_player.bedroom_echo
+      - service: switch.turn_on
+        target:
+          entity_id: switch.bedroom_tv_power
+    default: []
   mode: single

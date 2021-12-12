@@ -57,3 +57,4 @@ zigbee2mqtt/
 .storage/unifi_data
 .ms_todo_auth.json
 .storage/unifi_data
+double-take/

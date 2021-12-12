@@ -1,5 +1,6 @@
 {
     "version": 1,
+    "minor_version": 1,
     "key": "lovelace",
     "data": {
         "config": {
@@ -1054,6 +1055,19 @@
                                 }
                             ],
                             "columns": 1
+                        },
+                        {
+                            "type": "grid",
+                            "cards": [
+                                {
+                                    "type": "sensor",
+                                    "entity": "sensor.house",
+                                    "detail": 2,
+                                    "graph": "line",
+                                    "name": "Energy Used"
+                                }
+                            ],
+                            "columns": 1
                         }
                     ]
                 },
@@ -1068,14 +1082,6 @@
                             "camera_view": "live",
                             "show_state": false,
                             "show_name": false
-                        },
-                        {
-                            "type": "picture-entity",
-                            "entity": "camera.stairs",
-                            "camera_view": "live",
-                            "show_state": false,
-                            "show_name": false,
-                            "aspect_ratio": "1.75"
                         },
                         {
                             "type": "picture-entity",
@@ -1097,67 +1103,6 @@
                             "camera_view": "live",
                             "show_state": false,
                             "show_name": false
-                        },
-                        {
-                            "type": "custom:frigate-card",
-                            "camera_entity": "camera.kitchen",
-                            "view": {
-                                "default": "live"
-                            },
-                            "live": {
-                                "preload": true
-                            }
-                        }
-                    ]
-                },
-                {
-                    "title": "ToDo",
-                    "path": "todo",
-                    "type": "panel",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "shopping-list",
-                            "title": "To Do"
-                        }
-                    ]
-                },
-                {
-                    "title": "alt",
-                    "path": "alt",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "light",
-                            "entity": "light.bedroom"
-                        },
-                        {
-                            "type": "button",
-                            "tap_action": {
-                                "action": "toggle"
-                            },
-                            "entity": "script.play_rain_sounds"
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "entity": "input_boolean.area_bedroom_sleep_mode"
-                                },
-                                {
-                                    "entity": "input_boolean.area_lounge_sleep_mode"
-                                },
-                                {
-                                    "entity": "input_boolean.area_study_sleep_mode"
-                                },
-                                {
-                                    "entity": "binary_sensor.area_downstairs_sleep_mode"
-                                },
-                                {
-                                    "entity": "binary_sensor.area_upstairs_sleep_mode"
-                                }
-                            ],
-                            "state_color": true
                         }
                     ]
                 }

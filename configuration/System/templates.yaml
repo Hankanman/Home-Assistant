@@ -179,7 +179,7 @@ templates:
         name: "People Home"
         icon: "mdi:home"
         device_class: presence
-        state: "{{ is_state_attr('sensor.laura_location', 'Location', 'Home') or is_state_attr('sensor.seb_location', 'Location', 'home') }}"
+        state: "{{ is_state_attr('sensor.laura_location', 'Location', 'home') or is_state_attr('sensor.seb_location', 'Location', 'home') }}"
 
       ####################################
       # Sleeping Binary Sensors
@@ -223,12 +223,13 @@ templates:
       - unique_id: starrunner_active
         name: "Starrunner Active"
         device_class: connectivity
-        state: >-
-          {% if is_state('binary_sensor.starrunner_online', 'off' ) %}
-            'off'
-          {% else %}
-            {{ states('sensor.starrunner_idle_time') | int < 5 }}
-          {% endif %}
+        state: "{{ is_state('sensor.starrunner_session_state', 'InUse') }}"
+        # state: >-
+        #   {% if is_state('binary_sensor.starrunner_online', 'off' ) %}
+        #     'off'
+        #   {% else %}
+        #     {{ states('sensor.starrunner_idle_time') | int < 5 }}
+        #   {% endif %}
 
     sensor:
       ####################################

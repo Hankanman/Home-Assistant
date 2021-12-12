@@ -2,7 +2,7 @@ default_config:
 history:
 wake_on_lan:
 webhook:
-zigbee2mqtt_networkmap:
+# zigbee2mqtt_networkmap:
 
 # o365:
 #   client_secret: !secret o365_personal_secret

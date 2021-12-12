@@ -4,7 +4,10 @@
     "data": {
         "deleted_ids": [
             "0fe44674bff373aacdd1d96359d61796e8cf395ca544151637d6461003ff588a",
-            "a708617ce3ecf9145a099d56b44f02aae8316cb7ce7b09ca8f0c26ef67324811"
+            "a708617ce3ecf9145a099d56b44f02aae8316cb7ce7b09ca8f0c26ef67324811",
+            "6d08fdbe793c58cfa750708121d20e0cc46db41d4c7f3ebb45fa94c7414828b0",
+            "19789711ba8245e71f765e33b794aabd0c6628ea8423c0837855fd7b72a99a7c",
+            "6e9164cefefdea6dcd74f7d944319862f9ae0b0fb0d0096d1ae16c60f7599b5e"
         ]
     }
 }

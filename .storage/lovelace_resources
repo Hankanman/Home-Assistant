@@ -1,5 +1,6 @@
 {
     "version": 1,
+    "minor_version": 1,
     "key": "lovelace_resources",
     "data": {
         "items": [
@@ -34,7 +35,7 @@
                 "id": "f9a196bebd9f49fe9f2cd007440032de"
             },
             {
-                "url": "/hacsfiles/scheduler-card/scheduler-card.js?hacstag=286270157222",
+                "url": "/hacsfiles/scheduler-card/scheduler-card.js?hacstag=286270157230",
                 "type": "module",
                 "id": "cfa740bc027b48ae99f9c35a77520425"
             },
@@ -104,16 +105,6 @@
                 "id": "0057bd19428d429e8b719e86ce9c162e"
             },
             {
-                "url": "/hacsfiles/last-changed-element/last-changed-element.js?hacstag=4203650621598",
-                "type": "module",
-                "id": "583f92247bb84de1b570eb937642b9b9"
-            },
-            {
-                "url": "/hacsfiles/person-entity-card/person-entity-card-bundle.js?hacstag=413430860073",
-                "type": "module",
-                "id": "1f2eff6fac134ec0ac9991027b5ec362"
-            },
-            {
                 "url": "/hacsfiles/lovelace-card-mod/card-mod.js?hacstag=190927524311",
                 "type": "module",
                 "id": "669f7d40aec641aaab284dd97bf8c102"
@@ -122,11 +113,6 @@
                 "url": "/hacsfiles/lovelace-swipe-navigation/swipe-navigation.js?hacstag=183995552136",
                 "type": "module",
                 "id": "d30e05ba4c9f46109db948713b48f66b"
-            },
-            {
-                "url": "/hacsfiles/my-cards/my-cards.js?hacstag=3991089017874",
-                "type": "module",
-                "id": "11fddbb0891a4edc90adbc51be174017"
             }
         ]
     }
