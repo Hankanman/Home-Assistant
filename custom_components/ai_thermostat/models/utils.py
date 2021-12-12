@@ -1,7 +1,9 @@
 import asyncio
-import time
+import math
+from custom_components.ai_thermostat.helpers import convert_decimal
 from homeassistant.helpers.json import JSONEncoder
 import logging
+from datetime import datetime, timedelta
 _LOGGER = logging.getLogger(__name__)
 
 
@@ -14,25 +16,32 @@ class cleanState:
     self.has_real_mode = has_real_mode
     self.calibration = calibration
 
-
 def default_calibration(self):
   state = self.hass.states.get(self.heater_entity_id).attributes
-  #new_calibration = float(round((float(self._cur_temp) - float(state.get('local_temperature'))) + float(state.get('local_temperature_calibration')),2))
-  new_calibration = int(round((round(float(self._cur_temp),1) - round(float(state.get('local_temperature')),1)) + round(float(state.get('local_temperature_calibration')),1) ,1))
+  #new_calibration = int(math.ceil((math.floor(float(self._cur_temp)) - round(float(state.get('local_temperature')))) + round(float(state.get('local_temperature_calibration')))))
+  # temp range fix
+  new_calibration = float((float(self._cur_temp) - float(state.get('local_temperature'))) + float(state.get('local_temperature_calibration')))
+  if new_calibration > 0 and new_calibration < 1:
+    new_calibration = round(new_calibration)
+  if new_calibration < -6:
+      new_calibration = -6
+  if new_calibration > 6:
+      new_calibration = 6
 
-  return new_calibration
+  return convert_decimal(new_calibration)
 
 async def overswing(self,calibration):
   state = self.hass.states.get(self.heater_entity_id).attributes
   mqtt = self.hass.components.mqtt
-  if state.get('system_mode') is not None and self._target_temp is not None and self._cur_temp is not None and not self.night_status:
+  if (datetime.now() > (self.lastOverswing + timedelta(minutes = 15))) and state.get('system_mode') is not None and self._target_temp is not None and self._cur_temp is not None and not self.night_status:
     check_overswing = (float(self._target_temp) - 0.5) < float(self._cur_temp)
     if check_overswing:
       self.ignoreStates = True
       _LOGGER.debug("Overswing detected")
       mqtt.async_publish('zigbee2mqtt/'+state.get('device').get('friendlyName')+'/set/current_heating_setpoint', float(5), 0, False)
-      await asyncio.sleep(30)
+      await asyncio.sleep(60)
       mqtt.async_publish('zigbee2mqtt/'+state.get('device').get('friendlyName')+'/set/current_heating_setpoint', float(calibration), 0, False)
+      self.lastOverswing = datetime.now()
       self.ignoreStates = False
 
 def temperature_calibration(self):
