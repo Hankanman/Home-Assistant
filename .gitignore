@@ -63,7 +63,7 @@ image/
 rtsp2webrtc_v5_aarch64
 .storage/cloud
 .storage/application_credentials
-.storage/esphome.*
+.storage/esphome*
 .storage/google_assistant
 .storage/google.693e1388f047578051fd4b0d40e8a8b0
 .storage/http.auth
@@ -72,3 +72,4 @@ rtsp2webrtc_v5_aarch64
 configuration/System/stats.csv
 .ssh/
 .storage/repairs*
+.storage/unifi_data
