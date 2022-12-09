@@ -69,7 +69,7 @@ kitchen:
       sensors:
         kitchen_temperature_rising_trend:
           friendly_name: Kitchen Temperature Rising Trend
-          entity_id: sensor.kitchen_temperature_humidity_1_temperature
+          entity_id: sensor.kitchen_temperature
           sample_duration: 600
           max_samples: 10
           min_gradient: 0.016667
@@ -77,13 +77,14 @@ kitchen:
   # Variable Sensors
   #----------------------------------#
   sensor:
-    - platform: average
-      name: Kitchen Average Temperature
+    - platform: statistics
+      name: "Kitchen Average Temperature"
+      entity_id: sensor.kitchen_temperature
       unique_id: kitchen_average_temperature
-      duration:
-        days: 30
-      entities:
-        - sensor.kitchen_temperature
+      state_characteristic: mean
+      max_age:
+        days: 7
+
   # Template Sensors
   #----------------------------------#
   template:

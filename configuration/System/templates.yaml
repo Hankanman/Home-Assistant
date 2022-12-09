@@ -9,7 +9,7 @@ templates:
       - unique_id: kitchen_hob
         name: "Kitchen Hob"
         icon: "mdi:gas-burner"
-        state: "{{ iif( is_state('binary_sensor.kitchen_temperature_rising_trend', 'on') or (is_state('binary_sensor.kitchen_temperature_rising_trend', 'off') and states('sensor.kitchen_temperature_humidity_1_temperature') | float(15) > (states('sensor.kitchen_average_temperature')| float(14) * 1.5) ), 'on', 'off' ) }}"
+        state: "{{ iif( is_state('binary_sensor.kitchen_temperature_rising_trend', 'on') or (is_state('binary_sensor.kitchen_temperature_rising_trend', 'off') and states('sensor.kitchen_temperature') | float(15) > (states('sensor.kitchen_average_temperature')| float(14) * 1.5) ), 'on', 'off' ) }}"
       - unique_id: kitchen_oven
         name: "Kitchen Oven"
         icon: "mdi:stove"
@@ -90,7 +90,7 @@ templates:
         name: "Smart Meter Electricity: Power Watts"
         state_class: measurement
         icon: "mdi:flash"
-        state: "{{ states('sensor.smart_meter_electricity_power') | float * 1000 | round(1,'floor') }}"
+        state: "{{ states('sensor.smart_meter_electricity_power') | float(0.5) * 1000 | round(1,'floor') }}"
       # Activity & Availability
       #----------------------------------#
       - unique_id: starrunner_idle_time

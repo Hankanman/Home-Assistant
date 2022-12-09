@@ -122,3 +122,7 @@ system:
   #         - name: "Seb Teams Status"
   #       chat_sensors: # Cannot be used for personal accounts
   #         - name: "Seb Chat"
+  logger:
+      default: info
+      logs:
+        homeassistant.components.iotawatt: debug

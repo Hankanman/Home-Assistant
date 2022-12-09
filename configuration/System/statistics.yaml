@@ -634,7 +634,7 @@ statistics:
         days: 90
     - platform: history_stats
       name: Study Door Ratio
-      entity_id: binary_sensor.study_door
+      entity_id: binary_sensor.study_door_contact
       state: "off"
       type: time
       end: "{{ now() }}"
@@ -684,38 +684,27 @@ statistics:
     #----------------------------------#
     # Toilet
     #----------------------------------#
-    - platform: history_stats
-      name: Toilet Motion Ratio
+    - platform: statistics
+      name: Toilet Motion Percentage
       entity_id: binary_sensor.toilet_motion
-      state: "on"
-      type: time
-      end: "{{ now() }}"
-      duration:
-        days: 90
-    - platform: history_stats
-      name: Toilet Occupied Ratio
+      unique_id: toilet_motion_percentage
+      state_characteristic: average_step
+      max_age:
+        days: 1
+    - platform: statistics
+      name: Toilet Occupied Percentage
       entity_id: binary_sensor.toilet_occupied
-      state: "on"
-      type: time
-      end: "{{ now() }}"
-      duration:
-        days: 90
-    - platform: history_stats
-      name: Toilet Heating Ratio
-      entity_id: climate.toilet_radiator
-      state: "heat"
-      type: time
-      end: "{{ now() }}"
-      duration:
-        days: 90
-    - platform: history_stats
-      name: Toilet Bright Ratio
+      unique_id: toilet_occupied_percentage
+      state_characteristic: average_step
+      max_age:
+        days: 1
+    - platform: statistics
+      name: Toilet Bright Percentage
       entity_id: binary_sensor.toilet_bright
-      state: "on"
-      type: time
-      end: "{{ now() }}"
-      duration:
-        days: 90
+      unique_id: toilet_bright_percentage
+      state_characteristic: average_step
+      max_age:
+        days: 1
 
     #----------------------------------#
     # Wardrobe

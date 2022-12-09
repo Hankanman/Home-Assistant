@@ -289,7 +289,7 @@
         },
         "climate": {
           "variables": {
-            "climate": "climate.study_radiator_thermostat",
+            "climate": "climate.study_radiator",
             "temp": "sensor.study_temperature"
           },
           "custom_fields": {
@@ -936,7 +936,7 @@
                 "occupied": "binary_sensor.kitchen_occupied",
                 "temp": "sensor.kitchen_temperature",
                 "humid": "sensor.kitchen_humidity",
-                "climate": "climate.kitchen"
+                "climate": "climate.downstairs"
               },
               "template": [
                 "base",
@@ -977,7 +977,7 @@
                 "light": "light.lounge",
                 "bright": "binary_sensor.lounge_bright",
                 "occupied": "binary_sensor.lounge_occupied",
-                "climate": "climate.lounge",
+                "climate": "climate.downstairs",
                 "temp": "sensor.lounge_temperature",
                 "humid": "sensor.lounge_humidity",
                 "media": "media_player.lounge_tv"

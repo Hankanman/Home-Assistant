@@ -4,47 +4,93 @@
 #----------------------------------#
 records:
   recorder:
-   #db_url: !secret mariadb
-   purge_keep_days: 367
-    # include:
-    #   entity_globs:
-    #     - sensor.*
-    #     - binary_sensor.*
-    #     - sensor.*_temperature
-    #     - sensor.*_humidity
-    #     - sensor.*_illuminance
-    #     - sensor.particulate*
-    #     - sensor.*_probability
-    #     - sensor.*_energy*
-    #     - sensor.*_power*
-    #     - sensor.*_wh*
-    #     - sensor.*_cost*
-    #     - binary_sensor.*
-    #     - binary_sensor.*_occupancy
-    #     - group.*
-    #     - sensor.laura_*
-    #     - sensor.seb_*
-    #     - binary_sensor.laura_*
-    #     - binary_sensor.seb_*
-    #     - sensor.starrunner_*
-    #     - binary_sensor.starrunner_*
-    #     - switch.schedule_*
-    #     - binary_sensor.*_occupied
-    #     - sensor.electricity_*
-    #     - sensor.gas_*
-    #     - sensor.*total_usage
-    #     - sensor.central_heating*
-    #     - sensor.cooker*
-    #     - sensor.downstairs*
-    #     - sensor.house*
-    #     - sensor.kitchen_sockets*
-    #     - sensor.smoke_alarms*
-    #     - sensor.sockets*
-    #     - sensor.upstairs*
-    #   entities:
-    #     - binary_sensor.people_home
-    #   domains:
-    #     - media_player
-    #     - person
-    #     - device_tracker
-    #     - light
+    db_url: !secret mariadb
+    purge_keep_days: 390
+    exclude:
+      entity_globs:
+        - .*_1
+        - .*_2
+        - .*_3
+        - .*_4
+        - .*_5
+        - .*_6
+        - sensor.date*
+        - .*_ratio*
+        - .*_battery*
+        - .*_cpu*
+        - .*_memory*
+        - .*_disk*
+        - .*_ram*
+        - .*_memory*
+      domains:
+        - update
+        - automation
+        - calendar
+        - camera
+      event_types:
+        - service_removed
+        - service_executed
+        - platform_discovered
+        - feedreader
+        - service_registered
+        - call_service
+        - component_loaded
+        - logbook_entry
+        - system_log_event
+        - automation_triggered
+        - script_started
+        - timer_out_of_sync
+    include:
+      entity_globs:
+        - sensor.*temperature
+        - sensor.*humidity
+        - sensor.*illuminance
+        - sensor.*particulate
+        - sensor.*probability
+        - sensor.*energy*
+        - sensor.*power*
+        - sensor.*wh*
+        - sensor.*cost*
+        - binary_sensor.*occupancy
+        - .*laura*
+        - .*seb_*
+        - sensor.starrunner_*
+        - binary_sensor.starrunner_*
+        - binary_sensor.*_occupied
+        - sensor.*electricity*
+        - sensor.*gas*
+        - sensor.*_wh*
+        - .*starrunner_active*
+        - .*_online*
+        - .*_home*
+        - .*_windows*
+        - .*_doors*
+        - .*_motion
+        - .*_noise
+        - .*_smoke
+        - .*_gas
+        - .*_water
+        - .*_presence
+        - .*_occupancy
+        - .*_bright
+        - .*_trend*
+        - .*_sleep*
+        - .*_rssi
+        - .*_heatindex
+        - .*co2*
+        - .*double_take*
+        - .*_person_count
+        - .*_dog_count
+        - .*_all_count
+      domains:
+        - person
+        - device_tracker
+        - light
+        - fan
+        - climate
+        - group
+        - switch
+        - input_boolean
+        - input_number
+        - media_player
+        - zone

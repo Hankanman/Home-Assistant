@@ -31,7 +31,6 @@ toilet:
   # Variable Sensors
   #----------------------------------#
   sensor:
-
   # Template Sensors
   #----------------------------------#
   template:
@@ -65,7 +64,11 @@ toilet:
     sensor:
       # Probabilities
       #----------------------------------#
-        
+      - unique_id: toilet_occupied_probability
+        name: Toilet Occupied Probability
+        state_class: measurement
+        unit_of_measurement: "%"
+        state: "{{ (state_attr('binary_sensor.toilet_occupied','probability')*100 | int(0) ) | round(0) }}"
   # Media Players
   #----------------------------------#
   media_player:

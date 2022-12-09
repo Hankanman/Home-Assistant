@@ -67,13 +67,6 @@ bathroom:
   #----------------------------------#
 
   sensor:
-    - platform: average
-      name: Bathroom Average Humidity
-      unique_id: bathroom_average_humidity
-      duration:
-        days: 30
-      entities:
-        - sensor.bathroom_humidity
 
   # Template Sensors
   #----------------------------------#
