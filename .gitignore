@@ -45,7 +45,6 @@ double-take/
 frigate.yml
 google_calendars.yaml
 HA (GitHub).code-workspace
-hass-emulated-hue/
 home-assistant.log*
 home-assistant_v2.db
 home-assistant_v2.db-shm
@@ -53,13 +52,12 @@ home-assistant_v2.db-wal
 image/
 known_devices.yaml
 o365_calendars.yaml
-room_assistant/
-rtsp2webrtc_v4_aarch64
-rtsp2webrtc_v5_aarch64
+rtsp2webrtc_v*
 secrets.yaml
 ssl/
 startup/
 tts/
 www/community/
 www/tmp/
+watchman_report.*
 zigbee*
