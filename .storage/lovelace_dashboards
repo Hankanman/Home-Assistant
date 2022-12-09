@@ -6,12 +6,25 @@
         "items": [
             {
                 "require_admin": false,
+<<<<<<< HEAD
+=======
+                "show_in_sidebar": false,
+                "icon": "mdi:calendar",
+                "title": "Calendar",
+                "url_path": "lovelace-calendar",
+                "mode": "storage",
+                "id": "lovelace_calendar"
+            },
+            {
+                "require_admin": false,
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                 "show_in_sidebar": true,
                 "icon": "mdi:cog",
                 "title": "Home Config",
                 "url_path": "home-config",
                 "mode": "storage",
                 "id": "home_config"
+<<<<<<< HEAD
             },
             {
                 "require_admin": true,
@@ -30,6 +43,8 @@
                 "mode": "storage",
                 "url_path": "history-explorer",
                 "id": "history_explorer"
+=======
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
             }
         ]
     }

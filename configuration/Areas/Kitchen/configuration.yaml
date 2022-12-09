@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 kitchen:
   # Binary Sensors
   #----------------------------------#
@@ -141,3 +142,112 @@ kitchen:
   # Switches
   #----------------------------------#
   switch:
+=======
+kitchen:
+  # Binary Sensors
+  binary_sensor:
+    - platform: bayesian
+      name: Area - Kitchen Occupied
+      prior: 0.13
+      device_class: occupancy
+      probability_threshold: 0.8
+      observations:
+        - platform: "state"
+          entity_id: "group.area_kitchen_motion"
+          prob_given_true: 0.96
+          prob_given_false: 0.014
+          to_state: "on"
+        - platform: "state"
+          entity_id: "binary_sensor.zone_kitchen_person_motion"
+          prob_given_true: 0.46
+          prob_given_false: 0.01
+          to_state: "on"
+        - platform: "state"
+          entity_id: "binary_sensor.area_kitchen_temperature_trend"
+          prob_given_true: 0.16
+          prob_given_false: 0.048
+          to_state: "on"
+        - platform: "state"
+          entity_id: "binary_sensor.kitchen_schedule"
+          prob_given_true: 0.16
+          prob_given_false: 0.048
+          to_state: "on"
+    ####################################
+    # Trend Binary Sensors
+    ####################################
+    - platform: trend
+      sensors:
+        # Humidity
+        area_kitchen_humidity_trend:
+          friendly_name: Area - Kitchen Humidity Trend
+          entity_id: sensor.area_kitchen_humidity
+          sample_duration: 1200
+          max_samples: 6
+          min_gradient: 0.011
+          device_class: moisture
+        # Temperature
+        area_kitchen_temperature_trend:
+          friendly_name: Area - Kitchen Temperature Trend
+          entity_id: sensor.area_kitchen_temperature
+          sample_duration: 1200
+          max_samples: 6
+          min_gradient: 0.0017
+          device_class: heat
+  # Sensors
+  sensor:
+    - platform: min_max
+      name: Area - Kitchen Temperature
+      type: mean
+      round_digits: 1
+      entity_ids:
+        - sensor.kitchen_tmp_03_temperature
+    - platform: min_max
+      name: Area - Kitchen Humidity
+      type: mean
+      round_digits: 1
+      entity_ids:
+        - sensor.kitchen_tmp_03_humidity
+        - sensor.area_outside_humidity
+    - platform: min_max
+      name: Area - Kitchen Illuminance
+      type: mean
+      round_digits: 1
+      entity_ids:
+        - sensor.kitchen_lux_01_illuminance_lux
+
+  # Template
+  template:
+    # Binary Sensors
+    binary_sensor:
+
+    # Sensors
+    sensor:
+
+  # Groups
+  group:
+    area_kitchen_motion:
+      name: Area - Kitchen Motion
+      icon: mdi:motion-sensor
+      entities:
+        - binary_sensor.kitchen_mot_06_occupancy
+        - binary_sensor.kitchen_mot_08_occupancy
+  # Climate
+  climate:
+    - platform: climate_group
+      name: Area - Kitchen Climate
+      temperature_unit: C
+      entities:
+        - climate.stairs_tst_01
+
+  # Media Player
+  media_player:
+
+  # Notify
+  notify:
+
+  # Shell Command
+  shell_command:
+
+  # Switches
+  switch:
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 system:
   folder_watcher:
     - folder: /config
@@ -122,3 +123,137 @@ system:
   #         - name: "Seb Teams Status"
   #       chat_sensors: # Cannot be used for personal accounts
   #         - name: "Seb Chat"
+=======
+system:
+  calendar:
+    - platform: entities_calendar
+      calendars:
+        - name: Bin Collection
+          entities:
+            - entity: sensor.bin_collection_data
+              name: Bin Collection
+              start_time:
+                timestamp_attribute: date
+    - platform: microsoft_todo
+      client_id: !secret mstodo_client_id
+      client_secret: !secret mstodo_secret
+
+  cloud:
+    alexa:
+      entity_config:
+        camera.entrance:
+          name: Area - Entrance - Camera
+        camera.kitchen:
+          name: Area - Kitchen - Camera
+        camera.lounge:
+          name: Area - Lounge - Camera
+        camera.hall:
+          name: Area - Hall - Camera
+        camera.stairs:
+          name: Area - Stairs - Camera
+
+  group:
+    all_automations:
+      name: All Automations
+      icon: mdi:robot
+      all: true
+      entities:
+        - input_boolean.area_bathroom_automations
+        - input_boolean.area_bedroom_automations
+        - input_boolean.area_entrance_automations
+        - input_boolean.area_hall_automations
+        - input_boolean.area_home_automations
+        - input_boolean.area_kitchen_automations
+        - input_boolean.area_lounge_automations
+        - input_boolean.area_study_automations
+        - input_boolean.area_toilet_automations
+
+    object_detection:
+      name: Object Detection
+      icon: mdi:camera-account
+      entities:
+        - switch.kitchen_detect
+        - switch.entrance_detect
+        - switch.lounge_detect
+        - switch.hall_detect
+        - switch.stairs_detect
+
+    snapshots:
+      name: Snapshots
+      icon: mdi:camera-image
+      entities:
+        - switch.kitchen_snapshots
+        - switch.entrance_snapshots
+        - switch.lounge_snapshots
+        - switch.hall_snapshots
+        - switch.stairs_snapshots
+
+  http:
+    use_x_forwarded_for: true
+    trusted_proxies:
+      - 192.168.1.1
+      - 172.30.33.0/24
+      - 127.0.0.1
+      - ::1
+
+  logger:
+    default: error
+    filters:
+      homeassistant.helpers.template:
+        - "value_json.collections[0].roundTypes"
+
+  notify:
+    - name: Mobiles
+      platform: group
+      services:
+        - service: mobile_app_seb_phone
+        - service: mobile_app_laura_phone
+    - platform: file
+      name: entity_log
+      filename: /config/www/entity_log.txt
+      timestamp: false
+
+  # panel_iframe:
+  #   networkmap:
+  #     title: "Device Map"
+  #     url: "/local/community/zigbee2mqtt_networkmap/map.html"
+  #     icon: "mdi:graphql"
+  #  nginx:
+  #    title: 'Proxy'
+  #    url: 'https://proxy.sbhost.co.uk/'
+  #    icon: 'mdi:call-split'
+  #    require_admin: true
+
+  powercalc:
+    enable_autodiscovery: true
+
+  recorder:
+    db_url: !secret mariadb
+    purge_keep_days: 367
+
+  binary_sensor:
+    - platform: workday
+      country: GB
+
+  sensor:
+    # - platform: google_fit
+    #   name: Seb
+    #   client_id: !secret google_client_id
+    #   client_secret: !secret google_secret
+    - platform: time_date
+      display_options:
+        - "date"
+        - "date_time"
+        - "date_time_iso"
+
+  tts:
+    platform: google_translate
+    language: "en"
+    cache: true
+    cache_dir: /tmp/ttsr fast play
+    time_memory: 300
+
+  google:
+    client_id: !secret google_client_id
+    client_secret: !secret google_secret
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604

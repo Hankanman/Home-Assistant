@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 - id: d0cf70f1-cd8e-43ca-af88-d12a8a0ee241
   alias: Home - Bin Collection Reminder
   description: ""
@@ -993,3 +994,825 @@
               target:
                 entity_id: light.toilet
   mode: restart
+=======
+- alias: Home - Rubbish Collection Reminder
+  id: d0cf70f1-cd8e-43ca-af88-d12a8a0ee241
+  description: ''
+  mode: single
+  trigger:
+  - platform: template
+    value_template: '{{ is_state(''sensor.date_time'', (strptime(state_attr(''sensor.bin_collection_data'',
+      ''date''),''%Y-%m-%dT%H:%M:%SZ'') - timedelta( hours = 5 )).strftime( ''%Y-%m-%d,
+      %H:%M'')) }}'
+  condition:
+  - condition: state
+    entity_id: input_boolean.home_automations
+    state: 'on'
+  action:
+  - service: notify.mobiles
+    data:
+      message: '{{state_attr(''sensor.bin_collection'', ''Reminder'') }}'
+      data:
+        ttl: 0
+        priority: high
+- alias: Home - Toggle All Automations
+  id: 8cea3b4f-cca1-488d-a3d4-57dc12138b0e
+  description: ''
+  mode: queued
+  trigger:
+  - entity_id: binary_sensor.people_home
+    platform: state
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.people_home
+        state: 'on'
+      sequence:
+      - scene: scene.all_on
+    default:
+    - scene: scene.all_off
+    - data: {}
+      entity_id: media_player.bedroom_tv,media_player.lounge_tv
+      service: media_player.turn_off
+- alias: Home - Update Climate
+  id: 62a3a9a9-7d97-4294-a199-42e3a49d7856
+  description: ''
+  mode: queued
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.people_home
+    to: 'on'
+  - platform: state
+    entity_id: input_number.target_temperature
+  condition:
+  - condition: state
+    entity_id: binary_sensor.people_home
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.home_automations
+    state: 'on'
+  action:
+  - service: climate.turn_on
+    data: {}
+    entity_id: climate.central
+  - service: climate.set_temperature
+    data:
+      entity_id: climate.central
+      temperature: 19
+      hvac_mode: heat
+  - service: climate.set_temperature
+    data:
+      entity_id: climate.study
+      temperature: '{{ states(''input_number.target_temperature'') | float }}'
+      hvac_mode: heat
+  - service: climate.set_temperature
+    data:
+      entity_id: climate.bedroom
+      temperature: '{{ states(''input_number.target_temperature'') | float }}'
+      hvac_mode: heat
+  - service: climate.set_temperature
+    data:
+      entity_id: climate.bathroom
+      temperature: '{{ states(''input_number.target_temperature'') | float }}'
+      hvac_mode: heat
+  - service: climate.set_temperature
+    data:
+      entity_id: climate.toilet
+      temperature: 10
+      hvac_mode: heat
+- id: c87f8826-584c-4459-ac6e-8d3615702dad
+  alias: Room - Bathroom - Lights
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+    - binary_sensor.area_bathroom_occupied
+    - binary_sensor.area_bathroom_bright
+    - input_boolean.area_bathroom_automations
+    - binary_sensor.area_upstairs_sleep_mode
+    - binary_sensor.people_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.area_bathroom_automations
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.area_bathroom_occupied
+      - condition: state
+        state: 'off'
+        entity_id: binary_sensor.area_bathroom_bright
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.people_home
+      sequence:
+      - alias: If sleep mode is on
+        choose:
+        - conditions:
+          - condition: state
+            entity_id: binary_sensor.area_upstairs_sleep_mode
+            state: 'on'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.bathroom
+            data:
+              color_temp: 500
+              brightness_pct: 1
+        default:
+        - service: light.turn_on
+          target:
+            entity_id: light.bathroom
+          data:
+            color_temp: 370
+            brightness_pct: 100
+    default:
+    - delay:
+        hours: 0
+        minutes: 1
+        seconds: 0
+        milliseconds: 0
+    - condition: state
+      entity_id: binary_sensor.area_bathroom_occupied
+      state: 'off'
+    - service: light.turn_off
+      target:
+        entity_id: light.bathroom
+  mode: restart
+- id: bf065214-cd47-43f8-a537-d39686045b26
+  alias: Room - Bedroom - Lights
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+    - binary_sensor.area_bedroom_occupied
+    - binary_sensor.area_bedroom_bright
+    - input_boolean.area_bedroom_automations
+    - input_boolean.area_bedroom_sleep_mode
+    - binary_sensor.people_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.area_bedroom_automations
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.area_bedroom_occupied
+      - condition: state
+        state: 'off'
+        entity_id: binary_sensor.area_bedroom_bright
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.people_home
+      sequence:
+      - alias: If sleep mode is on
+        choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.area_bedroom_sleep_mode
+            state: 'on'
+          sequence:
+          - service: light.turn_off
+            target:
+              entity_id: light.bedroom
+        - conditions:
+          - condition: not
+            conditions:
+            - condition: state
+              entity_id: media_player.bedroom_tv
+              state: 'off'
+            - condition: state
+              entity_id: media_player.bedroom_tv
+              state: unavailable
+            - condition: state
+              entity_id: media_player.bedroom_tv
+              state: standby
+          - condition: sun
+            before: sunrise
+            after: sunset
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.bedroom
+            data:
+              color_temp: 450
+              brightness_pct: 10
+        default:
+        - service: light.turn_on
+          target:
+            entity_id: light.bedroom
+          data:
+            color_temp: 370
+            brightness_pct: 100
+    default:
+    - delay:
+        seconds: 30
+    - service: light.turn_off
+      target:
+        entity_id: light.bedroom
+  mode: restart
+- id: d7b2ff77-0e4f-4efb-820f-9a4b67399a3b
+  alias: Room - Bedroom - Wardrobe - Lights
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+    - binary_sensor.area_wardrobe_occupied
+    - input_boolean.area_bedroom_automations
+    - input_boolean.area_bedroom_sleep_mode
+    - binary_sensor.people_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.area_bedroom_automations
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.area_wardrobe_occupied
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.people_home
+      sequence:
+      - alias: If sleep mode is on
+        choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.area_bedroom_sleep_mode
+            state: 'on'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.wardrobe
+            data:
+              color_temp: 500
+              brightness_pct: 50
+        default:
+        - service: light.turn_on
+          target:
+            entity_id: light.wardrobe
+          data:
+            color_temp: 370
+            brightness_pct: 100
+    default:
+    - service: light.turn_off
+      target:
+        entity_id: light.wardrobe
+  mode: restart
+- id: f26a8757-9178-4334-b2dc-07fda3f01c30
+  alias: Room - Entrance - Lights
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+    - binary_sensor.area_entrance_occupied
+    - input_boolean.area_entrance_automations
+    - binary_sensor.area_downstairs_sleep_mode
+    - binary_sensor.people_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.area_entrance_automations
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.area_entrance_occupied
+      - condition: state
+        state: 'off'
+        entity_id: binary_sensor.area_entrance_bright
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.people_home
+      sequence:
+      - alias: If sleep mode is on
+        choose:
+        - conditions:
+          - condition: state
+            entity_id: binary_sensor.area_downstairs_sleep_mode
+            state: 'on'
+          sequence:
+          - service: light.turn_off
+            target:
+              entity_id: light.entrance
+        default:
+        - service: light.turn_on
+          target:
+            entity_id: light.entrance
+          data:
+            color_temp: 370
+            brightness_pct: 100
+    default:
+    - delay:
+        seconds: 30
+    - service: light.turn_off
+      target:
+        entity_id: light.entrance
+  mode: restart
+- id: d0cccb19-ad9a-407e-9e5b-e5bb81f23cc9
+  alias: Room - Hall - Lights
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+    - binary_sensor.area_hall_occupied
+    - binary_sensor.area_hall_bright
+    - input_boolean.area_hall_automations
+    - binary_sensor.area_upstairs_sleep_mode
+    - binary_sensor.people_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.area_hall_automations
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.area_hall_occupied
+      - condition: state
+        state: 'off'
+        entity_id: binary_sensor.area_hall_bright
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.people_home
+      sequence:
+      - alias: If sleep mode is on
+        choose:
+        - conditions:
+          - condition: state
+            entity_id: binary_sensor.area_upstairs_sleep_mode
+            state: 'on'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.hall
+            data:
+              color_temp: 450
+              brightness_pct: 1
+        default:
+        - service: light.turn_on
+          target:
+            entity_id: light.hall
+          data:
+            color_temp: 370
+            brightness_pct: 100
+    default:
+    - delay:
+        seconds: 30
+    - service: light.turn_off
+      target:
+        entity_id: light.hall
+  mode: restart
+- id: c7c321fd-d55a-46fe-8b1f-052f54371ec9
+  alias: Room - Kitchen - Lights
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+    - binary_sensor.area_kitchen_occupied
+    - binary_sensor.area_kitchen_bright
+    - input_boolean.area_kitchen_automations
+    - binary_sensor.area_downstairs_sleep_mode
+    - binary_sensor.people_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.area_kitchen_automations
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.area_kitchen_occupied
+      - condition: state
+        state: 'off'
+        entity_id: binary_sensor.area_kitchen_bright
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.people_home
+      sequence:
+      - alias: If sleep mode is on
+        choose:
+        - conditions:
+          - condition: state
+            entity_id: binary_sensor.area_downstairs_sleep_mode
+            state: 'on'
+          sequence:
+          - service: light.turn_off
+            target:
+              entity_id: light.kitchen
+        default:
+        - service: light.turn_on
+          target:
+            entity_id: light.kitchen
+          data:
+            color_temp: 370
+            brightness_pct: 100
+    default:
+    - delay:
+        seconds: 30
+    - service: light.turn_off
+      target:
+        entity_id: light.kitchen
+  mode: restart
+- alias: Room - Lounge - Camera
+  id: 9e2baebd-3627-4aa5-b86b-e121b92b23ea
+  description: ''
+  mode: queued
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.lounge_bright
+  - platform: state
+    entity_id: sun.sun
+  - platform: state
+    entity_id: light.lounge
+  condition:
+  - condition: state
+    entity_id: input_boolean.lounge_automations
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: light.lounge
+          state: 'on'
+        - condition: state
+          entity_id: sun.sun
+          state: above_horizon
+      sequence:
+      - service: switch.turn_off
+        data: {}
+        entity_id: switch.loungecam_ir
+    default:
+    - service: switch.turn_on
+      data: {}
+      entity_id: switch.loungecam_ir
+- id: 027c7b02-12e8-4d99-8154-05b903a2e8dc
+  alias: Room - Lounge - Lights
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+    - binary_sensor.area_lounge_occupied
+    - binary_sensor.area_lounge_bright
+    - input_boolean.area_lounge_automations
+    - input_boolean.area_lounge_sleep_mode
+    - binary_sensor.people_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.area_lounge_automations
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.area_lounge_occupied
+      - condition: state
+        state: 'off'
+        entity_id: binary_sensor.area_lounge_bright
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.people_home
+      sequence:
+      - alias: If sleep mode is on
+        choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.area_lounge_sleep_mode
+            state: 'on'
+          sequence:
+          - service: light.turn_off
+            target:
+              entity_id: light.lounge
+        - conditions:
+          - condition: not
+            conditions:
+            - condition: state
+              entity_id: media_player.lounge_tv
+              state: 'off'
+            - condition: state
+              entity_id: media_player.lounge_tv
+              state: unavailable
+            - condition: state
+              entity_id: media_player.lounge_tv
+              state: standby
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.lounge
+            data:
+              color_temp: 400
+              brightness_pct: 50
+        default:
+        - service: light.turn_on
+          target:
+            entity_id: light.lounge
+          data:
+            color_temp: 370
+            brightness_pct: 100
+    default:
+    - delay:
+        hours: 0
+        minutes: 1
+        seconds: 0
+        milliseconds: 0
+    - service: light.turn_off
+      target:
+        entity_id: light.lounge
+  mode: restart
+- id: 436d5a1c-3313-46f5-91af-c7964998b2a0
+  alias: Room - Study - Lights
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+    - binary_sensor.area_study_occupied
+    - binary_sensor.area_study_bright
+    - input_boolean.area_study_automations
+    - input_boolean.area_study_sleep_mode
+    - binary_sensor.people_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.area_study_automations
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.area_study_occupied
+      - condition: state
+        state: 'off'
+        entity_id: binary_sensor.area_study_bright
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.people_home
+      sequence:
+      - alias: If sleep mode is on
+        choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.area_study_sleep_mode
+            state: 'on'
+          sequence:
+          - service: light.turn_off
+            target:
+              entity_id: light.study
+        default:
+        - service: light.turn_on
+          target:
+            entity_id: light.study
+          data:
+            color_temp: 370
+            brightness_pct: 100
+    default:
+    - service: light.turn_off
+      target:
+        entity_id: light.study
+  mode: restart
+- alias: System - Dismiss Persistant Notification
+  id: c43b66fa-f81a-46ee-a65a-80c3764e89bc
+  description: ''
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: persistent_notification.config_entry_discovery
+    to: notifying
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: persistent_notification.dismiss
+    data:
+      notification_id: config_entry_discovery
+- id: 2c269b98-6364-4fdb-bb79-ea5b7796b2f5
+  alias: Room - Toilet - Lights
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+    - binary_sensor.area_toilet_occupied
+    - binary_sensor.area_toilet_bright
+    - input_boolean.area_toilet_automations
+    - binary_sensor.area_downstairs_sleep_mode
+    - binary_sensor.people_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.area_toilet_automations
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.area_toilet_occupied
+      - condition: state
+        state: 'off'
+        entity_id: binary_sensor.area_toilet_bright
+      - condition: state
+        state: 'on'
+        entity_id: binary_sensor.people_home
+      sequence:
+      - alias: If sleep mode is on
+        choose:
+        - conditions:
+          - condition: state
+            entity_id: binary_sensor.area_downstairs_sleep_mode
+            state: 'on'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.toilet
+            data:
+              color_temp: 450
+              brightness_pct: 1
+        default:
+        - service: light.turn_on
+          target:
+            entity_id: light.toilet
+          data:
+            color_temp: 370
+            brightness_pct: 100
+    default:
+    - service: light.turn_off
+      target:
+        entity_id: light.toilet
+  mode: restart
+- id: d89d184c-0153-4a4e-a1bb-2c5b92209e57
+  alias: Area - Home Update Sleep Modes
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+    - input_boolean.area_bedroom_sleep_mode
+    - input_boolean.area_lounge_sleep_mode
+    - input_boolean.area_study_sleep_mode
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: input_boolean.area_bedroom_sleep_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.area_study_sleep_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.area_lounge_sleep_mode
+      state: 'on'
+  action:
+  - alias: choose alias (name)
+    choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: input_boolean.area_bedroom_sleep_mode
+          state: 'on'
+        - condition: state
+          entity_id: input_boolean.area_study_sleep_mode
+          state: 'on'
+      sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id:
+          - input_boolean.area_bathroom_sleep_mode
+          - input_boolean.area_hall_sleep_mode
+          - input_boolean.area_wardrobe_sleep_mode
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: input_boolean.area_bedroom_sleep_mode
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.area_study_sleep_mode
+          state: 'off'
+      sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id:
+          - input_boolean.area_bathroom_sleep_mode
+          - input_boolean.area_hall_sleep_mode
+          - input_boolean.area_wardrobe_sleep_mode
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.area_lounge_sleep_mode
+        state: 'on'
+      sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id:
+          - input_boolean.area_entrance_sleep_mode
+          - input_boolean.area_kitchen_sleep_mode
+          - input_boolean.area_lounge_sleep_mode
+          - input_boolean.area_toilet_sleep_mode
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.area_lounge_sleep_mode
+        state: 'off'
+      sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id:
+          - input_boolean.area_entrance_sleep_mode
+          - input_boolean.area_kitchen_sleep_mode
+          - input_boolean.area_lounge_sleep_mode
+          - input_boolean.area_toilet_sleep_mode
+  mode: queued
+  max: 10
+- id: '1638260394889'
+  alias: System - Auto Snapshot and Backup
+  description: ''
+  trigger:
+  - platform: time
+    at: '12:00'
+  condition:
+  - condition: template
+    value_template: '{{ now().strftime(''%A'') == "Wednesday" }}'
+  action:
+  - service: hassio.addon_start
+    data:
+      addon: 3490a758_remote_backup
+  - service: notify.mobile_app_pixel_6_pro
+    data:
+      title: Backup Successful!
+      message: Home Assistant Backup Complete
+  mode: single
+- id: '1638536955468'
+  alias: Going to Sleep
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.area_bedroom_sleep_mode
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.area_bedroom_sleep_mode
+        state: 'on'
+      sequence:
+      - service: media_player.play_media
+        target:
+          entity_id: media_player.bedroom_echo
+        data:
+          media_content_id: amzn1.ask.skill.89bb8c9b-6f47-4f93-9a40-7c572ade7ea3
+          media_content_type: skill
+      - service: switch.turn_on
+        target:
+          entity_id: switch.bedroom_tv_power
+    default: []
+  mode: single
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604

@@ -1,6 +1,10 @@
 {
+<<<<<<< HEAD
     "version": 3,
     "minor_version": 1,
+=======
+    "version": 2,
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
     "key": "scheduler.storage",
     "data": {
         "schedules": [
@@ -9,6 +13,7 @@
                 "timeslots": [
                     {
                         "start": "00:00:00",
+<<<<<<< HEAD
                         "stop": "05:30:00",
                         "conditions": [],
                         "condition_type": null,
@@ -17,11 +22,21 @@
                             {
                                 "service": "input_boolean.turn_off",
                                 "entity_id": "input_boolean.bathroom_schedule",
+=======
+                        "stop": "06:30:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
                     },
                     {
+<<<<<<< HEAD
                         "start": "05:30:00",
                         "stop": "07:00:00",
                         "conditions": [],
@@ -45,12 +60,23 @@
                             {
                                 "service": "input_boolean.turn_off",
                                 "entity_id": "input_boolean.bathroom_schedule",
+=======
+                        "start": "06:30:00",
+                        "stop": "09:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
                     },
                     {
                         "start": "09:00:00",
+<<<<<<< HEAD
                         "stop": "11:30:00",
                         "conditions": [],
                         "condition_type": null,
@@ -73,11 +99,21 @@
                             {
                                 "service": "input_boolean.turn_off",
                                 "entity_id": "input_boolean.bathroom_schedule",
+=======
+                        "stop": "18:30:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
                     },
                     {
+<<<<<<< HEAD
                         "start": "13:30:00",
                         "stop": "15:30:00",
                         "conditions": [],
@@ -115,12 +151,23 @@
                             {
                                 "service": "input_boolean.turn_on",
                                 "entity_id": "input_boolean.bathroom_schedule",
+=======
+                        "start": "18:30:00",
+                        "stop": "20:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
                     },
                     {
                         "start": "20:00:00",
+<<<<<<< HEAD
                         "stop": "22:30:00",
                         "conditions": [],
                         "condition_type": null,
@@ -129,11 +176,21 @@
                             {
                                 "service": "input_boolean.turn_off",
                                 "entity_id": "input_boolean.bathroom_schedule",
+=======
+                        "stop": "23:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
                     },
                     {
+<<<<<<< HEAD
                         "start": "22:30:00",
                         "stop": "00:00:00",
                         "conditions": [],
@@ -143,6 +200,16 @@
                             {
                                 "service": "input_boolean.turn_on",
                                 "entity_id": "input_boolean.bathroom_schedule",
+=======
+                        "start": "23:00:00",
+                        "stop": "00:00:00",
+                        "conditions": [],
+                        "condition_type": null,
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.area_bathroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -165,11 +232,18 @@
                         "stop": "09:00:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
                                 "entity_id": "input_boolean.bedroom_schedule",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -179,11 +253,18 @@
                         "stop": "21:30:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
                                 "entity_id": "input_boolean.bedroom_schedule",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -193,11 +274,18 @@
                         "stop": "00:00:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
                                 "entity_id": "input_boolean.bedroom_schedule",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -220,11 +308,18 @@
                         "stop": "10:30:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
                                 "entity_id": "input_boolean.bedroom_schedule",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -234,11 +329,18 @@
                         "stop": "22:00:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
                                 "entity_id": "input_boolean.bedroom_schedule",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -248,11 +350,18 @@
                         "stop": "00:00:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
                                 "entity_id": "input_boolean.bedroom_schedule",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.area_bedroom_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -275,7 +384,10 @@
                         "stop": "08:00:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
+=======
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
@@ -289,7 +401,10 @@
                         "stop": "22:00:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
+=======
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
@@ -303,7 +418,10 @@
                         "stop": "00:00:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
+=======
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
@@ -330,51 +448,90 @@
                         "stop": null,
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
                                 "entity_id": "input_boolean.bathroom_automations",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.area_bathroom_automations",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
+<<<<<<< HEAD
                                 "entity_id": "input_boolean.bedroom_automations",
+=======
+                                "entity_id": "input_boolean.area_bedroom_automations",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
+<<<<<<< HEAD
                                 "entity_id": "input_boolean.entrance_automations",
+=======
+                                "entity_id": "input_boolean.area_entrance_automations",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
+<<<<<<< HEAD
                                 "entity_id": "input_boolean.kitchen_automations",
+=======
+                                "entity_id": "input_boolean.area_kitchen_automations",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
+<<<<<<< HEAD
                                 "entity_id": "input_boolean.lounge_automations",
+=======
+                                "entity_id": "input_boolean.area_lounge_automations",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
+<<<<<<< HEAD
                                 "entity_id": "input_boolean.hall_automations",
+=======
+                                "entity_id": "input_boolean.area_hall_automations",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
+<<<<<<< HEAD
                                 "entity_id": "input_boolean.study_automations",
+=======
+                                "entity_id": "input_boolean.area_study_automations",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
+<<<<<<< HEAD
                                 "entity_id": "input_boolean.toilet_automations",
+=======
+                                "entity_id": "input_boolean.area_toilet_automations",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             },
                             {
                                 "service": "input_boolean.turn_on",
+<<<<<<< HEAD
                                 "entity_id": "input_boolean.home_automations",
+=======
+                                "entity_id": "input_boolean.area_home_automations",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -397,6 +554,7 @@
                         "stop": null,
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
@@ -405,70 +563,135 @@
                                 "service_data": {
                                     "hvac_mode": "heat",
                                     "temperature": 18
+=======
+                        "actions": [
+                            {
+                                "service": "climate.set_temperature",
+                                "entity_id": "climate.area_bathroom_climate",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
+<<<<<<< HEAD
                                 "entity_id": "climate.bedroom_radiator_thermostat",
                                 "service_data": {
                                     "hvac_mode": "heat",
                                     "temperature": 18
+=======
+                                "entity_id": "climate.area_bedroom_climate",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
+<<<<<<< HEAD
                                 "entity_id": "climate.main_thermostat_1",
                                 "service_data": {
                                     "hvac_mode": "heat",
                                     "temperature": 18
+=======
+                                "entity_id": "climate.area_entrance_climate",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
+<<<<<<< HEAD
                                 "entity_id": "climate.main_thermostat_1",
                                 "service_data": {
                                     "hvac_mode": "heat",
                                     "temperature": 18
+=======
+                                "entity_id": "climate.area_hall_climate",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
+<<<<<<< HEAD
                                 "entity_id": "climate.home_climate",
                                 "service_data": {
                                     "hvac_mode": "heat",
                                     "temperature": 18
+=======
+                                "entity_id": "climate.area_home_climate",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
+<<<<<<< HEAD
                                 "entity_id": "climate.main_thermostat_1",
                                 "service_data": {
                                     "hvac_mode": "heat",
                                     "temperature": 18
+=======
+                                "entity_id": "climate.area_kitchen_climate",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
+<<<<<<< HEAD
                                 "entity_id": "climate.main_thermostat_1",
                                 "service_data": {
                                     "hvac_mode": "heat",
                                     "temperature": 18
+=======
+                                "entity_id": "climate.area_lounge_climate",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
+<<<<<<< HEAD
                                 "entity_id": "climate.study_climate",
                                 "service_data": {
                                     "hvac_mode": "heat",
                                     "temperature": 18
+=======
+                                "entity_id": "climate.area_study_climate",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 }
                             },
                             {
                                 "service": "climate.set_temperature",
+<<<<<<< HEAD
                                 "entity_id": "climate.toilet_radiator_thermostat",
                                 "service_data": {
                                     "hvac_mode": "heat",
                                     "temperature": 18
+=======
+                                "entity_id": "climate.area_toilet_climate",
+                                "service_data": {
+                                    "hvac_mode": "heat",
+                                    "temperature": 19.5
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 }
                             }
                         ]
@@ -481,7 +704,11 @@
                 "end_date": null,
                 "repeat_type": "repeat",
                 "name": "Heating",
+<<<<<<< HEAD
                 "enabled": false
+=======
+                "enabled": true
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
             },
             {
                 "schedule_id": "5fcc64",
@@ -491,11 +718,18 @@
                         "stop": "07:00:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
                                 "entity_id": "input_boolean.kitchen_schedule",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.area_kitchen_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -505,11 +739,18 @@
                         "stop": "09:00:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
                                 "entity_id": "input_boolean.kitchen_schedule",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.area_kitchen_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -519,11 +760,18 @@
                         "stop": "17:30:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
                                 "entity_id": "input_boolean.kitchen_schedule",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.area_kitchen_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -533,11 +781,18 @@
                         "stop": "20:00:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_on",
                                 "entity_id": "input_boolean.kitchen_schedule",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_on",
+                                "entity_id": "input_boolean.area_kitchen_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -547,11 +802,18 @@
                         "stop": "00:00:00",
                         "conditions": [],
                         "condition_type": null,
+<<<<<<< HEAD
                         "track_conditions": false,
                         "actions": [
                             {
                                 "service": "input_boolean.turn_off",
                                 "entity_id": "input_boolean.kitchen_schedule",
+=======
+                        "actions": [
+                            {
+                                "service": "input_boolean.turn_off",
+                                "entity_id": "input_boolean.area_kitchen_schedule",
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                                 "service_data": {}
                             }
                         ]
@@ -565,6 +827,7 @@
                 "repeat_type": "repeat",
                 "name": "Kitchen",
                 "enabled": true
+<<<<<<< HEAD
             },
             {
                 "schedule_id": "91910b",
@@ -704,6 +967,8 @@
                 "repeat_type": "repeat",
                 "name": null,
                 "enabled": true
+=======
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
             }
         ],
         "tags": []

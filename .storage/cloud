@@ -1,0 +1,231 @@
+{
+    "version": 1,
+    "key": "cloud",
+    "data": {
+        "alexa_default_expose": [
+            "cover",
+            "fan",
+            "humidifier",
+            "lock",
+            "vacuum",
+            "water_heater"
+        ],
+        "alexa_entity_configs": {
+            "media_player.bedroom_tv": {
+                "should_expose": true
+            },
+            "group.all_automations": {
+                "should_expose": true
+            },
+            "light.bathroom": {
+                "should_expose": true
+            },
+            "input_boolean.bathroom_automations": {
+                "should_expose": true
+            },
+            "input_boolean.bedroom_automations": {
+                "should_expose": true
+            },
+            "light.bedroom": {
+                "should_expose": true
+            },
+            "input_boolean.entrance_automations": {
+                "should_expose": true
+            },
+            "light.entrance": {
+                "should_expose": true
+            },
+            "camera.entrancecam": {
+                "should_expose": true
+            },
+            "input_boolean.hall_automations": {
+                "should_expose": true
+            },
+            "light.hall": {
+                "should_expose": true
+            },
+            "input_boolean.home_automations": {
+                "should_expose": false
+            },
+            "input_boolean.kitchen_automations": {
+                "should_expose": true
+            },
+            "light.home": {
+                "should_expose": false
+            },
+            "light.kitchen": {
+                "should_expose": true
+            },
+            "camera.kitchencam": {
+                "should_expose": true
+            },
+            "switch.lockmachine": {
+                "should_expose": false
+            },
+            "input_boolean.lounge_automations": {
+                "should_expose": true
+            },
+            "light.lounge": {
+                "should_expose": true
+            },
+            "media_player.lounge_tv": {
+                "should_expose": true
+            },
+            "camera.loungecam": {
+                "should_expose": true
+            },
+            "light.study": {
+                "should_expose": true
+            },
+            "light.toilet": {
+                "should_expose": true
+            },
+            "sensor.area_bathroom_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_bathroom_automations": {
+                "should_expose": true
+            },
+            "input_boolean.area_bedroom_automations": {
+                "should_expose": true
+            },
+            "sensor.area_bedroom_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_entrance_automations": {
+                "should_expose": true
+            },
+            "sensor.area_entrance_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_hall_automations": {
+                "should_expose": true
+            },
+            "sensor.area_hall_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_kitchen_automations": {
+                "should_expose": true
+            },
+            "sensor.area_kitchen_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_lounge_automations": {
+                "should_expose": true
+            },
+            "sensor.area_lounge_temperature": {
+                "should_expose": true
+            },
+            "sensor.area_shed_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_study_automations": {
+                "should_expose": true
+            },
+            "sensor.area_study_temperature": {
+                "should_expose": true
+            },
+            "input_boolean.area_toilet_automations": {
+                "should_expose": true
+            },
+            "sensor.area_toilet_temperature": {
+                "should_expose": true
+            },
+            "sensor.bathroom_multisensor_air_temperature": {
+                "should_expose": false
+            },
+            "camera.entrance": {
+                "should_expose": true
+            },
+            "camera.hall": {
+                "should_expose": true
+            },
+            "camera.kitchen": {
+                "should_expose": true
+            },
+            "camera.lounge": {
+                "should_expose": true
+            },
+            "camera.stairs": {
+                "should_expose": true
+            },
+            "climate.area_bathroom_climate": {
+                "should_expose": true
+            },
+            "climate.area_bedroom_climate": {
+                "should_expose": true
+            },
+            "climate.area_entrance_climate": {
+                "should_expose": true
+            },
+            "climate.area_hall_climate": {
+                "should_expose": true
+            },
+            "climate.area_home_climate": {
+                "should_expose": true
+            },
+            "input_boolean.area_home_automations": {
+                "should_expose": true
+            },
+            "climate.area_kitchen_climate": {
+                "should_expose": true
+            },
+            "climate.area_lounge_climate": {
+                "should_expose": true
+            },
+            "climate.area_study_climate": {
+                "should_expose": true
+            },
+            "climate.area_toilet_climate": {
+                "should_expose": true
+            }
+        },
+        "cloud_user": "11c0a158be96488890c846c33fa6bfdc",
+        "cloudhooks": {
+            "604e5896ad4b37c4342131242222b7873126b146bfbfff70c7f5685aa2f24886": {
+                "webhook_id": "604e5896ad4b37c4342131242222b7873126b146bfbfff70c7f5685aa2f24886",
+                "cloudhook_id": "2f728176ccd14fd186c3d9fef9dae7dc",
+                "cloudhook_url": "https://hooks.nabu.casa/gAAAAABhqlgrVrjwgD7yFrJlpivc7p4FQRWbCP4XaV3rv5DOwpO65kuNSMMzGfDAcbE-oIVMZxQ71JNV2arA7wrELHEILv3zwuLeUdSCdBb0Nzf7qYGXSvjqnGsvIfOI-LiqYvVunS5onlQlUh7NeghjEIplRTKkfq_xUBQx4NGRiTnaF_LYW8U=",
+                "managed": true
+            },
+            "e8d27d490cb9208329bde749f6d7760adee7fdc2945b40ad06833de54cfd3279": {
+                "webhook_id": "e8d27d490cb9208329bde749f6d7760adee7fdc2945b40ad06833de54cfd3279",
+                "cloudhook_id": "b3a7f2b2fc08426187ff9a983488e6ee",
+                "cloudhook_url": "https://hooks.nabu.casa/gAAAAABhrRvqM2bSAuXMSyVE2xgGe97JLphFnZsRV8Xwjo_pFOtVxTIY5nUwAnhOYJCA8B_H_eqDwDCZwP9rceo12UemNVW8BtJZrtZp3m9yVFo0x_myMJXOmPSAu15pC_YsZ-Qlo4Ynqc6s8tHnmILPBIGeCYCAGy8e0LqyVi90k5I_kiAPMMU=",
+                "managed": true
+            },
+            "4890ff6e93789eb64c11e209bc62ee7c6c1923227a03d6c745e5102e8ba3308c": {
+                "webhook_id": "4890ff6e93789eb64c11e209bc62ee7c6c1923227a03d6c745e5102e8ba3308c",
+                "cloudhook_id": "2961b3d35a9b4b70b3b55d62a7300b3a",
+                "cloudhook_url": "https://hooks.nabu.casa/gAAAAABhrTGz4niIR3iJFROzqv4LX44LFWNPahsT7TiDbm4IkWnG4zY8wLWZc5OPhynD3TiGDgodIt6s2cm4KFhcGKbFOtQdr3-yXdKi08wkm7gc-wRNxSUMRXOpvshzkCow_M0a7sISeD1e3BfBSXkaQy3waeCE70fQtyn9pNXYcifoeactJto=",
+                "managed": true
+            }
+        },
+        "alexa_enabled": true,
+        "google_enabled": false,
+        "remote_enabled": false,
+        "google_default_expose": [
+            "climate",
+            "cover",
+            "fan",
+            "humidifier",
+            "light",
+            "lock",
+            "scene",
+            "script",
+            "sensor",
+            "switch",
+            "vacuum",
+            "water_heater"
+        ],
+        "google_entity_configs": {},
+        "google_local_webhook_id": "094fdd729593c28ab9a1043cf0b31937926a6a5a1c833ac97eefa970f7dfd5c7",
+        "google_secure_devices_pin": null,
+        "username": "cf1b6f2e-b796-4f00-8fd4-3c15b559e743",
+        "tts_default_voice": [
+            "en-GB",
+            "female"
+        ],
+        "alexa_report_state": true
+    }
+}

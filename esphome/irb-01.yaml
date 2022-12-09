@@ -1,0 +1,85 @@
+esphome:
+  name: irb-01
+  platform: ESP8266
+  board: esp01_1m
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: !secret esp_ota
+
+wifi:
+  ssid: !secret iot_ssid
+  password: !secret iot_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Irb-01 Fallback Hotspot"
+    password: "wkrExUpjSG3h"
+
+captive_portal:
+
+remote_receiver:
+  pin:
+    number: GPIO05
+    inverted: True
+  dump: all
+  
+  
+remote_transmitter:
+  pin: GPIO14
+  carrier_duty_percent: 50%
+  
+switch:
+  - platform: template
+    name: Bedroom TV Power
+    turn_on_action:
+      - remote_transmitter.transmit_panasonic:
+          address: 0x4004
+          command: 0x0100BCBD
+  - platform: template
+    name: Bedroom TV Volume Up
+    turn_on_action:
+      - remote_transmitter.transmit_panasonic:
+          address: 0x4004
+          command: 0x01000405
+  - platform: template
+    name: Bedroom TV Volume Down
+    turn_on_action:
+      - remote_transmitter.transmit_panasonic:
+          address: 0x4004
+          command: 0x01008485
+  - platform: template
+    name: Bedroom TV Mute
+    turn_on_action:
+      - remote_transmitter.transmit_panasonic:
+          address: 0x4004
+          command: 0x01004C4D
+  - platform: template
+    name: Bedroom Soundbar Power
+    turn_on_action:
+      - remote_transmitter.transmit_sony:
+          data: 0x0000540C
+          nbits: 15
+  - platform: template
+    name: Bedroom Soundbar Volume Up
+    turn_on_action:
+      - remote_transmitter.transmit_sony:
+          data: 0x0000240C
+          nbits: 15
+  - platform: template
+    name: Bedroom Soundbar Volume Down
+    turn_on_action:
+      - remote_transmitter.transmit_sony:
+          data: 0x0000640C
+          nbits: 15
+  - platform: template
+    name: Bedroom Soundbar Mute
+    turn_on_action:
+      - remote_transmitter.transmit_sony:
+          data: 0x0000140C
+          nbits: 15

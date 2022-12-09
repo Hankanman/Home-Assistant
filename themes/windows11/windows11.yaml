@@ -212,7 +212,10 @@ Windows 11:
       box-shadow: none;
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
+<<<<<<< HEAD
       --mdc-icon-size: unset;
+=======
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
     }
     .indicator {
       border-radius: 0;
@@ -260,8 +263,11 @@ Windows 11:
       background: transparent;
     }
     .type-custom-slider-button-card > .button > .text {
+<<<<<<< HEAD
       font-size: 1rem;
       line-height: 1.2rem;
+=======
+>>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
       top: 0;
     }
     .off .slider .slider-bg {

@@ -1,0 +1,24 @@
+{
+    "version": 1,
+    "key": "camera",
+    "data": {
+        "camera.kitchen": {
+            "preload_stream": true
+        },
+        "camera.lounge": {
+            "preload_stream": true
+        },
+        "camera.hall": {
+            "preload_stream": true
+        },
+        "camera.entrance": {
+            "preload_stream": true
+        },
+        "camera.stairs": {
+            "preload_stream": true
+        },
+        "camera.door": {
+            "preload_stream": true
+        }
+    }
+}
