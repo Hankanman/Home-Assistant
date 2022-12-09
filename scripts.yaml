@@ -1,0 +1,112 @@
+play_rain_sounds:
+  alias: Play Rain Sounds
+  sequence:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.bedroom_echo
+    data:
+      media_content_id: amzn1.ask.skill.89bb8c9b-6f47-4f93-9a40-7c572ade7ea3
+      media_content_type: skill
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.bedroom_sleep_mode
+        state: 'off'
+      sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.bedroom_sleep_mode
+    default: []
+  mode: single
+  icon: mdi:weather-pouring
+starrunner_wake:
+  alias: Starrunner - Wake
+  sequence:
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: 00-D8-61-78-02-E0
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: 00-D8-61-78-02-DF
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: 38-00-25-AA-A6-95
+  mode: single
+  icon: mdi:power
+print_entities_to_file:
+  alias: Print Entities To File
+  sequence:
+  - service: notify.entity_log
+    data:
+      message: "{% for state in states %}\n  - {{- state.entity_id -}}\n{% endfor\
+        \ %}\n"
+  mode: single
+  icon: mdi:math-log
+endeavor_wake:
+  alias: Endeavor - Wake
+  sequence:
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret endeavor_mac_management'
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret endeavor_mac_eth1'
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret endeavor_mac_eth2'
+  mode: single
+  icon: mdi:power
+xmas_lights:
+  sequence:
+  - repeat:
+      count: '9000'
+      sequence:
+      - service: light.turn_on
+        data:
+          rgb_color:
+          - 255
+          - 0
+          - 0
+          transition: 0
+        target:
+          entity_id: light.lounge_bulb_1
+      - service: light.turn_on
+        data:
+          rgb_color:
+          - 0
+          - 255
+          - 0
+          transition: 0
+        target:
+          entity_id: light.lounge_bulb_2
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 2
+          milliseconds: 0
+      - service: light.turn_on
+        data:
+          rgb_color:
+          - 0
+          - 255
+          - 0
+          transition: 0
+        target:
+          entity_id: light.lounge_bulb_1
+      - service: light.turn_on
+        data:
+          rgb_color:
+          - 255
+          - 0
+          - 0
+          transition: 0
+        target:
+          entity_id: light.lounge_bulb_2
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 2
+          milliseconds: 0
+  mode: single
+  alias: Xmas Lights
+  icon: mdi:sledding

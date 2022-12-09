@@ -1,0 +1,279 @@
+bedroom:
+  # Binary Sensors
+  #----------------------------------#
+  binary_sensor:
+    # Bayesian
+    #----------------------------------#
+    - platform: bayesian
+      name: Bedroom Occupied
+      prior: 0.11
+      device_class: occupancy
+      probability_threshold: 0.7
+      observations:
+
+        - platform: "state"
+          entity_id: binary_sensor.bedroom_bright
+          prob_given_true: 0.0527202
+          prob_given_false: 0.0552406
+          to_state: "off"
+
+        - platform: "state"
+          entity_id: binary_sensor.bedroom_door_contact
+          prob_given_true: 0.1851935
+          prob_given_false: 0.0009761
+          to_state: "off"
+
+        - platform: "state"
+          entity_id: binary_sensor.bedroom_motion
+          prob_given_true: 0.2749345
+          prob_given_false: 0.0012895
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.bedroom_temperature_motion_lux_1_occupancy
+          prob_given_true: 0.2685164
+          prob_given_false: 0.0012705
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.bedroom_tv_state
+          prob_given_true: 0.3530833
+          prob_given_false: 0.0014775
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.bedroom_windows
+          prob_given_true: 0.0594911
+          prob_given_false: 0.0618896
+          to_state: "off"
+
+        - platform: "state"
+          entity_id: binary_sensor.wardrobe_motion
+          prob_given_true: 0.2648690
+          prob_given_false: 0.0012595
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: climate.bedroom_radiator
+          prob_given_true: 0.0713780
+          prob_given_false: 0.0733173
+          to_state: "heat"
+
+        - platform: "state"
+          entity_id: media_player.bedroom_tv
+          prob_given_true: 0.0414211
+          prob_given_false: 0.0002568
+          to_state: "playing"
+
+    - platform: bayesian
+      name: Bed Occupied
+      prior: 0.42
+      device_class: occupancy
+      probability_threshold: 0.9
+      observations:
+        - platform: "state"
+          entity_id: "binary_sensor.bedroom_motion"
+          prob_given_true: 0.11
+          prob_given_false: 0.0267
+          to_state: "on"
+        - platform: "state"
+          entity_id: "input_boolean.sleep_schedule"
+          prob_given_true: 0.93
+          prob_given_false: 0.173
+          to_state: "on"
+        - platform: template
+          value_template: >
+            {{ is_state('binary_sensor.seb_sleeping', 'on') and is_state('person.sebastian_burrell','home') }}
+          prob_given_true: 0.5940
+          prob_given_false: 0.0891
+        - platform: template
+          value_template: >
+            {{ is_state('binary_sensor.laura_sleeping', 'on') and is_state('person.laura_ward','home') }}
+          prob_given_true: 0.9680
+          prob_given_false: 0.1452
+        - platform: "state"
+          entity_id: "media_player.bedroom_echo"
+          prob_given_true: 0.11
+          prob_given_false: 0.0333
+          to_state: "playing"
+        - platform: "state"
+          entity_id: "media_player.bedroom_tv"
+          prob_given_true: 0.21
+          prob_given_false: 0.0667
+          to_state: "playing"
+
+  # Variable Sensors
+  #----------------------------------#
+  sensor:
+  # Template Sensors
+  #----------------------------------#
+  template:
+    # Template Binary Sensors
+    #----------------------------------#
+    binary_sensor:
+      # Bright Sensors
+      #----------------------------------#
+      - unique_id: bedroom_bright
+        name: "Bedroom Bright"
+        device_class: light
+        attributes:
+          current_illuminance: "{{ (states('sensor.bedroom_illuminance') | float(0)) }}"
+          light_state: "{{ states('light.bedroom') }}"
+          sun: "{{ states('sun.sun') }}"
+        state: |
+          {% if states('sensor.bedroom_illuminance') | int(0) > (states('input_number.bedroom_illuminance_level') | int(0) * 1.3) and is_state('light.bedroom', 'off') %}
+            True
+          {% elif states('sensor.bedroom_illuminance') | int(0) > (states('input_number.bedroom_illuminance_level') | int(0) * 3) %}
+            True
+          {% elif ((states('input_number.bedroom_illuminance_level') | int(0) < states('sensor.bedroom_illuminance') | int(0) < (states('input_number.bedroom_illuminance_level') | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(states.binary_sensor.bedroom_bright.last_changed) < 300) %}
+            {{ states('binary_sensor.bedroom_bright') }}
+          {% elif states('sensor.bedroom_illuminance') | int(0) < states('input_number.bedroom_illuminance_level') | int(0) %}
+            False
+          {% else %}
+            False
+          {% endif %}
+
+      # Humid Sensors
+      #----------------------------------#
+
+    # Template Variable Sensors
+    #----------------------------------#
+    sensor:
+      # Probabilities
+      #----------------------------------#
+      - unique_id: bedroom_occupied_probability
+        name: Bedroom Occupied Probability
+        state_class: measurement
+        unit_of_measurement: "%"
+        state: "{{ (state_attr('binary_sensor.bedroom_occupied','probability')*100 | int(0) ) | round(0) }}"
+
+      - unique_id: bed_occupied_probability
+        name: Bed Occupied Probability
+        state_class: measurement
+        unit_of_measurement: "%"
+        state: "{{ (state_attr('binary_sensor.bed_occupied','probability')*100 | int(0) ) | round(0) }}"
+
+  # Media Players
+  #----------------------------------#
+  media_player:
+    # - platform: androidtv
+    #   device_class: firetv
+    #   name: Bedroom Fire TV ADB
+    #   host: !secret bedroom_fire_tv
+    #   exclude_unnamed_apps: true
+    #   apps:
+    #     com.amazon.tv.launcher: "Fire TV Home"
+    #     uk.co.bbc.iplayer: "BBC iPlayer"
+    #     com.amazon.firetv.youtube: "YouTube"
+    #     com.channel4.ondemand: "All 4"
+    #     air.ITVMobilePlayer: "ITV Hub"
+    # - platform: universal
+    #   name: Lounge TV
+    #   device_class: tv
+    #   children:
+    #     - media_player.lounge_shield_adb
+    #     - media_player.lounge_tv_adb
+    #   commands:
+    #     turn_on:
+    #       service: media_player.turn_on
+    #       data:
+    #         entity_id: media_player.lounge_tv_adb
+    #     turn_off:
+    #       service: media_player.turn_off
+    #       data:
+    #         entity_id: media_player.lounge_tv_adb
+    #     volume_up:
+    #       service: media_player.volume_up
+    #       data:
+    #         entity_id: media_player.lounge_tv_adb
+    #     volume_down:
+    #       service: media_player.volume_down
+    #       data:
+    #         entity_id: media_player.lounge_tv_adb
+    #     volume_mute:
+    #       service: media_player.volume_mute
+    #       data:
+    #         entity_id: media_player.lounge_tv_adb
+    #     select_source:
+    #       service: media_player.select_source
+    #       data:
+    #         entity_id: media_player.lounge_shield_adb
+    #         source: "{{ source }}"
+    #     volume_set:
+    #       service: media_player.volume_set
+    #       data:
+    #         entity_id: media_player.lounge_tv_adb
+    #         volume_level: "{{ volume_level }}"
+    #   attributes:
+    #     state: switch.lounge_tv_power
+    #     is_volume_muted: media_player.lounge_tv_adb|is_volume_muted
+    #     source: media_player.lounge_shield_adb|source
+    #     source_list: media_player.lounge_shield_adb|source_list
+
+    # - platform: universal
+    #   device_class: tv
+    #   name: Bedroom TV
+    #   children:
+    #     - media_player.bedroom_fire_tv_adb
+    #     - media_player.bedroom_tv_panasonic
+    #   commands:
+    #     turn_on:
+    #       service: switch.toggle
+    #       target:
+    #         entity_id: switch.bedroom_tv_power
+    #     turn_off:
+    #       service: switch.toggle
+    #       target:
+    #         entity_id: switch.bedroom_tv_power
+    #     volume_up:
+    #       service: switch.toggle
+    #       target:
+    #         entity_id: switch.bedroom_soundbar_volume_up
+    #     volume_down:
+    #       service: switch.toggle
+    #       target:
+    #         entity_id: switch.bedroom_soundbar_volume_down
+    #     volume_mute:
+    #       service: switch.toggle
+    #       data:
+    #         entity_id: switch.bedroom_soundbar_mute
+    #     select_source:
+    #       service: media_player.select_source
+    #       data:
+    #         entity_id: media_player.bedroom_fire_tv_adb
+    #         source: "{{ source }}"
+    #   attributes:
+    #     is_volume_muted: media_player.bedroom_fire_tv_adb|is_volume_muted
+    #     state: media_player.bedroom_fire_tv_adb
+    #     source: media_player.bedroom_fire_tv_adb|source
+    #     source_list: media_player.bedroom_fire_tv_adb|source_list
+
+  # Notification Platforms
+  #----------------------------------#
+  notify:
+
+  # Shell Commands
+  #----------------------------------#
+  shell_command:
+
+  # Switches
+  #----------------------------------#
+  switch:
+    - platform: template
+      switches:
+        bedroom_tv_power:
+          friendly_name: Bedroom TV Power
+          value_template: >
+            {{ iif( states("media_player.bedroom_tv") in ["playing","standby","idle","paused"], "on", "off") }}
+          turn_on:
+            service: media_player.turn_on
+            target:
+              entity_id: media_player.bedroom_tv
+          turn_off:
+            service: media_player.turn_off
+            target:
+              entity_id: media_player.bedroom_tv
+
+  # Cameras
+  #----------------------------------#
+  camera:

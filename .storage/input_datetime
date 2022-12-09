@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "minor_version": 1,
+    "key": "input_datetime",
+    "data": {
+        "items": [
+            {
+                "has_time": true,
+                "has_date": false,
+                "name": "Laura Alarm",
+                "icon": "mdi:alarm",
+                "id": "laura_alarm"
+            },
+            {
+                "has_time": true,
+                "has_date": true,
+                "name": "Bin Reminder",
+                "id": "bin_reminder",
+                "icon": "mdi:trash-can"
+            }
+        ]
+    }
+}

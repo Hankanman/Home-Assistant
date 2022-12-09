@@ -1,0 +1,36 @@
+{
+    "version": 1,
+    "minor_version": 1,
+    "key": "lovelace_dashboards",
+    "data": {
+        "items": [
+            {
+                "require_admin": false,
+                "show_in_sidebar": true,
+                "icon": "mdi:cog",
+                "title": "Home Config",
+                "url_path": "home-config",
+                "mode": "storage",
+                "id": "home_config"
+            },
+            {
+                "require_admin": true,
+                "show_in_sidebar": true,
+                "icon": "mdi:door-open",
+                "title": "Areas",
+                "url_path": "lovelace-areas",
+                "mode": "storage",
+                "id": "lovelace_areas"
+            },
+            {
+                "show_in_sidebar": true,
+                "icon": "mdi:history",
+                "title": "History Explorer",
+                "require_admin": false,
+                "mode": "storage",
+                "url_path": "history-explorer",
+                "id": "history_explorer"
+            }
+        ]
+    }
+}

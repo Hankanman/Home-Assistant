@@ -1,0 +1,114 @@
+entrance:
+  # Binary Sensors
+  #----------------------------------#
+  binary_sensor:
+    # Bayesian
+    #----------------------------------#
+    - platform: bayesian
+      name: Entrance Occupied
+      prior: 0.09
+      device_class: occupancy
+      probability_threshold: 0.2
+      observations:
+
+        - platform: "state"
+          entity_id: binary_sensor.entrance_bright
+          prob_given_true: 0.00468988
+          prob_given_false: 0.00419221
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.entrance_frigate_person_occupancy
+          prob_given_true: 0.0285057
+          prob_given_false: 0.0011178
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.entrance_motion
+          prob_given_true: 0.2924643
+          prob_given_false: 0.0011349
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.entrance_motion_1_occupancy
+          prob_given_true: 0.2924643
+          prob_given_false: 0.0011349
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.front_door_contact
+          prob_given_true: 0.1527232
+          prob_given_false: 0.0134844
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.front_door_ding
+          prob_given_true: 0.3561458
+          prob_given_false: 0.0238955
+          to_state: "on"
+
+
+  # Variable Sensors
+  #----------------------------------#
+  sensor:
+  # Template Sensors
+  #----------------------------------#
+  template:
+    # Template Binary Sensors
+    #----------------------------------#
+    binary_sensor:
+      # Bright Sensors
+      #----------------------------------#
+      - unique_id: entrance_bright
+        name: "Entrance Bright"
+        device_class: light
+        attributes:
+          current_illuminance: "{{ (states('sensor.entrance_illuminance') | float(0)) }}"
+          light_state: "{{ states('light.entrance') }}"
+          sun: "{{ states('sun.sun') }}"
+        state: |
+          {% if states('sensor.entrance_illuminance') | int(0) > (states('input_number.entrance_illuminance_level') | int(0) * 1.3) and is_state('light.entrance', 'off') %}
+            True
+          {% elif states('sensor.entrance_illuminance') | int(0) > (states('input_number.entrance_illuminance_level') | int(0) * 3) %}
+            True
+          {% elif ((states('input_number.entrance_illuminance_level') | int(0) < states('sensor.entrance_illuminance') | int(0) < (states('input_number.entrance_illuminance_level') | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(states.binary_sensor.entrance_bright.last_changed) < 300) %}
+            {{ states('binary_sensor.entrance_bright') }}
+          {% elif states('sensor.entrance_illuminance') | int(0) < states('input_number.entrance_illuminance_level') | int(0) %}
+            False
+          {% else %}
+            False
+          {% endif %}
+
+      # Humid Sensors
+      #----------------------------------#
+
+    # Template Variable Sensors
+    #----------------------------------#
+    sensor:
+      # Probabilities
+      #----------------------------------#
+      - unique_id: entrance_occupied_probability
+        name: Entrance Occupied Probability
+        state_class: measurement
+        unit_of_measurement: "%"
+        state: "{{ (state_attr('binary_sensor.entrance_occupied','probability')*100 | int(0) ) | round(0) }}"
+
+  # Media Players
+  #----------------------------------#
+  media_player:
+
+  # Notification Platforms
+  #----------------------------------#
+  notify:
+
+  # Shell Commands
+  #----------------------------------#
+  shell_command:
+
+  # Switches
+  #----------------------------------#
+  switch:
+
+  # Cameras
+  #----------------------------------#
+  camera:

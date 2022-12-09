@@ -1,0 +1,143 @@
+kitchen:
+  # Binary Sensors
+  #----------------------------------#
+  binary_sensor:
+    # Bayesian
+    #----------------------------------#
+    - platform: bayesian
+      name: Kitchen Occupied
+      prior: 0.14
+      device_class: occupancy
+      probability_threshold: 0.7
+      observations:
+
+        - platform: "state"
+          entity_id: binary_sensor.kitchen_bright
+          prob_given_true: 0.0406518
+          prob_given_false: 0.0558803
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.kitchen_person_occupancy
+          prob_given_true: 0.2131280
+          prob_given_false: 0.0014052
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.kitchen_hob
+          prob_given_true: 0.4288289
+          prob_given_false: 0.0020524
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.kitchen_kettle
+          prob_given_true: 0.2684033
+          prob_given_false: 0.0016454
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.kitchen_microwave
+          prob_given_true: 0.2625506
+          prob_given_false: 0.0016224
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.kitchen_motion
+          prob_given_true: 0.3301250
+          prob_given_false: 0.0018530
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.kitchen_motion_1_occupancy
+          prob_given_true: 0.3321890
+          prob_given_false: 0.0018589
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.kitchen_oven
+          prob_given_true: 0.2781860
+          prob_given_false: 0.0016825
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.kitchen_temperature_motion_lux_1_occupancy
+          prob_given_true: 0.3264211
+          prob_given_false: 0.0018424
+          to_state: "on"
+
+    - platform: trend
+      sensors:
+        kitchen_temperature_rising_trend:
+          friendly_name: Kitchen Temperature Rising Trend
+          entity_id: sensor.kitchen_temperature_humidity_1_temperature
+          sample_duration: 600
+          max_samples: 10
+          min_gradient: 0.016667
+          device_class: heat
+  # Variable Sensors
+  #----------------------------------#
+  sensor:
+    - platform: average
+      name: Kitchen Average Temperature
+      unique_id: kitchen_average_temperature
+      duration:
+        days: 30
+      entities:
+        - sensor.kitchen_temperature
+  # Template Sensors
+  #----------------------------------#
+  template:
+    # Template Binary Sensors
+    #----------------------------------#
+    binary_sensor:
+      # Bright Sensors
+      #----------------------------------#
+      - unique_id: kitchen_bright
+        name: "Kitchen Bright"
+        device_class: light
+        attributes:
+          current_illuminance: "{{ (states('sensor.kitchen_illuminance') | float(0)) }}"
+          light_state: "{{ states('light.kitchen') }}"
+          sun: "{{ states('sun.sun') }}"
+        state: |
+          {% if states('sensor.kitchen_illuminance') | int(0) > (states('input_number.kitchen_illuminance_level') | int(0) * 1.3) and is_state('light.kitchen', 'off') %}
+            True
+          {% elif states('sensor.kitchen_illuminance') | int(0) > (states('input_number.kitchen_illuminance_level') | int(0) * 3) %}
+            True
+          {% elif ((states('input_number.kitchen_illuminance_level') | int(0) < states('sensor.kitchen_illuminance') | int(0) < (states('input_number.kitchen_illuminance_level') | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(states.binary_sensor.kitchen_bright.last_changed) < 300) %}
+            {{ states('binary_sensor.kitchen_bright') }}
+          {% elif states('sensor.kitchen_illuminance') | int(0) < states('input_number.kitchen_illuminance_level') | int(0) %}
+            False
+          {% else %}
+            False
+          {% endif %}
+
+      # Humid Sensors
+      #----------------------------------#
+
+    # Template Variable Sensors
+    #----------------------------------#
+    sensor:
+      # Probabilities
+      #----------------------------------#
+      - unique_id: kitchen_occupied_probability
+        name: Kitchen Occupied Probability
+        state_class: measurement
+        unit_of_measurement: "%"
+        state: "{{ (state_attr('binary_sensor.kitchen_occupied','probability')*100 | int(0) ) | round(0) }}"
+
+  # Media Players
+  #----------------------------------#
+  media_player:
+
+  # Notification Platforms
+  #----------------------------------#
+  notify:
+
+  # Shell Commands
+  #----------------------------------#
+  shell_command:
+
+  # Switches
+  #----------------------------------#
+  switch:

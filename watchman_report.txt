@@ -1,0 +1,48 @@
+-== Watchman Report ==- 
+
+-== Congratulations, all 22 services from your config are available!
+
+-== Missing 35 entity(ies) from 255 found in your config:
++----------------------------------------------------+---------+--------------------------------------------------------------------------------------------------------------------------+
+| Entity ID                                          | State   | Location                                                                                                                 |
++----------------------------------------------------+---------+--------------------------------------------------------------------------------------------------------------------------+
+| select.kitchen_move_to_preset                      | unknown | automations.yaml:709,740                                                                                                 |
+| select.entrance_move_to_preset                     | unknown | automations.yaml:710,741                                                                                                 |
+| binary_sensor.bathroom_humidity_falling_trend      | unknown | automations.yaml:782,805                                                                                                 |
+| binary_sensor.back_door_left_contact               | unknown | configuration/Areas/Lounge/configuration.yaml:15                                                                         |
+| binary_sensor.lounge_person_occupancy              | unavail | configuration/Areas/Lounge/configuration.yaml:39                                                                         |
+| binary_sensor.kitchen_person_occupancy             | unavail | configuration/Areas/Kitchen/configuration.yaml:21                                                                        |
+| binary_sensor.entrance_frigate_person_occupancy    | unavail | configuration/Areas/Entrance/configuration.yaml:21                                                                       |
+| binary_sensor.hall_person_occupancy                | unavail | configuration/Areas/Hall/configuration.yaml:21                                                                           |
+| binary_sensor.entrance_person_occupancy            | unavail | configuration/System/statistics.yaml:204                                                                                 |
+| binary_sensor.stairs_person_occupancy              | unavail | configuration/System/statistics.yaml:336                                                                                 |
+| binary_sensor.study_door                           | missing | configuration/System/statistics.yaml:637                                                                                 |
+| sensor.double_take_seb                             | unavail | configuration/System/templates.yaml:174                                                                                  |
+| sensor.double_take_laura                           | unavail | configuration/System/templates.yaml:283                                                                                  |
+| light.living_room                                  | missing | blueprints/automation/marc-romu/telegram-bot--command__text-message.yaml:24                                              |
+| climate.study_radiator_thermostat                  | missing | .storage/lovelace:249,786                                                                                                |
+| climate.bathroom_radiator_thermostat               | missing | .storage/lovelace:810                                                                                                    |
+| climate.main_thermostat_1                          | missing | .storage/lovelace:859,881,903,923                                                                                        |
+| climate.toilet_radiator_thermostat                 | missing | .storage/lovelace:945                                                                                                    |
+| sensor.toilet_temperature                          | unknown | .storage/lovelace:946                                                                                                    |
+| button.starrunner_lock                             | unknown | .storage/lovelace.home_config:1202                                                                                       |
+| button.starrunner_sleep                            | unknown | .storage/lovelace.home_config:1211                                                                                       |
+| button.starrunner_restart                          | unknown | .storage/lovelace.home_config:1220                                                                                       |
+| button.starrunner_shutdown                         | unknown | .storage/lovelace.home_config:1229                                                                                       |
+| sensor.endeavor_cpu_used                           | missing | .storage/lovelace.home_config:1262,1351                                                                                  |
+| sensor.endeavor_ram_used_percent                   | missing | .storage/lovelace.home_config:1278,1387                                                                                  |
+| sensor.endeavor_mnt_cache_used_percent             | missing | .storage/lovelace.home_config:1294,1423                                                                                  |
+| sensor.endeavor_composite_temperature              | missing | .storage/lovelace.home_config:1310,1459                                                                                  |
+| sensor.endeavor_array_used                         | unavail | .storage/lovelace.home_config:1483                                                                                       |
+| sensor.endeavor_array_cache_used                   | unavail | .storage/lovelace.home_config:1489                                                                                       |
+| sensor.terrapin_cpu_used                           | missing | .storage/lovelace.home_config:1536,1625                                                                                  |
+| sensor.terrapin_ram_used_percent                   | missing | .storage/lovelace.home_config:1552,1661                                                                                  |
+| sensor.terrapin_swap_used_percent                  | missing | .storage/lovelace.home_config:1568,1697                                                                                  |
+| sensor.terrapin_cpu_thermal_1_temperature          | missing | .storage/lovelace.home_config:1584,1733                                                                                  |
+| sensor.terrapin_data_used                          | missing | .storage/lovelace.home_config:1757                                                                                       |
+| sensor.terrapin_swap_used                          | missing | .storage/lovelace.home_config:1764                                                                                       |
++----------------------------------------------------+---------+--------------------------------------------------------------------------------------------------------------------------+
+
+-== Report created on 13 Nov 2022 12:33:44
+-== Parsed 61 files in 0.82s., ignored 355 files 
+-== Generated in: 0.02s. Validated in: 0.00s.

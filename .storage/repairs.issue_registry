@@ -1,0 +1,436 @@
+{
+  "version": 1,
+  "minor_version": 2,
+  "key": "repairs.issue_registry",
+  "data": {
+    "issues": [
+      {
+        "created": "2022-10-05T21:26:17.331363+00:00",
+        "dismissed_version": null,
+        "domain": "season",
+        "is_persistent": false,
+        "issue_id": "removed_yaml"
+      },
+      {
+        "created": "2022-10-15T15:13:10.481109+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_323923603_tags/v1.2.16"
+      },
+      {
+        "created": "2022-10-19T05:45:38.317827+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_300358676_tags/4.0.4"
+      },
+      {
+        "created": "2022-10-19T08:42:56.890852+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_300358676_tags/4.0.5"
+      },
+      {
+        "created": "2022-10-19T08:43:09.806420+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_300358676_tags/4.0.6"
+      },
+      {
+        "created": "2022-10-20T23:13:46.540821+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_300358676_tags/4.1.0"
+      },
+      {
+        "created": "2022-10-21T18:33:45.148600+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_300358676_tags/4.1.3"
+      },
+      {
+        "created": "2022-10-21T22:26:40.796447+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_300358676_tags/4.1.4"
+      },
+      {
+        "created": "2022-10-22T12:21:34.320010+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_300358676_tags/4.1.5"
+      },
+      {
+        "created": "2022-10-22T12:21:42.985792+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_323923603_tags/v1.2.17"
+      },
+      {
+        "created": "2022-10-22T20:32:26.814120+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_401282856_tags/v4.6.1"
+      },
+      {
+        "created": "2022-10-22T20:32:45.766639+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_172733314_tags/1.28.3"
+      },
+      {
+        "created": "2022-10-23T17:01:29.682599+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_300358676_tags/4.1.6"
+      },
+      {
+        "created": "2022-10-25T23:35:52.965354+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_401282856_tags/v4.6.2"
+      },
+      {
+        "created": "2022-10-25T23:36:09.559552+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_431440766_tags/v2022.10.25.1"
+      },
+      {
+        "created": "2022-10-26T17:40:16.440711+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_485281791_tags/2022.10.26"
+      },
+      {
+        "created": "2022-10-26T22:33:59.175235+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_401282856_tags/v4.6.3"
+      },
+      {
+        "created": "2022-10-27T11:13:21.043857+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_401282856_tags/v4.6.4"
+      },
+      {
+        "created": "2022-10-28T17:06:19.533706+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_413798425_tags/v1.1.6"
+      },
+      {
+        "created": "2022-10-29T20:14:00.346924+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_373845609_tags/v1.0.0"
+      },
+      {
+        "created": "2022-11-01T19:09:26.045377+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_139664351_tags/v4.3.0"
+      },
+      {
+        "created": "2022-11-02T07:52:58.155250+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_373845609_tags/v1.0.1"
+      },
+      {
+        "created": "2022-11-02T07:53:36.919724+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_139664351_tags/v4.3.1"
+      },
+      {
+        "created": "2022-11-02T23:15:28.670155+00:00",
+        "dismissed_version": "2022.11.2",
+        "domain": "statistics",
+        "is_persistent": false,
+        "issue_id": "sensor.gas_total_usage_invalid_boundary_config"
+      },
+      {
+        "created": "2022-11-02T23:15:28.671397+00:00",
+        "dismissed_version": "2022.11.2",
+        "domain": "statistics",
+        "is_persistent": false,
+        "issue_id": "sensor.electricity_total_usage_invalid_boundary_config"
+      },
+      {
+        "created": "2022-11-04T00:18:25.931947+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_476357279_tags/v2022.11.0"
+      },
+      {
+        "created": "2022-11-04T00:25:51.235691+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_139664351_tags/v4.3.2"
+      },
+      {
+        "created": "2022-11-04T22:33:04.559510+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_373845609_tags/v1.0.2"
+      },
+      {
+        "created": "2022-11-05T11:03:48.744765+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/0.0.0-dont-install-use-beta"
+      },
+      {
+        "created": "2022-11-05T11:04:55.593064+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_373845609_tags/v1.0.3"
+      },
+      {
+        "created": "2022-11-07T18:38:55.156997+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta34"
+      },
+      {
+        "created": "2022-11-07T18:39:04.374755+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_323923603_tags/v1.2.18"
+      },
+      {
+        "created": "2022-11-07T18:40:49.610558+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_344446335_tags/v3.2.3"
+      },
+      {
+        "created": "2022-11-07T23:49:13.312447+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta35"
+      },
+      {
+        "created": "2022-11-09T20:13:38.801036+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_373845609_tags/v1.0.4"
+      },
+      {
+        "created": "2022-11-11T18:54:22.671494+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_373845609_tags/v1.0.5"
+      },
+      {
+        "created": "2022-11-11T18:55:37.403299+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta37"
+      },
+      {
+        "created": "2022-11-12T13:07:09.965422+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_286186485_tags/v3.2.11"
+      },
+      {
+        "created": "2022-11-12T13:12:12.857345+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta38"
+      },
+      {
+        "created": "2022-11-13T10:00:22.535863+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta39"
+      },
+      {
+        "created": "2022-11-13T21:05:10.384314+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_373845609_tags/v1.1.1"
+      },
+      {
+        "created": "2022-11-15T07:22:08.510027+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta41"
+      },
+      {
+        "created": "2022-11-15T12:18:16.427325+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_344446335_tags/v3.3.0"
+      },
+      {
+        "created": "2022-11-16T21:43:43.385091+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta42"
+      },
+      {
+        "created": "2022-11-17T09:15:27.818662+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_286186485_tags/v3.2.12"
+      },
+      {
+        "created": "2022-11-17T23:34:33.934635+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta43"
+      },
+      {
+        "created": "2022-11-18T22:51:34.676528+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta44"
+      },
+      {
+        "created": "2022-11-20T13:58:45.513604+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_373845609_tags/v1.1.2"
+      },
+      {
+        "created": "2022-11-21T00:14:28.121920+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta45"
+      },
+      {
+        "created": "2022-11-26T11:55:15.592148+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_373845609_tags/v1.1.3"
+      },
+      {
+        "created": "2022-11-26T23:42:59.911004+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta47"
+      },
+      {
+        "created": "2022-11-27T22:11:19.614652+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_172733314_tags/1.28.4"
+      },
+      {
+        "created": "2022-11-28T19:22:53.583177+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_502449600_tags/v1.5.0"
+      },
+      {
+        "created": "2022-11-28T23:53:57.760860+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_193949723_tags/2.4.0"
+      },
+      {
+        "created": "2022-11-29T23:59:24.270769+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta49"
+      },
+      {
+        "created": "2022-11-29T23:59:49.750559+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_300358676_tags/4.1.7"
+      },
+      {
+        "created": "2022-11-30T21:15:58.646536+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_422931599_tags/1.0.0-beta50"
+      },
+      {
+        "created": "2022-12-03T17:02:01.623535+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_373845609_tags/v1.1.5"
+      },
+      {
+        "created": "2022-12-04T15:26:51.055399+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_373845609_tags/v1.1.6"
+      },
+      {
+        "created": "2022-12-05T05:41:52.979077+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_223993584_tags/10.6.1"
+      },
+      {
+        "created": "2022-12-07T18:56:31.911928+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_344446335_tags/v4.0.2"
+      }
+    ]
+  }
+}

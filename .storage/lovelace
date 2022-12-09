@@ -1,0 +1,1683 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace",
+  "data": {
+    "config": {
+      "button_card_templates": {
+        "base": {
+          "aspect_ratio": "1/1",
+          "card_mod": {
+            "class": "acrylic"
+          },
+          "tap_action": {
+            "action": "toggle"
+          },
+          "custom_fields": {
+            "grid": {
+              "card": {
+                "type": "custom:layout-card",
+                "layout_type": "grid",
+                "layout": {
+                  "grid-template-columns": "repeat(3, 1fr)",
+                  "grid-template-rows": "repeat(2, 1)"
+                }
+              }
+            }
+          },
+          "styles": {
+            "grid": [
+              {
+                "grid-template-columns": "repeat(3, 1fr)"
+              },
+              {
+                "grid-template-rows": "1fr 1fr 1fr 1fr"
+              },
+              {
+                "grid-template-areas": "\"title title title\"\n\"grid  grid  grid \"\n\"grid  grid  grid \"\n\"light light light\"\n"
+              }
+            ],
+            "card": [
+              {
+                "padding": 0
+              },
+              {
+                "margin": "0px"
+              }
+            ]
+          }
+        },
+        "title": {
+          "variables": {
+            "name": "Study",
+            "icon": "mdi:desk-lamp",
+            "entity": "input_boolean.study_automations"
+          },
+          "custom_fields": {
+            "title": {
+              "card": {
+                "type": "custom:button-card",
+                "card_mod": {
+                  "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-weight: 500;\n}\n"
+                },
+                "icon": "[[[ return variables.icon ]]]",
+                "name": "[[[ return variables.name ]]]",
+                "entity": "[[[ return variables.entity ]]]",
+                "state": [
+                  {
+                    "value": "off",
+                    "color": "var(--label-badge-red)"
+                  },
+                  {
+                    "value": "on",
+                    "color": "var(--primary-text-color)"
+                  }
+                ],
+                "styles": {
+                  "card": [
+                    {
+                      "border-radius": 0
+                    },
+                    {
+                      "padding": 0
+                    },
+                    {
+                      "box-shadow": "none"
+                    },
+                    {
+                      "height": "100%"
+                    },
+                    {
+                      "border": 0
+                    }
+                  ],
+                  "name": [
+                    {
+                      "font-size": "14px"
+                    },
+                    {
+                      "justify-self": "start"
+                    },
+                    {
+                      "padding-left": "14px"
+                    }
+                  ],
+                  "icon": [
+                    {
+                      "justify-self": "end"
+                    },
+                    {
+                      "padding-right": "14px"
+                    },
+                    {
+                      "width": "24px"
+                    }
+                  ],
+                  "img_cell": [
+                    {
+                      "justify-content": "end"
+                    },
+                    {
+                      "height": "24px"
+                    }
+                  ],
+                  "grid": [
+                    {
+                      "grid-template-columns": "repeat(3, 1fr)"
+                    },
+                    {
+                      "grid-template-areas": "\"n n i\"\n"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "light": {
+          "variables": {
+            "light": "light.study"
+          },
+          "custom_fields": {
+            "light": {
+              "card": {
+                "type": "custom:slider-button-card",
+                "card_mod": {
+                  "class": "slider-card-embedded",
+                  "style": "ha-card {\n  --mdc-icon-size: 1.5em !important;\n  --btn-bg-color-off: transparent;\n  background: transparent;\n}\n.off .slider .slider-bg {\n  --slider-bg: transparent !important;\n  background-color: transparent !important;\n}\n.compact .text {\n  top: 0 !important;\n  left: 0 !important;\n}\n"
+                },
+                "entity": "[[[ return variables.light ]]]",
+                "slider": {
+                  "direction": "left-right",
+                  "background": "gradient",
+                  "use_state_color": true,
+                  "use_percentage_bg_opacity": true
+                },
+                "show_name": false,
+                "compact": true,
+                "icon": {
+                  "tap_action": {
+                    "action": "more-info"
+                  }
+                },
+                "action_button": {
+                  "mode": "custom",
+                  "icon": "mdi:power",
+                  "show": true,
+                  "show_spinner": true,
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                }
+              }
+            }
+          },
+          "styles": {
+            "custom_fields": {
+              "light": [
+                {
+                  "height": "100%"
+                },
+                {
+                  "align-self": "end"
+                },
+                {
+                  "border": 0
+                }
+              ]
+            }
+          }
+        },
+        "media": {
+          "variables": {
+            "media": "media_player.lounge_tv"
+          },
+          "custom_fields": {
+            "grid": {
+              "card": {
+                "cards": [
+                  {
+                    "type": "custom:button-card",
+                    "state": [
+                      {
+                        "value": "playing",
+                        "icon": "mdi:television",
+                        "color": "#44A4CD"
+                      }
+                    ],
+                    "card_mod": {
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                    },
+                    "entity": "[[[ return variables.media ]]]",
+                    "icon": "mdi:television-off",
+                    "color": "#BE3A3E",
+                    "name": "TV",
+                    "styles": {
+                      "name": [
+                        {
+                          "font-size": "0.8rem"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "bright": {
+          "variables": {
+            "bright": "binary_sensor.study_bright"
+          },
+          "custom_fields": {
+            "grid": {
+              "card": {
+                "cards": [
+                  {
+                    "type": "custom:button-card",
+                    "card_mod": {
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                    },
+                    "entity": "[[[ return variables.bright ]]]",
+                    "icon": "mdi:white-balance-sunny",
+                    "color": "[[[ if (states[variables.bright].state == \"on\") return \"var(--color-yellow)\"; ]]]",
+                    "img_cell": "[[[ if (states[variables.bright].state == \"on\") return \"var(--color-yellow)\"; ]]]",
+                    "name": "[[[ return states[variables.bright].attributes.current_illuminance + \"Lx\" ]]]",
+                    "styles": {
+                      "name": [
+                        {
+                          "font-size": "0.8rem"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "motion": {
+          "variables": {
+            "occupied": "binary_sensor.study_occupied"
+          },
+          "custom_fields": {
+            "grid": {
+              "card": {
+                "cards": [
+                  {
+                    "type": "custom:button-card",
+                    "card_mod": {
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                    },
+                    "entity": "[[[ return variables.occupied ]]]",
+                    "icon": "mdi:walk",
+                    "color": "[[[ if (states[variables.occupied].state == 'on') return 'var(--label-badge-green)'; ]]]",
+                    "img_cell": "[[[ if (states[variables.occupied].state == 'on') return 'var(--label-badge-green)'; ]]]",
+                    "name": "[[[\n  return Math.round(states[variables.occupied].attributes.probability * 100) + '%';\n]]]\n",
+                    "styles": {
+                      "name": [
+                        {
+                          "font-size": "0.8rem"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "climate": {
+          "variables": {
+            "climate": "climate.study_radiator_thermostat",
+            "temp": "sensor.study_temperature"
+          },
+          "custom_fields": {
+            "grid": {
+              "card": {
+                "cards": [
+                  {
+                    "type": "custom:button-card",
+                    "card_mod": {
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                    },
+                    "entity": "[[[ return variables.climate ]]]",
+                    "icon": "mdi:thermometer",
+                    "name": "[[[ return states[variables.temp].state + \"/\" + Math.round(states[variables.climate].attributes.temperature) + \"°C\"; ]]]",
+                    "color": "[[[ if (states[variables.climate].attributes.hvac_action == 'heating') return 'orange'; ]]]",
+                    "img_cell": "[[[ if (states[variables.climate].attributes.hvac_action == 'heating') return 'orange'; ]]]",
+                    "styles": {
+                      "name": [
+                        {
+                          "font-size": "0.8rem"
+                        },
+                        {
+                          "text-overflow": "unset"
+                        },
+                        {
+                          "overflow": "visible"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "temp": {
+          "variables": {
+            "temp": "sensor.study_temperature"
+          },
+          "custom_fields": {
+            "grid": {
+              "card": {
+                "cards": [
+                  {
+                    "type": "custom:button-card",
+                    "card_mod": {
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                    },
+                    "entity": "[[[ return variables.temp ]]]",
+                    "icon": "mdi:thermometer",
+                    "name": "[[[ return states[variables.temp].state + '°C'; ]]]",
+                    "styles": {
+                      "name": [
+                        {
+                          "font-size": "0.8rem"
+                        },
+                        {
+                          "text-overflow": "unset"
+                        },
+                        {
+                          "overflow": "visible"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "humid": {
+          "variables": {
+            "humid": "sensor.bathroom_humidity"
+          },
+          "custom_fields": {
+            "grid": {
+              "card": {
+                "cards": [
+                  {
+                    "type": "custom:button-card",
+                    "card_mod": {
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                    },
+                    "entity": "[[[ return variables.humid ]]]",
+                    "icon": "mdi:water-percent",
+                    "name": "[[[ return states[variables.humid].state + '%'; ]]]",
+                    "styles": {
+                      "name": [
+                        {
+                          "font-size": "0.8rem"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "fan": {
+          "variables": {
+            "fan": "fan.bedroom"
+          },
+          "custom_fields": {
+            "grid": {
+              "card": {
+                "cards": [
+                  {
+                    "type": "custom:button-card",
+                    "entity": "[[[ return variables.fan ]]]",
+                    "state": [
+                      {
+                        "operator": "template",
+                        "name": "Low",
+                        "color": "var(--label-badge-green)",
+                        "value": "[[[\n  return states[variables.fan].attributes\n  && (states[variables.fan].attributes.preset_mode === 'low')\n]]]\n",
+                        "styles": {
+                          "icon": [
+                            {
+                              "animation": [
+                                "rotating 2s linear infinite"
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "operator": "template",
+                        "name": "Medium",
+                        "color": "var(--label-badge-green)",
+                        "value": "[[[\n  return states[variables.fan].attributes\n  && (states[variables.fan].attributes.preset_mode === 'medium')\n]]]\n",
+                        "styles": {
+                          "icon": [
+                            {
+                              "animation": [
+                                "rotating 1s linear infinite"
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "operator": "template",
+                        "name": "High",
+                        "color": "var(--label-badge-green)",
+                        "value": "[[[\n  return states[variables.fan].attributes\n  && (states[variables.fan].attributes.preset_mode === 'high')\n]]]\n",
+                        "styles": {
+                          "icon": [
+                            {
+                              "animation": [
+                                "rotating 0.5s linear infinite"
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "value": "off",
+                        "name": "Off"
+                      },
+                      {
+                        "operator": "default",
+                        "color": "var(--label-badge-green)",
+                        "name": "On"
+                      }
+                    ],
+                    "card_mod": {
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                    },
+                    "icon": "mdi:fan",
+                    "styles": {
+                      "name": [
+                        {
+                          "font-size": "0.8rem"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "title": "Home",
+      "views": [
+        {
+          "theme": "Backend-selected",
+          "title": "Home",
+          "path": "default_view",
+          "type": "custom:grid-layout",
+          "layout": {
+            "grid-template-columns": "repeat(auto-fill, minmax(17rem, 1fr))",
+            "grid-auto-rows": "auto",
+            "grid-auto-flow": "row",
+            "mediaquery": {
+              "(max-width: 800px)": {
+                "grid-template-columns": "1fr 1fr"
+              },
+              "(max-width: 1200px)": {
+                "grid-template-columns": "repeat(auto-fill, minmax(20%, 1fr))"
+              }
+            }
+          },
+          "icon": "mdi:home",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:layout-card",
+              "layout_type": "custom:grid-layout",
+              "cards": [
+                {
+                  "type": "custom:layout-card",
+                  "layout_type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "group.all_automations",
+                      "primary_info": "none",
+                      "secondary_info": "name",
+                      "layout": "vertical",
+                      "fill_container": true,
+                      "icon_color": "green",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "name": "Auto"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_boolean.cameras_privacy",
+                      "icon_color": "green",
+                      "layout": "vertical",
+                      "fill_container": true,
+                      "primary_info": "none",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "name": "Private"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "script.play_rain_sounds",
+                      "icon_color": "green",
+                      "layout": "vertical",
+                      "fill_container": true,
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "primary_info": "none",
+                      "secondary_info": "name",
+                      "name": "Rain"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_boolean.bedroom_sleep_mode",
+                      "fill_container": true,
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "primary_info": "none",
+                      "secondary_info": "name",
+                      "layout": "vertical",
+                      "name": "Bedroom",
+                      "icon_color": "green"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_boolean.lounge_sleep_mode",
+                      "name": "Lounge",
+                      "icon_color": "green",
+                      "layout": "vertical",
+                      "fill_container": true,
+                      "primary_info": "none",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_boolean.study_sleep_mode",
+                      "name": "Study",
+                      "icon_color": "green",
+                      "layout": "vertical",
+                      "fill_container": true,
+                      "primary_info": "none",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      }
+                    }
+                  ],
+                  "layout": {
+                    "height": "100%",
+                    "margin": "0px",
+                    "padding": "0px",
+                    "gap": "0px",
+                    "card_margin": "0px",
+                    "grid-template-columns": "repeat(3, 1fr)",
+                    "grid-template-rows": "auto"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "",
+                  "secondary": "{{ state_attr('calendar.bin_collection_calendar', 'message') }} on {{\n  strptime(state_attr('calendar.bin_collection_calendar',\n      'start_time'),'%Y-%m-%d %H:%M:%S').strftime('%A') }}",
+                  "icon": "mdi:trash-can",
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "entity": "calendar.bin_collection_calendar",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "fill_container": true,
+                  "layout": "horizontal",
+                  "multiline_secondary": true,
+                  "icon_color": "",
+                  "view_layout": {
+                    "grid-area": "bin"
+                  }
+                },
+                {
+                  "type": "entity",
+                  "entity": "binary_sensor.people_home",
+                  "state_color": true
+                }
+              ],
+              "layout": {
+                "height": "100%",
+                "margin": "0px",
+                "padding": "0px",
+                "gap": "0px",
+                "card_margin": "0px",
+                "grid-template-columns": "auto",
+                "grid-template-rows": "auto 25%",
+                "grid-template-areas": "\"grid\"\n\"bin\"\n"
+              },
+              "view_layout": {
+                "grid-column": "span 2"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "card_mod": {
+                "class": "acrylic"
+              },
+              "aspect_ratio": "1/1",
+              "custom_fields": {
+                "laura": {
+                  "card": {
+                    "type": "custom:button-card",
+                    "card_mod": {
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n}\n"
+                    },
+                    "entity": "person.laura_ward",
+                    "show_entity_picture": true,
+                    "styles": {
+                      "card": [
+                        {
+                          "border-radius": 0
+                        },
+                        {
+                          "box-shadow": "none"
+                        },
+                        {
+                          "padding": "0 0.8rem"
+                        }
+                      ],
+                      "entity_picture": [
+                        {
+                          "border-radius": "0.8rem"
+                        },
+                        {
+                          "ratio": "1/1"
+                        }
+                      ],
+                      "icon": [
+                        {
+                          "width": "80%"
+                        }
+                      ],
+                      "name": [
+                        {
+                          "margin": "0 0.8rem"
+                        },
+                        {
+                          "justify-self": "start"
+                        },
+                        {
+                          "text-align": "start"
+                        },
+                        {
+                          "font-size": "1rem"
+                        },
+                        {
+                          "white-space": "initial"
+                        },
+                        {
+                          "text-overflow": "initial"
+                        },
+                        {
+                          "overflow": "initial"
+                        }
+                      ],
+                      "grid": [
+                        {
+                          "grid-template-columns": "0.5fr 1fr"
+                        },
+                        {
+                          "grid-template-areas": "\"i n\"\n"
+                        }
+                      ]
+                    },
+                    "name": "[[[ return states[\"sensor.laura_location\"].state ]]]"
+                  }
+                },
+                "seb": {
+                  "card": {
+                    "type": "custom:button-card",
+                    "card_mod": {
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n}\n"
+                    },
+                    "entity": "person.sebastian_burrell",
+                    "show_entity_picture": true,
+                    "styles": {
+                      "card": [
+                        {
+                          "border-radius": 0
+                        },
+                        {
+                          "box-shadow": "none"
+                        },
+                        {
+                          "border": "0;"
+                        },
+                        {
+                          "padding": "0 0.8rem"
+                        }
+                      ],
+                      "entity_picture": [
+                        {
+                          "border-radius": "0.8rem"
+                        },
+                        {
+                          "ratio": "1/1"
+                        }
+                      ],
+                      "icon": [
+                        {
+                          "width": "80%"
+                        }
+                      ],
+                      "name": [
+                        {
+                          "margin": "0 0.8rem"
+                        },
+                        {
+                          "justify-self": "start"
+                        },
+                        {
+                          "text-align": "start"
+                        },
+                        {
+                          "font-size": "1rem"
+                        },
+                        {
+                          "white-space": "initial"
+                        },
+                        {
+                          "text-overflow": "initial"
+                        },
+                        {
+                          "overflow": "initial"
+                        }
+                      ],
+                      "grid": [
+                        {
+                          "grid-template-columns": "0.5fr 1fr"
+                        },
+                        {
+                          "grid-template-areas": "\"i n\"\n"
+                        }
+                      ]
+                    },
+                    "name": "[[[ return states[\"sensor.seb_location\"].state ]]]"
+                  }
+                }
+              },
+              "styles": {
+                "grid": [
+                  {
+                    "grid-template-columns": "1fr"
+                  },
+                  {
+                    "grid-template-rows": "50%"
+                  },
+                  {
+                    "grid-template-areas": "\"seb\"\n\"laura\"\n"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "variables": {
+                "name": "Study",
+                "icon": "mdi:desk-lamp",
+                "entity": "input_boolean.study_automations",
+                "light": "light.study",
+                "bright": "binary_sensor.study_bright",
+                "occupied": "binary_sensor.study_occupied",
+                "climate": "climate.study",
+                "temp": "sensor.study_temperature",
+                "fan": "fan.study",
+                "humid": "sensor.study_humidity"
+              },
+              "template": [
+                "base",
+                "title",
+                "light",
+                "bright",
+                "motion",
+                "fan",
+                "humid",
+                "climate"
+              ]
+            },
+            {
+              "type": "custom:button-card",
+              "variables": {
+                "name": "Bathroom",
+                "icon": "mdi:shower-head",
+                "entity": "input_boolean.bathroom_automations",
+                "light": "light.bathroom",
+                "bright": "binary_sensor.bathroom_bright",
+                "occupied": "binary_sensor.bathroom_occupied",
+                "climate": "climate.bathroom",
+                "temp": "sensor.bathroom_temperature",
+                "humid": "sensor.bathroom_humidity",
+                "fan": "fan.bathroom_fan"
+              },
+              "template": [
+                "base",
+                "title",
+                "light",
+                "bright",
+                "motion",
+                "fan",
+                "humid",
+                "climate"
+              ]
+            },
+            {
+              "type": "custom:button-card",
+              "variables": {
+                "name": "Bedroom",
+                "icon": "mdi:bed-king",
+                "entity": "input_boolean.bedroom_automations",
+                "light": "light.bedroom",
+                "bright": "binary_sensor.bedroom_bright",
+                "occupied": "binary_sensor.bedroom_occupied",
+                "climate": "climate.bedroom",
+                "temp": "sensor.bedroom_temperature",
+                "fan": "fan.bedroom",
+                "humid": "sensor.bedroom_humidity",
+                "media": "media_player.bedroom_tv"
+              },
+              "template": [
+                "base",
+                "title",
+                "light",
+                "bright",
+                "motion",
+                "climate",
+                "fan",
+                "humid",
+                "media"
+              ]
+            },
+            {
+              "type": "custom:button-card",
+              "variables": {
+                "name": "Hall",
+                "icon": "mdi:stairs",
+                "entity": "input_boolean.hall_automations",
+                "light": "light.hall",
+                "bright": "binary_sensor.hall_bright",
+                "occupied": "binary_sensor.hall_occupied",
+                "climate": "climate.thermostat",
+                "temp": "sensor.hall_temperature",
+                "humid": "sensor.hall_temperature_humidity_1_humidity"
+              },
+              "template": [
+                "base",
+                "title",
+                "light",
+                "bright",
+                "motion",
+                "humid",
+                "temp"
+              ]
+            },
+            {
+              "type": "custom:button-card",
+              "variables": {
+                "name": "Kitchen",
+                "icon": "mdi:fridge",
+                "entity": "input_boolean.kitchen_automations",
+                "light": "light.kitchen",
+                "bright": "binary_sensor.kitchen_bright",
+                "occupied": "binary_sensor.kitchen_occupied",
+                "temp": "sensor.kitchen_temperature",
+                "humid": "sensor.kitchen_humidity",
+                "climate": "climate.kitchen"
+              },
+              "template": [
+                "base",
+                "title",
+                "light",
+                "bright",
+                "motion",
+                "humid",
+                "climate"
+              ]
+            },
+            {
+              "type": "custom:button-card",
+              "variables": {
+                "name": "Entrance",
+                "icon": "mdi:door-open",
+                "entity": "input_boolean.entrance_automations",
+                "light": "light.entrance",
+                "bright": "binary_sensor.entrance_bright",
+                "occupied": "binary_sensor.entrance_occupied",
+                "temp": "sensor.entrance_temperature"
+              },
+              "template": [
+                "base",
+                "title",
+                "light",
+                "bright",
+                "motion",
+                "temp"
+              ]
+            },
+            {
+              "type": "custom:button-card",
+              "variables": {
+                "name": "Lounge",
+                "icon": "mdi:fridge",
+                "entity": "input_boolean.lounge_automations",
+                "light": "light.lounge",
+                "bright": "binary_sensor.lounge_bright",
+                "occupied": "binary_sensor.lounge_occupied",
+                "climate": "climate.lounge",
+                "temp": "sensor.lounge_temperature",
+                "humid": "sensor.lounge_humidity",
+                "media": "media_player.lounge_tv"
+              },
+              "template": [
+                "base",
+                "title",
+                "light",
+                "bright",
+                "motion",
+                "humid",
+                "climate",
+                "media"
+              ]
+            },
+            {
+              "type": "custom:button-card",
+              "variables": {
+                "name": "Toilet",
+                "icon": "mdi:toilet",
+                "entity": "input_boolean.toilet_automations",
+                "light": "light.toilet",
+                "bright": "binary_sensor.toilet_bright",
+                "occupied": "binary_sensor.toilet_occupied",
+                "climate": "climate.toilet",
+                "temp": "sensor.toilet_temperature"
+              },
+              "template": [
+                "base",
+                "title",
+                "light",
+                "bright",
+                "motion",
+                "climate"
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "hours_to_show": 24,
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.hutch_temperature",
+                  "name": "Hutch Temperature",
+                  "detail": 2
+                }
+              ],
+              "columns": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "sensor",
+                  "graph": "line",
+                  "detail": 2,
+                  "entity": "sensor.particulate_matter_2_5um"
+                }
+              ],
+              "columns": 1
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.bedroom",
+                  "icon_animation": true,
+                  "show_percentage_control": true
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.study",
+                  "icon_animation": true,
+                  "show_percentage_control": true
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "card_mod": {
+                "style": "vertical-stack-in-card {\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n}\n"
+              },
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "gauge",
+                      "entity": "sensor.smart_meter_electricity_power_watts",
+                      "needle": true,
+                      "severity": {
+                        "green": 0,
+                        "yellow": 3000,
+                        "red": 4000
+                      },
+                      "max": 5000,
+                      "name": "Watts",
+                      "min": 0
+                    },
+                    {
+                      "type": "gauge",
+                      "entity": "sensor.smart_meter_electricity_import_today",
+                      "needle": true,
+                      "severity": {
+                        "green": 0,
+                        "yellow": 10,
+                        "red": 13
+                      },
+                      "max": 16,
+                      "name": "kWh",
+                      "min": 0,
+                      "unit": " "
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "color_thresholds": [
+                    {
+                      "color": "#db4537",
+                      "value": 4000
+                    },
+                    {
+                      "color": "#ffa602",
+                      "value": 3000
+                    },
+                    {
+                      "color": "#44a047",
+                      "value": 0
+                    }
+                  ],
+                  "entities": [
+                    {
+                      "entity": "sensor.smart_meter_electricity_power_watts"
+                    }
+                  ],
+                  "hours_to_show": 24,
+                  "line_width": 1,
+                  "lower_bound": 0,
+                  "points_per_hour": 60,
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "state": false
+                  },
+                  "update_interval": 1,
+                  "upper_bound": 5000
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Cameras",
+          "path": "cameras",
+          "type": "custom:grid-layout",
+          "layout": {
+            "grid-template-columns": "1fr 1fr 1fr",
+            "grid-template-rows": "1fr 1fr",
+            "mediaquery": {
+              "(max-width: 900px)": {
+                "grid-template-columns": "1fr",
+                "grid-template-rows": "auto"
+              },
+              "(max-width: 1300px)": {
+                "grid-template-columns": "1fr 1fr",
+                "grid-template-rows": "auto"
+              }
+            }
+          },
+          "icon": "mdi:cctv",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:frigate-card",
+              "cameras": [
+                {
+                  "camera_entity": "camera.entrance_frigate",
+                  "live_provider": "auto",
+                  "title": "Entrance"
+                }
+              ],
+              "view": {
+                "default": "image"
+              },
+              "menu": {
+                "buttons": {
+                  "frigate": {
+                    "enabled": false
+                  },
+                  "image": {
+                    "enabled": true
+                  }
+                },
+                "style": "outside",
+                "position": "bottom"
+              },
+              "live": {
+                "preload": true,
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                },
+                "controls": {
+                  "next_previous": {
+                    "style": "none"
+                  },
+                  "thumbnails": {
+                    "mode": "none"
+                  },
+                  "title": {
+                    "mode": "none"
+                  }
+                },
+                "draggable": false,
+                "lazy_load": true,
+                "lazy_unload": "all",
+                "layout": {
+                  "fit": "contain"
+                }
+              },
+              "dimensions": {
+                "aspect_ratio_mode": "static",
+                "aspect_ratio": "16:9"
+              },
+              "image": {
+                "mode": "camera",
+                "refresh_seconds": 1
+              }
+            },
+            {
+              "type": "custom:frigate-card",
+              "cameras": [
+                {
+                  "camera_entity": "camera.garden_frigate",
+                  "live_provider": "auto",
+                  "title": "Garden"
+                }
+              ],
+              "view": {
+                "default": "image"
+              },
+              "menu": {
+                "buttons": {
+                  "frigate": {
+                    "enabled": true
+                  },
+                  "image": {
+                    "enabled": true
+                  }
+                },
+                "style": "outside",
+                "position": "bottom"
+              },
+              "live": {
+                "preload": true,
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                },
+                "controls": {
+                  "next_previous": {
+                    "style": "none"
+                  },
+                  "thumbnails": {
+                    "mode": "none"
+                  }
+                },
+                "draggable": false,
+                "lazy_load": true,
+                "lazy_unload": "all"
+              },
+              "dimensions": {
+                "aspect_ratio_mode": "static",
+                "aspect_ratio": "16:9"
+              },
+              "image": {
+                "mode": "camera",
+                "refresh_seconds": 1
+              }
+            },
+            {
+              "type": "custom:frigate-card",
+              "cameras": [
+                {
+                  "camera_entity": "camera.hall_frigate",
+                  "live_provider": "auto",
+                  "title": "Hall"
+                }
+              ],
+              "view": {
+                "default": "image"
+              },
+              "menu": {
+                "buttons": {
+                  "frigate": {
+                    "enabled": true
+                  },
+                  "image": {
+                    "enabled": true
+                  }
+                },
+                "style": "outside",
+                "position": "bottom"
+              },
+              "live": {
+                "preload": true,
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                },
+                "controls": {
+                  "next_previous": {
+                    "style": "none"
+                  },
+                  "thumbnails": {
+                    "mode": "none"
+                  }
+                },
+                "draggable": false,
+                "lazy_load": true,
+                "lazy_unload": "all"
+              },
+              "dimensions": {
+                "aspect_ratio_mode": "static",
+                "aspect_ratio": "16:9"
+              },
+              "image": {
+                "mode": "camera",
+                "refresh_seconds": 1
+              }
+            },
+            {
+              "type": "custom:frigate-card",
+              "cameras": [
+                {
+                  "camera_entity": "camera.kitchen_frigate",
+                  "live_provider": "auto",
+                  "title": "Kitchen"
+                }
+              ],
+              "view": {
+                "default": "image"
+              },
+              "menu": {
+                "buttons": {
+                  "frigate": {
+                    "enabled": true
+                  },
+                  "image": {
+                    "enabled": true
+                  }
+                },
+                "style": "outside",
+                "position": "bottom"
+              },
+              "live": {
+                "preload": true,
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                },
+                "controls": {
+                  "next_previous": {
+                    "style": "none"
+                  },
+                  "thumbnails": {
+                    "mode": "none"
+                  }
+                },
+                "draggable": false,
+                "lazy_load": true,
+                "lazy_unload": "all"
+              },
+              "dimensions": {
+                "aspect_ratio_mode": "static",
+                "aspect_ratio": "16:9"
+              },
+              "image": {
+                "mode": "camera",
+                "refresh_seconds": 1
+              }
+            },
+            {
+              "type": "custom:frigate-card",
+              "cameras": [
+                {
+                  "camera_entity": "camera.lounge_frigate",
+                  "live_provider": "auto",
+                  "title": "Lounge"
+                }
+              ],
+              "view": {
+                "default": "image",
+                "update_force": false
+              },
+              "menu": {
+                "buttons": {
+                  "frigate": {
+                    "enabled": true
+                  },
+                  "image": {
+                    "enabled": true
+                  }
+                },
+                "style": "outside",
+                "position": "bottom"
+              },
+              "live": {
+                "preload": true,
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                },
+                "controls": {
+                  "next_previous": {
+                    "style": "none"
+                  },
+                  "thumbnails": {
+                    "mode": "none",
+                    "media": "snapshots"
+                  }
+                },
+                "draggable": false,
+                "lazy_load": true,
+                "lazy_unload": "all",
+                "auto_unmute": "never"
+              },
+              "dimensions": {
+                "aspect_ratio_mode": "static",
+                "aspect_ratio": "16:9"
+              },
+              "image": {
+                "mode": "camera",
+                "refresh_seconds": 1
+              }
+            },
+            {
+              "type": "custom:frigate-card",
+              "cameras": [
+                {
+                  "camera_entity": "camera.sofa_frigate",
+                  "live_provider": "auto",
+                  "title": "Sofa"
+                }
+              ],
+              "view": {
+                "default": "image"
+              },
+              "menu": {
+                "buttons": {
+                  "frigate": {
+                    "enabled": true
+                  },
+                  "image": {
+                    "enabled": true
+                  }
+                },
+                "style": "outside",
+                "position": "bottom"
+              },
+              "live": {
+                "preload": true,
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                },
+                "controls": {
+                  "next_previous": {
+                    "style": "none"
+                  },
+                  "thumbnails": {
+                    "mode": "none"
+                  }
+                },
+                "draggable": false,
+                "lazy_load": true,
+                "lazy_unload": "all"
+              },
+              "dimensions": {
+                "aspect_ratio_mode": "static",
+                "aspect_ratio": "16:9"
+              },
+              "image": {
+                "mode": "camera",
+                "refresh_seconds": 1
+              }
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Climate",
+          "path": "climate",
+          "icon": "mdi:theme-light-dark",
+          "type": "sidebar",
+          "layout": {},
+          "badges": [],
+          "cards": [
+            {
+              "show_current": true,
+              "show_forecast": true,
+              "type": "weather-forecast",
+              "entity": "weather.home",
+              "view_layout": {
+                "position": "sidebar"
+              }
+            },
+            {
+              "type": "custom:sun-card",
+              "view_layout": {
+                "position": "sidebar"
+              }
+            },
+            {
+              "type": "custom:layout-card",
+              "layout_type": "custom:grid-layout",
+              "layout": {
+                "grid-template-columns": "repeat(auto-fill,minmax(21rem,1fr))",
+                "grid-auto-rows": "auto",
+                "grid-auto-flow": "row",
+                "mediaquery": {
+                  "(max-width: 800px)": {
+                    "grid-template-columns": "1fr 1fr"
+                  },
+                  "(max-width: 1200px)": {
+                    "grid-template-columns": "repeat(auto-fill, minmax(20%, 1fr))"
+                  }
+                }
+              },
+              "cards": [
+                {
+                  "type": "thermostat",
+                  "entity": "climate.thermostat",
+                  "name": "Home"
+                },
+                {
+                  "type": "thermostat",
+                  "entity": "climate.study_radiator",
+                  "name": "Study"
+                },
+                {
+                  "type": "thermostat",
+                  "entity": "climate.bathroom_radiator",
+                  "name": "Bathroom"
+                },
+                {
+                  "type": "thermostat",
+                  "entity": "climate.bedroom_radiator",
+                  "name": "Bedroom"
+                },
+                {
+                  "type": "thermostat",
+                  "entity": "climate.toilet_radiator",
+                  "name": "Toilet"
+                },
+                {
+                  "type": "custom:better-thermostat-ui-card",
+                  "entity": "climate.study_radiator",
+                  "disable_window": false,
+                  "eco_temperature": 10,
+                  "set_current_as_main": false,
+                  "disable_summer": false,
+                  "disable_heat": false,
+                  "disable_eco": false,
+                  "disable_off": false
+                },
+                {
+                  "type": "custom:better-thermostat-ui-card",
+                  "entity": "climate.lounge"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Beacons",
+          "path": "beacons",
+          "icon": "mdi:broadcast",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:auto-entities",
+              "card": {
+                "type": "entities"
+              },
+              "filter": {
+                "include": [
+                  {
+                    "entity_id": "*ibeacon"
+                  },
+                  {
+                    "entity_id": "*rssi"
+                  },
+                  {
+                    "entity_id": "*_ble_*"
+                  }
+                ],
+                "exclude": []
+              }
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Energy",
+          "path": "energy",
+          "icon": "mdi:gauge",
+          "badges": [],
+          "cards": [
+            {
+              "type": "gauge",
+              "entity": "sensor.washing_machine_current_energy",
+              "needle": true,
+              "name": "Washing Machine"
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.desk_current_energy",
+              "needle": true,
+              "name": "Desk"
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.pc_current_energy",
+              "name": "PC",
+              "needle": true,
+              "severity": {
+                "green": 50,
+                "yellow": 500,
+                "red": 700
+              },
+              "max": 800
+            },
+            {
+              "chart_type": "bar",
+              "period": "day",
+              "days_to_show": 10,
+              "type": "statistics-graph",
+              "entities": [
+                "sensor.house"
+              ],
+              "stat_types": [
+                "mean",
+                "min",
+                "max"
+              ]
+            },
+            {
+              "type": "custom:clock-weather-card",
+              "entity": "weather.home"
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "subview": false,
+          "title": "Calendar",
+          "path": "calendar",
+          "icon": "mdi:calendar",
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "initial_view": "dayGridMonth",
+              "type": "calendar",
+              "entities": [
+                "calendar.family",
+                "calendar.bin_collection_calendar"
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Testing",
+          "path": "testing",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:mini-media-player",
+              "entity": "media_player.starrunner",
+              "name": "PC"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

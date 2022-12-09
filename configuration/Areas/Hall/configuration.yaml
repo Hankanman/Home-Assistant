@@ -1,0 +1,154 @@
+hall:
+  # Binary Sensors
+  #----------------------------------#
+  binary_sensor:
+    # Bayesian
+    #----------------------------------#
+    - platform: bayesian
+      name: Hall Occupied
+      prior: 0.12
+      device_class: occupancy
+      probability_threshold: 0.2
+      observations:
+
+        - platform: "state"
+          entity_id: binary_sensor.hall_bright
+          prob_given_true: 0.0348452
+          prob_given_false: 0.0401773
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.hall_person_occupancy
+          prob_given_true: 0.2954048
+          prob_given_false: 0.0014541
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.hall_motion
+          prob_given_true: 0.2832188
+          prob_given_false: 0.0014183
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.hall_motion_1_occupancy
+          prob_given_true: 0.2816637
+          prob_given_false: 0.0014135
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.hall_motion_2_occupancy
+          prob_given_true: 0.3026146
+          prob_given_false: 0.0014744
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.hall_temperature_motion_lux_1_occupancy
+          prob_given_true: 0.2889866
+          prob_given_false: 0.0014355
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.stairs_motion
+          prob_given_true: 0.2706369
+          prob_given_false: 0.0013790
+          to_state: "on"
+
+
+  # Variable Sensors
+  #----------------------------------#
+  sensor:
+
+  # Template Sensors
+  #----------------------------------#
+  template:
+    # Template Binary Sensors
+    #----------------------------------#
+    binary_sensor:
+      # Bright Sensors
+      #----------------------------------#
+      - unique_id: hall_bright
+        name: "Hall Bright"
+        device_class: light
+        attributes:
+          current_illuminance: "{{ (states('sensor.hall_illuminance') | float(0)) }}"
+          light_state: "{{ states('light.hall') }}"
+          sun: "{{ states('sun.sun') }}"
+        state: |
+          {% if states('sensor.hall_illuminance') | int(0) > (states('input_number.hall_illuminance_level') | int(0) * 1.3) and is_state('light.hall', 'off') %}
+            True
+          {% elif states('sensor.hall_illuminance') | int(0) > (states('input_number.hall_illuminance_level') | int(0) * 3) %}
+            True
+          {% elif ((states('input_number.hall_illuminance_level') | int(0) < states('sensor.hall_illuminance') | int(0) < (states('input_number.hall_illuminance_level') | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(states.binary_sensor.hall_bright.last_changed) < 300) %}
+            {{ states('binary_sensor.hall_bright') }}
+          {% elif states('sensor.hall_illuminance') | int(0) < states('input_number.hall_illuminance_level') | int(0) %}
+            False
+          {% else %}
+            False
+          {% endif %}
+
+      # Humid Sensors
+      #----------------------------------#
+
+    # Template Variable Sensors
+    #----------------------------------#
+    sensor:
+      # Probabilities
+      #----------------------------------#
+      - unique_id: hall_occupied_probability
+        name: Hall Occupied Probability
+        unit_of_measurement: "%"
+        state: "{{ (state_attr('binary_sensor.hall_occupied','probability')*100 | int(0) ) | round(0) }}"
+
+  # Media Players
+  #----------------------------------#
+  media_player:
+
+  # Notification Platforms
+  #----------------------------------#
+  notify:
+
+  # Shell Commands
+  #----------------------------------#
+  shell_command:
+    hall_camera_turn_off: !secret hallcam_turn_off
+    hall_camera_turn_on: !secret hallcam_turn_on
+    hall_camera_bedroom: !secret hallcam_bedroom
+    hall_camera_study: !secret hallcam_study
+    hall_camera_landing: !secret hallcam_landing
+    hall_camera_stairs: !secret hallcam_stairs
+
+  # Switches
+  #----------------------------------#
+  switch:
+    # - platform: rest
+    #   name: Hall Camera IR
+    #   method: GET
+    #   resource: http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=getDevState&usr=ha&pwd=Chicken212
+    #   body_on: http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=openInfraLed&usr=ha&pwd=Chicken212
+    #   body_off: http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=closeInfraLed&usr=ha&pwd=Chicken212
+    #   scan_interval: 3
+    #   is_on_template: |
+    #     {% set status = value | regex_findall_index('infraLedState>(\d+)</infraLedState') %}
+    #     {% if status == "0" %}
+    #       off
+    #     {% else %}
+    #       on
+    #     {%- endif -%}
+    # - platform: command_line
+    #   switches:
+    #     hall_camera_ir:
+    #       command_on: 'curl -k "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=openInfraLed&usr=ha&pwd=Chicken212"'
+    #       command_off: 'curl -k "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=closeInfraLed&usr=ha&pwd=Chicken212"'
+    #       command_state: |
+    #         'curl -k --silent "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=getDevState&usr=ha&pwd=Chicken212" | grep 'infraLedState' | cut -b 20'
+    #       value_template: '{{ value == "1" }}'
+    #     hall_camera_motion:
+    #       friendly_name: Hall Camera Motion Detection
+    #       command_on: !secret hallcam_motion_on
+    #       command_off: !secret hallcam_motion_off
+    #       command_state: !secret hallcam_motion_state
+    #       value_template: '{{ value == "1" }}'
+
+  # Cameras
+  #----------------------------------#
+  camera:

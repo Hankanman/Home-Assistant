@@ -1,0 +1,157 @@
+lounge:
+  # Binary Sensors
+  #----------------------------------#
+  binary_sensor:
+    # Bayesian
+    #----------------------------------#
+    - platform: bayesian
+      name: Lounge Occupied
+      prior: 0.40
+      device_class: occupancy
+      probability_threshold: 0.7
+      observations:
+
+        - platform: "state"
+          entity_id: binary_sensor.back_door_left_contact
+          prob_given_true: 0.0028274
+          prob_given_false: 0.0000972
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.back_door_right_contact
+          prob_given_true: 0.1951905
+          prob_given_false: 0.1543939
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.lounge_bright
+          prob_given_true: 0.0474970
+          prob_given_false: 0.2667856
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.lounge_doors
+          prob_given_true: 0.1964286
+          prob_given_false: 0.1551342
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.lounge_person_occupancy
+          prob_given_true: 0.05
+          prob_given_false: 0.0085813
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.lounge_motion
+          prob_given_true: 0.3738080
+          prob_given_false: 0.0080722
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.lounge_motion_1_occupancy
+          prob_given_true: 0.3721682
+          prob_given_false: 0.0080578
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.lounge_temperature_motion_lux_1_occupancy
+          prob_given_true: 0.2849435
+          prob_given_false: 0.0070264
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.lounge_tv_state
+          prob_given_true: 0.3392574
+          prob_given_false: 0.0077303
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: input_boolean.lounge_schedule
+          prob_given_true: 0.1172500
+          prob_given_false: 0.2712675
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: media_player.lounge_tv
+          prob_given_true: 0.0661607
+          prob_given_false: 0.0021306
+          to_state: "playing"
+
+  # Variable Sensors
+  #----------------------------------#
+  sensor:
+  # Template Sensors
+  #----------------------------------#
+  template:
+    # Template Binary Sensors
+    #----------------------------------#
+    binary_sensor:
+      # Bright Sensors
+      #----------------------------------#
+      - unique_id: lounge_bright
+        name: "Lounge Bright"
+        device_class: light
+        attributes:
+          current_illuminance: "{{ (states('sensor.lounge_illuminance') | float(0)) }}"
+          light_state: "{{ states('light.lounge') }}"
+          sun: "{{ states('sun.sun') }}"
+        state: |
+          {% if states('sensor.lounge_illuminance') | int(0) > (states('input_number.lounge_illuminance_level') | int(0) * 1.3) and is_state('light.lounge', 'off') %}
+            True
+          {% elif states('sensor.lounge_illuminance') | int(0) > (states('input_number.lounge_illuminance_level') | int(0) * 3) %}
+            True
+          {% elif ((states('input_number.lounge_illuminance_level') | int(0) < states('sensor.lounge_illuminance') | int(0) < (states('input_number.lounge_illuminance_level') | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(states.binary_sensor.lounge_bright.last_changed) < 300) %}
+            {{ states('binary_sensor.lounge_bright') }}
+          {% elif states('sensor.lounge_illuminance') | int(0) < states('input_number.lounge_illuminance_level') | int(0) %}
+            False
+          {% else %}
+            False
+          {% endif %}
+
+    # Template Variable Sensors
+    #----------------------------------#
+    sensor:
+      # Probabilities
+      #----------------------------------#
+      - unique_id: lounge_occupied_probability
+        name: Lounge Occupied Probability
+        state_class: measurement
+        unit_of_measurement: "%"
+        state: "{{ (state_attr('binary_sensor.lounge_occupied','probability')*100 | int(0) ) | round(0) }}"
+
+  # Media Players
+  #----------------------------------#
+  media_player:
+
+  # Notification Platforms
+  #----------------------------------#
+  notify:
+
+  # Shell Commands
+  #----------------------------------#
+  shell_command:
+    lounge_camera_turn_off: !secret loungecam_turn_off
+    lounge_camera_turn_on: !secret loungecam_turn_on
+    lounge_camera_floor: !secret loungecam_floor
+
+  # Switches
+  #----------------------------------#
+  switch:
+    - platform: command_line
+      switches:
+        lounge_camera_ir:
+          friendly_name: Lounge Camera Night Mode
+          command_on: !secret loungecam_ir_on
+          command_off: !secret loungecam_ir_off
+          command_state: !secret loungecam_ir_state
+          value_template: '{{ value == "1" }}'
+        lounge_camera_motion:
+          friendly_name: Lounge Camera Motion Detection
+          command_on: !secret loungecam_motion_on
+          command_off: !secret loungecam_motion_off
+          command_state: !secret loungecam_motion_state
+          value_template: '{{ value == "1" }}'
+
+  # Cameras
+  #----------------------------------#
+  camera:

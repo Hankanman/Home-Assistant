@@ -1,0 +1,738 @@
+---
+#----------------------------------#
+# Statistics Sensors
+#----------------------------------#
+statistics:
+  sensor:
+    #----------------------------------#
+    # Bathroom
+    #----------------------------------#
+    - platform: history_stats
+      name: Bathroom Motion Ratio
+      entity_id: binary_sensor.bathroom_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bathroom Motion 1 Ratio
+      entity_id: binary_sensor.bathroom_motion_1_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bathroom Motion 2 Ratio
+      entity_id: binary_sensor.bathroom_motion_2_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bathroom Occupied Ratio
+      entity_id: binary_sensor.bathroom_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bathroom Shower Occupied Ratio
+      entity_id: input_boolean.shower_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bathroom Humid Ratio
+      entity_id: binary_sensor.bathroom_humid
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bathroom Door Ratio
+      entity_id: binary_sensor.bathroom_door_contact
+      state: "off"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bathroom Schedule Ratio
+      entity_id: input_boolean.bathroom_schedule
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bathroom Heating Ratio
+      entity_id: climate.bathroom_radiator
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Bedroom
+    #----------------------------------#
+    - platform: history_stats
+      name: Bedroom Motion Ratio
+      entity_id: binary_sensor.bedroom_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bedroom Occupied Ratio
+      entity_id: binary_sensor.bedroom_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bedroom TV State Ratio
+      entity_id: binary_sensor.bedroom_tv_state
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bedroom Motion 1 Ratio
+      entity_id: binary_sensor.bedroom_temperature_motion_lux_1_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bedroom Wardrobe Motion 1 Ratio
+      entity_id: binary_sensor.wardrobe_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bedroom TV Playing Ratio
+      entity_id: media_player.bedroom_tv
+      state: "playing"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bedroom Door Ratio
+      entity_id: binary_sensor.bedroom_door_contact
+      state: "off"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bedroom Dark Ratio
+      entity_id: binary_sensor.bedroom_bright
+      state: "off"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bedroom Window Ratio
+      entity_id: binary_sensor.bedroom_windows
+      state: "off"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Bedroom Heating Ratio
+      entity_id: climate.bedroom_radiator
+      state: "heat"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Entrance
+    #----------------------------------#
+    - platform: history_stats
+      name: Entrance Motion Ratio
+      entity_id: binary_sensor.entrance_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Entrance Motion 1 Ratio
+      entity_id: binary_sensor.entrance_motion_1_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Entrance Occupied Ratio
+      entity_id: binary_sensor.entrance_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Entrance Bright Ratio
+      entity_id: binary_sensor.entrance_bright
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Entrance Person Occupancy Ratio
+      entity_id: binary_sensor.entrance_person_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Front Drive
+    #----------------------------------#
+    - platform: history_stats
+      name: Front Drive Motion Ratio
+      entity_id: binary_sensor.front_drive_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Front Door Motion Ratio
+      entity_id: binary_sensor.front_door_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Front Drive Occupied Ratio
+      entity_id: binary_sensor.front_drive_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Front Door Ratio
+      entity_id: binary_sensor.front_door_contact
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Front Doorbell Ratio
+      entity_id: binary_sensor.front_door_ding
+      state: "off"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Garden
+    #----------------------------------#
+    - platform: history_stats
+      name: Garden Motion Ratio
+      entity_id: binary_sensor.garden_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Garden Occupied Ratio
+      entity_id: binary_sensor.garden_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Hall
+    #----------------------------------#
+    - platform: history_stats
+      name: Hall Motion Ratio
+      entity_id: binary_sensor.hall_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Hall Stairs Motion Ratio
+      entity_id: binary_sensor.stairs_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Hall Motion 1 Ratio
+      entity_id: binary_sensor.hall_temperature_motion_lux_1_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Hall Motion 2 Ratio
+      entity_id: binary_sensor.hall_motion_1_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Hall Motion 3 Ratio
+      entity_id: binary_sensor.hall_motion_2_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Hall Occupied Ratio
+      entity_id: binary_sensor.hall_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Hall Person Occupancy Ratio
+      entity_id: binary_sensor.hall_person_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Hall Stairs Person Occupancy Ratio
+      entity_id: binary_sensor.stairs_person_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Hall Bright Ratio
+      entity_id: binary_sensor.hall_bright
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Home
+    #----------------------------------#
+    - platform: history_stats
+      name: Home Motion Ratio
+      entity_id: binary_sensor.home_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Home Occupied Ratio
+      entity_id: binary_sensor.home_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Kitchen
+    #----------------------------------#
+    - platform: history_stats
+      name: Kitchen Motion Ratio
+      entity_id: binary_sensor.kitchen_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Kitchen Occupied Ratio
+      entity_id: binary_sensor.kitchen_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Kitchen Bright Ratio
+      entity_id: binary_sensor.kitchen_bright
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Kitchen Person Occupancy Ratio
+      entity_id: binary_sensor.kitchen_person_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Kitchen Motion 1 Ratio
+      entity_id: binary_sensor.kitchen_temperature_motion_lux_1_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Kitchen Motion 2 Ratio
+      entity_id: binary_sensor.kitchen_motion_1_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Kitchen Oven Ratio
+      entity_id: binary_sensor.kitchen_oven
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Kitchen Hob Ratio
+      entity_id: binary_sensor.kitchen_hob
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Kitchen Kettle Ratio
+      entity_id: binary_sensor.kitchen_kettle
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Kitchen Microwave Ratio
+      entity_id: binary_sensor.kitchen_microwave
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Lounge
+    #----------------------------------#
+    - platform: history_stats
+      name: Lounge Motion Ratio
+      entity_id: binary_sensor.lounge_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Lounge Occupied Ratio
+      entity_id: binary_sensor.lounge_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Lounge Doors Ratio
+      entity_id: binary_sensor.lounge_doors
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Lounge Bright Ratio
+      entity_id: binary_sensor.lounge_bright
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Lounge Motion 1 Ratio
+      entity_id: binary_sensor.lounge_temperature_motion_lux_1_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Lounge Motion 2 Ratio
+      entity_id: binary_sensor.lounge_motion_1_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Lounge Person Occupancy Ratio
+      entity_id: binary_sensor.lounge_person_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Lounge Right Door Ratio
+      entity_id: binary_sensor.back_door_right_contact
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Lounge Left Door Ratio
+      entity_id: binary_sensor.back_door_left_contact
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Lounge Schedule Ratio
+      entity_id: input_boolean.lounge_schedule
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Lounge TV On Ratio
+      entity_id: binary_sensor.lounge_tv_state
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Lounge TV Playing Ratio
+      entity_id: media_player.lounge_tv
+      state: "playing"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Outside
+    #----------------------------------#
+    - platform: history_stats
+      name: Outside Motion Ratio
+      entity_id: binary_sensor.outside_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Outside Occupied Ratio
+      entity_id: binary_sensor.outside_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Shed
+    #----------------------------------#
+
+
+    #----------------------------------#
+    # Stairs
+    #----------------------------------#
+    - platform: history_stats
+      name: Stairs Motion Ratio
+      entity_id: binary_sensor.stairs_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Stairs Occupied Ratio
+      entity_id: binary_sensor.stairs_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Study
+    #----------------------------------#
+    - platform: history_stats
+      name: Study Motion Ratio
+      entity_id: binary_sensor.study_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Study Occupied Ratio
+      entity_id: binary_sensor.study_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Study Motion 1 Ratio
+      entity_id: binary_sensor.study_motion_1_occupancy
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Study Bright Ratio
+      entity_id: binary_sensor.study_bright
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Study Door Ratio
+      entity_id: binary_sensor.study_door
+      state: "off"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Study Starrunner Active Ratio
+      entity_id: binary_sensor.starrunner_active
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Study Starrunner Microphone Active Ratio
+      entity_id: binary_sensor.starrunner_microphoneactive
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Study Starrunner Webcam Active Ratio
+      entity_id: binary_sensor.starrunner_webcamactive
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Study Right Window Ratio
+      entity_id: binary_sensor.study_window_right_contact
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Study Left Window Ratio
+      entity_id: binary_sensor.study_window_left_contact
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Toilet
+    #----------------------------------#
+    - platform: history_stats
+      name: Toilet Motion Ratio
+      entity_id: binary_sensor.toilet_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Toilet Occupied Ratio
+      entity_id: binary_sensor.toilet_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Toilet Heating Ratio
+      entity_id: climate.toilet_radiator
+      state: "heat"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Toilet Bright Ratio
+      entity_id: binary_sensor.toilet_bright
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+
+    #----------------------------------#
+    # Wardrobe
+    #----------------------------------#
+    - platform: history_stats
+      name: Wardrobe Motion Ratio
+      entity_id: binary_sensor.wardrobe_motion
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90
+    - platform: history_stats
+      name: Wardrobe Occupied Ratio
+      entity_id: binary_sensor.wardrobe_occupied
+      state: "on"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        days: 90

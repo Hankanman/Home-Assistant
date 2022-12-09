@@ -1,0 +1,24 @@
+default_config:
+history:
+wake_on_lan:
+webhook:
+my:
+
+# o365:
+#   client_secret: !secret o365_personal_secret
+#   client_id: !secret o365_personal_client_id
+
+
+homeassistant:
+  packages: !include_dir_merge_named configuration/
+  customize: !include customize.yaml
+  allowlist_external_dirs:
+    - /config
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+frontend:
+  extra_module_url:
+    - /hacsfiles/lovelace-card-mod/card-mod.js
+  themes: !include_dir_merge_named themes

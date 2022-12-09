@@ -1,0 +1,38 @@
+esphome:
+  name: air-01
+  platform: ESP8266
+  board: d1_mini
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: !secret esp_ota
+
+wifi:
+  ssid: !secret iot_ssid
+  password: !secret iot_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "air-01 Fallback Hotspot"
+    password: "wkrExUpjSG3h"
+
+captive_portal:
+
+# Ikea Vindriktning PM2.5 sensor
+uart:
+  rx_pin: D2
+  baud_rate: 9600
+
+sensor:
+  - platform: pm1006
+    pm_2_5:
+      name: "Particulate Matter 2.5µm"
+      filters:
+        - sliding_window_moving_average:
+            window_size: 10
+            send_every: 10

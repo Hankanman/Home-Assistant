@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_resources",
+  "data": {
+    "items": [
+      {
+        "id": "7cf521ef1c8c4485a9a4b62fd89d525a",
+        "type": "module",
+        "url": "/hacsfiles/mini-media-player/mini-media-player-bundle.js?hacstag=1485208381162"
+      },
+      {
+        "url": "/hacsfiles/uptime-card/uptime-card.js?hacstag=3505098670100",
+        "type": "module",
+        "id": "df536f2786f94223bf07f15ab634a207"
+      },
+      {
+        "url": "/hacsfiles/lovelace-layout-card/layout-card.js?hacstag=156434866242",
+        "type": "module",
+        "id": "163a89f3d4ad43bd84db44dc8bec0477"
+      },
+      {
+        "url": "/hacsfiles/button-card/button-card.js?hacstag=146194325342",
+        "type": "module",
+        "id": "2636c138f7904a629b3d6da6ab3b45bb"
+      },
+      {
+        "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js?hacstag=1512800620110",
+        "type": "module",
+        "id": "f9a196bebd9f49fe9f2cd007440032de"
+      },
+      {
+        "url": "/hacsfiles/scheduler-card/scheduler-card.js?hacstag=286270157234",
+        "type": "module",
+        "id": "cfa740bc027b48ae99f9c35a77520425"
+      },
+      {
+        "url": "/hacsfiles/lovelace-card-tools/card-tools.js?hacstag=16140332811",
+        "type": "module",
+        "id": "b2b4a8b1ce1e4547abcd7ea88453383e"
+      },
+      {
+        "url": "/hacsfiles/frigate-hass-card/frigate-hass-card.js?hacstag=394082552300",
+        "type": "module",
+        "id": "39c9db168f534be5826958870531fda8"
+      },
+      {
+        "url": "https://fonts.googleapis.com/css2?family=Oxygen&family=Ubuntu:wght@300&display=swap",
+        "type": "css",
+        "id": "4b46e7fd367d4b799ad0f6fe385bf859"
+      },
+      {
+        "url": "/hacsfiles/lovelace-auto-entities/auto-entities.js?hacstag=1677445841110",
+        "type": "module",
+        "id": "597612509a0b4deaa51550a950cdb1b0"
+      },
+      {
+        "url": "/hacsfiles/lovelace-fold-entity-row/fold-entity-row.js?hacstag=150781994220",
+        "type": "module",
+        "id": "ad09559ea4184d36aaf79c0faca9ab35"
+      },
+      {
+        "url": "/hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js?hacstag=142051833042",
+        "type": "module",
+        "id": "fde6b8a98c8144359c8ec960ec1e1b48"
+      },
+      {
+        "url": "/hacsfiles/spotify-card/spotify-card.js?hacstag=173955605240",
+        "type": "module",
+        "id": "1c4daca9f8794e509ff75f977257ea08"
+      },
+      {
+        "url": "/hacsfiles/entity-attributes-card/entity-attributes-card.js?hacstag=187245461012",
+        "type": "module",
+        "id": "2881ec8060b7471994fc6d0775bd9d4a"
+      },
+      {
+        "url": "/hacsfiles/bar-card/bar-card.js?hacstag=163363577320",
+        "type": "module",
+        "id": "0057bd19428d429e8b719e86ce9c162e"
+      },
+      {
+        "url": "/hacsfiles/lovelace-card-mod/card-mod.js?hacstag=190927524314",
+        "type": "module",
+        "id": "669f7d40aec641aaab284dd97bf8c102"
+      },
+      {
+        "url": "/hacsfiles/history-explorer-card/history-explorer-card.js?hacstag=4403747941021",
+        "type": "module",
+        "id": "54b8c1a3d8634a72b6f7d4408bcb684c"
+      },
+      {
+        "url": "/hacsfiles/thermal_comfort_icons/thermal_comfort_icons.js?hacstag=449218690130",
+        "type": "module",
+        "id": "b592cb9a43ed407596d8b2498fa25d78"
+      },
+      {
+        "url": "/hacsfiles/homeassistant-browser-control-card/browser-control-card.js?hacstag=452251255130",
+        "type": "module",
+        "id": "37b78a0f4dd248d88b3aaed4f5d6fb1d"
+      },
+      {
+        "url": "/hacsfiles/light-entity-card/light-entity-card.js?hacstag=168744428500",
+        "type": "module",
+        "id": "696b5e4f35fa42f3a80536f5cc1ba3a9"
+      },
+      {
+        "url": "/hacsfiles/my-cards/my-cards.js?hacstag=3991089018810",
+        "type": "module",
+        "id": "a609e748a8f44f859fd1897f547e38dc"
+      },
+      {
+        "url": "/hacsfiles/lovelace-mushroom/mushroom.js?hacstag=444350375200",
+        "type": "module",
+        "id": "2cba945c43ad405f9e8dbeab81939255"
+      },
+      {
+        "url": "/hacsfiles/hass-hue-icons/hass-hue-icons.js?hacstag=3844345221237",
+        "type": "module",
+        "id": "f7b5960503884cfbb13b06ca99de363a"
+      },
+      {
+        "url": "/hacsfiles/ha-sankey-chart/ha-sankey-chart.js?hacstag=455846088040",
+        "type": "module",
+        "id": "0181e4dde3d54fdb85d2f219b600035d"
+      },
+      {
+        "url": "/hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js?hacstag=366482637014",
+        "type": "module",
+        "id": "af01be0c510246b3a52e14a4294d2a63"
+      },
+      {
+        "url": "/hacsfiles/custom-icons/custom-icons.js?hacstag=491465538021",
+        "type": "module",
+        "id": "0d6be553118646feb1a3a210f0be1eb5"
+      },
+      {
+        "url": "/hacsfiles/lovelace-state-switch/state-switch.js?hacstag=158756598195",
+        "type": "module",
+        "id": "458964119ecc432e813a1ec662b41905"
+      },
+      {
+        "url": "/hacsfiles/slider-button-card/slider-button-card.js?hacstag=4987940331109",
+        "type": "module",
+        "id": "a6d2d55a18ff4974983c31f8d7fe14e3"
+      },
+      {
+        "url": "/hacsfiles/tv-card/tv-card.js?hacstag=505459170041",
+        "type": "module",
+        "id": "a7bdbd5dc9cc44f49dd4352cd2ed5340"
+      },
+      {
+        "url": "/hacsfiles/secondaryinfo-entity-row/secondaryinfo-entity-row.js?hacstag=15971160550",
+        "type": "module",
+        "id": "77334b4c8d3741d69df24f5f9208976a"
+      },
+      {
+        "url": "/browser_mod.js?automatically-added",
+        "type": "module",
+        "id": "ba08109ed15d452c99f82d7291038dcd"
+      },
+      {
+        "url": "/hacsfiles/weather-radar-card/weather-radar-card.js?hacstag=487680971206",
+        "type": "module",
+        "id": "19af9f67e25d46d2819787db6dff7626"
+      },
+      {
+        "url": "/hacsfiles/simple-weather-card/simple-weather-card-bundle.js?hacstag=172998062083",
+        "type": "module",
+        "id": "eab08efadf3b4738b30d997fdfa0f8f7"
+      },
+      {
+        "url": "/hacsfiles/clock-weather-card/clock-weather-card.js?hacstag=522634019107",
+        "type": "module",
+        "id": "2040bbbbcaf348518b45e93cb1716451"
+      },
+      {
+        "url": "/hacsfiles/tabbed-card/tabbed-card.js?hacstag=452866308030",
+        "type": "module",
+        "id": "a32c40bf476e46bfac4039626b3195ce"
+      },
+      {
+        "url": "/hacsfiles/better-thermostat-ui-card/better-thermostat-ui-card.js?hacstag=439367892090",
+        "type": "module",
+        "id": "66b14f47d3b4476c87b51838ffd3e76b"
+      },
+      {
+        "url": "/hacsfiles/linked-lovelace-ui/linked-lovelace-ui.js?hacstag=559360809125",
+        "type": "module",
+        "id": "8842f7eb209f43baaf093cf1d9d836db"
+      }
+    ]
+  }
+}

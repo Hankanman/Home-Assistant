@@ -1,0 +1,83 @@
+toilet:
+  # Binary Sensors
+  #----------------------------------#
+  binary_sensor:
+    # Bayesian
+    #----------------------------------#
+    - platform: bayesian
+      name: Toilet Occupied
+      prior: 0.01
+      device_class: occupancy
+      probability_threshold: 0.19
+      observations:
+
+        - platform: "state"
+          entity_id: binary_sensor.toilet_bright
+          prob_given_true: 0.0119643
+          prob_given_false: 0.0011671
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.toilet_motion
+          prob_given_true: 0.2587902
+          prob_given_false: 0.0001107
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: climate.toilet_radiator
+          prob_given_true: 0.0714851
+          prob_given_false: 0.0065530
+          to_state: "heat"
+  # Variable Sensors
+  #----------------------------------#
+  sensor:
+
+  # Template Sensors
+  #----------------------------------#
+  template:
+    # Template Binary Sensors
+    #----------------------------------#
+    binary_sensor:
+      # Bright Sensors
+      #----------------------------------#
+      - unique_id: toilet_bright
+        name: "Toilet Bright"
+        device_class: light
+        attributes:
+          current_illuminance: "{{ (states('sensor.toilet_illuminance') | float(0)) }}"
+          light_state: "{{ states('light.toilet') }}"
+          sun: "{{ states('sun.sun') }}"
+        state: |
+          {% if states('sensor.toilet_illuminance') | int(0) > (states('input_number.toilet_illuminance_level') | int(0) * 1.3) and is_state('light.toilet', 'off') %}
+            True
+          {% elif states('sensor.toilet_illuminance') | int(0) > (states('input_number.toilet_illuminance_level') | int(0) * 3) %}
+            True
+          {% elif ((states('input_number.toilet_illuminance_level') | int(0) < states('sensor.toilet_illuminance') | int(0) < (states('input_number.toilet_illuminance_level') | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(states.binary_sensor.toilet_bright.last_changed) < 300) %}
+            {{ states('binary_sensor.toilet_bright') }}
+          {% elif states('sensor.toilet_illuminance') | int(0) < states('input_number.toilet_illuminance_level') | int(0) %}
+            False
+          {% else %}
+            False
+          {% endif %}
+
+    # Template Variable Sensors
+    #----------------------------------#
+    sensor:
+      # Probabilities
+      #----------------------------------#
+        
+  # Media Players
+  #----------------------------------#
+  media_player:
+
+  # Notification Platforms
+  #----------------------------------#
+  notify:
+
+  # Shell Commands
+  #----------------------------------#
+  shell_command:
+
+  # Switches
+  #----------------------------------#
+  switch:

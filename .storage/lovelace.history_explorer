@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "minor_version": 1,
+    "key": "lovelace.history_explorer",
+    "data": {
+        "config": {
+            "views": [
+                {
+                    "theme": "Backend-selected",
+                    "title": "Home",
+                    "type": "panel",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:history-explorer-card",
+                            "cardName": "historycard-88370152"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

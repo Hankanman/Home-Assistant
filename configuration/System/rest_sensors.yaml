@@ -1,0 +1,14 @@
+rest_sensors:
+  sensor:
+    - platform: rest
+      name: Mars Pro
+      resource: !secret mars_pro
+      method: GET
+      json_attributes:
+        - current_layer
+        - layer_count
+        - print_time_secs
+        - progress
+        - selected_file
+        - state
+        - time_left_secs

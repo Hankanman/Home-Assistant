@@ -1,0 +1,270 @@
+Windows 11:
+  card-mod-theme: Windows 11
+
+  modes:
+    light:
+      # Text Colors
+      primary-text-color: rgb(10, 10, 10)
+      secondary-text-color: rgb(50, 50, 50)
+      dark-text-color: rgba(243, 243, 243)
+      text-primary-color: rgb(10, 10, 10)
+      text-light-primary-color: rgb(50, 50, 50)
+      disabled-text-color: rgb(100, 100, 100)
+
+      # UI Colors
+      primary-color: rgb(11, 132, 227)
+      accent-color: rgb(98,196,93)
+      divider-color: rgb(100, 100, 100)
+      scrollbar-thumb-color: rgb(180, 180, 180)
+      primary-background-color: rgba(243, 243, 243, 0.9)
+      secondary-background-color: rgb(180, 180, 180, 0.9)
+      dark-background-color: rgb(100, 100, 100)
+      card-background-color: rgba(243, 243, 243, 0.7)
+      mdc-theme-surface: rgb(243, 243, 243)
+      mdc-dialog-scrim-color: rgba(255, 255, 255, 0.8)
+      code-editor-background-color: rgb(243, 243, 243)
+      ha-card-box-shadow: 0 0 0.8rem rgb(50, 50, 50)
+
+      # Lovelace Background
+      lovelace-background: "#B4B4B4 radial-gradient(#0B84E3 33%, #B4B4B4 100%) no-repeat fixed"
+
+    dark:
+      # Text Colors
+      primary-text-color: rgba(243, 243, 243)
+      secondary-text-color: rgb(180, 180, 180)
+      dark-text-color: rgba(243, 243, 243)
+      text-primary-color: rgba(243, 243, 243)
+      text-light-primary-color: rgb(180, 180, 180)
+      disabled-text-color: rgb(100, 100, 100)
+
+      # UI Colors
+      primary-color: rgb(11, 132, 227)
+      accent-color: rgb(98,196,93)
+      divider-color: rgb(100, 100, 100)
+      scrollbar-thumb-color: rgb(50, 50, 50)
+      primary-background-color: rgba(21, 21, 21, 0.9)
+      secondary-background-color: rgb(30, 30, 30, 0.9)
+      dark-background-color: rgb(100, 100, 100)
+      card-background-color: rgba(21, 21, 21, 0.9)
+      mdc-dialog-scrim-color: rgba(0, 0, 0, 0.8)
+      mdc-theme-surface: rgb(21, 21, 21)
+      code-editor-background-color: rgb(30, 30, 30)
+      ha-card-box-shadow: 0 0 0.8rem rgb(50, 50, 50)
+
+      # Lovelace Background
+      lovelace-background: "#151515 radial-gradient(#0B84E3 33%, #151515 100%) no-repeat fixed"
+
+  # Pantone Colors
+  color-red: rgb(194,68,54)
+  color-green: rgb(98,196,93)
+  color-blue: rgb(58,123,202)
+  color-purple: rgb(109,66,182)
+  color-yellow: rgb(244,233,102)
+  color-orange: rgb(239,133,80)
+  color-lights: rgb(255,168,90)
+  color-gray: rgb(100, 100, 100)
+
+  # Cards
+  ha-card-background: var(--card-background-color)
+  ha-card-border-radius: 0.5rem
+  ha-card-header-color: var(--primary-text-color) # Title in settings
+
+  # Text colors
+  error-color: var(--color-red)
+  success-color: var(--color-green)
+  info-color: var(--color-purple)
+  warning-color: var(--color-orange)
+
+  # Labels
+  label-badge-background-color: var(--primary-background-color)
+  label-badge-text-color: var(--primary-text-color)
+  label-badge-red: var(--color-red)
+  label-badge-green: var(--color-green)
+  label-badge-blue: var(--color-blue)
+  label-badge-yellow: var(--color-yellow)
+  label-badge-gray: var(--color-gray)
+  # Font
+  paper-font-common-base_-_font-family: Segoe UI, sans-serif
+  paper-font-common-base_-_-webkit-font-smoothing: subpixel-antialiased
+  paper-font-common-code_-_font-family: Lucida Console, Consolas, monospace
+  paper-font-common-code_-_-webkit-font-smoothing: subpixel-antialiased
+  paper-font-common-expensive-kerning_-_text-rendering: optimizeLegibility
+  # Sidebar Menu
+  sidebar-icon-color: var(--secondary-text-color)
+  sidebar-text-color: var(--primary-text-color)
+  sidebar-background-color: var(--primary-background-color)
+  sidebar-selected-background-color: var(--secondary-background-color)
+  sidebar-selected-icon-color: var(--primary-color)
+  sidebar-selected-text-color: var(--sidebar-selected-icon-color)
+  # Buttons
+  paper-item-icon-color: var(--secondary-text-color)
+  paper-item-icon-active-color: var(--primary-color)
+  # States and Badges
+  state-icon-color: var(--primary-text-color)
+  state-icon-active-color: var(--primary-color)
+  state-icon-unavailable-color: var(--disabled-text-color)
+  # Sliders
+  paper-slider-knob-color: var(--primary-color)
+  paper-slider-knob-start-color: var(--paper-slider-knob-color)
+  paper-slider-pin-color: var(--primary-color)
+  paper-slider-active-color: var(--primary-color)
+  paper-slider-secondary-color: var(--disabled-text-color)
+  # Header
+  app-header-background-color: var(--primary-background-color)
+  app-header-text-color: var(--primary-text-color)
+  app-header-edit-text-color: var(--app-header-text-color)
+  paper-tabs-selection-bar-color: var(--primary-text-color)
+  # Switches
+  switch-checked-button-color: var(--primary-color)
+  switch-checked-track-color: var(--primary-color)
+  switch-unchecked-button-color: var(--disabled-text-color)
+  switch-unchecked-track-color: var(--disabled-text-color)
+  # Toggles
+  paper-toggle-button-checked-button-color: var(--switch-checked-button-color)
+  paper-toggle-button-checked-bar-color: var(--switch-checked-track-color)
+  paper-toggle-button-unchecked-button-color: var(--switch-unchecked-button-color)
+  paper-toggle-button-unchecked-bar-color: var(--switch-unchecked-track-color)
+  # Table
+  table-row-background-color: var(--primary-background-color)
+  table-row-alternative-background-color: var(--secondary-background-color)
+  data-table-background-color: var(--primary-background-color)
+  # Dropdowns
+  material-background-color: var(--primary-background-color)
+  material-secondary-background-color: var(--secondary-background-color)
+  # Pre/Code
+  markdown-code-background-color: var(--secondary-background-color)
+  # Time Picker Card
+  time-picker-elements-background-color: var(--primary-background-color)
+  time-picker-text-color: var(--primary-text-color)
+  time-picker-icon-color: var(--primary-color)
+  # Bar Card
+  bar-card-color: var(--primary-color)
+  bar-card-disabled-color: var(--disabled-text-color)
+  # HACS
+  hacs-badge-color: var(--primary-color)
+  hacs-status-installed: var(--label-badge-green)
+  hacs-status-pending-restart: var(--label-badge-red)
+  hacs-status-pending-update: var(--label-badge-yellow)
+  hacs-status-not-loaded: var(--disabled-text-color)
+  hacs-new-color: var(--primary-color)
+  link-text-color: var(--primary-color)
+
+  # App Header
+  app-header-icon-color: var(--primary-color)
+  app-header-selection-bar-color: var(--primary-color)
+  # Settings and colors of Mini Media Player
+  mini-media-player-icon-color: var(--primary-color)
+  mini-media-player-accent-color: var(--primary-color)
+  mini-media-player-progress-height: 0.6rem
+  # Switch colors
+  switch-checked-color: var(--paper-toggle-button-checked-button-color)
+  switch-unchecked-color: var(--paper-toggle-button-unchecked-bar-color)
+  #Animated icons
+  weather-icon-clear-night: url("/hacsfiles/themes/waves/clear-night.svg")
+  weather-icon-cloudy: url("/hacsfiles/themes/waves/cloudy.svg")
+  weather-icon-fog: url("/hacsfiles/themes/waves/fog.svg")
+  weather-icon-lightning: url("/hacsfiles/themes/waves/lightning.svg")
+  weather-icon-lightning-rainy: url("/hacsfiles/themes/waves/lightning-rainy.svg")
+  weather-icon-partlycloudy: url("/hacsfiles/themes/waves/partlycloudy.svg")
+  weather-icon-pouring: url("/hacsfiles/themes/waves/pouring.svg")
+  weather-icon-rainy: url("/hacsfiles/themes/waves/rainy.svg")
+  weather-icon-hail: url("/hacsfiles/themes/waves/hail.svg")
+  weather-icon-snowy: url("/hacsfiles/themes/waves/snowy.svg")
+  weather-icon-snowy-rainy: url("/hacsfiles/themes/waves/snowy-rainy.svg")
+  weather-icon-sunny: url("/hacsfiles/themes/waves/sunny.svg")
+  weather-icon-windy: url("/hacsfiles/themes/waves/windy.svg")
+  weather-icon-windy-variant: url("/hacsfiles/themes/waves/windy-variant.svg")
+  weather-icon-exceptional: url("/hacsfiles/themes/waves/exceptional.svg")
+  # HACS
+  google-blue-500: var(--primary-color)
+  hacs-accent-color: var(--primary-color)
+  hacs-chip-color: var(--accent-color)
+  hacs-error-color: var(--error-color)
+  hacs-warning-color: var(--warning-color)
+  hacs-update-color: var(--success-color)
+
+
+  ####################################################
+  #                                                  #
+  #                     CARD-MOD                     #
+  #                                                  #
+  ####################################################
+
+  card-mod-root: |
+    .edit-mode app-header {
+      background-color: var(--app-header-background-color) !important;
+    }
+    .edit-mode app-toolbar {
+      background-color: unset !important;
+    }
+    :host(.panel) .card {
+      height: auto;
+    }
+
+  card-mod-card: |
+    .nobg {
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+    }
+    .slider-card-embedded {
+      background: none;
+      box-shadow: none;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      --mdc-icon-size: unset;
+    }
+    .indicator {
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+      font-size: 1rem;
+    }
+
+    .card-header {
+      font-weight: 500;
+    }
+
+
+    /* * * * * * * * * * * * * * * * * *
+      *                                 *
+      *            MAP CARD             *
+      *                                 *
+      * * * * * * * * * * * * * * * * * */
+    #map > div.leaflet-control-container > * {
+      display: none;
+    }
+    .type-map {
+      border-block-start-width: 0 !important;
+    }
+
+    /* * * * * * * * * * * * * * * * * *
+      *                                 *
+      *       SLIDER BUTTON CARD        *
+      *                                 *
+      * * * * * * * * * * * * * * * * * */
+    .type-custom-slider-button-card {
+      --btn-bg-color-off: transparent;
+      background: transparent;
+      --slider-color: var(--color-lights);
+      --paper-item-icon-active-color: var(--slider-color);
+      --paper-item-icon-color: var(--disabled-text-color);
+      --action-icon-color-on: var(--primary-text-color);
+      --action-icon-color-off: var(--disabled-text-color);
+      --label-color-on: var(--primary-text-color);
+      --state-color-on: var(--primary-text-color);
+      --label-color-off: var(--disabled-text-color);
+      --mdc-icon-size: 1.5rem;
+    }
+    .type-custom-slider-button-card > .button.off > .slider {
+      background: transparent;
+    }
+    .type-custom-slider-button-card > .button > .text {
+      font-size: 1rem;
+      line-height: 1.2rem;
+      top: 0;
+    }
+    .off .slider .slider-bg {
+      --slider-bg: transparent !important;
+      background-color: transparent !important;
+    }

@@ -1,0 +1,50 @@
+garden:
+  # Binary Sensors
+  #----------------------------------#
+  binary_sensor:
+    - platform: bayesian
+      name: Garden Occupied
+      prior: 0.07
+      device_class: occupancy
+      probability_threshold: 0.7
+      observations:
+
+        - platform: "state"
+          entity_id: binary_sensor.garden_motion
+          prob_given_true: 0.3879167
+          prob_given_false: 0.0009878
+          to_state: "on"
+  # Variable Sensors
+  #----------------------------------#
+  sensor:
+  # Template
+  template:
+  # Binary Sensors
+    binary_sensor:
+
+  # Sensors
+    sensor:
+      - unique_id: garden_occupied_probability
+        name: Garden Occupied Probability
+        state_class: measurement
+        unit_of_measurement: "%"
+        state: "{{ (state_attr('binary_sensor.garden_occupied','probability')*100 | int(0) ) | round(0) }}"
+  # Thermostats
+  #----------------------------------#
+  climate:
+
+  # Media Players
+  #----------------------------------#
+  media_player:
+
+  # Notification Platforms
+  #----------------------------------#
+  notify:
+
+  # Shell Commands
+  #----------------------------------#
+  shell_command:
+
+  # Switches
+  #----------------------------------#
+  switch:

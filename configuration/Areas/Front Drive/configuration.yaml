@@ -1,0 +1,95 @@
+front_drive:
+  # Thermostats
+  #----------------------------------#
+  climate:
+  # Binary Sensors
+  #----------------------------------#
+  binary_sensor:
+    - platform: bayesian
+      name: Front Drive Occupied
+      prior: 0.02
+      device_class: occupancy
+      probability_threshold: 0.7
+      observations:
+
+        - platform: "state"
+          entity_id: binary_sensor.front_door_contact
+          prob_given_true: 0.1527232
+          prob_given_false: 0.0029303
+          to_state: "off"
+
+        - platform: "state"
+          entity_id: binary_sensor.front_door_ding
+          prob_given_true: 0.3561458
+          prob_given_false: 0.0051928
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.front_door_motion
+          prob_given_true: 0.2561890
+          prob_given_false: 0.0002271
+          to_state: "on"
+
+        - platform: "state"
+          entity_id: binary_sensor.front_drive_motion
+          prob_given_true: 0.4671964
+          prob_given_false: 0.0002967
+          to_state: "on"
+    # Bayesian
+    #----------------------------------#
+    # Trends
+    #----------------------------------#
+    # Humidity
+    #----------------------------------#
+    # Temperature
+    #----------------------------------#
+
+  # Variable Sensors
+  #----------------------------------#
+  sensor:
+  #   # Temperature Averages
+  #   #----------------------------------#
+  #   - platform: min_max
+  #     name: Front Drive Temperature
+  #     type: mean
+  #     round_digits: 1
+  #     entity_ids:
+  #       - sensor.front_drive_mot_12_temperature
+    # Humidity Averages
+  #----------------------------------#
+    # Illuminance Averages
+    #----------------------------------#
+
+  # Template Sensors
+  #----------------------------------#
+  template:
+    # Template Binary Sensors
+    #----------------------------------#
+    binary_sensor:
+      # Bright Sensors
+      #----------------------------------#
+
+      # Humid Sensors
+      #----------------------------------#
+
+    # Template Variable Sensors
+    #----------------------------------#
+    sensor:
+      # Probabilities
+      #----------------------------------#
+
+  # Media Players
+  #----------------------------------#
+  media_player:
+
+  # Notification Platforms
+  #----------------------------------#
+  notify:
+
+  # Shell Commands
+  #----------------------------------#
+  shell_command:
+
+  # Switches
+  #----------------------------------#
+  switch:

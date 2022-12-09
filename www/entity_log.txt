@@ -1,0 +1,2388 @@
+-automation.home_rubbish_collection_reminder
+-automation.home_toggle_all_automations
+-automation.home_update_climate
+-automation.room_bathroom_lights
+-automation.room_bedroom_lights
+-automation.room_entrance_lights
+-automation.room_hall_lights
+-automation.room_kitchen_lights
+-automation.room_lounge_camera
+-automation.room_lounge_lights
+-automation.room_study_lights
+-automation.room_toilet_lights
+-automation.system_dismiss_persistant_notification
+-automation.system_shutdown_notification
+-automation.system_start_notification
+-automation.tracking_get_update
+-binary_sensor.area_bathroom_bright
+-binary_sensor.area_bathroom_humidity_trend
+-binary_sensor.area_bathroom_occupied
+-binary_sensor.area_bathroom_temperature_trend
+-binary_sensor.area_bedroom_bright
+-binary_sensor.area_bedroom_occupied
+-binary_sensor.area_bedroom_temperature_trend
+-binary_sensor.area_entrance_bright
+-binary_sensor.area_entrance_dog_motion
+-binary_sensor.area_entrance_occupied
+-binary_sensor.area_entrance_person_motion
+-binary_sensor.area_entrance_temperature_trend
+-binary_sensor.area_hall_bright
+-binary_sensor.area_hall_dog_motion
+-binary_sensor.area_hall_occupied
+-binary_sensor.area_hall_person_motion
+-binary_sensor.area_hall_temperature_trend
+-binary_sensor.area_kitchen_bright
+-binary_sensor.area_kitchen_dog_motion
+-binary_sensor.area_kitchen_humidity_trend
+-binary_sensor.area_kitchen_occupied
+-binary_sensor.area_kitchen_person_motion
+-binary_sensor.area_kitchen_temperature_trend
+-binary_sensor.area_lounge_bright
+-binary_sensor.area_lounge_dog_motion
+-binary_sensor.area_lounge_occupied
+-binary_sensor.area_lounge_person_motion
+-binary_sensor.area_lounge_temperature_trend
+-binary_sensor.area_outside_humidity_trend
+-binary_sensor.area_shed_humidity_trend
+-binary_sensor.area_stairs_dog_motion
+-binary_sensor.area_stairs_person_motion
+-binary_sensor.area_study_bright
+-binary_sensor.area_study_occupied
+-binary_sensor.area_study_temperature_trend
+-binary_sensor.area_toilet_bright
+-binary_sensor.area_toilet_occupied
+-binary_sensor.area_toilet_temperature_trend
+-binary_sensor.bathroom_multisensor_low_battery_level
+-binary_sensor.bathroom_multisensor_motion
+-binary_sensor.bed_occupied
+-binary_sensor.bedroom_trisensor_low_battery_level
+-binary_sensor.bedroom_trisensor_motion
+-binary_sensor.chrispp91
+-binary_sensor.door_dog_motion
+-binary_sensor.door_person_motion
+-binary_sensor.lounge_dor_01_battery_low
+-binary_sensor.lounge_dor_01_contact
+-binary_sensor.lounge_dor_02_battery_low
+-binary_sensor.lounge_dor_02_contact
+-binary_sensor.entrance_dor_03_battery_low
+-binary_sensor.entrance_dor_03_contact
+-binary_sensor.endeavor
+-binary_sensor.entrance_tablet_ac_plugged_2
+-binary_sensor.entrance_tablet_charging_2
+-binary_sensor.entrance_tablet_is_charging
+-binary_sensor.entrance_tablet_motion_detected
+-binary_sensor.entrance_tablet_usb_plugged_2
+-binary_sensor.front_door_ding
+-binary_sensor.front_door_motion
+-binary_sensor.hall_trisensor_low_battery_level
+-binary_sensor.hall_trisensor_motion
+-binary_sensor.hankanman
+-binary_sensor.kitchen_trisensor_low_battery_level
+-binary_sensor.kitchen_trisensor_motion
+-binary_sensor.laura_phone_bluetooth_state
+-binary_sensor.laura_phone_doze_mode
+-binary_sensor.laura_phone_interactive
+-binary_sensor.laura_phone_is_charging
+-binary_sensor.laura_phone_music_active
+-binary_sensor.laura_sleeping
+-binary_sensor.lounge_trisensor_low_battery_level
+-binary_sensor.lounge_trisensor_motion
+-binary_sensor.bedroom_mot_01_occupancy
+-binary_sensor.lounge_mot_02_battery_low
+-binary_sensor.lounge_mot_02_occupancy
+-binary_sensor.lounge_mot_02_tamper
+-binary_sensor.lounge_mot_03_battery_low
+-binary_sensor.lounge_mot_03_occupancy
+-binary_sensor.lounge_mot_03_tamper
+-binary_sensor.people_home
+-binary_sensor.bathroom_rad_01_heat_required
+-binary_sensor.bathroom_rad_01_mounted_mode_active
+-binary_sensor.bedroom_rad_02_heat_required
+-binary_sensor.bedroom_rad_02_mounted_mode_active
+-binary_sensor.study_rad_03_heat_required
+-binary_sensor.study_rad_03_mounted_mode_active
+-binary_sensor.toilet_rad_04_heat_required
+-binary_sensor.toilet_rad_04_mounted_mode_active
+-binary_sensor.remote_ui
+-binary_sensor.seb_phone_bluetooth_state
+-binary_sensor.seb_phone_is_charging
+-binary_sensor.seb_sleeping
+-binary_sensor.starrunner_active
+-binary_sensor.starrunner_microphone_active
+-binary_sensor.starrunner_online
+-binary_sensor.starrunner_webcam_active
+-binary_sensor.study_trisensor_low_battery_level
+-binary_sensor.study_trisensor_motion
+-binary_sensor.tapo_kitchen_camera_motion
+-binary_sensor.timbobuk
+-binary_sensor.toilet_trisensor_low_battery_level
+-binary_sensor.toilet_trisensor_motion
+-binary_sensor.ugw3_wan_status
+-binary_sensor.updater
+-binary_sensor.study_win_01_battery_low
+-binary_sensor.study_win_01_contact
+-binary_sensor.study_win_02_battery_low
+-binary_sensor.study_win_02_contact
+-binary_sensor.bedroom_win_03_battery_low
+-binary_sensor.bedroom_win_03_contact
+-binary_sensor.toilet_win_04_battery_low
+-binary_sensor.toilet_win_04_contact
+-binary_sensor.workday_sensor
+-binary_sensor.zone_entrance_dog_motion
+-binary_sensor.zone_entrance_dogs
+-binary_sensor.zone_entrance_people
+-binary_sensor.zone_entrance_person_motion
+-binary_sensor.zone_hall_dog_motion
+-binary_sensor.zone_hall_dogs
+-binary_sensor.zone_hall_people
+-binary_sensor.zone_hall_person_motion
+-binary_sensor.zone_kitchen_dog_motion
+-binary_sensor.zone_kitchen_dogs
+-binary_sensor.zone_kitchen_people
+-binary_sensor.zone_kitchen_person_motion
+-binary_sensor.zone_lounge_dog_motion
+-binary_sensor.zone_lounge_dogs
+-binary_sensor.zone_lounge_people
+-binary_sensor.zone_lounge_person_motion
+-binary_sensor.zone_stairs_dog_motion
+-binary_sensor.zone_stairs_dogs
+-binary_sensor.zone_stairs_people
+-binary_sensor.zone_stairs_person_motion
+-calendar.bin_collection
+-camera.door
+-camera.door_dog
+-camera.door_person
+-camera.entrance
+-camera.foscam_hall
+-camera.foscam_lounge
+-camera.front_door
+-camera.front_door_snapshot
+-camera.hall
+-camera.kitchen
+-camera.lounge
+-camera.stairs
+-camera.tapo_entrance
+-camera.tapo_kitchen
+-climate.area_bathroom_climate
+-climate.area_bedroom_climate
+-climate.area_entrance_climate
+-climate.area_hall_climate
+-climate.area_home_climate
+-climate.area_kitchen_climate
+-climate.area_lounge_climate
+-climate.area_study_climate
+-climate.area_toilet_climate
+-climate.bathroom_rad_01
+-climate.bedroom_rad_02
+-climate.study_rad_03
+-climate.toilet_rad_04
+-climate.stairs_tst_01
+-device_tracker.ble_laura_watch_tracker
+-device_tracker.ble_seb_phone_test_tracker
+-device_tracker.ble_seb_watch_tracker
+-device_tracker.entrance_tablet
+-device_tracker.laura_phone
+-device_tracker.laura_phone_ble_tracker
+-device_tracker.laura_smartwatch_tracker
+-device_tracker.seb_phone
+-device_tracker.seb_phone_ble_tracker
+-group.all_automations
+-group.area_bathroom_motion
+-group.area_bedroom_motion
+-group.area_bedroom_windows
+-group.area_entrance_doors
+-group.area_entrance_motion
+-group.area_hall_motion
+-group.area_kitchen_motion
+-group.area_lounge_doors
+-group.area_lounge_motion
+-group.area_study_motion
+-group.area_study_windows
+-group.area_toilet_motion
+-group.area_toilet_windows
+-group.clip_recording
+-group.echos
+-group.object_detection
+-group.snapshots
+-input_boolean.area_bathroom_automations
+-input_boolean.area_bathroom_schedule
+-input_boolean.area_bedroom_automations
+-input_boolean.area_bedroom_schedule
+-input_boolean.area_entrance_automations
+-input_boolean.area_hall_automations
+-input_boolean.area_home_automations
+-input_boolean.area_kitchen_automations
+-input_boolean.area_kitchen_schedule
+-input_boolean.area_lounge_automations
+-input_boolean.area_lounge_schedule
+-input_boolean.area_study_automations
+-input_boolean.area_study_schedule
+-input_boolean.area_toilet_automations
+-input_boolean.guest_mode
+-input_boolean.sleep_mode
+-input_boolean.sleep_schedule
+-input_datetime.bin_reminder
+-input_datetime.laura_alarm
+-input_datetime.seb_alarm
+-input_number.area_bathroom_humidity_offset
+-input_number.area_bathroom_lux_level
+-input_number.area_bedroom_lux_level
+-input_number.area_entrance_lux_level
+-input_number.area_hall_lux_level
+-input_number.area_kitchen_lux_level
+-input_number.area_lounge_lux_level
+-input_number.area_study_lux_level
+-input_number.area_toilet_lux_level
+-input_number.target_temperature
+-input_select.home_mode
+-light.bathroom_lights
+-light.bedroom_lights
+-light.entrance_lights
+-light.hall_lights
+-light.home_lights
+-light.kitchen_lights
+-light.lit_bat_01
+-light.lit_bed_01
+-light.lit_bed_02
+-light.lit_ent_01
+-light.lit_hal_01
+-light.lit_kit_01
+-light.lit_kit_02
+-light.lit_kit_03
+-light.lit_lon_01
+-light.lit_lon_02
+-light.lit_out_01
+-light.lit_stu_01
+-light.lit_stu_02
+-light.lit_toi_01
+-light.lounge_lights
+-light.study_lights
+-light.toilet_lights
+-media_player.bedroom
+-media_player.bedroom_echo
+-media_player.bedroom_fire_tv
+-media_player.bedroom_fire_tv_adb
+-media_player.bedroom_tv
+-media_player.downstairs
+-media_player.entrance_tablet
+-media_player.everywhere
+-media_player.kitchen
+-media_player.kitchen_echo_show
+-media_player.lounge
+-media_player.lounge_echo
+-media_player.lounge_fire_tv_adb
+-media_player.lounge_tv
+-media_player.lounge_tv_adb
+-media_player.lounge_tv_cast
+-media_player.sebastian_s_fire_tv_cube
+-media_player.shield_adb
+-media_player.shield_cast
+-media_player.spotify_laura
+-media_player.spotify_seb
+-media_player.starrunner
+-media_player.study_echo
+-media_player.study_fire_tv
+-media_player.study_fire_tv_adb
+-media_player.upstairs
+-number.front_door_snapshot_interval
+-number.bedroom_mot_01_occupancy_timeout
+-number.bathroom_rad_01_algorithm_scale_factor
+-number.bathroom_rad_01_external_measured_room_sensor
+-number.bathroom_rad_01_trigger_time
+-number.bedroom_rad_02_algorithm_scale_factor
+-number.bedroom_rad_02_external_measured_room_sensor
+-number.bedroom_rad_02_trigger_time
+-number.study_rad_03_algorithm_scale_factor
+-number.study_rad_03_external_measured_room_sensor
+-number.study_rad_03_trigger_time
+-number.toilet_rad_04_algorithm_scale_factor
+-number.toilet_rad_04_external_measured_room_sensor
+-number.toilet_rad_04_trigger_time
+-number.stairs_tst_01_temperature_setpoint_hold_duration
+-number.upstairs_chime_snooze_minutes
+-number.upstairs_chime_volume
+-octopusagile.all_rates
+-octopusagile.half_hour_timer_lastupdate
+-octopusagile.half_hour_timer_nextupdate
+-octopusagile.monthly_cost
+-octopusagile.monthly_usage
+-octopusagile.rates
+-octopusagile.region_code
+-octopusagile.startdate
+-octopusagile.timers
+-octopusagile.update_consumption_lastupdate
+-octopusagile.update_consumption_nextupdate
+-octopusagile.update_timers_nextupdate
+-octopusagile.yearly_cost
+-octopusagile.yearly_usage
+-person.laura_ward
+-person.sebastian_burrell
+-script.endeavor_startup
+-script.my_computer_wake
+-script.play_rain_sounds
+-script.print_entities_to_file
+-select.front_door_event_select
+-select.bedroom_mot_01_motion_sensitivity
+-select.bathroom_rad_01_day_of_week
+-select.bathroom_rad_01_keypad_lockout
+-select.bedroom_rad_02_day_of_week
+-select.bedroom_rad_02_keypad_lockout
+-select.study_rad_03_day_of_week
+-select.study_rad_03_keypad_lockout
+-select.toilet_rad_04_day_of_week
+-select.toilet_rad_04_keypad_lockout
+-sensor.adguard_average_processing_speed
+-sensor.adguard_dns_queries
+-sensor.adguard_dns_queries_blocked_ratio
+-sensor.adguard_parental_control_blocked
+-sensor.adguard_safe_browsing_blocked
+-sensor.adguard_safe_searches_enforced
+-sensor.area_bathroom_humidity
+-sensor.area_bathroom_illuminance
+-sensor.area_bathroom_probability
+-sensor.area_bathroom_temperature
+-sensor.area_bedroom_illuminance
+-sensor.area_bedroom_probability
+-sensor.area_bedroom_temperature
+-sensor.area_entrance_dog
+-sensor.area_entrance_illuminance
+-sensor.area_entrance_person
+-sensor.area_entrance_probability
+-sensor.area_entrance_temperature
+-sensor.area_hall_dog
+-sensor.area_hall_illuminance
+-sensor.area_hall_person
+-sensor.area_hall_probability
+-sensor.area_hall_temperature
+-sensor.area_home_incoming_illuminance
+-sensor.area_kitchen_dog
+-sensor.area_kitchen_humidity
+-sensor.area_kitchen_illuminance
+-sensor.area_kitchen_person
+-sensor.area_kitchen_probability
+-sensor.area_kitchen_temperature
+-sensor.area_lounge_dog
+-sensor.area_lounge_illuminance
+-sensor.area_lounge_person
+-sensor.area_lounge_probability
+-sensor.area_lounge_temperature
+-sensor.area_outside_humidity
+-sensor.area_outside_temperature
+-sensor.area_shed_humidity
+-sensor.area_shed_temperature
+-sensor.area_stairs_dog
+-sensor.area_stairs_person
+-sensor.area_study_illuminance
+-sensor.area_study_probability
+-sensor.area_study_temperature
+-sensor.area_toilet_illuminance
+-sensor.area_toilet_probability
+-sensor.area_toilet_temperature
+-sensor.bathroom_multisensor_air_temperature
+-sensor.bathroom_multisensor_battery_level
+-sensor.bathroom_multisensor_humidity
+-sensor.bathroom_multisensor_illuminance
+-sensor.bathroom_multisensor_ultraviolet
+-sensor.bedroom_cluster_leader
+-sensor.bedroom_cluster_size
+-sensor.bedroom_echo_temperature
+-sensor.bedroom_trisensor_air_temperature
+-sensor.bedroom_trisensor_battery_level
+-sensor.bedroom_trisensor_illuminance
+-sensor.bin_collection
+-sensor.bin_collection_data
+-sensor.ble_laura_watch_room_presence
+-sensor.ble_seb_phone_test_room_presence
+-sensor.ble_seb_watch_room_presence
+-sensor.central_heating
+-sensor.central_heating_wh
+-sensor.cert_expiry_timestamp_sbhost_co_uk
+-sensor.co2_intensity
+-sensor.cooker
+-sensor.cooker_wh
+-sensor.coral_inference_speed
+-sensor.current_electricity_price
+-sensor.daily_electricity
+-sensor.date
+-sensor.date_time
+-sensor.date_time_iso
+-sensor.detection_fps
+-sensor.door_camera_fps
+-sensor.door_detection_fps
+-sensor.door_dog
+-sensor.door_person
+-sensor.door_process_fps
+-sensor.door_skipped_fps
+-sensor.lounge_dor_01_battery
+-sensor.lounge_dor_02_battery
+-sensor.entrance_dor_03_battery
+-sensor.downstairs_lights
+-sensor.downstairs_lights_wh
+-sensor.electricity_daily_usage
+-sensor.endeavor_auxtin0_temperature
+-sensor.endeavor_auxtin1_temperature
+-sensor.endeavor_auxtin2_temperature
+-sensor.endeavor_auxtin3_temperature
+-sensor.endeavor_battery_charge
+-sensor.endeavor_composite_temperature
+-sensor.endeavor_containers_active
+-sensor.endeavor_containers_cpu_used
+-sensor.endeavor_containers_ram_used
+-sensor.endeavor_cpu_load
+-sensor.endeavor_cpu_used
+-sensor.endeavor_cputin_temperature
+-sensor.endeavor_etc_hostname_free
+-sensor.endeavor_etc_hostname_used
+-sensor.endeavor_etc_hostname_used_percent
+-sensor.endeavor_etc_hosts_free
+-sensor.endeavor_etc_hosts_used
+-sensor.endeavor_etc_hosts_used_percent
+-sensor.endeavor_etc_resolv_conf_free
+-sensor.endeavor_etc_resolv_conf_used
+-sensor.endeavor_etc_resolv_conf_used_percent
+-sensor.endeavor_free
+-sensor.endeavor_mnt_cache_free
+-sensor.endeavor_mnt_cache_used
+-sensor.endeavor_mnt_cache_used_percent
+-sensor.endeavor_mnt_disk1_free
+-sensor.endeavor_mnt_disk1_used
+-sensor.endeavor_mnt_disk1_used_percent
+-sensor.endeavor_mnt_disk2_free
+-sensor.endeavor_mnt_disk2_used
+-sensor.endeavor_mnt_disk2_used_percent
+-sensor.endeavor_mnt_disk3_free
+-sensor.endeavor_mnt_disk3_used
+-sensor.endeavor_mnt_disk3_used_percent
+-sensor.endeavor_nct6797_1_fan_speed
+-sensor.endeavor_nct6797_2_fan_speed
+-sensor.endeavor_nct6797_3_fan_speed
+-sensor.endeavor_nct6797_4_fan_speed
+-sensor.endeavor_nct6797_5_fan_speed
+-sensor.endeavor_nct6797_6_fan_speed
+-sensor.endeavor_nct6797_7_fan_speed
+-sensor.endeavor_pch_chip_cpu_max_temp_temperature
+-sensor.endeavor_pch_chip_temp_temperature
+-sensor.endeavor_pch_cpu_temp_temperature
+-sensor.endeavor_ram_free
+-sensor.endeavor_ram_used
+-sensor.endeavor_ram_used_percent
+-sensor.endeavor_running
+-sensor.endeavor_sleeping
+-sensor.endeavor_smbusmaster_0_temperature
+-sensor.endeavor_storage_free
+-sensor.endeavor_storage_total
+-sensor.endeavor_storage_used
+-sensor.endeavor_swap_free
+-sensor.endeavor_swap_used
+-sensor.endeavor_swap_used_percent
+-sensor.endeavor_systin_temperature
+-sensor.endeavor_tccd1_temperature
+-sensor.endeavor_tctl_temperature
+-sensor.endeavor_tdie_temperature
+-sensor.endeavor_thread
+-sensor.endeavor_total
+-sensor.endeavor_used
+-sensor.endeavor_used_percent
+-sensor.entrance_camera_fps
+-sensor.entrance_process_fps
+-sensor.entrance_skipped_fps
+-sensor.entrance_tablet_battery_health
+-sensor.entrance_tablet_battery_level
+-sensor.entrance_tablet_battery_level_2
+-sensor.entrance_tablet_battery_state
+-sensor.entrance_tablet_battery_temperature
+-sensor.entrance_tablet_charger_type
+-sensor.entrance_tablet_last_reboot
+-sensor.entrance_tablet_light_2
+-sensor.entrance_tablet_light_sensor
+-sensor.front_door_battery
+-sensor.front_door_info
+-sensor.front_door_wireless
+-sensor.gas_daily_usage
+-sensor.grid_fossil_fuel_percentage
+-sensor.hacs
+-sensor.hall_camera_fps
+-sensor.hall_detection_fps
+-sensor.hall_process_fps
+-sensor.hall_skipped_fps
+-sensor.hall_trisensor_air_temperature
+-sensor.hall_trisensor_battery_level
+-sensor.hall_trisensor_illuminance
+-sensor.hankanman_account_tier
+-sensor.hankanman_gamer_score
+-sensor.hankanman_status
+-sensor.house
+-sensor.house_wh
+-sensor.in_bed_probability
+-sensor.kitchen_camera_fps
+-sensor.kitchen_cluster_leader
+-sensor.kitchen_cluster_size
+-sensor.kitchen_detection_fps
+-sensor.kitchen_process_fps
+-sensor.kitchen_skipped_fps
+-sensor.kitchen_sockets
+-sensor.kitchen_sockets_wh
+-sensor.kitchen_trisensor_air_temperature
+-sensor.kitchen_trisensor_battery_level
+-sensor.kitchen_trisensor_illuminance
+-sensor.laura_location
+-sensor.laura_phone_audio_mode
+-sensor.laura_phone_battery_level
+-sensor.laura_phone_battery_state
+-sensor.laura_phone_battery_temperature
+-sensor.laura_phone_ble_room_presence
+-sensor.laura_phone_ble_transmitter
+-sensor.laura_phone_bluetooth_connection
+-sensor.laura_phone_charger_type
+-sensor.laura_phone_detected_activity
+-sensor.laura_phone_geocoded_location
+-sensor.laura_phone_media_session
+-sensor.laura_phone_next_alarm
+-sensor.laura_phone_sleep_confidence
+-sensor.laura_phone_sleep_segment
+-sensor.laura_phone_steps_sensor
+-sensor.laura_phone_wifi_bssid
+-sensor.lounge_camera_fps
+-sensor.lounge_cluster_leader
+-sensor.lounge_cluster_size
+-sensor.lounge_detection_fps
+-sensor.lounge_media_energy
+-sensor.lounge_media_plug_current_energy
+-sensor.lounge_process_fps
+-sensor.lounge_skipped_fps
+-sensor.lounge_trisensor_air_temperature
+-sensor.lounge_trisensor_battery_level
+-sensor.lounge_trisensor_illuminance
+-sensor.kitchen_lux_01_battery
+-sensor.kitchen_lux_01_illuminance
+-sensor.kitchen_lux_01_illuminance_lux
+-sensor.kitchen_lux_01_linkquality
+-sensor.bathroom_lux_02_battery
+-sensor.bathroom_lux_02_illuminance_lux
+-sensor.lounge_lux_03_battery
+-sensor.lounge_lux_03_illuminance_lux
+-sensor.entrance_lux_04_battery
+-sensor.entrance_lux_04_illuminance_lux
+-sensor.bedroom_lux_05_battery
+-sensor.bedroom_lux_05_illuminance_lux
+-sensor.toilet_lux_06_battery
+-sensor.toilet_lux_06_illuminance_lux
+-sensor.hall_lux_07_battery
+-sensor.hall_lux_07_illuminance_lux
+-sensor.lounge_lux_08_battery
+-sensor.lounge_lux_08_illuminance_lux
+-sensor.study_lux_09_battery
+-sensor.study_lux_09_illuminance_lux
+-sensor.mainsconsumption
+-sensor.mainsconsumption_wh
+-sensor.mainsexport
+-sensor.mainsexport_wh
+-sensor.monthly_elecricity
+-sensor.bedroom_mot_01_battery
+-sensor.bedroom_mot_01_illuminance_lux
+-sensor.bedroom_mot_01_motion_sensitivity
+-sensor.bedroom_mot_01_occupancy_timeout
+-sensor.bedroom_mot_01_temperature
+-sensor.lounge_mot_02_battery
+-sensor.lounge_mot_03_battery
+-sensor.motion_light_and_temperature_sensor_general_purpose
+-sensor.octopus_agile_current_rate
+-sensor.octopus_agile_min_rate
+-sensor.octopus_agile_next_rate
+-sensor.octopus_agile_previous_rate
+-sensor.bathroom_rad_01_algorithm_scale_factor
+-sensor.bathroom_rad_01_battery
+-sensor.bathroom_rad_01_day_of_week
+-sensor.bathroom_rad_01_external_measured_room_sensor
+-sensor.bathroom_rad_01_load_estimate
+-sensor.bathroom_rad_01_temperature
+-sensor.bathroom_rad_01_trigger_time
+-sensor.bathroom_rad_01_window_open_internal
+-sensor.bedroom_rad_02_algorithm_scale_factor
+-sensor.bedroom_rad_02_battery
+-sensor.bedroom_rad_02_day_of_week
+-sensor.bedroom_rad_02_external_measured_room_sensor
+-sensor.bedroom_rad_02_load_estimate
+-sensor.bedroom_rad_02_temperature
+-sensor.bedroom_rad_02_trigger_time
+-sensor.bedroom_rad_02_window_open_internal
+-sensor.study_rad_03_algorithm_scale_factor
+-sensor.study_rad_03_battery
+-sensor.study_rad_03_day_of_week
+-sensor.study_rad_03_external_measured_room_sensor
+-sensor.study_rad_03_load_estimate
+-sensor.study_rad_03_temperature
+-sensor.study_rad_03_trigger_time
+-sensor.study_rad_03_window_open_internal
+-sensor.toilet_rad_04_algorithm_scale_factor
+-sensor.toilet_rad_04_battery
+-sensor.toilet_rad_04_day_of_week
+-sensor.toilet_rad_04_external_measured_room_sensor
+-sensor.toilet_rad_04_load_estimate
+-sensor.toilet_rad_04_temperature
+-sensor.toilet_rad_04_trigger_time
+-sensor.toilet_rad_04_window_open_internal
+-sensor.rem_01_action
+-sensor.rem_01_battery
+-sensor.rem_02_action
+-sensor.rem_02_battery
+-sensor.rem_03_battery
+-sensor.rem_04_action
+-sensor.rem_04_battery
+-sensor.rem_05_action
+-sensor.rem_05_battery
+-sensor.season
+-sensor.seb_location
+-sensor.seb_phone_battery_level
+-sensor.seb_phone_battery_state
+-sensor.seb_phone_battery_temperature
+-sensor.seb_phone_ble_room_presence
+-sensor.seb_phone_ble_transmitter
+-sensor.seb_phone_bluetooth_connection
+-sensor.seb_phone_charger_type
+-sensor.seb_phone_detected_activity
+-sensor.seb_phone_geocoded_location
+-sensor.seb_phone_sleep_confidence
+-sensor.seb_phone_sleep_segment
+-sensor.seb_phone_steps_sensor
+-sensor.sebastian_s_fire_tv_cube_next_alarm
+-sensor.sebastian_s_fire_tv_cube_next_reminder
+-sensor.sebastian_s_fire_tv_cube_next_timer
+-sensor.smoke_alarms
+-sensor.smoke_alarms_wh
+-sensor.sockets
+-sensor.sockets_wh
+-sensor.sofa_cluster_leader
+-sensor.sofa_cluster_size
+-sensor.stairs_camera_fps
+-sensor.stairs_detection_fps
+-sensor.stairs_process_fps
+-sensor.stairs_skipped_fps
+-sensor.starrunner_active_window
+-sensor.starrunner_cpu_used
+-sensor.starrunner_gpu_temperature
+-sensor.starrunner_gpu_used
+-sensor.starrunner_idle_time
+-sensor.starrunner_last_active
+-sensor.starrunner_ram_used_percent
+-sensor.starrunner_session_state
+-sensor.stats_bathroom_bright
+-sensor.stats_bathroom_humidity_trend
+-sensor.stats_bathroom_bedroom_mot_01_occupancy
+-sensor.stats_bathroom_motion
+-sensor.stats_bathroom_multisensor_motion
+-sensor.stats_bathroom_occupied
+-sensor.stats_bathroom_schedule
+-sensor.stats_bathroom_temperature_trend
+-sensor.stats_bedroom_bright
+-sensor.stats_bedroom_motion
+-sensor.stats_bedroom_occupied
+-sensor.stats_bedroom_schedule
+-sensor.stats_bedroom_temperature_trend
+-sensor.stats_bedroom_trisensor_motion
+-sensor.stats_bedroom_windows
+-sensor.stats_entrance_bright
+-sensor.stats_entrance_door
+-sensor.stats_entrance_motion
+-sensor.stats_entrance_occupied
+-sensor.stats_entrance_people
+-sensor.stats_entrance_tablet_motion
+-sensor.stats_entrance_temperature_trend
+-sensor.stats_hall_bright
+-sensor.stats_hall_motion
+-sensor.stats_hall_occupied
+-sensor.stats_hall_people
+-sensor.stats_hall_temperature_trend
+-sensor.stats_hall_trisensor_motion
+-sensor.stats_kitchen_bright
+-sensor.stats_kitchen_humidity_trend
+-sensor.stats_kitchen_motion
+-sensor.stats_kitchen_occupied
+-sensor.stats_kitchen_people
+-sensor.stats_kitchen_schedule
+-sensor.stats_kitchen_temperature_trend
+-sensor.stats_kitchen_trisensor_motion
+-sensor.stats_lounge_bright
+-sensor.stats_lounge_doors
+-sensor.stats_lounge_lounge_mot_02_motion
+-sensor.stats_lounge_lounge_mot_03_motion
+-sensor.stats_lounge_motion
+-sensor.stats_lounge_occupied
+-sensor.stats_lounge_people
+-sensor.stats_lounge_schedule
+-sensor.stats_lounge_temperature_trend
+-sensor.stats_starrunner_active
+-sensor.stats_starrunner_microphone_active
+-sensor.stats_starrunner_online
+-sensor.stats_starrunner_webcam_active
+-sensor.stats_study_bright
+-sensor.stats_study_motion
+-sensor.stats_study_occupied
+-sensor.stats_study_people
+-sensor.stats_study_schedule
+-sensor.stats_study_temperature_trend
+-sensor.stats_study_trisensor_motion
+-sensor.stats_study_windows
+-sensor.stats_toilet_bright
+-sensor.stats_toilet_motion
+-sensor.stats_toilet_occupied
+-sensor.stats_toilet_temperature_trend
+-sensor.stats_toilet_trisensor_motion
+-sensor.stats_toilet_windows
+-sensor.study_cluster_leader
+-sensor.study_cluster_size
+-sensor.study_trisensor_air_temperature
+-sensor.study_trisensor_battery_level
+-sensor.study_trisensor_illuminance
+-sensor.template_last_echo
+-sensor.terrapin_addons_free
+-sensor.terrapin_addons_used
+-sensor.terrapin_addons_used_percent
+-sensor.terrapin_backup_free
+-sensor.terrapin_backup_used
+-sensor.terrapin_backup_used_percent
+-sensor.terrapin_config_free
+-sensor.terrapin_config_used
+-sensor.terrapin_config_used_percent
+-sensor.terrapin_containers_active
+-sensor.terrapin_containers_cpu_used
+-sensor.terrapin_containers_ram_used
+-sensor.terrapin_cpu_load
+-sensor.terrapin_cpu_thermal_1_temperature
+-sensor.terrapin_cpu_used
+-sensor.terrapin_data_free
+-sensor.terrapin_data_used
+-sensor.terrapin_data_used_percent
+-sensor.terrapin_ddr_thermal_1_temperature
+-sensor.terrapin_etc_hostname_free
+-sensor.terrapin_etc_hostname_used
+-sensor.terrapin_etc_hostname_used_percent
+-sensor.terrapin_etc_hosts_free
+-sensor.terrapin_etc_hosts_used
+-sensor.terrapin_etc_hosts_used_percent
+-sensor.terrapin_etc_resolv_conf_free
+-sensor.terrapin_etc_resolv_conf_used
+-sensor.terrapin_etc_resolv_conf_used_percent
+-sensor.terrapin_gpio_fan_1_fan_speed
+-sensor.terrapin_media_free
+-sensor.terrapin_media_used
+-sensor.terrapin_media_used_percent
+-sensor.terrapin_ram_free
+-sensor.terrapin_ram_used
+-sensor.terrapin_ram_used_percent
+-sensor.terrapin_running
+-sensor.terrapin_share_free
+-sensor.terrapin_share_used
+-sensor.terrapin_share_used_percent
+-sensor.terrapin_sleeping
+-sensor.terrapin_ssl_free
+-sensor.terrapin_ssl_used
+-sensor.terrapin_ssl_used_percent
+-sensor.terrapin_swap_free
+-sensor.terrapin_swap_used
+-sensor.terrapin_swap_used_percent
+-sensor.terrapin_thread
+-sensor.terrapin_total
+-sensor.shed_tmp_01_battery
+-sensor.shed_tmp_01_humidity
+-sensor.shed_tmp_01_temperature
+-sensor.bathroom_tmp_02_battery
+-sensor.bathroom_tmp_02_humidity
+-sensor.bathroom_tmp_02_temperature
+-sensor.kitchen_tmp_03_battery
+-sensor.kitchen_tmp_03_humidity
+-sensor.kitchen_tmp_03_temperature
+-sensor.toilet_trisensor_air_temperature
+-sensor.toilet_trisensor_battery_level
+-sensor.toilet_trisensor_illuminance
+-sensor.total_energy_usage
+-sensor.total_grid_consumption
+-sensor.total_grid_consumption_cost
+-sensor.total_grid_export
+-sensor.stairs_tst_01_temperature
+-sensor.stairs_tst_01_temperature_setpoint_hold_duration
+-sensor.ugw3_b_received
+-sensor.ugw3_b_sent
+-sensor.ugw3_kib_s_received
+-sensor.ugw3_kib_s_sent
+-sensor.ugw3_packets_received
+-sensor.ugw3_packets_s_received
+-sensor.ugw3_packets_s_sent
+-sensor.ugw3_packets_sent
+-sensor.upstairs_chime_info
+-sensor.upstairs_chime_wireless
+-sensor.upstairs_lights
+-sensor.upstairs_lights_wh
+-sensor.study_win_01_battery
+-sensor.study_win_01_linkquality
+-sensor.study_win_01_voltage
+-sensor.study_win_02_battery
+-sensor.study_win_02_linkquality
+-sensor.study_win_02_voltage
+-sensor.bedroom_win_03_battery
+-sensor.bedroom_win_03_linkquality
+-sensor.bedroom_win_03_voltage
+-sensor.toilet_win_04_battery
+-sensor.toilet_win_04_linkquality
+-sensor.toilet_win_04_voltage
+-sensor.zone_entrance_dog
+-sensor.zone_entrance_person
+-sensor.zone_hall_dog
+-sensor.zone_hall_person
+-sensor.zone_kitchen_dog
+-sensor.zone_kitchen_person
+-sensor.zone_lounge_dog
+-sensor.zone_lounge_person
+-sensor.zone_stairs_dog
+-sensor.zone_stairs_person
+-sun.sun
+-switch.adguard_filtering
+-switch.adguard_parental_control
+-switch.adguard_protection
+-switch.adguard_safe_browsing
+-switch.adguard_safe_search
+-switch.bedroom_do_not_disturb_switch
+-switch.bedroom_repeat_switch
+-switch.bedroom_shuffle_switch
+-switch.bedroom_soundbar_mute
+-switch.bedroom_soundbar_power
+-switch.bedroom_soundbar_volume_down
+-switch.bedroom_soundbar_volume_up
+-switch.bedroom_tv_mute
+-switch.bedroom_tv_power
+-switch.bedroom_tv_volume_down
+-switch.bedroom_tv_volume_up
+-switch.door_detect
+-switch.door_recordings
+-switch.door_snapshots
+-switch.downstairs_do_not_disturb_switch
+-switch.downstairs_repeat_switch
+-switch.downstairs_shuffle_switch
+-switch.endeavor_array
+-switch.endeavor_docker_file_browser
+-switch.endeavor_docker_filebot
+-switch.endeavor_docker_frigate
+-switch.endeavor_docker_krusader
+-switch.endeavor_docker_mariadb
+-switch.endeavor_docker_minecraft
+-switch.endeavor_docker_photostructure
+-switch.endeavor_docker_phpmyadmin
+-switch.endeavor_docker_plex
+-switch.endeavor_docker_qbittorrent
+-switch.endeavor_docker_syncthing
+-switch.endeavor_docker_unraidapi
+-switch.endeavor_docker_zerotier
+-switch.endeavor_home_assistant
+-switch.endeavor_mover
+-switch.endeavor_partitycheck
+-switch.endeavor_power_off
+-switch.endeavor_reboot
+-switch.entrance_detect
+-switch.entrance_recordings
+-switch.entrance_snapshots
+-switch.front_door_event_stream
+-switch.front_door_stream
+-switch.hall_camera_ir
+-switch.hall_camera_motion
+-switch.hall_detect
+-switch.hall_recordings
+-switch.hall_snapshots
+-switch.kitchen_detect
+-switch.kitchen_do_not_disturb_switch
+-switch.kitchen_recordings
+-switch.kitchen_repeat_switch
+-switch.kitchen_shuffle_switch
+-switch.kitchen_snapshots
+-switch.lounge_camera_ir
+-switch.lounge_camera_motion
+-switch.lounge_detect
+-switch.lounge_do_not_disturb_switch
+-switch.lounge_media_plug
+-switch.lounge_recordings
+-switch.lounge_repeat_switch
+-switch.lounge_shuffle_switch
+-switch.lounge_snapshots
+-switch.bedroom_mot_01_led_indication
+-switch.bathroom_rad_01_heat_available
+-switch.bathroom_rad_01_mounted_mode_control
+-switch.bathroom_rad_01_thermostat_vertical_orientation
+-switch.bathroom_rad_01_viewing_direction
+-switch.bathroom_rad_01_window_open_external
+-switch.bedroom_rad_02_heat_available
+-switch.bedroom_rad_02_mounted_mode_control
+-switch.bedroom_rad_02_thermostat_vertical_orientation
+-switch.bedroom_rad_02_viewing_direction
+-switch.bedroom_rad_02_window_open_external
+-switch.study_rad_03_heat_available
+-switch.study_rad_03_mounted_mode_control
+-switch.study_rad_03_thermostat_vertical_orientation
+-switch.study_rad_03_viewing_direction
+-switch.study_rad_03_window_open_external
+-switch.toilet_rad_04_heat_available
+-switch.toilet_rad_04_mounted_mode_control
+-switch.toilet_rad_04_thermostat_vertical_orientation
+-switch.toilet_rad_04_viewing_direction
+-switch.toilet_rad_04_window_open_external
+-switch.schedule_bathroom
+-switch.schedule_bedroom
+-switch.schedule_bedroom_weekends
+-switch.schedule_heating
+-switch.schedule_kitchen
+-switch.schedule_reactivate_automations
+-switch.schedule_sleep
+-switch.sebastian_s_fire_tv_cube_do_not_disturb_switch
+-switch.sebastian_s_fire_tv_cube_repeat_switch
+-switch.sebastian_s_fire_tv_cube_shuffle_switch
+-switch.stairs_detect
+-switch.stairs_recordings
+-switch.stairs_snapshots
+-switch.starrunner_lock
+-switch.starrunner_logoff
+-switch.starrunner_media_mute
+-switch.starrunner_media_next
+-switch.starrunner_media_play_pause
+-switch.starrunner_media_previous
+-switch.starrunner_media_volume_down
+-switch.starrunner_media_volume_up
+-switch.starrunner_restart
+-switch.starrunner_shutdown
+-switch.starrunner_start_steam_big_picture
+-switch.study_fan_light_off
+-switch.study_fan_light_on
+-switch.study_fan_off
+-switch.study_fan_speed
+-switch.study_fan_speed_1
+-switch.study_fan_speed_2
+-switch.study_fan_speed_3
+-switch.study_soundbar_bt_input
+-switch.study_soundbar_hdmi_input
+-switch.study_soundbar_mute
+-switch.study_soundbar_net_input
+-switch.study_soundbar_power
+-switch.study_soundbar_tv_input
+-switch.study_soundbar_volume_down
+-switch.study_soundbar_volume_up
+-switch.stairs_tst_01_temperature_setpoint_hold
+-switch.upstairs_chime_play_ding_sound
+-switch.upstairs_chime_play_motion_sound
+-switch.upstairs_chime_snooze
+-switch.upstairs_do_not_disturb_switch
+-switch.upstairs_repeat_switch
+-switch.upstairs_shuffle_switch
+-weather.home
+-weather.home_hourly
+-zone.boxworth_pub
+-zone.charlotte_s_house
+-zone.chris_and_hannah_s_house
+-zone.co_op
+-zone.hannah_chris
+-zone.home
+-zone.horse_stables
+-zone.james_and_sian_s_house
+-zone.la_pergola
+-zone.laura_and_bill_o_reilly
+-zone.laura_s_granddad_s
+-zone.laura_s_parents
+-zone.morrisons
+-zone.rod_carol_s_shag_palace
+-zone.rosie_and_aiden_s
+-zone.sarah_s
+-zone.seb_s_parents
+-zone.sophie_s
+-zone.the_gym
+-zone.work
+-zone.work_birmingham
+-zone.work_london
+-zone.work_milton
+-zone.work_york-automation.area_front_drive_lights
+  -automation.area_garden_lights
+  -automation.bathroom_fan
+  -automation.cameras_privacy_mode
+  -automation.going_to_sleep
+  -automation.home_rubbish_collection_reminder
+  -automation.home_update_bin_reminder
+  -automation.kitchen_lights
+  -automation.low_battery_warning
+  -automation.room_bathroom_lights
+  -automation.room_bedroom_lights
+  -automation.room_bedroom_wardrobe_lights
+  -automation.room_entrance_lights
+  -automation.room_hall_lights
+  -automation.room_lounge_lights
+  -automation.room_study_lights
+  -automation.system_auto_snapshot
+  -automation.system_dismiss_persistant_notification
+  -automation.telegram_bot_respond_to_telegram_command_with_a_text_message
+  -automation.toilet_lights_2
+  -binary_sensor.back_door_left_battery_low
+  -binary_sensor.back_door_left_contact
+  -binary_sensor.back_door_right_battery_low
+  -binary_sensor.back_door_right_contact
+  -binary_sensor.bathroom_bright
+  -binary_sensor.bathroom_bulb_1_update_available
+  -binary_sensor.bathroom_door_battery_low
+  -binary_sensor.bathroom_door_contact
+  -binary_sensor.bathroom_humid
+  -binary_sensor.bathroom_humidity_falling_trend
+  -binary_sensor.bathroom_motion
+  -binary_sensor.bathroom_motion_1_battery_low
+  -binary_sensor.bathroom_motion_1_occupancy
+  -binary_sensor.bathroom_motion_1_tamper
+  -binary_sensor.bathroom_motion_2_battery_low
+  -binary_sensor.bathroom_motion_2_occupancy
+  -binary_sensor.bathroom_motion_2_tamper
+  -binary_sensor.bathroom_occupied
+  -binary_sensor.bathroom_radiator_heat_required
+  -binary_sensor.bathroom_radiator_mounted_mode_active
+  -binary_sensor.bathroom_radiator_preheat_status
+  -binary_sensor.bathroom_radiator_update_available
+  -binary_sensor.bed_occupied
+  -binary_sensor.bedroom_bright
+  -binary_sensor.bedroom_bulb_1_update_available
+  -binary_sensor.bedroom_bulb_2_update_available
+  -binary_sensor.bedroom_door_battery_low
+  -binary_sensor.bedroom_door_contact
+  -binary_sensor.bedroom_entrance_tablet_ble_present
+  -binary_sensor.bedroom_laura_phone_ble_present
+  -binary_sensor.bedroom_motion
+  -binary_sensor.bedroom_occupied
+  -binary_sensor.bedroom_radiator_heat_required
+  -binary_sensor.bedroom_radiator_mounted_mode_active
+  -binary_sensor.bedroom_radiator_preheat_status
+  -binary_sensor.bedroom_radiator_update_available
+  -binary_sensor.bedroom_remote_1_update_available
+  -binary_sensor.bedroom_seb_phone_ble_present
+  -binary_sensor.bedroom_temperature_motion_lux_1_occupancy
+  -binary_sensor.bedroom_temperature_motion_lux_1_update_available
+  -binary_sensor.bedroom_tv_state
+  -binary_sensor.bedroom_window_battery_low
+  -binary_sensor.bedroom_window_contact
+  -binary_sensor.bedroom_windows
+  -binary_sensor.downstairs_sleep_mode
+  -binary_sensor.endeavor_state
+  -binary_sensor.entrance_all_occupancy
+  -binary_sensor.entrance_bright
+  -binary_sensor.entrance_camera_motion
+  -binary_sensor.entrance_dog_occupancy
+  -binary_sensor.entrance_entrance_tablet_ble_present
+  -binary_sensor.entrance_frigate_all_occupancy
+  -binary_sensor.entrance_frigate_dog_occupancy
+  -binary_sensor.entrance_frigate_motion
+  -binary_sensor.entrance_frigate_person_occupancy
+  -binary_sensor.entrance_laura_phone_ble_present
+  -binary_sensor.entrance_motion
+  -binary_sensor.entrance_motion_1_battery_low
+  -binary_sensor.entrance_motion_1_occupancy
+  -binary_sensor.entrance_motion_1_tamper
+  -binary_sensor.entrance_motion_2
+  -binary_sensor.entrance_noise
+  -binary_sensor.entrance_occupied
+  -binary_sensor.entrance_person_occupancy
+  -binary_sensor.entrance_seb_phone_ble_present
+  -binary_sensor.entrance_tablet_motion_detected
+  -binary_sensor.front_door_battery_low
+  -binary_sensor.front_door_contact
+  -binary_sensor.front_door_ding
+  -binary_sensor.front_door_motion
+  -binary_sensor.front_drive_bulb_1_update_available
+  -binary_sensor.front_drive_motion
+  -binary_sensor.front_drive_occupied
+  -binary_sensor.front_drive_temperature_motion_lux_1_occupancy
+  -binary_sensor.front_drive_temperature_motion_lux_1_update_available
+  -binary_sensor.garden_all_occupancy
+  -binary_sensor.garden_bulb_1_update_available
+  -binary_sensor.garden_camera_motion
+  -binary_sensor.garden_dog_occupancy
+  -binary_sensor.garden_frigate_all_occupancy
+  -binary_sensor.garden_frigate_dog_occupancy
+  -binary_sensor.garden_frigate_motion
+  -binary_sensor.garden_frigate_person_occupancy
+  -binary_sensor.garden_motion
+  -binary_sensor.garden_noise
+  -binary_sensor.garden_occupied
+  -binary_sensor.garden_person_occupancy
+  -binary_sensor.garden_temperature_motion_lux_1_occupancy
+  -binary_sensor.garden_temperature_motion_lux_1_update_available
+  -binary_sensor.hall_all_occupancy
+  -binary_sensor.hall_bright
+  -binary_sensor.hall_dog_occupancy
+  -binary_sensor.hall_frigate_all_occupancy
+  -binary_sensor.hall_frigate_dog_occupancy
+  -binary_sensor.hall_frigate_motion
+  -binary_sensor.hall_frigate_person_occupancy
+  -binary_sensor.hall_motion
+  -binary_sensor.hall_motion_1_battery_low
+  -binary_sensor.hall_motion_1_occupancy
+  -binary_sensor.hall_motion_1_tamper
+  -binary_sensor.hall_motion_2_battery_low
+  -binary_sensor.hall_motion_2_occupancy
+  -binary_sensor.hall_motion_2_tamper
+  -binary_sensor.hall_occupied
+  -binary_sensor.hall_person_occupancy
+  -binary_sensor.hall_temperature_motion_lux_1_occupancy
+  -binary_sensor.hall_temperature_motion_lux_1_update_available
+  -binary_sensor.home_motion
+  -binary_sensor.home_occupied
+  -binary_sensor.kettle_overheat
+  -binary_sensor.kitchen_all_occupancy
+  -binary_sensor.kitchen_bright
+  -binary_sensor.kitchen_camera_motion
+  -binary_sensor.kitchen_dog_occupancy
+  -binary_sensor.kitchen_entrance_tablet_ble_present
+  -binary_sensor.kitchen_frigate_all_occupancy
+  -binary_sensor.kitchen_frigate_dog_occupancy
+  -binary_sensor.kitchen_frigate_motion
+  -binary_sensor.kitchen_frigate_person_occupancy
+  -binary_sensor.kitchen_hob
+  -binary_sensor.kitchen_kettle
+  -binary_sensor.kitchen_laura_phone_ble_present
+  -binary_sensor.kitchen_microwave
+  -binary_sensor.kitchen_motion
+  -binary_sensor.kitchen_motion_1_battery_low
+  -binary_sensor.kitchen_motion_1_occupancy
+  -binary_sensor.kitchen_motion_1_tamper
+  -binary_sensor.kitchen_motion_2
+  -binary_sensor.kitchen_noise
+  -binary_sensor.kitchen_occupied
+  -binary_sensor.kitchen_oven
+  -binary_sensor.kitchen_person_occupancy
+  -binary_sensor.kitchen_plug_1_update_available
+  -binary_sensor.kitchen_remote_1_update_available
+  -binary_sensor.kitchen_seb_phone_ble_present
+  -binary_sensor.kitchen_temperature_motion_lux_1_occupancy
+  -binary_sensor.kitchen_temperature_motion_lux_1_update_available
+  -binary_sensor.kitchen_temperature_rising_trend
+  -binary_sensor.laura_phone_bluetooth_state
+  -binary_sensor.laura_phone_doze_mode
+  -binary_sensor.laura_phone_high_accuracy_mode
+  -binary_sensor.laura_phone_interactive
+  -binary_sensor.laura_phone_is_charging
+  -binary_sensor.laura_phone_wifi_state
+  -binary_sensor.laura_sleeping
+  -binary_sensor.lounge_all_occupancy
+  -binary_sensor.lounge_bright
+  -binary_sensor.lounge_dog_occupancy
+  -binary_sensor.lounge_doors
+  -binary_sensor.lounge_entrance_tablet_ble_present
+  -binary_sensor.lounge_frigate_all_occupancy
+  -binary_sensor.lounge_frigate_dog_occupancy
+  -binary_sensor.lounge_frigate_motion
+  -binary_sensor.lounge_frigate_person_occupancy
+  -binary_sensor.lounge_laura_phone_ble_present
+  -binary_sensor.lounge_motion
+  -binary_sensor.lounge_motion_1_battery_low
+  -binary_sensor.lounge_motion_1_occupancy
+  -binary_sensor.lounge_motion_1_tamper
+  -binary_sensor.lounge_occupied
+  -binary_sensor.lounge_person_occupancy
+  -binary_sensor.lounge_plug_1_update_available
+  -binary_sensor.lounge_remote_1_update_available
+  -binary_sensor.lounge_seb_phone_ble_present
+  -binary_sensor.lounge_temperature_motion_lux_1_occupancy
+  -binary_sensor.lounge_temperature_motion_lux_1_update_available
+  -binary_sensor.lounge_tv_state
+  -binary_sensor.outside_motion
+  -binary_sensor.outside_occupied
+  -binary_sensor.people_home
+  -binary_sensor.remote_ui
+  -binary_sensor.seb_phone_bluetooth_state
+  -binary_sensor.seb_phone_high_accuracy_mode
+  -binary_sensor.seb_phone_interactive
+  -binary_sensor.seb_phone_is_charging
+  -binary_sensor.seb_phone_music_active
+  -binary_sensor.seb_sleeping
+  -binary_sensor.seb_watch_is_charging
+  -binary_sensor.seb_watch_is_charging_2
+  -binary_sensor.sleeping
+  -binary_sensor.sofa_camera_motion
+  -binary_sensor.sofa_frigate_all_occupancy
+  -binary_sensor.sofa_frigate_dog_occupancy
+  -binary_sensor.sofa_frigate_motion
+  -binary_sensor.sofa_frigate_person_occupancy
+  -binary_sensor.sofa_noise
+  -binary_sensor.stairs_all_occupancy
+  -binary_sensor.stairs_dog_occupancy
+  -binary_sensor.stairs_motion
+  -binary_sensor.stairs_occupied
+  -binary_sensor.stairs_person_occupancy
+  -binary_sensor.starrunner_active
+  -binary_sensor.starrunner_microphoneactive
+  -binary_sensor.starrunner_online
+  -binary_sensor.starrunner_state
+  -binary_sensor.starrunner_webcamactive
+  -binary_sensor.study_bright
+  -binary_sensor.study_bulb_1_update_available
+  -binary_sensor.study_bulb_2_update_available
+  -binary_sensor.study_door_battery_low
+  -binary_sensor.study_door_contact
+  -binary_sensor.study_entrance_tablet_ble_present
+  -binary_sensor.study_laura_phone_ble_present
+  -binary_sensor.study_motion
+  -binary_sensor.study_motion_1_battery_low
+  -binary_sensor.study_motion_1_occupancy
+  -binary_sensor.study_motion_1_tamper
+  -binary_sensor.study_occupied
+  -binary_sensor.study_radiator_heat_required
+  -binary_sensor.study_radiator_mounted_mode_active
+  -binary_sensor.study_radiator_preheat_status
+  -binary_sensor.study_radiator_update_available
+  -binary_sensor.study_seb_phone_ble_present
+  -binary_sensor.study_window_left_battery_low
+  -binary_sensor.study_window_left_contact
+  -binary_sensor.study_window_right_battery_low
+  -binary_sensor.study_window_right_contact
+  -binary_sensor.study_windows
+  -binary_sensor.tablet_s6_bluetooth_state
+  -binary_sensor.tablet_s6_is_charging
+  -binary_sensor.toilet_bright
+  -binary_sensor.toilet_motion
+  -binary_sensor.toilet_motion_1_battery_low
+  -binary_sensor.toilet_motion_1_occupancy
+  -binary_sensor.toilet_motion_1_tamper
+  -binary_sensor.toilet_occupied
+  -binary_sensor.toilet_radiator_heat_required
+  -binary_sensor.toilet_radiator_mounted_mode_active
+  -binary_sensor.toilet_radiator_preheat_status
+  -binary_sensor.toilet_radiator_update_available
+  -binary_sensor.toilet_window_battery_low
+  -binary_sensor.toilet_window_contact
+  -binary_sensor.upstairs_sleep_mode
+  -binary_sensor.wardrobe_bulb_1_update_available
+  -binary_sensor.wardrobe_motion
+  -binary_sensor.wardrobe_motion_1_battery_low
+  -binary_sensor.wardrobe_motion_1_occupancy
+  -binary_sensor.wardrobe_motion_1_tamper
+  -binary_sensor.wardrobe_occupied
+  -binary_sensor.washing_machine_door
+  -binary_sensor.washing_machine_overheat
+  -binary_sensor.washing_machine_remote_control
+  -binary_sensor.washing_machine_remote_start
+  -binary_sensor.workday_sensor
+  -button.entrance_calibrate
+  -button.entrance_format_sd_card
+  -button.entrance_manual_alarm_start
+  -button.entrance_manual_alarm_stop
+  -button.entrance_move_down
+  -button.entrance_move_left
+  -button.entrance_move_right
+  -button.entrance_move_up
+  -button.entrance_reboot
+  -button.entrance_sync_time
+  -button.garden_calibrate
+  -button.garden_format_sd_card
+  -button.garden_manual_alarm_start
+  -button.garden_manual_alarm_stop
+  -button.garden_move_down
+  -button.garden_move_left
+  -button.garden_move_right
+  -button.garden_move_up
+  -button.garden_reboot
+  -button.garden_sync_time
+  -button.kitchen_calibrate
+  -button.kitchen_format_sd_card
+  -button.kitchen_manual_alarm_start
+  -button.kitchen_manual_alarm_stop
+  -button.kitchen_move_down
+  -button.kitchen_move_left
+  -button.kitchen_move_right
+  -button.kitchen_move_up
+  -button.kitchen_reboot
+  -button.kitchen_sync_time
+  -button.sofa_calibrate
+  -button.sofa_format_sd_card
+  -button.sofa_manual_alarm_start
+  -button.sofa_manual_alarm_stop
+  -button.sofa_move_down
+  -button.sofa_move_left
+  -button.sofa_move_right
+  -button.sofa_move_up
+  -button.sofa_reboot
+  -button.sofa_sync_time
+  -button.starrunner_hibernate
+  -button.starrunner_lock
+  -button.starrunner_logoff
+  -button.starrunner_restart
+  -button.starrunner_shutdown
+  -button.starrunner_sleep
+  -calendar.bin_collection_calendar
+  -calendar.family
+  -calendar.work
+  -camera.entrance
+  -camera.entrance_frigate
+  -camera.entrance_frigate_dog
+  -camera.entrance_frigate_person
+  -camera.foscam_hall
+  -camera.foscam_lounge
+  -camera.front_door
+  -camera.garden
+  -camera.garden_frigate
+  -camera.garden_frigate_dog
+  -camera.garden_frigate_person
+  -camera.hall_frigate
+  -camera.hall_frigate_dog
+  -camera.hall_frigate_person
+  -camera.kitchen
+  -camera.kitchen_frigate
+  -camera.kitchen_frigate_dog
+  -camera.kitchen_frigate_person
+  -camera.lounge_frigate
+  -camera.lounge_frigate_dog
+  -camera.lounge_frigate_person
+  -camera.sofa
+  -camera.sofa_frigate
+  -camera.sofa_frigate_dog
+  -camera.sofa_frigate_person
+  -climate.bathroom_radiator
+  -climate.bedroom_radiator
+  -climate.study_radiator
+  -climate.thermostat
+  -climate.toilet_radiator
+  -device_tracker.7f34e5b3_8ea5_4f65_a54d_e75eacc7bd69_100_1_02dc
+  -device_tracker.e2c56db5_dffb_48d2_b060_d0f5a71096e0_0_0_151e
+  -device_tracker.e2c56db5_dffb_48d2_b060_d0f5a71096e0_0_0_7941
+  -device_tracker.e2c56db5_dffb_48d2_b060_d0f5a71096e0_0_0_bd9c
+  -device_tracker.entrance_tablet_ibeacon
+  -device_tracker.laura_phone
+  -device_tracker.laura_phone_ibeacon
+  -device_tracker.seb_phone
+  -device_tracker.seb_phone_ibeacon
+  -device_tracker.seb_watch
+  -device_tracker.seb_watch_2
+  -device_tracker.tablet_s6
+  -fan.bathroom_fan
+  -fan.bedroom
+  -fan.study
+  -group.all_automations
+  -input_boolean.area_bedroom_schedule
+  -input_boolean.bathroom_automations
+  -input_boolean.bathroom_schedule
+  -input_boolean.bedroom_automations
+  -input_boolean.bedroom_sleep_mode
+  -input_boolean.cameras_privacy
+  -input_boolean.entrance_automations
+  -input_boolean.guest_mode
+  -input_boolean.hall_automations
+  -input_boolean.home_automations
+  -input_boolean.kitchen_automations
+  -input_boolean.kitchen_schedule
+  -input_boolean.lounge_automations
+  -input_boolean.lounge_schedule
+  -input_boolean.lounge_sleep_mode
+  -input_boolean.minimalist_dropdown
+  -input_boolean.outside_automations
+  -input_boolean.shower_occupied
+  -input_boolean.sleep_schedule
+  -input_boolean.study_automations
+  -input_boolean.study_schedule
+  -input_boolean.study_sleep_mode
+  -input_boolean.toilet_automations
+  -input_datetime.bin_reminder
+  -input_datetime.laura_alarm
+  -input_number.bathroom_illuminance_level
+  -input_number.bedroom_illuminance_level
+  -input_number.entrance_illuminance_level
+  -input_number.hall_illuminance_level
+  -input_number.kitchen_illuminance_level
+  -input_number.lounge_illuminance_level
+  -input_number.study_illuminance_level
+  -input_number.target_temperature
+  -input_number.toilet_illuminance_level
+  -light.bathroom
+  -light.bathroom_bulb_1
+  -light.bedroom
+  -light.bedroom_bulb_1
+  -light.bedroom_bulb_2
+  -light.entrance
+  -light.entrance_bulb_1
+  -light.front_drive
+  -light.front_drive_bulb_1
+  -light.garden
+  -light.garden_bulb_1
+  -light.hall
+  -light.hall_bulb_1
+  -light.kitchen
+  -light.kitchen_bulb_1
+  -light.kitchen_bulb_2
+  -light.kitchen_bulb_3
+  -light.lounge
+  -light.lounge_bulb_1
+  -light.lounge_bulb_2
+  -light.study
+  -light.study_bulb_1
+  -light.study_bulb_2
+  -light.toilet
+  -light.toilet_bulb_1
+  -light.wardrobe
+  -light.wardrobe_bulb_1
+  -media_player.bedroom_echo
+  -media_player.bedroom_tv
+  -media_player.downstairs
+  -media_player.e7d5ce55_9e8e0d6a
+  -media_player.echos
+  -media_player.entrance_tablet
+  -media_player.everywhere
+  -media_player.f180b081_e8d212ef
+  -media_player.kitchen
+  -media_player.kitchen_echo_show
+  -media_player.laura_watch
+  -media_player.lounge
+  -media_player.lounge_echo
+  -media_player.lounge_tv
+  -media_player.spotify_laura
+  -media_player.spotify_seb
+  -media_player.starrunner
+  -media_player.study_echo
+  -number.bathroom_radiator_algorithm_scale_factor
+  -number.bathroom_radiator_external_measured_room_sensor
+  -number.bathroom_radiator_load_room_mean
+  -number.bathroom_radiator_occupied_heating_setpoint_scheduled
+  -number.bathroom_radiator_regulation_setpoint_offset
+  -number.bathroom_radiator_trigger_time
+  -number.bedroom_radiator_algorithm_scale_factor
+  -number.bedroom_radiator_external_measured_room_sensor
+  -number.bedroom_radiator_load_room_mean
+  -number.bedroom_radiator_occupied_heating_setpoint_scheduled
+  -number.bedroom_radiator_regulation_setpoint_offset
+  -number.bedroom_radiator_trigger_time
+  -number.bedroom_temperature_motion_lux_1_occupancy_timeout
+  -number.entrance_movement_angle
+  -number.front_drive_temperature_motion_lux_1_occupancy_timeout
+  -number.garden_movement_angle
+  -number.garden_temperature_motion_lux_1_occupancy_timeout
+  -number.hall_temperature_motion_lux_1_occupancy_timeout
+  -number.kitchen_movement_angle
+  -number.kitchen_temperature_motion_lux_1_occupancy_timeout
+  -number.lounge_temperature_motion_lux_1_occupancy_timeout
+  -number.sofa_movement_angle
+  -number.study_radiator_algorithm_scale_factor
+  -number.study_radiator_external_measured_room_sensor
+  -number.study_radiator_load_room_mean
+  -number.study_radiator_occupied_heating_setpoint_scheduled
+  -number.study_radiator_regulation_setpoint_offset
+  -number.study_radiator_trigger_time
+  -number.thermostat_temperature_setpoint_hold_duration
+  -number.toilet_radiator_algorithm_scale_factor
+  -number.toilet_radiator_external_measured_room_sensor
+  -number.toilet_radiator_load_room_mean
+  -number.toilet_radiator_occupied_heating_setpoint_scheduled
+  -number.toilet_radiator_regulation_setpoint_offset
+  -number.toilet_radiator_trigger_time
+  -person.laura_ward
+  -person.sebastian_burrell
+  -script.endeavor_wake
+  -script.play_rain_sounds
+  -script.print_entities_to_file
+  -script.starrunner_wake
+  -script.xmas_lights
+  -select.bathroom_radiator_adaptation_run_control
+  -select.bathroom_radiator_day_of_week
+  -select.bathroom_radiator_keypad_lockout
+  -select.bathroom_radiator_programming_operation_mode
+  -select.bedroom_radiator_adaptation_run_control
+  -select.bedroom_radiator_day_of_week
+  -select.bedroom_radiator_keypad_lockout
+  -select.bedroom_radiator_programming_operation_mode
+  -select.bedroom_temperature_motion_lux_1_motion_sensitivity
+  -select.entrance_automatic_alarm
+  -select.entrance_light_frequency
+  -select.entrance_motion_detection
+  -select.entrance_move_to_preset
+  -select.entrance_night_vision
+  -select.front_drive_temperature_motion_lux_1_motion_sensitivity
+  -select.garden_automatic_alarm
+  -select.garden_light_frequency
+  -select.garden_motion_detection
+  -select.garden_night_vision
+  -select.garden_temperature_motion_lux_1_motion_sensitivity
+  -select.hall_temperature_motion_lux_1_motion_sensitivity
+  -select.kitchen_automatic_alarm
+  -select.kitchen_light_frequency
+  -select.kitchen_motion_detection
+  -select.kitchen_move_to_preset
+  -select.kitchen_night_vision
+  -select.kitchen_plug_1_power_on_behavior
+  -select.kitchen_temperature_motion_lux_1_motion_sensitivity
+  -select.lounge_plug_1_power_on_behavior
+  -select.lounge_temperature_motion_lux_1_motion_sensitivity
+  -select.sofa_automatic_alarm
+  -select.sofa_light_frequency
+  -select.sofa_motion_detection
+  -select.sofa_night_vision
+  -select.study_radiator_adaptation_run_control
+  -select.study_radiator_day_of_week
+  -select.study_radiator_keypad_lockout
+  -select.study_radiator_programming_operation_mode
+  -select.toilet_radiator_adaptation_run_control
+  -select.toilet_radiator_day_of_week
+  -select.toilet_radiator_keypad_lockout
+  -select.toilet_radiator_programming_operation_mode
+  -sensor.7f34e5b3_8ea5_4f65_a54d_e75eacc7bd69_100_1_02dc_estimated_distance
+  -sensor.adguard_dns_queries
+  -sensor.adguard_dns_queries_blocked_ratio
+  -sensor.adguard_safe_browsing_blocked
+  -sensor.adguard_safe_searches_enforced
+  -sensor.back_door_left_battery
+  -sensor.back_door_right_battery
+  -sensor.bathroom_average_humidity
+  -sensor.bathroom_bulb_1_energy
+  -sensor.bathroom_bulb_1_power
+  -sensor.bathroom_door_battery
+  -sensor.bathroom_door_ratio
+  -sensor.bathroom_heating_ratio
+  -sensor.bathroom_humid_ratio
+  -sensor.bathroom_humidity
+  -sensor.bathroom_humidity_change
+  -sensor.bathroom_humidity_falling_trend_gradient
+  -sensor.bathroom_illuminance
+  -sensor.bathroom_illuminance_change
+  -sensor.bathroom_lux_1_battery
+  -sensor.bathroom_lux_1_illuminance_lux
+  -sensor.bathroom_lux_1_power_outage_count
+  -sensor.bathroom_motion_1_battery
+  -sensor.bathroom_motion_1_ratio
+  -sensor.bathroom_motion_2_battery
+  -sensor.bathroom_motion_2_ratio
+  -sensor.bathroom_motion_ratio
+  -sensor.bathroom_occupied_probability
+  -sensor.bathroom_occupied_ratio
+  -sensor.bathroom_radiator_adaptation_run_status
+  -sensor.bathroom_radiator_battery
+  -sensor.bathroom_radiator_load_estimate
+  -sensor.bathroom_radiator_pi_heating_demand
+  -sensor.bathroom_radiator_setpoint_change_source
+  -sensor.bathroom_radiator_temperature
+  -sensor.bathroom_radiator_temperature_2
+  -sensor.bathroom_radiator_window_open_internal
+  -sensor.bathroom_schedule_ratio
+  -sensor.bathroom_shower_occupied_ratio
+  -sensor.bathroom_temperature
+  -sensor.bathroom_temperature_change
+  -sensor.bathroom_temperature_humidity_1_battery
+  -sensor.bathroom_temperature_humidity_1_humidity
+  -sensor.bathroom_temperature_humidity_1_temperature
+  -sensor.bathroom_thermal_comfort_absolutehumidity
+  -sensor.bathroom_thermal_comfort_dewpoint
+  -sensor.bathroom_thermal_comfort_frostpoint
+  -sensor.bathroom_thermal_comfort_frostrisk
+  -sensor.bathroom_thermal_comfort_heatindex
+  -sensor.bathroom_thermal_comfort_perception
+  -sensor.bathroom_thermal_comfort_simmerindex
+  -sensor.bathroom_thermal_comfort_simmerzone
+  -sensor.bed_occupied_probability
+  -sensor.bedroom_bulb_1_energy
+  -sensor.bedroom_bulb_1_power
+  -sensor.bedroom_bulb_2_energy
+  -sensor.bedroom_bulb_2_power
+  -sensor.bedroom_dark_ratio
+  -sensor.bedroom_door_battery
+  -sensor.bedroom_door_ratio
+  -sensor.bedroom_echo_next_alarm
+  -sensor.bedroom_echo_next_reminder
+  -sensor.bedroom_echo_next_timer
+  -sensor.bedroom_echo_temperature
+  -sensor.bedroom_entrance_tablet_ble_rssi
+  -sensor.bedroom_heating_ratio
+  -sensor.bedroom_humidity
+  -sensor.bedroom_humidity_change
+  -sensor.bedroom_illuminance
+  -sensor.bedroom_illuminance_change
+  -sensor.bedroom_laura_phone_ble_rssi
+  -sensor.bedroom_lux_1_battery
+  -sensor.bedroom_lux_1_illuminance_lux
+  -sensor.bedroom_lux_1_power_outage_count
+  -sensor.bedroom_motion_1_ratio
+  -sensor.bedroom_motion_ratio
+  -sensor.bedroom_occupied_probability
+  -sensor.bedroom_occupied_ratio
+  -sensor.bedroom_radiator_adaptation_run_status
+  -sensor.bedroom_radiator_battery
+  -sensor.bedroom_radiator_load_estimate
+  -sensor.bedroom_radiator_pi_heating_demand
+  -sensor.bedroom_radiator_setpoint_change_source
+  -sensor.bedroom_radiator_temperature
+  -sensor.bedroom_radiator_temperature_2
+  -sensor.bedroom_radiator_window_open_internal
+  -sensor.bedroom_remote_1_action
+  -sensor.bedroom_remote_1_battery
+  -sensor.bedroom_seb_phone_ble_rssi
+  -sensor.bedroom_temperature
+  -sensor.bedroom_temperature_change
+  -sensor.bedroom_temperature_humidity_1_battery
+  -sensor.bedroom_temperature_humidity_1_humidity
+  -sensor.bedroom_temperature_humidity_1_temperature
+  -sensor.bedroom_temperature_motion_lux_1_battery
+  -sensor.bedroom_temperature_motion_lux_1_illuminance_lux
+  -sensor.bedroom_temperature_motion_lux_1_temperature
+  -sensor.bedroom_thermal_comfort_absolutehumidity
+  -sensor.bedroom_thermal_comfort_dewpoint
+  -sensor.bedroom_thermal_comfort_frostpoint
+  -sensor.bedroom_thermal_comfort_frostrisk
+  -sensor.bedroom_thermal_comfort_heatindex
+  -sensor.bedroom_thermal_comfort_perception
+  -sensor.bedroom_thermal_comfort_simmerindex
+  -sensor.bedroom_thermal_comfort_simmerzone
+  -sensor.bedroom_tv_playing_ratio
+  -sensor.bedroom_tv_state_ratio
+  -sensor.bedroom_wardrobe_motion_1_ratio
+  -sensor.bedroom_window_battery
+  -sensor.bedroom_window_ratio
+  -sensor.central_heating
+  -sensor.central_heating_wh
+  -sensor.central_heating_wh_accumulated
+  -sensor.central_heating_wh_cost
+  -sensor.cert_expiry_timestamp_sbhost_co_uk
+  -sensor.co2_intensity
+  -sensor.cooker
+  -sensor.cooker_wh
+  -sensor.cooker_wh_accumulated
+  -sensor.cooker_wh_cost
+  -sensor.date
+  -sensor.date_time
+  -sensor.date_time_iso
+  -sensor.desk_current_energy
+  -sensor.desk_month_energy
+  -sensor.desk_this_month_energy
+  -sensor.desk_today_energy
+  -sensor.double_take_chris
+  -sensor.double_take_entrance_frigate
+  -sensor.double_take_garden_frigate
+  -sensor.double_take_hall_frigate
+  -sensor.double_take_kitchen_frigate
+  -sensor.double_take_laura
+  -sensor.double_take_lounge_frigate
+  -sensor.double_take_seb
+  -sensor.double_take_sofa_frigate
+  -sensor.double_take_unknown
+  -sensor.downstairs_lights
+  -sensor.downstairs_lights_wh
+  -sensor.downstairs_lights_wh_accumulated
+  -sensor.downstairs_lights_wh_cost
+  -sensor.e2c56db5_dffb_48d2_b060_d0f5a71096e0_0_0_151e_estimated_distance
+  -sensor.e2c56db5_dffb_48d2_b060_d0f5a71096e0_0_0_7941_estimated_distance
+  -sensor.e2c56db5_dffb_48d2_b060_d0f5a71096e0_0_0_bd9c_estimated_distance
+  -sensor.electricity_total_usage
+  -sensor.electricity_unit_cost
+  -sensor.endeavor_array_cache_free
+  -sensor.endeavor_array_cache_percent_used
+  -sensor.endeavor_array_cache_total
+  -sensor.endeavor_array_cache_used
+  -sensor.endeavor_array_free
+  -sensor.endeavor_array_percent_used
+  -sensor.endeavor_array_total
+  -sensor.endeavor_array_used
+  -sensor.energy_total_usage
+  -sensor.entrance_all_count
+  -sensor.entrance_bright_ratio
+  -sensor.entrance_dog_count
+  -sensor.entrance_entrance_tablet_ble_rssi
+  -sensor.entrance_frigate_all_count
+  -sensor.entrance_frigate_dog_count
+  -sensor.entrance_frigate_person_count
+  -sensor.entrance_illuminance
+  -sensor.entrance_illuminance_change
+  -sensor.entrance_laura_phone_ble_rssi
+  -sensor.entrance_lux_1_battery
+  -sensor.entrance_lux_1_illuminance_lux
+  -sensor.entrance_lux_1_power_outage_count
+  -sensor.entrance_motion_1_battery
+  -sensor.entrance_motion_1_ratio
+  -sensor.entrance_motion_ratio
+  -sensor.entrance_occupied_probability
+  -sensor.entrance_occupied_ratio
+  -sensor.entrance_person_count
+  -sensor.entrance_person_occupancy_ratio
+  -sensor.entrance_seb_phone_ble_rssi
+  -sensor.entrance_tablet_ibeacon_estimated_distance
+  -sensor.entrance_tablet_ibeacon_power
+  -sensor.entrance_tablet_ibeacon_signal_strength
+  -sensor.entrance_tablet_light
+  -sensor.entrance_tablet_next_alarm
+  -sensor.entrance_tablet_next_reminder
+  -sensor.entrance_tablet_next_timer
+  -sensor.entrance_temperature
+  -sensor.entrance_temperature_change
+  -sensor.front_door_battery
+  -sensor.front_door_battery_2
+  -sensor.front_door_last_activity
+  -sensor.front_door_last_ding
+  -sensor.front_door_last_motion
+  -sensor.front_door_motion_ratio
+  -sensor.front_door_ratio
+  -sensor.front_door_volume
+  -sensor.front_doorbell_ratio
+  -sensor.front_drive_bulb_1_energy
+  -sensor.front_drive_bulb_1_power
+  -sensor.front_drive_motion_ratio
+  -sensor.front_drive_occupied_ratio
+  -sensor.front_drive_temperature_motion_lux_1_battery
+  -sensor.front_drive_temperature_motion_lux_1_illuminance_lux
+  -sensor.front_drive_temperature_motion_lux_1_temperature
+  -sensor.garden_all_count
+  -sensor.garden_bulb_1_energy
+  -sensor.garden_bulb_1_power
+  -sensor.garden_dog_count
+  -sensor.garden_frigate_all_count
+  -sensor.garden_frigate_dog_count
+  -sensor.garden_frigate_person_count
+  -sensor.garden_motion_ratio
+  -sensor.garden_occupied_probability
+  -sensor.garden_occupied_ratio
+  -sensor.garden_person_count
+  -sensor.garden_temperature_motion_lux_1_battery
+  -sensor.garden_temperature_motion_lux_1_illuminance_lux
+  -sensor.garden_temperature_motion_lux_1_temperature
+  -sensor.gas_total_usage
+  -sensor.gas_unit_cost
+  -sensor.grid_fossil_fuel_percentage
+  -sensor.hacs
+  -sensor.hall_all_count
+  -sensor.hall_bright_ratio
+  -sensor.hall_dog_count
+  -sensor.hall_frigate_all_count
+  -sensor.hall_frigate_dog_count
+  -sensor.hall_frigate_person_count
+  -sensor.hall_illuminance
+  -sensor.hall_lux_1_battery
+  -sensor.hall_lux_1_illuminance_lux
+  -sensor.hall_lux_1_power_outage_count
+  -sensor.hall_motion_1_battery
+  -sensor.hall_motion_1_ratio
+  -sensor.hall_motion_2_battery
+  -sensor.hall_motion_2_ratio
+  -sensor.hall_motion_3_ratio
+  -sensor.hall_motion_ratio
+  -sensor.hall_occupied_probability
+  -sensor.hall_occupied_ratio
+  -sensor.hall_person_count
+  -sensor.hall_person_occupancy_ratio
+  -sensor.hall_stairs_motion_ratio
+  -sensor.hall_stairs_person_occupancy_ratio
+  -sensor.hall_temperature
+  -sensor.hall_temperature_humidity_1_battery
+  -sensor.hall_temperature_humidity_1_humidity
+  -sensor.hall_temperature_humidity_1_temperature
+  -sensor.hall_temperature_motion_lux_1_battery
+  -sensor.hall_temperature_motion_lux_1_illuminance_lux
+  -sensor.hall_temperature_motion_lux_1_temperature
+  -sensor.home_motion_ratio
+  -sensor.home_occupied_ratio
+  -sensor.house
+  -sensor.house_wh
+  -sensor.house_wh_accumulated
+  -sensor.hutch_humidity
+  -sensor.hutch_temperature
+  -sensor.in_bed_probability
+  -sensor.kettle_current_energy
+  -sensor.kettle_month_energy
+  -sensor.kettle_signal_level
+  -sensor.kettle_this_month_energy
+  -sensor.kettle_today_energy
+  -sensor.kitchen_all_count
+  -sensor.kitchen_average_temperature
+  -sensor.kitchen_bright_ratio
+  -sensor.kitchen_dog_count
+  -sensor.kitchen_echo_show_next_alarm
+  -sensor.kitchen_echo_show_next_reminder
+  -sensor.kitchen_echo_show_next_timer
+  -sensor.kitchen_entrance_tablet_ble_rssi
+  -sensor.kitchen_frigate_all_count
+  -sensor.kitchen_frigate_dog_count
+  -sensor.kitchen_frigate_person_count
+  -sensor.kitchen_hob_ratio
+  -sensor.kitchen_humidity
+  -sensor.kitchen_illuminance
+  -sensor.kitchen_kettle_ratio
+  -sensor.kitchen_laura_phone_ble_rssi
+  -sensor.kitchen_microwave_ratio
+  -sensor.kitchen_motion_1_battery
+  -sensor.kitchen_motion_1_ratio
+  -sensor.kitchen_motion_2_ratio
+  -sensor.kitchen_motion_ratio
+  -sensor.kitchen_occupied_probability
+  -sensor.kitchen_occupied_ratio
+  -sensor.kitchen_oven_ratio
+  -sensor.kitchen_person_count
+  -sensor.kitchen_person_occupancy_ratio
+  -sensor.kitchen_pizero_1_humidity
+  -sensor.kitchen_pizero_1_light
+  -sensor.kitchen_pizero_1_nh3
+  -sensor.kitchen_pizero_1_oxidised
+  -sensor.kitchen_pizero_1_pressure
+  -sensor.kitchen_pizero_1_reduced
+  -sensor.kitchen_pizero_1_temperature
+  -sensor.kitchen_remote_1_action
+  -sensor.kitchen_remote_1_battery
+  -sensor.kitchen_seb_phone_ble_rssi
+  -sensor.kitchen_sockets
+  -sensor.kitchen_sockets_wh
+  -sensor.kitchen_sockets_wh_accumulated
+  -sensor.kitchen_sockets_wh_cost
+  -sensor.kitchen_temperature
+  -sensor.kitchen_temperature_humidity_1_battery
+  -sensor.kitchen_temperature_humidity_1_humidity
+  -sensor.kitchen_temperature_humidity_1_temperature
+  -sensor.kitchen_temperature_motion_lux_1_battery
+  -sensor.kitchen_temperature_motion_lux_1_illuminance_lux
+  -sensor.kitchen_temperature_motion_lux_1_temperature
+  -sensor.kitchen_thermal_comfort_absolutehumidity
+  -sensor.kitchen_thermal_comfort_dewpoint
+  -sensor.kitchen_thermal_comfort_frostpoint
+  -sensor.kitchen_thermal_comfort_frostrisk
+  -sensor.kitchen_thermal_comfort_heatindex
+  -sensor.kitchen_thermal_comfort_perception
+  -sensor.kitchen_thermal_comfort_simmerindex
+  -sensor.kitchen_thermal_comfort_simmerzone
+  -sensor.laura_location
+  -sensor.laura_phone_battery_health
+  -sensor.laura_phone_battery_level
+  -sensor.laura_phone_battery_power
+  -sensor.laura_phone_battery_state
+  -sensor.laura_phone_battery_temperature
+  -sensor.laura_phone_beacon_monitor
+  -sensor.laura_phone_ble_transmitter
+  -sensor.laura_phone_bluetooth_connection
+  -sensor.laura_phone_charger_type
+  -sensor.laura_phone_current_version
+  -sensor.laura_phone_detected_activity
+  -sensor.laura_phone_geocoded_location
+  -sensor.laura_phone_ibeacon_estimated_distance
+  -sensor.laura_phone_media_session
+  -sensor.laura_phone_network_type
+  -sensor.laura_phone_next_alarm
+  -sensor.laura_phone_phone_state
+  -sensor.laura_phone_pressure_sensor
+  -sensor.laura_phone_sleep_confidence
+  -sensor.laura_phone_sleep_segment
+  -sensor.laura_phone_wifi_bssid
+  -sensor.laura_phone_wifi_connection
+  -sensor.laura_phone_wifi_frequency
+  -sensor.laura_phone_wifi_ip_address
+  -sensor.laura_phone_wifi_link_speed
+  -sensor.laura_phone_wifi_signal_strength
+  -sensor.laura_watch_next_alarm
+  -sensor.laura_watch_next_reminder
+  -sensor.laura_watch_next_timer
+  -sensor.lounge_all_count
+  -sensor.lounge_bright_ratio
+  -sensor.lounge_dog_count
+  -sensor.lounge_doors_ratio
+  -sensor.lounge_echo_next_alarm
+  -sensor.lounge_echo_next_reminder
+  -sensor.lounge_echo_next_timer
+  -sensor.lounge_entrance_tablet_ble_rssi
+  -sensor.lounge_frigate_all_count
+  -sensor.lounge_frigate_dog_count
+  -sensor.lounge_frigate_person_count
+  -sensor.lounge_humidity
+  -sensor.lounge_illuminance
+  -sensor.lounge_laura_phone_ble_rssi
+  -sensor.lounge_left_door_ratio
+  -sensor.lounge_lux_1_battery
+  -sensor.lounge_lux_1_illuminance_lux
+  -sensor.lounge_lux_1_power_outage_count
+  -sensor.lounge_lux_2_battery
+  -sensor.lounge_lux_2_illuminance_lux
+  -sensor.lounge_lux_2_power_outage_count
+  -sensor.lounge_media_current_energy
+  -sensor.lounge_media_month_energy
+  -sensor.lounge_media_this_month_energy
+  -sensor.lounge_media_today_energy
+  -sensor.lounge_motion_1_battery
+  -sensor.lounge_motion_1_ratio
+  -sensor.lounge_motion_2_ratio
+  -sensor.lounge_motion_ratio
+  -sensor.lounge_occupied_probability
+  -sensor.lounge_occupied_ratio
+  -sensor.lounge_person_count
+  -sensor.lounge_person_occupancy_ratio
+  -sensor.lounge_remote_1_action
+  -sensor.lounge_remote_1_action_duration
+  -sensor.lounge_remote_1_battery
+  -sensor.lounge_right_door_ratio
+  -sensor.lounge_schedule_ratio
+  -sensor.lounge_seb_phone_ble_rssi
+  -sensor.lounge_temperature
+  -sensor.lounge_temperature_humidity_1_battery
+  -sensor.lounge_temperature_humidity_1_humidity
+  -sensor.lounge_temperature_humidity_1_temperature
+  -sensor.lounge_temperature_motion_lux_1_battery
+  -sensor.lounge_temperature_motion_lux_1_illuminance_lux
+  -sensor.lounge_temperature_motion_lux_1_temperature
+  -sensor.lounge_tv_on_ratio
+  -sensor.lounge_tv_playing_ratio
+  -sensor.mainsconsumption
+  -sensor.mainsconsumption_wh
+  -sensor.mainsconsumption_wh_accumulated
+  -sensor.mainsconsumption_wh_cost
+  -sensor.mainsexport
+  -sensor.mainsexport_wh
+  -sensor.mainsexport_wh_accumulated
+  -sensor.outside_motion_ratio
+  -sensor.outside_occupied_ratio
+  -sensor.particulate_matter_2_5um
+  -sensor.pc_current_energy
+  -sensor.pc_month_energy
+  -sensor.pc_this_month_energy
+  -sensor.pc_today_energy
+  -sensor.season
+  -sensor.seb_location
+  -sensor.seb_phone_battery_health
+  -sensor.seb_phone_battery_level
+  -sensor.seb_phone_battery_power
+  -sensor.seb_phone_battery_state
+  -sensor.seb_phone_battery_temperature
+  -sensor.seb_phone_beacon_monitor
+  -sensor.seb_phone_ble_transmitter
+  -sensor.seb_phone_bluetooth_connection
+  -sensor.seb_phone_charger_type
+  -sensor.seb_phone_detected_activity
+  -sensor.seb_phone_geocoded_location
+  -sensor.seb_phone_high_accuracy_update_interval
+  -sensor.seb_phone_ibeacon_estimated_distance
+  -sensor.seb_phone_ibeacon_power
+  -sensor.seb_phone_ibeacon_signal_strength
+  -sensor.seb_phone_media_session
+  -sensor.seb_phone_next_alarm
+  -sensor.seb_phone_pressure_sensor
+  -sensor.seb_phone_sleep_confidence
+  -sensor.seb_phone_sleep_segment
+  -sensor.seb_phone_wifi_bssid
+  -sensor.seb_phone_wifi_connection
+  -sensor.seb_phone_wifi_signal_strength
+  -sensor.seb_watch_battery_health
+  -sensor.seb_watch_battery_health_2
+  -sensor.seb_watch_battery_level
+  -sensor.seb_watch_battery_level_2
+  -sensor.seb_watch_battery_power
+  -sensor.seb_watch_battery_power_2
+  -sensor.seb_watch_battery_state
+  -sensor.seb_watch_battery_state_2
+  -sensor.seb_watch_battery_temperature
+  -sensor.seb_watch_battery_temperature_2
+  -sensor.seb_watch_charger_type
+  -sensor.seb_watch_charger_type_2
+  -sensor.server_current_energy
+  -sensor.server_month_energy
+  -sensor.server_this_month_energy
+  -sensor.server_today_energy
+  -sensor.shed_temperature_humidity_1_battery
+  -sensor.shed_temperature_humidity_1_humidity
+  -sensor.shed_temperature_humidity_1_temperature
+  -sensor.shed_thermal_comfort_absolutehumidity
+  -sensor.shed_thermal_comfort_dewpoint
+  -sensor.shed_thermal_comfort_frostpoint
+  -sensor.shed_thermal_comfort_frostrisk
+  -sensor.shed_thermal_comfort_heatindex
+  -sensor.shed_thermal_comfort_perception
+  -sensor.shed_thermal_comfort_simmerindex
+  -sensor.shed_thermal_comfort_simmerzone
+  -sensor.sleepasandroid_seb
+  -sensor.smoke_alarms
+  -sensor.smoke_alarms_wh
+  -sensor.smoke_alarms_wh_accumulated
+  -sensor.smoke_alarms_wh_cost
+  -sensor.sockets
+  -sensor.sockets_wh
+  -sensor.sockets_wh_accumulated
+  -sensor.sockets_wh_cost
+  -sensor.sofa_frigate_all_count
+  -sensor.sofa_frigate_dog_count
+  -sensor.sofa_frigate_person_count
+  -sensor.spotify_laura_source
+  -sensor.spotify_seb_source
+  -sensor.stairs_all_count
+  -sensor.stairs_dog_count
+  -sensor.stairs_motion_ratio
+  -sensor.stairs_occupied_ratio
+  -sensor.stairs_person_count
+  -sensor.starrunner_bluetoothdevices
+  -sensor.starrunner_bluetoothledevices
+  -sensor.starrunner_cpuload
+  -sensor.starrunner_gpuload
+  -sensor.starrunner_gputemperature
+  -sensor.starrunner_idle_time
+  -sensor.starrunner_lastactive
+  -sensor.starrunner_lastsystemstatechange
+  -sensor.starrunner_memoryusage
+  -sensor.starrunner_sessionstate
+  -sensor.stats
+  -sensor.stats_2
+  -sensor.study_bright_ratio
+  -sensor.study_bulb_1_energy
+  -sensor.study_bulb_1_power
+  -sensor.study_bulb_2_energy
+  -sensor.study_bulb_2_energy_2
+  -sensor.study_bulb_2_power
+  -sensor.study_bulb_2_power_2
+  -sensor.study_door_battery
+  -sensor.study_door_ratio
+  -sensor.study_echo_next_alarm
+  -sensor.study_echo_next_reminder
+  -sensor.study_echo_next_timer
+  -sensor.study_entrance_tablet_ble_rssi
+  -sensor.study_humidity
+  -sensor.study_illuminance
+  -sensor.study_laura_phone_ble_rssi
+  -sensor.study_left_window_ratio
+  -sensor.study_lux_1_battery
+  -sensor.study_lux_1_illuminance_lux
+  -sensor.study_lux_1_power_outage_count
+  -sensor.study_motion_1_battery
+  -sensor.study_motion_1_ratio
+  -sensor.study_motion_ratio
+  -sensor.study_occupied_probability
+  -sensor.study_occupied_ratio
+  -sensor.study_rad_03_temperature
+  -sensor.study_radiator_adaptation_run_status
+  -sensor.study_radiator_battery
+  -sensor.study_radiator_load_estimate
+  -sensor.study_radiator_pi_heating_demand
+  -sensor.study_radiator_setpoint_change_source
+  -sensor.study_radiator_temperature
+  -sensor.study_radiator_temperature_2
+  -sensor.study_radiator_window_open_internal
+  -sensor.study_right_window_ratio
+  -sensor.study_seb_phone_ble_rssi
+  -sensor.study_starrunner_active_ratio
+  -sensor.study_starrunner_microphone_active_ratio
+  -sensor.study_starrunner_webcam_active_ratio
+  -sensor.study_temperature
+  -sensor.study_temperature_humidity_1_battery
+  -sensor.study_temperature_humidity_1_humidity
+  -sensor.study_temperature_humidity_1_temperature
+  -sensor.study_thermal_comfort_absolutehumidity
+  -sensor.study_thermal_comfort_dewpoint
+  -sensor.study_thermal_comfort_frostpoint
+  -sensor.study_thermal_comfort_frostrisk
+  -sensor.study_thermal_comfort_heatindex
+  -sensor.study_thermal_comfort_perception
+  -sensor.study_thermal_comfort_simmerindex
+  -sensor.study_thermal_comfort_simmerzone
+  -sensor.study_window_left_battery
+  -sensor.study_window_right_battery
+  -sensor.tablet_s6_battery_health
+  -sensor.tablet_s6_battery_level
+  -sensor.tablet_s6_battery_power
+  -sensor.tablet_s6_battery_state
+  -sensor.tablet_s6_battery_temperature
+  -sensor.tablet_s6_beacon_monitor
+  -sensor.tablet_s6_ble_transmitter
+  -sensor.tablet_s6_bluetooth_connection
+  -sensor.tablet_s6_charger_type
+  -sensor.tablet_s6_light_sensor
+  -sensor.template_last_echo
+  -sensor.test_occupied_probability
+  -sensor.thermostat_remote_battery
+  -sensor.thermostat_temperature
+  -sensor.toilet_bright_ratio
+  -sensor.toilet_heating_ratio
+  -sensor.toilet_illuminance
+  -sensor.toilet_lux_1_battery
+  -sensor.toilet_lux_1_illuminance_lux
+  -sensor.toilet_lux_1_power_outage_count
+  -sensor.toilet_motion_1_battery
+  -sensor.toilet_motion_ratio
+  -sensor.toilet_occupied_probability
+  -sensor.toilet_occupied_ratio
+  -sensor.toilet_radiator_adaptation_run_status
+  -sensor.toilet_radiator_battery
+  -sensor.toilet_radiator_load_estimate
+  -sensor.toilet_radiator_pi_heating_demand
+  -sensor.toilet_radiator_setpoint_change_source
+  -sensor.toilet_radiator_temperature
+  -sensor.toilet_radiator_temperature_2
+  -sensor.toilet_radiator_window_open_internal
+  -sensor.toilet_temperature
+  -sensor.toilet_window_battery
+  -sensor.total_grid_consumption
+  -sensor.total_grid_export
+  -sensor.upstairs_chime_volume
+  -sensor.upstairs_lights
+  -sensor.upstairs_lights_wh
+  -sensor.upstairs_lights_wh_accumulated
+  -sensor.upstairs_lights_wh_cost
+  -sensor.wardrobe_bulb_1_energy
+  -sensor.wardrobe_bulb_1_power
+  -sensor.wardrobe_motion_1_battery
+  -sensor.wardrobe_motion_ratio
+  -sensor.wardrobe_occupied_ratio
+  -sensor.washing_machine_current_energy
+  -sensor.washing_machine_duration
+  -sensor.washing_machine_month_energy
+  -sensor.washing_machine_operation_state
+  -sensor.washing_machine_program_progress
+  -sensor.washing_machine_remaining_program_time
+  -sensor.washing_machine_signal_level
+  -sensor.washing_machine_this_month_energy
+  -sensor.washing_machine_today_energy
+  -sensor.watchman_last_updated
+  -sensor.watchman_missing_entities
+  -sensor.watchman_missing_services
+  -siren.upstairs_chime_siren
+  -sun.sun
+  -switch.adguard_filtering
+  -switch.adguard_protection
+  -switch.adguard_safe_browsing
+  -switch.adguard_safe_search
+  -switch.bathroom_fan
+  -switch.bathroom_radiator_adaptation_run_settings
+  -switch.bathroom_radiator_heat_available
+  -switch.bathroom_radiator_load_balancing_enable
+  -switch.bathroom_radiator_mounted_mode_control
+  -switch.bathroom_radiator_radiator_covered
+  -switch.bathroom_radiator_thermostat_vertical_orientation
+  -switch.bathroom_radiator_viewing_direction
+  -switch.bathroom_radiator_window_open_external
+  -switch.bathroom_radiator_window_open_feature
+  -switch.bedroom_echo_do_not_disturb_switch
+  -switch.bedroom_echo_repeat_switch
+  -switch.bedroom_echo_shuffle_switch
+  -switch.bedroom_radiator_adaptation_run_settings
+  -switch.bedroom_radiator_heat_available
+  -switch.bedroom_radiator_load_balancing_enable
+  -switch.bedroom_radiator_mounted_mode_control
+  -switch.bedroom_radiator_radiator_covered
+  -switch.bedroom_radiator_thermostat_vertical_orientation
+  -switch.bedroom_radiator_viewing_direction
+  -switch.bedroom_radiator_window_open_external
+  -switch.bedroom_radiator_window_open_feature
+  -switch.bedroom_temperature_motion_lux_1_led_indication
+  -switch.bedroom_tv_power
+  -switch.bedrrom_fan_led
+  -switch.downstairs_do_not_disturb_switch
+  -switch.downstairs_repeat_switch
+  -switch.downstairs_shuffle_switch
+  -switch.entrance_auto_track
+  -switch.entrance_flip
+  -switch.entrance_frigate_detect
+  -switch.entrance_frigate_motion
+  -switch.entrance_frigate_recordings
+  -switch.entrance_frigate_snapshots
+  -switch.entrance_indicator_led
+  -switch.entrance_lens_distortion_correction
+  -switch.entrance_privacy
+  -switch.entrance_tablet_do_not_disturb_switch
+  -switch.everywhere_do_not_disturb_switch
+  -switch.everywhere_repeat_switch
+  -switch.everywhere_shuffle_switch
+  -switch.front_drive_temperature_motion_lux_1_led_indication
+  -switch.garden_flip
+  -switch.garden_frigate_detect
+  -switch.garden_frigate_motion
+  -switch.garden_frigate_recordings
+  -switch.garden_frigate_snapshots
+  -switch.garden_indicator_led
+  -switch.garden_lens_distortion_correction
+  -switch.garden_privacy
+  -switch.garden_temperature_motion_lux_1_led_indication
+  -switch.hall_frigate_detect
+  -switch.hall_frigate_motion
+  -switch.hall_frigate_recordings
+  -switch.hall_frigate_snapshots
+  -switch.hall_temperature_motion_lux_1_led_indication
+  -switch.kettle
+  -switch.kitchen_auto_track
+  -switch.kitchen_do_not_disturb_switch
+  -switch.kitchen_echo_show_do_not_disturb_switch
+  -switch.kitchen_echo_show_repeat_switch
+  -switch.kitchen_echo_show_shuffle_switch
+  -switch.kitchen_flip
+  -switch.kitchen_frigate_detect
+  -switch.kitchen_frigate_motion
+  -switch.kitchen_frigate_recordings
+  -switch.kitchen_frigate_snapshots
+  -switch.kitchen_indicator_led
+  -switch.kitchen_lens_distortion_correction
+  -switch.kitchen_plug_1
+  -switch.kitchen_privacy
+  -switch.kitchen_repeat_switch
+  -switch.kitchen_shuffle_switch
+  -switch.kitchen_temperature_motion_lux_1_led_indication
+  -switch.laura_watch_do_not_disturb_switch
+  -switch.laura_watch_repeat_switch
+  -switch.laura_watch_shuffle_switch
+  -switch.lounge_camera_ir
+  -switch.lounge_camera_motion
+  -switch.lounge_do_not_disturb_switch
+  -switch.lounge_echo_do_not_disturb_switch
+  -switch.lounge_echo_repeat_switch
+  -switch.lounge_echo_shuffle_switch
+  -switch.lounge_frigate_detect
+  -switch.lounge_frigate_motion
+  -switch.lounge_frigate_recordings
+  -switch.lounge_frigate_snapshots
+  -switch.lounge_media
+  -switch.lounge_plug_1
+  -switch.lounge_repeat_switch
+  -switch.lounge_shuffle_switch
+  -switch.lounge_temperature_motion_lux_1_led_indication
+  -switch.schedule_91910b
+  -switch.schedule_bathroom
+  -switch.schedule_bedroom
+  -switch.schedule_bedroom_weekends
+  -switch.schedule_heating
+  -switch.schedule_kitchen
+  -switch.schedule_reactivate_automations
+  -switch.schedule_sleep
+  -switch.sofa_flip
+  -switch.sofa_frigate_detect
+  -switch.sofa_frigate_motion
+  -switch.sofa_frigate_recordings
+  -switch.sofa_frigate_snapshots
+  -switch.sofa_indicator_led
+  -switch.sofa_lens_distortion_correction
+  -switch.sofa_privacy
+  -switch.study_echo_do_not_disturb_switch
+  -switch.study_echo_repeat_switch
+  -switch.study_echo_shuffle_switch
+  -switch.study_fan_led
+  -switch.study_radiator_adaptation_run_settings
+  -switch.study_radiator_heat_available
+  -switch.study_radiator_load_balancing_enable
+  -switch.study_radiator_mounted_mode_control
+  -switch.study_radiator_radiator_covered
+  -switch.study_radiator_thermostat_vertical_orientation
+  -switch.study_radiator_viewing_direction
+  -switch.study_radiator_window_open_external
+  -switch.study_radiator_window_open_feature
+  -switch.thermostat_temperature_setpoint_hold
+  -switch.toilet_radiator_adaptation_run_settings
+  -switch.toilet_radiator_heat_available
+  -switch.toilet_radiator_load_balancing_enable
+  -switch.toilet_radiator_mounted_mode_control
+  -switch.toilet_radiator_radiator_covered
+  -switch.toilet_radiator_thermostat_vertical_orientation
+  -switch.toilet_radiator_viewing_direction
+  -switch.toilet_radiator_window_open_external
+  -switch.toilet_radiator_window_open_feature
+  -switch.washing_machine
+  -switch.washing_machine_power
+  -switch.washing_machine_program_auto30
+  -switch.washing_machine_program_auto40
+  -switch.washing_machine_program_auto60
+  -switch.washing_machine_program_chiffon
+  -switch.washing_machine_program_cotton
+  -switch.washing_machine_program_cottoneco
+  -switch.washing_machine_program_curtains
+  -switch.washing_machine_program_darkwash
+  -switch.washing_machine_program_delicatessilk
+  -switch.washing_machine_program_dessous
+  -switch.washing_machine_program_easycare
+  -switch.washing_machine_program_mix
+  -switch.washing_machine_program_monsoon
+  -switch.washing_machine_program_outdoor
+  -switch.washing_machine_program_plushtoy
+  -switch.washing_machine_program_sensitive
+  -switch.washing_machine_program_shirtsblouses
+  -switch.washing_machine_program_sportfitness
+  -switch.washing_machine_program_towels
+  -switch.washing_machine_program_waterproof
+  -switch.washing_machine_program_wool
+  -update.adguard_home_update
+  -update.alexa_media_player_update
+  -update.auto_entities_update
+  -update.average_sensor_update
+  -update.bar_card_update
+  -update.better_thermostat_update
+  -update.browser_control_card_update
+  -update.browser_mod_update
+  -update.button_card_update
+  -update.camera_entrance
+  -update.camera_garden
+  -update.camera_kitchen
+  -update.camera_sofa
+  -update.card_mod_update
+  -update.card_tools_update
+  -update.clock_weather_card_update
+  -update.custom_icons_update
+  -update.entity_attributes_card_update
+  -update.esphome_update
+  -update.file_editor_update
+  -update.fold_entity_row_update
+  -update.frigate_card_update
+  -update.frigate_full_access_update
+  -update.frigate_nvr_update
+  -update.frigate_server
+  -update.frigate_update
+  -update.genie_update
+  -update.hacs_update
+  -update.hass_agent_mediaplayer_update
+  -update.hass_agent_notifier_update
+  -update.hass_hue_icons_update
+  -update.history_explorer_card_update
+  -update.home_assistant_core_update
+  -update.home_assistant_operating_system_update
+  -update.home_assistant_supervisor_update
+  -update.layout_card_update
+  -update.light_entity_card_update
+  -update.mariadb_update
+  -update.metrology_metro_fluent_windows_themes_by_mmak_es_update
+  -update.mini_graph_card_update
+  -update.mini_media_player_update
+  -update.mosquitto_broker_update
+  -update.mushroom_update
+  -update.music_assistant_update
+  -update.my_cards_bundle_update
+  -update.nginx_proxy_manager_update
+  -update.octopus_energy_update
+  -update.office_365_integration_update
+  -update.phpmyadmin_update
+  -update.power_calculation_update
+  -update.remote_backup_update
+  -update.samba_backup_update
+  -update.samba_share_update
+  -update.sankey_chart_card_update
+  -update.scheduler_card_update
+  -update.scheduler_component_update
+  -update.secondaryinfo_entity_row_update
+  -update.sensor_unifigateway_update
+  -update.simple_weather_card_update
+  -update.sleep_as_android_update
+  -update.slider_button_card_update
+  -update.sonoff_lan_update
+  -update.spotify_lovelace_card_update
+  -update.ssh_web_terminal_update
+  -update.state_switch_update
+  -update.studio_code_server_update
+  -update.sun_card_update
+  -update.tabbed_card_update
+  -update.tapo_cameras_control_update
+  -update.tapo_controller_update
+  -update.thermal_comfort_icons_update
+  -update.thermal_comfort_update
+  -update.tv_remote_card_with_touchpad_and_haptic_feedback_update
+  -update.ui_lovelace_minimalist_update
+  -update.unifi_network_application_update
+  -update.uptime_card_update
+  -update.vaultwarden_bitwarden_update
+  -update.vertical_stack_in_card_update
+  -update.watchman_update
+  -update.weather_radar_card_update
+  -update.zerotier_one_update
+  -update.zigbee2mqtt_edge_update
+  -update.zigbee2mqtt_update
+  -weather.home
+  -weather.home_hourly
+  -zone.boxworth_pub
+  -zone.camboourne
+  -zone.cathy_dave_s
+  -zone.charlotte_s_house
+  -zone.chris_and_hannah_s_house
+  -zone.co_op
+  -zone.hannah_chris
+  -zone.home
+  -zone.horse_stables
+  -zone.james_and_sian_s_house
+  -zone.la_pergola
+  -zone.laura_and_bill_o_reilly
+  -zone.laura_s_granddad_s
+  -zone.laura_s_parents
+  -zone.morrisons
+  -zone.rod_carol_s_shag_palace
+  -zone.rosie_and_aiden_s
+  -zone.sarah_s
+  -zone.seb_s_parents
+  -zone.the_gym
+  -zone.the_lake
+  -zone.work
+  -zone.work_milton

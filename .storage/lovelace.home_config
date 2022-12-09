@@ -1,0 +1,2282 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.home_config",
+  "data": {
+    "config": {
+      "title": "Home",
+      "views": [
+        {
+          "title": "Bright Sensors",
+          "path": "bright-sensors",
+          "type": "custom:grid-layout",
+          "layout": {
+            "grid-template-columns": "repeat(auto-fill, minmax(30rem, 1fr))"
+          },
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.bathroom_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.bathroom_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.bathroom_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.bathroom_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.bathroom_illuminance"
+                    }
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.bedroom_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.bedroom_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.bedroom_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.bedroom_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.bedroom_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.entrance_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.entrance_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.entrance_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.entrance_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.entrance_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.hall_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.hall_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.hall_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.hall_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.hall_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.kitchen_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.kitchen_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.kitchen_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.kitchen_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.kitchen_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.lounge_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.lounge_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.lounge_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.lounge_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.lounge_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.study_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.study_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.study_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.study_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.study_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.toilet_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.toilet_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.toilet_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.toilet_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.toilet_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Scheduler",
+          "path": "scheduler",
+          "panel": true,
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "custom:scheduler-card",
+                  "time_step": 30,
+                  "include": [
+                    "climate",
+                    "input_boolean"
+                  ],
+                  "title": false,
+                  "discover_existing": true
+                },
+                {
+                  "type": "custom:history-explorer-card",
+                  "cardName": "historycard-96483079"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tracking",
+          "path": "tracking",
+          "type": "sidebar",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:layout-card",
+              "layout_type": "grid-layout",
+              "layout": {
+                "grid-template-columns": "repeat(auto-fill, minmax(30rem, 1fr))",
+                "grid-auto-rows": "auto",
+                "grid-auto-flow": "row",
+                "mediaquery": {
+                  "(max-width: 800px)": {
+                    "grid-template-columns": "1fr"
+                  }
+                }
+              },
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Bathroom",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.bathroom_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*bathroom*"
+                          },
+                          {
+                            "domain": "input_boolean",
+                            "entity_id": "*shower*"
+                          },
+                          {
+                            "domain": "input_boolean",
+                            "entity_id": "*bathroom*schedule*"
+                          },
+                          {
+                            "entity_id": "fan*bathroom*fan*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Bedroom",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.bedroom_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*bedroom*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Entrance",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.entrance_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*entrance*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Hall",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.hall_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*hall*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Kitchen",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.kitchen_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*kitchen*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Lounge",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.lounge_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*lounge*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Study",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.study_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*study*"
+                          },
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*starrunner*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Garden",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.garden_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*garden*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:auto-entities",
+              "class": "testclass",
+              "card": {
+                "type": "entities",
+                "title": "Occupied Areas"
+              },
+              "filter": {
+                "include": [
+                  {
+                    "entity_id": "*_occupied",
+                    "domain": "binary_sensor"
+                  },
+                  {
+                    "entity_id": "*sleeping*",
+                    "domain": "binary_sensor"
+                  }
+                ],
+                "exclude": []
+              },
+              "sort": {
+                "method": "state",
+                "reverse": true,
+                "numeric": false
+              },
+              "view_layout": {
+                "position": "sidebar"
+              }
+            }
+          ]
+        },
+        {
+          "icon": "mdi:desktop-tower",
+          "path": "study",
+          "title": "Study",
+          "badges": [],
+          "cards": [
+            {
+              "cards": [
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "state": "off",
+                      "entity": "binary_sensor.starrunner_online"
+                    }
+                  ],
+                  "card": {
+                    "type": "button",
+                    "tap_action": {
+                      "action": "toggle"
+                    },
+                    "show_icon": false,
+                    "name": "Start PC",
+                    "entity": "script.starrunner_wake"
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "binary_sensor.starrunner_online",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "custom:mini-media-player",
+                        "entity": "media_player.starrunner",
+                        "name": "Starrunner",
+                        "hide": {
+                          "power": true,
+                          "icon": true
+                        },
+                        "info": "scroll",
+                        "volume_stateless": false,
+                        "artwork": "cover",
+                        "source": "icon",
+                        "sound_mode": "icon"
+                      },
+                      {
+                        "type": "horizontal-stack",
+                        "cards": [
+                          {
+                            "entity": "sensor.starrunner_cpuload",
+                            "max": 100,
+                            "min": 0,
+                            "name": "CPU",
+                            "severity": {
+                              "green": 0,
+                              "red": 90,
+                              "yellow": 80
+                            },
+                            "type": "gauge",
+                            "needle": true
+                          },
+                          {
+                            "entity": "sensor.starrunner_memoryusage",
+                            "max": 100,
+                            "name": "RAM",
+                            "severity": {
+                              "green": 0,
+                              "red": 90,
+                              "yellow": 80
+                            },
+                            "type": "gauge",
+                            "min": 0,
+                            "needle": true
+                          },
+                          {
+                            "entity": "sensor.starrunner_gpuload",
+                            "max": 100,
+                            "min": 0,
+                            "name": "GPU",
+                            "severity": {
+                              "green": 0,
+                              "red": 90,
+                              "yellow": 80
+                            },
+                            "type": "gauge",
+                            "needle": true
+                          },
+                          {
+                            "entity": "sensor.starrunner_gputemperature",
+                            "max": 100,
+                            "min": 0,
+                            "name": "GPU Temp",
+                            "severity": {
+                              "green": 0,
+                              "red": 90,
+                              "yellow": 80
+                            },
+                            "type": "gauge",
+                            "needle": true
+                          }
+                        ]
+                      },
+                      {
+                        "type": "horizontal-stack",
+                        "cards": [
+                          {
+                            "type": "custom:mini-graph-card",
+                            "color_thresholds": [
+                              {
+                                "color": "red",
+                                "value": 70
+                              },
+                              {
+                                "color": "yellow",
+                                "value": 50
+                              },
+                              {
+                                "color": "green",
+                                "value": 0
+                              }
+                            ],
+                            "entities": [
+                              {
+                                "entity": "sensor.starrunner_cpuload"
+                              }
+                            ],
+                            "show": {
+                              "name": false,
+                              "icon": false,
+                              "state": false
+                            },
+                            "update_interval": 1,
+                            "upper_bound": 100
+                          },
+                          {
+                            "type": "custom:mini-graph-card",
+                            "color_thresholds": [
+                              {
+                                "color": "red",
+                                "value": 70
+                              },
+                              {
+                                "color": "yellow",
+                                "value": 50
+                              },
+                              {
+                                "color": "green",
+                                "value": 0
+                              }
+                            ],
+                            "entities": [
+                              {
+                                "entity": "sensor.starrunner_gpuload"
+                              }
+                            ],
+                            "show": {
+                              "name": false,
+                              "icon": false,
+                              "state": false
+                            },
+                            "update_interval": 1,
+                            "upper_bound": 100
+                          },
+                          {
+                            "type": "custom:mini-graph-card",
+                            "color_thresholds": [
+                              {
+                                "color": "red",
+                                "value": 70
+                              },
+                              {
+                                "color": "yellow",
+                                "value": 50
+                              },
+                              {
+                                "color": "green",
+                                "value": 0
+                              }
+                            ],
+                            "entities": [
+                              {
+                                "entity": "sensor.starrunner_memoryusage"
+                              }
+                            ],
+                            "show": {
+                              "name": false,
+                              "icon": false,
+                              "state": false
+                            },
+                            "update_interval": 1,
+                            "upper_bound": 100
+                          },
+                          {
+                            "type": "custom:mini-graph-card",
+                            "color_thresholds": [
+                              {
+                                "color": "red",
+                                "value": 70
+                              },
+                              {
+                                "color": "yellow",
+                                "value": 50
+                              },
+                              {
+                                "color": "green",
+                                "value": 0
+                              }
+                            ],
+                            "entities": [
+                              {
+                                "entity": "sensor.starrunner_gputemperature"
+                              }
+                            ],
+                            "show": {
+                              "name": false,
+                              "icon": false,
+                              "state": false
+                            },
+                            "update_interval": 1,
+                            "upper_bound": 100
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "custom:uptime-card",
+                  "entity": "binary_sensor.starrunner_online",
+                  "icon": "none",
+                  "hours_to_show": 24
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "button",
+                      "entity": "button.starrunner_lock",
+                      "name": "Lock",
+                      "show_icon": false
+                    },
+                    {
+                      "type": "button",
+                      "entity": "button.starrunner_sleep",
+                      "name": "Sleep",
+                      "show_icon": false
+                    },
+                    {
+                      "type": "button",
+                      "entity": "button.starrunner_restart",
+                      "name": "Restart",
+                      "show_icon": false
+                    },
+                    {
+                      "type": "button",
+                      "entity": "button.starrunner_shutdown",
+                      "name": "Shutdown",
+                      "show_icon": false
+                    }
+                  ]
+                }
+              ],
+              "type": "custom:vertical-stack-in-card",
+              "title": "Starrunner"
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "title": "Endeavor",
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "cards": [
+                    {
+                      "entity": "sensor.endeavor_cpu_used",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "min": 0,
+                      "name": "CPU",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.endeavor_ram_used_percent",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "name": "RAM",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "min": 0,
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.endeavor_mnt_cache_used_percent",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "min": 0,
+                      "name": "CACHE",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.endeavor_composite_temperature",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "min": 0,
+                      "name": "Temp",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "needle": true
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.endeavor_cpu_used"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.endeavor_ram_used_percent"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.endeavor_mnt_cache_used_percent"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.endeavor_composite_temperature"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:bar-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.endeavor_array_used",
+                      "icon": "mdi:harddisk",
+                      "name": "Storage Used",
+                      "max": 12.1
+                    },
+                    {
+                      "entity": "sensor.endeavor_array_cache_used",
+                      "name": "Cache Used",
+                      "icon": "mdi:server",
+                      "max": 0.93
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:uptime-card",
+                  "entity": "binary_sensor.endeavor_state",
+                  "icon": "none",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "hours_to_show": 24
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "button",
+                      "entity": "switch.endeavor_array",
+                      "name": "Start Array",
+                      "show_icon": false
+                    },
+                    {
+                      "type": "button",
+                      "entity": "switch.endeavor_partitycheck",
+                      "name": "Check Parity",
+                      "show_icon": false
+                    },
+                    {
+                      "type": "button",
+                      "entity": "switch.endeavor_reboot",
+                      "name": "Restart",
+                      "show_icon": false
+                    },
+                    {
+                      "type": "button",
+                      "entity": "switch.endeavor_power_off",
+                      "name": "Shutdown",
+                      "show_icon": false
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:auto-entities",
+                  "filter": {
+                    "include": [
+                      {
+                        "entity_id": "switch.endeavor_docker_*"
+                      }
+                    ]
+                  },
+                  "card": {
+                    "type": "custom:fold-entity-row",
+                    "mute": true,
+                    "head": {
+                      "type": "section",
+                      "label": "Docker Control"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "title": "Railen",
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "cards": [
+                    {
+                      "entity": "sensor.railen_cpu_usage",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "min": 0,
+                      "name": "CPU",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.railen_memory_usage",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "name": "RAM",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "min": 0,
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.frigate_detection_fps",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "name": "Detect FPS",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "min": 0,
+                      "needle": true
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.railen_cpu_usage"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.railen_memory_usage"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.frigate_detection_fps"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:uptime-card",
+                  "entity": "binary_sensor.railen_online",
+                  "icon": "none",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "hours_to_show": 24
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "button",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "entity": "button.railen_shutdown",
+                      "name": "Shutdown",
+                      "show_icon": false
+                    },
+                    {
+                      "type": "button",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "entity": "button.railen_restart",
+                      "name": "Restart",
+                      "show_icon": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "title": "Terrapin",
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "cards": [
+                    {
+                      "entity": "sensor.terrapin_cpu_used",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "min": 0,
+                      "name": "CPU",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.terrapin_ram_used_percent",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "name": "RAM",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "min": 0,
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.terrapin_swap_used_percent",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "min": 0,
+                      "name": "CACHE",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.terrapin_cpu_thermal_1_temperature",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "min": 0,
+                      "name": "Temp",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "needle": true
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.terrapin_cpu_used"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.terrapin_ram_used_percent"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.terrapin_swap_used_percent"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.terrapin_cpu_thermal_1_temperature"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:bar-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.terrapin_data_used",
+                      "icon": "mdi:harddisk",
+                      "name": "Storage Used",
+                      "max": 128
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Battery",
+          "path": "battery",
+          "type": "sidebar",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:auto-entities",
+              "card": {
+                "type": "entities"
+              },
+              "filter": {
+                "include": [
+                  {
+                    "entity_id": "sensor.*battery*",
+                    "state 1": "< 30"
+                  }
+                ],
+                "exclude": [
+                  {
+                    "entity_id": "*temp*"
+                  },
+                  {
+                    "entity_id": "*health*"
+                  },
+                  {
+                    "entity_id": "*battery_state*"
+                  },
+                  {
+                    "entity_id": "*endeavor*"
+                  }
+                ]
+              },
+              "sort": {
+                "method": "state",
+                "numeric": true
+              },
+              "view_layout": {
+                "position": "sidebar"
+              }
+            },
+            {
+              "type": "custom:auto-entities",
+              "filter": {
+                "include": [
+                  {
+                    "entity_id": "sensor.*battery*",
+                    "state": "< 30"
+                  }
+                ],
+                "exclude": [
+                  {
+                    "entity_id": "*temp*"
+                  },
+                  {
+                    "entity_id": "*health*"
+                  },
+                  {
+                    "entity_id": "*battery_state*"
+                  },
+                  {
+                    "entity_id": "*endeavor*"
+                  }
+                ]
+              },
+              "card": {
+                "type": "custom:mini-graph-card",
+                "line_width": 1,
+                "upper_bound": 100,
+                "lower_bound": 0,
+                "hours_to_show": 310,
+                "points_per_hour": 0.5
+              }
+            }
+          ]
+        },
+        {
+          "title": "Sleep Stats",
+          "path": "sleep-stats",
+          "icon": "mdi:sleep",
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "type": "history-graph",
+              "entities": [
+                {
+                  "entity": "binary_sensor.sleeping"
+                },
+                {
+                  "entity": "binary_sensor.laura_sleeping"
+                },
+                {
+                  "entity": "binary_sensor.seb_sleeping"
+                },
+                {
+                  "entity": "binary_sensor.upstairs_sleep_mode"
+                },
+                {
+                  "entity": "binary_sensor.bed_occupied"
+                },
+                {
+                  "entity": "binary_sensor.bedroom_occupied"
+                },
+                {
+                  "entity": "sensor.bed_occupied_probability"
+                },
+                {
+                  "entity": "sensor.bedroom_occupied_probability"
+                },
+                {
+                  "entity": "media_player.bedroom_tv"
+                },
+                {
+                  "entity": "sensor.seb_phone_detected_activity"
+                },
+                {
+                  "entity": "sensor.laura_phone_detected_activity"
+                },
+                {
+                  "entity": "sensor.seb_phone_sleep_confidence"
+                },
+                {
+                  "entity": "sensor.laura_phone_sleep_confidence"
+                }
+              ],
+              "hours_to_show": 24,
+              "refresh_interval": 0
+            }
+          ]
+        },
+        {
+          "title": "Motion Stats",
+          "path": "motion-stats",
+          "icon": "mdi:run-fast",
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:auto-entities",
+              "card": {
+                "type": "history-graph",
+                "hours_to_show": 24,
+                "refresh_interval": 0
+              },
+              "filter": {
+                "include": [
+                  {
+                    "domain": "binary_sensor",
+                    "entity_id": "*mot_*occupancy"
+                  },
+                  {
+                    "domain": "binary_sensor",
+                    "entity_id": "**occupied*"
+                  }
+                ],
+                "exclude": []
+              },
+              "sort": {
+                "method": "entity_id",
+                "numeric": true,
+                "reverse": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "sidebar",
+          "icon": "mdi:map-marker-radius",
+          "title": "Map",
+          "path": "map",
+          "badges": [],
+          "cards": [
+            {
+              "type": "map",
+              "entities": [
+                "device_tracker.laura_phone",
+                "device_tracker.seb_phone"
+              ],
+              "dark_mode": true,
+              "hours_to_show": 12,
+              "aspect_ratio": "16:9"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.laura_location",
+              "view_layout": {
+                "position": "sidebar"
+              }
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.seb_location",
+              "view_layout": {
+                "position": "sidebar"
+              }
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Watchman",
+          "path": "watchman",
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "<h2> <ha-icon icon='mdi:shield-half-full'></ha-icon> Watchman report<h2> <h3>Missing Entities: {{ states.sensor.watchman_missing_entities.state }} </h3> {%- for item in state_attr(\"sensor.watchman_missing_entities\", \"entities\") %} <hr> <table><tr> <td> <ha-icon icon='mdi: {%- if item.state==\"missing\"-%}cloud-alert' {%- elif item.state==\"unavail\" -%}cloud-off-outline' {%- else-%}cloud-question' {%- endif -%} ></ha-icon> {{ item.id }} [{{item.state}}] <a title=\"{{item.occurrences}}\"> {{item.occurrences.split('/')[-1].split(':')[0]}}</a> </td></tr></table> {%- endfor %}",
+                  "card_mod": {
+                    "style": {
+                      "ha-markdown": {
+                        "$": "ha-markdown-element:first-of-type hr{\n  border-color: #303030;\n}\n"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "markdown",
+                  "content": "<h2 class=\"some\"> <ha-icon icon='mdi:shield-half-full'></ha-icon> Watchman report<h2> <h3> Missing Services: {{ states.sensor.watchman_missing_services.state }} </h3> {%- for item in state_attr(\"sensor.watchman_missing_services\", \"services\") %} <hr><table><tr> <td>  <ha-icon icon='mdi:cloud-alert'></ha-icon> {{ item.id }} <a title=\"{{item.occurrences}}\">{{item.occurrences.split('/')[-1].split(':')[0]}}</a> </td></tr></table> {%- endfor %}",
+                  "card_mod": {
+                    "style": {
+                      "ha-markdown": {
+                        "$": "ha-markdown-element:first-of-type hr{\n  border-color: #303030;\n}\n"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "ZHA",
+          "path": "zha",
+          "icon": "mdi:zigbee",
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "clickable": true,
+              "columns": [
+                {
+                  "name": "Name",
+                  "prop": "name"
+                },
+                {
+                  "attr": "available",
+                  "id": "available",
+                  "modify": "x || \"false\"",
+                  "name": "Online"
+                },
+                {
+                  "attr": "manufacturer",
+                  "name": "Manufacturer"
+                },
+                {
+                  "attr": "model",
+                  "name": "Model"
+                },
+                {
+                  "attr": "ieee",
+                  "name": "IEEE"
+                },
+                {
+                  "name": "NWK",
+                  "prop": "nwk"
+                },
+                {
+                  "attr": "rssi",
+                  "name": "RSSI"
+                },
+                {
+                  "attr": "lqi",
+                  "name": "LQI"
+                },
+                {
+                  "attr": "last_seen",
+                  "name": "Last Seen"
+                },
+                {
+                  "attr": "power_source",
+                  "name": "Power Source"
+                },
+                {
+                  "attr": "quirk_class",
+                  "name": "Quirk"
+                }
+              ],
+              "sort_by": "available",
+              "type": "custom:zha-network-card"
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "path": "history",
+          "icon": "mdi:history",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:auto-entities",
+              "card": {
+                "type": "entities"
+              },
+              "filter": {
+                "include": [
+                  {
+                    "entity_id": "*ratio"
+                  }
+                ],
+                "exclude": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

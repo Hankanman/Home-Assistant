@@ -1,0 +1,70 @@
+substitutions:
+  area: Entrance
+  arealower: entrance
+
+esphome:
+  name: ${arealower}-esp-1
+  name_add_mac_suffix: false
+
+esp32:
+  board: az-delivery-devkit-v4
+  framework:
+    type: arduino
+
+ota:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: ${area}-Esp-1 Fallback Hotspot
+    password: !secret fallback_password
+
+captive_portal:
+
+bluetooth_proxy:
+  active: true
+
+esp32_ble_tracker:
+  scan_parameters:
+    interval: 1100ms
+    window: 1100ms
+    active: True
+    continuous: True
+    duration: 1min
+
+sensor:
+  - platform: ble_rssi
+    ibeacon_uuid: !secret seb_phone_ble
+    name: ${area} Seb Phone BLE RSSI
+  - platform: ble_rssi
+    ibeacon_uuid: !secret laura_phone_ble
+    name: ${area} Laura Phone BLE RSSI
+  - platform: ble_rssi
+    ibeacon_uuid: !secret tablet_ble
+    name: ${area} Entrance Tablet BLE RSSI
+  - platform: ble_rssi
+    mac_address: !secret sebwatch_mac
+    name: ${area} Seb Watch BLE Present
+
+binary_sensor:
+  - platform: ble_presence
+    ibeacon_uuid: !secret seb_phone_ble
+    name: ${area} Seb Phone BLE Present
+  - platform: ble_presence
+    ibeacon_uuid: !secret laura_phone_ble
+    name: ${area} Laura Phone BLE Present
+  - platform: ble_presence
+    ibeacon_uuid: !secret tablet_ble
+    name: ${area} Entrance Tablet BLE Present
+  - platform: ble_presence
+    mac_address: !secret sebwatch_mac
+    name: ${area} Seb Watch BLE Present

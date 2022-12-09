@@ -1,0 +1,124 @@
+system:
+  folder_watcher:
+    - folder: /config
+      patterns:
+        - "*.yaml"
+
+  browser_mod:
+
+  group:
+    all_automations:
+      name: All Automations
+      icon: mdi:robot
+      all: true
+      entities:
+        - input_boolean.bathroom_automations
+        - input_boolean.bedroom_automations
+        - input_boolean.entrance_automations
+        - input_boolean.hall_automations
+        - input_boolean.home_automations
+        - input_boolean.kitchen_automations
+        - input_boolean.lounge_automations
+        - input_boolean.study_automations
+        - input_boolean.toilet_automations
+
+  #   object_detection:
+  #     name: Object Detection
+  #     icon: mdi:camera-account
+  #     entities:
+  #       - switch.kitchen_camera_detect
+  #       - switch.entrance_camera_detect
+  #       - switch.lounge_camera_detect
+  #       - switch.hall_camera_detect
+
+  #   snapshots:
+  #     name: Snapshots
+  #     icon: mdi:camera-image
+  #     entities:
+  #       - switch.kitchen_camera_snapshots
+  #       - switch.entrance_camera_snapshots
+  #       - switch.lounge_camera_snapshots
+  #       - switch.hall_camera_snapshots
+
+  http:
+    use_x_forwarded_for: true
+    trusted_proxies:
+      - 192.168.1.0/24
+      - 192.168.100.0/24
+      - 192.168.200.0/24
+      - 192.168.50.0/24
+      - 172.30.33.0/24
+      - 172.30.33.3
+      - 127.0.0.1
+      - ::1
+
+  notify:
+    - name: Mobiles
+      platform: group
+      services:
+        - service: mobile_app_seb_phone
+        - service: mobile_app_laura_phone
+    - platform: file
+      name: entity_log
+      filename: /config/www/entity_log.txt
+      timestamp: false
+    # - platform: telegram
+    #   name: Seb
+    #   chat_id: 5533402451
+    # - platform: telegram
+    #   name: James
+    #   chat_id: 3151939299
+
+  powercalc:
+
+  binary_sensor:
+    - platform: workday
+      country: GB
+
+  sensor:
+    # - platform: google_fit
+    #   name: Seb
+    #   client_id: !secret google_client_id
+    #   client_secret: !secret google_secret
+    - platform: time_date
+      display_options:
+        - "date"
+        - "date_time"
+        - "date_time_iso"
+
+  tts:
+    platform: google_translate
+    language: "en"
+    cache: true
+    cache_dir: /tmp/ttsr fast play
+    time_memory: 300
+# Example configuration.yaml entry for the Telegram Bot
+  # telegram_bot:
+  #   - platform: polling
+  #     api_key: 5474957606:AAFzdKy1wIWS8eBjqn-vFNATOl8u5A8WluI
+  #     allowed_chat_ids:
+  #       - 5533402451
+  #       - 3151939299
+  # o365:
+  #   accounts:
+  #     - account_name: Seb_Work
+  #       client_id: !secret o365_work_client_id
+  #       client_secret: !secret o365_work_secret
+  #       enable_update: True
+  #       email_sensor:
+  #         - name: inbox
+  #           max_items: 5
+  #           is_unread: True
+  #           download_attachments: False
+  #       # query_sensors:
+  #       #   - name: "Example"
+  #       #     folder: "Inbox/Test_Inbox" #Default is Inbox
+  #       #     from: "mail@example.com"
+  #       #     subject_contains: "Example subject"
+  #       #     has_attachment: True
+  #       #     max_items: 2
+  #       #     is_unread: True
+  #       status_sensors: # Cannot be used for personal accounts
+  #         - name: "Seb Teams Status"
+  #       chat_sensors: # Cannot be used for personal accounts
+  #         - name: "Seb Chat"

@@ -1,0 +1,332 @@
+Windows 11:
+  card-mod-theme: Windows 11
+
+  modes:
+    light:
+      primary-background-color: rgb(255, 255, 255)
+      secondary-background-color: rgb(243, 243, 243)
+      primary-text-color: rgb(21, 21, 21)
+      secondary-text-color: rgb(100, 100, 100)
+      sidebar-selected-icon-color: var(--primary-color)
+    dark:
+      primary-background-color: rgb(21, 21, 21)
+      secondary-background-color: rgb(21, 21, 21)
+      primary-text-color: rgb(255, 255, 255)
+      secondary-text-color: rgb(180, 180, 180)
+      sidebar-selected-icon-color: var(--light-primary-color)
+
+  # bg-image: url("/hacsfiles/themes/windows11/bg.jpg")
+  bg-filter-image: url("/hacsfiles/filter.jpg")
+  # Font
+  paper-font-common-base_-_font-family: Segoe UI, sans-serif
+  paper-font-common-base_-_-webkit-font-smoothing: subpixel-antialiased
+  paper-font-common-code_-_font-family: Lucida Console, Consolas, monospace
+  paper-font-common-code_-_-webkit-font-smoothing: subpixel-antialiased
+  paper-font-common-expensive-kerning_-_text-rendering: optimizeLegibility
+  # Main Interface Colors
+  primary-color: rgb(0, 120, 215)
+  light-primary-color: rgb(11, 132, 227)
+  primary-background-color: rgb(255, 255, 255)
+  secondary-background-color: rgb(243, 243, 243)
+  divider-color: rgb(102, 102, 102)
+  accent-color: var(--primary-color)
+  # UI
+  ha-card-header-color: var(--primary-color) # Title in settings
+  # Text
+  primary-text-color: rgb(0, 0, 0)
+  secondary-text-color: rgb(100, 100, 100)
+  text-primary-color: rgb(255, 255, 255)
+  disabled-text-color: rgb(110, 110, 110)
+  # Sidebar Menu
+  sidebar-icon-color: var(--secondary-text-color)
+  sidebar-text-color: var(--primary-text-color)
+  sidebar-background-color: var(--secondary-background-color)
+  sidebar-selected-background-color: var(--secondary-background-color)
+  sidebar-selected-icon-color: var(--primary-color)
+  sidebar-selected-text-color: var(--sidebar-selected-icon-color)
+  # Buttons
+  paper-item-icon-color: var(--text-primary-color)
+  paper-item-icon-active-color: var(--primary-color)
+  # States and Badges
+  state-icon-color: var(--primary-text-color)
+  state-icon-active-color: var(--primary-color)
+  state-icon-unavailable-color: var(--disabled-text-color)
+  # Sliders
+  paper-slider-knob-color: var(--primary-color)
+  paper-slider-knob-start-color: var(--paper-slider-knob-color)
+  paper-slider-pin-color: var(--primary-color)
+  paper-slider-active-color: var(--primary-color)
+  paper-slider-secondary-color: var(--disabled-text-color)
+  # Labels
+  label-badge-background-color: var(--primary-background-color)
+  label-badge-text-color: var(--primary-text-color)
+  label-badge-red: rgb(232, 17, 35)
+  label-badge-green: rgb(73, 130, 5)
+  label-badge-blue: rgb(0, 99, 177)
+  label-badge-yellow: rgb(255, 185, 0)
+  label-badge-gray: rgb(118, 118, 118)
+  # Cards
+  card-background-color: rgba(21,21,21,0.9)
+  ha-card-background: var(--card-background-color)
+  ha-card-border-radius: 0.6rem
+  ha-card-box-shadow: 0 0 1rem rgba(21,21,21,1)
+  paper-dialog-background-color: var(--card-background-color)
+  paper-listbox-background-color: var(--background-color)
+  paper-card-background-color: var(--card-background-color)
+  fc-page-bg-color: var(--card-background-color)
+  # Header
+  app-header-background-color: var(--ha-card-background)
+  app-header-text-color: var(--primary-text-color)
+  paper-tabs-selection-bar-color: var(--primary-text-color)
+  # Switches
+  switch-checked-button-color: var(--primary-color)
+  switch-checked-track-color: var(--primary-color)
+  switch-unchecked-button-color: var(--disabled-text-color)
+  switch-unchecked-track-color: var(--disabled-text-color)
+  # Toggles
+  paper-toggle-button-checked-button-color: var(--switch-checked-button-color)
+  paper-toggle-button-checked-bar-color: var(--switch-checked-track-color)
+  paper-toggle-button-unchecked-button-color: var(--switch-unchecked-button-color)
+  paper-toggle-button-unchecked-bar-color: var(--switch-unchecked-track-color)
+  # Table
+  table-row-background-color: var(--primary-background-color)
+  table-row-alternative-background-color: var(--secondary-background-color)
+  data-table-background-color: var(--primary-background-color)
+  # Dropdowns
+  material-background-color: var(--primary-background-color)
+  material-secondary-background-color: var(--secondary-background-color)
+  mdc-theme-surface: var(--primary-background-color)
+  # Pre/Code
+  markdown-code-background-color: var(--secondary-background-color)
+  # Time Picker Card
+  time-picker-elements-background-color: var(--primary-background-color)
+  time-picker-text-color: var(--primary-text-color)
+  time-picker-icon-color: var(--primary-color)
+  # Bar Card
+  bar-card-color: var(--light-primary-color)
+  bar-card-disabled-color: var(--disabled-text-color)
+  # HACS
+  hacs-badge-color: var(--light-primary-color)
+  hacs-status-installed: var(--label-badge-green)
+  hacs-status-pending-restart: var(--label-badge-red)
+  hacs-status-pending-update: var(--label-badge-yellow)
+  hacs-status-not-loaded: var(--disabled-text-color)
+  hacs-new-color: var(--primary-color)
+  link-text-color: var(--primary-color)
+
+  # Place the backgrounds in the folder  config/www/images/backgrounds
+  lovelace-background: "#202020 radial-gradient(#1a1f35 33%, #202020 100%) no-repeat fixed"
+  # Main colors
+  secondary-color: "#283E54"
+  graph-color: var(--primary-color)
+  disabled-color: "#E8E9F3"
+
+  # Text colors
+  text-medium-light-color: "#A0A2A8"
+  text-medium-color: "#80828A"
+  error-color: "#e74c3c"
+  success-color: "#2ecc71"
+  info-color: "#9b59b6"
+  warning-color: "#f39c12"
+  # App Header
+  app-header-icon-color: var(--light-primary-color)
+  app-header-selection-bar-color: var(--primary-color)
+  app-header-selection-color: var(--secondary-color)
+  # Settins and colors of Mini Media Player
+  mini-media-player-icon-color: var(--primary-color)
+  mini-media-player-accent-color: var(--primary-color)
+  mini-media-player-progress-height: 0.6rem
+  # Switch colors
+  switch-checked-color: var(--paper-toggle-button-checked-button-color)
+  switch-unchecked-color: var(--paper-toggle-button-unchecked-bar-color)
+  #Animated icons
+  weather-icon-clear-night: url("/hacsfiles/themes/waves/clear-night.svg")
+  weather-icon-cloudy: url("/hacsfiles/themes/waves/cloudy.svg")
+  weather-icon-fog: url("/hacsfiles/themes/waves/fog.svg")
+  weather-icon-lightning: url("/hacsfiles/themes/waves/lightning.svg")
+  weather-icon-lightning-rainy: url("/hacsfiles/themes/waves/lightning-rainy.svg")
+  weather-icon-partlycloudy: url("/hacsfiles/themes/waves/partlycloudy.svg")
+  weather-icon-pouring: url("/hacsfiles/themes/waves/pouring.svg")
+  weather-icon-rainy: url("/hacsfiles/themes/waves/rainy.svg")
+  weather-icon-hail: url("/hacsfiles/themes/waves/hail.svg")
+  weather-icon-snowy: url("/hacsfiles/themes/waves/snowy.svg")
+  weather-icon-snowy-rainy: url("/hacsfiles/themes/waves/snowy-rainy.svg")
+  weather-icon-sunny: url("/hacsfiles/themes/waves/sunny.svg")
+  weather-icon-windy: url("/hacsfiles/themes/waves/windy.svg")
+  weather-icon-windy-variant: url("/hacsfiles/themes/waves/windy-variant.svg")
+  weather-icon-exceptional: url("/hacsfiles/themes/waves/exceptional.svg")
+  # HACS
+  google-blue-500: var(--primary-color)
+  hacs-accent-color: var(--light-primary-color)
+  hacs-chip-color: var(--accent-color)
+  hacs-error-color: var(--error-color)
+  hacs-warning-color: var(--warning-color)
+  hacs-update-color: var(--success-color)
+  # Code Editor
+  code-editor-background-color: "#2f3542"
+  codemirror-property: "#16a085"
+  # Pantone Colors
+  color-red: "#C24436"
+  color-green: "#62C45D"
+  color-blue: "#3A7BCA"
+  color-purple: "#6D42B6"
+  color-yellow: "#F4E966"
+  color-orange: "#EF8550"
+  color-light: "#FDC870"
+
+  masonry-view-card-margin: 0.6rem
+  bg-filter: blur(2rem)
+
+  dialog-backdrop-filter: var(--bg-filter)
+  iron-overlay-backdrop-opacity: 1
+  iron-overlay-backdrop-background-color: rgba(0, 0, 0, 0.55)
+  ####################################################
+  #                                                  #
+  #                     CARD-MOD                     #
+  #                                                  #
+  ####################################################
+
+  card-mod-root: |
+    .edit-mode app-header {
+      background-color: var(--app-header-background-color) !important;
+    }
+    .edit-mode app-toolbar {
+      background-color: unset !important;
+    }
+    :host(.panel) .card {
+      height: auto;
+    }
+    */
+    #view {
+      background-image: url( "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Crect width='56' height='100' fill='%23222222'/%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23084c5d' stroke-width='2'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23073e4d' stroke-width='1'/%3E%3C/svg%3E" );
+      background-attachment: fixed;
+    }
+    #view > hui-view {
+      background: unset;
+    }
+    app-header {
+      -webkit-backdrop-filter: var(--bg-filter);
+      box-shadow: var(--ha-card-box-shadow);
+      filter: var(--bg-filter);
+      backdrop-filter: var(--bg-filter);
+      background-size: 60px;
+      background-image: var(--bg-filter-image);
+    }
+    ha-app-layout {
+      background-image: var(--bg-image);
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+    */
+
+  card-mod-card: |
+    .nobg {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background: none;
+      box-shadow: none;
+    }
+    /*
+    .acrylic {
+      -webkit-backdrop-filter: var(--bg-filter);
+      backdrop-filter: var(--bg-filter);
+      background-size: 60px;
+      background-image: var(--bg-filter-image);
+    }
+    ha-card {
+      -webkit-backdrop-filter: var(--bg-filter);
+      backdrop-filter: var(--bg-filter);
+      background-size: 60px;
+      background-image: var(--bg-filter-image);
+    }
+    */
+    .type-custom-mini-media-player {
+      background-size: 60px;
+      background-image: var(--bg-filter-image);
+    }
+
+
+
+    /* * * * * * * * * * * * * * * * * *
+      *                                 *
+      *            MAP CARD             *
+      *                                 *
+      * * * * * * * * * * * * * * * * * */
+    #map > div.leaflet-control-container > * {
+      display: none;
+    }
+    .type-map {
+      border-block-start-width: 0 !important;
+    }
+
+    /* * * * * * * * * * * * * * * * * *
+      *                                 *
+      *       SLIDER BUTTON CARD        *
+      *                                 *
+      * * * * * * * * * * * * * * * * * */
+    .type-custom-slider-button-card {
+      --btn-bg-color-off: transparent;
+      background: transparent;
+      --slider-color: rgb(255,168,90);
+      --paper-item-icon-active-color: var(--slider-color);
+      --paper-item-icon-color: var(--disabled-text-color);
+      --action-icon-color-on: var(--text-primary-color);
+      --action-icon-color-off: var(--disabled-text-color);
+      --label-color-on: var(--text-primary-color);
+      --state-color-on: var(--text-primary-color);
+      --label-color-off: var(--disabled-text-color);
+      --mdc-icon-size: 1.5rem;
+    }
+    .type-custom-slider-button-card > .button.off > .slider {
+      background: transparent;
+    }
+    .type-custom-slider-button-card > .button > .text {
+      top: 0;
+    }
+    .off .slider .slider-bg {
+      --slider-bg: transparent !important;
+      background-color: transparent !important;
+    }
+  # card-mod-more-info-yaml: |
+  #   $: |
+  #     .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+  #       box-shadow: none;
+  #       border-radius: 3rem;
+  #     }
+  #   ha-header-bar:
+  #     $: |
+  #       .mdc-top-app-bar {
+  #         background: var(--primary-color) !important;
+  #         color: var(--primary-background-color) !important;
+  #       }
+  # card-mod-more-info-yaml: |
+  #   $: |
+  #     .mdc-dialog {
+  #       -webkit-backdrop-filter: var(--bg-filter);
+  #       backdrop-filter: var(--bg-filter);
+  #     }
+  #   .column > * {
+  #     -webkit-backdrop-filter: var(--bg-filter);
+  #     backdrop-filter: var(--bg-filter);
+  #     border-radius: var(--ha-card-border-radius);
+  #     background-size: 60px;
+  #     background-image: var(--bg-filter-image);
+  #   }
+  #   grid-layout:
+  #     $: |
+  #       #root {
+  #         margin: 0 !important;
+  #       }
+  #       #root > * {
+  #         -webkit-backdrop-filter: var(--bg-filter);
+  #         backdrop-filter: var(--bg-filter);
+  #         border-radius: var(--ha-card-border-radius);
+  #         background-size: 60px;
+  #         background-image: var(--bg-filter-image);
+  #       }
+  # <svg xmlns='http://www.w3.org/2000/svg' width='56' height='100'>
+  # <rect width='56' height='100' fill='#283E54'/>
+  # <path d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='#0078D7' stroke-width='2'/>
+  # <path d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='#00A3FF' stroke-width='2'/>
+  # </svg>
