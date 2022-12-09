@@ -1,41 +1,44 @@
 {
-    "version": 1,
-    "key": "esphome.b55896836856bcddacb7c05560aca4e4",
-    "data": {
-        "device_info": {
-            "uses_password": false,
-            "name": "air-01",
-            "mac_address": "50:02:91:FC:CC:E6",
-            "compilation_time": "Dec  2 2021, 18:24:50",
-            "model": "d1_mini",
-            "has_deep_sleep": false,
-            "esphome_version": "2021.11.4",
-            "project_name": "",
-            "project_version": "",
-            "webserver_port": 0
-        },
-        "services": [],
-        "api_version": {
-            "major": 1,
-            "minor": 6
-        },
-        "sensor": [
-            {
-                "object_id": "particulate_matter_25m",
-                "key": 3016511156,
-                "name": "Particulate Matter 2.5\u00b5m",
-                "unique_id": "air-01sensorparticulate_matter_25m",
-                "disabled_by_default": false,
-                "icon": "mdi:blur",
-                "entity_category": 0,
-                "device_class": "pm25",
-                "unit_of_measurement": "\u00b5g/m\u00b3",
-                "accuracy_decimals": 0,
-                "force_update": false,
-                "state_class": 1,
-                "last_reset_type": 0
-            }
-        ],
-        "text_sensor": []
-    }
+  "version": 1,
+  "minor_version": 1,
+  "key": "esphome.b55896836856bcddacb7c05560aca4e4",
+  "data": {
+    "device_info": {
+      "uses_password": false,
+      "name": "air-01",
+      "mac_address": "50:02:91:FC:CC:E6",
+      "compilation_time": "Nov 26 2022, 17:31:00",
+      "model": "d1_mini",
+      "manufacturer": "Espressif",
+      "has_deep_sleep": false,
+      "esphome_version": "2022.11.3",
+      "project_name": "",
+      "project_version": "",
+      "webserver_port": 0,
+      "bluetooth_proxy_version": 0
+    },
+    "services": [],
+    "api_version": {
+      "major": 1,
+      "minor": 7
+    },
+    "sensor": [
+      {
+        "object_id": "particulate_matter_25m",
+        "key": 3016511156,
+        "name": "Particulate Matter 2.5µm",
+        "unique_id": "air-01sensorparticulate_matter_25m",
+        "disabled_by_default": false,
+        "icon": "mdi:blur",
+        "entity_category": 0,
+        "device_class": "pm25",
+        "unit_of_measurement": "µg/m³",
+        "accuracy_decimals": 0,
+        "force_update": false,
+        "state_class": 1,
+        "last_reset_type": 0
+      }
+    ],
+    "text_sensor": []
+  }
 }

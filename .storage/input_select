@@ -1,25 +1,8 @@
 {
-<<<<<<< HEAD
   "version": 1,
   "minor_version": 2,
   "key": "input_select",
   "data": {
     "items": []
   }
-=======
-    "version": 1,
-    "key": "input_select",
-    "data": {
-        "items": [
-            {
-                "icon": "mdi:home",
-                "id": "home_mode",
-                "name": "Home Mode",
-                "options": [
-                    "Sleep"
-                ]
-            }
-        ]
-    }
->>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
 }

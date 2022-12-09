@@ -10,20 +10,12 @@ play_rain_sounds:
   - choose:
     - conditions:
       - condition: state
-<<<<<<< HEAD
         entity_id: input_boolean.bedroom_sleep_mode
-=======
-        entity_id: input_boolean.area_bedroom_sleep_mode
->>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
         state: 'off'
       sequence:
       - service: input_boolean.turn_on
         target:
-<<<<<<< HEAD
           entity_id: input_boolean.bedroom_sleep_mode
-=======
-          entity_id: input_boolean.area_bedroom_sleep_mode
->>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
     default: []
   mode: single
   icon: mdi:weather-pouring
@@ -32,7 +24,6 @@ starrunner_wake:
   sequence:
   - service: wake_on_lan.send_magic_packet
     data:
-<<<<<<< HEAD
       mac: 00-D8-61-78-02-E0
   - service: wake_on_lan.send_magic_packet
     data:
@@ -40,15 +31,6 @@ starrunner_wake:
   - service: wake_on_lan.send_magic_packet
     data:
       mac: 38-00-25-AA-A6-95
-=======
-      mac: '!secret starrunner_mac_1gb'
-  - service: wake_on_lan.send_magic_packet
-    data:
-      mac: '!secret starrunner_mac_2gb'
-  - service: wake_on_lan.send_magic_packet
-    data:
-      mac: '!secret starrunner_mac_wifi'
->>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
   mode: single
   icon: mdi:power
 print_entities_to_file:
@@ -74,7 +56,6 @@ endeavor_wake:
       mac: '!secret endeavor_mac_eth2'
   mode: single
   icon: mdi:power
-<<<<<<< HEAD
 xmas_lights:
   sequence:
   - repeat:
@@ -129,5 +110,3 @@ xmas_lights:
   mode: single
   alias: Xmas Lights
   icon: mdi:sledding
-=======
->>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604

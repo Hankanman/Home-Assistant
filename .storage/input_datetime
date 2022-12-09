@@ -1,9 +1,6 @@
 {
     "version": 1,
-<<<<<<< HEAD
     "minor_version": 1,
-=======
->>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
     "key": "input_datetime",
     "data": {
         "items": [
@@ -16,16 +13,6 @@
             },
             {
                 "has_time": true,
-<<<<<<< HEAD
-=======
-                "has_date": false,
-                "name": "Seb Alarm",
-                "icon": "mdi:alarm",
-                "id": "seb_alarm"
-            },
-            {
-                "has_time": true,
->>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
                 "has_date": true,
                 "name": "Bin Reminder",
                 "id": "bin_reminder",

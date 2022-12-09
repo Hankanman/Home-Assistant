@@ -1,23 +1,30 @@
 {
     "version": 1,
+    "minor_version": 1,
     "key": "camera",
     "data": {
-        "camera.kitchen": {
+        "camera.foscam_hall": {
+            "preload_stream": false
+        },
+        "camera.foscam_lounge": {
+            "preload_stream": false
+        },
+        "camera.entrance_frigate": {
             "preload_stream": true
         },
-        "camera.lounge": {
+        "camera.garden_frigate": {
             "preload_stream": true
         },
-        "camera.hall": {
+        "camera.hall_frigate": {
             "preload_stream": true
         },
-        "camera.entrance": {
+        "camera.kitchen_frigate": {
             "preload_stream": true
         },
-        "camera.stairs": {
+        "camera.lounge_frigate": {
             "preload_stream": true
         },
-        "camera.door": {
+        "camera.sofa_frigate": {
             "preload_stream": true
         }
     }

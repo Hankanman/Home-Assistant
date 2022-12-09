@@ -994,7 +994,6 @@
 -zone.work_birmingham
 -zone.work_london
 -zone.work_milton
-<<<<<<< HEAD
 -zone.work_york-automation.area_front_drive_lights
   -automation.area_garden_lights
   -automation.bathroom_fan
@@ -2387,6 +2386,3 @@
   -zone.the_lake
   -zone.work
   -zone.work_milton
-=======
--zone.work_york
->>>>>>> fcf4702d6d9777c62f997420e234fb70032d0604
