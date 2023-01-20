@@ -951,7 +951,8 @@
                   "card": {
                     "type": "button",
                     "tap_action": {
-                      "action": "toggle"
+                      "action": "call-service",
+                      "service": "script.starrunner_wake"
                     },
                     "show_icon": false,
                     "name": "Start PC",
@@ -1169,6 +1170,12 @@
                   "entity": "binary_sensor.starrunner_online",
                   "icon": "none",
                   "hours_to_show": 24
+                },
+                {
+                  "type": "custom:uptime-card",
+                  "entity": "binary_sensor.starrunner_active",
+                  "icon": "none",
+                  "hours_to_show": 1
                 },
                 {
                   "type": "horizontal-stack",
@@ -1951,8 +1958,35 @@
                       "max": 128
                     }
                   ]
+                },
+                {
+                  "type": "custom:bar-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.db_size_mb",
+                      "icon": "mdi:database",
+                      "name": "Database Size",
+                      "max": 10000
+                    }
+                  ]
                 }
               ]
+            },
+            {
+              "show_name": true,
+              "show_icon": true,
+              "type": "button",
+              "entity": "script.starrunner_wake",
+              "show_state": true,
+              "tap_action": {
+                "action": "call-service",
+                "service": "script.starrunner_wake",
+                "data": {},
+                "target": {}
+              }
             }
           ]
         },
@@ -2157,105 +2191,6 @@
         },
         {
           "theme": "Backend-selected",
-          "title": "Watchman",
-          "path": "watchman",
-          "type": "panel",
-          "badges": [],
-          "cards": [
-            {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "markdown",
-                  "content": "<h2> <ha-icon icon='mdi:shield-half-full'></ha-icon> Watchman report<h2> <h3>Missing Entities: {{ states.sensor.watchman_missing_entities.state }} </h3> {%- for item in state_attr(\"sensor.watchman_missing_entities\", \"entities\") %} <hr> <table><tr> <td> <ha-icon icon='mdi: {%- if item.state==\"missing\"-%}cloud-alert' {%- elif item.state==\"unavail\" -%}cloud-off-outline' {%- else-%}cloud-question' {%- endif -%} ></ha-icon> {{ item.id }} [{{item.state}}] <a title=\"{{item.occurrences}}\"> {{item.occurrences.split('/')[-1].split(':')[0]}}</a> </td></tr></table> {%- endfor %}",
-                  "card_mod": {
-                    "style": {
-                      "ha-markdown": {
-                        "$": "ha-markdown-element:first-of-type hr{\n  border-color: #303030;\n}\n"
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "markdown",
-                  "content": "<h2 class=\"some\"> <ha-icon icon='mdi:shield-half-full'></ha-icon> Watchman report<h2> <h3> Missing Services: {{ states.sensor.watchman_missing_services.state }} </h3> {%- for item in state_attr(\"sensor.watchman_missing_services\", \"services\") %} <hr><table><tr> <td>  <ha-icon icon='mdi:cloud-alert'></ha-icon> {{ item.id }} <a title=\"{{item.occurrences}}\">{{item.occurrences.split('/')[-1].split(':')[0]}}</a> </td></tr></table> {%- endfor %}",
-                  "card_mod": {
-                    "style": {
-                      "ha-markdown": {
-                        "$": "ha-markdown-element:first-of-type hr{\n  border-color: #303030;\n}\n"
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "theme": "Backend-selected",
-          "title": "ZHA",
-          "path": "zha",
-          "icon": "mdi:zigbee",
-          "type": "panel",
-          "badges": [],
-          "cards": [
-            {
-              "clickable": true,
-              "columns": [
-                {
-                  "name": "Name",
-                  "prop": "name"
-                },
-                {
-                  "attr": "available",
-                  "id": "available",
-                  "modify": "x || \"false\"",
-                  "name": "Online"
-                },
-                {
-                  "attr": "manufacturer",
-                  "name": "Manufacturer"
-                },
-                {
-                  "attr": "model",
-                  "name": "Model"
-                },
-                {
-                  "attr": "ieee",
-                  "name": "IEEE"
-                },
-                {
-                  "name": "NWK",
-                  "prop": "nwk"
-                },
-                {
-                  "attr": "rssi",
-                  "name": "RSSI"
-                },
-                {
-                  "attr": "lqi",
-                  "name": "LQI"
-                },
-                {
-                  "attr": "last_seen",
-                  "name": "Last Seen"
-                },
-                {
-                  "attr": "power_source",
-                  "name": "Power Source"
-                },
-                {
-                  "attr": "quirk_class",
-                  "name": "Quirk"
-                }
-              ],
-              "sort_by": "available",
-              "type": "custom:zha-network-card"
-            }
-          ]
-        },
-        {
-          "theme": "Backend-selected",
           "path": "history",
           "icon": "mdi:history",
           "badges": [],
@@ -2268,10 +2203,13 @@
               "filter": {
                 "include": [
                   {
-                    "entity_id": "*ratio"
+                    "entity_id": "*percentage"
                   }
                 ],
                 "exclude": []
+              },
+              "sort": {
+                "method": "entity_id"
               }
             }
           ]

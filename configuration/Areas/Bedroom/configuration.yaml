@@ -10,7 +10,6 @@ bedroom:
       device_class: occupancy
       probability_threshold: 0.7
       observations:
-
         - platform: "state"
           entity_id: binary_sensor.bedroom_bright
           prob_given_true: 0.0527202
@@ -19,7 +18,7 @@ bedroom:
 
         - platform: "state"
           entity_id: binary_sensor.bedroom_door_contact
-          prob_given_true: 0.1851935
+          prob_given_true: 0.0851935
           prob_given_false: 0.0009761
           to_state: "off"
 
@@ -52,12 +51,6 @@ bedroom:
           prob_given_true: 0.2648690
           prob_given_false: 0.0012595
           to_state: "on"
-
-        - platform: "state"
-          entity_id: climate.bedroom_radiator
-          prob_given_true: 0.0713780
-          prob_given_false: 0.0733173
-          to_state: "heat"
 
         - platform: "state"
           entity_id: media_player.bedroom_tv

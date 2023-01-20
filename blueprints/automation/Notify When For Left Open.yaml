@@ -1,0 +1,153 @@
+blueprint:
+  name: Contact Sensor Left Open Notification
+  description: 'Notifies you when a door or window is left open.
+
+    For more information on setting the click url, please visit the companion docs:
+    https://companion.home-assistant.io/docs/notifications/notifications-basic/#opening-a-url
+
+    If you''d like to notify multiple people, use a notify group: https://www.home-assistant.io/integrations/notify.group/
+
+    '
+  domain: automation
+  input:
+    entity:
+      name: Entity
+      description: The entity that will trigger the automation. This must be a binary
+        sensor. (ie. binary_sensor.fridge)
+      selector:
+        entity:
+          domain: binary_sensor
+          multiple: false
+    friendly_name:
+      name: Device Friendly Name
+      description: What should we call the entity in the notification? (ie. Fridge)
+      default: ''
+      selector:
+        text: {}
+    issue_state:
+      name: Issue State
+      description: The state that triggers the automation. Because this is a binary
+        sensor, it can only be on or off. Use the developer tools to find the correct
+        setting.
+      default: 'on'
+      selector:
+        select:
+          options:
+          - 'on'
+          - 'off'
+          custom_value: false
+          multiple: false
+    seconds:
+      name: Seconds before alert
+      description: The amount of time in seconds that the device can be in the issue
+        state before an alert is triggered.
+      default: '150'
+      selector:
+        number:
+          min: 1.0
+          max: 3600.0
+          mode: box
+          unit_of_measurement: seconds
+          step: 1.0
+    notify_service:
+      name: Notify Service
+      description: The service that will be called to deliver the notification. (ie.
+        notify.mobile_app_my_phone)
+      default: notify.mobile_app_YOURDEVICE
+      selector:
+        text: {}
+    click_url:
+      name: Click URL
+      description: Where the user will be taken if they tap the notification. (ie.
+        /lovelace/kitchen)
+      default: /lovelace/ROOM
+      selector:
+        text: {}
+    title:
+      name: Notification Title
+      description: The title of the notification.
+      default: The {{friendly_name}} was left open
+      selector:
+        text: {}
+    message:
+      name: Notification Message
+      description: The message of the notification.
+      default: The {{friendly_name}} was left open at {{now().hour}}:{{now().minute}}:{{now().second}}.
+      selector:
+        text: {}
+    notification_icon_warning:
+      name: Notification Icon (Android Only)
+      description: The icon that is shown when the issue is reported. (ie. mdi:fridge-alert)
+      default: alert
+      selector:
+        select:
+          options:
+          - alert
+          - alert-circle
+          - door
+          - door-open
+          - motion-sensor
+          - fridge
+          - fridge-alert
+          - home
+          - home-alert
+          - home-assistant
+          custom_value: false
+          multiple: false
+    notification_color:
+      name: Notification Color (Android Only)
+      description: The color of the notification.
+      default: red
+      selector:
+        select:
+          options:
+          - red
+          - orange
+          - yellow
+          - green
+          - blue
+          - purple
+          custom_value: false
+          multiple: false
+    interruption_level:
+      name: Interruption Level (iOS Only)
+      description: The intrusiveness of the notification recieved. This also determines
+        whether the notification will be delivered while the device is in a focus
+        mode.
+      default: active
+      selector:
+        select:
+          options:
+          - passive
+          - active
+          - time-sensitive
+          - critical
+          custom_value: false
+          multiple: false
+  source_url: https://community.home-assistant.io/t/notification-if-door-or-window-is-left-open/402851
+variables:
+  friendly_name: !input friendly_name
+  entity: !input entity
+  click_url: !input click_url
+  notification_icon_warning: !input notification_icon_warning
+trigger:
+  platform: state
+  entity_id: !input entity
+  to: !input issue_state
+  for:
+    hours: 0
+    minutes: 0
+    seconds: !input seconds
+action:
+- service: !input notify_service
+  data:
+    message: !input message
+    title: !input title
+    data:
+      clickAction: !input click_url
+      url: !input click_url
+      tag: !input entity
+      color: !input notification_color
+      notification_icon: mdi:{{ notification_icon_warning }}
+      push:
+        interruption-level: !input interruption_level

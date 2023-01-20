@@ -1018,20 +1018,6 @@
               "type": "grid",
               "cards": [
                 {
-                  "hours_to_show": 24,
-                  "graph": "line",
-                  "type": "sensor",
-                  "entity": "sensor.hutch_temperature",
-                  "name": "Hutch Temperature",
-                  "detail": 2
-                }
-              ],
-              "columns": 1
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
                   "type": "sensor",
                   "graph": "line",
                   "detail": 2,
@@ -1477,6 +1463,56 @@
                 "mode": "camera",
                 "refresh_seconds": 1
               }
+            },
+            {
+              "type": "custom:frigate-card",
+              "cameras": [
+                {
+                  "camera_entity": "camera.front_door_snapshot"
+                }
+              ],
+              "view": {
+                "default": "image"
+              },
+              "menu": {
+                "buttons": {
+                  "frigate": {
+                    "enabled": true
+                  },
+                  "image": {
+                    "enabled": true
+                  }
+                },
+                "style": "outside",
+                "position": "bottom"
+              },
+              "live": {
+                "preload": true,
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                },
+                "controls": {
+                  "next_previous": {
+                    "style": "none"
+                  },
+                  "thumbnails": {
+                    "mode": "none"
+                  }
+                },
+                "draggable": false,
+                "lazy_load": true,
+                "lazy_unload": "all"
+              },
+              "dimensions": {
+                "aspect_ratio_mode": "static",
+                "aspect_ratio": "16:9"
+              },
+              "image": {
+                "mode": "camera",
+                "refresh_seconds": 1
+              }
             }
           ]
         },
@@ -1522,44 +1558,47 @@
               },
               "cards": [
                 {
-                  "type": "thermostat",
-                  "entity": "climate.thermostat",
-                  "name": "Home"
-                },
-                {
-                  "type": "thermostat",
-                  "entity": "climate.study_radiator",
-                  "name": "Study"
-                },
-                {
-                  "type": "thermostat",
-                  "entity": "climate.bathroom_radiator",
-                  "name": "Bathroom"
-                },
-                {
-                  "type": "thermostat",
-                  "entity": "climate.bedroom_radiator",
-                  "name": "Bedroom"
-                },
-                {
-                  "type": "thermostat",
-                  "entity": "climate.toilet_radiator",
-                  "name": "Toilet"
-                },
-                {
                   "type": "custom:better-thermostat-ui-card",
-                  "entity": "climate.study_radiator",
-                  "disable_window": false,
-                  "eco_temperature": 10,
-                  "set_current_as_main": false,
-                  "disable_summer": false,
-                  "disable_heat": false,
+                  "entity": "climate.downstairs",
+                  "name": "Downstairs",
+                  "eco_temperature": 17,
+                  "set_current_as_main": true,
+                  "disable_off": true,
                   "disable_eco": false,
-                  "disable_off": false
+                  "disable_summer": false,
+                  "disable_window": false
                 },
                 {
                   "type": "custom:better-thermostat-ui-card",
-                  "entity": "climate.lounge"
+                  "entity": "climate.study",
+                  "name": "Study",
+                  "eco_temperature": 17,
+                  "disable_off": true,
+                  "set_current_as_main": true
+                },
+                {
+                  "type": "custom:better-thermostat-ui-card",
+                  "entity": "climate.toilet",
+                  "name": "Toilet",
+                  "eco_temperature": 13,
+                  "disable_off": true,
+                  "set_current_as_main": true
+                },
+                {
+                  "type": "custom:better-thermostat-ui-card",
+                  "entity": "climate.bathroom",
+                  "name": "Bathroom",
+                  "eco_temperature": 17,
+                  "set_current_as_main": true,
+                  "disable_off": true
+                },
+                {
+                  "type": "custom:better-thermostat-ui-card",
+                  "entity": "climate.bedroom",
+                  "name": "Bedroom",
+                  "eco_temperature": 17,
+                  "disable_off": true,
+                  "set_current_as_main": true
                 }
               ]
             }
@@ -1580,13 +1619,7 @@
               "filter": {
                 "include": [
                   {
-                    "entity_id": "*ibeacon"
-                  },
-                  {
-                    "entity_id": "*rssi"
-                  },
-                  {
-                    "entity_id": "*_ble_*"
+                    "entity_id": "*_room"
                   }
                 ],
                 "exclude": []
@@ -1655,25 +1688,12 @@
           "badges": [],
           "cards": [
             {
-              "initial_view": "dayGridMonth",
+              "initial_view": "listWeek",
               "type": "calendar",
               "entities": [
                 "calendar.family",
                 "calendar.bin_collection_calendar"
               ]
-            }
-          ]
-        },
-        {
-          "theme": "Backend-selected",
-          "title": "Testing",
-          "path": "testing",
-          "badges": [],
-          "cards": [
-            {
-              "type": "custom:mini-media-player",
-              "entity": "media_player.starrunner",
-              "name": "PC"
             }
           ]
         }

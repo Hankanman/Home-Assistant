@@ -134,20 +134,24 @@ hall:
     #     {% else %}
     #       on
     #     {%- endif -%}
-    # - platform: command_line
-    #   switches:
-    #     hall_camera_ir:
-    #       command_on: 'curl -k "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=openInfraLed&usr=ha&pwd=Chicken212"'
-    #       command_off: 'curl -k "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=closeInfraLed&usr=ha&pwd=Chicken212"'
-    #       command_state: |
-    #         'curl -k --silent "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=getDevState&usr=ha&pwd=Chicken212" | grep 'infraLedState' | cut -b 20'
-    #       value_template: '{{ value == "1" }}'
-    #     hall_camera_motion:
-    #       friendly_name: Hall Camera Motion Detection
-    #       command_on: !secret hallcam_motion_on
-    #       command_off: !secret hallcam_motion_off
-    #       command_state: !secret hallcam_motion_state
-    #       value_template: '{{ value == "1" }}'
+    - platform: command_line
+      switches:
+        # hall_camera_ir:
+        #   command_on: 'curl -k "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=openInfraLed&usr=ha&pwd=Chicken212"'
+        #   command_off: 'curl -k "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=closeInfraLed&usr=ha&pwd=Chicken212"'
+        #   command_state: 'curl -k --silent "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=getDevState&usr=ha&pwd=Chicken212" | grep -oP "(?<=infraLedState>).*?(?=</infraLedState>)"'
+        #   value_template: '{{ value == "1" }}'
+        hall_camera_ir:
+          command_on: !secret hallcam_ir_on
+          command_off: !secret hallcam_ir_off
+          command_state: !secret hallcam_ir_state
+          value_template: '{{ value == "1" }}'
+        hall_camera_motion:
+          friendly_name: Hall Camera Motion Detection
+          command_on: !secret hallcam_motion_on
+          command_off: !secret hallcam_motion_off
+          command_state: !secret hallcam_motion_state
+          value_template: '{{ value == "1" }}'
 
   # Cameras
   #----------------------------------#

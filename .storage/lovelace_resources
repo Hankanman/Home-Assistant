@@ -10,7 +10,7 @@
         "url": "/hacsfiles/mini-media-player/mini-media-player-bundle.js?hacstag=1485208381162"
       },
       {
-        "url": "/hacsfiles/uptime-card/uptime-card.js?hacstag=3505098670100",
+        "url": "/hacsfiles/uptime-card/uptime-card.js?hacstag=3505098670140",
         "type": "module",
         "id": "df536f2786f94223bf07f15ab634a207"
       },
@@ -85,7 +85,7 @@
         "id": "669f7d40aec641aaab284dd97bf8c102"
       },
       {
-        "url": "/hacsfiles/history-explorer-card/history-explorer-card.js?hacstag=4403747941021",
+        "url": "/hacsfiles/history-explorer-card/history-explorer-card.js?hacstag=4403747941043",
         "type": "module",
         "id": "54b8c1a3d8634a72b6f7d4408bcb684c"
       },
@@ -120,7 +120,7 @@
         "id": "f7b5960503884cfbb13b06ca99de363a"
       },
       {
-        "url": "/hacsfiles/ha-sankey-chart/ha-sankey-chart.js?hacstag=455846088040",
+        "url": "/hacsfiles/ha-sankey-chart/ha-sankey-chart.js?hacstag=455846088180",
         "type": "module",
         "id": "0181e4dde3d54fdb85d2f219b600035d"
       },
@@ -170,7 +170,7 @@
         "id": "eab08efadf3b4738b30d997fdfa0f8f7"
       },
       {
-        "url": "/hacsfiles/clock-weather-card/clock-weather-card.js?hacstag=522634019107",
+        "url": "/hacsfiles/clock-weather-card/clock-weather-card.js?hacstag=5226340191010",
         "type": "module",
         "id": "2040bbbbcaf348518b45e93cb1716451"
       },
@@ -185,9 +185,24 @@
         "id": "66b14f47d3b4476c87b51838ffd3e76b"
       },
       {
-        "url": "/hacsfiles/linked-lovelace-ui/linked-lovelace-ui.js?hacstag=559360809125",
+        "url": "/hacsfiles/lovelace-wallpanel/wallpanel.js?hacstag=30950641645",
         "type": "module",
-        "id": "8842f7eb209f43baaf093cf1d9d836db"
+        "id": "6bedf2b535134cd991fa2df05807911d"
+      },
+      {
+        "url": "/hacsfiles/kb-frosted-cards/kb-frosted-cards.js?hacstag=313270182131",
+        "type": "module",
+        "id": "68d13c53d89d4b4aa386da31b2e949e8"
+      },
+      {
+        "url": "/hacsfiles/formulaone-card/formulaone-card.js?hacstag=545945955016",
+        "type": "module",
+        "id": "0fceb4cb333949c9bc11bd8efff70210"
+      },
+      {
+        "url": "/hacsfiles/default-dashboard/default-dashboard.js?hacstag=567030726111",
+        "type": "module",
+        "id": "f587d70a527e469e9daf7ef6450983de"
       }
     ]
   }

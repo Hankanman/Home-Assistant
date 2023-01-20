@@ -72,12 +72,7 @@ templates:
       - unique_id: starrunner_active
         name: "Starrunner Active"
         device_class: connectivity
-        state: >-
-          {% if is_state('binary_sensor.starrunner_online', 'off' ) %}
-            'off'
-          {% elif states('sensor.starrunner_idle_time') | int(0) < 5 %}
-            'on'
-          {% endif %}
+        state: "{{states('sensor.starrunner_idle_time') | int(0) < 5}}"
       - unique_id: railen_online
         name: "Railen Online"
         device_class: connectivity

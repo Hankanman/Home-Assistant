@@ -1,0 +1,40 @@
+beacons:
+  sensor:
+    - platform: mqtt_room
+      device_id: "iBeacon:113b66e1-999d-4820-b246-62feffecf7e9-100-1"
+      name: "Seb Phone Room"
+      unique_id: seb_phone_room
+      state_topic: "espresense/devices/iBeacon:113b66e1-999d-4820-b246-62feffecf7e9-100-1"
+      timeout: 10
+      away_timeout: 120
+    - platform: mqtt_room
+      device_id: "iBeacon:29360bbc-24a3-415f-834a-d7ddcab4da74-100-1"
+      name: "Laura Phone Room"
+      unique_id: laura_phone_room
+      state_topic: "espresense/devices/iBeacon:29360bbc-24a3-415f-834a-d7ddcab4da74-100-1"
+      timeout: 10
+      away_timeout: 120
+    - platform: mqtt_room
+      device_id: "tile:e6f994abeb40"
+      name: "Seb Wallet Room"
+      unique_id: seb_wallet_room
+      state_topic: "espresense/devices/tile:e6f994abeb40"
+      timeout: 10
+      away_timeout: 120
+    - platform: mqtt_room
+      device_id: "tile:c32f4c23248c"
+      name: "Seb Keys Room"
+      unique_id: seb_keys_room
+      state_topic: "espresense/devices/tile:c32f4c23248c"
+      timeout: 10
+      away_timeout: 120
+    - platform: mqtt_room
+      device_id: "tile:de2a2a7d78d7"
+      name: "Laura Keys Room"
+      unique_id: laura_keys_room
+      state_topic: "espresense/devices/tile:de2a2a7d78d7"
+      timeout: 10
+      away_timeout: 120
+    # - platform: mqtt_room
+    #   device_id: rooms
+    #   state_topic: "espresense/rooms"

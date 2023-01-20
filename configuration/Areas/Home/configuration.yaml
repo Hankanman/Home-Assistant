@@ -81,12 +81,12 @@ home:
       resource: !secret octopus_variable_gas_tariff
 
     - platform: integration
-      source: sensor.mainsexport
+      source: sensor.mainsexport_power
       name: Total Grid Export
       unit_prefix: k
 
     - platform: integration
-      source: sensor.mainsconsumption
+      source: sensor.mainsconsumption_power
       name: Total Grid Consumption
       unit_prefix: k
 

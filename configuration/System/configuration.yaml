@@ -21,7 +21,6 @@ system:
         - input_boolean.lounge_automations
         - input_boolean.study_automations
         - input_boolean.toilet_automations
-
   #   object_detection:
   #     name: Object Detection
   #     icon: mdi:camera-account
@@ -58,6 +57,11 @@ system:
       services:
         - service: mobile_app_seb_phone
         - service: mobile_app_laura_phone
+    - name: Seb's Devices
+      platform: group
+      services:
+        - service: mobile_app_seb_phone
+        - service: mobile_app_seb_watch
     - platform: file
       name: entity_log
       filename: /config/www/entity_log.txt
@@ -85,14 +89,15 @@ system:
         - "date"
         - "date_time"
         - "date_time_iso"
-
+  
+    # - platform: formulaone_api
   tts:
     platform: google_translate
     language: "en"
     cache: true
     cache_dir: /tmp/ttsr fast play
     time_memory: 300
-# Example configuration.yaml entry for the Telegram Bot
+  # Example configuration.yaml entry for the Telegram Bot
   # telegram_bot:
   #   - platform: polling
   #     api_key: 5474957606:AAFzdKy1wIWS8eBjqn-vFNATOl8u5A8WluI
@@ -123,6 +128,9 @@ system:
   #       chat_sensors: # Cannot be used for personal accounts
   #         - name: "Seb Chat"
   logger:
-      default: info
-      logs:
-        homeassistant.components.iotawatt: debug
+    default: error
+    logs:
+      homeassistant.components.iotawatt: critical
+    filters:
+      homeassistant.loader:
+      - "We found a custom integration*"

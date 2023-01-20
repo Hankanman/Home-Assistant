@@ -1,9 +1,25 @@
 rest_sensors:
   sensor:
     - platform: rest
-      name: Mars Pro
+      unique_id: mars_pro_state
+      name: Mars Pro State
       resource: !secret mars_pro
       method: GET
+      value_template: '{{ value_json.state }}'
+      json_attributes:
+        - current_layer
+        - layer_count
+        - print_time_secs
+        - progress
+        - selected_file
+        - state
+        - time_left_secs
+    - platform: rest
+      name: Mars Pro Printing Progress
+      unique_id: mars_pro_printing_progress
+      resource: !secret mars_pro
+      method: GET
+      value_template: '{{ value_json.progress }}'
       json_attributes:
         - current_layer
         - layer_count

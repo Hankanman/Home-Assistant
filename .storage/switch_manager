@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "switch_manager",
+  "data": {
+    "version": "0.7.5",
+    "managed_switches": {
+      "0": {
+        "name": "Lounge Switch",
+        "enabled": true,
+        "blueprint": "zigbee2mqtt-hue-dimmer-v2",
+        "identifier": "zigbee2mqtt/Lounge Remote 1/action",
+        "buttons": [
+          {
+            "actions": [
+              {
+                "sequence": [
+                  {
+                    "service": "light.turn_on",
+                    "data": {
+                      "transition": 2,
+                      "brightness_pct": 100
+                    },
+                    "target": {
+                      "area_id": "lounge"
+                    }
+                  }
+                ],
+                "mode": "single"
+              },
+              {
+                "sequence": [],
+                "mode": "single"
+              },
+              {
+                "sequence": [],
+                "mode": "single"
+              }
+            ]
+          },
+          {
+            "actions": [
+              {
+                "sequence": [
+                  {
+                    "service": "light.toggle",
+                    "data": {
+                      "transition": 2
+                    },
+                    "target": {
+                      "area_id": "lounge"
+                    }
+                  }
+                ],
+                "mode": "single"
+              },
+              {
+                "sequence": [
+                  {
+                    "service": "light.turn_on",
+                    "data": {
+                      "brightness_step_pct": 10
+                    },
+                    "target": {
+                      "area_id": "lounge"
+                    }
+                  }
+                ],
+                "mode": "single"
+              },
+              {
+                "sequence": [],
+                "mode": "single"
+              }
+            ]
+          },
+          {
+            "actions": [
+              {
+                "sequence": [
+                  {
+                    "service": "light.turn_on",
+                    "data": {
+                      "brightness_step_pct": -10
+                    },
+                    "target": {
+                      "area_id": "lounge"
+                    }
+                  }
+                ],
+                "mode": "single"
+              },
+              {
+                "sequence": [
+                  {
+                    "service": "light.turn_on",
+                    "data": {
+                      "brightness_step_pct": -10
+                    },
+                    "target": {
+                      "area_id": "lounge"
+                    }
+                  }
+                ],
+                "mode": "single"
+              },
+              {
+                "sequence": [],
+                "mode": "single"
+              }
+            ]
+          },
+          {
+            "actions": [
+              {
+                "sequence": [
+                  {
+                    "service": "input_boolean.toggle",
+                    "data": {},
+                    "target": {
+                      "entity_id": "input_boolean.lounge_automations"
+                    }
+                  }
+                ],
+                "mode": "single"
+              },
+              {
+                "sequence": [],
+                "mode": "single"
+              },
+              {
+                "sequence": [],
+                "mode": "single"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

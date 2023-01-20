@@ -4,7 +4,16 @@ substitutions:
 
 esphome:
   name: ${arealower}-esp-1
-  name_add_mac_suffix: false
+  name_add_mac_suffix: false  
+  includes:
+    - custom_components/lib/OneEuro.h
+    - custom_components/ble_dist.h
+  on_boot:
+    then:
+      lambda: |-
+        addTracker("seb_phone_ble", "113b66e1-999d-4820-b246-62feffecf7e9");
+        addTracker("laura_phone_ble", "29360bbc-24a3-415f-834a-d7ddcab4da74");
+        addTracker("tablet_ble", "75be550c-9bf4-4c6d-b503-329fcd3e041b");
 
 esp32:
   board: az-delivery-devkit-v4
@@ -13,24 +22,22 @@ esp32:
 
 ota:
 
-# Enable logging
 logger:
+  # level: VERY_VERBOSE
 
-# Enable Home Assistant API
 api:
-  encryption:
-    key: !secret encryption_key
 
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    ssid: ${area}-Esp-1 Fallback Hotspot
-    password: !secret fallback_password
+web_server:
+  port: 80
 
-captive_portal:
+switch:
+  - platform: restart
+    name: ${area} ESP 1 Restart
+    id: ${arealower}_esp_1_restart
 
 bluetooth_proxy:
   active: true
@@ -39,9 +46,13 @@ esp32_ble_tracker:
   scan_parameters:
     interval: 1100ms
     window: 1100ms
-    active: True
-    continuous: True
-    duration: 1min
+    active: true
+    continuous: true
+    duration: 60s
+  on_ble_advertise:
+    then:
+      - lambda: |-
+          parseAdvertisement(x);
 
 sensor:
   - platform: ble_rssi
@@ -52,10 +63,43 @@ sensor:
     name: ${area} Laura Phone BLE RSSI
   - platform: ble_rssi
     ibeacon_uuid: !secret tablet_ble
-    name: ${area} Entrance Tablet BLE RSSI
+    name: ${area} Tablet BLE RSSI
   - platform: ble_rssi
     mac_address: !secret sebwatch_mac
-    name: ${area} Seb Watch BLE RSSI
+    name: ${area} Seb Watch BLE Present
+  - platform: template
+    name: ${area} Seb Phone BLE Distance
+    id: seb_phone_ble_dist
+    update_interval: 2s
+    unit_of_measurement: "m"
+    device_class: "distance"
+    state_class: "measurement"
+    accuracy_decimals: 1
+    entity_category: "diagnostic"
+    lambda: |-
+      return getTracker("seb_phone_ble").get_dist();
+  - platform: template
+    name: ${area} Laura Phone BLE Distance
+    id: laura_phone_ble_dist
+    update_interval: 2s
+    unit_of_measurement: "m"
+    device_class: "distance"
+    state_class: "measurement"
+    accuracy_decimals: 1
+    entity_category: "diagnostic"
+    lambda: |-
+      return getTracker("laura_phone_ble").get_dist();
+  - platform: template
+    name: ${area} Tablet BLE Distance
+    id: tablet_ble_dist
+    update_interval: 2s
+    unit_of_measurement: "m"
+    device_class: "distance"
+    state_class: "measurement"
+    accuracy_decimals: 1
+    entity_category: "diagnostic"
+    lambda: |-
+      return getTracker("tablet_ble").get_dist();
 
 binary_sensor:
   - platform: ble_presence
@@ -66,7 +110,7 @@ binary_sensor:
     name: ${area} Laura Phone BLE Present
   - platform: ble_presence
     ibeacon_uuid: !secret tablet_ble
-    name: ${area} Entrance Tablet BLE Present
+    name: ${area} Tablet BLE Present
   - platform: ble_presence
     mac_address: !secret sebwatch_mac
     name: ${area} Seb Watch BLE Present

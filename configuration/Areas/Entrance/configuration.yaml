@@ -10,19 +10,6 @@ entrance:
       device_class: occupancy
       probability_threshold: 0.2
       observations:
-
-        - platform: "state"
-          entity_id: binary_sensor.entrance_bright
-          prob_given_true: 0.00468988
-          prob_given_false: 0.00419221
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.entrance_frigate_person_occupancy
-          prob_given_true: 0.0285057
-          prob_given_false: 0.0011178
-          to_state: "on"
-
         - platform: "state"
           entity_id: binary_sensor.entrance_motion
           prob_given_true: 0.2924643
@@ -46,7 +33,6 @@ entrance:
           prob_given_true: 0.3561458
           prob_given_false: 0.0238955
           to_state: "on"
-
 
   # Variable Sensors
   #----------------------------------#

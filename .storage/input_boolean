@@ -117,6 +117,16 @@
       {
         "name": "minimalist_dropdown",
         "id": "minimalist_dropdown"
+      },
+      {
+        "name": "Medication Seb",
+        "icon": "mdi:pill-multiple",
+        "id": "medication_seb"
+      },
+      {
+        "name": "Default Dashboard",
+        "initial": true,
+        "id": "default_dashboard"
       }
     ]
   }
