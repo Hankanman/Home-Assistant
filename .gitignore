@@ -1,8 +1,8 @@
 *auth*
 *.crt
-'*.db'
+*.db
 *.key
-'*.log'
+*.log
 *.pem
 *.pub
 *token*

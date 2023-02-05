@@ -65,7 +65,7 @@
         - service: light.turn_on
           data:
             transition: 2
-            color_temp: 315
+            kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
             brightness_pct: 100
           target:
             area_id: bathroom
@@ -73,7 +73,7 @@
         - service: light.turn_on
           data:
             transition: 2
-            color_temp: 500
+            kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
             brightness_pct: 10
           target:
             entity_id: light.bathroom
@@ -81,7 +81,7 @@
       - service: light.turn_on
         data:
           transition: 2
-          color_temp: 300
+          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.bathroom
@@ -106,6 +106,7 @@
         data:
           transition: 10
           brightness_pct: 50
+          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
         target:
           entity_id: light.bathroom
       - delay:
@@ -126,20 +127,31 @@
   - platform: state
     entity_id:
     - binary_sensor.bedroom_occupied
-    - binary_sensor.bedroom_bright
+    id: Occupied
+  - platform: state
+    entity_id:
     - binary_sensor.bedroom_tv_state
+    id: TV
+  - platform: state
+    entity_id:
     - binary_sensor.people_home
+    id: PeopleHome
+  - platform: state
+    entity_id:
     - input_boolean.bedroom_sleep_mode
+    id: SleepMode
+  - platform: state
+    entity_id:
     - input_boolean.bedroom_automations
+    id: Automations
+  - platform: state
+    entity_id:
+    - binary_sensor.bedroom_bright
+    id: Bright
   condition:
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: input_boolean.bedroom_automations
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.people_home
-      state: 'on'
+  - condition: state
+    entity_id: input_boolean.bedroom_automations
+    state: 'on'
   action:
   - if:
     - condition: state
@@ -163,10 +175,10 @@
       - service: light.turn_on
         data:
           transition: 5
-          color_temp: 450
+          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 20
         target:
-          area_id: bedroom
+          entity_id: light.bedroom
       else:
       - if:
         - condition: template
@@ -179,7 +191,7 @@
           data:
             transition: 20
             brightness_pct: 100
-            color_temp: 300
+            kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           target:
             entity_id: light.bedroom
         else:
@@ -187,7 +199,7 @@
           data:
             transition: 3
             brightness_pct: 100
-            color_temp: 300
+            kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           target:
             entity_id: light.bedroom
     else:
@@ -209,20 +221,20 @@
           milliseconds: 0
       - service: light.turn_on
         data:
-          transition: 10
+          transition: 5
           brightness_pct: 50
         target:
           entity_id: light.bedroom
-    - delay:
-        hours: 0
-        minutes: 2
-        seconds: 0
-        milliseconds: 0
-    - service: light.turn_off
-      data:
-        transition: 10
-      target:
-        entity_id: light.bedroom
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 30
+          milliseconds: 0
+      - service: light.turn_off
+        data:
+          transition: 5
+        target:
+          entity_id: light.bedroom
   mode: restart
 - id: d7b2ff77-0e4f-4efb-820f-9a4b67399a3b
   alias: Wardrobe - Lights
@@ -300,7 +312,7 @@
     - service: light.turn_on
       data:
         transition: 2
-        color_temp: 300
+        kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
         brightness_pct: 100
       target:
         entity_id: light.entrance
@@ -328,7 +340,6 @@
     - input_boolean.hall_automations
     - binary_sensor.upstairs_sleep_mode
     - binary_sensor.people_home
-    - binary_sensor.bedroom_door_contact
   condition:
   - condition: state
     entity_id: input_boolean.hall_automations
@@ -344,6 +355,9 @@
     - condition: state
       entity_id: binary_sensor.people_home
       state: 'on'
+    - condition: state
+      entity_id: binary_sensor.hall_multi_motion
+      state: 'on'
     then:
     - if:
       - condition: state
@@ -353,7 +367,7 @@
       - service: light.turn_on
         data:
           transition: 2
-          color_temp: 450
+          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 10
         target:
           entity_id: light.hall
@@ -361,7 +375,7 @@
       - service: light.turn_on
         data:
           transition: 2
-          color_temp: 300
+          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.hall
@@ -439,7 +453,7 @@
       - service: light.turn_on
         data:
           transition: 10
-          color_temp: 450
+          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 50
         target:
           entity_id: light.lounge
@@ -447,7 +461,7 @@
       - service: light.turn_on
         data:
           transition: 3
-          color_temp: 300
+          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.lounge
@@ -507,7 +521,7 @@
     - service: light.turn_on
       data:
         transition: 3
-        color_temp: 300
+        kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
         brightness_pct: 100
       target:
         entity_id: light.study
@@ -625,7 +639,7 @@
       data:
         brightness_pct: 100
         transition: 3
-        color_temp: 400
+        kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
     else:
     - delay:
         seconds: 30
@@ -662,7 +676,7 @@
       data:
         brightness_pct: 100
         transition: 3
-        color_temp: 400
+        kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
     else:
     - delay:
         seconds: 30
@@ -882,7 +896,7 @@
       - service: light.turn_on
         data:
           transition: 15
-          color_temp: 500
+          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.kitchen
@@ -890,7 +904,7 @@
       - service: light.turn_on
         data:
           transition: 2
-          color_temp: 300
+          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.kitchen
@@ -974,7 +988,7 @@
       - service: light.turn_on
         data:
           transition: 2
-          color_temp: 500
+          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 50
         target:
           entity_id: light.toilet
@@ -982,7 +996,7 @@
       - service: light.turn_on
         data:
           transition: 2
-          color_temp: 300
+          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.toilet
@@ -1020,21 +1034,6 @@
         target:
           entity_id: light.toilet
   mode: restart
-- id: '1670624292657'
-  alias: Seb Medication Reminder
-  description: ''
-  use_blueprint:
-    path: Medication Reminder.yaml
-    input:
-      reminder_time: 09:00:00
-      notify_device: 2bd987ee2df2c90fe99d2de6301752e8
-      input_boolean: input_boolean.medication_seb
-      notification_title: Medication Reminder
-      logbook_message_remind: Reminder Sent
-      logbook_message_taken: Medication Taken
-      logbook_message_later: Postpone Reminder
-      logbook_message_skip: Medication Skipped
-      ask_later_wait_time: 60
 - id: '1670625770237'
   alias: Home Assistant Update Notification
   description: ''
@@ -1139,3 +1138,12 @@
           entity_id: fan.study
           speed: '{{ attr_speed | int }}'
   mode: single
+- id: '1675527344121'
+  alias: Seb Medication Reminder
+  description: ''
+  use_blueprint:
+    path: Aohzan/medication_reminder_android.yaml
+    input:
+      reminder_time: 08:30:00
+      notify_device: 2bd987ee2df2c90fe99d2de6301752e8
+      input_boolean: input_boolean.medication_seb

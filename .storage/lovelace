@@ -480,10 +480,9 @@
           "theme": "Backend-selected",
           "title": "Home",
           "path": "default_view",
-          "type": "custom:grid-layout",
           "layout": {
             "grid-template-columns": "repeat(auto-fill, minmax(17rem, 1fr))",
-            "grid-auto-rows": "auto",
+            "grid-auto-rows": "minmax(17rem, 1fr)",
             "grid-auto-flow": "row",
             "mediaquery": {
               "(max-width: 800px)": {
@@ -495,174 +494,120 @@
             }
           },
           "icon": "mdi:home",
+          "type": "custom:grid-layout",
           "badges": [],
           "cards": [
             {
-              "type": "custom:layout-card",
-              "layout_type": "custom:grid-layout",
+              "square": true,
+              "columns": 3,
+              "type": "grid",
               "cards": [
                 {
-                  "type": "custom:layout-card",
-                  "layout_type": "grid",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "group.all_automations",
-                      "primary_info": "none",
-                      "secondary_info": "name",
-                      "layout": "vertical",
-                      "fill_container": true,
-                      "icon_color": "green",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "name": "Auto"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_boolean.cameras_privacy",
-                      "icon_color": "green",
-                      "layout": "vertical",
-                      "fill_container": true,
-                      "primary_info": "none",
-                      "secondary_info": "name",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "double_tap_action": {
-                        "action": "none"
-                      },
-                      "name": "Private"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "script.play_rain_sounds",
-                      "icon_color": "green",
-                      "layout": "vertical",
-                      "fill_container": true,
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "double_tap_action": {
-                        "action": "none"
-                      },
-                      "primary_info": "none",
-                      "secondary_info": "name",
-                      "name": "Rain"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_boolean.bedroom_sleep_mode",
-                      "fill_container": true,
-                      "double_tap_action": {
-                        "action": "none"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "primary_info": "none",
-                      "secondary_info": "name",
-                      "layout": "vertical",
-                      "name": "Bedroom",
-                      "icon_color": "green"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_boolean.lounge_sleep_mode",
-                      "name": "Lounge",
-                      "icon_color": "green",
-                      "layout": "vertical",
-                      "fill_container": true,
-                      "primary_info": "none",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "double_tap_action": {
-                        "action": "none"
-                      },
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_boolean.study_sleep_mode",
-                      "name": "Study",
-                      "icon_color": "green",
-                      "layout": "vertical",
-                      "fill_container": true,
-                      "primary_info": "none",
-                      "secondary_info": "name",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "double_tap_action": {
-                        "action": "none"
-                      }
-                    }
-                  ],
-                  "layout": {
-                    "height": "100%",
-                    "margin": "0px",
-                    "padding": "0px",
-                    "gap": "0px",
-                    "card_margin": "0px",
-                    "grid-template-columns": "repeat(3, 1fr)",
-                    "grid-template-rows": "auto"
-                  }
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "group.all_automations",
+                  "primary_info": "none",
+                  "secondary_info": "name",
+                  "layout": "vertical",
+                  "fill_container": true,
+                  "icon_color": "green",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "name": "Auto"
                 },
                 {
-                  "type": "custom:mushroom-template-card",
-                  "primary": "",
-                  "secondary": "{{ state_attr('calendar.bin_collection_calendar', 'message') }} on {{\n  strptime(state_attr('calendar.bin_collection_calendar',\n      'start_time'),'%Y-%m-%d %H:%M:%S').strftime('%A') }}",
-                  "icon": "mdi:trash-can",
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.cameras_privacy",
+                  "icon_color": "green",
+                  "layout": "vertical",
+                  "fill_container": true,
+                  "primary_info": "none",
+                  "secondary_info": "name",
                   "tap_action": {
-                    "action": "none"
+                    "action": "toggle"
                   },
-                  "entity": "calendar.bin_collection_calendar",
                   "hold_action": {
                     "action": "none"
                   },
                   "double_tap_action": {
                     "action": "none"
                   },
-                  "fill_container": true,
-                  "layout": "horizontal",
-                  "multiline_secondary": true,
-                  "icon_color": "",
-                  "view_layout": {
-                    "grid-area": "bin"
-                  }
+                  "name": "Private"
                 },
                 {
-                  "type": "entity",
-                  "entity": "binary_sensor.people_home",
-                  "state_color": true
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "script.play_rain_sounds",
+                  "icon_color": "green",
+                  "layout": "vertical",
+                  "fill_container": true,
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "primary_info": "none",
+                  "secondary_info": "name",
+                  "name": "Rain"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.bedroom_sleep_mode",
+                  "fill_container": true,
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "primary_info": "none",
+                  "secondary_info": "name",
+                  "layout": "vertical",
+                  "name": "Bedroom",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.lounge_sleep_mode",
+                  "name": "Lounge",
+                  "icon_color": "green",
+                  "layout": "vertical",
+                  "fill_container": true,
+                  "primary_info": "none",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "secondary_info": "name"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.study_sleep_mode",
+                  "name": "Study",
+                  "icon_color": "green",
+                  "layout": "vertical",
+                  "fill_container": true,
+                  "primary_info": "none",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  }
                 }
-              ],
-              "layout": {
-                "height": "100%",
-                "margin": "0px",
-                "padding": "0px",
-                "gap": "0px",
-                "card_margin": "0px",
-                "grid-template-columns": "auto",
-                "grid-template-rows": "auto 25%",
-                "grid-template-areas": "\"grid\"\n\"bin\"\n"
-              },
-              "view_layout": {
-                "grid-column": "span 2"
-              }
+              ]
             },
             {
               "type": "custom:button-card",
@@ -809,6 +754,15 @@
                     },
                     "name": "[[[ return states[\"sensor.seb_location\"].state ]]]"
                   }
+                },
+                "welcome": {
+                  "card": {
+                    "type": "markdown",
+                    "card_mod": {
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                    },
+                    "content": "<b>{% if now().strftime(\"%H\")|int < 12 %}Good morning {% elif now().strftime(\"%H\")|int < 18 %}Good afternoon  {% else %}Good evening {% endif %}</b>\n{{ state_attr('calendar.bin_collection_calendar', 'message') }} on {{\n  strptime(state_attr('calendar.bin_collection_calendar',\n      'start_time'),'%Y-%m-%d %H:%M:%S').strftime('%A') }}"
+                  }
                 }
               },
               "styles": {
@@ -817,10 +771,10 @@
                     "grid-template-columns": "1fr"
                   },
                   {
-                    "grid-template-rows": "50%"
+                    "grid-template-rows": "33%"
                   },
                   {
-                    "grid-template-areas": "\"seb\"\n\"laura\"\n"
+                    "grid-template-areas": "\"seb\"\n\"laura\"\n\"welcome\"\n"
                   }
                 ]
               }
@@ -843,8 +797,8 @@
                 "base",
                 "title",
                 "light",
-                "bright",
                 "motion",
+                "bright",
                 "fan",
                 "humid",
                 "climate"
@@ -862,17 +816,17 @@
                 "climate": "climate.bathroom",
                 "temp": "sensor.bathroom_temperature",
                 "humid": "sensor.bathroom_humidity",
-                "fan": "fan.bathroom_fan"
+                "fan": "fan.bathroom"
               },
               "template": [
                 "base",
                 "title",
                 "light",
-                "bright",
                 "motion",
-                "fan",
+                "bright",
                 "humid",
-                "climate"
+                "climate",
+                "fan"
               ]
             },
             {
@@ -894,9 +848,8 @@
                 "base",
                 "title",
                 "light",
-                "bright",
                 "motion",
-                "climate",
+                "bright",
                 "fan",
                 "humid",
                 "media"
@@ -913,14 +866,14 @@
                 "occupied": "binary_sensor.hall_occupied",
                 "climate": "climate.thermostat",
                 "temp": "sensor.hall_temperature",
-                "humid": "sensor.hall_temperature_humidity_1_humidity"
+                "humid": "sensor.hall_humidity"
               },
               "template": [
                 "base",
                 "title",
                 "light",
-                "bright",
                 "motion",
+                "bright",
                 "humid",
                 "temp"
               ]
@@ -942,10 +895,9 @@
                 "base",
                 "title",
                 "light",
-                "bright",
                 "motion",
-                "humid",
-                "climate"
+                "bright",
+                "humid"
               ]
             },
             {
@@ -963,8 +915,8 @@
                 "base",
                 "title",
                 "light",
-                "bright",
                 "motion",
+                "bright",
                 "temp"
               ]
             },
@@ -977,7 +929,7 @@
                 "light": "light.lounge",
                 "bright": "binary_sensor.lounge_bright",
                 "occupied": "binary_sensor.lounge_occupied",
-                "climate": "climate.downstairs",
+                "climate": "climate.home",
                 "temp": "sensor.lounge_temperature",
                 "humid": "sensor.lounge_humidity",
                 "media": "media_player.lounge_tv"
@@ -986,8 +938,8 @@
                 "base",
                 "title",
                 "light",
-                "bright",
                 "motion",
+                "bright",
                 "humid",
                 "climate",
                 "media"
@@ -1009,8 +961,8 @@
                 "base",
                 "title",
                 "light",
-                "bright",
                 "motion",
+                "bright",
                 "climate"
               ]
             },
@@ -1027,95 +979,163 @@
               "columns": 1
             },
             {
-              "type": "vertical-stack",
+              "square": true,
+              "columns": 1,
+              "type": "grid",
               "cards": [
                 {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.bedroom",
-                  "icon_animation": true,
-                  "show_percentage_control": true
-                },
-                {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.study",
-                  "icon_animation": true,
-                  "show_percentage_control": true
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "gauge",
+                          "entity": "sensor.smart_meter_electricity_power_watts",
+                          "needle": true,
+                          "severity": {
+                            "green": 0,
+                            "yellow": 3000,
+                            "red": 4000
+                          },
+                          "max": 5000,
+                          "name": "Watts",
+                          "min": 0
+                        },
+                        {
+                          "type": "gauge",
+                          "entity": "sensor.smart_meter_electricity_import_today",
+                          "needle": true,
+                          "severity": {
+                            "green": 0,
+                            "yellow": 10,
+                            "red": 13
+                          },
+                          "max": 16,
+                          "name": "kWh",
+                          "min": 0,
+                          "unit": " "
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "#db4537",
+                          "value": 4000
+                        },
+                        {
+                          "color": "#ffa602",
+                          "value": 3000
+                        },
+                        {
+                          "color": "#44a047",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.smart_meter_electricity_power_watts"
+                        }
+                      ],
+                      "hours_to_show": 24,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 60,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 5000
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "vertical-stack-in-card {\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n}\n"
+                  }
                 }
               ]
             },
             {
-              "type": "custom:vertical-stack-in-card",
-              "card_mod": {
-                "style": "vertical-stack-in-card {\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n}\n"
-              },
+              "square": true,
+              "columns": 1,
+              "type": "grid",
               "cards": [
                 {
-                  "type": "horizontal-stack",
+                  "type": "vertical-stack",
                   "cards": [
                     {
-                      "type": "gauge",
-                      "entity": "sensor.smart_meter_electricity_power_watts",
-                      "needle": true,
-                      "severity": {
-                        "green": 0,
-                        "yellow": 3000,
-                        "red": 4000
+                      "type": "custom:slider-button-card",
+                      "entity": "fan.study",
+                      "slider": {
+                        "direction": "left-right",
+                        "background": "triangle",
+                        "use_state_color": true,
+                        "use_percentage_bg_opacity": false,
+                        "show_track": true,
+                        "toggle_on_click": false,
+                        "force_square": false
                       },
-                      "max": 5000,
-                      "name": "Watts",
-                      "min": 0
+                      "show_name": true,
+                      "show_state": false,
+                      "compact": true,
+                      "icon": {
+                        "show": true,
+                        "use_state_color": true,
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      "action_button": {
+                        "mode": "toggle",
+                        "icon": "mdi:power",
+                        "show": false,
+                        "show_spinner": true,
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      "name": "Study"
                     },
                     {
-                      "type": "gauge",
-                      "entity": "sensor.smart_meter_electricity_import_today",
-                      "needle": true,
-                      "severity": {
-                        "green": 0,
-                        "yellow": 10,
-                        "red": 13
+                      "type": "custom:slider-button-card",
+                      "entity": "fan.bedroom",
+                      "slider": {
+                        "direction": "left-right",
+                        "background": "triangle",
+                        "use_state_color": true,
+                        "use_percentage_bg_opacity": false,
+                        "show_track": true,
+                        "toggle_on_click": false,
+                        "force_square": false
                       },
-                      "max": 16,
-                      "name": "kWh",
-                      "min": 0,
-                      "unit": " "
+                      "show_name": true,
+                      "show_state": false,
+                      "compact": true,
+                      "icon": {
+                        "show": true,
+                        "use_state_color": true,
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      "action_button": {
+                        "mode": "toggle",
+                        "icon": "mdi:power",
+                        "show": false,
+                        "show_spinner": true,
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      "name": "Bedroom"
                     }
                   ]
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "color_thresholds": [
-                    {
-                      "color": "#db4537",
-                      "value": 4000
-                    },
-                    {
-                      "color": "#ffa602",
-                      "value": 3000
-                    },
-                    {
-                      "color": "#44a047",
-                      "value": 0
-                    }
-                  ],
-                  "entities": [
-                    {
-                      "entity": "sensor.smart_meter_electricity_power_watts"
-                    }
-                  ],
-                  "hours_to_show": 24,
-                  "line_width": 1,
-                  "lower_bound": 0,
-                  "points_per_hour": 60,
-                  "show": {
-                    "name": false,
-                    "icon": false,
-                    "state": false
-                  },
-                  "update_interval": 1,
-                  "upper_bound": 5000
                 }
               ]
             }
@@ -1463,56 +1483,6 @@
                 "mode": "camera",
                 "refresh_seconds": 1
               }
-            },
-            {
-              "type": "custom:frigate-card",
-              "cameras": [
-                {
-                  "camera_entity": "camera.front_door_snapshot"
-                }
-              ],
-              "view": {
-                "default": "image"
-              },
-              "menu": {
-                "buttons": {
-                  "frigate": {
-                    "enabled": true
-                  },
-                  "image": {
-                    "enabled": true
-                  }
-                },
-                "style": "outside",
-                "position": "bottom"
-              },
-              "live": {
-                "preload": true,
-                "jsmpeg": {
-                  "options": {
-                    "disableGl": true
-                  }
-                },
-                "controls": {
-                  "next_previous": {
-                    "style": "none"
-                  },
-                  "thumbnails": {
-                    "mode": "none"
-                  }
-                },
-                "draggable": false,
-                "lazy_load": true,
-                "lazy_unload": "all"
-              },
-              "dimensions": {
-                "aspect_ratio_mode": "static",
-                "aspect_ratio": "16:9"
-              },
-              "image": {
-                "mode": "camera",
-                "refresh_seconds": 1
-              }
             }
           ]
         },
@@ -1559,46 +1529,47 @@
               "cards": [
                 {
                   "type": "custom:better-thermostat-ui-card",
-                  "entity": "climate.downstairs",
-                  "name": "Downstairs",
+                  "entity": "climate.home",
+                  "name": "Home",
                   "eco_temperature": 17,
-                  "set_current_as_main": true,
-                  "disable_off": true,
+                  "set_current_as_main": false,
+                  "disable_off": false,
                   "disable_eco": false,
                   "disable_summer": false,
-                  "disable_window": false
+                  "disable_window": false,
+                  "disable_heat": false
                 },
                 {
                   "type": "custom:better-thermostat-ui-card",
                   "entity": "climate.study",
                   "name": "Study",
                   "eco_temperature": 17,
-                  "disable_off": true,
-                  "set_current_as_main": true
+                  "disable_off": false,
+                  "set_current_as_main": false
                 },
                 {
                   "type": "custom:better-thermostat-ui-card",
                   "entity": "climate.toilet",
                   "name": "Toilet",
                   "eco_temperature": 13,
-                  "disable_off": true,
-                  "set_current_as_main": true
+                  "disable_off": false,
+                  "set_current_as_main": false
                 },
                 {
                   "type": "custom:better-thermostat-ui-card",
                   "entity": "climate.bathroom",
                   "name": "Bathroom",
                   "eco_temperature": 17,
-                  "set_current_as_main": true,
-                  "disable_off": true
+                  "set_current_as_main": false,
+                  "disable_off": false
                 },
                 {
                   "type": "custom:better-thermostat-ui-card",
                   "entity": "climate.bedroom",
                   "name": "Bedroom",
                   "eco_temperature": 17,
-                  "disable_off": true,
-                  "set_current_as_main": true
+                  "disable_off": false,
+                  "set_current_as_main": false
                 }
               ]
             }
@@ -1624,6 +1595,13 @@
                 ],
                 "exclude": []
               }
+            },
+            {
+              "type": "custom:formulaone-card",
+              "card_type": "next_race",
+              "title": "Next Race",
+              "date_locale": "nl",
+              "image_clickable": false
             }
           ]
         },

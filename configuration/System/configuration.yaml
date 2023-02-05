@@ -73,7 +73,6 @@ system:
     #   name: James
     #   chat_id: 3151939299
 
-  powercalc:
 
   binary_sensor:
     - platform: workday
@@ -90,7 +89,7 @@ system:
         - "date_time"
         - "date_time_iso"
   
-    # - platform: formulaone_api
+    - platform: formulaone_api
   tts:
     platform: google_translate
     language: "en"

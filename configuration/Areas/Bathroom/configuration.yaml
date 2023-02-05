@@ -79,18 +79,19 @@ bathroom:
       - unique_id: bathroom_bright
         name: "Bathroom Bright"
         device_class: light
-        attributes:
-          current_illuminance: "{{ (states('sensor.bathroom_illuminance') | float(0)) }}"
-          light_state: "{{ states('light.bathroom') }}"
-          sun: "{{ states('sun.sun') }}"
         state: |
-          {% if states('sensor.bathroom_illuminance') | int(0) > (states('input_number.bathroom_illuminance_level') | int(0) * 1.3) and is_state('light.bathroom', 'off') %}
+          {% set lux = states('sensor.bathroom_illuminance') %}
+          {% set threshold = states('input_number.bathroom_illuminance_level') %}
+          {% set selfState = states('binary_sensor.bathroom_bright') %}
+          {% set lightState = states('light.bathroom') %}
+          {% set selfLastChanged = states.binary_sensor.bathroom_bright.last_changed %}
+          {% if lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
             True
-          {% elif states('sensor.bathroom_illuminance') | int(0) > (states('input_number.bathroom_illuminance_level') | int(0) * 3) %}
+          {% elif lux | int(0) > (threshold | int(0) * 3) %}
             True
-          {% elif ((states('input_number.bathroom_illuminance_level') | int(0) < states('sensor.bathroom_illuminance') | int(0) < (states('input_number.bathroom_illuminance_level') | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(states.binary_sensor.bathroom_bright.last_changed) < 300) %}
-            {{ states('binary_sensor.bathroom_bright') }}
-          {% elif states('sensor.bathroom_illuminance') | int(0) < states('input_number.bathroom_illuminance_level') | int(0) %}
+          {% elif ((threshold | int(0) < lux | int(0) < (threshold | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(selfLastChanged) < 300) %}
+            {{ selfState }}
+          {% elif lux | int(0) < threshold | int(0) %}
             False
           {% else %}
             False
@@ -113,12 +114,6 @@ bathroom:
         state_class: measurement
         unit_of_measurement: "%"
         state: "{{ (state_attr('binary_sensor.bathroom_occupied','probability')*100 | int(0) ) | round(0) }}"
-      - unique_id: bathroom_illuminance
-        name: Bathroom Illuminance
-        icon: mdi:brightness-5
-        state_class: measurement
-        unit_of_measurement: "lx"
-        state: "{{ states('sensor.bathroom_illuminance') | float(1) }}"
   # Media Players
   #----------------------------------#
   media_player:

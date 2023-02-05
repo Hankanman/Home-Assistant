@@ -101,18 +101,19 @@ study:
       - unique_id: study_bright
         name: "Study Bright"
         device_class: light
-        attributes:
-          current_illuminance: "{{ (states('sensor.study_illuminance') | float(0)) }}"
-          light_state: "{{ states('light.study') }}"
-          sun: "{{ states('sun.sun') }}"
         state: |
-          {% if states('sensor.study_illuminance') | int(0) > (states('input_number.study_illuminance_level') | int(0) * 1.3) and is_state('light.study', 'off') %}
+          {% set lux = states('sensor.study_illuminance') %}
+          {% set threshold = states('input_number.study_illuminance_level') %}
+          {% set selfState = states('binary_sensor.study_bright') %}
+          {% set lightState = states('light.study') %}
+          {% set selfLastChanged = states.binary_sensor.study_bright.last_changed %}
+          {% if lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
             True
-          {% elif states('sensor.study_illuminance') | int(0) > (states('input_number.study_illuminance_level') | int(0) * 3) %}
+          {% elif lux | int(0) > (threshold | int(0) * 3) %}
             True
-          {% elif ((states('input_number.study_illuminance_level') | int(0) < states('sensor.study_illuminance') | int(0) < (states('input_number.study_illuminance_level') | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(states.binary_sensor.study_bright.last_changed) < 300) %}
-            {{ states('binary_sensor.study_bright') }}
-          {% elif states('sensor.study_illuminance') | int(0) < states('input_number.study_illuminance_level') | int(0) %}
+          {% elif ((threshold | int(0) < lux | int(0) < (threshold | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(selfLastChanged) < 300) %}
+            {{ selfState }}
+          {% elif lux | int(0) < threshold | int(0) %}
             False
           {% else %}
             False

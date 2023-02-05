@@ -18,31 +18,25 @@ hall:
           to_state: "on"
 
         - platform: "state"
-          entity_id: binary_sensor.hall_person_occupancy
-          prob_given_true: 0.2954048
-          prob_given_false: 0.0014541
-          to_state: "on"
-
-        - platform: "state"
           entity_id: binary_sensor.hall_motion
           prob_given_true: 0.2832188
           prob_given_false: 0.0014183
           to_state: "on"
 
         - platform: "state"
-          entity_id: binary_sensor.hall_motion_1_occupancy
+          entity_id: binary_sensor.hall_motion_1
           prob_given_true: 0.2816637
           prob_given_false: 0.0014135
           to_state: "on"
 
         - platform: "state"
-          entity_id: binary_sensor.hall_motion_2_occupancy
+          entity_id: binary_sensor.hall_motion_2
           prob_given_true: 0.3026146
           prob_given_false: 0.0014744
           to_state: "on"
 
         - platform: "state"
-          entity_id: binary_sensor.hall_temperature_motion_lux_1_occupancy
+          entity_id: binary_sensor.hall_temperature_motion_lux_1_motion
           prob_given_true: 0.2889866
           prob_given_false: 0.0014355
           to_state: "on"
@@ -69,22 +63,29 @@ hall:
       - unique_id: hall_bright
         name: "Hall Bright"
         device_class: light
-        attributes:
-          current_illuminance: "{{ (states('sensor.hall_illuminance') | float(0)) }}"
-          light_state: "{{ states('light.hall') }}"
-          sun: "{{ states('sun.sun') }}"
         state: |
-          {% if states('sensor.hall_illuminance') | int(0) > (states('input_number.hall_illuminance_level') | int(0) * 1.3) and is_state('light.hall', 'off') %}
+          {% set lux = states('sensor.hall_illuminance') %}
+          {% set threshold = states('input_number.hall_illuminance_level') %}
+          {% set selfState = states('binary_sensor.hall_bright') %}
+          {% set lightState = states('light.hall') %}
+          {% set selfLastChanged = states.binary_sensor.hall_bright.last_changed %}
+          {% if lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
             True
-          {% elif states('sensor.hall_illuminance') | int(0) > (states('input_number.hall_illuminance_level') | int(0) * 3) %}
+          {% elif lux | int(0) > (threshold | int(0) * 3) %}
             True
-          {% elif ((states('input_number.hall_illuminance_level') | int(0) < states('sensor.hall_illuminance') | int(0) < (states('input_number.hall_illuminance_level') | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(states.binary_sensor.hall_bright.last_changed) < 300) %}
-            {{ states('binary_sensor.hall_bright') }}
-          {% elif states('sensor.hall_illuminance') | int(0) < states('input_number.hall_illuminance_level') | int(0) %}
+          {% elif ((threshold | int(0) < lux | int(0) < (threshold | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(selfLastChanged) < 300) %}
+            {{ selfState }}
+          {% elif lux | int(0) < threshold | int(0) %}
             False
           {% else %}
             False
           {% endif %}
+      - unique_id: hall_multi_motion
+        name: "Hall Multi Motion"
+        device_class: motion
+        state: >
+          {% set x = [ states.binary_sensor.hall_motion_1, states.binary_sensor.hall_motion_2, states.binary_sensor.hall_temperature_motion_lux_1_motion] | selectattr('state', 'eq', 'on') | list %}
+          {{ iif( x | count >= 2, 'on', 'off') }}
 
       # Humid Sensors
       #----------------------------------#

@@ -163,217 +163,133 @@ templates:
       - unique_id: seb_location
         name: Seb Location
         state: |
-          {% if is_state('person.sebastian_burrell', 'home')  and  is_state_attr('sensor.seb_location', 'devices_home', 'Yes') %}
-            1. Seb's in the {{ state_attr('sensor.seb_location', 'last_area') | lower }}
-          {% elif not is_state('person.sebastian_burrell', 'home') %}
-            {% if is_state('person.sebastian_burrell', 'not_home') and is_state_attr('sensor.seb_location', 'Activity', 'in_vehicle') %}
-              2. Seb is driving through {{ state_attr('sensor.seb_location', 'Locality') }}
-            {% elif is_state('person.sebastian_burrell', 'not_home') %}
-              3. Seb's in {{ state_attr('sensor.seb_location', 'Locality') }}
+          {% set name = 'Seb' %}
+          {% set state = states('person.sebastian_burrell') %}
+          {% set locality = state_attr('sensor.seb_location', 'Locality') %}
+          {% set activity = state_attr('sensor.seb_location', 'Activity') %}
+          {% if state == 'home' %}
+            {{name}}'s at Home
+          {% elif state == 'not_home' %}
+            {% if activity == 'in_vehicle' %}
+              {{name}}'s driving through {{locality}}
+            {% elif activity == 'on_bicycle' %}
+              {{name}}'s cycling through {{locality}}
+            {% elif activity == 'walking' %}
+              {{name}}'s walking through {{locality}}
             {% else %}
-              4. Seb's out and about
+              {{name}}'s out and about
             {% endif %}
           {% else %}
-            5. Seb's at {{ states('person.sebastian_burrell') }}
+            {% if state == "Seb's Parents" %}
+              {{name}}'s at his parents
+            {% elif state == "Bourn Surgery" %}
+              {{name}}'s at work
+            {% else %}
+              {{name}}'s at {{state}}
+            {% endif %}
           {% endif %}
         attributes:
-          Zone: >
-            {{state_attr('sensor.double_take_seb','zones')[0] | regex_replace(find='Zone - ', replace='', ignorecase=False)}}
+          Zone: |
+            {{ states('person.sebastian_burrell') }}
           Location: |
-            {% if is_state('person.sebastian_burrell', 'home')  and  is_state_attr('sensor.seb_location', 'devices_home', 'Yes') %}
-              {{ state_attr('sensor.seb_location', 'last_area') }}
-            {% elif not is_state('person.sebastian_burrell', 'home') %}
-              {% if is_state('person.sebastian_burrell', 'not_home') %}
-                {{ state_attr('sensor.seb_location', 'Locality') }}
-              {% else %}
-                {{ states('person.sebastian_burrell') }}
-              {% endif %}
+            {% set state = states('person.sebastian_burrell') %}
+            {% set locality = state_attr('sensor.seb_location', 'Locality') %}
+            {% set activity = state_attr('sensor.seb_location', 'Activity') %}
+            {% if state == 'home' %}
+              Home
+            {% elif state == 'not_home' %}
+              {{locality}}
             {% else %}
-              {{ states('person.sebastian_burrell') }}
+              {% if state == "Seb's Parents" %}
+                His Parents
+              {% elif state == "York Office" %}
+                Work
+              {% else %}
+                {{state}}
+              {% endif %}
             {% endif %}
-          # Last Area: >
-          #   {% set x =  [ states.sensor.seb_phone_ble_room_presence,
-          #             states.sensor.ble_seb_watch_room_presence]
-          #     | selectattr('state', 'ne', 'not_home')
-          #     | sort(reverse=true, attribute='last_changed')
-          #     | list %}
-          #   {% if x | count > 0 %}
-          #     {{ x[0].state }}
-          #   {% else %}
-          #     {{ state_attr('sensor.seb_location', 'last_area') }}
-          #   {% endif %}
-          # Devices Home: >
-          #   {% if not (is_state('sensor.seb_phone_ble_room_presence', 'not_home') and is_state('sensor.ble_seb_watch_room_presence', 'not_home')) %}
-          #     Yes
-          #   {% else %}
-          #     No
-          #   {% endif %}
+          Last Area: >
+            {% set x =  [ states.device_tracker.seb_phone, states.device_tracker.seb_phone_tile, states.sensor.seb_phone_wifi_connection] | selectattr('state', 'ne', ['not_home', 'unavailable', 'unknown']) | sort(reverse=true, attribute='last_changed') | list %}
+            {{ iif( x | count > 0, x[0].state, state_attr('sensor.seb_location', 'last_area')) }}
+          Devices Home: >
+            {{ iif(is_state('device_tracker.seb_phone', 'home') or is_state('device_tracker.seb_phone_tile', 'home') or is_state('sensor.seb_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') }}
           Locality: >
-            {% if states.sensor.seb_phone_geocoded_location is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.seb_phone_geocoded_location', 'Unknown') or is_state_attr('sensor.seb_phone_geocoded_location', 'Locality', 'null') %}
-                {{ state_attr('sensor.seb_location', 'Locality') }}
-              {% else %}
-                {{ state_attr('sensor.seb_phone_geocoded_location', 'Locality') }}
-              {% endif %}
-            {% endif %}
+            {{ iif(state_attr('sensor.seb_phone_geocoded_location','locality') in ['null','unknown','unavailable'],'Somewhere',state_attr('sensor.seb_phone_geocoded_location','locality')) }}
           Longitude: >
-            {% if states.sensor.seb_phone_geocoded_location is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.seb_phone_geocoded_location', 'Unknown') or is_state_attr('sensor.seb_phone_geocoded_location', 'Longitude', 'null') %}
-                {{ state_attr('sensor.seb_location', 'Longitude') }}
-              {% else %}
-                {{ state_attr('sensor.seb_phone_geocoded_location', 'Longitude') }}
-              {% endif %}
-            {% endif %}
+            {{ state_attr('person.sebastian_burrell', 'longitude') }}
           Latitude: >
-            {% if states.sensor.seb_phone_geocoded_location is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.seb_phone_geocoded_location', 'Unknown') or is_state_attr('sensor.seb_phone_geocoded_location', 'Latitude', 'null') %}
-                {{ state_attr('sensor.seb_location', 'Latitude') }}
-              {% else %}
-                {{ state_attr('sensor.seb_phone_geocoded_location', 'Latitude') }}
-              {% endif %}
-            {% endif %}
+            {{ state_attr('person.sebastian_burrell', 'latitude') }}
           Thoroughfare: >
-            {% if states.sensor.seb_phone_geocoded_location is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.seb_phone_geocoded_location', 'Unknown') or is_state_attr('sensor.seb_phone_geocoded_location', 'Thoroughfare', 'null') %}
-                {{ state_attr('sensor.seb_location', 'Thoroughfare') }}
-              {% else %}
-                {{ state_attr('sensor.seb_phone_geocoded_location', 'Thoroughfare') }}
-              {% endif %}
-            {% endif %}
+            {{ iif(state_attr('sensor.seb_phone_geocoded_location','thoroughfare') in ['null','unknown','unavailable'],'In a Field',state_attr('sensor.seb_phone_geocoded_location','thoroughfare')) }}
           Address: >
-            {% if states.sensor.seb_phone_geocoded_location is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.seb_phone_geocoded_location', 'Unknown') or is_state('sensor.seb_phone_geocoded_location', 'Unavailable') %}
-                {{ state_attr('sensor.seb_location', 'Address') }}
-              {% else %}
-                {{ states('sensor.seb_phone_geocoded_location') }}
-              {% endif %}
-            {% endif %}
+            {{ iif(states('sensor.seb_phone_geocoded_location') in ['null','unknown','unavailable'],'In the Wilderness',states('sensor.seb_phone_geocoded_location')) }}
           Activity: >
-            {% if states.sensor.seb_phone_detected_activity is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.seb_phone_detected_activity', 'Unknown') or is_state('sensor.seb_phone_detected_activity', 'Unavailable') %}
-                {{ state_attr('sensor.seb_location', 'Activity') }}
-              {% else %}
-                {{ states('sensor.seb_phone_detected_activity') }}
-              {% endif %}
-            {% endif %}
+            {% set mapping = {'in_vehicle': 'Driving','still':'Chilling Out','on_bicycle':'Cycling','on_foot':'Standing Up','unknown':'Something','walking':'Walking'} %}
+            {{ iif(states('sensor.seb_phone_detected_activity') in ['null','unknown','unavailable'],'Something', mapping[states('sensor.seb_phone_detected_activity')]) }}
 
       - unique_id: laura_location
         name: Laura Location
         state: |
-          {% if is_state('person.laura_ward', 'home')  and  is_state_attr('sensor.laura_location', 'devices_home', 'Yes') %}
-            1. Laura's in the {{ state_attr('sensor.laura_location', 'last_area') | lower }}
-          {% elif not is_state('person.laura_ward', 'home') %}
-            {% if is_state('person.laura_ward', 'not_home') and is_state_attr('sensor.laura_location', 'Activity', 'in_vehicle') %}
-              2. Laura's driving through {{ state_attr('sensor.laura_location', 'Locality') }}
-            {% elif is_state('person.laura_ward', 'not_home') %}
-              3. Laura's in {{ state_attr('sensor.laura_location', 'Locality') }}
+          {% set name = 'Laura' %}
+          {% set state = states('person.laura_ward') %}
+          {% set locality = state_attr('sensor.laura_location', 'Locality') %}
+          {% set activity = state_attr('sensor.laura_location', 'Activity') %}
+          {% if state == 'home' %}
+            {{name}}'s at Home
+          {% elif state == 'not_home' %}
+            {% if activity == 'in_vehicle' %}
+              {{name}}'s driving through {{locality}}
+            {% elif activity == 'on_bicycle' %}
+              {{name}}'s cycling through {{locality}}
+            {% elif activity == 'walking' %}
+              {{name}}'s walking through {{locality}}
             {% else %}
-              4. Laura's out and about
+              {{name}}'s out and about
             {% endif %}
           {% else %}
-            5. Laura's at {{ states('person.laura_ward') }}
+            {% if state == "Laura's Parents" %}
+              {{name}}'s at her parents
+            {% elif state == "Bourn Surgery" %}
+              {{name}}'s at work
+            {% else %}
+              {{name}}'s at {{state}}
+            {% endif %}
           {% endif %}
         attributes:
-          Zone: >
-            {{state_attr('sensor.double_take_laura','zones')[0] | regex_replace(find='Zone - ', replace='', ignorecase=False)}}
+          Zone: |
+            {{ states('person.laura_ward') }}
           Location: |
-            {% if is_state('person.laura_ward', 'home')  and  is_state_attr('sensor.laura_location', 'devices_home', 'Yes') %}
-              {{ state_attr('sensor.laura_location', 'last_area') }}
-            {% elif not is_state('person.laura_ward', 'home') %}
-              {% if is_state('person.laura_ward', 'not_home') %}
-                {{ state_attr('sensor.laura_location', 'Locality') }}
-              {% else %}
-                {{ states('person.laura_ward') }}
-              {% endif %}
+            {% set state = states('person.laura_ward') %}
+            {% set locality = state_attr('sensor.laura_location', 'Locality') %}
+            {% set activity = state_attr('sensor.laura_location', 'Activity') %}
+            {% if state == 'home' %}
+              Home
+            {% elif state == 'not_home' %}
+              {{locality}}
             {% else %}
-              {{ states('person.laura_ward') }}
+              {% if state == "Laura's Parents" %}
+                Her Parents
+              {% elif state == "Bourn Surgery" %}
+                Work
+              {% else %}
+                {{state}}
+              {% endif %}
             {% endif %}
-          # Last Area: >
-          #   {% set x =  [ states.sensor.laura_phone_ble_room_presence,
-          #             states.sensor.ble_laura_watch_room_presence]
-          #     | selectattr('state', 'ne', 'not_home')
-          #     | sort(reverse=true, attribute='last_changed')
-          #     | list %}
-          #   {% if x | count > 0 %}
-          #     {{ x[0].state }}
-          #   {% else %}
-          #     {{ state_attr('sensor.laura_location', 'last_area') }}
-          #   {% endif %}
-          # Devices Home: >
-          #   {% if not (is_state('sensor.laura_phone_ble_room_presence', 'not_home') and is_state('sensor.ble_laura_watch_room_presence', 'not_home')) %}
-          #     Yes
-          #   {% else %}
-          #     No
-          #   {% endif %}
+          Last Area: >
+            {% set x =  [ states.device_tracker.laura_phone, states.device_tracker.laura_s_phone_tile, states.sensor.laura_phone_wifi_connection] | selectattr('state', 'ne', ['not_home', 'unavailable', 'unknown']) | sort(reverse=true, attribute='last_changed') | list %}
+            {{ iif( x | count > 0, x[0].state, state_attr('sensor.laura_location', 'last_area')) }}
+          Devices Home: >
+            {{ iif(is_state('device_tracker.laura_phone', 'home') or is_state('device_tracker.laura_s_phone_tile', 'home') or is_state('sensor.laura_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') }}
           Locality: >
-            {% if states.sensor.laura_phone_geocoded_location is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.laura_phone_geocoded_location', 'Unknown') or is_state_attr('sensor.laura_phone_geocoded_location', 'Locality', 'null') %}
-                {{ state_attr('sensor.laura_location', 'Locality') }}
-              {% else %}
-                {{ state_attr('sensor.laura_phone_geocoded_location', 'Locality') }}
-              {% endif %}
-            {% endif %}
+            {{ iif(state_attr('sensor.laura_phone_geocoded_location','locality') in ['null','unknown','unavailable'],'Somewhere',state_attr('sensor.laura_phone_geocoded_location','locality')) }}
           Longitude: >
-            {% if states.sensor.laura_phone_geocoded_location is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.laura_phone_geocoded_location', 'Unknown') or is_state_attr('sensor.laura_phone_geocoded_location', 'Longitude', 'null') %}
-                {{ state_attr('sensor.laura_location', 'Longitude') }}
-              {% else %}
-                {{ state_attr('sensor.laura_phone_geocoded_location', 'Longitude') }}
-              {% endif %}
-            {% endif %}
+            {{ state_attr('person.laura_ward', 'longitude') }}
           Latitude: >
-            {% if states.sensor.laura_phone_geocoded_location is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.laura_phone_geocoded_location', 'Unknown') or is_state_attr('sensor.laura_phone_geocoded_location', 'Latitude', 'null') %}
-                {{ state_attr('sensor.laura_location', 'Latitude') }}
-              {% else %}
-                {{ state_attr('sensor.laura_phone_geocoded_location', 'Latitude') }}
-              {% endif %}
-            {% endif %}
+            {{ state_attr('person.laura_ward', 'latitude') }}
           Thoroughfare: >
-            {% if states.sensor.laura_phone_geocoded_location is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.laura_phone_geocoded_location', 'Unknown') or is_state_attr('sensor.laura_phone_geocoded_location', 'Thoroughfare', 'null') %}
-                {{ state_attr('sensor.laura_location', 'Thoroughfare') }}
-              {% else %}
-                {{ state_attr('sensor.laura_phone_geocoded_location', 'Thoroughfare') }}
-              {% endif %}
-            {% endif %}
+            {{ iif(state_attr('sensor.laura_phone_geocoded_location','thoroughfare') in ['null','unknown','unavailable'],'In a Field',state_attr('sensor.laura_phone_geocoded_location','thoroughfare')) }}
           Address: >
-            {% if states.sensor.laura_phone_geocoded_location is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.laura_phone_geocoded_location', 'Unknown') or is_state('sensor.laura_phone_geocoded_location', 'Unavailable') %}
-                {{ state_attr('sensor.laura_location', 'Address') }}
-              {% else %}
-                {{ states('sensor.laura_phone_geocoded_location') }}
-              {% endif %}
-            {% endif %}
+            {{ iif(states('sensor.laura_phone_geocoded_location') in ['null','unknown','unavailable'],'In the Wilderness',states('sensor.laura_phone_geocoded_location')) }}
           Activity: >
-            {% if states.sensor.laura_phone_detected_activity is undefined %}
-              Unknown
-            {% else %}
-              {% if is_state('sensor.laura_phone_detected_activity', 'Unknown') or is_state('sensor.laura_phone_detected_activity', 'Unavailable') %}
-                {{ state_attr('sensor.laura_location', 'Activity') }}
-              {% else %}
-                {{ states('sensor.laura_phone_detected_activity') }}
-              {% endif %}
-            {% endif %}
+            {% set mapping = {'in_vehicle': 'Driving','still':'Chilling Out','on_bicycle':'Cycling','on_foot':'Standing Up','unknown':'Something','walking':'Walking'} %}
+            {{ iif(states('sensor.laura_phone_detected_activity') in ['null','unknown','unavailable'],'Something', mapping[states('sensor.laura_phone_detected_activity')]) }}

@@ -104,7 +104,7 @@ home:
         name: "People Home"
         icon: "mdi:home"
         device_class: presence
-        state: "{{ is_state_attr('sensor.laura_location', 'Location', 'home') or is_state_attr('sensor.seb_location', 'Location', 'home') }}"
+        state: "{{ is_state_attr('sensor.laura_location', 'Location', 'Home') or is_state_attr('sensor.seb_location', 'Location', 'Home') }}"
     # Template Variable Sensors
     #----------------------------------#
     sensor:

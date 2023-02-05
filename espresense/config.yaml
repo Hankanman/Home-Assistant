@@ -148,5 +148,5 @@ devices:
     name: Seb's Headphones
   - id: msft:cdp:0922
     name: Starrunner
-  - id: md:ffff:1815
+  - id: iBeacon:123a6162-8154-4093-8d66-92c7de4a28ff-100-1
     name: Seb's Watch

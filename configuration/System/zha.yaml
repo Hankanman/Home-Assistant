@@ -1,0 +1,5 @@
+zha:
+  zha:
+    device_config:
+      b4:e3:f9:ff:fe:c6:a0:aa-1:      # Reclassify ZBMINI (Bathroom Fan) as switch instead of light
+        type: 'switch'
