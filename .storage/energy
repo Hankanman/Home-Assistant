@@ -62,6 +62,9 @@
       },
       {
         "stat_consumption": "sensor.central_heating_wh"
+      },
+      {
+        "stat_consumption": "sensor.kettle_today_energy"
       }
     ]
   }

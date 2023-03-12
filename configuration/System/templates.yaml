@@ -17,7 +17,7 @@ templates:
       - unique_id: kitchen_kettle
         name: "Kitchen Kettle"
         icon: "mdi:kettle"
-        state: "{{ iif( states('sensor.kitchen_sockets') | float(0) > 1500, 'on', 'off' ) }}"
+        state: "{{ iif( states('sensor.kettle_current_power') | float(0) > 10, 'on', 'off' ) }}"
       - unique_id: kitchen_microwave
         name: "Kitchen Microwave"
         icon: "mdi:microwave"
@@ -27,11 +27,11 @@ templates:
       - unique_id: bedroom_tv_state
         name: "Bedroom TV State"
         icon: "mdi:power"
-        state: "{{ iif( states('media_player.bedroom_tv') in ['playing','standby','idle','paused'], 'on', 'off') }}"
+        state: "{{ iif( states('media_player.bedroom_tv') in ['playing','standby','idle','paused','on'] or states('media_player.bedroom_tv_panasonic') in ['playing','standby','idle','paused','on'], 'on', 'off') }}"
       - unique_id: lounge_tv_state
         name: "Lounge TV State"
         icon: "mdi:power"
-        state: "{{ iif( states('media_player.lounge_tv') in ['playing','standby','idle','paused'], 'on', 'off') }}"
+        state: "{{ iif( states('media_player.lounge_tv') in ['playing','standby','idle','paused','on'] or states('media_player.lounge_tv_sony') in ['playing','standby','idle','paused','on'], 'on', 'off') }}"
       # Sleeping Binary Sensors
       #----------------------------------#
       - unique_id: laura_sleeping

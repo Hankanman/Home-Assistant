@@ -3,7 +3,7 @@
   "minor_version": 1,
   "key": "switch_manager",
   "data": {
-    "version": "1.0.1",
+    "version": "1.0.4",
     "managed_switches": {
       "0": {
         "name": "Bedroom Remote",

@@ -7,100 +7,100 @@ records:
     db_url: !secret mariadb
     purge_keep_days: 365
     auto_purge: true
-    # exclude:
-    #   entity_globs:
-    #     - .*_1
-    #     - .*_2
-    #     - .*_3
-    #     - .*_4
-    #     - .*_5
-    #     - .*_6
-    #     - sensor.date*
-    #     - .*_ratio*
-    #     - .*_battery*
-    #     - .*_cpu*
-    #     - .*_memory*
-    #     - .*_disk*
-    #     - .*_ram*
-    #     - .*_memory*
-    #   domains:
-    #     - update
-    #     - automation
-    #     - calendar
-    #     - camera
-    #   event_types:
-    #     - service_removed
-    #     - service_executed
-    #     - platform_discovered
-    #     - feedreader
-    #     - service_registered
-    #     - call_service
-    #     - component_loaded
-    #     - logbook_entry
-    #     - system_log_event
-    #     - automation_triggered
-    #     - script_started
-    #     - timer_out_of_sync
-    # include:
-    #   entity_globs:
-    #     - sensor.*temperature
-    #     - sensor.*humidity
-    #     - sensor.*illuminance
-    #     - sensor.*particulate*
-    #     - sensor.*probability
-    #     - sensor.*energy*
-    #     - sensor.*power*
-    #     - sensor.*wh*
-    #     - sensor.*cost*
-    #     - binary_sensor.*occupancy
-    #     - .*laura*
-    #     - .*seb_*
-    #     - sensor.starrunner_*
-    #     - binary_sensor.starrunner_*
-    #     - binary_sensor.*_occupied
-    #     - sensor.*electricity*
-    #     - sensor.*gas*
-    #     - sensor.*_wh*
-    #     - .*starrunner_active*
-    #     - .*_online*
-    #     - .*_home*
-    #     - .*_windows*
-    #     - .*_doors*
-    #     - .*_motion
-    #     - .*_noise
-    #     - .*_smoke
-    #     - .*_gas
-    #     - .*_water
-    #     - .*_presence
-    #     - .*_occupancy
-    #     - .*_bright
-    #     - .*_trend*
-    #     - .*sleep*
-    #     - .*_rssi*
-    #     - .*_heatindex
-    #     - .*_dewpoint
-    #     - .*_frostpoint
-    #     - .*_simmerindex
-    #     - .*co2*
-    #     - .*double_take*
-    #     - .*_person_count
-    #     - .*_dog_count
-    #     - .*_all_count
-    #     - .*ibeacon*
-    #     - .*_percentage
-    #     - .*reminder*
-    #   domains:
-    #     - person
-    #     - device_tracker
-    #     - light
-    #     - fan
-    #     - climate
-    #     - group
-    #     - switch
-    #     - input_boolean
-    #     - input_number
-    #     - media_player
-    #     - zone
+    exclude:
+      entity_globs:
+        - .*_1
+        - .*_2
+        - .*_3
+        - .*_4
+        - .*_5
+        - .*_6
+        - sensor.date*
+        - .*_ratio*
+        - .*_battery*
+        - .*_cpu*
+        - .*_memory*
+        - .*_disk*
+        - .*_ram*
+        - .*_memory*
+      domains:
+        - update
+        - automation
+        - calendar
+        - camera
+      event_types:
+        - service_removed
+        - service_executed
+        - platform_discovered
+        - feedreader
+        - service_registered
+        - call_service
+        - component_loaded
+        - logbook_entry
+        - system_log_event
+        - automation_triggered
+        - script_started
+        - timer_out_of_sync
+    include:
+      entity_globs:
+        - sensor.*temperature
+        - sensor.*humidity
+        - sensor.*illuminance
+        - sensor.*particulate*
+        - sensor.*probability
+        - sensor.*energy*
+        - sensor.*power*
+        - sensor.*wh*
+        - sensor.*cost*
+        - binary_sensor.*occupancy
+        - .*laura*
+        - .*seb_*
+        - sensor.starrunner_*
+        - binary_sensor.starrunner_*
+        - binary_sensor.*_occupied
+        - sensor.*electricity*
+        - sensor.*gas*
+        - sensor.*_wh*
+        - .*starrunner_active*
+        - .*_online*
+        - .*_home*
+        - .*_windows*
+        - .*_doors*
+        - .*_motion
+        - .*_noise
+        - .*_smoke
+        - .*_gas
+        - .*_water
+        - .*_presence
+        - .*_occupancy
+        - .*_bright
+        - .*_trend*
+        - .*sleep*
+        - .*_rssi*
+        - .*_heatindex
+        - .*_dewpoint
+        - .*_frostpoint
+        - .*_simmerindex
+        - .*co2*
+        - .*double_take*
+        - .*_person_count
+        - .*_dog_count
+        - .*_all_count
+        - .*ibeacon*
+        - .*_percentage
+        - .*reminder*
+      domains:
+        - person
+        - device_tracker
+        - light
+        - fan
+        - climate
+        - group
+        - switch
+        - input_boolean
+        - input_number
+        - media_player
+        - zone
   # influxdb:
   #   host: a0d7b954-influxdb
   #   port: 8086

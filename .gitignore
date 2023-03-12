@@ -1,6 +1,6 @@
 *auth*
 *.crt
-*.db
+*.db*
 *.key
 *.log
 *.pem
@@ -49,6 +49,7 @@ home-assistant.log*
 home-assistant_v2.db
 home-assistant_v2.db-shm
 home-assistant_v2.db-wal
+history.db
 image/
 known_devices.yaml
 o365_calendars.yaml

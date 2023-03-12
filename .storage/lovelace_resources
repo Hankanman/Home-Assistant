@@ -30,7 +30,7 @@
         "id": "f9a196bebd9f49fe9f2cd007440032de"
       },
       {
-        "url": "/hacsfiles/scheduler-card/scheduler-card.js?hacstag=286270157234",
+        "url": "/hacsfiles/scheduler-card/scheduler-card.js?hacstag=286270157328",
         "type": "module",
         "id": "cfa740bc027b48ae99f9c35a77520425"
       },
@@ -115,14 +115,9 @@
         "id": "2cba945c43ad405f9e8dbeab81939255"
       },
       {
-        "url": "/hacsfiles/hass-hue-icons/hass-hue-icons.js?hacstag=3844345221250",
+        "url": "/hacsfiles/hass-hue-icons/hass-hue-icons.js?hacstag=3844345221251",
         "type": "module",
         "id": "f7b5960503884cfbb13b06ca99de363a"
-      },
-      {
-        "url": "/hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js?hacstag=366482637014",
-        "type": "module",
-        "id": "af01be0c510246b3a52e14a4294d2a63"
       },
       {
         "url": "/hacsfiles/custom-icons/custom-icons.js?hacstag=491465538021",
@@ -165,7 +160,7 @@
         "id": "eab08efadf3b4738b30d997fdfa0f8f7"
       },
       {
-        "url": "/hacsfiles/clock-weather-card/clock-weather-card.js?hacstag=5226340191011",
+        "url": "/hacsfiles/clock-weather-card/clock-weather-card.js?hacstag=5226340191012",
         "type": "module",
         "id": "2040bbbbcaf348518b45e93cb1716451"
       },
@@ -180,7 +175,7 @@
         "id": "66b14f47d3b4476c87b51838ffd3e76b"
       },
       {
-        "url": "/hacsfiles/lovelace-wallpanel/wallpanel.js?hacstag=30950641645",
+        "url": "/hacsfiles/lovelace-wallpanel/wallpanel.js?hacstag=309506416471",
         "type": "module",
         "id": "6bedf2b535134cd991fa2df05807911d"
       },
@@ -190,7 +185,7 @@
         "id": "68d13c53d89d4b4aa386da31b2e949e8"
       },
       {
-        "url": "/hacsfiles/formulaone-card/formulaone-card.js?hacstag=545945955091",
+        "url": "/hacsfiles/formulaone-card/formulaone-card.js?hacstag=545945955121",
         "type": "module",
         "id": "0fceb4cb333949c9bc11bd8efff70210"
       },
@@ -218,6 +213,11 @@
         "url": "/hacsfiles/tracking-number-card/tracking-number-card.js?hacstag=183499944302",
         "type": "module",
         "id": "b1ba0d57d5054e059d01c85c34b35268"
+      },
+      {
+        "url": "/hacsfiles/lovelace-big-slider-card/big-slider-card.js?hacstag=332589148108",
+        "type": "module",
+        "id": "aae5d37c1a1d4f1097c02c5ff2d1d735"
       }
     ]
   }

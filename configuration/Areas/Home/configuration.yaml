@@ -80,16 +80,6 @@ home:
       value_template: "{{value_json.results[0].value_inc_vat / 100}}"
       resource: !secret octopus_variable_gas_tariff
 
-    - platform: integration
-      source: sensor.mainsexport_power
-      name: Total Grid Export
-      unit_prefix: k
-
-    - platform: integration
-      source: sensor.mainsconsumption_power
-      name: Total Grid Consumption
-      unit_prefix: k
-
   # Template Sensors
   #----------------------------------#
   template:

@@ -65,7 +65,6 @@
         - service: light.turn_on
           data:
             transition: 2
-            kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
             brightness_pct: 100
           target:
             area_id: bathroom
@@ -73,7 +72,6 @@
         - service: light.turn_on
           data:
             transition: 2
-            kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
             brightness_pct: 10
           target:
             entity_id: light.bathroom
@@ -81,7 +79,6 @@
       - service: light.turn_on
         data:
           transition: 2
-          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.bathroom
@@ -106,7 +103,6 @@
         data:
           transition: 10
           brightness_pct: 50
-          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
         target:
           entity_id: light.bathroom
       - delay:
@@ -175,7 +171,6 @@
       - service: light.turn_on
         data:
           transition: 5
-          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 20
         target:
           entity_id: light.bedroom
@@ -191,7 +186,6 @@
           data:
             transition: 20
             brightness_pct: 100
-            kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           target:
             entity_id: light.bedroom
         else:
@@ -199,7 +193,6 @@
           data:
             transition: 3
             brightness_pct: 100
-            kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           target:
             entity_id: light.bedroom
     else:
@@ -312,7 +305,6 @@
     - service: light.turn_on
       data:
         transition: 2
-        kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
         brightness_pct: 100
       target:
         entity_id: light.entrance
@@ -367,7 +359,6 @@
       - service: light.turn_on
         data:
           transition: 2
-          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 10
         target:
           entity_id: light.hall
@@ -375,7 +366,6 @@
       - service: light.turn_on
         data:
           transition: 2
-          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.hall
@@ -453,15 +443,13 @@
       - service: light.turn_on
         data:
           transition: 10
-          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
-          brightness_pct: 50
+          brightness_pct: 10
         target:
           entity_id: light.lounge
       else:
       - service: light.turn_on
         data:
           transition: 3
-          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.lounge
@@ -521,7 +509,6 @@
     - service: light.turn_on
       data:
         transition: 3
-        kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
         brightness_pct: 100
       target:
         entity_id: light.study
@@ -548,21 +535,6 @@
         target:
           entity_id: light.study
   mode: restart
-- alias: System - Dismiss Persistant Notification
-  id: c43b66fa-f81a-46ee-a65a-80c3764e89bc
-  description: ''
-  mode: single
-  trigger:
-  - platform: state
-    entity_id: persistent_notification.config_entry_discovery
-    to: notifying
-  - platform: homeassistant
-    event: start
-  condition: []
-  action:
-  - service: persistent_notification.dismiss
-    data:
-      notification_id: config_entry_discovery
 - id: '1638260394889'
   alias: System - Auto Snapshot and Backup
   description: ''
@@ -639,7 +611,6 @@
       data:
         brightness_pct: 100
         transition: 3
-        kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
     else:
     - delay:
         seconds: 30
@@ -676,7 +647,6 @@
       data:
         brightness_pct: 100
         transition: 3
-        kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
     else:
     - delay:
         seconds: 30
@@ -800,7 +770,7 @@
     - service: fan.turn_on
       data: {}
       target:
-        entity_id: fan.bathroom_fan
+        entity_id: fan.bathroom
     - service: input_boolean.turn_on
       data: {}
       target:
@@ -826,7 +796,7 @@
     - service: fan.turn_off
       data: {}
       target:
-        entity_id: fan.bathroom_fan
+        entity_id: fan.bathroom
   mode: restart
 - id: '1655066044340'
   alias: Low Battery Warning
@@ -896,7 +866,6 @@
       - service: light.turn_on
         data:
           transition: 15
-          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.kitchen
@@ -904,7 +873,6 @@
       - service: light.turn_on
         data:
           transition: 2
-          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.kitchen
@@ -955,7 +923,7 @@
     to: 'off'
   - platform: state
     entity_id:
-    - binary_sensor.toilet_door_contact
+    - binary_sensor.toilet_door
     from: 'off'
     to: 'on'
     alias: Door Opened
@@ -988,7 +956,6 @@
       - service: light.turn_on
         data:
           transition: 2
-          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 50
         target:
           entity_id: light.toilet
@@ -996,7 +963,6 @@
       - service: light.turn_on
         data:
           transition: 2
-          kelvin: '{{ state_attr(''switch.adaptive_lighting_home'',''color_temp_kelvin'') }}'
           brightness_pct: 100
         target:
           entity_id: light.toilet
@@ -1092,7 +1058,7 @@
       entity_id: climate.study
   - service: saver.save_state
     data:
-      entity_id: climate.downstairs
+      entity_id: climate.home
   - service: saver.save_state
     data:
       entity_id: climate.toilet
@@ -1107,11 +1073,12 @@
       temperature: 17
       hvac_mode: auto
     target:
-      device_id:
-      - 752a16d3f21607367a332862903123ee
-      - 61278b858b351bb19fe01071c8362033
-      - e6050094a004f57a2ebceb5461ddb2f3
-      - 7d392c6c4f2e8302dd77fa3468a9c278
+      entity_id:
+      - climate.bathroom
+      - climate.bedroom
+      - climate.home
+      - climate.study
+      - climate.toilet
   - service: fan.turn_off
     data: {}
     target:
@@ -1147,3 +1114,85 @@
       reminder_time: 08:30:00
       notify_device: 2bd987ee2df2c90fe99d2de6301752e8
       input_boolean: input_boolean.medication_seb
+- id: '1678034605165'
+  alias: Kitchen - Side Lights
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.kitchen_hob
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.kitchen_microwave
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.kitchen_kettle
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.kitchen_occupied
+  condition: []
+  action:
+  - if:
+    - condition: and
+      conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: binary_sensor.kitchen_kettle
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.kitchen_hob
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.kitchen_microwave
+          state: 'on'
+      - condition: state
+        state: 'off'
+        entity_id: input_boolean.lounge_sleep_mode
+    then:
+    - type: turn_on
+      device_id: 4102ec079249d510c685ce8954464b05
+      entity_id: light.kitchen_side
+      domain: light
+    else:
+    - type: turn_off
+      device_id: 4102ec079249d510c685ce8954464b05
+      entity_id: light.kitchen_side
+      domain: light
+  mode: single
+- id: '1678039107813'
+  alias: Lounge - Lamp
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.lounge_occupied
+  condition: []
+  action:
+  - if:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.lounge_occupied
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.lounge_tv_state
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.lounge_bright
+        state: 'off'
+    then:
+    - type: turn_on
+      device_id: a8db441672a65bd5d1143300279c0c54
+      entity_id: light.lounge_lamp
+      domain: light
+      brightness_pct: 10
+    else:
+    - type: turn_off
+      device_id: a8db441672a65bd5d1143300279c0c54
+      entity_id: light.lounge_lamp
+      domain: light
+  mode: single

@@ -4,6 +4,10 @@
   "key": "lovelace",
   "data": {
     "config": {
+      "wallpanel": {
+        "enabled": false,
+        "image_url": "/"
+      },
       "button_card_templates": {
         "base": {
           "aspect_ratio": "1/1",
@@ -788,7 +792,7 @@
                 "light": "light.study",
                 "bright": "binary_sensor.study_bright",
                 "occupied": "binary_sensor.study_occupied",
-                "climate": "climate.study",
+                "climate": "climate.study_radiator",
                 "temp": "sensor.study_temperature",
                 "fan": "fan.study",
                 "humid": "sensor.study_humidity"
@@ -813,7 +817,7 @@
                 "light": "light.bathroom",
                 "bright": "binary_sensor.bathroom_bright",
                 "occupied": "binary_sensor.bathroom_occupied",
-                "climate": "climate.bathroom",
+                "climate": "climate.bathroom_radiator",
                 "temp": "sensor.bathroom_temperature",
                 "humid": "sensor.bathroom_humidity",
                 "fan": "fan.bathroom"
@@ -929,7 +933,7 @@
                 "light": "light.lounge",
                 "bright": "binary_sensor.lounge_bright",
                 "occupied": "binary_sensor.lounge_occupied",
-                "climate": "climate.home",
+                "climate": "climate.thermostat",
                 "temp": "sensor.lounge_temperature",
                 "humid": "sensor.lounge_humidity",
                 "media": "media_player.lounge_tv"
@@ -954,7 +958,7 @@
                 "light": "light.toilet",
                 "bright": "binary_sensor.toilet_bright",
                 "occupied": "binary_sensor.toilet_occupied",
-                "climate": "climate.toilet",
+                "climate": "climate.toilet_radiator",
                 "temp": "sensor.toilet_temperature"
               },
               "template": [
@@ -1505,12 +1509,6 @@
               }
             },
             {
-              "type": "custom:sun-card",
-              "view_layout": {
-                "position": "sidebar"
-              }
-            },
-            {
               "type": "custom:layout-card",
               "layout_type": "custom:grid-layout",
               "layout": {
@@ -1614,19 +1612,19 @@
           "cards": [
             {
               "type": "gauge",
-              "entity": "sensor.washing_machine_current_energy",
+              "entity": "sensor.washing_machine_current_power",
               "needle": true,
               "name": "Washing Machine"
             },
             {
               "type": "gauge",
-              "entity": "sensor.desk_current_energy",
+              "entity": "sensor.desk_current_power",
               "needle": true,
               "name": "Desk"
             },
             {
               "type": "gauge",
-              "entity": "sensor.pc_current_energy",
+              "entity": "sensor.pc_current_power",
               "name": "PC",
               "needle": true,
               "severity": {

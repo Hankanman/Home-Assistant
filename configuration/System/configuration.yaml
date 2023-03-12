@@ -5,6 +5,8 @@ system:
         - "*.yaml"
 
   browser_mod:
+  
+  powercalc:
 
   group:
     all_automations:

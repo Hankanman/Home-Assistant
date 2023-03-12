@@ -7,932 +7,6 @@
       "title": "Home",
       "views": [
         {
-          "title": "Bright Sensors",
-          "path": "bright-sensors",
-          "type": "custom:grid-layout",
-          "layout": {
-            "grid-template-columns": "repeat(auto-fill, minmax(30rem, 1fr))"
-          },
-          "badges": [],
-          "cards": [
-            {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "binary_sensor.bathroom_bright",
-                      "type": "custom:secondaryinfo-entity-row",
-                      "secondary_info": "Now at {{ state_attr('binary_sensor.bathroom_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.bathroom_bright', 'light_state') }}"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "input_number.bathroom_illuminance_level"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "sensor.bathroom_illuminance"
-                    }
-                  ],
-                  "hours_to_show": 12,
-                  "points_per_hour": 30,
-                  "line_width": 1,
-                  "smoothing": true,
-                  "show": {
-                    "name": false,
-                    "icon": false
-                  }
-                }
-              ]
-            },
-            {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "binary_sensor.bedroom_bright",
-                      "type": "custom:secondaryinfo-entity-row",
-                      "secondary_info": "Now at {{ state_attr('binary_sensor.bedroom_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.bedroom_bright', 'light_state') }}"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "input_number.bedroom_illuminance_level"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    "sensor.bedroom_illuminance"
-                  ],
-                  "hours_to_show": 12,
-                  "points_per_hour": 30,
-                  "line_width": 1,
-                  "smoothing": true,
-                  "show": {
-                    "name": false,
-                    "icon": false
-                  }
-                }
-              ]
-            },
-            {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "binary_sensor.entrance_bright",
-                      "type": "custom:secondaryinfo-entity-row",
-                      "secondary_info": "Now at {{ state_attr('binary_sensor.entrance_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.entrance_bright', 'light_state') }}"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "input_number.entrance_illuminance_level"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    "sensor.entrance_illuminance"
-                  ],
-                  "hours_to_show": 12,
-                  "points_per_hour": 30,
-                  "line_width": 1,
-                  "smoothing": true,
-                  "show": {
-                    "name": false,
-                    "icon": false
-                  }
-                }
-              ]
-            },
-            {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "binary_sensor.hall_bright",
-                      "type": "custom:secondaryinfo-entity-row",
-                      "secondary_info": "Now at {{ state_attr('binary_sensor.hall_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.hall_bright', 'light_state') }}"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "input_number.hall_illuminance_level"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    "sensor.hall_illuminance"
-                  ],
-                  "hours_to_show": 12,
-                  "points_per_hour": 30,
-                  "line_width": 1,
-                  "smoothing": true,
-                  "show": {
-                    "name": false,
-                    "icon": false
-                  }
-                }
-              ]
-            },
-            {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "binary_sensor.kitchen_bright",
-                      "type": "custom:secondaryinfo-entity-row",
-                      "secondary_info": "Now at {{ state_attr('binary_sensor.kitchen_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.kitchen_bright', 'light_state') }}"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "input_number.kitchen_illuminance_level"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    "sensor.kitchen_illuminance"
-                  ],
-                  "hours_to_show": 12,
-                  "points_per_hour": 30,
-                  "line_width": 1,
-                  "smoothing": true,
-                  "show": {
-                    "name": false,
-                    "icon": false
-                  }
-                }
-              ]
-            },
-            {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "binary_sensor.lounge_bright",
-                      "type": "custom:secondaryinfo-entity-row",
-                      "secondary_info": "Now at {{ state_attr('binary_sensor.lounge_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.lounge_bright', 'light_state') }}"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "input_number.lounge_illuminance_level"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    "sensor.lounge_illuminance"
-                  ],
-                  "hours_to_show": 12,
-                  "points_per_hour": 30,
-                  "line_width": 1,
-                  "smoothing": true,
-                  "show": {
-                    "name": false,
-                    "icon": false
-                  }
-                }
-              ]
-            },
-            {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "binary_sensor.study_bright",
-                      "type": "custom:secondaryinfo-entity-row",
-                      "secondary_info": "Now at {{ state_attr('binary_sensor.study_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.study_bright', 'light_state') }}"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "input_number.study_illuminance_level"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    "sensor.study_illuminance"
-                  ],
-                  "hours_to_show": 12,
-                  "points_per_hour": 30,
-                  "line_width": 1,
-                  "smoothing": true,
-                  "show": {
-                    "name": false,
-                    "icon": false
-                  }
-                }
-              ]
-            },
-            {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "binary_sensor.toilet_bright",
-                      "type": "custom:secondaryinfo-entity-row",
-                      "secondary_info": "Now at {{ state_attr('binary_sensor.toilet_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.toilet_bright', 'light_state') }}"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "entities",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    {
-                      "entity": "input_number.toilet_illuminance_level"
-                    }
-                  ],
-                  "show_header_toggle": false
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "entities": [
-                    "sensor.toilet_illuminance"
-                  ],
-                  "hours_to_show": 12,
-                  "points_per_hour": 30,
-                  "line_width": 1,
-                  "smoothing": true,
-                  "show": {
-                    "name": false,
-                    "icon": false
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "theme": "Backend-selected",
-          "title": "Scheduler",
-          "path": "scheduler",
-          "panel": true,
-          "type": "panel",
-          "badges": [],
-          "cards": [
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "type": "custom:scheduler-card",
-                  "time_step": 30,
-                  "include": [
-                    "climate",
-                    "input_boolean"
-                  ],
-                  "title": false,
-                  "discover_existing": true
-                },
-                {
-                  "type": "custom:history-explorer-card",
-                  "cardName": "historycard-96483079"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Tracking",
-          "path": "tracking",
-          "type": "sidebar",
-          "badges": [],
-          "cards": [
-            {
-              "type": "custom:layout-card",
-              "layout_type": "grid-layout",
-              "layout": {
-                "grid-template-columns": "repeat(auto-fill, minmax(30rem, 1fr))",
-                "grid-auto-rows": "auto",
-                "grid-auto-flow": "row",
-                "mediaquery": {
-                  "(max-width: 800px)": {
-                    "grid-template-columns": "1fr"
-                  }
-                }
-              },
-              "cards": [
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "title": "Bathroom",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "smoothing": false,
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "show": {
-                        "name": false,
-                        "icon": false
-                      },
-                      "line_width": 1,
-                      "points_per_hour": 20,
-                      "hours_to_show": 1,
-                      "entities": [
-                        "sensor.bathroom_occupied_probability"
-                      ]
-                    },
-                    {
-                      "type": "custom:auto-entities",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "card": {
-                        "type": "entities",
-                        "card_mod": {
-                          "class": "nobg"
-                        }
-                      },
-                      "filter": {
-                        "include": [
-                          {
-                            "domain": "binary_sensor",
-                            "entity_id": "*bathroom*"
-                          },
-                          {
-                            "domain": "input_boolean",
-                            "entity_id": "*shower*"
-                          },
-                          {
-                            "domain": "input_boolean",
-                            "entity_id": "*bathroom*schedule*"
-                          },
-                          {
-                            "entity_id": "fan*bathroom*fan*"
-                          }
-                        ],
-                        "exclude": [
-                          {
-                            "state": "unavailable"
-                          },
-                          {
-                            "state": "unknown"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "view_layout": {
-                    "position": "main"
-                  }
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "title": "Bedroom",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "smoothing": false,
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "show": {
-                        "name": false,
-                        "icon": false
-                      },
-                      "line_width": 1,
-                      "points_per_hour": 20,
-                      "hours_to_show": 1,
-                      "entities": [
-                        "sensor.bedroom_occupied_probability"
-                      ]
-                    },
-                    {
-                      "type": "custom:auto-entities",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "card": {
-                        "type": "entities",
-                        "card_mod": {
-                          "class": "nobg"
-                        }
-                      },
-                      "filter": {
-                        "include": [
-                          {
-                            "domain": "binary_sensor",
-                            "entity_id": "*bedroom*"
-                          }
-                        ],
-                        "exclude": [
-                          {
-                            "state": "unavailable"
-                          },
-                          {
-                            "state": "unknown"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "view_layout": {
-                    "position": "main"
-                  }
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "title": "Entrance",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "smoothing": false,
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "show": {
-                        "name": false,
-                        "icon": false
-                      },
-                      "line_width": 1,
-                      "points_per_hour": 20,
-                      "hours_to_show": 1,
-                      "entities": [
-                        "sensor.entrance_occupied_probability"
-                      ]
-                    },
-                    {
-                      "type": "custom:auto-entities",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "card": {
-                        "type": "entities",
-                        "card_mod": {
-                          "class": "nobg"
-                        }
-                      },
-                      "filter": {
-                        "include": [
-                          {
-                            "domain": "binary_sensor",
-                            "entity_id": "*entrance*"
-                          }
-                        ],
-                        "exclude": [
-                          {
-                            "state": "unavailable"
-                          },
-                          {
-                            "state": "unknown"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "view_layout": {
-                    "position": "main"
-                  }
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "title": "Hall",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "smoothing": false,
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "show": {
-                        "name": false,
-                        "icon": false
-                      },
-                      "line_width": 1,
-                      "points_per_hour": 20,
-                      "hours_to_show": 1,
-                      "entities": [
-                        "sensor.hall_occupied_probability"
-                      ]
-                    },
-                    {
-                      "type": "custom:auto-entities",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "card": {
-                        "type": "entities",
-                        "card_mod": {
-                          "class": "nobg"
-                        }
-                      },
-                      "filter": {
-                        "include": [
-                          {
-                            "domain": "binary_sensor",
-                            "entity_id": "*hall*"
-                          }
-                        ],
-                        "exclude": [
-                          {
-                            "state": "unavailable"
-                          },
-                          {
-                            "state": "unknown"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "view_layout": {
-                    "position": "main"
-                  }
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "title": "Kitchen",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "smoothing": false,
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "show": {
-                        "name": false,
-                        "icon": false
-                      },
-                      "line_width": 1,
-                      "points_per_hour": 20,
-                      "hours_to_show": 1,
-                      "entities": [
-                        "sensor.kitchen_occupied_probability"
-                      ]
-                    },
-                    {
-                      "type": "custom:auto-entities",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "card": {
-                        "type": "entities",
-                        "card_mod": {
-                          "class": "nobg"
-                        }
-                      },
-                      "filter": {
-                        "include": [
-                          {
-                            "domain": "binary_sensor",
-                            "entity_id": "*kitchen*"
-                          }
-                        ],
-                        "exclude": [
-                          {
-                            "state": "unavailable"
-                          },
-                          {
-                            "state": "unknown"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "view_layout": {
-                    "position": "main"
-                  }
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "title": "Lounge",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "smoothing": false,
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "show": {
-                        "name": false,
-                        "icon": false
-                      },
-                      "line_width": 1,
-                      "points_per_hour": 20,
-                      "hours_to_show": 1,
-                      "entities": [
-                        "sensor.lounge_occupied_probability"
-                      ]
-                    },
-                    {
-                      "type": "custom:auto-entities",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "card": {
-                        "type": "entities",
-                        "card_mod": {
-                          "class": "nobg"
-                        }
-                      },
-                      "filter": {
-                        "include": [
-                          {
-                            "domain": "binary_sensor",
-                            "entity_id": "*lounge*"
-                          }
-                        ],
-                        "exclude": [
-                          {
-                            "state": "unavailable"
-                          },
-                          {
-                            "state": "unknown"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "view_layout": {
-                    "position": "main"
-                  }
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "title": "Study",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "smoothing": false,
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "show": {
-                        "name": false,
-                        "icon": false
-                      },
-                      "line_width": 1,
-                      "points_per_hour": 20,
-                      "hours_to_show": 1,
-                      "entities": [
-                        "sensor.study_occupied_probability"
-                      ]
-                    },
-                    {
-                      "type": "custom:auto-entities",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "card": {
-                        "type": "entities",
-                        "card_mod": {
-                          "class": "nobg"
-                        }
-                      },
-                      "filter": {
-                        "include": [
-                          {
-                            "domain": "binary_sensor",
-                            "entity_id": "*study*"
-                          },
-                          {
-                            "domain": "binary_sensor",
-                            "entity_id": "*starrunner*"
-                          }
-                        ],
-                        "exclude": [
-                          {
-                            "state": "unavailable"
-                          },
-                          {
-                            "state": "unknown"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "view_layout": {
-                    "position": "main"
-                  }
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "title": "Garden",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "smoothing": false,
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "show": {
-                        "name": false,
-                        "icon": false
-                      },
-                      "line_width": 1,
-                      "points_per_hour": 20,
-                      "hours_to_show": 1,
-                      "entities": [
-                        "sensor.garden_occupied_probability"
-                      ]
-                    },
-                    {
-                      "type": "custom:auto-entities",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "card": {
-                        "type": "entities",
-                        "card_mod": {
-                          "class": "nobg"
-                        }
-                      },
-                      "filter": {
-                        "include": [
-                          {
-                            "domain": "binary_sensor",
-                            "entity_id": "*garden*"
-                          }
-                        ],
-                        "exclude": [
-                          {
-                            "state": "unavailable"
-                          },
-                          {
-                            "state": "unknown"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "view_layout": {
-                    "position": "main"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "custom:auto-entities",
-              "class": "testclass",
-              "card": {
-                "type": "entities",
-                "title": "Occupied Areas"
-              },
-              "filter": {
-                "include": [
-                  {
-                    "entity_id": "*_occupied",
-                    "domain": "binary_sensor"
-                  },
-                  {
-                    "entity_id": "*sleeping*",
-                    "domain": "binary_sensor"
-                  }
-                ],
-                "exclude": []
-              },
-              "sort": {
-                "method": "state",
-                "reverse": true,
-                "numeric": false
-              },
-              "view_layout": {
-                "position": "sidebar"
-              }
-            }
-          ]
-        },
-        {
           "icon": "mdi:desktop-tower",
           "path": "study",
           "title": "Study",
@@ -1986,6 +1060,932 @@
                 "service": "script.starrunner_wake",
                 "data": {},
                 "target": {}
+              }
+            }
+          ]
+        },
+        {
+          "title": "Bright Sensors",
+          "path": "bright-sensors",
+          "type": "custom:grid-layout",
+          "layout": {
+            "grid-template-columns": "repeat(auto-fill, minmax(30rem, 1fr))"
+          },
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.bathroom_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.bathroom_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.bathroom_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.bathroom_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.bathroom_illuminance"
+                    }
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.bedroom_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.bedroom_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.bedroom_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.bedroom_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.bedroom_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.entrance_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.entrance_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.entrance_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.entrance_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.entrance_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.hall_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.hall_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.hall_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.hall_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.hall_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.kitchen_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.kitchen_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.kitchen_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.kitchen_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.kitchen_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.lounge_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.lounge_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.lounge_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.lounge_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.lounge_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.study_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.study_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.study_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.study_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.study_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.toilet_bright",
+                      "type": "custom:secondaryinfo-entity-row",
+                      "secondary_info": "Now at {{ state_attr('binary_sensor.toilet_bright', 'current_illuminance') }} lx and light is {{ state_attr('binary_sensor.toilet_bright', 'light_state') }}"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "entities",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    {
+                      "entity": "input_number.toilet_illuminance_level"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "entities": [
+                    "sensor.toilet_illuminance"
+                  ],
+                  "hours_to_show": 12,
+                  "points_per_hour": 30,
+                  "line_width": 1,
+                  "smoothing": true,
+                  "show": {
+                    "name": false,
+                    "icon": false
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Scheduler",
+          "path": "scheduler",
+          "panel": true,
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "custom:scheduler-card",
+                  "time_step": 30,
+                  "include": [
+                    "climate",
+                    "input_boolean"
+                  ],
+                  "title": false,
+                  "discover_existing": true
+                },
+                {
+                  "type": "custom:history-explorer-card",
+                  "cardName": "historycard-96483079"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tracking",
+          "path": "tracking",
+          "type": "sidebar",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:layout-card",
+              "layout_type": "grid-layout",
+              "layout": {
+                "grid-template-columns": "repeat(auto-fill, minmax(30rem, 1fr))",
+                "grid-auto-rows": "auto",
+                "grid-auto-flow": "row",
+                "mediaquery": {
+                  "(max-width: 800px)": {
+                    "grid-template-columns": "1fr"
+                  }
+                }
+              },
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Bathroom",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.bathroom_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*bathroom*"
+                          },
+                          {
+                            "domain": "input_boolean",
+                            "entity_id": "*shower*"
+                          },
+                          {
+                            "domain": "input_boolean",
+                            "entity_id": "*bathroom*schedule*"
+                          },
+                          {
+                            "entity_id": "fan*bathroom*fan*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Bedroom",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.bedroom_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*bedroom*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Entrance",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.entrance_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*entrance*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Hall",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.hall_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*hall*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Kitchen",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.kitchen_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*kitchen*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Lounge",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.lounge_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*lounge*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Study",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.study_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*study*"
+                          },
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*starrunner*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "title": "Garden",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "smoothing": false,
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "show": {
+                        "name": false,
+                        "icon": false
+                      },
+                      "line_width": 1,
+                      "points_per_hour": 20,
+                      "hours_to_show": 1,
+                      "entities": [
+                        "sensor.garden_occupied_probability"
+                      ]
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "card_mod": {
+                          "class": "nobg"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "domain": "binary_sensor",
+                            "entity_id": "*garden*"
+                          }
+                        ],
+                        "exclude": [
+                          {
+                            "state": "unavailable"
+                          },
+                          {
+                            "state": "unknown"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "view_layout": {
+                    "position": "main"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:auto-entities",
+              "class": "testclass",
+              "card": {
+                "type": "entities",
+                "title": "Occupied Areas"
+              },
+              "filter": {
+                "include": [
+                  {
+                    "entity_id": "*_occupied",
+                    "domain": "binary_sensor"
+                  },
+                  {
+                    "entity_id": "*sleeping*",
+                    "domain": "binary_sensor"
+                  }
+                ],
+                "exclude": []
+              },
+              "sort": {
+                "method": "state",
+                "reverse": true,
+                "numeric": false
+              },
+              "view_layout": {
+                "position": "sidebar"
               }
             }
           ]
