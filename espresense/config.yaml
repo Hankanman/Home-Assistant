@@ -6,10 +6,21 @@ mqtt:
   username:
   password:
 
+# This gets added to the x,y,z to derive a gps location
+gps:
+  latitude: 52.212507
+  longitude: 0.0534432
+  elevation: 61
+
 # How long before device considered stale
 timeout: 30
 # How long before device is considered away
 away_timeout: 120
+
+weighting:
+  algorithm: gaussian
+  props:
+    sigma: 0.10
 
 # Floors w/ the points to draw it in meters
 floors:
