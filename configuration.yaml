@@ -11,7 +11,6 @@ my:
 
 homeassistant:
   packages: !include_dir_merge_named configuration/
-  customize: !include customize.yaml
   allowlist_external_dirs:
     - /config
 
@@ -20,6 +19,6 @@ script: !include scripts.yaml
 
 frontend:
   extra_module_url:
-    - /hacsfiles/lovelace-card-mod/card-mod.js
+    - /local/card-mod.js
     - /hacsfiles/thermal_comfort_icons/thermal_comfort_icons.js
   themes: !include_dir_merge_named themes

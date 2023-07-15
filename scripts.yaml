@@ -44,13 +44,15 @@ print_entities_to_file:
   sequence:
   - service: notify.entity_log
     data:
-      message: '{% for state in states %}
-
-        {{- state.entity_id -}},{{- state.state -}},
-
-        {% endfor %}
-
-        '
+      message: "{% macro is_number(value) %}\n    {{ value|float is number }}\n{%
+        endmacro %}\n[ {% for state in states %}\n  {%- if state.entity_id != 'persistent_notification.homeassistant'
+        and state.entity_id != 'sensor.updater' and state.entity_id != 'automation.check_config'
+        and state.entity_id != 'sun.sun' -%}\n    {\n      \"entity_id\": \"{{ state.entity_id
+        }}\",\n      \"friendly_name\": \"{{ state.attributes.friendly_name }}\",\n
+        \     {% if state.state | is_number %}\n      \"state\": {{ state.state |
+        float | round(2) }},\n      {% else %}\n      \"state\": \"{{ state.state
+        }}\",\n      {% endif %}\n    }{%- if not loop.last %},{% endif %}\n  {%-
+        endif %}\n{% endfor %} ]\n"
   mode: single
   icon: mdi:math-log
 endeavor_wake:
@@ -142,3 +144,25 @@ new_script:
 
         '
       entity_id: '{{ entity }}'
+cube_dimmer:
+  alias: Cube Dimmer
+  mode: single
+  icon: mdi:cube
+  description: Template Dimmer Control
+  variables:
+    angle:
+    light:
+  sequence:
+  - service: light.turn_on
+    data_template:
+      entity_id: '{{ light }}'
+      brightness_pct: "{% set step_size = angle * 0.4 %}\n  {# Use the 0.4 above to
+        change the sensitivity of the action. #}\n  {# Get brightness as a percent.
+        #}\n{% set cb = (state_attr( light, 'brightness') | float(10) / 255.0) * 100.0
+        %} {% set new_brightness = cb | int(10) + step_size %} {% if new_brightness
+        < 5 %}\n  {# If it gets really low set to 0. Adjust if needed for your lights.
+        #}\n  0\n{% elif new_brightness <= 10 %}\n  {# If it's not quite 0, set to
+        a minimum working brightness. #}\n  10\n{% elif 91 <= new_brightness < (90
+        + step_size) %}\n  {# If it's almost full brightness, set to 100%. #}\n  100\n{%
+        else %}\n  {# Send actual calculated value. #}\n  {{ new_brightness }}\n{%
+        endif %}\n"

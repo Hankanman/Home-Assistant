@@ -1,6 +1,7 @@
 - id: d0cf70f1-cd8e-43ca-af88-d12a8a0ee241
   alias: Home - Bin Collection Reminder
-  description: ''
+  description: Sends a reminder message to mobiles one day before the bin collection
+    day.
   trigger:
   - platform: time
     at: input_datetime.bin_reminder
@@ -11,8 +12,10 @@
   action:
   - service: notify.mobiles
     data:
-      message: There will be a {{ state_attr('calendar.bin_collection_calendar', 'message')
-        | lower }} tomorrow make sure they are out
+      message: 'There will be a {{ state_attr(''calendar.bin_collection_calendar'',
+        ''message'') | lower }} tomorrow. Have you put them out?
+
+        '
       data:
         ttl: 0
         priority: high
@@ -85,8 +88,8 @@
     else:
     - delay:
         hours: 0
-        minutes: 0
-        seconds: 30
+        minutes: 2
+        seconds: 0
         milliseconds: 0
     - if:
       - condition: state
@@ -107,8 +110,8 @@
           entity_id: light.bathroom
       - delay:
           hours: 0
-          minutes: 0
-          seconds: 30
+          minutes: 1
+          seconds: 0
           milliseconds: 0
       - service: light.turn_off
         data:
@@ -171,9 +174,17 @@
       - service: light.turn_on
         data:
           transition: 5
-          brightness_pct: 20
+          brightness_pct: 10
+          color_temp: 454
         target:
           entity_id: light.bedroom
+      - service: light.turn_on
+        data:
+          transition: 5
+          color_temp: 500
+          brightness_pct: 10
+        target:
+          entity_id: light.bed_lights
       else:
       - if:
         - condition: template
@@ -195,39 +206,64 @@
             brightness_pct: 100
           target:
             entity_id: light.bedroom
+        - service: light.turn_on
+          data:
+            transition: 3
+            rgb_color:
+            - 255
+            - 255
+            - 255
+            brightness_pct: 70
+          target:
+            entity_id: light.bed_lights
     else:
     - if:
       - condition: state
-        entity_id: input_boolean.bedroom_sleep_mode
-        state: 'on'
+        entity_id: binary_sensor.bedroom_bright
+        state: 'off'
       then:
-      - service: light.turn_off
-        data:
-          transition: 10
-        target:
-          entity_id: light.bedroom
-      else:
-      - delay:
-          hours: 0
-          minutes: 0
-          seconds: 30
-          milliseconds: 0
-      - service: light.turn_on
-        data:
-          transition: 5
-          brightness_pct: 50
-        target:
-          entity_id: light.bedroom
-      - delay:
-          hours: 0
-          minutes: 0
-          seconds: 30
-          milliseconds: 0
-      - service: light.turn_off
-        data:
-          transition: 5
-        target:
-          entity_id: light.bedroom
+      - if:
+        - condition: state
+          entity_id: input_boolean.bedroom_sleep_mode
+          state: 'on'
+        then:
+        - service: light.turn_off
+          data:
+            transition: 10
+          target:
+            entity_id: light.bedroom
+        - service: light.turn_off
+          data: {}
+          target:
+            entity_id: light.bed_lights
+        else:
+        - delay:
+            minutes: 2
+        - service: light.turn_on
+          data:
+            brightness_pct: 50
+            transition: 10
+          target:
+            entity_id: light.bedroom
+        - service: light.turn_on
+          data:
+            transition: 10
+            color_temp: 500
+            brightness_pct: 5
+          target:
+            entity_id: light.bed_lights
+        - delay:
+            minutes: 2
+        - service: light.turn_off
+          data:
+            transition: 5
+          target:
+            entity_id: light.bedroom
+        - service: light.turn_off
+          data:
+            transition: 5
+          target:
+            entity_id: light.bed_lights
   mode: restart
 - id: d7b2ff77-0e4f-4efb-820f-9a4b67399a3b
   alias: Wardrobe - Lights
@@ -236,8 +272,12 @@
   - platform: state
     entity_id:
     - binary_sensor.wardrobe_motion
-    - input_boolean.bedroom_automations
+  - platform: state
+    entity_id:
     - binary_sensor.people_home
+  - platform: state
+    entity_id:
+    - input_boolean.bedroom_sleep_mode
   condition:
   - condition: state
     entity_id: input_boolean.bedroom_automations
@@ -251,13 +291,35 @@
       entity_id: binary_sensor.people_home
       state: 'on'
     then:
-    - service: light.turn_on
-      data:
-        transition: 1
-        white: 255
-      target:
-        entity_id: light.wardrobe
+    - if:
+      - condition: state
+        entity_id: input_boolean.bedroom_sleep_mode
+        state: 'on'
+      then:
+      - if:
+        - condition: time
+          after: 06:30:00
+        then:
+        - service: light.turn_on
+          data:
+            transition: 1
+            brightness_pct: 50
+            color_temp: 500
+          target:
+            entity_id: light.wardrobe
+      else:
+      - service: light.turn_on
+        data:
+          color_temp: 153
+          brightness_pct: 100
+        target:
+          area_id: wardrobe
     else:
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 5
+        milliseconds: 0
     - service: light.turn_off
       data: {}
       target:
@@ -404,18 +466,6 @@
     - binary_sensor.lounge_bright
     - binary_sensor.downstairs_sleep_mode
     - binary_sensor.lounge_tv_state
-    from: 'off'
-    to: 'on'
-  - platform: state
-    entity_id:
-    - binary_sensor.lounge_occupied
-    - input_boolean.lounge_automations
-    - binary_sensor.people_home
-    - binary_sensor.lounge_bright
-    - binary_sensor.downstairs_sleep_mode
-    - binary_sensor.lounge_tv_state
-    from: 'on'
-    to: 'off'
   condition:
   - condition: state
     entity_id: input_boolean.lounge_automations
@@ -675,7 +725,7 @@
           preset_name: 'off'
         target:
           entity_id:
-          - camera.foscam_lounge
+          - camera.foscam_hall
           - camera.foscam_lounge
       - service: select.select_option
         data:
@@ -720,7 +770,7 @@
           preset_name: 'on'
         target:
           entity_id:
-          - camera.foscam_lounge
+          - camera.foscam_hall
           - camera.foscam_lounge
     default: []
   mode: single
@@ -887,6 +937,10 @@
           transition: 10
         target:
           entity_id: light.kitchen
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: light.kitchen_side_lights
       else:
       - delay:
           hours: 0
@@ -923,7 +977,7 @@
     to: 'off'
   - platform: state
     entity_id:
-    - binary_sensor.toilet_door
+    - binary_sensor.toilet_door_contact
     from: 'off'
     to: 'on'
     alias: Door Opened
@@ -945,7 +999,7 @@
       - condition: trigger
         id: door_opened
       - condition: state
-        entity_id: binary_sensor.toilet_motion
+        entity_id: binary_sensor.toilet_occupied
         state: 'on'
     then:
     - if:
@@ -953,6 +1007,13 @@
         entity_id: binary_sensor.downstairs_sleep_mode
         state: 'on'
       then:
+      - condition: or
+        conditions:
+        - condition: trigger
+          id: door_opened
+        - condition: state
+          entity_id: binary_sensor.toilet_occupied
+          state: 'on'
       - service: light.turn_on
         data:
           transition: 2
@@ -960,6 +1021,13 @@
         target:
           entity_id: light.toilet
       else:
+      - condition: or
+        conditions:
+        - condition: trigger
+          id: door_opened
+        - condition: state
+          entity_id: binary_sensor.toilet_occupied
+          state: 'on'
       - service: light.turn_on
         data:
           transition: 2
@@ -970,7 +1038,7 @@
     - delay:
         hours: 0
         minutes: 0
-        seconds: 30
+        seconds: 20
         milliseconds: 0
     - if:
       - condition: state
@@ -1000,13 +1068,6 @@
         target:
           entity_id: light.toilet
   mode: restart
-- id: '1670625770237'
-  alias: Home Assistant Update Notification
-  description: ''
-  use_blueprint:
-    path: Update Notifier.yaml
-    input:
-      notify_device: 2bd987ee2df2c90fe99d2de6301752e8
 - id: '1670626318671'
   alias: Fridge Left Open Notification
   description: ''
@@ -1014,7 +1075,7 @@
     path: Notify When For Left Open.yaml
     input:
       notification_color: red
-      entity: binary_sensor.fridge_door
+      entity: binary_sensor.fridge_door_contact
       friendly_name: Fridge
       notify_service: notify.mobiles
       click_url: /lovelace
@@ -1033,78 +1094,6 @@
     data:
       entity: light.lounge
   mode: single
-- id: '1673344978858'
-  alias: Leaving Home - Heating
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.people_home
-    from: 'on'
-    for:
-      hours: 0
-      minutes: 10
-      seconds: 0
-  condition: []
-  action:
-  - service: saver.save_state
-    data:
-      entity_id: climate.bathroom
-  - service: saver.save_state
-    data:
-      entity_id: climate.bedroom
-  - service: saver.save_state
-    data:
-      entity_id: climate.study
-  - service: saver.save_state
-    data:
-      entity_id: climate.home
-  - service: saver.save_state
-    data:
-      entity_id: climate.toilet
-  - service: saver.save_state
-    data:
-      entity_id: fan.study
-  - service: saver.save_state
-    data:
-      entity_id: fan.bedroom
-  - service: climate.set_temperature
-    data:
-      temperature: 17
-      hvac_mode: auto
-    target:
-      entity_id:
-      - climate.bathroom
-      - climate.bedroom
-      - climate.home
-      - climate.study
-      - climate.toilet
-  - service: fan.turn_off
-    data: {}
-    target:
-      device_id:
-      - 84fc87ad6a06efa5ca2e7f9a9b238c34
-      - 2f90eaf59d455045d867795534acae59
-  - wait_for_trigger:
-    - platform: state
-      entity_id:
-      - binary_sensor.people_home
-      to: 'on'
-    timeout:
-      hours: 12
-      minutes: 0
-      seconds: 0
-      milliseconds: 0
-    continue_on_timeout: false
-  - service: saver.restore_state
-    data:
-      entity_id: fan.bedroom
-      restore_script:
-      - service: fan.turn_on
-        data_template:
-          entity_id: fan.study
-          speed: '{{ attr_speed | int }}'
-  mode: single
 - id: '1675527344121'
   alias: Seb Medication Reminder
   description: ''
@@ -1121,19 +1110,22 @@
   - platform: state
     entity_id:
     - binary_sensor.kitchen_hob
-    to: 'on'
   - platform: state
     entity_id:
     - binary_sensor.kitchen_microwave
-    to: 'on'
   - platform: state
     entity_id:
     - binary_sensor.kitchen_kettle
-    to: 'on'
   - platform: state
     entity_id:
     - binary_sensor.kitchen_occupied
-  condition: []
+  - platform: state
+    entity_id:
+    - input_boolean.lounge_sleep_mode
+  condition:
+  - condition: state
+    entity_id: input_boolean.kitchen_automations
+    state: 'on'
   action:
   - if:
     - condition: and
@@ -1150,19 +1142,32 @@
           entity_id: binary_sensor.kitchen_microwave
           state: 'on'
       - condition: state
-        state: 'off'
         entity_id: input_boolean.lounge_sleep_mode
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.kitchen_occupied
+        state: 'on'
     then:
     - type: turn_on
-      device_id: 4102ec079249d510c685ce8954464b05
-      entity_id: light.kitchen_side
-      domain: light
+      device_id: ecdc17a6d9cd4f5610bb4079729f1665
+      entity_id: switch.kitchen_side_lights
+      domain: switch
     else:
-    - type: turn_off
-      device_id: 4102ec079249d510c685ce8954464b05
-      entity_id: light.kitchen_side
-      domain: light
-  mode: single
+    - if:
+      - condition: state
+        entity_id: binary_sensor.kitchen_occupied
+        state: 'off'
+      then:
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 30
+          milliseconds: 0
+      - type: turn_off
+        device_id: ecdc17a6d9cd4f5610bb4079729f1665
+        entity_id: switch.kitchen_side_lights
+        domain: switch
+  mode: restart
 - id: '1678039107813'
   alias: Lounge - Lamp
   description: ''
@@ -1170,6 +1175,12 @@
   - platform: state
     entity_id:
     - binary_sensor.lounge_occupied
+  - platform: state
+    entity_id:
+    - binary_sensor.lounge_tv_state
+  - platform: state
+    entity_id:
+    - input_boolean.lounge_sleep_mode
   condition: []
   action:
   - if:
@@ -1184,15 +1195,62 @@
       - condition: state
         entity_id: binary_sensor.lounge_bright
         state: 'off'
+      - condition: state
+        entity_id: input_boolean.lounge_sleep_mode
+        state: 'off'
     then:
     - type: turn_on
-      device_id: a8db441672a65bd5d1143300279c0c54
+      device_id: 7b4e6e1ed75f390c46d30ba08f02089e
       entity_id: light.lounge_lamp
       domain: light
-      brightness_pct: 10
     else:
-    - type: turn_off
-      device_id: a8db441672a65bd5d1143300279c0c54
-      entity_id: light.lounge_lamp
-      domain: light
+    - if:
+      - condition: state
+        entity_id: input_boolean.lounge_sleep_mode
+        state: 'on'
+      then:
+      - service: light.turn_off
+        data:
+          transition: 10
+        target:
+          entity_id: light.lounge_lamp
+      else:
+      - delay:
+          hours: 0
+          minutes: 2
+          seconds: 0
+          milliseconds: 0
+      - service: light.turn_off
+        data:
+          transition: 10
+        target:
+          entity_id: light.lounge_lamp
   mode: single
+- id: '1679849164244'
+  alias: The Cube
+  description: ''
+  use_blueprint:
+    path: SirGoodenough/Zigbee2MQTT-Aqara-Magic-Cube-T1-Pro-CTP-R01-Xiaomi-Lumi.yaml
+    input:
+      topic: zigbee2mqtt/The Cube
+      action_rotate_cw_face_1:
+      - service: script.cube_dimmer
+        data:
+          angle: '{{ trigger.payload_json.action_angle | float(0.0)}}'
+          light: light.lounge
+      action_rotate_ccw_face_1:
+      - service: script.cube_dimmer
+        data:
+          angle: '{{ trigger.payload_json.action_angle | float(0.0)}}'
+          light: light.lounge
+- id: '1688625415633'
+  alias: Conversation agent agenda notification
+  description: ''
+  use_blueprint:
+    path: homeassistant/notify_agent_agenda.yaml
+    input:
+      conversation_agent: 1a5a25973ac068c356cabeb90ec72cf9
+      notify_service: notify.mobile_app_seb_phone
+      calendar_entity: calendar.family
+      weather_entity: weather.home
+      zone_entity: zone.home

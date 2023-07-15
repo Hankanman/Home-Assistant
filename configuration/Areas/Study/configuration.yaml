@@ -63,18 +63,6 @@ study:
           prob_given_false: 0.0042997
           to_state: "on"
 
-        - platform: "state"
-          entity_id: binary_sensor.study_window_left_contact
-          prob_given_true: 0.03
-          prob_given_false: 0.0004761
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.study_window_right_contact
-          prob_given_true: 0.03
-          prob_given_false: 0.0009772
-          to_state: "on"
-
 
     # Network
     #----------------------------------#
@@ -107,7 +95,9 @@ study:
           {% set selfState = states('binary_sensor.study_bright') %}
           {% set lightState = states('light.study') %}
           {% set selfLastChanged = states.binary_sensor.study_bright.last_changed %}
-          {% if lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
+          {% if threshold | int(0) == 0 %}
+            False
+          {% elif lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
             True
           {% elif lux | int(0) > (threshold | int(0) * 3) %}
             True
@@ -182,10 +172,10 @@ study:
   # Media Players
   #----------------------------------#
   media_player:
-    - platform: hass_agent_mediaplayer
-      name: "Starrunner"
-      host: 192.168.1.89
-      port: 5115
+    # - platform: hass_agent_mediaplayer
+    #   name: "Starrunner"
+    #   host: 192.168.1.89
+    #   port: 5115
     # - platform: universal
     #   name: Starrunner
     #   state_template: >

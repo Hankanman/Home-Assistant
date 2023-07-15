@@ -92,12 +92,14 @@ lounge:
         name: "Lounge Bright"
         device_class: light
         state: |
-          {% set lux = states('sensor.lounge_illuminance') %}
-          {% set threshold = states('input_number.lounge_illuminance_level') %}
-          {% set selfState = states('binary_sensor.lounge_bright') %}
-          {% set lightState = states('light.lounge') %}
-          {% set selfLastChanged = states.binary_sensor.lounge_bright.last_changed %}
-          {% if lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
+          {% set lux = states('sensor.bedroom_illuminance') %}
+          {% set threshold = states('input_number.bedroom_illuminance_level') %}
+          {% set selfState = states('binary_sensor.bedroom_bright') %}
+          {% set lightState = states('light.bedroom') %}
+          {% set selfLastChanged = states.binary_sensor.bedroom_bright.last_changed %}
+          {% if threshold | int(0) == 0 %}
+            False
+          {% elif lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
             True
           {% elif lux | int(0) > (threshold | int(0) * 3) %}
             True
@@ -123,7 +125,65 @@ lounge:
   # Media Players
   #----------------------------------#
   media_player:
+    - platform: wiim_custom
+      host: 192.168.1.250
+      name: Lounge Speakers Wiim
+      uuid: 'FF98F09CAA6BA405CDE17CF2'
 
+    - platform: universal
+      name: Lounge Speakers
+      browse_media_entity: media_player.lounge_speakers_wiim
+      device_class: speaker
+      unique_id: lounge_speakers
+      children:
+        - media_player.spotify_hankanman
+        - media_player.spotify_laura
+        - media_player.lounge_speakers_wiim
+        - media_player.lounge_speakers_cast
+        - media_player.lounge_speakers_alexa
+        - media_player.lounge_speakers_dlna
+        - media_player.lounge_speakers_ma
+      commands:
+        turn_on:
+          service: media_player.turn_on
+          target:
+            entity_id: media_player.lounge_speakers_cast
+        turn_off:
+          service: media_player.media_stop
+          target:
+            entity_id: media_player.lounge_speakers_wiim
+        volume_up:
+          service: media_player.volume_up
+          target:
+            entity_id: media_player.lounge_speakers_wiim
+        volume_down:
+          service: media_player.volume_down
+          target:
+            entity_id: media_player.lounge_speakers_wiim
+        volume_mute:
+          service: media_player.volume_mute
+          target:
+            entity_id: media_player.lounge_speakers_wiim
+        select_source:
+          service: media_player.select_source
+          target:
+            entity_id: media_player.lounge_speakers_wiim
+          data:
+            source: "{{ source }}"
+        volume_set:
+          service: media_player.volume_set
+          target:
+            entity_id: media_player.lounge_speakers_wiim
+          data:
+            volume_level: "{{ volume_level }}"
+      attributes:
+        source: media_player.lounge_speakers_wiim|source
+        source_list: media_player.lounge_speakers_wiim|source_list
+        entity_picture: media_player.lounge_speakers_wiim|entity_picture
+        media_album_name: media_player.lounge_speakers_wiim|media_album_name
+        media_title: media_player.lounge_speakers_wiim|media_title
+        media_duration: media_player.lounge_speakers_wiim|media_duration
+        media_position: media_player.lounge_speakers_wiim|media_position
   # Notification Platforms
   #----------------------------------#
   notify:
@@ -138,20 +198,23 @@ lounge:
   # Switches
   #----------------------------------#
   switch:
-    - platform: command_line
-      switches:
-        lounge_camera_ir:
-          friendly_name: Lounge Camera Night Mode
-          command_on: !secret loungecam_ir_on
-          command_off: !secret loungecam_ir_off
-          command_state: !secret loungecam_ir_state
-          value_template: '{{ value == "1" }}'
-        lounge_camera_motion:
-          friendly_name: Lounge Camera Motion Detection
-          command_on: !secret loungecam_motion_on
-          command_off: !secret loungecam_motion_off
-          command_state: !secret loungecam_motion_state
-          value_template: '{{ value == "1" }}'
+
+
+  command_line:
+    - switch:
+        unique_id: lounge_camera_ir
+        name: Lounge Camera Night Mode
+        command_on: !secret loungecam_ir_on
+        command_off: !secret loungecam_ir_off
+        command_state: !secret loungecam_ir_state
+        value_template: '{{ value == "1" }}'
+    - switch:
+        unique_id: lounge_camera_motion
+        name: Lounge Camera Motion Detection
+        command_on: !secret loungecam_motion_on
+        command_off: !secret loungecam_motion_off
+        command_state: !secret loungecam_motion_state
+        value_template: '{{ value == "1" }}'
 
   # Cameras
   #----------------------------------#

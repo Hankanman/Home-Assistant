@@ -69,7 +69,9 @@ hall:
           {% set selfState = states('binary_sensor.hall_bright') %}
           {% set lightState = states('light.hall') %}
           {% set selfLastChanged = states.binary_sensor.hall_bright.last_changed %}
-          {% if lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
+          {% if threshold | int(0) == 0 %}
+            False
+          {% elif lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
             True
           {% elif lux | int(0) > (threshold | int(0) * 3) %}
             True
@@ -121,39 +123,22 @@ hall:
   # Switches
   #----------------------------------#
   switch:
-    # - platform: rest
-    #   name: Hall Camera IR
-    #   method: GET
-    #   resource: http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=getDevState&usr=ha&pwd=Chicken212
-    #   body_on: http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=openInfraLed&usr=ha&pwd=Chicken212
-    #   body_off: http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=closeInfraLed&usr=ha&pwd=Chicken212
-    #   scan_interval: 3
-    #   is_on_template: |
-    #     {% set status = value | regex_findall_index('infraLedState>(\d+)</infraLedState') %}
-    #     {% if status == "0" %}
-    #       off
-    #     {% else %}
-    #       on
-    #     {%- endif -%}
-    - platform: command_line
-      switches:
-        # hall_camera_ir:
-        #   command_on: 'curl -k "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=openInfraLed&usr=ha&pwd=Chicken212"'
-        #   command_off: 'curl -k "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=closeInfraLed&usr=ha&pwd=Chicken212"'
-        #   command_state: 'curl -k --silent "http://192.168.200.9:88/cgi-bin/CGIProxy.fcgi?cmd=getDevState&usr=ha&pwd=Chicken212" | grep -oP "(?<=infraLedState>).*?(?=</infraLedState>)"'
-        #   value_template: '{{ value == "1" }}'
-        hall_camera_ir:
-          command_on: !secret hallcam_ir_on
-          command_off: !secret hallcam_ir_off
-          command_state: !secret hallcam_ir_state
-          value_template: '{{ value == "1" }}'
-        hall_camera_motion:
-          friendly_name: Hall Camera Motion Detection
-          command_on: !secret hallcam_motion_on
-          command_off: !secret hallcam_motion_off
-          command_state: !secret hallcam_motion_state
-          value_template: '{{ value == "1" }}'
 
+  command_line:
+    - switch:
+        unique_id: hall_camera_ir
+        name: Hall Camera Night Mode
+        command_on: !secret hallcam_ir_on
+        command_off: !secret hallcam_ir_off
+        command_state: !secret hallcam_ir_state
+        value_template: '{{ value == "1" }}'
+    - switch:
+        unique_id: hall_camera_motion
+        name: Hall Camera Motion Detection
+        command_on: !secret hallcam_motion_on
+        command_off: !secret hallcam_motion_off
+        command_state: !secret hallcam_motion_state
+        value_template: '{{ value == "1" }}'
   # Cameras
   #----------------------------------#
   camera:

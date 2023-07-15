@@ -15,558 +15,637 @@ statistics:
 
 ## Generated
     - platform: statistics
-      name: Back Door Left Percentage
-      entity_id: binary_sensor.back_door_left
-      unique_id: back_door_left_percentage
+      name: Back Door Left Contact Percentage
+      entity_id: binary_sensor.back_door_left_contact
+      unique_id: back_door_left_contact_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Back Door Right Percentage
-      entity_id: binary_sensor.back_door_right
-      unique_id: back_door_right_percentage
+      name: Back Door Right Contact Percentage
+      entity_id: binary_sensor.back_door_right_contact
+      unique_id: back_door_right_contact_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Bathroom Door Percentage
-      entity_id: binary_sensor.bathroom_door
-      unique_id: bathroom_door_percentage
+      name: Bathroom Door Contact Percentage
+      entity_id: binary_sensor.bathroom_door_contact
+      unique_id: bathroom_door_contact_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Bathroom Motion Percentage
       entity_id: binary_sensor.bathroom_motion
       unique_id: bathroom_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Bathroom Motion Door Percentage
-      entity_id: binary_sensor.bathroom_motion_door
-      unique_id: bathroom_motion_door_percentage
+      name: Bathroom Motion Door Occupancy Percentage
+      entity_id: binary_sensor.bathroom_motion_door_occupancy
+      unique_id: bathroom_motion_door_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Bathroom Motion Shower Percentage
-      entity_id: binary_sensor.bathroom_motion_shower
-      unique_id: bathroom_motion_shower_percentage
+      name: Bathroom Motion Shower Occupancy Percentage
+      entity_id: binary_sensor.bathroom_motion_shower_occupancy
+      unique_id: bathroom_motion_shower_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Bathroom Motion Toilet Percentage
-      entity_id: binary_sensor.bathroom_motion_toilet
-      unique_id: bathroom_motion_toilet_percentage
+      name: Bathroom Motion Toilet Occupancy Percentage
+      entity_id: binary_sensor.bathroom_motion_toilet_occupancy
+      unique_id: bathroom_motion_toilet_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Bathroom Occupied Percentage
       entity_id: binary_sensor.bathroom_occupied
       unique_id: bathroom_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Bed Occupied Percentage
       entity_id: binary_sensor.bed_occupied
       unique_id: bed_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Bedroom Bright Percentage
       entity_id: binary_sensor.bedroom_bright
       unique_id: bedroom_bright_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Bedroom Door Percentage
-      entity_id: binary_sensor.bedroom_door
-      unique_id: bedroom_door_percentage
+      name: Bedroom Door Contact Percentage
+      entity_id: binary_sensor.bedroom_door_contact
+      unique_id: bedroom_door_contact_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Bedroom Motion Percentage
       entity_id: binary_sensor.bedroom_motion
       unique_id: bedroom_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Bedroom Occupied Percentage
       entity_id: binary_sensor.bedroom_occupied
       unique_id: bedroom_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Bedroom Temperature Motion Lux 1 Motion Percentage
-      entity_id: binary_sensor.bedroom_temperature_motion_lux_1_motion
-      unique_id: bedroom_temperature_motion_lux_1_motion_percentage
+      name: Bedroom Temperature Motion Lux 1 Occupancy Percentage
+      entity_id: binary_sensor.bedroom_temperature_motion_lux_1_occupancy
+      unique_id: bedroom_temperature_motion_lux_1_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Bedroom Tv State Percentage
       entity_id: binary_sensor.bedroom_tv_state
       unique_id: bedroom_tv_state_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Bedroom Windows Percentage
       entity_id: binary_sensor.bedroom_windows
       unique_id: bedroom_windows_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Entrance Bright Percentage
       entity_id: binary_sensor.entrance_bright
       unique_id: entrance_bright_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Entrance Motion Percentage
       entity_id: binary_sensor.entrance_motion
       unique_id: entrance_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Entrance Motion 1 Percentage
-      entity_id: binary_sensor.entrance_motion_1
-      unique_id: entrance_motion_1_percentage
+      name: Entrance Motion 1 Occupancy Percentage
+      entity_id: binary_sensor.entrance_motion_1_occupancy
+      unique_id: entrance_motion_1_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Entrance Occupied Percentage
       entity_id: binary_sensor.entrance_occupied
       unique_id: entrance_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Entrance Person Occupancy Percentage
       entity_id: binary_sensor.entrance_person_occupancy
       unique_id: entrance_person_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Front Door Percentage
-      entity_id: binary_sensor.front_door
-      unique_id: front_door_percentage
+      name: Front Door Contact Percentage
+      entity_id: binary_sensor.front_door_contact
+      unique_id: front_door_contact_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Front Door Percentage
-      entity_id: binary_sensor.front_door
-      unique_id: front_door_percentage
+      name: Front Door Contact Percentage
+      entity_id: binary_sensor.front_door_contact
+      unique_id: front_door_contact_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
-    - platform: statistics
-      name: Front Door Ding Percentage
-      entity_id: binary_sensor.front_door_ding
-      unique_id: front_door_ding_percentage
-      state_characteristic: average_step
-      max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Front Door Ding Percentage
       entity_id: binary_sensor.front_door_ding
       unique_id: front_door_ding_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
+    - platform: statistics
+      name: Front Door Ding Percentage
+      entity_id: binary_sensor.front_door_ding
+      unique_id: front_door_ding_percentage
+      state_characteristic: average_step
+      sampling_size: 500
+      max_age:
+        days: 15
     - platform: statistics
       name: Front Door Motion Percentage
       entity_id: binary_sensor.front_door_motion
       unique_id: front_door_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Front Drive Motion Percentage
       entity_id: binary_sensor.front_drive_motion
       unique_id: front_drive_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Front Drive Occupied Percentage
       entity_id: binary_sensor.front_drive_occupied
       unique_id: front_drive_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Garden Motion Percentage
       entity_id: binary_sensor.garden_motion
       unique_id: garden_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Garden Occupied Percentage
       entity_id: binary_sensor.garden_occupied
       unique_id: garden_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Hall Bright Percentage
       entity_id: binary_sensor.hall_bright
       unique_id: hall_bright_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Hall Motion Percentage
       entity_id: binary_sensor.hall_motion
       unique_id: hall_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Hall Motion 1 Percentage
-      entity_id: binary_sensor.hall_motion_1
-      unique_id: hall_motion_1_percentage
+      name: Hall Motion 1 Occupancy Percentage
+      entity_id: binary_sensor.hall_motion_1_occupancy
+      unique_id: hall_motion_1_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Hall Motion 2 Percentage
-      entity_id: binary_sensor.hall_motion_2
-      unique_id: hall_motion_2_percentage
+      name: Hall Motion 2 Occupancy Percentage
+      entity_id: binary_sensor.hall_motion_2_occupancy
+      unique_id: hall_motion_2_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Hall Occupied Percentage
       entity_id: binary_sensor.hall_occupied
       unique_id: hall_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Hall Person Occupancy Percentage
       entity_id: binary_sensor.hall_person_occupancy
       unique_id: hall_person_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Hall Temperature Motion Lux 1 Motion Percentage
-      entity_id: binary_sensor.hall_temperature_motion_lux_1_motion
-      unique_id: hall_temperature_motion_lux_1_motion_percentage
+      name: Hall Temperature Motion Lux 1 Occupancy Percentage
+      entity_id: binary_sensor.hall_temperature_motion_lux_1_occupancy
+      unique_id: hall_temperature_motion_lux_1_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Home Motion Percentage
       entity_id: binary_sensor.home_motion
       unique_id: home_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Home Occupied Percentage
       entity_id: binary_sensor.home_occupied
       unique_id: home_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Kitchen Bright Percentage
       entity_id: binary_sensor.kitchen_bright
       unique_id: kitchen_bright_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Kitchen Hob Percentage
       entity_id: binary_sensor.kitchen_hob
       unique_id: kitchen_hob_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Kitchen Kettle Percentage
       entity_id: binary_sensor.kitchen_kettle
       unique_id: kitchen_kettle_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Kitchen Microwave Percentage
       entity_id: binary_sensor.kitchen_microwave
       unique_id: kitchen_microwave_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Kitchen Motion Percentage
       entity_id: binary_sensor.kitchen_motion
       unique_id: kitchen_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Kitchen Motion 1 Percentage
-      entity_id: binary_sensor.kitchen_motion_1
-      unique_id: kitchen_motion_1_percentage
+      name: Kitchen Motion 1 Occupancy Percentage
+      entity_id: binary_sensor.kitchen_motion_1_occupancy
+      unique_id: kitchen_motion_1_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Kitchen Occupied Percentage
       entity_id: binary_sensor.kitchen_occupied
       unique_id: kitchen_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Kitchen Oven Percentage
       entity_id: binary_sensor.kitchen_oven
       unique_id: kitchen_oven_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Kitchen Person Occupancy Percentage
       entity_id: binary_sensor.kitchen_person_occupancy
       unique_id: kitchen_person_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Kitchen Temperature Motion Lux 1 Motion Percentage
-      entity_id: binary_sensor.kitchen_temperature_motion_lux_1_motion
-      unique_id: kitchen_temperature_motion_lux_1_motion_percentage
+      name: Kitchen Temperature Motion Lux 1 Occupancy Percentage
+      entity_id: binary_sensor.kitchen_temperature_motion_lux_1_occupancy
+      unique_id: kitchen_temperature_motion_lux_1_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Lounge Bright Percentage
       entity_id: binary_sensor.lounge_bright
       unique_id: lounge_bright_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Lounge Doors Percentage
       entity_id: binary_sensor.lounge_doors
       unique_id: lounge_doors_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Lounge Motion Percentage
       entity_id: binary_sensor.lounge_motion
       unique_id: lounge_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Lounge Motion 1 Percentage
-      entity_id: binary_sensor.lounge_motion_1
-      unique_id: lounge_motion_1_percentage
+      name: Lounge Motion 1 Occupancy Percentage
+      entity_id: binary_sensor.lounge_motion_1_occupancy
+      unique_id: lounge_motion_1_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Lounge Occupied Percentage
       entity_id: binary_sensor.lounge_occupied
       unique_id: lounge_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Lounge Person Occupancy Percentage
       entity_id: binary_sensor.lounge_person_occupancy
       unique_id: lounge_person_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Lounge Temperature Motion Lux 1 Motion Percentage
-      entity_id: binary_sensor.lounge_temperature_motion_lux_1_motion
-      unique_id: lounge_temperature_motion_lux_1_motion_percentage
+      name: Lounge Temperature Motion Lux 1 Occupancy Percentage
+      entity_id: binary_sensor.lounge_temperature_motion_lux_1_occupancy
+      unique_id: lounge_temperature_motion_lux_1_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Lounge Tv State Percentage
       entity_id: binary_sensor.lounge_tv_state
       unique_id: lounge_tv_state_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Outside Motion Percentage
       entity_id: binary_sensor.outside_motion
       unique_id: outside_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Outside Occupied Percentage
       entity_id: binary_sensor.outside_occupied
       unique_id: outside_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Stairs Motion Percentage
       entity_id: binary_sensor.stairs_motion
       unique_id: stairs_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Stairs Motion Percentage
       entity_id: binary_sensor.stairs_motion
       unique_id: stairs_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Stairs Occupied Percentage
       entity_id: binary_sensor.stairs_occupied
       unique_id: stairs_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Stairs Person Occupancy Percentage
-      entity_id: binary_sensor.stairs_person_occupancy
-      unique_id: stairs_person_occupancy_percentage
+      name: Hall Person Occupancy Percentage
+      entity_id: binary_sensor.hall_person_occupancy
+      unique_id: hall_person_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Starrunner Active Percentage
       entity_id: binary_sensor.starrunner_active
       unique_id: starrunner_active_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Starrunner Microphoneactive Percentage
       entity_id: binary_sensor.starrunner_microphoneactive
       unique_id: starrunner_microphoneactive_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Starrunner Webcamactive Percentage
       entity_id: binary_sensor.starrunner_webcamactive
       unique_id: starrunner_webcamactive_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Study Bright Percentage
       entity_id: binary_sensor.study_bright
       unique_id: study_bright_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Study Door Percentage
-      entity_id: binary_sensor.study_door
-      unique_id: study_door_percentage
+      name: Study Door Contact Percentage
+      entity_id: binary_sensor.study_door_contact
+      unique_id: study_door_contact_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Study Motion Percentage
       entity_id: binary_sensor.study_motion
       unique_id: study_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Study Motion 1 Percentage
-      entity_id: binary_sensor.study_motion_1
-      unique_id: study_motion_1_percentage
+      name: Study Motion 1 Occupancy Percentage
+      entity_id: binary_sensor.study_motion_1_occupancy
+      unique_id: study_motion_1_occupancy_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Study Occupied Percentage
       entity_id: binary_sensor.study_occupied
       unique_id: study_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Study Window Left Percentage
-      entity_id: binary_sensor.study_window_left
-      unique_id: study_window_left_percentage
+      name: Study Window Right Contact Percentage
+      entity_id: binary_sensor.study_window_right_contact
+      unique_id: study_window_right_contact_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
-      name: Study Window Right Percentage
-      entity_id: binary_sensor.study_window_right
-      unique_id: study_window_right_percentage
+      name: Study Window Right Contact Percentage
+      entity_id: binary_sensor.study_window_right_contact
+      unique_id: study_window_right_contact_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Toilet Bright Percentage
       entity_id: binary_sensor.toilet_bright
       unique_id: toilet_bright_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Toilet Motion Percentage
       entity_id: binary_sensor.toilet_motion
       unique_id: toilet_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Toilet Occupied Percentage
       entity_id: binary_sensor.toilet_occupied
       unique_id: toilet_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Wardrobe Motion Percentage
       entity_id: binary_sensor.wardrobe_motion
       unique_id: wardrobe_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Wardrobe Motion Percentage
       entity_id: binary_sensor.wardrobe_motion
       unique_id: wardrobe_motion_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: statistics
       name: Wardrobe Occupied Percentage
       entity_id: binary_sensor.wardrobe_occupied
       unique_id: wardrobe_occupied_percentage
       state_characteristic: average_step
+      sampling_size: 500
       max_age:
-        days: 30
+        days: 15
     - platform: history_stats
       name: Bathroom Schedule Percentage
       entity_id: input_boolean.bathroom_schedule
@@ -574,7 +653,7 @@ statistics:
       type: ratio
       end: '{{ now()}}'
       duration:
-        days: 30
+        days: 15
     - platform: history_stats
       name: Lounge Schedule Percentage
       entity_id: input_boolean.lounge_schedule
@@ -582,7 +661,7 @@ statistics:
       type: ratio
       end: '{{ now()}}'
       duration:
-        days: 30
+        days: 15
     - platform: history_stats
       name: Shower Occupied Percentage
       entity_id: input_boolean.shower_occupied
@@ -590,7 +669,7 @@ statistics:
       type: ratio
       end: '{{ now()}}'
       duration:
-        days: 30
+        days: 15
     - platform: history_stats
       name: Bedroom Tv Percentage
       entity_id: media_player.bedroom_tv
@@ -598,7 +677,7 @@ statistics:
       type: ratio
       end: '{{ now()}}'
       duration:
-        days: 30
+        days: 15
     - platform: history_stats
       name: Lounge Tv Percentage
       entity_id: media_player.lounge_tv
@@ -606,4 +685,5 @@ statistics:
       type: ratio
       end: '{{ now()}}'
       duration:
-        days: 30
+        days: 15
+

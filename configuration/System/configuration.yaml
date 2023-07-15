@@ -1,12 +1,14 @@
 system:
-  folder_watcher:
-    - folder: /config
-      patterns:
-        - "*.yaml"
+  # folder_watcher:
+  #   - folder: /config
+  #     patterns:
+  #       - "*.yaml"
 
   browser_mod:
-  
-  powercalc:
+
+  csv_exporter:
+
+  python_script:
 
   group:
     all_automations:
@@ -23,23 +25,6 @@ system:
         - input_boolean.lounge_automations
         - input_boolean.study_automations
         - input_boolean.toilet_automations
-  #   object_detection:
-  #     name: Object Detection
-  #     icon: mdi:camera-account
-  #     entities:
-  #       - switch.kitchen_camera_detect
-  #       - switch.entrance_camera_detect
-  #       - switch.lounge_camera_detect
-  #       - switch.hall_camera_detect
-
-  #   snapshots:
-  #     name: Snapshots
-  #     icon: mdi:camera-image
-  #     entities:
-  #       - switch.kitchen_camera_snapshots
-  #       - switch.entrance_camera_snapshots
-  #       - switch.lounge_camera_snapshots
-  #       - switch.hall_camera_snapshots
 
   http:
     use_x_forwarded_for: true
@@ -68,43 +53,20 @@ system:
       name: entity_log
       filename: /config/www/entity_log.txt
       timestamp: false
-    # - platform: telegram
-    #   name: Seb
-    #   chat_id: 5533402451
-    # - platform: telegram
-    #   name: James
-    #   chat_id: 3151939299
-
-
-  binary_sensor:
-    - platform: workday
-      country: GB
 
   sensor:
-    # - platform: google_fit
-    #   name: Seb
-    #   client_id: !secret google_client_id
-    #   client_secret: !secret google_secret
     - platform: time_date
       display_options:
         - "date"
         - "date_time"
         - "date_time_iso"
-  
-    - platform: formulaone_api
+
   tts:
     platform: google_translate
     language: "en"
     cache: true
     cache_dir: /tmp/ttsr fast play
     time_memory: 300
-  # Example configuration.yaml entry for the Telegram Bot
-  # telegram_bot:
-  #   - platform: polling
-  #     api_key: 5474957606:AAFzdKy1wIWS8eBjqn-vFNATOl8u5A8WluI
-  #     allowed_chat_ids:
-  #       - 5533402451
-  #       - 3151939299
   # o365:
   #   accounts:
   #     - account_name: Seb_Work
@@ -128,10 +90,10 @@ system:
   #         - name: "Seb Teams Status"
   #       chat_sensors: # Cannot be used for personal accounts
   #         - name: "Seb Chat"
-  logger:
-    default: error
-    logs:
-      homeassistant.components.iotawatt: critical
-    filters:
-      homeassistant.loader:
-      - "We found a custom integration*"
+  # logger:
+  #   default: error
+  #   logs:
+  #     homeassistant.components.iotawatt: critical
+  #   filters:
+  #     homeassistant.loader:
+  #     - "We found a custom integration*"

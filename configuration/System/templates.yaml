@@ -1,7 +1,4 @@
 templates:
-  binary_sensor:
-    # Bayesian
-    #----------------------------------#
   template:
     binary_sensor:
       # Power Sensors
@@ -13,7 +10,7 @@ templates:
       - unique_id: kitchen_oven
         name: "Kitchen Oven"
         icon: "mdi:stove"
-        state: "{{ iif( states('sensor.cooker') | float(0) > 100, 'on', 'off' ) }}"
+        state: "{{ iif( states('sensor.cooker_power') | float(0) > 100, 'on', 'off' ) }}"
       - unique_id: kitchen_kettle
         name: "Kitchen Kettle"
         icon: "mdi:kettle"
@@ -21,17 +18,17 @@ templates:
       - unique_id: kitchen_microwave
         name: "Kitchen Microwave"
         icon: "mdi:microwave"
-        state: "{{ iif( (states('sensor.kitchen_sockets') | float(0) > 300 and states('sensor.kitchen_sockets') | float(0) < 1400) or states('sensor.kitchen_sockets') | float(0) > 3000, 'on', 'off' ) }}"
+        state: "{{ iif( (states('sensor.kitchen_sockets_power') | float(0) > 300 and states('sensor.kitchen_sockets_power') | float(0) < 1400) or states('sensor.kitchen_sockets_power') | float(0) > 3000, 'on', 'off' ) }}"
       # Media Player Sensors
       #----------------------------------#
       - unique_id: bedroom_tv_state
         name: "Bedroom TV State"
         icon: "mdi:power"
-        state: "{{ iif( states('media_player.bedroom_tv') in ['playing','standby','idle','paused','on'] or states('media_player.bedroom_tv_panasonic') in ['playing','standby','idle','paused','on'], 'on', 'off') }}"
+        state: "{{ iif( states('media_player.bedroom_tv_adb') in ['playing','standby','idle','paused','on'] or states('media_player.bedroom_tv_panasonic') in ['playing','standby','idle','paused','on'], 'on', 'off') }}"
       - unique_id: lounge_tv_state
         name: "Lounge TV State"
         icon: "mdi:power"
-        state: "{{ iif( states('media_player.lounge_tv') in ['playing','standby','idle','paused','on'] or states('media_player.lounge_tv_sony') in ['playing','standby','idle','paused','on'], 'on', 'off') }}"
+        state: "{{ iif( states('media_player.lounge_tv_adb') in ['playing','standby','idle','paused','on'] or states('media_player.lounge_tv_sony') in ['playing','standby','idle','paused','on'], 'on', 'off') }}"
       # Sleeping Binary Sensors
       #----------------------------------#
       - unique_id: laura_sleeping
@@ -79,6 +76,25 @@ templates:
         state: "{{states('sensor.railen_cpu_usage') != 'unavailable' }}"
 
     sensor:
+      # - unique_id: all_entities_csv
+      #   name: "All Entities CSV"
+      #   value_template: >-
+      #     {% set data = namespace(entities=[]) %}
+      #     {% for state in states.sensor %}
+      #       {% if ('_percentage' in state.entity_id) and ('grid_fossil_fuel' not in state.entity_id) and ('unavailable' not in state.state) and ('unknown' not in state.state) %}
+      #         {% set data.entities = data.entities + [state] %}
+      #       {% endif %}
+      #     {% endfor %}
+      #     {{ data.entities | count }}
+      #   attribute_templates:
+      #     sensor_list: >-
+      #       {% set data = namespace(entities=[]) %}
+      #       {% for state in states.sensor %}
+      #         {% if ('_percentage' in state.entity_id) and ('grid_fossil_fuel' not in state.entity_id) and ('unavailable' not in state.state) and ('unknown' not in state.state) %}
+      #           {% set data.entities = data.entities + [state] %}
+      #         {% endif %}
+      #       {% endfor %}
+      #       {{ data.entities | tojson }}
       # Power Sensors
       #----------------------------------#
       - unique_id: smart_meter_electricity_power_watts
@@ -86,6 +102,11 @@ templates:
         state_class: measurement
         icon: "mdi:flash"
         state: "{{ states('sensor.smart_meter_electricity_power') | float(0.5) * 1000 | round(1,'floor') }}"
+      - unique_id: grid_fossil_fuel_percentage_watts
+        name: "Fossil Fuel: Power Watts"
+        state_class: measurement
+        icon: "mdi:barrel"
+        state: "{{states('sensor.smart_meter_electricity_power_watts') | float(0.5) * (states('sensor.grid_fossil_fuel_percentage') | int / 100) | round(1,'floor') }}"
       # Activity & Availability
       #----------------------------------#
       - unique_id: starrunner_idle_time
@@ -158,6 +179,9 @@ templates:
             {{state_attr('media_player.spotify_laura', 'source')}}
           {% endif %}
 
+      - unique_id: welcome_message
+        name: Welcome Message
+        state: "{% if now().strftime('%H')|int < 12 %}Good morning, {% elif now().strftime('%H')|int < 18 %}Good afternoon, {% else %}Good evening, {% endif %}{{ state_attr('calendar.bin_collection_calendar', 'message') }} on {{strptime(state_attr('calendar.bin_collection_calendar','start_time'),'%Y-%m-%d %H:%M:%S').strftime('%A') }}"
       # Location Sensors
       #----------------------------------#
       - unique_id: seb_location
@@ -212,7 +236,7 @@ templates:
             {% set x =  [ states.device_tracker.seb_phone, states.device_tracker.seb_phone_tile, states.sensor.seb_phone_wifi_connection] | selectattr('state', 'ne', ['not_home', 'unavailable', 'unknown']) | sort(reverse=true, attribute='last_changed') | list %}
             {{ iif( x | count > 0, x[0].state, state_attr('sensor.seb_location', 'last_area')) }}
           Devices Home: >
-            {{ iif(is_state('device_tracker.seb_phone', 'home') or is_state('device_tracker.seb_phone_tile', 'home') or is_state('sensor.seb_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') }}
+            {{ iif(is_state('device_tracker.seb_phone', 'home') or is_state('device_tracker.seb_phone_tile', 'home') or is_state('sensor.seb_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') or is_state('device_tracker.seb_phone_wifi', 'Home')}}
           Locality: >
             {{ iif(state_attr('sensor.seb_phone_geocoded_location','locality') in ['null','unknown','unavailable'],'Somewhere',state_attr('sensor.seb_phone_geocoded_location','locality')) }}
           Longitude: >
@@ -279,7 +303,7 @@ templates:
             {% set x =  [ states.device_tracker.laura_phone, states.device_tracker.laura_s_phone_tile, states.sensor.laura_phone_wifi_connection] | selectattr('state', 'ne', ['not_home', 'unavailable', 'unknown']) | sort(reverse=true, attribute='last_changed') | list %}
             {{ iif( x | count > 0, x[0].state, state_attr('sensor.laura_location', 'last_area')) }}
           Devices Home: >
-            {{ iif(is_state('device_tracker.laura_phone', 'home') or is_state('device_tracker.laura_s_phone_tile', 'home') or is_state('sensor.laura_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') }}
+            {{ iif(is_state('device_tracker.laura_phone', 'home') or is_state('device_tracker.laura_s_phone_tile', 'home') or is_state('sensor.laura_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') or is_state('device_tracker.laura_phone_wifi', 'Home')}}
           Locality: >
             {{ iif(state_attr('sensor.laura_phone_geocoded_location','locality') in ['null','unknown','unavailable'],'Somewhere',state_attr('sensor.laura_phone_geocoded_location','locality')) }}
           Longitude: >

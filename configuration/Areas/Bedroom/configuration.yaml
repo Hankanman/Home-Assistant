@@ -100,6 +100,22 @@ bedroom:
   sensor:
   # Template Sensors
   #----------------------------------#
+
+    - platform: statistics # Laura's Side
+      name: Bedroom Bed Presence Left Voltage Statistics
+      entity_id: sensor.bedroom_bed_presence_left_voltage
+      unique_id: bedroom_bed_presence_left_voltage_statistics
+      state_characteristic: average_linear
+      max_age:
+        days: 7
+    - platform: statistics # Seb's Side
+      name: Bedroom Bed Presence Right Voltage Statistics
+      entity_id: sensor.bedroom_bed_presence_right_voltage
+      unique_id: bedroom_bed_presence_right_voltage_statistics
+      state_characteristic: average_linear
+      max_age:
+        days: 7
+
   template:
     # Template Binary Sensors
     #----------------------------------#
@@ -115,7 +131,9 @@ bedroom:
           {% set selfState = states('binary_sensor.bedroom_bright') %}
           {% set lightState = states('light.bedroom') %}
           {% set selfLastChanged = states.binary_sensor.bedroom_bright.last_changed %}
-          {% if lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
+          {% if threshold | int(0) == 0 %}
+            False
+          {% elif lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
             True
           {% elif lux | int(0) > (threshold | int(0) * 3) %}
             True

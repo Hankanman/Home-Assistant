@@ -1,0 +1,10 @@
+# {%- set data = namespace(entities=[]) -%}
+# {%- for state in states.sensor  -%}
+#   {% if ('_percentage' in state.entity_id and 'grid_fossil_fuel' not in state.entity_id and 'unavailable' not in state.state and 'unknown' not in state.state) %}
+#     {%- set data.entities = data.entities + [state] -%}
+#   {% endif %}
+# {%- endfor -%}
+
+# Display Name, Entity ID, State
+# {% for state in data.entities %}{{ state.attributes.friendly_name }},{{ state.entity_id }},{{ state.state | float / 100 }}
+# {% endfor %}
