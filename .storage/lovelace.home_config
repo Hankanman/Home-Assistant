@@ -537,260 +537,6 @@
                     "class": "nobg"
                   },
                   "hours_to_show": 24
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "button",
-                      "entity": "switch.endeavor_array",
-                      "name": "Start Array",
-                      "show_icon": false
-                    },
-                    {
-                      "type": "button",
-                      "entity": "switch.endeavor_partitycheck",
-                      "name": "Check Parity",
-                      "show_icon": false
-                    },
-                    {
-                      "type": "button",
-                      "entity": "switch.endeavor_reboot",
-                      "name": "Restart",
-                      "show_icon": false
-                    },
-                    {
-                      "type": "button",
-                      "entity": "switch.endeavor_power_off",
-                      "name": "Shutdown",
-                      "show_icon": false
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:auto-entities",
-                  "filter": {
-                    "include": [
-                      {
-                        "entity_id": "switch.endeavor_docker_*"
-                      }
-                    ]
-                  },
-                  "card": {
-                    "type": "custom:fold-entity-row",
-                    "mute": true,
-                    "head": {
-                      "type": "section",
-                      "label": "Docker Control"
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "type": "custom:vertical-stack-in-card",
-              "title": "Railen",
-              "cards": [
-                {
-                  "type": "horizontal-stack",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "cards": [
-                    {
-                      "entity": "sensor.railen_cpu_usage",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "max": 100,
-                      "min": 0,
-                      "name": "CPU",
-                      "severity": {
-                        "green": 0,
-                        "red": 90,
-                        "yellow": 80
-                      },
-                      "type": "gauge",
-                      "needle": true
-                    },
-                    {
-                      "entity": "sensor.railen_memory_usage",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "max": 100,
-                      "name": "RAM",
-                      "severity": {
-                        "green": 0,
-                        "red": 90,
-                        "yellow": 80
-                      },
-                      "type": "gauge",
-                      "min": 0,
-                      "needle": true
-                    },
-                    {
-                      "entity": "sensor.frigate_detection_fps",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "max": 100,
-                      "name": "Detect FPS",
-                      "severity": {
-                        "green": 0,
-                        "red": 90,
-                        "yellow": 80
-                      },
-                      "type": "gauge",
-                      "min": 0,
-                      "needle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "color_thresholds": [
-                        {
-                          "color": "red",
-                          "value": 70
-                        },
-                        {
-                          "color": "yellow",
-                          "value": 50
-                        },
-                        {
-                          "color": "green",
-                          "value": 0
-                        }
-                      ],
-                      "entities": [
-                        {
-                          "entity": "sensor.railen_cpu_usage"
-                        }
-                      ],
-                      "hours_to_show": 0.1,
-                      "line_width": 1,
-                      "lower_bound": 0,
-                      "points_per_hour": 3600,
-                      "show": {
-                        "name": false,
-                        "icon": false,
-                        "state": false
-                      },
-                      "update_interval": 1,
-                      "upper_bound": 100
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "color_thresholds": [
-                        {
-                          "color": "red",
-                          "value": 70
-                        },
-                        {
-                          "color": "yellow",
-                          "value": 50
-                        },
-                        {
-                          "color": "green",
-                          "value": 0
-                        }
-                      ],
-                      "entities": [
-                        {
-                          "entity": "sensor.railen_memory_usage"
-                        }
-                      ],
-                      "hours_to_show": 0.1,
-                      "line_width": 1,
-                      "lower_bound": 0,
-                      "points_per_hour": 3600,
-                      "show": {
-                        "name": false,
-                        "icon": false,
-                        "state": false
-                      },
-                      "update_interval": 1,
-                      "upper_bound": 100
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "color_thresholds": [
-                        {
-                          "color": "red",
-                          "value": 70
-                        },
-                        {
-                          "color": "yellow",
-                          "value": 50
-                        },
-                        {
-                          "color": "green",
-                          "value": 0
-                        }
-                      ],
-                      "entities": [
-                        {
-                          "entity": "sensor.frigate_detection_fps"
-                        }
-                      ],
-                      "hours_to_show": 0.1,
-                      "line_width": 1,
-                      "lower_bound": 0,
-                      "points_per_hour": 3600,
-                      "show": {
-                        "name": false,
-                        "icon": false,
-                        "state": false
-                      },
-                      "update_interval": 1,
-                      "upper_bound": 100
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:uptime-card",
-                  "entity": "binary_sensor.railen_online",
-                  "icon": "none",
-                  "card_mod": {
-                    "class": "nobg"
-                  },
-                  "hours_to_show": 24
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "button",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "entity": "button.railen_shutdown",
-                      "name": "Shutdown",
-                      "show_icon": false
-                    },
-                    {
-                      "type": "button",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "entity": "button.railen_restart",
-                      "name": "Restart",
-                      "show_icon": false
-                    }
-                  ]
                 }
               ]
             },
@@ -853,7 +599,7 @@
                       "needle": true
                     },
                     {
-                      "entity": "sensor.terrapin_cpu_thermal_1_temperature",
+                      "entity": "sensor.terrapin_cpu_thermal_0_temperature",
                       "card_mod": {
                         "class": "nobg"
                       },
@@ -1002,7 +748,7 @@
                       ],
                       "entities": [
                         {
-                          "entity": "sensor.terrapin_cpu_thermal_1_temperature"
+                          "entity": "sensor.terrapin_cpu_thermal_0_temperature"
                         }
                       ],
                       "hours_to_show": 0.1,
@@ -1050,17 +796,283 @@
               ]
             },
             {
-              "show_name": true,
-              "show_icon": true,
-              "type": "button",
-              "entity": "script.starrunner_wake",
-              "show_state": true,
-              "tap_action": {
-                "action": "call-service",
-                "service": "script.starrunner_wake",
-                "data": {},
-                "target": {}
-              }
+              "type": "custom:vertical-stack-in-card",
+              "title": "Carrack",
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "card_mod": {
+                    "class": "nobg"
+                  },
+                  "cards": [
+                    {
+                      "entity": "sensor.carrack_cpu_used",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "min": 0,
+                      "name": "CPU",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.carrack_ram_used_percent",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "name": "RAM",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "min": 0,
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.carrack_swap_used_percent",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "min": 0,
+                      "name": "SWAP",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.carrack_composite_temperature",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "min": 0,
+                      "name": "Temp",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "needle": true
+                    },
+                    {
+                      "entity": "sensor.carrack_usr_bin_nvidia_smi_used_percent",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "max": 100,
+                      "min": 0,
+                      "name": "GPU",
+                      "severity": {
+                        "green": 0,
+                        "red": 90,
+                        "yellow": 80
+                      },
+                      "type": "gauge",
+                      "needle": true
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.carrack_cpu_used"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.carrack_ram_used_percent"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.carrack_swap_used_percent"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.carrack_composite_temperature"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "nobg"
+                      },
+                      "color_thresholds": [
+                        {
+                          "color": "red",
+                          "value": 70
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 50
+                        },
+                        {
+                          "color": "green",
+                          "value": 0
+                        }
+                      ],
+                      "entities": [
+                        {
+                          "entity": "sensor.carrack_usr_bin_nvidia_smi_used_percent"
+                        }
+                      ],
+                      "hours_to_show": 0.1,
+                      "line_width": 1,
+                      "lower_bound": 0,
+                      "points_per_hour": 3600,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false
+                      },
+                      "update_interval": 1,
+                      "upper_bound": 100
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -2101,7 +2113,7 @@
                   "entity": "sensor.bedroom_occupied_probability"
                 },
                 {
-                  "entity": "media_player.bedroom_tv"
+                  "entity": "media_player.bedroom_tv_adb"
                 },
                 {
                   "entity": "sensor.seb_phone_detected_activity"
@@ -2211,69 +2223,6 @@
               "sort": {
                 "method": "entity_id"
               }
-            }
-          ]
-        },
-        {
-          "theme": "Backend-selected",
-          "title": "ZHA",
-          "path": "zha",
-          "icon": "mdi:zigbee",
-          "type": "panel",
-          "badges": [],
-          "cards": [
-            {
-              "clickable": true,
-              "columns": [
-                {
-                  "name": "Name",
-                  "prop": "name"
-                },
-                {
-                  "attr": "available",
-                  "id": "available",
-                  "modify": "x || \"false\"",
-                  "name": "Online"
-                },
-                {
-                  "attr": "manufacturer",
-                  "name": "Manufacturer"
-                },
-                {
-                  "attr": "model",
-                  "name": "Model"
-                },
-                {
-                  "attr": "ieee",
-                  "name": "IEEE"
-                },
-                {
-                  "name": "NWK",
-                  "prop": "nwk"
-                },
-                {
-                  "attr": "rssi",
-                  "name": "RSSI"
-                },
-                {
-                  "attr": "lqi",
-                  "name": "LQI"
-                },
-                {
-                  "attr": "last_seen",
-                  "name": "Last Seen"
-                },
-                {
-                  "attr": "power_source",
-                  "name": "Power Source"
-                },
-                {
-                  "attr": "quirk_class",
-                  "name": "Quirk"
-                }
-              ],
-              "sort_by": "available",
-              "type": "custom:zha-network-card"
             }
           ]
         }

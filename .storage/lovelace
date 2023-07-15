@@ -11,9 +11,6 @@
       "button_card_templates": {
         "base": {
           "aspect_ratio": "1/1",
-          "card_mod": {
-            "class": "acrylic"
-          },
           "tap_action": {
             "action": "toggle"
           },
@@ -70,11 +67,11 @@
                 "state": [
                   {
                     "value": "off",
-                    "color": "var(--label-badge-red)"
+                    "color": "var(--red-color)"
                   },
                   {
                     "value": "on",
-                    "color": "var(--primary-text-color)"
+                    "color": "var(--secondary-text-color)"
                   }
                 ],
                 "styles": {
@@ -145,50 +142,17 @@
           "custom_fields": {
             "light": {
               "card": {
-                "type": "custom:slider-button-card",
-                "card_mod": {
-                  "class": "slider-card-embedded",
-                  "style": "ha-card {\n  --mdc-icon-size: 1.5em !important;\n  --btn-bg-color-off: transparent;\n  background: transparent;\n}\n.off .slider .slider-bg {\n  --slider-bg: transparent !important;\n  background-color: transparent !important;\n}\n.compact .text {\n  top: 0 !important;\n  left: 0 !important;\n}\n"
-                },
+                "type": "custom:mushroom-light-card",
                 "entity": "[[[ return variables.light ]]]",
-                "slider": {
-                  "direction": "left-right",
-                  "background": "gradient",
-                  "use_state_color": true,
-                  "use_percentage_bg_opacity": true
-                },
-                "show_name": false,
-                "compact": true,
-                "icon": {
-                  "tap_action": {
-                    "action": "more-info"
-                  }
-                },
-                "action_button": {
-                  "mode": "custom",
-                  "icon": "mdi:power",
-                  "show": true,
-                  "show_spinner": true,
-                  "tap_action": {
-                    "action": "toggle"
-                  }
+                "layout": "horizontal",
+                "use_light_color": true,
+                "show_brightness_control": true,
+                "primary_info": "none",
+                "secondary_info": "none",
+                "card_mod": {
+                  "style": "ha-card {\n  box-shadow: none;\n  border: 0;\n}\n"
                 }
               }
-            }
-          },
-          "styles": {
-            "custom_fields": {
-              "light": [
-                {
-                  "height": "100%"
-                },
-                {
-                  "align-self": "end"
-                },
-                {
-                  "border": 0
-                }
-              ]
             }
           }
         },
@@ -206,15 +170,93 @@
                       {
                         "value": "playing",
                         "icon": "mdi:television",
-                        "color": "#44A4CD"
+                        "color": "var(--green-color)"
+                      },
+                      {
+                        "value": "paused",
+                        "icon": "mdi:television",
+                        "color": "var(--blue-color)"
+                      },
+                      {
+                        "operator": "default",
+                        "icon": "mdi:television-off",
+                        "color": "var(--secondary-text-color)"
                       }
                     ],
                     "card_mod": {
-                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n",
+                      "icon": "[[[ return variables.icon ]]]",
+                      "name": "[[[ return variables.name ]]]",
+                      "entity": "[[[ return variables.entity ]]]",
+                      "state": [
+                        {
+                          "value": "off",
+                          "color": "var(--red-color)"
+                        },
+                        {
+                          "value": "on",
+                          "color": "var(--secondary-text-color)"
+                        }
+                      ],
+                      "styles": {
+                        "card": [
+                          {
+                            "border-radius": 0
+                          },
+                          {
+                            "padding": 0
+                          },
+                          {
+                            "box-shadow": "none"
+                          },
+                          {
+                            "height": "100%"
+                          },
+                          {
+                            "border": 0
+                          }
+                        ],
+                        "name": [
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "justify-self": "start"
+                          },
+                          {
+                            "padding-left": "14px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "justify-self": "end"
+                          },
+                          {
+                            "padding-right": "14px"
+                          },
+                          {
+                            "width": "24px"
+                          }
+                        ],
+                        "img_cell": [
+                          {
+                            "justify-content": "end"
+                          },
+                          {
+                            "height": "24px"
+                          }
+                        ],
+                        "grid": [
+                          {
+                            "grid-template-columns": "repeat(3, 1fr)"
+                          },
+                          {
+                            "grid-template-areas": "\"n n i\"\n"
+                          }
+                        ]
+                      }
                     },
                     "entity": "[[[ return variables.media ]]]",
-                    "icon": "mdi:television-off",
-                    "color": "#BE3A3E",
                     "name": "TV",
                     "styles": {
                       "name": [
@@ -231,7 +273,8 @@
         },
         "bright": {
           "variables": {
-            "bright": "binary_sensor.study_bright"
+            "bright": "binary_sensor.study_bright",
+            "lux": "sensor.study_illuminance"
           },
           "custom_fields": {
             "grid": {
@@ -240,13 +283,107 @@
                   {
                     "type": "custom:button-card",
                     "card_mod": {
-                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n",
+                      "icon": "[[[ return variables.icon ]]]",
+                      "name": "[[[ return variables.name ]]]",
+                      "entity": "[[[ return variables.entity ]]]",
+                      "state": [
+                        {
+                          "value": "off",
+                          "color": "var(--red-color)"
+                        },
+                        {
+                          "value": "on",
+                          "color": "var(--secondary-text-color)"
+                        }
+                      ],
+                      "styles": {
+                        "card": [
+                          {
+                            "border-radius": 0
+                          },
+                          {
+                            "padding": 0
+                          },
+                          {
+                            "box-shadow": "none"
+                          },
+                          {
+                            "height": "100%"
+                          },
+                          {
+                            "border": 0
+                          }
+                        ],
+                        "name": [
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "justify-self": "start"
+                          },
+                          {
+                            "padding-left": "14px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "justify-self": "end"
+                          },
+                          {
+                            "padding-right": "14px"
+                          },
+                          {
+                            "width": "24px"
+                          }
+                        ],
+                        "img_cell": [
+                          {
+                            "justify-content": "end"
+                          },
+                          {
+                            "height": "24px"
+                          }
+                        ],
+                        "grid": [
+                          {
+                            "grid-template-columns": "repeat(3, 1fr)"
+                          },
+                          {
+                            "grid-template-areas": "\"n n i\"\n"
+                          }
+                        ]
+                      }
                     },
                     "entity": "[[[ return variables.bright ]]]",
                     "icon": "mdi:white-balance-sunny",
-                    "color": "[[[ if (states[variables.bright].state == \"on\") return \"var(--color-yellow)\"; ]]]",
-                    "img_cell": "[[[ if (states[variables.bright].state == \"on\") return \"var(--color-yellow)\"; ]]]",
-                    "name": "[[[ return states[variables.bright].attributes.current_illuminance + \"Lx\" ]]]",
+                    "triggers_update": [
+                      "[[[ return variables.bright ]]]",
+                      "[[[ return variables.lux ]]]"
+                    ],
+                    "state": [
+                      {
+                        "value": "on",
+                        "styles": {
+                          "icon": [
+                            {
+                              "color": "var(--yellow-color)"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "value": "off",
+                        "styles": {
+                          "icon": [
+                            {
+                              "color": "var(--secondary-text-color)"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "name": "[[[ return states[variables.lux].state + \"Lx\"; ]]]",
                     "styles": {
                       "name": [
                         {
@@ -271,12 +408,103 @@
                   {
                     "type": "custom:button-card",
                     "card_mod": {
-                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n",
+                      "icon": "[[[ return variables.icon ]]]",
+                      "name": "[[[ return variables.name ]]]",
+                      "entity": "[[[ return variables.entity ]]]",
+                      "state": [
+                        {
+                          "value": "off",
+                          "color": "var(--red-color)"
+                        },
+                        {
+                          "value": "on",
+                          "color": "var(--secondary-text-color)"
+                        }
+                      ],
+                      "styles": {
+                        "card": [
+                          {
+                            "border-radius": 0
+                          },
+                          {
+                            "padding": 0
+                          },
+                          {
+                            "box-shadow": "none"
+                          },
+                          {
+                            "height": "100%"
+                          },
+                          {
+                            "border": 0
+                          }
+                        ],
+                        "name": [
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "justify-self": "start"
+                          },
+                          {
+                            "padding-left": "14px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "justify-self": "end"
+                          },
+                          {
+                            "padding-right": "14px"
+                          },
+                          {
+                            "width": "24px"
+                          }
+                        ],
+                        "img_cell": [
+                          {
+                            "justify-content": "end"
+                          },
+                          {
+                            "height": "24px"
+                          }
+                        ],
+                        "grid": [
+                          {
+                            "grid-template-columns": "repeat(3, 1fr)"
+                          },
+                          {
+                            "grid-template-areas": "\"n n i\"\n"
+                          }
+                        ]
+                      }
                     },
                     "entity": "[[[ return variables.occupied ]]]",
                     "icon": "mdi:walk",
-                    "color": "[[[ if (states[variables.occupied].state == 'on') return 'var(--label-badge-green)'; ]]]",
-                    "img_cell": "[[[ if (states[variables.occupied].state == 'on') return 'var(--label-badge-green)'; ]]]",
+                    "triggers_update": "all",
+                    "state": [
+                      {
+                        "value": "on",
+                        "styles": {
+                          "icon": [
+                            {
+                              "color": "var(--green-color)"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "value": "off",
+                        "styles": {
+                          "icon": [
+                            {
+                              "color": "var(--secondary-text-color)"
+                            }
+                          ]
+                        }
+                      }
+                    ],
                     "name": "[[[\n  return Math.round(states[variables.occupied].attributes.probability * 100) + '%';\n]]]\n",
                     "styles": {
                       "name": [
@@ -303,13 +531,103 @@
                   {
                     "type": "custom:button-card",
                     "card_mod": {
-                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n",
+                      "icon": "[[[ return variables.icon ]]]",
+                      "name": "[[[ return variables.name ]]]",
+                      "entity": "[[[ return variables.entity ]]]",
+                      "state": [
+                        {
+                          "value": "off",
+                          "color": "var(--red-color)"
+                        },
+                        {
+                          "value": "on",
+                          "color": "var(--secondary-text-color)"
+                        }
+                      ],
+                      "styles": {
+                        "card": [
+                          {
+                            "border-radius": 0
+                          },
+                          {
+                            "padding": 0
+                          },
+                          {
+                            "box-shadow": "none"
+                          },
+                          {
+                            "height": "100%"
+                          },
+                          {
+                            "border": 0
+                          }
+                        ],
+                        "name": [
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "justify-self": "start"
+                          },
+                          {
+                            "padding-left": "14px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "justify-self": "end"
+                          },
+                          {
+                            "padding-right": "14px"
+                          },
+                          {
+                            "width": "24px"
+                          }
+                        ],
+                        "img_cell": [
+                          {
+                            "justify-content": "end"
+                          },
+                          {
+                            "height": "24px"
+                          }
+                        ],
+                        "grid": [
+                          {
+                            "grid-template-columns": "repeat(3, 1fr)"
+                          },
+                          {
+                            "grid-template-areas": "\"n n i\"\n"
+                          }
+                        ]
+                      }
                     },
                     "entity": "[[[ return variables.climate ]]]",
                     "icon": "mdi:thermometer",
                     "name": "[[[ return states[variables.temp].state + \"/\" + Math.round(states[variables.climate].attributes.temperature) + \"°C\"; ]]]",
-                    "color": "[[[ if (states[variables.climate].attributes.hvac_action == 'heating') return 'orange'; ]]]",
-                    "img_cell": "[[[ if (states[variables.climate].attributes.hvac_action == 'heating') return 'orange'; ]]]",
+                    "state": [
+                      {
+                        "value": "heating",
+                        "styles": {
+                          "icon": [
+                            {
+                              "color": "var(--red-color)"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "operator": "default",
+                        "styles": {
+                          "icon": [
+                            {
+                              "color": "var(--amber-color)"
+                            }
+                          ]
+                        }
+                      }
+                    ],
                     "styles": {
                       "name": [
                         {
@@ -340,10 +658,114 @@
                   {
                     "type": "custom:button-card",
                     "card_mod": {
-                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n",
+                      "icon": "[[[ return variables.icon ]]]",
+                      "name": "[[[ return variables.name ]]]",
+                      "entity": "[[[ return variables.entity ]]]",
+                      "state": [
+                        {
+                          "value": "off",
+                          "color": "var(--red-color)"
+                        },
+                        {
+                          "value": "on",
+                          "color": "var(--secondary-text-color)"
+                        }
+                      ],
+                      "styles": {
+                        "card": [
+                          {
+                            "border-radius": 0
+                          },
+                          {
+                            "padding": 0
+                          },
+                          {
+                            "box-shadow": "none"
+                          },
+                          {
+                            "height": "100%"
+                          },
+                          {
+                            "border": 0
+                          }
+                        ],
+                        "name": [
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "justify-self": "start"
+                          },
+                          {
+                            "padding-left": "14px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "justify-self": "end"
+                          },
+                          {
+                            "padding-right": "14px"
+                          },
+                          {
+                            "width": "24px"
+                          }
+                        ],
+                        "img_cell": [
+                          {
+                            "justify-content": "end"
+                          },
+                          {
+                            "height": "24px"
+                          }
+                        ],
+                        "grid": [
+                          {
+                            "grid-template-columns": "repeat(3, 1fr)"
+                          },
+                          {
+                            "grid-template-areas": "\"n n i\"\n"
+                          }
+                        ]
+                      }
                     },
                     "entity": "[[[ return variables.temp ]]]",
                     "icon": "mdi:thermometer",
+                    "state": [
+                      {
+                        "value": 14,
+                        "operator": "<=",
+                        "styles": {
+                          "icon": [
+                            {
+                              "color": "var(--cyan-color)"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "value": 21,
+                        "operator": ">=",
+                        "styles": {
+                          "icon": [
+                            {
+                              "color": "var(--red-color)"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "operator": "default",
+                        "styles": {
+                          "icon": [
+                            {
+                              "color": "var(--amber-color)"
+                            }
+                          ]
+                        }
+                      }
+                    ],
                     "name": "[[[ return states[variables.temp].state + '°C'; ]]]",
                     "styles": {
                       "name": [
@@ -375,10 +797,103 @@
                   {
                     "type": "custom:button-card",
                     "card_mod": {
-                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n",
+                      "icon": "[[[ return variables.icon ]]]",
+                      "name": "[[[ return variables.name ]]]",
+                      "entity": "[[[ return variables.entity ]]]",
+                      "state": [
+                        {
+                          "value": "off",
+                          "color": "var(--red-color)"
+                        },
+                        {
+                          "value": "on",
+                          "color": "var(--secondary-text-color)"
+                        }
+                      ],
+                      "styles": {
+                        "card": [
+                          {
+                            "border-radius": 0
+                          },
+                          {
+                            "padding": 0
+                          },
+                          {
+                            "box-shadow": "none"
+                          },
+                          {
+                            "height": "100%"
+                          },
+                          {
+                            "border": 0
+                          }
+                        ],
+                        "name": [
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "justify-self": "start"
+                          },
+                          {
+                            "padding-left": "14px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "justify-self": "end"
+                          },
+                          {
+                            "padding-right": "14px"
+                          },
+                          {
+                            "width": "24px"
+                          }
+                        ],
+                        "img_cell": [
+                          {
+                            "justify-content": "end"
+                          },
+                          {
+                            "height": "24px"
+                          }
+                        ],
+                        "grid": [
+                          {
+                            "grid-template-columns": "repeat(3, 1fr)"
+                          },
+                          {
+                            "grid-template-areas": "\"n n i\"\n"
+                          }
+                        ]
+                      }
                     },
                     "entity": "[[[ return variables.humid ]]]",
                     "icon": "mdi:water-percent",
+                    "state": [
+                      {
+                        "value": 65,
+                        "operator": ">=",
+                        "styles": {
+                          "icon": [
+                            {
+                              "color": "rgb(0,188,212)"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "operator": "default",
+                        "styles": {
+                          "icon": [
+                            {
+                              "color": "var(--secondary-text-color)"
+                            }
+                          ]
+                        }
+                      }
+                    ],
                     "name": "[[[ return states[variables.humid].state + '%'; ]]]",
                     "styles": {
                       "name": [
@@ -403,12 +918,16 @@
                 "cards": [
                   {
                     "type": "custom:button-card",
+                    "tap_action": {
+                      "action": "more-info"
+                    },
                     "entity": "[[[ return variables.fan ]]]",
+                    "triggers_update": "all",
                     "state": [
                       {
                         "operator": "template",
                         "name": "Low",
-                        "color": "var(--label-badge-green)",
+                        "color": "var(--green-color)",
                         "value": "[[[\n  return states[variables.fan].attributes\n  && (states[variables.fan].attributes.preset_mode === 'low')\n]]]\n",
                         "styles": {
                           "icon": [
@@ -423,7 +942,7 @@
                       {
                         "operator": "template",
                         "name": "Medium",
-                        "color": "var(--label-badge-green)",
+                        "color": "var(--green-color)",
                         "value": "[[[\n  return states[variables.fan].attributes\n  && (states[variables.fan].attributes.preset_mode === 'medium')\n]]]\n",
                         "styles": {
                           "icon": [
@@ -438,7 +957,7 @@
                       {
                         "operator": "template",
                         "name": "High",
-                        "color": "var(--label-badge-green)",
+                        "color": "var(--green-color)",
                         "value": "[[[\n  return states[variables.fan].attributes\n  && (states[variables.fan].attributes.preset_mode === 'high')\n]]]\n",
                         "styles": {
                           "icon": [
@@ -452,16 +971,87 @@
                       },
                       {
                         "value": "off",
-                        "name": "Off"
+                        "name": "Off",
+                        "color": "var(--secondary-text-color)"
                       },
                       {
                         "operator": "default",
-                        "color": "var(--label-badge-green)",
+                        "color": "var(--green-color)",
                         "name": "On"
                       }
                     ],
                     "card_mod": {
-                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n",
+                      "icon": "[[[ return variables.icon ]]]",
+                      "name": "[[[ return variables.name ]]]",
+                      "entity": "[[[ return variables.entity ]]]",
+                      "state": [
+                        {
+                          "value": "off",
+                          "color": "var(--red-color)"
+                        },
+                        {
+                          "value": "on",
+                          "color": "var(--secondary-text-color)"
+                        }
+                      ],
+                      "styles": {
+                        "card": [
+                          {
+                            "border-radius": 0
+                          },
+                          {
+                            "padding": 0
+                          },
+                          {
+                            "box-shadow": "none"
+                          },
+                          {
+                            "height": "100%"
+                          },
+                          {
+                            "border": 0
+                          }
+                        ],
+                        "name": [
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "justify-self": "start"
+                          },
+                          {
+                            "padding-left": "14px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "justify-self": "end"
+                          },
+                          {
+                            "padding-right": "14px"
+                          },
+                          {
+                            "width": "24px"
+                          }
+                        ],
+                        "img_cell": [
+                          {
+                            "justify-content": "end"
+                          },
+                          {
+                            "height": "24px"
+                          }
+                        ],
+                        "grid": [
+                          {
+                            "grid-template-columns": "repeat(3, 1fr)"
+                          },
+                          {
+                            "grid-template-areas": "\"n n i\"\n"
+                          }
+                        ]
+                      }
                     },
                     "icon": "mdi:fan",
                     "styles": {
@@ -487,13 +1077,13 @@
           "layout": {
             "grid-template-columns": "repeat(auto-fill, minmax(17rem, 1fr))",
             "grid-auto-rows": "minmax(17rem, 1fr)",
-            "grid-auto-flow": "row",
+            "grid-auto-flow": "dense",
             "mediaquery": {
               "(max-width: 800px)": {
-                "grid-template-columns": "1fr 1fr"
+                "grid-template-columns": "repeat(2, minmax(0, 1fr))"
               },
-              "(max-width: 1200px)": {
-                "grid-template-columns": "repeat(auto-fill, minmax(20%, 1fr))"
+              "(max-width: 1000px)": {
+                "grid-template-columns": "repeat(auto-fill, minmax(20%, 30%))"
               }
             }
           },
@@ -502,285 +1092,625 @@
           "badges": [],
           "cards": [
             {
-              "square": true,
-              "columns": 3,
-              "type": "grid",
+              "type": "horizontal-stack",
               "cards": [
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "group.all_automations",
-                  "primary_info": "none",
-                  "secondary_info": "name",
-                  "layout": "vertical",
-                  "fill_container": true,
-                  "icon_color": "green",
-                  "tap_action": {
-                    "action": "toggle"
+                  "type": "custom:button-card",
+                  "card_mod": {
+                    "class": "acrylic"
                   },
-                  "name": "Auto"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "input_boolean.cameras_privacy",
-                  "icon_color": "green",
-                  "layout": "vertical",
-                  "fill_container": true,
-                  "primary_info": "none",
-                  "secondary_info": "name",
-                  "tap_action": {
-                    "action": "toggle"
+                  "aspect_ratio": "2/1",
+                  "custom_fields": {
+                    "laura": {
+                      "card": {
+                        "type": "custom:button-card",
+                        "card_mod": {
+                          "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n}\n"
+                        },
+                        "entity": "person.laura_ward",
+                        "show_entity_picture": true,
+                        "styles": {
+                          "card": [
+                            {
+                              "border-radius": 0
+                            },
+                            {
+                              "box-shadow": "none"
+                            }
+                          ],
+                          "entity_picture": [
+                            {
+                              "border-radius": "0.8rem"
+                            },
+                            {
+                              "ratio": "1/1"
+                            }
+                          ],
+                          "icon": [
+                            {
+                              "width": "90%"
+                            }
+                          ],
+                          "name": [
+                            {
+                              "margin": "0 0.5rem"
+                            },
+                            {
+                              "justify-self": "end"
+                            },
+                            {
+                              "text-align": "end"
+                            },
+                            {
+                              "font-size": "1rem"
+                            },
+                            {
+                              "white-space": "initial"
+                            },
+                            {
+                              "text-overflow": "initial"
+                            },
+                            {
+                              "overflow": "initial"
+                            }
+                          ],
+                          "grid": [
+                            {
+                              "grid-template-columns": "1fr 0.5fr"
+                            },
+                            {
+                              "grid-template-areas": "\"n i\"\n"
+                            }
+                          ]
+                        },
+                        "name": "[[[ return states[\"sensor.laura_location\"].state ]]]"
+                      }
+                    },
+                    "seb": {
+                      "card": {
+                        "type": "custom:button-card",
+                        "card_mod": {
+                          "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n}\n"
+                        },
+                        "entity": "person.sebastian_burrell",
+                        "show_entity_picture": true,
+                        "styles": {
+                          "card": [
+                            {
+                              "border-radius": 0
+                            },
+                            {
+                              "box-shadow": "none"
+                            },
+                            {
+                              "border": "0;"
+                            }
+                          ],
+                          "entity_picture": [
+                            {
+                              "border-radius": "0.8rem"
+                            },
+                            {
+                              "ratio": "1/1"
+                            }
+                          ],
+                          "icon": [
+                            {
+                              "width": "90%"
+                            }
+                          ],
+                          "name": [
+                            {
+                              "margin": "0 0.8rem"
+                            },
+                            {
+                              "justify-self": "start"
+                            },
+                            {
+                              "text-align": "start"
+                            },
+                            {
+                              "font-size": "1rem"
+                            },
+                            {
+                              "white-space": "initial"
+                            },
+                            {
+                              "text-overflow": "initial"
+                            },
+                            {
+                              "overflow": "initial"
+                            }
+                          ],
+                          "grid": [
+                            {
+                              "grid-template-columns": "0.5fr 1fr"
+                            },
+                            {
+                              "grid-template-areas": "\"i n\"\n"
+                            }
+                          ]
+                        },
+                        "name": "[[[ return states[\"sensor.seb_location\"].state ]]]"
+                      }
+                    },
+                    "welcome": {
+                      "card": {
+                        "type": "markdown",
+                        "card_mod": {
+                          "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
+                        },
+                        "content": "{{states('sensor.welcome_message')}}\n"
+                      }
+                    },
+                    "btns": {
+                      "card": {
+                        "type": "custom:layout-card",
+                        "cards": [
+                          {
+                            "type": "custom:button-card",
+                            "aspect_ratio": "1/1",
+                            "entity": "group.all_automations",
+                            "styles": {
+                              "name": [
+                                {
+                                  "font-size": "1rem"
+                                },
+                                {
+                                  "font-weight": 500
+                                }
+                              ],
+                              "icon": [
+                                {
+                                  "width": "30%"
+                                }
+                              ],
+                              "card": [
+                                {
+                                  "box-shadow": "none"
+                                }
+                              ]
+                            },
+                            "state": [
+                              {
+                                "value": "on",
+                                "icon": "mdi:robot",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(76, 175, 80, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "value": "off",
+                                "icon": "mdi:robot",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(244, 67, 54, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "name": "Auto"
+                          },
+                          {
+                            "type": "custom:button-card",
+                            "aspect_ratio": "1/1",
+                            "entity": "input_boolean.cameras_privacy",
+                            "styles": {
+                              "name": [
+                                {
+                                  "font-size": "1rem"
+                                },
+                                {
+                                  "font-weight": 500
+                                }
+                              ],
+                              "icon": [
+                                {
+                                  "width": "30%"
+                                }
+                              ],
+                              "card": [
+                                {
+                                  "box-shadow": "none"
+                                }
+                              ]
+                            },
+                            "state": [
+                              {
+                                "value": "on",
+                                "icon": "mdi:video-account",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(76, 175, 80, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "value": "off",
+                                "icon": "mdi:robot",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(244, 67, 54, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "name": "Cameras"
+                          },
+                          {
+                            "type": "custom:button-card",
+                            "aspect_ratio": "1/1",
+                            "entity": "script.play_rain_sounds",
+                            "styles": {
+                              "name": [
+                                {
+                                  "font-size": "1rem"
+                                },
+                                {
+                                  "font-weight": 500
+                                }
+                              ],
+                              "icon": [
+                                {
+                                  "width": "30%"
+                                }
+                              ],
+                              "card": [
+                                {
+                                  "box-shadow": "none"
+                                }
+                              ]
+                            },
+                            "state": [
+                              {
+                                "value": "on",
+                                "icon": "mdi:weather-pouring",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(76, 175, 80, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "value": "off",
+                                "icon": "mdi:weather-pouring",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(244, 67, 54, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "name": "Rain"
+                          },
+                          {
+                            "type": "custom:button-card",
+                            "aspect_ratio": "1/1",
+                            "entity": "input_boolean.bedroom_sleep_mode",
+                            "styles": {
+                              "name": [
+                                {
+                                  "font-size": "1rem"
+                                },
+                                {
+                                  "font-weight": 500
+                                }
+                              ],
+                              "icon": [
+                                {
+                                  "width": "30%"
+                                }
+                              ],
+                              "card": [
+                                {
+                                  "box-shadow": "none"
+                                }
+                              ]
+                            },
+                            "state": [
+                              {
+                                "value": "on",
+                                "icon": "mdi:sleep",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(76, 175, 80, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "value": "off",
+                                "icon": "mdi:sleep-off",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(244, 67, 54, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "name": "Bedroom"
+                          },
+                          {
+                            "type": "custom:button-card",
+                            "aspect_ratio": "1/1",
+                            "entity": "input_boolean.lounge_sleep_mode",
+                            "styles": {
+                              "name": [
+                                {
+                                  "font-size": "1rem"
+                                },
+                                {
+                                  "font-weight": 500
+                                }
+                              ],
+                              "icon": [
+                                {
+                                  "width": "30%"
+                                }
+                              ],
+                              "card": [
+                                {
+                                  "box-shadow": "none"
+                                }
+                              ]
+                            },
+                            "state": [
+                              {
+                                "value": "on",
+                                "icon": "mdi:sleep",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(76, 175, 80, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "value": "off",
+                                "icon": "mdi:sleep-off",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(244, 67, 54, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "name": "Lounge"
+                          },
+                          {
+                            "type": "custom:button-card",
+                            "aspect_ratio": "1/1",
+                            "entity": "input_boolean.study_sleep_mode",
+                            "styles": {
+                              "name": [
+                                {
+                                  "font-size": "1rem"
+                                },
+                                {
+                                  "font-weight": 500
+                                }
+                              ],
+                              "icon": [
+                                {
+                                  "width": "30%"
+                                }
+                              ],
+                              "card": [
+                                {
+                                  "box-shadow": "none"
+                                }
+                              ]
+                            },
+                            "state": [
+                              {
+                                "value": "on",
+                                "icon": "mdi:sleep",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(76, 175, 80, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(76, 175, 80, 1)"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "value": "off",
+                                "icon": "mdi:sleep-off",
+                                "styles": {
+                                  "icon": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ],
+                                  "card": [
+                                    {
+                                      "background-color": "rgba(244, 67, 54, 0.1)",
+                                      "border": 0
+                                    }
+                                  ],
+                                  "name": [
+                                    {
+                                      "color": "rgba(244, 67, 54, 1)"
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "name": "Study"
+                          }
+                        ],
+                        "layout_type": "custom:grid-layout",
+                        "layout": {
+                          "grid-template-columns": "repeat(6, 1fr)",
+                          "grid-auto-rows": "1fr",
+                          "grid-auto-flow": "dense"
+                        },
+                        "card_mod": {
+                          "style": {
+                            "aspect-ratio": "1/1"
+                          }
+                        }
+                      }
+                    }
                   },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  },
-                  "name": "Private"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "script.play_rain_sounds",
-                  "icon_color": "green",
-                  "layout": "vertical",
-                  "fill_container": true,
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  },
-                  "primary_info": "none",
-                  "secondary_info": "name",
-                  "name": "Rain"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "input_boolean.bedroom_sleep_mode",
-                  "fill_container": true,
-                  "double_tap_action": {
-                    "action": "none"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "primary_info": "none",
-                  "secondary_info": "name",
-                  "layout": "vertical",
-                  "name": "Bedroom",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "input_boolean.lounge_sleep_mode",
-                  "name": "Lounge",
-                  "icon_color": "green",
-                  "layout": "vertical",
-                  "fill_container": true,
-                  "primary_info": "none",
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  },
-                  "secondary_info": "name"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "input_boolean.study_sleep_mode",
-                  "name": "Study",
-                  "icon_color": "green",
-                  "layout": "vertical",
-                  "fill_container": true,
-                  "primary_info": "none",
-                  "secondary_info": "name",
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
+                  "styles": {
+                    "grid": [
+                      {
+                        "grid-template-columns": "1fr 1fr"
+                      },
+                      {
+                        "grid-template-rows": "33%"
+                      },
+                      {
+                        "grid-template-areas": "\"laura seb\"\n\"welcome welcome\"\n\"btns btns\"\n"
+                      }
+                    ]
                   }
                 }
-              ]
-            },
-            {
-              "type": "custom:button-card",
-              "card_mod": {
-                "class": "acrylic"
-              },
-              "aspect_ratio": "1/1",
-              "custom_fields": {
-                "laura": {
-                  "card": {
-                    "type": "custom:button-card",
-                    "card_mod": {
-                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n}\n"
-                    },
-                    "entity": "person.laura_ward",
-                    "show_entity_picture": true,
-                    "styles": {
-                      "card": [
-                        {
-                          "border-radius": 0
-                        },
-                        {
-                          "box-shadow": "none"
-                        },
-                        {
-                          "padding": "0 0.8rem"
-                        }
-                      ],
-                      "entity_picture": [
-                        {
-                          "border-radius": "0.8rem"
-                        },
-                        {
-                          "ratio": "1/1"
-                        }
-                      ],
-                      "icon": [
-                        {
-                          "width": "80%"
-                        }
-                      ],
-                      "name": [
-                        {
-                          "margin": "0 0.8rem"
-                        },
-                        {
-                          "justify-self": "start"
-                        },
-                        {
-                          "text-align": "start"
-                        },
-                        {
-                          "font-size": "1rem"
-                        },
-                        {
-                          "white-space": "initial"
-                        },
-                        {
-                          "text-overflow": "initial"
-                        },
-                        {
-                          "overflow": "initial"
-                        }
-                      ],
-                      "grid": [
-                        {
-                          "grid-template-columns": "0.5fr 1fr"
-                        },
-                        {
-                          "grid-template-areas": "\"i n\"\n"
-                        }
-                      ]
-                    },
-                    "name": "[[[ return states[\"sensor.laura_location\"].state ]]]"
-                  }
-                },
-                "seb": {
-                  "card": {
-                    "type": "custom:button-card",
-                    "card_mod": {
-                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n}\n"
-                    },
-                    "entity": "person.sebastian_burrell",
-                    "show_entity_picture": true,
-                    "styles": {
-                      "card": [
-                        {
-                          "border-radius": 0
-                        },
-                        {
-                          "box-shadow": "none"
-                        },
-                        {
-                          "border": "0;"
-                        },
-                        {
-                          "padding": "0 0.8rem"
-                        }
-                      ],
-                      "entity_picture": [
-                        {
-                          "border-radius": "0.8rem"
-                        },
-                        {
-                          "ratio": "1/1"
-                        }
-                      ],
-                      "icon": [
-                        {
-                          "width": "80%"
-                        }
-                      ],
-                      "name": [
-                        {
-                          "margin": "0 0.8rem"
-                        },
-                        {
-                          "justify-self": "start"
-                        },
-                        {
-                          "text-align": "start"
-                        },
-                        {
-                          "font-size": "1rem"
-                        },
-                        {
-                          "white-space": "initial"
-                        },
-                        {
-                          "text-overflow": "initial"
-                        },
-                        {
-                          "overflow": "initial"
-                        }
-                      ],
-                      "grid": [
-                        {
-                          "grid-template-columns": "0.5fr 1fr"
-                        },
-                        {
-                          "grid-template-areas": "\"i n\"\n"
-                        }
-                      ]
-                    },
-                    "name": "[[[ return states[\"sensor.seb_location\"].state ]]]"
-                  }
-                },
-                "welcome": {
-                  "card": {
-                    "type": "markdown",
-                    "card_mod": {
-                      "style": "ha-card {\n  border-radius: 0;\n  background: none;\n  box-shadow: none;\n  border: 0;\n  font-size: 1rem;\n}\n"
-                    },
-                    "content": "<b>{% if now().strftime(\"%H\")|int < 12 %}Good morning {% elif now().strftime(\"%H\")|int < 18 %}Good afternoon  {% else %}Good evening {% endif %}</b>\n{{ state_attr('calendar.bin_collection_calendar', 'message') }} on {{\n  strptime(state_attr('calendar.bin_collection_calendar',\n      'start_time'),'%Y-%m-%d %H:%M:%S').strftime('%A') }}"
-                  }
-                }
-              },
-              "styles": {
-                "grid": [
-                  {
-                    "grid-template-columns": "1fr"
-                  },
-                  {
-                    "grid-template-rows": "33%"
-                  },
-                  {
-                    "grid-template-areas": "\"seb\"\n\"laura\"\n\"welcome\"\n"
-                  }
-                ]
+              ],
+              "view_layout": {
+                "grid-column": "span 2"
               }
             },
             {
@@ -791,6 +1721,7 @@
                 "entity": "input_boolean.study_automations",
                 "light": "light.study",
                 "bright": "binary_sensor.study_bright",
+                "lux": "sensor.study_illuminance",
                 "occupied": "binary_sensor.study_occupied",
                 "climate": "climate.study_radiator",
                 "temp": "sensor.study_temperature",
@@ -816,6 +1747,7 @@
                 "entity": "input_boolean.bathroom_automations",
                 "light": "light.bathroom",
                 "bright": "binary_sensor.bathroom_bright",
+                "lux": "sensor.bathroom_illuminance",
                 "occupied": "binary_sensor.bathroom_occupied",
                 "climate": "climate.bathroom_radiator",
                 "temp": "sensor.bathroom_temperature",
@@ -841,12 +1773,13 @@
                 "entity": "input_boolean.bedroom_automations",
                 "light": "light.bedroom",
                 "bright": "binary_sensor.bedroom_bright",
+                "lux": "sensor.bedroom_illuminance",
                 "occupied": "binary_sensor.bedroom_occupied",
                 "climate": "climate.bedroom",
                 "temp": "sensor.bedroom_temperature",
                 "fan": "fan.bedroom",
                 "humid": "sensor.bedroom_humidity",
-                "media": "media_player.bedroom_tv"
+                "media": "media_player.bedroom_tv_adb"
               },
               "template": [
                 "base",
@@ -867,6 +1800,7 @@
                 "entity": "input_boolean.hall_automations",
                 "light": "light.hall",
                 "bright": "binary_sensor.hall_bright",
+                "lux": "sensor.hall_illuminance",
                 "occupied": "binary_sensor.hall_occupied",
                 "climate": "climate.thermostat",
                 "temp": "sensor.hall_temperature",
@@ -890,6 +1824,7 @@
                 "entity": "input_boolean.kitchen_automations",
                 "light": "light.kitchen",
                 "bright": "binary_sensor.kitchen_bright",
+                "lux": "sensor.kitchen_illuminance",
                 "occupied": "binary_sensor.kitchen_occupied",
                 "temp": "sensor.kitchen_temperature",
                 "humid": "sensor.kitchen_humidity",
@@ -901,7 +1836,8 @@
                 "light",
                 "motion",
                 "bright",
-                "humid"
+                "humid",
+                "temp"
               ]
             },
             {
@@ -912,8 +1848,10 @@
                 "entity": "input_boolean.entrance_automations",
                 "light": "light.entrance",
                 "bright": "binary_sensor.entrance_bright",
+                "lux": "sensor.entrance_illuminance",
                 "occupied": "binary_sensor.entrance_occupied",
-                "temp": "sensor.entrance_temperature"
+                "temp": "sensor.entrance_temperature",
+                "humid": "sensor.entrance_humidity"
               },
               "template": [
                 "base",
@@ -921,6 +1859,7 @@
                 "light",
                 "motion",
                 "bright",
+                "humid",
                 "temp"
               ]
             },
@@ -932,11 +1871,12 @@
                 "entity": "input_boolean.lounge_automations",
                 "light": "light.lounge",
                 "bright": "binary_sensor.lounge_bright",
+                "lux": "sensor.lounge_illuminance",
                 "occupied": "binary_sensor.lounge_occupied",
                 "climate": "climate.thermostat",
                 "temp": "sensor.lounge_temperature",
                 "humid": "sensor.lounge_humidity",
-                "media": "media_player.lounge_tv"
+                "media": "media_player.lounge_tv_adb"
               },
               "template": [
                 "base",
@@ -957,9 +1897,11 @@
                 "entity": "input_boolean.toilet_automations",
                 "light": "light.toilet",
                 "bright": "binary_sensor.toilet_bright",
+                "lux": "sensor.toilet_illuminance",
                 "occupied": "binary_sensor.toilet_occupied",
                 "climate": "climate.toilet_radiator",
-                "temp": "sensor.toilet_temperature"
+                "temp": "sensor.toilet_temperature",
+                "humid": "sensor.toilet_humidity"
               },
               "template": [
                 "base",
@@ -967,181 +1909,77 @@
                 "light",
                 "motion",
                 "bright",
+                "humid",
                 "climate"
               ]
             },
             {
-              "type": "grid",
-              "cards": [
+              "entities": [
                 {
-                  "type": "sensor",
-                  "graph": "line",
-                  "detail": 2,
-                  "entity": "sensor.particulate_matter_2_5um"
+                  "entity": "sensor.smart_meter_electricity_power_watts",
+                  "color": "aqua"
+                },
+                {
+                  "entity": "sensor.fossil_fuel_power_watts",
+                  "color": "orange"
                 }
               ],
-              "columns": 1
+              "hours_to_show": 12,
+              "points_per_hour": 10,
+              "line_width": 1,
+              "unit": "w",
+              "show": {
+                "icon": false,
+                "name": false,
+                "title": true,
+                "extrema": true,
+                "average": true,
+                "fill": "fade",
+                "labels": false,
+                "legend": false
+              },
+              "type": "custom:mini-graph-card",
+              "name": "Energy",
+              "view_layout": {
+                "grid-column": "span 2"
+              },
+              "card_mod": {
+                "style": "ha-card {\n  aspect-ratio: 2.1/1;\n}\n"
+              }
             },
             {
-              "square": true,
-              "columns": 1,
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "gauge",
-                          "entity": "sensor.smart_meter_electricity_power_watts",
-                          "needle": true,
-                          "severity": {
-                            "green": 0,
-                            "yellow": 3000,
-                            "red": 4000
-                          },
-                          "max": 5000,
-                          "name": "Watts",
-                          "min": 0
-                        },
-                        {
-                          "type": "gauge",
-                          "entity": "sensor.smart_meter_electricity_import_today",
-                          "needle": true,
-                          "severity": {
-                            "green": 0,
-                            "yellow": 10,
-                            "red": 13
-                          },
-                          "max": 16,
-                          "name": "kWh",
-                          "min": 0,
-                          "unit": " "
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "card_mod": {
-                        "class": "nobg"
-                      },
-                      "color_thresholds": [
-                        {
-                          "color": "#db4537",
-                          "value": 4000
-                        },
-                        {
-                          "color": "#ffa602",
-                          "value": 3000
-                        },
-                        {
-                          "color": "#44a047",
-                          "value": 0
-                        }
-                      ],
-                      "entities": [
-                        {
-                          "entity": "sensor.smart_meter_electricity_power_watts"
-                        }
-                      ],
-                      "hours_to_show": 24,
-                      "line_width": 1,
-                      "lower_bound": 0,
-                      "points_per_hour": 60,
-                      "show": {
-                        "name": false,
-                        "icon": false,
-                        "state": false
-                      },
-                      "update_interval": 1,
-                      "upper_bound": 5000
-                    }
-                  ],
-                  "card_mod": {
-                    "style": "vertical-stack-in-card {\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n}\n"
-                  }
-                }
-              ]
+              "type": "custom:mushroom-vacuum-card",
+              "entity": "vacuum.vicky",
+              "icon_animation": true,
+              "commands": [
+                "return_home",
+                "on_off",
+                "start_pause",
+                "stop",
+                "locate",
+                "clean_spot"
+              ],
+              "card_mod": {
+                "style": "ha-card {\n  aspect-ratio: 1/1;\n}\n"
+              }
             },
             {
-              "square": true,
-              "columns": 1,
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:slider-button-card",
-                      "entity": "fan.study",
-                      "slider": {
-                        "direction": "left-right",
-                        "background": "triangle",
-                        "use_state_color": true,
-                        "use_percentage_bg_opacity": false,
-                        "show_track": true,
-                        "toggle_on_click": false,
-                        "force_square": false
-                      },
-                      "show_name": true,
-                      "show_state": false,
-                      "compact": true,
-                      "icon": {
-                        "show": true,
-                        "use_state_color": true,
-                        "tap_action": {
-                          "action": "toggle"
-                        }
-                      },
-                      "action_button": {
-                        "mode": "toggle",
-                        "icon": "mdi:power",
-                        "show": false,
-                        "show_spinner": true,
-                        "tap_action": {
-                          "action": "toggle"
-                        }
-                      },
-                      "name": "Study"
-                    },
-                    {
-                      "type": "custom:slider-button-card",
-                      "entity": "fan.bedroom",
-                      "slider": {
-                        "direction": "left-right",
-                        "background": "triangle",
-                        "use_state_color": true,
-                        "use_percentage_bg_opacity": false,
-                        "show_track": true,
-                        "toggle_on_click": false,
-                        "force_square": false
-                      },
-                      "show_name": true,
-                      "show_state": false,
-                      "compact": true,
-                      "icon": {
-                        "show": true,
-                        "use_state_color": true,
-                        "tap_action": {
-                          "action": "toggle"
-                        }
-                      },
-                      "action_button": {
-                        "mode": "toggle",
-                        "icon": "mdi:power",
-                        "show": false,
-                        "show_spinner": true,
-                        "tap_action": {
-                          "action": "toggle"
-                        }
-                      },
-                      "name": "Bedroom"
-                    }
-                  ]
-                }
-              ]
+              "type": "custom:mini-media-player",
+              "entity": "media_player.lounge_speakers",
+              "volume_stateless": true,
+              "artwork": "cover-full",
+              "source": "full",
+              "group": true,
+              "toggle_power": false,
+              "hide": {
+                "name": true,
+                "icon": true,
+                "state_label": true,
+                "source": true
+              },
+              "card_mod": {
+                "style": "ha-card {\n  aspect-ratio: 1/1;\n}\n"
+              }
             }
           ]
         },
@@ -1171,9 +2009,9 @@
               "type": "custom:frigate-card",
               "cameras": [
                 {
-                  "camera_entity": "camera.entrance_frigate",
                   "live_provider": "auto",
-                  "title": "Entrance"
+                  "title": "Entrance",
+                  "camera_entity": "camera.entrance_camera"
                 }
               ],
               "view": {
@@ -1193,11 +2031,6 @@
               },
               "live": {
                 "preload": true,
-                "jsmpeg": {
-                  "options": {
-                    "disableGl": true
-                  }
-                },
                 "controls": {
                   "next_previous": {
                     "style": "none"
@@ -1223,13 +2056,20 @@
               "image": {
                 "mode": "camera",
                 "refresh_seconds": 1
+              },
+              "cameras_global": {
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                }
               }
             },
             {
               "type": "custom:frigate-card",
               "cameras": [
                 {
-                  "camera_entity": "camera.garden_frigate",
+                  "camera_entity": "camera.garden_camera",
                   "live_provider": "auto",
                   "title": "Garden"
                 }
@@ -1251,11 +2091,6 @@
               },
               "live": {
                 "preload": true,
-                "jsmpeg": {
-                  "options": {
-                    "disableGl": true
-                  }
-                },
                 "controls": {
                   "next_previous": {
                     "style": "none"
@@ -1275,13 +2110,20 @@
               "image": {
                 "mode": "camera",
                 "refresh_seconds": 1
+              },
+              "cameras_global": {
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                }
               }
             },
             {
               "type": "custom:frigate-card",
               "cameras": [
                 {
-                  "camera_entity": "camera.hall_frigate",
+                  "camera_entity": "camera.hall_camera",
                   "live_provider": "auto",
                   "title": "Hall"
                 }
@@ -1303,11 +2145,6 @@
               },
               "live": {
                 "preload": true,
-                "jsmpeg": {
-                  "options": {
-                    "disableGl": true
-                  }
-                },
                 "controls": {
                   "next_previous": {
                     "style": "none"
@@ -1327,13 +2164,20 @@
               "image": {
                 "mode": "camera",
                 "refresh_seconds": 1
+              },
+              "cameras_global": {
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                }
               }
             },
             {
               "type": "custom:frigate-card",
               "cameras": [
                 {
-                  "camera_entity": "camera.kitchen_frigate",
+                  "camera_entity": "camera.kitchen_camera",
                   "live_provider": "auto",
                   "title": "Kitchen"
                 }
@@ -1355,11 +2199,6 @@
               },
               "live": {
                 "preload": true,
-                "jsmpeg": {
-                  "options": {
-                    "disableGl": true
-                  }
-                },
                 "controls": {
                   "next_previous": {
                     "style": "none"
@@ -1379,13 +2218,20 @@
               "image": {
                 "mode": "camera",
                 "refresh_seconds": 1
+              },
+              "cameras_global": {
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                }
               }
             },
             {
               "type": "custom:frigate-card",
               "cameras": [
                 {
-                  "camera_entity": "camera.lounge_frigate",
+                  "camera_entity": "camera.lounge_camera",
                   "live_provider": "auto",
                   "title": "Lounge"
                 }
@@ -1408,11 +2254,6 @@
               },
               "live": {
                 "preload": true,
-                "jsmpeg": {
-                  "options": {
-                    "disableGl": true
-                  }
-                },
                 "controls": {
                   "next_previous": {
                     "style": "none"
@@ -1434,13 +2275,20 @@
               "image": {
                 "mode": "camera",
                 "refresh_seconds": 1
+              },
+              "cameras_global": {
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                }
               }
             },
             {
               "type": "custom:frigate-card",
               "cameras": [
                 {
-                  "camera_entity": "camera.sofa_frigate",
+                  "camera_entity": "camera.sofa_camera",
                   "live_provider": "auto",
                   "title": "Sofa"
                 }
@@ -1462,11 +2310,6 @@
               },
               "live": {
                 "preload": true,
-                "jsmpeg": {
-                  "options": {
-                    "disableGl": true
-                  }
-                },
                 "controls": {
                   "next_previous": {
                     "style": "none"
@@ -1486,6 +2329,13 @@
               "image": {
                 "mode": "camera",
                 "refresh_seconds": 1
+              },
+              "cameras_global": {
+                "jsmpeg": {
+                  "options": {
+                    "disableGl": true
+                  }
+                }
               }
             }
           ]
@@ -1593,13 +2443,6 @@
                 ],
                 "exclude": []
               }
-            },
-            {
-              "type": "custom:formulaone-card",
-              "card_type": "next_race",
-              "title": "Next Race",
-              "date_locale": "nl",
-              "image_clickable": false
             }
           ]
         },
@@ -1611,10 +2454,11 @@
           "badges": [],
           "cards": [
             {
-              "type": "gauge",
-              "entity": "sensor.washing_machine_current_power",
-              "needle": true,
-              "name": "Washing Machine"
+              "entity": "sensor.octopus_energy_electricity_current_rate",
+              "type": "custom:octopus-energy-rates-card",
+              "cols": 2,
+              "showday": true,
+              "showpast": false
             },
             {
               "type": "gauge",
@@ -1635,22 +2479,23 @@
               "max": 800
             },
             {
-              "chart_type": "bar",
-              "period": "day",
-              "days_to_show": 10,
+              "chart_type": "line",
+              "period": "5minute",
               "type": "statistics-graph",
               "entities": [
-                "sensor.house"
+                "sensor.smart_meter_electricity_power",
+                "sensor.pc_current_power",
+                "sensor.server_current_power",
+                "sensor.kitchen_sockets_power"
               ],
               "stat_types": [
-                "mean",
+                "max",
                 "min",
-                "max"
-              ]
-            },
-            {
-              "type": "custom:clock-weather-card",
-              "entity": "weather.home"
+                "mean"
+              ],
+              "days_to_show": 1,
+              "unit": "kW",
+              "hide_legend": true
             }
           ]
         },
@@ -1670,6 +2515,183 @@
                 "calendar.family",
                 "calendar.bin_collection_calendar"
               ]
+            }
+          ]
+        },
+        {
+          "title": "Bed",
+          "path": "bed",
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "type": "grid",
+              "cards": [
+                {
+                  "entities": [
+                    {
+                      "color_thresholds_transition": "hard",
+                      "entities": [
+                        {
+                          "entity": "sensor.bedroom_bed_presence_right_voltage",
+                          "color": "#0da035",
+                          "show_fill": false
+                        },
+                        {
+                          "entity": "sensor.bedroom_bed_presence_right_average",
+                          "color": "#e45e65",
+                          "show_fill": false
+                        },
+                        {
+                          "color": "rgb(255,128,0)",
+                          "entity": "binary_sensor.bedroom_bed_presence_right_occupied",
+                          "show_line": false,
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "group": false,
+                      "hour24": true,
+                      "hours_to_show": 12,
+                      "line_width": 2,
+                      "points_per_hour": 12,
+                      "show": {
+                        "icon": false,
+                        "name": false,
+                        "extrema": false,
+                        "average": false,
+                        "fill": "fade",
+                        "labels": false,
+                        "state": true,
+                        "legend": false
+                      },
+                      "state_map": [
+                        {
+                          "label": "Out",
+                          "value": "off"
+                        },
+                        {
+                          "label": "In",
+                          "value": "on"
+                        }
+                      ],
+                      "type": "custom:hui-element",
+                      "card_type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "inline-card-no-border"
+                      }
+                    },
+                    {
+                      "entity": "sensor.bedroom_bed_presence_right_average"
+                    }
+                  ],
+                  "show_header_toggle": false,
+                  "state_color": true,
+                  "title": "Seb's Side",
+                  "type": "entities"
+                },
+                {
+                  "entities": [
+                    {
+                      "color_thresholds_transition": "hard",
+                      "entities": [
+                        {
+                          "entity": "sensor.bedroom_bed_presence_left_voltage",
+                          "color": "#0da035",
+                          "show_fill": false
+                        },
+                        {
+                          "entity": "sensor.bedroom_bed_presence_left_average",
+                          "color": "#e45e65",
+                          "show_fill": false
+                        },
+                        {
+                          "color": "rgb(255,128,0)",
+                          "entity": "binary_sensor.bedroom_bed_presence_left_occupied",
+                          "show_line": false,
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "group": false,
+                      "hour24": true,
+                      "hours_to_show": 12,
+                      "line_width": 2,
+                      "points_per_hour": 12,
+                      "show": {
+                        "icon": false,
+                        "name": false,
+                        "extrema": false,
+                        "average": false,
+                        "fill": "fade",
+                        "labels": false,
+                        "state": true,
+                        "legend": false
+                      },
+                      "state_map": [
+                        {
+                          "label": "Out",
+                          "value": "off"
+                        },
+                        {
+                          "label": "In",
+                          "value": "on"
+                        }
+                      ],
+                      "type": "custom:hui-element",
+                      "card_type": "custom:mini-graph-card",
+                      "card_mod": {
+                        "class": "inline-card-no-border"
+                      }
+                    },
+                    {
+                      "entity": "sensor.bedroom_bed_presence_left_average"
+                    }
+                  ],
+                  "show_header_toggle": false,
+                  "state_color": true,
+                  "title": "Laura's Side",
+                  "type": "entities"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.bed_led_right",
+                  "use_light_color": true,
+                  "show_color_temp_control": true,
+                  "collapsible_controls": false,
+                  "show_color_control": true,
+                  "show_brightness_control": true,
+                  "layout": "vertical",
+                  "fill_container": false,
+                  "secondary_info": "none",
+                  "primary_info": "none",
+                  "icon_type": "none"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.bed_led_left",
+                  "primary_info": "none",
+                  "secondary_info": "none",
+                  "icon_type": "none",
+                  "use_light_color": true,
+                  "show_color_temp_control": true,
+                  "collapsible_controls": false,
+                  "show_color_control": true,
+                  "show_brightness_control": true
+                },
+                {
+                  "type": "entity",
+                  "entity": "binary_sensor.bedroom_bed_presence_right_occupied",
+                  "icon": "mdi:bed-outline",
+                  "name": "Seb"
+                },
+                {
+                  "type": "entity",
+                  "entity": "binary_sensor.bedroom_bed_presence_left_occupied",
+                  "icon": "mdi:bed-outline",
+                  "name": "Laura"
+                }
+              ],
+              "columns": 2
             }
           ]
         }

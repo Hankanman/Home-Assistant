@@ -33,12 +33,11 @@
       },
       {
         "show_in_sidebar": true,
-        "icon": "mdi:keyboard-f1",
-        "title": "F1",
+        "title": "Mushroom",
         "require_admin": false,
         "mode": "storage",
-        "url_path": "dashboard-f1",
-        "id": "dashboard_f1"
+        "url_path": "dashboard-mushroom",
+        "id": "dashboard_mushroom"
       }
     ]
   }

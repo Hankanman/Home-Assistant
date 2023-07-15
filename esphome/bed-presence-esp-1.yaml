@@ -1,0 +1,167 @@
+substitutions:
+  area: Bedroom
+  arealower: bedroom
+
+esphome:
+  name: ${arealower}-bed-presence
+  name_add_mac_suffix: false
+
+esp32:
+  board: az-delivery-devkit-v4
+  framework:
+    type: arduino
+
+ota:
+logger:
+api:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+web_server:
+  port: 80
+
+button:
+  - platform: restart
+    name: ${area} Bed Presence Restart
+    id: ${arealower}_bed_presence_restart
+    entity_category: config
+
+sensor:
+  - platform: adc
+    pin: GPIO32
+    attenuation: 11db
+    name: ${area} Bed Presence Left Voltage
+    id: ${arealower}_bed_presence_left_voltage
+    entity_category: diagnostic
+    icon: mdi:bed
+    update_interval: 0.5s
+    filters:
+      - sliding_window_moving_average:
+          window_size: 5 # The number of most recent readings used to calculate the average
+          send_every: 1 # The filter waits until it has received this many readings before sending a value.
+      - or:
+          - throttle: 60s # This filter ensures that a reading is sent at least every 60 seconds
+          - delta: 0.01 # This filter ensures that a reading is sent if it changes by more than 0.01
+  - platform: adc
+    pin: GPIO33
+    attenuation: 11db
+    name: ${area} Bed Presence Right Voltage
+    id: ${arealower}_bed_presence_right_voltage
+    entity_category: diagnostic
+    icon: mdi:bed
+    update_interval: 0.5s
+    filters:
+      - sliding_window_moving_average:
+          window_size: 5 # The number of most recent readings used to calculate the average
+          send_every: 1 # The filter waits until it has received this many readings before sending a value.
+      - or:
+          - throttle: 60s # This filter ensures that a reading is sent at least every 60 seconds
+          - delta: 0.01 # This filter ensures that a reading is sent if it changes by more than 0.01
+  - platform: template
+    unit_of_measurement: V
+    name: ${area} Bed Presence Left Average Measure
+    id: ${arealower}_bed_presence_left_average_measure
+    entity_category: diagnostic
+    device_class: voltage
+    icon: mdi:bed
+    lambda: |-
+      return id(${arealower}_bed_presence_left_voltage).state;
+    filters:
+      - exponential_moving_average:  # This filter calculates the exponential moving average of the readings
+          alpha: 0.001  # The smoothing factor used in the calculation. A smaller value means older readings have more influence.
+          send_every: 1000 # The filter waits until it has received this many readings before sending a value.
+          send_first_at: 1000 # The filter waits until it has received this many readings before sending the first value.
+  - platform: template
+    unit_of_measurement: V
+    name: ${area} Bed Presence Right Average Measure
+    id: ${arealower}_bed_presence_right_average_measure
+    entity_category: diagnostic
+    device_class: voltage
+    icon: mdi:bed
+    lambda: |-
+      return id(${arealower}_bed_presence_left_voltage).state;
+    filters:
+      - exponential_moving_average:  # This filter calculates the exponential moving average of the readings
+          alpha: 0.001  # The smoothing factor used in the calculation. A smaller value means older readings have more influence.
+          send_every: 1000  # The filter waits until it has received this many readings before sending a value.
+          send_first_at: 1000  # The filter waits until it has received this many readings before sending the first value.
+  - platform: template
+    unit_of_measurement: V
+    name: ${area} Bed Presence Left Average
+    id: ${arealower}_bed_presence_left_average
+    accuracy_decimals: 2
+    entity_category: diagnostic
+    device_class: voltage
+    icon: mdi:bed
+    lambda: |-  # This lambda function returns a default value of 0.16 if the voltage reading is NaN, otherwise it returns the voltage reading
+      if (isnan(id(${arealower}_bed_presence_left_average_measure).state)) {
+        return 0.16;
+      } else {
+        return id(${arealower}_bed_presence_left_average_measure).state * (1 - id(${arealower}_bed_presence_left_threshold).state);
+      }
+  - platform: template
+    unit_of_measurement: V
+    name: ${area} Bed Presence Right Average
+    id: ${arealower}_bed_presence_right_average
+    accuracy_decimals: 2
+    entity_category: diagnostic
+    device_class: voltage
+    icon: mdi:bed
+    lambda: |-  # This lambda function returns a default value of 0.16 if the voltage reading is NaN, otherwise it returns the voltage reading
+      if (isnan(id(${arealower}_bed_presence_right_average_measure).state)) {
+        return 0.16;
+      } else {
+        return id(${arealower}_bed_presence_right_average_measure).state * (1 - id(${arealower}_bed_presence_right_threshold).state);
+      }
+
+number:
+  - platform: template
+    name: ${area} Bed Presence Left Threshold
+    id: ${arealower}_bed_presence_left_threshold
+    optimistic: true
+    min_value: 0
+    max_value: 0.9
+    step: 0.01
+    restore_value: true
+    initial_value: 0.05
+    mode: box
+    unit_of_measurement: V
+    entity_category: config
+  - platform: template
+    name: ${area} Bed Presence Right Threshold
+    id: ${arealower}_bed_presence_right_threshold
+    optimistic: true
+    min_value: 0
+    max_value: 0.9
+    step: 0.01
+    restore_value: true
+    initial_value: 0.05
+    mode: box
+    unit_of_measurement: V
+    entity_category: config
+
+binary_sensor:
+  - platform: template
+    name: ${area} Bed Presence Left Occupied
+    id: ${arealower}_bed_presence_left_occupied
+    device_class: occupancy
+    entity_category: diagnostic
+    lambda: |-
+      if (id(${arealower}_bed_presence_left_voltage).state > id(${arealower}_bed_presence_left_average).state) {
+        return true;
+      } else {
+        return false;
+      }
+  - platform: template
+    name: ${area} Bed Presence Right Occupied
+    id: ${arealower}_bed_presence_right_occupied
+    device_class: occupancy
+    entity_category: diagnostic
+    lambda: |-
+      if (id(${arealower}_bed_presence_right_voltage).state > id(${arealower}_bed_presence_right_average).state) {
+        return true;
+      } else {
+        return false;
+      }

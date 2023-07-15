@@ -155,7 +155,7 @@
         "end_date": null,
         "repeat_type": "repeat",
         "name": "Bathroom",
-        "enabled": true
+        "enabled": false
       },
       {
         "schedule_id": "eb0079",
@@ -210,7 +210,7 @@
         "end_date": null,
         "repeat_type": "repeat",
         "name": "Bedroom",
-        "enabled": true
+        "enabled": false
       },
       {
         "schedule_id": "de45a1",
@@ -265,7 +265,7 @@
         "end_date": null,
         "repeat_type": "repeat",
         "name": "Bedroom Weekends",
-        "enabled": true
+        "enabled": false
       },
       {
         "schedule_id": "339281",
@@ -320,7 +320,7 @@
         "end_date": null,
         "repeat_type": "repeat",
         "name": "Sleep",
-        "enabled": true
+        "enabled": false
       },
       {
         "schedule_id": "471cd0",
@@ -564,7 +564,7 @@
         "end_date": null,
         "repeat_type": "repeat",
         "name": "Kitchen",
-        "enabled": true
+        "enabled": false
       },
       {
         "schedule_id": "91910b",
@@ -703,7 +703,7 @@
         "end_date": null,
         "repeat_type": "repeat",
         "name": null,
-        "enabled": true
+        "enabled": false
       }
     ],
     "tags": []

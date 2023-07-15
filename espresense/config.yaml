@@ -17,6 +17,17 @@ timeout: 30
 # How long before device is considered away
 away_timeout: 120
 
+optimization:
+  enabled: true
+  interval_secs: 60
+  limits:
+    absorption_min: 2
+    absorption_max: 4
+    tx_ref_rssi_min: -70
+    tx_ref_rssi_max: -50
+    rx_adj_rssi_min: -20
+    rx_adj_rssi_max: 20
+
 weighting:
   algorithm: gaussian
   props:
@@ -27,7 +38,7 @@ floors:
   - id: upstairs
     name: Upstairs
   # Bounds (x,y,z) of map in meters
-    bounds: [[-1, -1, 2.5], [20, 8, 5]]
+    bounds: [[0, 0, 1], [6, 8, 5]]
     rooms:
       - name: Study
         points:
@@ -35,8 +46,8 @@ floors:
           - [0, 1.26]
           - [1, 1.26]
           - [1, 2.55]
-          - [4.215, 2.55]
-          - [4.215, 0]
+          - [4.125, 2.55]
+          - [4.125, 0]
       - name: Stairs
         points:
           - [0, 1.26]
@@ -53,18 +64,18 @@ floors:
         points:
           - [2.27, 2.55]
           - [2.27, 4.71]
-          - [4.215, 4.71]
-          - [4.215, 2.55]
+          - [4.125, 4.71]
+          - [4.125, 2.55]
       - name: Bedroom
         points:
           - [0, 4.71]
-          - [0, 7.73]
-          - [4.215, 7.73]
-          - [4.215, 4.71]
+          - [0, 8]
+          - [4.125, 8]
+          - [4.125, 4.71]
   - id: downstairs
     name: Downstairs
   # Bounds (x,y,z) of map in meters
-    bounds: [[-1, -1, 0], [20, 8, 2.5]]
+    bounds: [[0, 0, 0], [6, 8, 1.5]]
     rooms:
       - name: Utility Cupboard
         points:
@@ -82,8 +93,8 @@ floors:
         points:
           - [2.58, 0] # Bottom left
           - [2.58, 1.26] # Top left
-          - [4.215, 1.26] # Top right
-          - [4.215, 0] # Bottom right
+          - [4.125, 1.26] # Top right
+          - [4.125, 0] # Bottom right
       - name: Stairs
         points:
           - [0, 1.26] # Bottom left
@@ -94,14 +105,14 @@ floors:
         points:
           - [1, 1.26] # Bottom left
           - [1, 4.13] # Top left
-          - [4.215, 4.13] # Top right
-          - [4.215, 1.26] # Bottom right
+          - [4.125, 4.13] # Top right
+          - [4.125, 1.26] # Bottom right
       - name: Lounge
         points:
-          - [0, 4.13] # Bottom left
-          - [0, 7.73] # Top left
-          - [4.215, 7.73] # Top right
-          - [4.215, 4.13] # Bottom right
+          - [0, 4.3] # Bottom left
+          - [0, 8] # Top left
+          - [4.125, 8] # Top right
+          - [4.125, 4.3] # Bottom right
 
 # Locations of espresense nodes in meters
 nodes:
@@ -120,14 +131,17 @@ nodes:
   - name: kitchen-esp-1
     point: [2.9, 1.6, 2]
     floors: ["downstairs"]
+  - name: kitchen-esp-2
+    point: [4.05, 3.5, 1.2]
+    floors: ["downstairs"]
   - name: lounge-esp-1
     point: [3.8, 6.8, 0.2]
     floors: ["downstairs"]
   - name: lounge-esp-2
-    point: [0.1, 4.7, 0.4]
+    point: [0.05, 5.258, 0.2]
     floors: ["downstairs"]
   - name: lounge-esp-3
-    point: [1.2, 7.71, 0.4]
+    point: [1.2, 7.95, 0.4]
     floors: ["downstairs"]
   - name: entrance-esp-1
     point: [2.52, 0.15, 0.2]
@@ -138,15 +152,17 @@ nodes:
 
 # Devices to track
 devices:
-  - id: '*'
+  # - id: '*'
+  - id: "ibeacon:*"
+  - id: "tile:*"
   - id: iBeacon:113b66e1-999d-4820-b246-62feffecf7e9-100-1
     name: Seb's Phone
   - id: iBeacon:29360bbc-24a3-415f-834a-d7ddcab4da74-100-1
     name: Laura's Phone
   - id: tile:e6f994abeb40
-    name: Seb's Wallet
-  - id: tile:c32f4c23248c
     name: Seb's Keys
+  - id: tile:c32f4c23248c
+    name: Seb's Wallet
   - id: tile:de2a2a7d78d7
     name: Laura's Keys
   - id: name:juul2-qujeah90
@@ -161,3 +177,7 @@ devices:
     name: Starrunner
   - id: iBeacon:123a6162-8154-4093-8d66-92c7de4a28ff-100-1
     name: Seb's Watch
+  - id: name:LHB-3A0B462E
+    name: VR Base Station Back Left
+  - id: name:LHB-D1E26775
+    name: VR Base Station Front Right

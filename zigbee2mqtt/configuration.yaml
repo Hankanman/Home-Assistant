@@ -1,0 +1,281 @@
+mqtt:
+  server: mqtt://core-mosquitto:1883
+  user: addons
+  password: he5pheicoh9oo7tieS2naep9Vong4uReixooSikoGhoigoh3et3aghic8iepe6th
+serial:
+  port: /dev/ttyAMA1
+  adapter: ezsp
+  disable_led: true
+  baudrate: 115200
+frontend:
+  port: 8099
+advanced:
+  channel: 15
+  elapsed: true
+  last_seen: ISO_8601_local
+  log_level: info
+  pan_id: 55302
+  network_key:
+    - 191
+    - 218
+    - 253
+    - 15
+    - 81
+    - 199
+    - 25
+    - 170
+    - 187
+    - 163
+    - 246
+    - 111
+    - 114
+    - 211
+    - 170
+    - 179
+permit_join: true
+devices:
+  '0xcc86ecfffedb163f':
+    friendly_name: Kitchen Bulb 2
+    description: Area Kitchen
+  '0x001788010b0a0814':
+    friendly_name: Kitchen Temperature Motion Lux 1
+    description: Area Kitchen
+  '0xb4e3f9fffec6a0aa':
+    friendly_name: Bathroom Fan
+    description: Area Bathroom
+  '0x001788010961a9c9':
+    friendly_name: Study Bulb 1
+    description: Area Study
+    color_sync: true
+    state_action: true
+  '0x14b457fffe2ebf48':
+    friendly_name: Study Radiator
+    description: Area Study
+  '0x00158d0005a07292':
+    friendly_name: Lounge Bulb 1
+    description: Area Lounge
+  '0x001788010bb224f5':
+    friendly_name: Study Bulb 2
+    description: Area Study
+    color_sync: true
+    state_action: true
+  '0x001e5e09023f5e72':
+    friendly_name: Thermostat Remote
+    description: Area Downstairs
+  '0x14b457fffe2ebf3f':
+    friendly_name: Bathroom Radiator
+    description: Area Bathroom
+  '0x0017880103d61154':
+    friendly_name: Bathroom Bulb 1
+    description: Area Bathroom
+  '0x00158d0005a01fe0':
+    friendly_name: Toilet Bulb 1
+    description: Area Toilet
+  '0x14b457fffe2ebf34':
+    friendly_name: Toilet Radiator
+    description: Area Toilet
+  '0x001788010485644a':
+    friendly_name: Front Drive Bulb 1
+    description: Area Front Drive
+  '0x0017880109631179':
+    friendly_name: Bedroom Bulb 1
+    description: Area Bedroom
+  '0x14b457fffe2ebf47':
+    friendly_name: Bedroom Radiator
+    description: Area Bedroom
+  '0x001788010b0a0563':
+    friendly_name: Lounge Temperature Motion Lux 1
+    description: Area Lounge
+  '0x00158d0005a01fa6':
+    friendly_name: Lounge Bulb 2
+    description: Area Lounge
+  '0x0017880104ba31c1':
+    friendly_name: Wardrobe Bulb 1
+    description: Area Wardrobe
+  '0x001788010949e838':
+    friendly_name: Front Drive Temperature Motion Lux 1
+    description: Area Front Drive
+  '0x001e5e090241697a':
+    friendly_name: Thermostat
+    description: Area Downstairs
+  '0x00124b0023b3f479':
+    friendly_name: Lounge Motion 1
+    description: Area Lounge
+  '0x00124b0023aca2ee':
+    friendly_name: Toilet Temperature Humidity 1
+    description: Area Toilet
+  '0x001788010949e85f':
+    friendly_name: Garden Temperature Motion Lux 1
+    description: Area Garden
+  '0x00158d0005a07244':
+    friendly_name: Entrance Bulb 1
+    description: Area Entrance
+  '0x00124b0022d34792':
+    friendly_name: Back Door Left
+    description: Area Lounge
+  '0x00158d0005a071a4':
+    friendly_name: Hall Bulb 1
+    description: Area Hall
+  '0x00178801096316e8':
+    friendly_name: Bedroom Bulb 2
+    description: Area Bedroom
+  '0x54ef4410000c2c4c':
+    friendly_name: Bathroom Lux 1
+    description: Area Bathroom
+  '0x00124b0023a96a16':
+    friendly_name: Study Motion 1
+    description: Area Study
+  '0xcc86ecfffed54548':
+    friendly_name: Kitchen Bulb 1
+    description: Area Kitchen
+  '0xcc86ecfffecf3b54':
+    friendly_name: Kitchen Bulb 3
+    description: Area Kitchen
+  '0x0017880109a506f6':
+    friendly_name: Kitchen Remote 1
+    description: Area Kitchen
+  '0x00124b0023acbab0':
+    friendly_name: Lounge Temperature Humidity 1
+    description: Area Lounge
+  '0x00124b00253d74e7':
+    friendly_name: Front Drive Temperature Humidity 1
+    description: Area Front Drive
+  '0x0017880103d61315':
+    friendly_name: Garden Bulb 1
+    description: Area Garden
+  '0x00124b0023b37a39':
+    friendly_name: Bathroom Motion Shower
+    description: Area Bathroom
+  '0x00124b0022d179e9':
+    friendly_name: Toilet Door
+    description: Area Toilet
+  '0x804b50fffe640cc8':
+    friendly_name: Kitchen Plug 1
+    description: Area Kitchen
+  '0x84fd27fffe6e1d7b':
+    friendly_name: Lounge Plug 1
+    description: Area Lounge
+  '0x54ef4410000c1fbe':
+    friendly_name: Study Lux 1
+    description: Area Study
+  '0x00124b0023b3f880':
+    friendly_name: Bathroom Motion Toilet
+    description: Area Bathroom
+  '0x54ef4410000d5f43':
+    friendly_name: Lounge Lux 2
+    description: Area Lounge
+  '0x00124b0023ac9a48':
+    friendly_name: Study Temperature Humidity 1
+    description: Area Study
+  '0x54ef4410000d6491':
+    friendly_name: Toilet Lux 1
+    description: Area Toilet
+  '0x00124b0022ebe0bb':
+    friendly_name: Back Door Right
+    description: Area Lounge
+  '0x54ef4410000c1feb':
+    friendly_name: Lounge Lux 1
+    description: Area Lounge
+  '0x00124b0022671024':
+    friendly_name: Kitchen Temperature Humidity 1
+    description: Area Kitchen
+  '0x0017880103a546bf':
+    friendly_name: Lounge Remote 1
+    description: Area Lounge
+  '0x00124b0023a2ceae':
+    friendly_name: Front Door
+    description: Area Entrance
+  '0x54ef4410000c2dd6':
+    friendly_name: Entrance Lux 1
+    description: Area Entrance
+  '0x00124b0023b3f280':
+    friendly_name: Entrance Motion 1
+    description: Area Entrance
+  '0x00124b0023b3f2ef':
+    friendly_name: Toilet Motion 1
+    description: Area Toilet
+  '0x00124b0022cd90bd':
+    friendly_name: Toilet Window
+    description: Area Toilet
+  '0x00124b0022ff34cc':
+    friendly_name: Fridge Door
+    description: Area Kitchen
+  '0x00124b00226a2327':
+    friendly_name: Entrance Temperature Humidity 1
+    description: Area Entrance
+  '0x00124b0023b37403':
+    friendly_name: Kitchen Motion 1
+    description: Area Kitchen
+  '0x00124b0022688643':
+    friendly_name: Hall Motion 1
+    description: Area Hall
+  '0x54ef4410000c1730':
+    friendly_name: Hall Lux 1
+    description: Area Hall
+  '0x00124b0023ade42f':
+    friendly_name: Hall Temperature Humidity 1
+    description: Area Hall
+  '0x00124b0023b3771c':
+    friendly_name: Hall Motion 2
+    description: Area Hall
+  '0x001788010b0a1323':
+    friendly_name: Hall Temperature Motion Lux 1
+    description: Area Hall
+  '0x0017880109a5e7a4':
+    friendly_name: Bedroom Remote 1
+    description: Area Bedroom
+  '0x00124b0023add371':
+    friendly_name: Bedroom Temperature Humidity 1
+    description: Area Bedroom
+  '0x00124b0023b3996f':
+    friendly_name: Wardrobe Motion 1
+    description: Area Wardrobe
+  '0x54ef4410000d63e4':
+    friendly_name: Bedroom Lux 1
+    description: Area Bedroom
+  '0x0017880109189da6':
+    friendly_name: Bedroom Temperature Motion Lux 1
+    description: Area Bedroom
+  '0x00124b0023a2cbcc':
+    friendly_name: Bedroom Door
+    description: Area Bedroom
+  '0x00124b0022d33b3b':
+    friendly_name: Bedroom Window
+    description: Area Bedroom
+  '0x00124b00239637f1':
+    friendly_name: Study Window Right
+    description: Area Study
+  '0x00124b00239e78a9':
+    friendly_name: Study Door
+    description: Area Study
+  '0x00124b0022d18270':
+    friendly_name: Study Window Left
+    description: Area Study
+  '0x00124b0023b3f641':
+    friendly_name: Bathroom Motion Door
+    description: Area Bathroom
+  '0x00124b002396e3b1':
+    friendly_name: Bathroom Door
+    description: Area Bathroom
+  '0x00124b00253d6dd6':
+    friendly_name: Bathroom Temperature Humidity 1
+    description: Area Bathroom
+  '0x00124b0022679386':
+    friendly_name: Shed Temperature Humidity 1
+    description: Area Shed
+  '0x0017880108c42033':
+    friendly_name: Lounge Lamp
+    description: Area Lounge
+  '0x847127fffec7bb8a':
+    friendly_name: Kitchen Side Lights
+    description: Area Kitchen
+  '0x54ef4410007a2527':
+    friendly_name: The Cube
+blocklist:
+  - '0x0000000000000000'
+availability:
+  active:
+    timeout: 10
+  passive:
+    timeout: 1500
+homeassistant: true

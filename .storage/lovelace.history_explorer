@@ -13,13 +13,7 @@
           "cards": [
             {
               "type": "custom:history-explorer-card",
-              "cardName": "historycard-88370152",
-              "filterEntities": "sensor.*ble*distance*",
-              "combineSameUnits": true,
-              "statistics": {
-                "enabled": true
-              },
-              "defaultTimeRange": "15m"
+              "cardName": "historycard-58104377"
             }
           ]
         }

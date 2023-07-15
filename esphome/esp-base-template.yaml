@@ -1,0 +1,58 @@
+substitutions:
+  area: Bedroom
+  arealower: bedroom
+  board: az-delivery-devkit-v4
+
+esphome:
+  name: ${arealower}-esp
+  name_add_mac_suffix: true
+
+esp32:
+  board: ${board}
+  framework:
+    type: esp-idf
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+esp32_ble_tracker:
+  scan_parameters:
+    interval: 1100ms
+    window: 1100ms
+    active: true
+  on_ble_advertise:
+    - then:
+        - lambda: |-
+            ESP_LOGD("ble_adv", "New BLE device");
+            ESP_LOGD("ble_adv", "  address: %s", x.address_str().c_str());
+            ESP_LOGD("ble_adv", "  name: %s", x.get_name().c_str());
+            ESP_LOGD("ble_adv", "  Advertised service UUIDs:");
+            for (auto uuid : x.get_service_uuids()) {
+                ESP_LOGD("ble_adv", "    - %s", uuid.to_string().c_str());
+            }
+            ESP_LOGD("ble_adv", "  Advertised service data:");
+            for (auto data : x.get_service_datas()) {
+                ESP_LOGD("ble_adv", "    - %s: (length %i)", data.uuid.to_string().c_str(), data.data.size());
+            }
+            ESP_LOGD("ble_adv", "  Advertised manufacturer data:");
+            for (auto data : x.get_manufacturer_datas()) {
+                ESP_LOGD("ble_adv", "    - %s: (length %i)", data.uuid.to_string().c_str(), data.data.size());
+            }
+
+bluetooth_proxy:
+  active: true
+    
+button:
+  - platform: restart
+    name: ${area} Bed Presence Restart
+    id: ${arealower}_bed_presence_restart
+    entity_category: config

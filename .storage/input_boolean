@@ -127,6 +127,10 @@
         "name": "Default Dashboard",
         "initial": true,
         "id": "default_dashboard"
+      },
+      {
+        "id": "tester",
+        "name": "Tester"
       }
     ]
   }
