@@ -51,8 +51,8 @@
         "voltage": 3054,
         "battery": 100,
         "power_outage_count": 24,
-        "illuminance_lux": 55,
-        "illuminance": 17404
+        "illuminance_lux": 34,
+        "illuminance": 15315
     },
     "0x14b457fffe2ebf47": {
         "battery": 53,
@@ -97,8 +97,8 @@
     "0x54ef4410000c1730": {
         "last_seen": "2024-05-28T10:36:18+01:00",
         "linkquality": 212,
-        "illuminance": 9543,
-        "illuminance_lux": 9,
+        "illuminance": 8451,
+        "illuminance_lux": 7,
         "voltage": 3032,
         "battery": 100,
         "power_outage_count": 23
@@ -153,8 +153,8 @@
     "0x54ef4410000c2dd6": {
         "last_seen": "2024-05-28T10:33:13+01:00",
         "linkquality": 188,
-        "illuminance": 21644,
-        "illuminance_lux": 146,
+        "illuminance": 20212,
+        "illuminance_lux": 105,
         "voltage": 3041,
         "battery": 100,
         "power_outage_count": 23
@@ -361,8 +361,8 @@
     "0x00124b00253d6dd6": {
         "last_seen": "2024-05-28T10:36:20+01:00",
         "linkquality": 168,
-        "temperature": 23.23,
-        "humidity": 66,
+        "temperature": 23.25,
+        "humidity": 65.8,
         "voltage": 3000,
         "battery": 100
     },
@@ -431,8 +431,8 @@
         "occupancy": false,
         "temperature": 20.85,
         "motion_sensitivity": "medium",
-        "illuminance": 16010,
-        "illuminance_lux": 40,
+        "illuminance": 13887,
+        "illuminance_lux": 24,
         "led_indication": false,
         "last_seen": "2024-05-28T10:34:53+01:00",
         "linkquality": 212,
@@ -446,14 +446,14 @@
     "0x00124b0023acbab0": {
         "voltage": 2900,
         "temperature": 21.67,
-        "humidity": 65.92,
+        "humidity": 66.05,
         "battery": 56,
         "last_seen": "2024-05-28T10:33:43+01:00",
         "linkquality": 168
     },
     "0x54ef4410000d5f43": {
-        "illuminance": 25600,
-        "illuminance_lux": 363,
+        "illuminance": 23522,
+        "illuminance_lux": 225,
         "voltage": 3000,
         "battery": 100,
         "last_seen": "2024-05-28T10:35:55+01:00",
@@ -465,8 +465,8 @@
         "occupancy_timeout": 0,
         "temperature": 19.37,
         "motion_sensitivity": "high",
-        "illuminance": 10837,
-        "illuminance_lux": 12,
+        "illuminance": 8997,
+        "illuminance_lux": 8,
         "last_seen": "2024-05-28T10:35:13+01:00",
         "linkquality": 172,
         "update": {
@@ -504,8 +504,8 @@
         "linkquality": 192
     },
     "0x54ef4410000d6491": {
-        "illuminance": 22228,
-        "illuminance_lux": 167,
+        "illuminance": 21173,
+        "illuminance_lux": 131,
         "voltage": 3000,
         "battery": 100,
         "last_seen": "2024-05-28T10:32:49+01:00",
@@ -563,8 +563,8 @@
         "battery": 63.5
     },
     "0x54ef4410000c1fbe": {
-        "illuminance": 13980,
-        "illuminance_lux": 25,
+        "illuminance": 13425,
+        "illuminance_lux": 22,
         "voltage": 3000,
         "battery": 100,
         "last_seen": "2024-05-28T10:33:56+01:00",
@@ -584,8 +584,8 @@
         "occupancy": false,
         "motion_sensitivity": "medium",
         "temperature": 13.66,
-        "illuminance": 36094,
-        "illuminance_lux": 4067,
+        "illuminance": 34041,
+        "illuminance_lux": 2535,
         "update": {
             "state": "idle",
             "installed_version": 1107323831,
@@ -602,8 +602,8 @@
         "occupancy": false,
         "motion_sensitivity": "low",
         "temperature": 13.95,
-        "illuminance": 29536,
-        "illuminance_lux": 898,
+        "illuminance": 28970,
+        "illuminance_lux": 789,
         "update": {
             "state": "idle",
             "installed_version": 1107323831,
@@ -663,15 +663,15 @@
         "occupancy": false,
         "motion_sensitivity": "high",
         "temperature": 22.36,
-        "illuminance": 7413,
-        "illuminance_lux": 6,
+        "illuminance": 6105,
+        "illuminance_lux": 4,
         "last_seen": "2024-05-28T10:35:15+01:00",
         "linkquality": 216,
         "update_available": false
     },
     "0x54ef4410000c2c4c": {
-        "illuminance": 4772,
-        "illuminance_lux": 3,
+        "illuminance": 3011,
+        "illuminance_lux": 2,
         "last_seen": "2024-05-28T10:36:18+01:00",
         "linkquality": 172,
         "voltage": 3048,
@@ -680,8 +680,8 @@
     },
     "0x0017880109189da6": {
         "occupancy": false,
-        "illuminance": 0,
-        "illuminance_lux": 0,
+        "illuminance": 1215,
+        "illuminance_lux": 1,
         "update": {
             "state": "idle",
             "installed_version": 1107323831,
@@ -806,7 +806,7 @@
         "last_seen": "2024-05-28T10:22:01+01:00",
         "linkquality": 184,
         "voltage": 2900,
-        "battery": 63.5
+        "battery": 64
     },
     "0x14b457fffe2ebf48": {
         "last_seen": "2024-05-28T10:34:29+01:00",
@@ -834,7 +834,7 @@
         "running_state": "idle",
         "load_estimate": -8000,
         "adaptation_run_status": "lost",
-        "local_temperature": 23.92,
+        "local_temperature": 23.94,
         "update": {
             "state": "idle",
             "installed_version": 545,
@@ -952,8 +952,8 @@
         "linkquality": 200
     },
     "0x00124b0023add371": {
-        "temperature": 23.79,
-        "humidity": 64.74,
+        "temperature": 23.78,
+        "humidity": 64.64,
         "voltage": 2900,
         "battery": 66.5,
         "last_seen": "2024-05-28T10:36:03+01:00",
@@ -1011,7 +1011,7 @@
     "0x00124b0022671024": {
         "last_seen": "2024-05-28T10:07:05+01:00",
         "temperature": 21.73,
-        "humidity": 63.59,
+        "humidity": 63.92,
         "voltage": 2900,
         "battery": 58,
         "linkquality": 136
@@ -1019,7 +1019,7 @@
     "0x00124b00226a2327": {
         "voltage": 2900,
         "battery": 67.5,
-        "temperature": 21.91,
+        "temperature": 21.9,
         "humidity": 62.49,
         "last_seen": "2024-05-28T10:18:48+01:00",
         "linkquality": 176

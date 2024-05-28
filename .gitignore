@@ -42,3 +42,5 @@ models
 model_cache
 **backup.*
 exports
+zigbee2mqtt/state.json
+.storage/battery_notes.storage
