@@ -3,7 +3,7 @@
   "minor_version": 1,
   "key": "frontend_theme",
   "data": {
-    "frontend_default_theme": "Vanilla Plus",
-    "frontend_default_dark_theme": "Vanilla Plus"
+    "frontend_default_theme": "noctis",
+    "frontend_default_dark_theme": "noctis"
   }
 }

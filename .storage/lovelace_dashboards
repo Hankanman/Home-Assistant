@@ -5,7 +5,7 @@
   "data": {
     "items": [
       {
-        "require_admin": false,
+        "require_admin": true,
         "show_in_sidebar": true,
         "icon": "mdi:cog",
         "title": "Home Config",
@@ -14,30 +14,22 @@
         "id": "home_config"
       },
       {
+        "id": "dashboard_testing",
+        "show_in_sidebar": false,
+        "icon": "mdi:test-tube",
+        "title": "Dashboard Testing",
         "require_admin": true,
-        "show_in_sidebar": true,
-        "icon": "mdi:door-open",
-        "title": "Areas",
-        "url_path": "lovelace-areas",
         "mode": "storage",
-        "id": "lovelace_areas"
+        "url_path": "dashboard-testing"
       },
       {
+        "id": "map",
+        "icon": "mdi:map",
+        "title": "Map",
+        "url_path": "map",
         "show_in_sidebar": true,
-        "icon": "mdi:history",
-        "title": "History Explorer",
-        "require_admin": false,
         "mode": "storage",
-        "url_path": "history-explorer",
-        "id": "history_explorer"
-      },
-      {
-        "show_in_sidebar": true,
-        "title": "Mushroom",
-        "require_admin": false,
-        "mode": "storage",
-        "url_path": "dashboard-mushroom",
-        "id": "dashboard_mushroom"
+        "require_admin": false
       }
     ]
   }

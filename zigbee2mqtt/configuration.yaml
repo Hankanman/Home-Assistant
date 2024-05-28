@@ -3,12 +3,16 @@ mqtt:
   user: addons
   password: he5pheicoh9oo7tieS2naep9Vong4uReixooSikoGhoigoh3et3aghic8iepe6th
 serial:
-  port: /dev/ttyAMA1
+  port: /dev/ttyUSB0
   adapter: ezsp
   disable_led: true
   baudrate: 115200
 frontend:
   port: 8099
+device_options:
+  homeassistant:
+    last_seen:
+      enabled_by_default: true
 advanced:
   channel: 15
   elapsed: true
@@ -98,6 +102,7 @@ devices:
   '0x001e5e090241697a':
     friendly_name: Thermostat
     description: Area Downstairs
+    thermostat_unit: celsius
   '0x00124b0023b3f479':
     friendly_name: Lounge Motion 1
     description: Area Lounge
@@ -216,8 +221,8 @@ devices:
     friendly_name: Hall Temperature Humidity 1
     description: Area Hall
   '0x00124b0023b3771c':
-    friendly_name: Hall Motion 2
-    description: Area Hall
+    friendly_name: Wardrobe Motion 2
+    description: Area Wardrobe
   '0x001788010b0a1323':
     friendly_name: Hall Temperature Motion Lux 1
     description: Area Hall

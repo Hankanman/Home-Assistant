@@ -8,7 +8,6 @@ home:
       device_class: occupancy
       probability_threshold: 0.7
       observations:
-
         - platform: "state"
           entity_id: binary_sensor.home_motion
           prob_given_true: 0.6031935
@@ -94,7 +93,7 @@ home:
         name: "People Home"
         icon: "mdi:home"
         device_class: presence
-        state: "{{ is_state_attr('sensor.laura_location', 'Location', 'Home') or is_state_attr('sensor.seb_location', 'Location', 'Home') or is_state('device_tracker.laura_phone_wifi', 'Home') or is_state('device_tracker.seb_phone_wifi', 'Home') }}"
+        state: "{{ is_state_attr('sensor.laura_location', 'Location', 'Home') or is_state_attr('sensor.seb_location', 'Location', 'Home') or is_state('device_tracker.laura_phone_wifi', 'Home') or is_state('device_tracker.seb_phone_wifi', 'Home') or is_state('input_boolean.guest_mode', 'on') }}"
     # Template Variable Sensors
     #----------------------------------#
     sensor:

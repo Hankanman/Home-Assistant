@@ -38,3 +38,7 @@ www/tmp/
 watchman_report.*
 .venv/
 *.csv
+models
+model_cache
+**backup.*
+exports

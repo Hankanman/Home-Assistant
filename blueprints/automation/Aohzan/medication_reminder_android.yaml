@@ -22,7 +22,8 @@ blueprint:
         of the automation
       selector:
         entity:
-          domain: input_boolean
+          domain:
+          - input_boolean
           multiple: false
     notification_title:
       name: Notification title (Optional)

@@ -101,3 +101,8 @@ entrance:
   # Cameras
   #----------------------------------#
   camera:
+
+  # Example configuration.yaml entry
+  mqtt:
+    sensor:
+      - state_topic: "home/bedroom/temperature"

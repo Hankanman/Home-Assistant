@@ -24,27 +24,31 @@ templates:
       - unique_id: bedroom_tv_state
         name: "Bedroom TV State"
         icon: "mdi:power"
-        state: "{{ iif( states('media_player.bedroom_tv_adb') in ['playing','standby','idle','paused','on'] or states('media_player.bedroom_tv_panasonic') in ['playing','standby','idle','paused','on'], 'on', 'off') }}"
+        state: "{{ iif( states('media_player.bedroom_tv_shield_adb') in ['playing','standby','idle','paused','on'] or states('media_player.bedroom_tv_panasonic') in ['playing','standby','idle','paused','on'], 'on', 'off') }}"
+      - unique_id: lounge_speakers_state
+        name: "Lounge Speakers State"
+        icon: "mdi:power"
+        state: "{{ iif( states('media_player.lounge_speakers_wiim') in ['playing','standby','idle','paused','on'] or states('media_player.lounge_speakers_cast') in ['playing','standby','idle','paused','on'], 'on', 'off') }}"
       - unique_id: lounge_tv_state
         name: "Lounge TV State"
         icon: "mdi:power"
-        state: "{{ iif( states('media_player.lounge_tv_adb') in ['playing','standby','idle','paused','on'] or states('media_player.lounge_tv_sony') in ['playing','standby','idle','paused','on'], 'on', 'off') }}"
+        state: "{{ iif( states('media_player.lounge_tv_shield_adb') in ['playing','standby','idle','paused','on'] or states('media_player.lounge_tv_shield_cast') in ['playing','standby','idle','paused','on'] or states('media_player.lounge_tv_sony') in ['playing','standby','idle','paused','on'], 'on', 'off') }}"
       # Sleeping Binary Sensors
       #----------------------------------#
       - unique_id: laura_sleeping
         name: "Laura Sleeping"
         icon: "mdi:sleep"
-        state: "{{ (states('sensor.laura_phone_sleep_confidence') | int(0) > 90 and is_state('person.laura_ward','home')) }}"
+        state: "{{ states('sensor.laura_phone_sleep_confidence') | int(0) > 90 }}"
 
       - unique_id: seb_sleeping
         name: "Seb Sleeping"
         icon: "mdi:sleep"
-        state: "{{ (states('sensor.seb_phone_sleep_confidence') | int(0) > 90 and is_state('person.sebastian_burrell','home')) }}"
+        state: "{{ states('sensor.seb_phone_sleep_confidence') | int(0) > 90 }}"
 
       - unique_id: sleeping
         name: "Sleeping"
         icon: "mdi:sleep"
-        state: "{{ ((is_state('binary_sensor.seb_sleeping', 'on') and is_state('person.sebastian_burrell','home')) or (is_state('binary_sensor.laura_sleeping', 'on') and is_state('person.laura_ward','home'))) and  is_state('binary_sensor.bed_occupied', 'on')}}"
+        state: "{{ is_state('binary_sensor.seb_sleeping', 'on') or is_state('binary_sensor.laura_sleeping', 'on') }}"
 
       - unique_id: upstairs_sleep_mode
         name: Upstairs Sleep Mode
@@ -95,6 +99,12 @@ templates:
       #         {% endif %}
       #       {% endfor %}
       #       {{ data.entities | tojson }}
+      - unique_id: weekday_template
+        name: Weekday Template
+        state: "{{ ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][now().weekday()] }}"
+      - unique_id: month_template
+        name: Month Template
+        state: "{% set months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %} {{ now().day | string + ' ' + months[now().month-1]}}"
       # Power Sensors
       #----------------------------------#
       - unique_id: smart_meter_electricity_power_watts
@@ -186,6 +196,12 @@ templates:
       #----------------------------------#
       - unique_id: seb_location
         name: Seb Location
+        picture: |
+          {% if is_state('person.sebastian_burrell', 'home') %}
+             /local/profile/seb.jpg
+          {% elif is_state('person.sebastian_burrell', 'not_home') %}
+             /local/profile/seb_bw.jpg
+          {% endif %}
         state: |
           {% set name = 'Seb' %}
           {% set state = states('person.sebastian_burrell') %}
@@ -206,10 +222,8 @@ templates:
           {% else %}
             {% if state == "Seb's Parents" %}
               {{name}}'s at his parents
-            {% elif state == "Bourn Surgery" %}
-              {{name}}'s at work
             {% else %}
-              {{name}}'s at {{state}}
+              {{name}}'s at {{state | regex_replace(find="seb's", replace="his", ignorecase=True)}}
             {% endif %}
           {% endif %}
         attributes:
@@ -236,7 +250,7 @@ templates:
             {% set x =  [ states.device_tracker.seb_phone, states.device_tracker.seb_phone_tile, states.sensor.seb_phone_wifi_connection] | selectattr('state', 'ne', ['not_home', 'unavailable', 'unknown']) | sort(reverse=true, attribute='last_changed') | list %}
             {{ iif( x | count > 0, x[0].state, state_attr('sensor.seb_location', 'last_area')) }}
           Devices Home: >
-            {{ iif(is_state('device_tracker.seb_phone', 'home') or is_state('device_tracker.seb_phone_tile', 'home') or is_state('sensor.seb_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') or is_state('device_tracker.seb_phone_wifi', 'Home')}}
+            {{ iif(is_state('device_tracker.seb_phone', 'home') or is_state('sensor.seb_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') or is_state('device_tracker.seb_phone_wifi', 'Home')}}
           Locality: >
             {{ iif(state_attr('sensor.seb_phone_geocoded_location','locality') in ['null','unknown','unavailable'],'Somewhere',state_attr('sensor.seb_phone_geocoded_location','locality')) }}
           Longitude: >
@@ -253,6 +267,12 @@ templates:
 
       - unique_id: laura_location
         name: Laura Location
+        picture: |
+          {% if is_state('person.laura_ward', 'home') %}
+             /local/profile/laura.jpg
+          {% elif is_state('person.laura_ward', 'not_home') %}
+             /local/profile/laura_bw.jpg
+          {% endif %}
         state: |
           {% set name = 'Laura' %}
           {% set state = states('person.laura_ward') %}
@@ -271,12 +291,10 @@ templates:
               {{name}}'s out and about
             {% endif %}
           {% else %}
-            {% if state == "Laura's Parents" %}
-              {{name}}'s at her parents
-            {% elif state == "Bourn Surgery" %}
+            {% if state == "Bourn Surgery" %}
               {{name}}'s at work
             {% else %}
-              {{name}}'s at {{state}}
+              {{name}}'s at {{state | regex_replace(find="laura's", replace="her", ignorecase=True)}}
             {% endif %}
           {% endif %}
         attributes:
@@ -303,7 +321,7 @@ templates:
             {% set x =  [ states.device_tracker.laura_phone, states.device_tracker.laura_s_phone_tile, states.sensor.laura_phone_wifi_connection] | selectattr('state', 'ne', ['not_home', 'unavailable', 'unknown']) | sort(reverse=true, attribute='last_changed') | list %}
             {{ iif( x | count > 0, x[0].state, state_attr('sensor.laura_location', 'last_area')) }}
           Devices Home: >
-            {{ iif(is_state('device_tracker.laura_phone', 'home') or is_state('device_tracker.laura_s_phone_tile', 'home') or is_state('sensor.laura_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') or is_state('device_tracker.laura_phone_wifi', 'Home')}}
+            {{ iif(is_state('device_tracker.laura_phone', 'home') or is_state('sensor.laura_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') or is_state('device_tracker.laura_phone_wifi', 'Home')}}
           Locality: >
             {{ iif(state_attr('sensor.laura_phone_geocoded_location','locality') in ['null','unknown','unavailable'],'Somewhere',state_attr('sensor.laura_phone_geocoded_location','locality')) }}
           Longitude: >

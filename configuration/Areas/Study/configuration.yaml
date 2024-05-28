@@ -66,13 +66,13 @@ study:
 
     # Network
     #----------------------------------#
-    - platform: ping
-      host: !secret starrunner_ip_2gb
-      name: "Starrunner State"
+    #- platform: ping
+    #  host: !secret starrunner_ip_2gb
+    #  name: "Starrunner State"
 
-    - platform: ping
-      host: !secret endeavor_ip_management
-      name: "Endeavor State"
+    #- platform: ping
+    #  host: !secret endeavor_ip_management
+    #  name: "Endeavor State"
 
   # Variable Sensors
   #----------------------------------#

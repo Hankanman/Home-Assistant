@@ -1,34 +1,24 @@
 {
   "version": 1,
-  "minor_version": 1,
+  "minor_version": 2,
   "key": "assist_pipeline.pipelines",
   "data": {
     "items": [
       {
-        "conversation_engine": "homeassistant",
-        "conversation_language": "en",
-        "id": "01gzk2y5es6rwh4rtgwajahkt7",
+        "conversation_engine": "2a596ed5185141994cac3e4ccf38f707",
+        "conversation_language": "*",
+        "id": "01hdcm5j40074x12ta0aqsf5p9",
         "language": "en",
-        "name": "Home Assistant Cloud",
+        "name": "Luna",
         "stt_engine": "stt.faster_whisper",
         "stt_language": "en",
         "tts_engine": "tts.piper",
-        "tts_language": "en-gb-x-rp",
-        "tts_voice": "en-gb-southern_english_female-low"
-      },
-      {
-        "conversation_engine": "1a5a25973ac068c356cabeb90ec72cf9",
-        "conversation_language": "*",
-        "id": "01h1pjbc4y9xj16xzrpy2rfvkk",
-        "language": "en",
-        "name": "Open AI",
-        "stt_engine": "cloud",
-        "stt_language": "en-GB",
-        "tts_engine": "cloud",
-        "tts_language": "en-GB",
-        "tts_voice": "LibbyNeural"
+        "tts_language": "en_GB",
+        "tts_voice": "en_GB-southern_english_female-low",
+        "wake_word_entity": "wake_word.openwakeword",
+        "wake_word_id": "hey_jarvis_v0.1"
       }
     ],
-    "preferred_item": "01gzk2y5es6rwh4rtgwajahkt7"
+    "preferred_item": "01hdcm5j40074x12ta0aqsf5p9"
   }
 }

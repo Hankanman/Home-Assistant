@@ -5,8 +5,8 @@
 records:
   recorder:
     db_url: !secret mariadb
-    purge_keep_days: 365
-    auto_purge: true
+    # purge_keep_days: 365
+    # auto_purge: true
     # exclude:
     #   entity_globs:
     #     - sensor.*_1
@@ -104,11 +104,11 @@ records:
     #     - input_number
     #     - media_player
     #     - zone
-  # influxdb:
-  #   host: a0d7b954-influxdb
-  #   port: 8086
-  #   database: homeassistant
-  #   username: homeassistant
-  #   password: homeassistant
+  influxdb:
+    host: a0d7b954-influxdb
+    port: 8086
+    database: homeassistant
+    username: homeassistant
+    password: homeassistant
   #   max_retries: 3
   #   default_measurement: state

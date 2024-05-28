@@ -3,12 +3,19 @@ system:
   #   - folder: /config
   #     patterns:
   #       - "*.yaml"
+    
+  #browser_mod:
+  
+  battery_notes:
 
-  browser_mod:
-
-  csv_exporter:
+  #csv_exporter:
 
   python_script:
+
+  #device_tracker:
+  #  - platform: bluetooth_le_tracker
+  #    track_new_devices: true
+  #    track_battery: true
 
   group:
     all_automations:
@@ -55,6 +62,11 @@ system:
       timestamp: false
 
   sensor:
+    - platform: email
+      email: !secret seb_email
+      password: !secret seb_email_password
+      imap_server: outlook.office365.com
+      imap_port: 993
     - platform: time_date
       display_options:
         - "date"

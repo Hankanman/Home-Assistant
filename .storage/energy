@@ -28,44 +28,10 @@
         "type": "gas",
         "stat_energy_from": "sensor.smart_meter_gas_import",
         "stat_cost": null,
-        "entity_energy_price": "sensor.octopus_energy_gas_current_rate",
+        "entity_energy_price": "sensor.gas_current_rate",
         "number_energy_price": null
       }
     ],
-    "device_consumption": [
-      {
-        "stat_consumption": "sensor.pc_today_energy"
-      },
-      {
-        "stat_consumption": "sensor.server_today_energy"
-      },
-      {
-        "stat_consumption": "sensor.lounge_media_today_energy"
-      },
-      {
-        "stat_consumption": "sensor.desk_today_energy"
-      },
-      {
-        "stat_consumption": "sensor.cooker_wh"
-      },
-      {
-        "stat_consumption": "sensor.upstairs_lights_wh"
-      },
-      {
-        "stat_consumption": "sensor.downstairs_lights_wh"
-      },
-      {
-        "stat_consumption": "sensor.washing_machine_today_energy"
-      },
-      {
-        "stat_consumption": "sensor.kitchen_sockets_wh"
-      },
-      {
-        "stat_consumption": "sensor.central_heating_wh"
-      },
-      {
-        "stat_consumption": "sensor.kettle_today_energy"
-      }
-    ]
+    "device_consumption": []
   }
 }
