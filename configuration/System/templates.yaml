@@ -99,6 +99,10 @@ templates:
       #         {% endif %}
       #       {% endfor %}
       #       {{ data.entities | tojson }}
+      - unique_id: unmonitored_elecricity_usage
+        name: Unmonitored Electricity Usage
+        unit_of_measurement: wh
+        state: "{{ float(states('sensor.sockets_wh')) - (float(states('sensor.desk_today_energy'))*1000) - (float(states('sensor.servers_today_energy'))*1000) - (float(states('sensor.washing_machine_today_energy'))*1000) }}"
       - unique_id: weekday_template
         name: Weekday Template
         state: "{{ ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][now().weekday()] }}"

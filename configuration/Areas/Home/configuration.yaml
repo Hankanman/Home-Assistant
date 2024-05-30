@@ -101,15 +101,15 @@ home:
       #----------------------------------#
       # Energy
       #----------------------------------#
-      - unique_id: energy_total_usage
-        name: Energy Total Usage
-        device_class: energy
-        unit_of_measurement: "kWh"
-        state_class: measurement
-        state: "{{ (states('sensor.electricity_total_usage') | float(0) + states('sensor.gas_total_usage') | float(0)) | round(2) }}"
-        attributes:
-          interval_start: "{{ as_timestamp(state_attr('sensor.electricity_total_usage', 'interval_start')) | timestamp_local }}"
-          interval_end: "{{ as_timestamp(state_attr('sensor.electricity_total_usage', 'interval_end')) | timestamp_local }}"
+      # - unique_id: energy_total_usage
+      #   name: Energy Total Usage
+      #   device_class: energy
+      #   unit_of_measurement: "kWh"
+      #   state_class: measurement
+      #   state: "{{ (states('sensor.electricity_total_usage') | float(0) + states('sensor.gas_total_usage') | float(0)) | round(2) }}"
+      #   attributes:
+      #     interval_start: "{{ as_timestamp(state_attr('sensor.electricity_total_usage', 'interval_start')) | timestamp_local }}"
+      #     interval_end: "{{ as_timestamp(state_attr('sensor.electricity_total_usage', 'interval_end')) | timestamp_local }}"
 
       # # Bin Collection
       # #----------------------------------#
