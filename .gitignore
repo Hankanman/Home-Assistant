@@ -37,7 +37,6 @@ custom_components
 *.pem
 *.pub
 *.token
-
 # Temporary files
 *.db-journal
 *.pid
@@ -49,6 +48,7 @@ custom_components
 .uuid
 .androidkeys/adbkey
 .androidkeys/adbkey.pub
+configuration/System/recorder.yaml
 secrets.yaml
 known_devices.yaml
 home-assistant_v2.db

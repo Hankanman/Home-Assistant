@@ -1,21 +1,11 @@
 system:
-  # folder_watcher:
-  #   - folder: /config
-  #     patterns:
-  #       - "*.yaml"
-    
   #browser_mod:
-  
+
   battery_notes:
 
   #csv_exporter:
 
   python_script:
-
-  #device_tracker:
-  #  - platform: bluetooth_le_tracker
-  #    track_new_devices: true
-  #    track_battery: true
 
   group:
     all_automations:
@@ -79,33 +69,3 @@ system:
     cache: true
     cache_dir: /tmp/ttsr fast play
     time_memory: 300
-  # o365:
-  #   accounts:
-  #     - account_name: Seb_Work
-  #       client_id: !secret o365_work_client_id
-  #       client_secret: !secret o365_work_secret
-  #       enable_update: True
-  #       email_sensor:
-  #         - name: inbox
-  #           max_items: 5
-  #           is_unread: True
-  #           download_attachments: False
-  #       # query_sensors:
-  #       #   - name: "Example"
-  #       #     folder: "Inbox/Test_Inbox" #Default is Inbox
-  #       #     from: "mail@example.com"
-  #       #     subject_contains: "Example subject"
-  #       #     has_attachment: True
-  #       #     max_items: 2
-  #       #     is_unread: True
-  #       status_sensors: # Cannot be used for personal accounts
-  #         - name: "Seb Teams Status"
-  #       chat_sensors: # Cannot be used for personal accounts
-  #         - name: "Seb Chat"
-  # logger:
-  #   default: error
-  #   logs:
-  #     homeassistant.components.iotawatt: critical
-  #   filters:
-  #     homeassistant.loader:
-  #     - "We found a custom integration*"
