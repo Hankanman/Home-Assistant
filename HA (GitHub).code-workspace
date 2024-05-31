@@ -20,7 +20,8 @@
       "yzhang.markdown-all-in-one",
       "netcorext.uuid-generator",
     "ms-vscode-remote.remote-ssh",
-    "postman.postman-for-vscode"
+    "postman.postman-for-vscode",
+    "github.copilot"
     ]
   },
   "settings": {
