@@ -21,6 +21,7 @@ gtfs2
 glances
 espresense
 custom_components
+blueprints
 
 # Ignore File Extensions
 *.conf

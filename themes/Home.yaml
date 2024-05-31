@@ -1,14 +1,14 @@
-visionos:
-  card-mod-theme: visionos
+Home:
+  card-mod-theme: Home
   modes:
     light:
-      background-image: "center / cover no-repeat fixed url('/local/day.jpg')"
+      background-image: "center / cover no-repeat fixed url('/local/habg.svg')"
       primary-background-color: rgb(52, 50, 47)
       secondary-background-color: rgb(84, 80, 76)
       app-header-background-color: rgba(84, 80, 76, 0.3)
       ha-card-background: rgba(128, 128, 128, 0.3)
     dark:
-      background-image: "center / cover no-repeat fixed url('/local/night.jpg')"
+      background-image: "center / cover no-repeat fixed url('/local/habg.svg')"
       primary-background-color: rgb(25, 24, 22)
       secondary-background-color: rgb(25, 24, 22)
       app-header-background-color: rgba(25, 24, 22, 0.3)

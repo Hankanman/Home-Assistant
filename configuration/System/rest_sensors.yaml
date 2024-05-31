@@ -28,3 +28,42 @@ rest_sensors:
         - selected_file
         - state
         - time_left_secs
+    - platform: rest
+      name: Hass Main config
+      resource: !secret hass_api_config_url
+      authentication: basic
+      value_template: >
+        {{ value_json.version }}
+      json_attributes:
+        - components
+        - unit_system
+        - config_dir
+        - version
+      headers:
+        Content-Type: application/json
+        Authorization: !secret ha_llat
+        User-Agent: Home Assistant REST sensor
+
+    - platform: rest
+      name: Hass.io Info
+      resource: !secret hassio_api_info_url
+      authentication: basic
+      value_template: >
+        {{ value_json.result }}
+      json_attributes:
+        - data
+      headers:
+        Content-Type: application/json
+        Authorization: !secret ha_llat
+        User-Agent: Home Assistant REST sensor
+
+    - platform: rest
+      name: hassos_installed_version
+      resource: !secret hassio_api_info_url
+      authentication: basic
+      value_template: >
+        {{ value_json.data.hassos }}
+      headers:
+        Content-Type: application/json
+        Authorization: !secret ha_llat
+        User-Agent: Home Assistant REST sensor

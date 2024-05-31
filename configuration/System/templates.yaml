@@ -80,28 +80,15 @@ templates:
         state: "{{states('sensor.railen_cpu_usage') != 'unavailable' }}"
 
     sensor:
-      # - unique_id: all_entities_csv
-      #   name: "All Entities CSV"
-      #   value_template: >-
-      #     {% set data = namespace(entities=[]) %}
-      #     {% for state in states.sensor %}
-      #       {% if ('_percentage' in state.entity_id) and ('grid_fossil_fuel' not in state.entity_id) and ('unavailable' not in state.state) and ('unknown' not in state.state) %}
-      #         {% set data.entities = data.entities + [state] %}
-      #       {% endif %}
-      #     {% endfor %}
-      #     {{ data.entities | count }}
-      #   attribute_templates:
-      #     sensor_list: >-
-      #       {% set data = namespace(entities=[]) %}
-      #       {% for state in states.sensor %}
-      #         {% if ('_percentage' in state.entity_id) and ('grid_fossil_fuel' not in state.entity_id) and ('unavailable' not in state.state) and ('unknown' not in state.state) %}
-      #           {% set data.entities = data.entities + [state] %}
-      #         {% endif %}
-      #       {% endfor %}
-      #       {{ data.entities | tojson }}
+      - unique_id: count_all_components
+        name: All Components
+        state: "{{ states.sensor.hass_main_config.attributes.components | count }}"
+
       - unique_id: unmonitored_elecricity_usage
         name: Unmonitored Electricity Usage
         unit_of_measurement: wh
+        device_class: energy
+        state_class: total
         state: "{{ float(states('sensor.sockets_wh')) - (float(states('sensor.desk_today_energy'))*1000) - (float(states('sensor.servers_today_energy'))*1000) - (float(states('sensor.washing_machine_today_energy'))*1000) }}"
       - unique_id: weekday_template
         name: Weekday Template
