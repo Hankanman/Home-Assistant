@@ -5,7 +5,7 @@ rest_sensors:
       name: Mars Pro State
       resource: !secret mars_pro
       method: GET
-      value_template: '{{ value_json.state }}'
+      value_template: "{{ value_json.state }}"
       json_attributes:
         - current_layer
         - layer_count
@@ -19,7 +19,7 @@ rest_sensors:
       unique_id: mars_pro_printing_progress
       resource: !secret mars_pro
       method: GET
-      value_template: '{{ value_json.progress }}'
+      value_template: "{{ value_json.progress }}"
       json_attributes:
         - current_layer
         - layer_count
@@ -28,6 +28,7 @@ rest_sensors:
         - selected_file
         - state
         - time_left_secs
+
     - platform: rest
       name: Hass Main config
       resource: !secret hass_api_config_url

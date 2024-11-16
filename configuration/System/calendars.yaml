@@ -1,0 +1,29 @@
+calendars:
+  template:
+    - trigger:
+        - platform: time_pattern
+          minutes: "5"
+      action:
+        - service: calendar.get_events
+          target:
+            entity_id: calendar.family
+          data:
+            start_date_time: "{{ now().strftime('%Y-%m-%d 00:00:00') }}"
+            end_date_time: "{{ (now() + timedelta(days=1)).strftime('%Y-%m-%d 00:00:00') }}"
+          response_variable: calendar_events
+      sensor:
+        - name: Calendar Events
+          unique_id: calendar_events_24h
+          state: "{{ calendar_events['calendar.family'].events | count() }}"
+          attributes:
+            events: "{{ calendar_events['calendar.family'].events }}"
+          icon: mdi:calendar
+    - trigger:
+        - platform: time_pattern
+          minutes: "/5"
+      sensor:
+        - name: "Bedroom Illuminance 5min Ago Update"
+          unique_id: bedroom_illuminance_5min_ago_update
+          state: "{{ states('sensor.bedroom_illuminance') }}"
+          attributes:
+            lux_5min_ago: "{{ states('sensor.bedroom_illuminance') }}"

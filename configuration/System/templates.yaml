@@ -86,7 +86,7 @@ templates:
 
       - unique_id: unmonitored_elecricity_usage
         name: Unmonitored Electricity Usage
-        unit_of_measurement: wh
+        unit_of_measurement: Wh
         device_class: energy
         state_class: total
         state: "{{ float(states('sensor.sockets_wh')) - (float(states('sensor.desk_today_energy'))*1000) - (float(states('sensor.servers_today_energy'))*1000) - (float(states('sensor.washing_machine_today_energy'))*1000) }}"
@@ -190,7 +190,7 @@ templates:
         picture: |
           {% if is_state('person.sebastian_burrell', 'home') %}
              /local/profile/seb.jpg
-          {% elif is_state('person.sebastian_burrell', 'not_home') %}
+          {% else %}
              /local/profile/seb_bw.jpg
           {% endif %}
         state: |
@@ -253,7 +253,7 @@ templates:
           Address: >
             {{ iif(states('sensor.seb_phone_geocoded_location') in ['null','unknown','unavailable'],'In the Wilderness',states('sensor.seb_phone_geocoded_location')) }}
           Activity: >
-            {% set mapping = {'in_vehicle': 'Driving','still':'Chilling Out','on_bicycle':'Cycling','on_foot':'Standing Up','unknown':'Something','walking':'Walking'} %}
+            {% set mapping = {'in_vehicle': 'Driving','still':'Chilling Out','on_bicycle':'Cycling','on_foot':'Standing Up','unknown':'Something','walking':'Walking','tilting':'Chilling Out'} %}
             {{ iif(states('sensor.seb_phone_detected_activity') in ['null','unknown','unavailable'],'Something', mapping[states('sensor.seb_phone_detected_activity')]) }}
 
       - unique_id: laura_location
@@ -261,7 +261,7 @@ templates:
         picture: |
           {% if is_state('person.laura_ward', 'home') %}
              /local/profile/laura.jpg
-          {% elif is_state('person.laura_ward', 'not_home') %}
+          {% else %}
              /local/profile/laura_bw.jpg
           {% endif %}
         state: |
@@ -324,5 +324,5 @@ templates:
           Address: >
             {{ iif(states('sensor.laura_phone_geocoded_location') in ['null','unknown','unavailable'],'In the Wilderness',states('sensor.laura_phone_geocoded_location')) }}
           Activity: >
-            {% set mapping = {'in_vehicle': 'Driving','still':'Chilling Out','on_bicycle':'Cycling','on_foot':'Standing Up','unknown':'Something','walking':'Walking'} %}
+            {% set mapping = {'in_vehicle': 'Driving','still':'Chilling Out','on_bicycle':'Cycling','on_foot':'Standing Up','unknown':'Something','walking':'Walking','tilting':'Chilling Out'} %}
             {{ iif(states('sensor.laura_phone_detected_activity') in ['null','unknown','unavailable'],'Something', mapping[states('sensor.laura_phone_detected_activity')]) }}

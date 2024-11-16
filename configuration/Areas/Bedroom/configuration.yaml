@@ -10,7 +10,6 @@ bedroom:
       device_class: occupancy
       probability_threshold: 0.7
       observations:
-
         - platform: "state"
           entity_id: binary_sensor.bedroom_door_contact
           prob_given_true: 0.0851935
@@ -108,31 +107,65 @@ bedroom:
     binary_sensor:
       # Bright Sensors
       #----------------------------------#
-      - unique_id: bedroom_bright
-        name: "Bedroom Bright"
+      - name: "Bedroom Bright"
+        unique_id: bedroom_bright
         device_class: light
-        state: |
-          {% set lux = states('sensor.bedroom_illuminance') %}
-          {% set threshold = states('input_number.bedroom_illuminance_level') %}
-          {% set selfState = states('binary_sensor.bedroom_bright') %}
-          {% set lightState = states('light.bedroom') %}
-          {% set selfLastChanged = states.binary_sensor.bedroom_bright.last_changed %}
-          {% if threshold | int(0) == 0 %}
-            False
-          {% elif lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
-            True
-          {% elif lux | int(0) > (threshold | int(0) * 3) %}
-            True
-          {% elif ((threshold | int(0) < lux | int(0) < (threshold | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(selfLastChanged) < 300) %}
-            {{ selfState }}
-          {% elif lux | int(0) < threshold | int(0) %}
-            False
+        state: >
+          {% set lux = states('sensor.bedroom_illuminance') | float(0) %}
+          {% set threshold = states('input_number.bedroom_illuminance_level') | float(0) %}
+          {% set light_state = states('light.bedroom') %}
+          {% set sun_state = states('sun.sun') %}
+          {% set next_setting = state_attr('sun.sun', 'next_setting') %}
+          {% set next_rising = state_attr('sun.sun', 'next_rising') %}
+
+          {% set minutes_to_sunset = ((as_timestamp(next_setting) - as_timestamp(now())) / 60) | int if next_setting else 0 %}
+          {% set minutes_to_sunrise = ((as_timestamp(next_rising) - as_timestamp(now())) / 60) | int if next_rising else 0 %}
+
+          {% if sun_state == 'below_horizon' %}
+            {% set adjusted_threshold = threshold * 0.8 %}
+          {% elif minutes_to_sunset < 60 %}
+            {% set adjusted_threshold = threshold * (0.8 + 0.2 * (minutes_to_sunset / 60)) %}
+          {% elif minutes_to_sunrise < 60 %}
+            {% set adjusted_threshold = threshold * (0.8 + 0.2 * (1 - minutes_to_sunrise / 60)) %}
           {% else %}
-            False
+            {% set adjusted_threshold = threshold %}
           {% endif %}
 
-      # Humid Sensors
-      #----------------------------------#
+          {% set hysteresis_factor = 1.3 %}
+          {% set min_lux_difference = 1 %}
+
+          {% set history = state_attr('sensor.bedroom_illuminance', 'history') %}
+          {% if history %}
+            {% set oldest_state = history[0] %}
+            {% set newest_state = history[-1] %}
+            {% set time_diff = as_timestamp(newest_state.last_changed) - as_timestamp(oldest_state.last_changed) %}
+            {% set lux_diff = newest_state.state | float - oldest_state.state | float %}
+            {% set lux_change_rate = (lux_diff / time_diff) if time_diff > 0 else 0 %}
+          {% else %}
+            {% set lux_change_rate = 0 %}
+          {% endif %}
+
+          {% if lux >= (adjusted_threshold * hysteresis_factor) and light_state == 'off' and (lux - adjusted_threshold) >= min_lux_difference %}
+            {{ true }}
+          {% elif lux <= (adjusted_threshold / hysteresis_factor) and (adjusted_threshold - lux) >= min_lux_difference %}
+            {{ false }}
+          {% elif (lux_change_rate < -0.1 and lux < adjusted_threshold) or (lux_change_rate > 0.1 and lux > adjusted_threshold) %}
+            {{ lux > adjusted_threshold }}
+          {% else %}
+            {{ states('binary_sensor.bedroom_bright') }}
+          {% endif %}
+        attributes:
+          lux: "{{ states('sensor.bedroom_illuminance') }}"
+          base_threshold: "{{ states('input_number.bedroom_illuminance_level') }}"
+          adjusted_threshold: "{{ adjusted_threshold }}"
+          sun_state: "{{ sun_state }}"
+          minutes_to_sunset: "{{ minutes_to_sunset }}"
+          minutes_to_sunrise: "{{ minutes_to_sunrise }}"
+          lux_change_rate:
+            "{{ lux_change_rate | round(3) }}"
+
+            # Humid Sensors
+            #----------------------------------#
 
     # Template Variable Sensors
     #----------------------------------#
@@ -150,6 +183,12 @@ bedroom:
         state_class: measurement
         unit_of_measurement: "%"
         state: "{{ (state_attr('binary_sensor.bed_occupied','probability')*100 | int(0) ) | round(0) }}"
+      - name: "Bedroom Illuminance 5min Ago"
+        unique_id: bedroom_illuminance_5min_ago
+        unit_of_measurement: "lx"
+        state: "{{ states('sensor.bedroom_illuminance') }}"
+        attributes:
+          lux_5min_ago: "{{ state_attr('sensor.bedroom_illuminance_5min_ago', 'lux_5min_ago') | default(states('sensor.bedroom_illuminance')) }}"
 
   # Media Players
   #----------------------------------#

@@ -3,7 +3,7 @@ system:
 
   battery_notes:
 
-  #csv_exporter:
+  csv_exporter:
 
   python_script:
 
