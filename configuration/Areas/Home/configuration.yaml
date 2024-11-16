@@ -92,7 +92,7 @@ home:
       - unique_id: people_home
         name: "People Home"
         icon: "mdi:home"
-        device_class: presence
+        device_class: occupancy
         state: "{{ is_state_attr('sensor.laura_location', 'Location', 'Home') or is_state_attr('sensor.seb_location', 'Location', 'Home') or is_state('device_tracker.laura_phone_wifi', 'Home') or is_state('device_tracker.seb_phone_wifi', 'Home') or is_state('input_boolean.guest_mode', 'on') }}"
     # Template Variable Sensors
     #----------------------------------#

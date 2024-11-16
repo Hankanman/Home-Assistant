@@ -1,0 +1,18 @@
+- id: 2b7c87eb-7c02-4c21-b2f9-f5a52bf73073
+  alias: "Bathroom - Smart Lighting"
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      area_lights:
+        target:
+          entity_id:
+            - light.bathroom
+      occupancy_sensor: binary_sensor.bathroom_occupied
+      illuminance_sensor: sensor.bathroom_illuminance
+      illuminance_threshold: input_number.bathroom_illuminance_level
+      sleep_mode: binary_sensor.upstairs_sleep_mode
+      people_home: binary_sensor.people_home
+      max_brightness: 100
+      min_brightness: 10
+      transition_time: 2
+      idle_timeout: 120

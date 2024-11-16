@@ -8,7 +8,6 @@ my:
 #   client_secret: !secret o365_personal_secret
 #   client_id: !secret o365_personal_client_id
 
-
 homeassistant:
   packages: !include_dir_merge_named configuration/
   allowlist_external_dirs:

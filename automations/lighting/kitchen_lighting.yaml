@@ -1,0 +1,18 @@
+- id: 305d7105-1986-472a-8cc7-93cba2ba7001
+  alias: "Kitchen - Smart Lighting"
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      area_lights:
+        target:
+          entity_id:
+            - light.kitchen
+      occupancy_sensor: binary_sensor.kitchen_occupied
+      illuminance_sensor: sensor.kitchen_illuminance
+      illuminance_threshold: input_number.kitchen_illuminance_level
+      sleep_mode: binary_sensor.downstairs_sleep_mode
+      people_home: binary_sensor.people_home
+      max_brightness: 100
+      min_brightness: 10
+      transition_time: 2
+      idle_timeout: 60

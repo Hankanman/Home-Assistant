@@ -1,0 +1,18 @@
+- id: f74f6349-317c-4341-a560-8ea5ff997325
+  alias: "Entrance - Smart Lighting"
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      area_lights:
+        target:
+          entity_id:
+            - light.entrance
+      occupancy_sensor: binary_sensor.entrance_occupied
+      illuminance_sensor: sensor.entrance_illuminance
+      illuminance_threshold: input_number.entrance_illuminance_level
+      sleep_mode: binary_sensor.downstairs_sleep_mode
+      people_home: binary_sensor.people_home
+      max_brightness: 100
+      min_brightness: 10
+      transition_time: 2
+      idle_timeout: 30

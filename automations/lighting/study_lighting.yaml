@@ -1,0 +1,18 @@
+- id: 2d7638ee-4b7e-4deb-a16d-a77cdc7a2ed2
+  alias: "Study - Smart Lighting"
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      area_lights:
+        target:
+          entity_id:
+            - light.study
+      occupancy_sensor: binary_sensor.study_occupied
+      illuminance_sensor: sensor.study_illuminance
+      illuminance_threshold: input_number.study_illuminance_level
+      sleep_mode: input_boolean.study_sleep_mode
+      people_home: binary_sensor.people_home
+      max_brightness: 100
+      min_brightness: 10
+      transition_time: 3
+      idle_timeout: 30

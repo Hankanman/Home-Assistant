@@ -1,0 +1,18 @@
+- id: 9ee12a7c-4e7f-4f9b-8c97-51d846f8f2a2
+  alias: "Hall - Smart Lighting"
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      area_lights:
+        target:
+          entity_id:
+            - light.hall
+      occupancy_sensor: binary_sensor.hall_occupied
+      illuminance_sensor: sensor.hall_illuminance
+      illuminance_threshold: input_number.hall_illuminance_level
+      sleep_mode: binary_sensor.upstairs_sleep_mode
+      people_home: binary_sensor.people_home
+      max_brightness: 100
+      min_brightness: 10
+      transition_time: 2
+      idle_timeout: 15
