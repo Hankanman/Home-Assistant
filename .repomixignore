@@ -1,0 +1,12 @@
+# Add patterns to ignore here, one per line
+# Example:
+*.log
+tmp/
+custom_icons
+esphome
+custom_templates
+*.code-workspace
+.gitignore
+.repomixignore
+repomix.config.json
+ha-code.md
