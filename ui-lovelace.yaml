@@ -344,7 +344,7 @@ title: Home
 views:
 - badges: []
   cards:
-  - alignment: left
+  - alignment: center
     card_mod:
       style: "ha-card {\n  backdrop-filter: none;\n}\n"
     chips:
@@ -354,14 +354,10 @@ views:
     - entity: sensor.laura_location
       type: entity
       use_entity_picture: true
-    - entity: weather.home
-      show_conditions: true
-      show_temperature: true
-      type: weather
     type: custom:mushroom-chips-card
     view_layout:
       grid-column: 1 / -1
-  - alignment: left
+  - alignment: center
     card_mod:
       style: "ha-card {\n  backdrop-filter: none;\n}\n"
     chips:
@@ -633,7 +629,7 @@ views:
           entity: vacuum.vicky
           show_name: true
           show_status: true
-          show_toolbar: false
+          show_toolbar: true
           type: custom:vacuum-card
     styles:
       card:
@@ -838,6 +834,19 @@ views:
       - grid-template-areas: '"title" "grid"'
       - grid-template-rows: auto 1fr
     type: custom:button-card
+  - template:
+    - base
+    type: custom:button-card
+    variables:
+      icon: mdi:desk-lamp
+      name: Study
+  - aspect_ratio: '1:1'
+    camera_view: live
+    entity: image.vicky_map
+    image: https://demo.home-assistant.io/stub_config/bedroom.png
+    show_name: false
+    show_state: false
+    type: picture-entity
   icon: mdi:home
   layout:
     grid-auto-flow: dense
@@ -1071,6 +1080,48 @@ views:
     - camera_entity: camera.sofa_camera
       live_provider: auto
       title: Sofa
+    cameras_global:
+      jsmpeg:
+        options:
+          disableGl: true
+    dimensions:
+      aspect_ratio: '16:9'
+      aspect_ratio_mode: static
+    image:
+      mode: camera
+      refresh_seconds: 1
+    live:
+      controls:
+        next_previous:
+          style: none
+        thumbnails:
+          mode: none
+      draggable: false
+      lazy_load: true
+      lazy_unload: all
+      preload: true
+    menu:
+      buttons:
+        frigate:
+          enabled: true
+        image:
+          enabled: true
+      position: bottom
+      style: outside
+    performance:
+      features:
+        animated_progress_indicator: true
+      profile: low
+      style:
+        border_radius: true
+        box_shadow: true
+    type: custom:frigate-card
+    view:
+      default: image
+  - cameras:
+    - camera_entity: camera.garden_camera
+      live_provider: auto
+      title: Garden
     cameras_global:
       jsmpeg:
         options:

@@ -6,21 +6,17 @@
   ],
   "extensions": {
     "recommendations": [
-      "ybaumes.highlight-trailing-white-spaces",
       "emilast.LogFileHighlighter",
       "keesschollaart.vscode-home-assistant",
       "lukas-tr.materialdesignicons-intellisense",
       "oderwat.indent-rainbow",
       "redhat.vscode-yaml",
-      "usernamehw.errorlens",
       "ESPHome.esphome-vscode",
       "esbenp.prettier-vscode",
       "DavidAnson.vscode-markdownlint",
-      "dbaeumer.vscode-eslint",
       "yzhang.markdown-all-in-one",
       "netcorext.uuid-generator",
     "ms-vscode-remote.remote-ssh",
-    "postman.postman-for-vscode",
     "github.copilot"
     ]
   },
@@ -30,6 +26,9 @@
     },
     "vscode-home-assistant.hostUrl": "https://ha.sbhost.co.uk",
     "vscode-home-assistant.longLivedAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1NjAzMWUwNGMzZmM0YmQ5ODg0NzYzNjg4ZjI1ZTk2NiIsImlhdCI6MTcxNzA2NzkwOSwiZXhwIjoyMDMyNDI3OTA5fQ.3VfJhgGdHMWrxoqRN0bJKkbMzBMmBX9h0-ejDE-4qNI",
-    "remote.downloadExtensionsLocally": true
+    "remote.downloadExtensionsLocally": true,
+    "logViewer.watch": [
+      "home-assistant.log"
+    ]
   }
 }

@@ -1,1222 +1,1218 @@
 - id: d0cf70f1-cd8e-43ca-af88-d12a8a0ee241
   alias: Home - Bin Collection Reminder
-  description:
-    Sends a reminder message to mobiles one day before the bin collection
+  description: Sends a reminder message to mobiles one day before the bin collection
     day.
   trigger:
-    - platform: time
-      at: input_datetime.bin_reminder
+  - platform: time
+    at: input_datetime.bin_reminder
   condition:
-    - condition: state
-      entity_id: input_boolean.home_automations
-      state: "on"
+  - condition: state
+    entity_id: input_boolean.home_automations
+    state: 'on'
   action:
-    - service: notify.mobiles
-      data:
-        message:
-          "There will be a {{ state_attr('calendar.bin_collection_calendar',
-          'message') | lower }} tomorrow. Have you put them out?
+  - service: notify.mobiles
+    data:
+      message: 'There will be a {{ state_attr(''calendar.bin_collection_calendar'',
+        ''message'') | lower }} tomorrow. Have you put them out?
 
-          "
-        data:
-          ttl: 0
-          priority: high
+        '
+      data:
+        ttl: 0
+        priority: high
   mode: single
 - id: c87f8826-584c-4459-ac6e-8d3615702dad
-  alias: Bathroom - Lights
-  description: ""
+  alias: Lights
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.bathroom_occupied
-        - input_boolean.bathroom_automations
-        - binary_sensor.upstairs_sleep_mode
-        - binary_sensor.people_home
-      from: "off"
-      to: "on"
-    - platform: state
-      entity_id:
-        - binary_sensor.bathroom_occupied
-        - input_boolean.bathroom_automations
-        - binary_sensor.upstairs_sleep_mode
-        - binary_sensor.people_home
-      from: "on"
-      to: "off"
+  - platform: state
+    entity_id:
+    - binary_sensor.bathroom_occupied
+    - input_boolean.bathroom_automations
+    - binary_sensor.upstairs_sleep_mode
+    - binary_sensor.people_home
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.bathroom_occupied
+    - input_boolean.bathroom_automations
+    - binary_sensor.upstairs_sleep_mode
+    - binary_sensor.people_home
+    from: 'on'
+    to: 'off'
   condition:
-    - condition: state
-      entity_id: input_boolean.bathroom_automations
-      state: "on"
+  - condition: state
+    entity_id: input_boolean.bathroom_automations
+    state: 'on'
   action:
-    - if:
-        - condition: state
-          entity_id: binary_sensor.bathroom_occupied
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.bathroom_bright
-          state: "off"
-        - condition: state
-          entity_id: binary_sensor.people_home
-          state: "on"
-      then:
-        - if:
-            - condition: state
-              entity_id: binary_sensor.upstairs_sleep_mode
-              state: "on"
-          then:
-            - if:
-                - condition: time
-                  after: 06:00:00
-              then:
-                - service: light.turn_on
-                  data:
-                    transition: 2
-                    brightness_pct: 100
-                  target:
-                    area_id: bathroom
-              else:
-                - service: light.turn_on
-                  data:
-                    transition: 2
-                    brightness_pct: 10
-                  target:
-                    entity_id: light.bathroom
-          else:
-            - service: light.turn_on
-              data:
-                transition: 2
-                brightness_pct: 100
-              target:
-                entity_id: light.bathroom
-      else:
-        - delay:
-            hours: 0
-            minutes: 2
-            seconds: 0
-            milliseconds: 0
-        - if:
-            - condition: state
-              entity_id: binary_sensor.upstairs_sleep_mode
-              state: "on"
-          then:
-            - service: light.turn_off
-              data:
-                transition: 10
-              target:
-                entity_id: light.bathroom
-          else:
-            - service: light.turn_on
-              data:
-                transition: 10
-                brightness_pct: 50
-              target:
-                entity_id: light.bathroom
-            - delay:
-                hours: 0
-                minutes: 1
-                seconds: 0
-                milliseconds: 0
-            - service: light.turn_off
-              data:
-                transition: 5
-              target:
-                entity_id: light.bathroom
-  mode: restart
-- id: bf065214-cd47-43f8-a537-d39686045b26
-  alias: Bedroom - Lights
-  description: ""
-  trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.bedroom_occupied
-      id: Occupied
-    - platform: state
-      entity_id:
-        - binary_sensor.bedroom_tv_state
-      id: TV
-    - platform: state
-      entity_id:
-        - binary_sensor.people_home
-      id: PeopleHome
-    - platform: state
-      entity_id:
-        - input_boolean.bedroom_sleep_mode
-      id: SleepMode
-    - platform: state
-      entity_id:
-        - input_boolean.bedroom_automations
-      id: Automations
-    - platform: state
-      entity_id:
-        - binary_sensor.bedroom_bright
-      id: Bright
-  condition:
+  - if:
     - condition: state
-      entity_id: input_boolean.bedroom_automations
-      state: "on"
-  action:
-    - if:
-        - condition: state
-          entity_id: binary_sensor.bedroom_occupied
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.bedroom_bright
-          state: "off"
-        - condition: state
-          entity_id: binary_sensor.people_home
-          state: "on"
-        - condition: state
-          entity_id: input_boolean.bedroom_sleep_mode
-          state: "off"
-      then:
-        - if:
-            - condition: state
-              entity_id: binary_sensor.bedroom_tv_state
-              state: "on"
-          then:
-            - service: light.turn_on
-              data:
-                transition: 5
-                brightness_pct: 10
-                color_temp: 454
-              target:
-                entity_id: light.bedroom
-            - service: light.turn_on
-              data:
-                transition: 5
-                color_temp: 500
-                brightness_pct: 10
-              target:
-                entity_id: light.bed_lights
-          else:
-            - if:
-                - condition: template
-                  value_template:
-                    "{{ (((now() | as_timestamp) | int(0) / 60) | round(0, 'floor')
-                    - ((states.binary_sensor.bedroom_tv_state.last_changed | as_timestamp(now()))
-                    | int(0) / 60) | round(0, 'floor')) < 5 and is_state('binary_sensor.bedroom_tv_state',
-                    'off') }}"
-              then:
-                - service: light.turn_on
-                  data:
-                    transition: 20
-                    brightness_pct: 100
-                  target:
-                    entity_id: light.bedroom
-              else:
-                - service: light.turn_on
-                  data:
-                    transition: 3
-                    brightness_pct: 100
-                  target:
-                    entity_id: light.bedroom
-                - service: light.turn_on
-                  data:
-                    transition: 3
-                    rgb_color:
-                      - 255
-                      - 255
-                      - 255
-                    brightness_pct: 70
-                  target:
-                    entity_id: light.bed_lights
-      else:
-        - if:
-            - condition: state
-              entity_id: binary_sensor.bedroom_bright
-              state: "off"
-          then:
-            - if:
-                - condition: state
-                  entity_id: input_boolean.bedroom_sleep_mode
-                  state: "on"
-              then:
-                - service: light.turn_off
-                  data:
-                    transition: 10
-                  target:
-                    entity_id: light.bedroom
-                - service: light.turn_off
-                  data: {}
-                  target:
-                    entity_id: light.bed_lights
-              else:
-                - delay:
-                    minutes: 2
-                - service: light.turn_on
-                  data:
-                    brightness_pct: 50
-                    transition: 10
-                  target:
-                    entity_id: light.bedroom
-                - service: light.turn_on
-                  data:
-                    transition: 10
-                    color_temp: 500
-                    brightness_pct: 5
-                  target:
-                    entity_id: light.bed_lights
-                - delay:
-                    minutes: 2
-                - service: light.turn_off
-                  data:
-                    transition: 5
-                  target:
-                    entity_id: light.bedroom
-                - service: light.turn_off
-                  data:
-                    transition: 5
-                  target:
-                    entity_id: light.bed_lights
-  mode: restart
-- id: d7b2ff77-0e4f-4efb-820f-9a4b67399a3b
-  alias: Wardrobe - Lights
-  description: ""
-  trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.wardrobe_motion
-      from:
-    - platform: state
-      entity_id:
-        - binary_sensor.people_home
-    - platform: state
-      entity_id:
-        - input_boolean.bedroom_sleep_mode
-  condition:
+      entity_id: binary_sensor.bathroom_occupied
+      state: 'on'
     - condition: state
-      entity_id: input_boolean.bedroom_automations
-      state: "on"
-  action:
-    - if:
-        - condition: state
-          entity_id: binary_sensor.wardrobe_occupied
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.people_home
-          state: "on"
-      then:
-        - if:
-            - condition: state
-              entity_id: input_boolean.bedroom_sleep_mode
-              state: "on"
-          then:
-            - if:
-                - condition: time
-                  after: 06:30:00
-              then:
-                - service: light.turn_on
-                  data:
-                    transition: 1
-                    brightness_pct: 50
-                    color_temp: 500
-                  target:
-                    entity_id: light.wardrobe
-          else:
-            - service: light.turn_on
-              data:
-                color_temp: 153
-                brightness_pct: 100
-              target:
-                area_id: wardrobe
-      else:
-        - delay:
-            hours: 0
-            minutes: 0
-            seconds: 5
-            milliseconds: 0
-        - service: light.turn_off
-          data: {}
-          target:
-            entity_id: light.wardrobe
-  mode: restart
-- id: f26a8757-9178-4334-b2dc-07fda3f01c30
-  alias: Entrance - Lights
-  description: ""
-  trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.entrance_occupied
-        - input_boolean.entrance_automations
-        - binary_sensor.downstairs_sleep_mode
-        - binary_sensor.people_home
-      from: "off"
-      to: "on"
-    - platform: state
-      entity_id:
-        - binary_sensor.entrance_occupied
-        - input_boolean.entrance_automations
-        - binary_sensor.downstairs_sleep_mode
-        - binary_sensor.people_home
-      from: "on"
-      to: "off"
-  condition:
+      entity_id: binary_sensor.bathroom_bright
+      state: 'off'
     - condition: state
-      entity_id: input_boolean.entrance_automations
-      state: "on"
-  action:
+      entity_id: binary_sensor.people_home
+      state: 'on'
+    then:
     - if:
-        - condition: state
-          entity_id: binary_sensor.entrance_occupied
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.entrance_bright
-          state: "off"
-        - condition: state
-          entity_id: binary_sensor.people_home
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.downstairs_sleep_mode
-          state: "off"
+      - condition: state
+        entity_id: binary_sensor.upstairs_sleep_mode
+        state: 'on'
       then:
-        - service: light.turn_on
-          data:
+      - if:
+        - condition: time
+          after: 06:00:00
+        then:
+        - data:
             transition: 2
             brightness_pct: 100
           target:
-            entity_id: light.entrance
+            area_id: bathroom
+          action: light.turn_on
+        else:
+        - data:
+            transition: 2
+            brightness_pct: 10
+          target:
+            entity_id: light.bathroom
+          action: light.turn_on
       else:
+      - data:
+          transition: 2
+          brightness_pct: 100
+        target:
+          entity_id: light.bathroom
+        action: light.turn_on
+    else:
+    - delay:
+        hours: 0
+        minutes: 2
+        seconds: 0
+        milliseconds: 0
+    - if:
+      - condition: state
+        entity_id: binary_sensor.upstairs_sleep_mode
+        state: 'on'
+      then:
+      - data:
+          transition: 10
+        target:
+          entity_id: light.bathroom
+        action: light.turn_off
+      else:
+      - data:
+          transition: 10
+          brightness_pct: 50
+        target:
+          entity_id: light.bathroom
+        action: light.turn_on
+      - delay:
+          hours: 0
+          minutes: 1
+          seconds: 0
+          milliseconds: 0
+      - data:
+          transition: 5
+        target:
+          entity_id: light.bathroom
+        action: light.turn_off
+  mode: restart
+- id: bf065214-cd47-43f8-a537-d39686045b26
+  alias: Bedroom - Lights
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.bedroom_occupied
+    id: Occupied
+  - platform: state
+    entity_id:
+    - binary_sensor.bedroom_tv_state
+    id: TV
+  - platform: state
+    entity_id:
+    - binary_sensor.people_home
+    id: PeopleHome
+  - platform: state
+    entity_id:
+    - input_boolean.bedroom_sleep_mode
+    id: SleepMode
+  - platform: state
+    entity_id:
+    - input_boolean.bedroom_automations
+    id: Automations
+  - platform: state
+    entity_id:
+    - binary_sensor.bedroom_bright
+    id: Bright
+  condition:
+  - condition: state
+    entity_id: input_boolean.bedroom_automations
+    state: 'on'
+  action:
+  - if:
+    - condition: state
+      entity_id: binary_sensor.bedroom_occupied
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.bedroom_bright
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.people_home
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.bedroom_sleep_mode
+      state: 'off'
+    then:
+    - if:
+      - condition: state
+        entity_id: binary_sensor.bedroom_tv_state
+        state: 'on'
+      then:
+      - service: light.turn_on
+        data:
+          transition: 5
+          brightness_pct: 10
+          color_temp: 454
+        target:
+          entity_id: light.bedroom
+      - service: light.turn_on
+        data:
+          transition: 5
+          color_temp: 500
+          brightness_pct: 10
+        target:
+          entity_id: light.bed_lights
+      else:
+      - if:
+        - condition: template
+          value_template: '{{ (((now() | as_timestamp) | int(0) / 60) | round(0, ''floor'')
+            - ((states.binary_sensor.bedroom_tv_state.last_changed | as_timestamp(now()))
+            | int(0) / 60) | round(0, ''floor'')) < 5 and is_state(''binary_sensor.bedroom_tv_state'',
+            ''off'') }}'
+        then:
+        - service: light.turn_on
+          data:
+            transition: 20
+            brightness_pct: 100
+          target:
+            entity_id: light.bedroom
+        else:
+        - service: light.turn_on
+          data:
+            transition: 3
+            brightness_pct: 100
+          target:
+            entity_id: light.bedroom
+        - service: light.turn_on
+          data:
+            transition: 3
+            rgb_color:
+            - 255
+            - 255
+            - 255
+            brightness_pct: 70
+          target:
+            entity_id: light.bed_lights
+    else:
+    - if:
+      - condition: state
+        entity_id: binary_sensor.bedroom_bright
+        state: 'off'
+      then:
+      - if:
+        - condition: state
+          entity_id: input_boolean.bedroom_sleep_mode
+          state: 'on'
+        then:
+        - service: light.turn_off
+          data:
+            transition: 10
+          target:
+            entity_id: light.bedroom
+        - service: light.turn_off
+          data: {}
+          target:
+            entity_id: light.bed_lights
+        else:
         - delay:
-            hours: 0
-            minutes: 0
-            seconds: 30
-            milliseconds: 0
+            minutes: 2
+        - service: light.turn_on
+          data:
+            brightness_pct: 50
+            transition: 10
+          target:
+            entity_id: light.bedroom
+        - service: light.turn_on
+          data:
+            transition: 10
+            color_temp: 500
+            brightness_pct: 5
+          target:
+            entity_id: light.bed_lights
+        - delay:
+            minutes: 2
         - service: light.turn_off
           data:
             transition: 5
           target:
-            entity_id: light.entrance
+            entity_id: light.bedroom
+        - service: light.turn_off
+          data:
+            transition: 5
+          target:
+            entity_id: light.bed_lights
+  mode: restart
+- id: d7b2ff77-0e4f-4efb-820f-9a4b67399a3b
+  alias: Wardrobe - Lights
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.wardrobe_motion
+    from:
+  - platform: state
+    entity_id:
+    - binary_sensor.people_home
+  - platform: state
+    entity_id:
+    - input_boolean.bedroom_sleep_mode
+  condition:
+  - condition: state
+    entity_id: input_boolean.bedroom_automations
+    state: 'on'
+  action:
+  - if:
+    - condition: state
+      entity_id: binary_sensor.wardrobe_occupied
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.people_home
+      state: 'on'
+    then:
+    - if:
+      - condition: state
+        entity_id: input_boolean.bedroom_sleep_mode
+        state: 'on'
+      then:
+      - if:
+        - condition: time
+          after: 06:30:00
+        then:
+        - service: light.turn_on
+          data:
+            transition: 1
+            brightness_pct: 50
+            color_temp: 500
+          target:
+            entity_id: light.wardrobe
+      else:
+      - service: light.turn_on
+        data:
+          color_temp: 153
+          brightness_pct: 100
+        target:
+          area_id: wardrobe
+    else:
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 5
+        milliseconds: 0
+    - service: light.turn_off
+      data: {}
+      target:
+        entity_id: light.wardrobe
+  mode: restart
+- id: f26a8757-9178-4334-b2dc-07fda3f01c30
+  alias: Entrance - Lights
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.entrance_occupied
+    - input_boolean.entrance_automations
+    - binary_sensor.downstairs_sleep_mode
+    - binary_sensor.people_home
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.entrance_occupied
+    - input_boolean.entrance_automations
+    - binary_sensor.downstairs_sleep_mode
+    - binary_sensor.people_home
+    from: 'on'
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: input_boolean.entrance_automations
+    state: 'on'
+  action:
+  - if:
+    - condition: state
+      entity_id: binary_sensor.entrance_occupied
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.entrance_bright
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.people_home
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.downstairs_sleep_mode
+      state: 'off'
+    then:
+    - service: light.turn_on
+      data:
+        transition: 2
+        brightness_pct: 100
+      target:
+        entity_id: light.entrance
+    else:
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 30
+        milliseconds: 0
+    - service: light.turn_off
+      data:
+        transition: 5
+      target:
+        entity_id: light.entrance
   mode: restart
 - id: d0cccb19-ad9a-407e-9e5b-e5bb81f23cc9
   alias: Hall - Lights
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.hall_occupied
-        - binary_sensor.hall_motion
-        - input_boolean.hall_automations
-        - binary_sensor.upstairs_sleep_mode
-        - binary_sensor.people_home
+  - platform: state
+    entity_id:
+    - binary_sensor.hall_occupied
+    - binary_sensor.hall_motion
+    - input_boolean.hall_automations
+    - binary_sensor.upstairs_sleep_mode
+    - binary_sensor.people_home
   condition:
-    - condition: state
-      entity_id: input_boolean.hall_automations
-      state: "on"
+  - condition: state
+    entity_id: input_boolean.hall_automations
+    state: 'on'
   action:
+  - if:
+    - condition: state
+      entity_id: binary_sensor.hall_occupied
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.hall_bright
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.people_home
+      state: 'on'
+    then:
     - if:
-        - condition: state
-          entity_id: binary_sensor.hall_occupied
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.hall_bright
-          state: "off"
-        - condition: state
-          entity_id: binary_sensor.people_home
-          state: "on"
+      - condition: state
+        entity_id: binary_sensor.upstairs_sleep_mode
+        state: 'on'
       then:
-        - if:
-            - condition: state
-              entity_id: binary_sensor.upstairs_sleep_mode
-              state: "on"
-          then:
-            - service: light.turn_on
-              data:
-                transition: 2
-                brightness_pct: 10
-              target:
-                entity_id: light.hall
-          else:
-            - service: light.turn_on
-              data:
-                transition: 2
-                brightness_pct: 100
-              target:
-                entity_id: light.hall
+      - service: light.turn_on
+        data:
+          transition: 2
+          brightness_pct: 10
+        target:
+          entity_id: light.hall
       else:
-        - if:
-            - condition: state
-              entity_id: binary_sensor.upstairs_sleep_mode
-              state: "on"
-          then:
-            - service: light.turn_off
-              data:
-                transition: 2
-              target:
-                entity_id: light.hall
-          else:
-            - delay:
-                hours: 0
-                minutes: 0
-                seconds: 15
-                milliseconds: 0
-            - service: light.turn_off
-              data:
-                transition: 5
-              target:
-                entity_id: light.hall
+      - service: light.turn_on
+        data:
+          transition: 2
+          brightness_pct: 100
+        target:
+          entity_id: light.hall
+    else:
+    - if:
+      - condition: state
+        entity_id: binary_sensor.upstairs_sleep_mode
+        state: 'on'
+      then:
+      - service: light.turn_off
+        data:
+          transition: 2
+        target:
+          entity_id: light.hall
+      else:
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 15
+          milliseconds: 0
+      - service: light.turn_off
+        data:
+          transition: 5
+        target:
+          entity_id: light.hall
   mode: restart
 - id: 027c7b02-12e8-4d99-8154-05b903a2e8dc
   alias: Lounge - Lights
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.lounge_occupied
-        - input_boolean.lounge_automations
-        - binary_sensor.people_home
-        - binary_sensor.lounge_bright
-        - binary_sensor.downstairs_sleep_mode
-        - binary_sensor.lounge_tv_state
+  - platform: state
+    entity_id:
+    - binary_sensor.lounge_occupied
+    - input_boolean.lounge_automations
+    - binary_sensor.people_home
+    - binary_sensor.lounge_bright
+    - binary_sensor.downstairs_sleep_mode
+    - binary_sensor.lounge_tv_state
   condition:
-    - condition: state
-      entity_id: input_boolean.lounge_automations
-      state: "on"
+  - condition: state
+    entity_id: input_boolean.lounge_automations
+    state: 'on'
   action:
+  - if:
+    - condition: state
+      entity_id: binary_sensor.lounge_occupied
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.lounge_bright
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.people_home
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.downstairs_sleep_mode
+      state: 'off'
+    then:
     - if:
-        - condition: state
-          entity_id: binary_sensor.lounge_occupied
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.lounge_bright
-          state: "off"
-        - condition: state
-          entity_id: binary_sensor.people_home
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.downstairs_sleep_mode
-          state: "off"
+      - condition: state
+        entity_id: binary_sensor.lounge_tv_state
+        state: 'on'
       then:
-        - if:
-            - condition: state
-              entity_id: binary_sensor.lounge_tv_state
-              state: "on"
-          then:
-            - service: light.turn_on
-              data:
-                transition: 10
-                brightness_pct: 10
-              target:
-                entity_id: light.lounge
-          else:
-            - service: light.turn_on
-              data:
-                transition: 3
-                brightness_pct: 100
-              target:
-                entity_id: light.lounge
+      - service: light.turn_on
+        data:
+          transition: 10
+          brightness_pct: 10
+        target:
+          entity_id: light.lounge
       else:
-        - if:
-            - condition: state
-              entity_id: binary_sensor.downstairs_sleep_mode
-              state: "on"
-          then:
-            - service: light.turn_off
-              data:
-                transition: 5
-              target:
-                entity_id: light.lounge
-          else:
-            - delay:
-                hours: 0
-                minutes: 1
-                seconds: 0
-                milliseconds: 0
-            - service: light.turn_off
-              data:
-                transition: 5
-              target:
-                entity_id: light.lounge
+      - service: light.turn_on
+        data:
+          transition: 3
+          brightness_pct: 100
+        target:
+          entity_id: light.lounge
+    else:
+    - if:
+      - condition: state
+        entity_id: binary_sensor.downstairs_sleep_mode
+        state: 'on'
+      then:
+      - service: light.turn_off
+        data:
+          transition: 5
+        target:
+          entity_id: light.lounge
+      else:
+      - delay:
+          hours: 0
+          minutes: 1
+          seconds: 0
+          milliseconds: 0
+      - service: light.turn_off
+        data:
+          transition: 5
+        target:
+          entity_id: light.lounge
   mode: restart
 - id: 436d5a1c-3313-46f5-91af-c7964998b2a0
   alias: Study - Lights
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.study_occupied
-        - input_boolean.study_automations
-        - input_boolean.study_sleep_mode
-        - binary_sensor.people_home
-        - binary_sensor.study_bright
+  - platform: state
+    entity_id:
+    - binary_sensor.study_occupied
+    - input_boolean.study_automations
+    - input_boolean.study_sleep_mode
+    - binary_sensor.people_home
+    - binary_sensor.study_bright
   condition:
+  - condition: state
+    entity_id: input_boolean.study_automations
+    state: 'on'
+  action:
+  - if:
     - condition: state
-      entity_id: input_boolean.study_automations
-      state: "on"
-  action:
-    - if:
-        - condition: state
-          entity_id: binary_sensor.study_occupied
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.study_bright
-          state: "off"
-        - condition: state
-          entity_id: binary_sensor.people_home
-          state: "on"
-        - condition: state
-          entity_id: input_boolean.study_sleep_mode
-          state: "off"
-      then:
-        - service: light.turn_on
-          data:
-            transition: 3
-            brightness_pct: 100
-          target:
-            entity_id: light.study
-      else:
-        - if:
-            - condition: state
-              entity_id: input_boolean.study_sleep_mode
-              state: "on"
-          then:
-            - service: light.turn_off
-              data:
-                transition: 5
-              target:
-                entity_id: light.study
-          else:
-            - delay:
-                hours: 0
-                minutes: 0
-                seconds: 30
-                milliseconds: 0
-            - service: light.turn_off
-              data:
-                transition: 5
-              target:
-                entity_id: light.study
-  mode: restart
-- id: "1638260394889"
-  alias: System - Auto Snapshot and Backup
-  description: ""
-  trigger:
-    - platform: time
-      at: "12:00"
-  condition:
-    - condition: template
-      value_template: '{{ now().strftime(''%A'') == "Wednesday" }}'
-  action:
-    - service: hassio.addon_start
-      data:
-        addon: 3490a758_remote_backup
-    - service: notify.mobile_app_seb_phone
-      data:
-        title: Backup Successful!
-        message: Home Assistant Backup Complete
-  mode: single
-- id: "1638536955468"
-  alias: Bedroom - Sleep
-  description: ""
-  trigger:
-    - platform: state
-      entity_id: input_boolean.bedroom_sleep_mode
-  condition: []
-  action:
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: input_boolean.bedroom_sleep_mode
-              state: "on"
-          sequence:
-            - service: media_player.play_media
-              target:
-                entity_id: media_player.bedroom_echo
-              data:
-                media_content_id: amzn1.ask.skill.89bb8c9b-6f47-4f93-9a40-7c572ade7ea3
-                media_content_type: skill
-            - condition: not
-              conditions:
-                - condition: state
-                  entity_id: binary_sensor.bedroom_tv_state
-                  state: "off"
-            - service: media_player.turn_off
-              data: {}
-              target:
-                device_id: d1aee826b1078df78bcf94d6b4087662
-      default: []
-  mode: single
-- id: "1639919897579"
-  alias: Garden - Lights
-  description: ""
-  trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.garden_motion
-        - sun.sun
-  condition:
+      entity_id: binary_sensor.study_occupied
+      state: 'on'
     - condition: state
-      entity_id: input_boolean.outside_automations
-      state: "on"
-  action:
-    - if:
-        - condition: state
-          entity_id: sun.sun
-          state: below_horizon
-        - condition: state
-          entity_id: binary_sensor.garden_motion
-          state: "on"
-      then:
-        - service: light.turn_on
-          target:
-            entity_id: light.garden
-          data:
-            brightness_pct: 100
-            transition: 3
-      else:
-        - delay:
-            seconds: 30
-        - service: light.turn_off
-          target:
-            entity_id: light.garden
-          data:
-            transition: 5
-  mode: restart
-- id: "1639919894839"
-  alias: Front Drive - Lights
-  description: ""
-  trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.front_drive_motion
-        - sun.sun
-  condition:
+      entity_id: binary_sensor.study_bright
+      state: 'off'
     - condition: state
-      entity_id: input_boolean.outside_automations
-      state: "on"
-  action:
-    - if:
-        - condition: state
-          entity_id: sun.sun
-          state: below_horizon
-        - condition: state
-          entity_id: binary_sensor.front_drive_motion
-          state: "on"
-      then:
-        - service: light.turn_on
-          target:
-            entity_id: light.front_drive
-          data:
-            brightness_pct: 100
-            transition: 3
-      else:
-        - delay:
-            seconds: 30
-        - service: light.turn_off
-          target:
-            entity_id: light.front_drive
-          data:
-            transition: 5
-  mode: restart
-- id: "1640022711823"
-  alias: Cameras Privacy Mode
-  description: ""
-  trigger:
-    - platform: state
-      entity_id: input_boolean.cameras_privacy
-  condition: []
-  action:
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: input_boolean.cameras_privacy
-              state: "off"
-          sequence:
-            - service: switch.turn_on
-              target:
-                entity_id:
-                  - switch.entrance_privacy
-                  - switch.garden_privacy
-                  - switch.kitchen_privacy
-                  - switch.sofa_privacy
-                  - switch.hall_privacy
-                  - switch.lounge_privacy
-              data: {}
-        - conditions:
-            - condition: state
-              entity_id: input_boolean.cameras_privacy
-              state: "on"
-          sequence:
-            - service: switch.turn_off
-              target:
-                entity_id:
-                  - switch.entrance_privacy
-                  - switch.garden_privacy
-                  - switch.kitchen_privacy
-                  - switch.sofa_privacy
-                  - switch.hall_privacy
-                  - switch.lounge_privacy
-              data: {}
-      default: []
-  mode: single
-- id: "1644169913326"
-  alias: Home - Bin Reminder Update
-  description: ""
-  trigger:
-    - platform: state
-      entity_id: calendar.bin_collection_calendar
-  condition: []
-  action:
-    - service: input_datetime.set_datetime
+      entity_id: binary_sensor.people_home
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.study_sleep_mode
+      state: 'off'
+    then:
+    - service: light.turn_on
       data:
-        datetime:
-          "{{ strptime(state_attr('calendar.bin_collection_calendar', 'start_time'),'%Y-%m-%d
-          %H:%M:%S') - timedelta( hours = 6 ) }}"
+        transition: 3
+        brightness_pct: 100
       target:
-        entity_id: input_datetime.bin_reminder
-  mode: single
-- id: "1653422118985"
-  alias: Bathroom - Shower
-  description: ""
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.bathroom_humidity_change
-      above: "20"
-    - platform: numeric_state
-      entity_id: sensor.bathroom_humidity
-      below: 70
-    - platform: homeassistant
-      event: start
-    - platform: event
-      event_type: automation_reloaded
-    - platform: state
-      entity_id:
-        - binary_sensor.bathroom_humidity_falling_trend
-  condition:
-    - condition: state
-      entity_id: input_boolean.bathroom_automations
-      state: "on"
-  action:
+        entity_id: light.study
+    else:
     - if:
-        - condition: numeric_state
-          entity_id: sensor.bathroom_humidity_change
-          above: "20"
+      - condition: state
+        entity_id: input_boolean.study_sleep_mode
+        state: 'on'
       then:
-        - service: fan.turn_on
-          data: {}
-          target:
-            entity_id: fan.bathroom
-        - service: input_boolean.turn_on
-          data: {}
-          target:
-            entity_id: input_boolean.shower_occupied
-      else: []
-    - if:
-        - condition: state
-          entity_id: binary_sensor.bathroom_humidity_falling_trend
-          state: "on"
-      then:
-        - service: input_boolean.turn_off
-          data: {}
-          target:
-            entity_id: input_boolean.shower_occupied
-    - if:
-        - condition: numeric_state
-          entity_id: sensor.bathroom_humidity
-          below: 75
-      then:
-        - service: fan.turn_off
-          data: {}
-          target:
-            entity_id: fan.bathroom
+      - service: light.turn_off
+        data:
+          transition: 5
+        target:
+          entity_id: light.study
+      else:
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 30
+          milliseconds: 0
+      - service: light.turn_off
+        data:
+          transition: 5
+        target:
+          entity_id: light.study
   mode: restart
-- id: "1655066044340"
+- id: '1638260394889'
+  alias: System - Auto Snapshot and Backup
+  description: ''
+  trigger:
+  - platform: time
+    at: '12:00'
+  condition:
+  - condition: template
+    value_template: '{{ now().strftime(''%A'') == "Wednesday" }}'
+  action:
+  - service: hassio.addon_start
+    data:
+      addon: 3490a758_remote_backup
+  - service: notify.mobile_app_seb_phone
+    data:
+      title: Backup Successful!
+      message: Home Assistant Backup Complete
+  mode: single
+- id: '1638536955468'
+  alias: Bedroom - Sleep
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.bedroom_sleep_mode
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.bedroom_sleep_mode
+        state: 'on'
+      sequence:
+      - service: mass.play_media
+        target:
+          device_id: b2a0723816d8eb3013e90880816945e6
+        data:
+          media_type: track
+          media_id: Rain Sounds
+      - condition: not
+        conditions:
+        - condition: state
+          entity_id: binary_sensor.bedroom_tv_state
+          state: 'off'
+      - service: media_player.turn_off
+        data: {}
+        target:
+          device_id: d1aee826b1078df78bcf94d6b4087662
+    default: []
+  mode: single
+- id: '1639919897579'
+  alias: Garden - Lights
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.garden_motion
+    - sun.sun
+  condition:
+  - condition: state
+    entity_id: input_boolean.outside_automations
+    state: 'on'
+  action:
+  - if:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+    - condition: state
+      entity_id: binary_sensor.garden_motion
+      state: 'on'
+    then:
+    - service: light.turn_on
+      target:
+        entity_id: light.garden
+      data:
+        brightness_pct: 100
+        transition: 3
+    else:
+    - delay:
+        seconds: 30
+    - service: light.turn_off
+      target:
+        entity_id: light.garden
+      data:
+        transition: 5
+  mode: restart
+- id: '1639919894839'
+  alias: Front Drive - Lights
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.front_drive_motion
+    - sun.sun
+  condition:
+  - condition: state
+    entity_id: input_boolean.outside_automations
+    state: 'on'
+  action:
+  - if:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+    - condition: state
+      entity_id: binary_sensor.front_drive_motion
+      state: 'on'
+    then:
+    - service: light.turn_on
+      target:
+        entity_id: light.front_drive
+      data:
+        brightness_pct: 100
+        transition: 3
+    else:
+    - delay:
+        seconds: 30
+    - service: light.turn_off
+      target:
+        entity_id: light.front_drive
+      data:
+        transition: 5
+  mode: restart
+- id: '1640022711823'
+  alias: Cameras Privacy Mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.cameras_privacy
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.cameras_privacy
+        state: 'off'
+      sequence:
+      - service: switch.turn_on
+        target:
+          entity_id:
+          - switch.entrance_privacy
+          - switch.garden_privacy
+          - switch.kitchen_privacy
+          - switch.sofa_privacy
+          - switch.hall_privacy
+          - switch.lounge_privacy
+        data: {}
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.cameras_privacy
+        state: 'on'
+      sequence:
+      - service: switch.turn_off
+        target:
+          entity_id:
+          - switch.entrance_privacy
+          - switch.garden_privacy
+          - switch.kitchen_privacy
+          - switch.sofa_privacy
+          - switch.hall_privacy
+          - switch.lounge_privacy
+        data: {}
+    default: []
+  mode: single
+- id: '1644169913326'
+  alias: Home - Bin Reminder Update
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: calendar.bin_collection_calendar
+  condition: []
+  action:
+  - service: input_datetime.set_datetime
+    data:
+      datetime: '{{ strptime(state_attr(''calendar.bin_collection_calendar'', ''start_time''),''%Y-%m-%d
+        %H:%M:%S'') - timedelta( hours = 6 ) }}'
+    target:
+      entity_id: input_datetime.bin_reminder
+  mode: single
+- id: '1653422118985'
+  alias: Bathroom - Shower
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.bathroom_humidity_change
+    above: '20'
+  - platform: numeric_state
+    entity_id: sensor.bathroom_humidity
+    below: 70
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+    - binary_sensor.bathroom_humidity_falling_trend
+  condition:
+  - condition: state
+    entity_id: input_boolean.bathroom_automations
+    state: 'on'
+  action:
+  - if:
+    - condition: numeric_state
+      entity_id: sensor.bathroom_humidity_change
+      above: '20'
+    then:
+    - service: fan.turn_on
+      data: {}
+      target:
+        entity_id: fan.bathroom
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.shower_occupied
+    else: []
+  - if:
+    - condition: state
+      entity_id: binary_sensor.bathroom_humidity_falling_trend
+      state: 'on'
+    then:
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.shower_occupied
+  - if:
+    - condition: numeric_state
+      entity_id: sensor.bathroom_humidity
+      below: 75
+    then:
+    - service: fan.turn_off
+      data: {}
+      target:
+        entity_id: fan.bathroom
+  mode: restart
+- id: '1655066044340'
   alias: Low Battery Warning
-  description: ""
+  description: ''
   use_blueprint:
     path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
     input:
       threshold: 10
-      time: "12:00:00"
+      time: '12:00:00'
       exclude:
         entity_id: []
         device_id:
-          - da47f4fa0127541729a0c62bc2326a46
-          - c35c9387d9ffeaf1b895990142ebf628
-          - 71ab4d3902bd04a49082d09d4b8a1d48
+        - da47f4fa0127541729a0c62bc2326a46
+        - c35c9387d9ffeaf1b895990142ebf628
+        - 71ab4d3902bd04a49082d09d4b8a1d48
       actions:
-        - device_id: c35c9387d9ffeaf1b895990142ebf628
-          domain: mobile_app
-          type: notify
-          title: Low Sensor Battery
-          message: "The following devices have less than 10% battery: {{sensors}}"
-- id: "1655145771065"
+      - device_id: c35c9387d9ffeaf1b895990142ebf628
+        domain: mobile_app
+        type: notify
+        title: Low Sensor Battery
+        message: 'The following devices have less than 10% battery: {{sensors}}'
+- id: '1655145771065'
   alias: Kitchen - Lights
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.kitchen_occupied
-        - input_boolean.kitchen_automations
-        - binary_sensor.downstairs_sleep_mode
-        - binary_sensor.people_home
-        - binary_sensor.kitchen_bright
-      from: "off"
-      to: "on"
-    - platform: state
-      entity_id:
-        - binary_sensor.kitchen_occupied
-        - input_boolean.kitchen_automations
-        - binary_sensor.downstairs_sleep_mode
-        - binary_sensor.people_home
-        - binary_sensor.kitchen_bright
-      from: "on"
-      to: "off"
+  - platform: state
+    entity_id:
+    - binary_sensor.kitchen_occupied
+    - input_boolean.kitchen_automations
+    - binary_sensor.downstairs_sleep_mode
+    - binary_sensor.people_home
+    - binary_sensor.kitchen_bright
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.kitchen_occupied
+    - input_boolean.kitchen_automations
+    - binary_sensor.downstairs_sleep_mode
+    - binary_sensor.people_home
+    - binary_sensor.kitchen_bright
+    from: 'on'
+    to: 'off'
   condition:
-    - condition: state
-      entity_id: input_boolean.kitchen_automations
-      state: "on"
+  - condition: state
+    entity_id: input_boolean.kitchen_automations
+    state: 'on'
   action:
+  - if:
+    - condition: state
+      entity_id: binary_sensor.kitchen_occupied
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.kitchen_bright
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.people_home
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.downstairs_sleep_mode
+      state: 'off'
+    then:
     - if:
-        - condition: state
-          entity_id: binary_sensor.kitchen_occupied
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.kitchen_bright
-          state: "off"
-        - condition: state
-          entity_id: binary_sensor.people_home
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.downstairs_sleep_mode
-          state: "off"
+      - condition: state
+        entity_id: binary_sensor.lounge_tv_state
+        state: 'on'
       then:
-        - if:
-            - condition: state
-              entity_id: binary_sensor.lounge_tv_state
-              state: "on"
-          then:
-            - service: light.turn_on
-              data:
-                transition: 15
-                brightness_pct: 100
-              target:
-                entity_id: light.kitchen
-          else:
-            - service: light.turn_on
-              data:
-                transition: 2
-                brightness_pct: 100
-              target:
-                entity_id: light.kitchen
+      - service: light.turn_on
+        data:
+          transition: 15
+          brightness_pct: 100
+        target:
+          entity_id: light.kitchen
       else:
-        - if:
-            - condition: state
-              entity_id: binary_sensor.downstairs_sleep_mode
-              state: "on"
-          then:
-            - service: light.turn_off
-              data:
-                transition: 10
-              target:
-                entity_id: light.kitchen
-            - service: light.turn_off
-              data: {}
-              target:
-                entity_id: light.kitchen_side_lights
-          else:
-            - delay:
-                hours: 0
-                minutes: 1
-                seconds: 0
-                milliseconds: 0
-            - service: light.turn_off
-              data:
-                transition: 5
-              target:
-                entity_id: light.kitchen
+      - service: light.turn_on
+        data:
+          transition: 2
+          brightness_pct: 100
+        target:
+          entity_id: light.kitchen
+    else:
+    - if:
+      - condition: state
+        entity_id: binary_sensor.downstairs_sleep_mode
+        state: 'on'
+      then:
+      - service: light.turn_off
+        data:
+          transition: 10
+        target:
+          entity_id: light.kitchen
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: light.kitchen_side_lights
+      else:
+      - delay:
+          hours: 0
+          minutes: 1
+          seconds: 0
+          milliseconds: 0
+      - service: light.turn_off
+        data:
+          transition: 5
+        target:
+          entity_id: light.kitchen
   mode: restart
-- id: "1657382946887"
+- id: '1657382946887'
   alias: Toilet - Lights
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - input_boolean.toilet_automations
-        - binary_sensor.downstairs_sleep_mode
-        - binary_sensor.people_home
-        - binary_sensor.toilet_bright
-        - binary_sensor.toilet_motion
-      from: "off"
-      to: "on"
-    - platform: state
-      entity_id:
-        - input_boolean.toilet_automations
-        - binary_sensor.downstairs_sleep_mode
-        - binary_sensor.people_home
-        - binary_sensor.toilet_bright
-        - binary_sensor.toilet_motion
-      from: "on"
-      to: "off"
-    - platform: state
-      entity_id:
-        - binary_sensor.toilet_door_contact
-      from: "off"
-      to: "on"
-      alias: Door Opened
-      id: door_opened
+  - platform: state
+    entity_id:
+    - input_boolean.toilet_automations
+    - binary_sensor.downstairs_sleep_mode
+    - binary_sensor.people_home
+    - binary_sensor.toilet_bright
+    - binary_sensor.toilet_motion
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - input_boolean.toilet_automations
+    - binary_sensor.downstairs_sleep_mode
+    - binary_sensor.people_home
+    - binary_sensor.toilet_bright
+    - binary_sensor.toilet_motion
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id:
+    - binary_sensor.toilet_door_contact
+    from: 'off'
+    to: 'on'
+    alias: Door Opened
+    id: door_opened
   condition:
-    - condition: state
-      entity_id: input_boolean.toilet_automations
-      state: "on"
+  - condition: state
+    entity_id: input_boolean.toilet_automations
+    state: 'on'
   action:
+  - if:
+    - condition: state
+      entity_id: binary_sensor.toilet_bright
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.people_home
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: trigger
+        id: door_opened
+      - condition: state
+        entity_id: binary_sensor.toilet_occupied
+        state: 'on'
+    then:
     - if:
-        - condition: state
-          entity_id: binary_sensor.toilet_bright
-          state: "off"
-        - condition: state
-          entity_id: binary_sensor.people_home
-          state: "on"
-        - condition: or
-          conditions:
-            - condition: trigger
-              id: door_opened
-            - condition: state
-              entity_id: binary_sensor.toilet_occupied
-              state: "on"
+      - condition: state
+        entity_id: binary_sensor.downstairs_sleep_mode
+        state: 'on'
       then:
-        - if:
-            - condition: state
-              entity_id: binary_sensor.downstairs_sleep_mode
-              state: "on"
-          then:
-            - condition: or
-              conditions:
-                - condition: trigger
-                  id: door_opened
-                - condition: state
-                  entity_id: binary_sensor.toilet_occupied
-                  state: "on"
-            - service: light.turn_on
-              data:
-                transition: 2
-                brightness_pct: 50
-              target:
-                entity_id: light.toilet
-          else:
-            - condition: or
-              conditions:
-                - condition: trigger
-                  id: door_opened
-                - condition: state
-                  entity_id: binary_sensor.toilet_occupied
-                  state: "on"
-            - service: light.turn_on
-              data:
-                transition: 2
-                brightness_pct: 100
-              target:
-                entity_id: light.toilet
+      - condition: or
+        conditions:
+        - condition: trigger
+          id: door_opened
+        - condition: state
+          entity_id: binary_sensor.toilet_occupied
+          state: 'on'
+      - service: light.turn_on
+        data:
+          transition: 2
+          brightness_pct: 50
+        target:
+          entity_id: light.toilet
       else:
-        - delay:
-            hours: 0
-            minutes: 0
-            seconds: 20
-            milliseconds: 0
-        - if:
-            - condition: state
-              entity_id: binary_sensor.downstairs_sleep_mode
-              state: "on"
-          then:
-            - service: light.turn_off
-              data:
-                transition: 10
-              target:
-                entity_id: light.toilet
-          else:
-            - service: light.turn_on
-              data:
-                transition: 10
-                brightness_pct: 50
-              target:
-                entity_id: light.toilet
-            - delay:
-                hours: 0
-                minutes: 0
-                seconds: 30
-                milliseconds: 0
-            - service: light.turn_off
-              data:
-                transition: 5
-              target:
-                entity_id: light.toilet
+      - condition: or
+        conditions:
+        - condition: trigger
+          id: door_opened
+        - condition: state
+          entity_id: binary_sensor.toilet_occupied
+          state: 'on'
+      - service: light.turn_on
+        data:
+          transition: 2
+          brightness_pct: 100
+        target:
+          entity_id: light.toilet
+    else:
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 20
+        milliseconds: 0
+    - if:
+      - condition: state
+        entity_id: binary_sensor.downstairs_sleep_mode
+        state: 'on'
+      then:
+      - service: light.turn_off
+        data:
+          transition: 10
+        target:
+          entity_id: light.toilet
+      else:
+      - service: light.turn_on
+        data:
+          transition: 10
+          brightness_pct: 50
+        target:
+          entity_id: light.toilet
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 30
+          milliseconds: 0
+      - service: light.turn_off
+        data:
+          transition: 5
+        target:
+          entity_id: light.toilet
   mode: restart
-- id: "1672522095610"
+- id: '1672522095610'
   alias: Rainbow strip led
   description: Rotating color every second
   trigger:
-    - hours: "*"
-      minutes: "*"
-      platform: time_pattern
-      seconds: /1
+  - hours: '*'
+    minutes: '*'
+    platform: time_pattern
+    seconds: /1
   condition: []
   action:
-    - service: script.new_script
-      data:
-        entity: light.lounge
+  - service: script.new_script
+    data:
+      entity: light.lounge
   mode: single
-- id: "1675527344121"
+- id: '1675527344121'
   alias: Seb Medication Reminder
-  description: ""
+  description: ''
   use_blueprint:
     path: Aohzan/medication_reminder_android.yaml
     input:
       reminder_time: 08:30:00
       notify_device: c35c9387d9ffeaf1b895990142ebf628
       input_boolean: input_boolean.medication_seb
-- id: "1678034605165"
+- id: '1678034605165'
   alias: Kitchen - Side Lights
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.kitchen_hob
-    - platform: state
-      entity_id:
-        - binary_sensor.kitchen_microwave
-    - platform: state
-      entity_id:
-        - binary_sensor.kitchen_kettle
-    - platform: state
-      entity_id:
-        - binary_sensor.kitchen_occupied
-    - platform: state
-      entity_id:
-        - input_boolean.lounge_sleep_mode
+  - platform: state
+    entity_id:
+    - binary_sensor.kitchen_hob
+  - platform: state
+    entity_id:
+    - binary_sensor.kitchen_microwave
+  - platform: state
+    entity_id:
+    - binary_sensor.kitchen_kettle
+  - platform: state
+    entity_id:
+    - binary_sensor.kitchen_occupied
+  - platform: state
+    entity_id:
+    - input_boolean.lounge_sleep_mode
   condition:
-    - condition: state
-      entity_id: input_boolean.kitchen_automations
-      state: "on"
+  - condition: state
+    entity_id: input_boolean.kitchen_automations
+    state: 'on'
   action:
+  - if:
+    - condition: and
+      conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: binary_sensor.kitchen_kettle
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.kitchen_hob
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.kitchen_microwave
+          state: 'on'
+      - condition: state
+        entity_id: input_boolean.lounge_sleep_mode
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.kitchen_occupied
+        state: 'on'
+    then:
+    - type: turn_on
+      device_id: ecdc17a6d9cd4f5610bb4079729f1665
+      entity_id: switch.kitchen_side_lights
+      domain: switch
+    else:
     - if:
-        - condition: and
-          conditions:
-            - condition: or
-              conditions:
-                - condition: state
-                  entity_id: binary_sensor.kitchen_kettle
-                  state: "on"
-                - condition: state
-                  entity_id: binary_sensor.kitchen_hob
-                  state: "on"
-                - condition: state
-                  entity_id: binary_sensor.kitchen_microwave
-                  state: "on"
-            - condition: state
-              entity_id: input_boolean.lounge_sleep_mode
-              state: "off"
-            - condition: state
-              entity_id: binary_sensor.kitchen_occupied
-              state: "on"
+      - condition: state
+        entity_id: binary_sensor.kitchen_occupied
+        state: 'off'
       then:
-        - type: turn_on
-          device_id: ecdc17a6d9cd4f5610bb4079729f1665
-          entity_id: switch.kitchen_side_lights
-          domain: switch
-      else:
-        - if:
-            - condition: state
-              entity_id: binary_sensor.kitchen_occupied
-              state: "off"
-          then:
-            - delay:
-                hours: 0
-                minutes: 0
-                seconds: 30
-                milliseconds: 0
-            - type: turn_off
-              device_id: ecdc17a6d9cd4f5610bb4079729f1665
-              entity_id: switch.kitchen_side_lights
-              domain: switch
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 30
+          milliseconds: 0
+      - type: turn_off
+        device_id: ecdc17a6d9cd4f5610bb4079729f1665
+        entity_id: switch.kitchen_side_lights
+        domain: switch
   mode: restart
-- id: "1678039107813"
+- id: '1678039107813'
   alias: Lounge - Lamp
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.lounge_occupied
-    - platform: state
-      entity_id:
-        - binary_sensor.lounge_tv_state
-    - platform: state
-      entity_id:
-        - input_boolean.lounge_sleep_mode
+  - platform: state
+    entity_id:
+    - binary_sensor.lounge_occupied
+  - platform: state
+    entity_id:
+    - binary_sensor.lounge_tv_state
+  - platform: state
+    entity_id:
+    - input_boolean.lounge_sleep_mode
   condition: []
   action:
+  - if:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.lounge_occupied
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.lounge_tv_state
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.lounge_bright
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.lounge_sleep_mode
+        state: 'off'
+    then:
+    - type: turn_on
+      device_id: 7b4e6e1ed75f390c46d30ba08f02089e
+      entity_id: light.lounge_lamp
+      domain: light
+    else:
     - if:
-        - condition: and
-          conditions:
-            - condition: state
-              entity_id: binary_sensor.lounge_occupied
-              state: "on"
-            - condition: state
-              entity_id: binary_sensor.lounge_tv_state
-              state: "on"
-            - condition: state
-              entity_id: binary_sensor.lounge_bright
-              state: "off"
-            - condition: state
-              entity_id: input_boolean.lounge_sleep_mode
-              state: "off"
+      - condition: state
+        entity_id: input_boolean.lounge_sleep_mode
+        state: 'on'
       then:
-        - type: turn_on
-          device_id: 7b4e6e1ed75f390c46d30ba08f02089e
+      - service: light.turn_off
+        data:
+          transition: 10
+        target:
           entity_id: light.lounge_lamp
-          domain: light
       else:
-        - if:
-            - condition: state
-              entity_id: input_boolean.lounge_sleep_mode
-              state: "on"
-          then:
-            - service: light.turn_off
-              data:
-                transition: 10
-              target:
-                entity_id: light.lounge_lamp
-          else:
-            - delay:
-                hours: 0
-                minutes: 2
-                seconds: 0
-                milliseconds: 0
-            - service: light.turn_off
-              data:
-                transition: 10
-              target:
-                entity_id: light.lounge_lamp
+      - delay:
+          hours: 0
+          minutes: 2
+          seconds: 0
+          milliseconds: 0
+      - service: light.turn_off
+        data:
+          transition: 10
+        target:
+          entity_id: light.lounge_lamp
   mode: single
-- id: "1679849164244"
+- id: '1679849164244'
   alias: The Cube
-  description: ""
+  description: ''
   use_blueprint:
     path: SirGoodenough/Zigbee2MQTT-Aqara-Magic-Cube-T1-Pro-CTP-R01-Xiaomi-Lumi.yaml
     input:
       topic: zigbee2mqtt/The Cube
       action_rotate_cw_face_1:
-        - service: script.cube_dimmer
-          data:
-            angle: "{{ trigger.payload_json.action_angle | float(0.0)}}"
-            light: light.lounge
+      - service: script.cube_dimmer
+        data:
+          angle: '{{ trigger.payload_json.action_angle | float(0.0)}}'
+          light: light.lounge
       action_rotate_ccw_face_1:
-        - service: script.cube_dimmer
-          data:
-            angle: "{{ trigger.payload_json.action_angle | float(0.0)}}"
-            light: light.lounge
-- id: "1703428459589"
+      - service: script.cube_dimmer
+        data:
+          angle: '{{ trigger.payload_json.action_angle | float(0.0)}}'
+          light: light.lounge
+- id: '1703428459589'
   alias: Offline Zigbee Sensors
-  description: ""
+  description: ''
   use_blueprint:
     path: Mr-Groch/offline-notification-for-sensors-with-last_seen.yaml
     input:
       actions:
-        - device_id: c35c9387d9ffeaf1b895990142ebf628
-          domain: mobile_app
-          type: notify
-          message: "{{sensors}} are offline"
-          title: Some Zigbee Devices are offline!
-- id: "1704029326852"
+      - device_id: c35c9387d9ffeaf1b895990142ebf628
+        domain: mobile_app
+        type: notify
+        message: '{{sensors}} are offline'
+        title: Some Zigbee Devices are offline!
+- id: '1704029326852'
   alias: Zigbee2MQTT Update Notification
-  description: ""
+  description: ''
   use_blueprint:
     path: EPMatt/addon_update_notification.yaml
     input:
@@ -1225,15 +1221,14 @@
       addon_sensor_newest_version: sensor.zigbee2mqtt_newest_version
       addon_sensor_update_available: update.zigbee2mqtt_update
       mobile_notify_service: notify.mobile_app_seb_phone
-      notification_title: "{{ addon_name }} update available"
-      notification_message:
-        Update available for {{ addon_name }} ({{ version }} ->
+      notification_title: '{{ addon_name }} update available'
+      notification_message: Update available for {{ addon_name }} ({{ version }} ->
         {{ newest_version }})
-      update_success_notification_title: "{{ addon_name }} update completed"
+      update_success_notification_title: '{{ addon_name }} update completed'
       addon_name: Zigbee2MQTT
-- id: "1704029465898"
+- id: '1704029465898'
   alias: UniFi Update Notification
-  description: ""
+  description: ''
   use_blueprint:
     path: EPMatt/addon_update_notification.yaml
     input:
@@ -1242,25 +1237,24 @@
       addon_sensor_newest_version: sensor.unifi_network_application_newest_version
       addon_sensor_update_available: binary_sensor.unifi_network_application_running
       mobile_notify_service: notify.mobile_app_seb_phone
-      notification_title: "{{ addon_name }} update available"
-      notification_message:
-        Update available for {{ addon_name }} ({{ version }} ->
+      notification_title: '{{ addon_name }} update available'
+      notification_message: Update available for {{ addon_name }} ({{ version }} ->
         {{ newest_version }})
-      update_success_notification_title: "{{ addon_name }} update completed"
+      update_success_notification_title: '{{ addon_name }} update completed'
       addon_name: UniFi
-- id: "1704146389662"
+- id: '1704146389662'
   alias: New Automation
-  description: ""
+  description: ''
   trigger: []
   condition: []
   action:
-    - service: recorder.purge_entities
-      data:
-        entity_globs: device_tracker.00*
+  - service: recorder.purge_entities
+    data:
+      entity_globs: device_tracker.00*
   mode: single
-- id: "1711888149640"
+- id: '1711888149640'
   alias: Fridge Left Open
-  description: ""
+  description: ''
   use_blueprint:
     path: Raukze/contact-sensor-left-open-notification.yaml
     input:
@@ -1269,37 +1263,195 @@
       notify_services_string: notify.mobiles
       notification_click_url: /lovelace/
       repeat_notification: true
-- id: "1715937768507"
-  alias: "ehmtxv2: extended show state with unit on 8x32 RGB-matrix"
-  description: ""
+- id: '1715937768507'
+  alias: 'ehmtxv2: extended show state with unit on 8x32 RGB-matrix'
+  description: ''
   use_blueprint:
     path: ehmtxv2/EHMTX_extended_state.yaml
     input:
       ehmtx_device: 4a209b5dc3560c18036d11eafb767e45
       trigger_sensor:
-        - sensor.smart_meter_electricity_power_watts
+      - sensor.smart_meter_electricity_power_watts
       use_friendly: false
       icon_text: true
       icon_name: lightbulb
-- id: "1716581107924"
+- id: '1716581107924'
   alias: Battery Notes - Battery Replaced
-  description: ""
+  description: ''
   use_blueprint:
     path: andrew-codechimp/battery_notes_battery_replaced.yaml
-- id: "1716581307760"
+- id: '1716581307760'
   alias: Battery Notes - Battery Threshold
-  description: ""
+  description: ''
   use_blueprint:
     path: andrew-codechimp/battery_notes_battery_threshold.yaml
     input:
       excluded_devices:
-        - null
+      - null
       on_low_actions:
-        - device_id: c35c9387d9ffeaf1b895990142ebf628
-          domain: mobile_app
-          type: notify
-          title: "{{ trigger.event.data.device_name }} Battery Low"
-          message:
-            The device has a battery level of {{                 trigger.event.data.battery_level
-            }}% {{ '\n' -}} You need {{                 trigger.event.data.battery_quantity
-            }}× {{                 trigger.event.data.battery_type }}
+      - device_id: c35c9387d9ffeaf1b895990142ebf628
+        domain: mobile_app
+        type: notify
+        title: '{{ trigger.event.data.device_name }} Battery Low'
+        message: The device has a battery level of {{                 trigger.event.data.battery_level
+          }}% {{ '\n' -}} You need {{                 trigger.event.data.battery_quantity
+          }}× {{                 trigger.event.data.battery_type }}
+- id: '1720599510511'
+  alias: Washing Machine Notifications & Actions
+  description: ''
+  use_blueprint:
+    path: Blackshome/appliance-notifications.yaml
+    input:
+      power_sensor: sensor.washing_machine_current_power
+      include_end_notify: enable_end_notify_options
+      end_notify_device:
+      - c35c9387d9ffeaf1b895990142ebf628
+      - 5953adf758ef9e3b1b0c73585d762919
+      end_message: Washing Machine is Done!
+      include_power_tracking: enable_power_tracking_and_cost
+      power_consumption_sensor: sensor.washing_machine_today_energy
+      end_message_cost: Approx Cost £
+      cost_per_kwh: sensor.octopus_energy_electricity_meter_current_rate
+- id: '1720603764176'
+  alias: Washing Machine
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.washing_machine_operation_state
+    to: Finished
+  condition: []
+  action:
+  - service: notify.mobiles
+    data:
+      message: Washing Machine is finished, time to hang stuff out!
+      title: Washing Machine
+  mode: single
+- id: '1723383811662'
+  alias: Python Script - Update ha_overview
+  description: ''
+  trigger:
+  - event: start
+    platform: homeassistant
+  - platform: time_pattern
+    minutes: /30
+  action:
+  - action: python_script.ha_overview
+- id: '1723623794274'
+  alias: Set Sleep Mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.sleeping
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 1
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: sun
+    after: sunrise
+    before: sunset
+  action:
+  - action: input_boolean.turn_off
+    target:
+      entity_id:
+      - input_boolean.study_sleep_mode
+      - input_boolean.lounge_sleep_mode
+      - input_boolean.bedroom_sleep_mode
+      - input_boolean.sleep_schedule
+    data: {}
+  - action: input_boolean.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.hall_automations
+      - input_boolean.home_automations
+      - input_boolean.study_automations
+      - input_boolean.lounge_automations
+      - input_boolean.toilet_automations
+      - input_boolean.bedroom_automations
+      - input_boolean.kitchen_automations
+      - input_boolean.outside_automations
+      - input_boolean.bathroom_automations
+      - input_boolean.entrance_automations
+  - action: media_player.media_stop
+    metadata: {}
+    data: {}
+    target:
+      entity_id: media_player.bedside_speaker
+  mode: single
+- id: '1723978228404'
+  alias: Intelligent Study Fan Control
+  description: Controls the study fan based on room occupancy and temperature, providing
+    cooling when needed
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.study_occupied
+  - platform: homeassistant
+    event: start
+  - platform: state
+    entity_id: sensor.study_temperature
+  - platform: state
+    entity_id: climate.study
+    attribute: temperature
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: binary_sensor.study_occupied
+          state: 'on'
+        - condition: template
+          value_template: '{{ trigger.entity_id in [''sensor.study_temperature'',
+            ''climate.study'',''binary_sensor.study_occupied''] }}'
+      sequence:
+      - target:
+          entity_id: input_select.study_fan_last_state
+        data:
+          option: '{{ states(''fan.study'') }}'
+        action: input_select.select_option
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ temp_difference > 0 }}'
+          sequence:
+          - target:
+              entity_id: fan.study
+            data:
+              percentage: "{% if temp_difference > 2 %}\n  100\n{% elif temp_difference
+                > 1 %}\n  66\n{% else %}\n  33\n{% endif %}\n"
+            action: fan.turn_on
+        - conditions:
+          - condition: template
+            value_template: '{{ temp_difference <= 0 }}'
+          sequence:
+          - target:
+              entity_id: fan.study
+            action: fan.turn_off
+            data: {}
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.study_occupied
+        state: 'off'
+      sequence:
+      - target:
+          entity_id: fan.study
+        action: fan.turn_off
+        data: {}
+    default:
+    - target:
+        entity_id: fan.study
+      data:
+        percentage: '{{ states(''input_select.study_fan_last_state'') }}'
+      action: fan.turn_on
+  variables:
+    current_temp: '{{ states(''sensor.study_temperature'') | float }}'
+    target_temp: '{{ state_attr(''climate.study'', ''temperature'') | float }}'
+    temp_difference: '{{ current_temp - target_temp }}'
+  mode: single

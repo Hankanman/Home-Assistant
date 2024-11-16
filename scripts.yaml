@@ -1,126 +1,126 @@
 play_rain_sounds:
   alias: Play Rain Sounds
   sequence:
-    - service: media_player.play_media
-      target:
-        entity_id: media_player.bedroom_echo
-      data:
-        media_content_id: amzn1.ask.skill.89bb8c9b-6f47-4f93-9a40-7c572ade7ea3
-        media_content_type: skill
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: input_boolean.bedroom_sleep_mode
-              state: "off"
-          sequence:
-            - service: input_boolean.turn_on
-              target:
-                entity_id: input_boolean.bedroom_sleep_mode
-      default: []
+  - service: mass.play_media
+    target:
+      device_id: b2a0723816d8eb3013e90880816945e6
+    data:
+      media_type: track
+      media_id: Rain Sounds
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.bedroom_sleep_mode
+        state: 'off'
+      sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.bedroom_sleep_mode
+        data: {}
+    default: []
   mode: single
   icon: mdi:weather-pouring
 starrunner_wake:
   alias: Starrunner - Wake
   sequence:
-    - service: wake_on_lan.send_magic_packet
-      data:
-        mac: 00:D8:61:78:02:E0
-        broadcast_address: 192.168.1.80
-        broadcast_port: 9
-    - service: wake_on_lan.send_magic_packet
-      data:
-        mac: 00:D8:61:78:02:DF
-        broadcast_address: 192.168.1.89
-        broadcast_port: 9
-    - service: wake_on_lan.send_magic_packet
-      data:
-        mac: 38:00:25:AA:A6:95
-        broadcast_address: 192.168.1.38
-        broadcast_port: 9
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: 00:D8:61:78:02:E0
+      broadcast_address: 192.168.1.80
+      broadcast_port: 9
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: 00:D8:61:78:02:DF
+      broadcast_address: 192.168.1.89
+      broadcast_port: 9
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: 38:00:25:AA:A6:95
+      broadcast_address: 192.168.1.38
+      broadcast_port: 9
   mode: single
   icon: mdi:power
 print_entities_to_file:
   alias: Print Entities To File
   sequence:
-    - service: notify.entity_log
-      data:
-        message:
-          "{% macro is_number(value) %}\n    {{ value|float is number }}\n{%
-          endmacro %}\n[ {% for state in states %}\n  {%- if state.entity_id != 'persistent_notification.homeassistant'
-          and state.entity_id != 'sensor.updater' and state.entity_id != 'automation.check_config'
-          and state.entity_id != 'sun.sun' -%}\n    {\n      \"entity_id\": \"{{ state.entity_id
-          }}\",\n      \"friendly_name\": \"{{ state.attributes.friendly_name }}\",\n
-          \     {% if state.state | is_number %}\n      \"state\": {{ state.state |
-          float | round(2) }},\n      {% else %}\n      \"state\": \"{{ state.state
-          }}\",\n      {% endif %}\n    }{%- if not loop.last %},{% endif %}\n  {%-
-          endif %}\n{% endfor %} ]\n"
+  - service: notify.entity_log
+    data:
+      message: "{% macro is_number(value) %}\n    {{ value|float is number }}\n{%
+        endmacro %}\n[ {% for state in states %}\n  {%- if state.entity_id != 'persistent_notification.homeassistant'
+        and state.entity_id != 'sensor.updater' and state.entity_id != 'automation.check_config'
+        and state.entity_id != 'sun.sun' -%}\n    {\n      \"entity_id\": \"{{ state.entity_id
+        }}\",\n      \"friendly_name\": \"{{ state.attributes.friendly_name }}\",\n
+        \     {% if state.state | is_number %}\n      \"state\": {{ state.state |
+        float | round(2) }},\n      {% else %}\n      \"state\": \"{{ state.state
+        }}\",\n      {% endif %}\n    }{%- if not loop.last %},{% endif %}\n  {%-
+        endif %}\n{% endfor %} ]\n"
   mode: single
   icon: mdi:math-log
 endeavor_wake:
   alias: Endeavor - Wake
   sequence:
-    - service: wake_on_lan.send_magic_packet
-      data:
-        mac: "!secret endeavor_mac_management"
-    - service: wake_on_lan.send_magic_packet
-      data:
-        mac: "!secret endeavor_mac_eth1"
-    - service: wake_on_lan.send_magic_packet
-      data:
-        mac: "!secret endeavor_mac_eth2"
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret endeavor_mac_management'
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret endeavor_mac_eth1'
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: '!secret endeavor_mac_eth2'
   mode: single
   icon: mdi:power
 xmas_lights:
   sequence:
-    - repeat:
-        count: "9000"
-        sequence:
-          - service: light.turn_on
-            data:
-              rgb_color:
-                - 255
-                - 0
-                - 0
-              transition: 0
-            target:
-              entity_id: light.lounge_bulb_1
-          - service: light.turn_on
-            data:
-              rgb_color:
-                - 0
-                - 255
-                - 0
-              transition: 0
-            target:
-              entity_id: light.lounge_bulb_2
-          - delay:
-              hours: 0
-              minutes: 0
-              seconds: 2
-              milliseconds: 0
-          - service: light.turn_on
-            data:
-              rgb_color:
-                - 0
-                - 255
-                - 0
-              transition: 0
-            target:
-              entity_id: light.lounge_bulb_1
-          - service: light.turn_on
-            data:
-              rgb_color:
-                - 255
-                - 0
-                - 0
-              transition: 0
-            target:
-              entity_id: light.lounge_bulb_2
-          - delay:
-              hours: 0
-              minutes: 0
-              seconds: 2
-              milliseconds: 0
+  - repeat:
+      count: '9000'
+      sequence:
+      - service: light.turn_on
+        data:
+          rgb_color:
+          - 255
+          - 0
+          - 0
+          transition: 0
+        target:
+          entity_id: light.lounge_bulb_1
+      - service: light.turn_on
+        data:
+          rgb_color:
+          - 0
+          - 255
+          - 0
+          transition: 0
+        target:
+          entity_id: light.lounge_bulb_2
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 2
+          milliseconds: 0
+      - service: light.turn_on
+        data:
+          rgb_color:
+          - 0
+          - 255
+          - 0
+          transition: 0
+        target:
+          entity_id: light.lounge_bulb_1
+      - service: light.turn_on
+        data:
+          rgb_color:
+          - 255
+          - 0
+          - 0
+          transition: 0
+        target:
+          entity_id: light.lounge_bulb_2
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 2
+          milliseconds: 0
   mode: single
   alias: Xmas Lights
   icon: mdi:sledding
@@ -132,20 +132,19 @@ new_script:
       description: The entity that will be rainbowed
       example: light.lounge
   variables:
-    colors:
-      "{{ [[0.217,0.077], [0.157,0.05], [0.136,0.04], [0.137,0.065],\n    [0.141,0.137],
+    colors: "{{ [[0.217,0.077], [0.157,0.05], [0.136,0.04], [0.137,0.065],\n    [0.141,0.137],
       [0.146,0.238], [0.151,0.343], [0.157,0.457],\n    [0.164,0.591], [0.17,0.703],
       [0.172,0.747], [0.199,0.724],\n    [0.269,0.665], [0.36,0.588], [0.444,0.517],
       [0.527,0.447],\n    [0.612,0.374], [0.677,0.319], [0.701,0.299], [0.667,0.284],\n
       \   [0.581,0.245], [0.477,0.196], [0.385,0.155], [0.301,0.116], \n    [0.217,0.077]]
       }}"
   sequence:
-    - service: light.turn_on
-      data_template:
-        xy_color: "{{  colors[(now().second/2.5)|round(0)] }}
+  - service: light.turn_on
+    data_template:
+      xy_color: '{{  colors[(now().second/2.5)|round(0)] }}
 
-          "
-        entity_id: "{{ entity }}"
+        '
+      entity_id: '{{ entity }}'
 cube_dimmer:
   alias: Cube Dimmer
   mode: single
@@ -155,17 +154,16 @@ cube_dimmer:
     angle:
     light:
   sequence:
-    - service: light.turn_on
-      data_template:
-        entity_id: "{{ light }}"
-        brightness_pct:
-          "{% set step_size = angle * 0.4 %}\n  {# Use the 0.4 above to
-          change the sensitivity of the action. #}\n  {# Get brightness as a percent.
-          #}\n{% set cb = (state_attr( light, 'brightness') | float(10) / 255.0) * 100.0
-          %} {% set new_brightness = cb | int(10) + step_size %} {% if new_brightness
-          < 5 %}\n  {# If it gets really low set to 0. Adjust if needed for your lights.
-          #}\n  0\n{% elif new_brightness <= 10 %}\n  {# If it's not quite 0, set to
-          a minimum working brightness. #}\n  10\n{% elif 91 <= new_brightness < (90
-          + step_size) %}\n  {# If it's almost full brightness, set to 100%. #}\n  100\n{%
-          else %}\n  {# Send actual calculated value. #}\n  {{ new_brightness }}\n{%
-          endif %}\n"
+  - service: light.turn_on
+    data_template:
+      entity_id: '{{ light }}'
+      brightness_pct: "{% set step_size = angle * 0.4 %}\n  {# Use the 0.4 above to
+        change the sensitivity of the action. #}\n  {# Get brightness as a percent.
+        #}\n{% set cb = (state_attr( light, 'brightness') | float(10) / 255.0) * 100.0
+        %} {% set new_brightness = cb | int(10) + step_size %} {% if new_brightness
+        < 5 %}\n  {# If it gets really low set to 0. Adjust if needed for your lights.
+        #}\n  0\n{% elif new_brightness <= 10 %}\n  {# If it's not quite 0, set to
+        a minimum working brightness. #}\n  10\n{% elif 91 <= new_brightness < (90
+        + step_size) %}\n  {# If it's almost full brightness, set to 100%. #}\n  100\n{%
+        else %}\n  {# Send actual calculated value. #}\n  {{ new_brightness }}\n{%
+        endif %}\n"

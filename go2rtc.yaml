@@ -1,0 +1,4 @@
+streams:
+    aqara_g4:
+        - hass:Doorbell
+        - ffmpeg:aqara_g4#audio=opus
