@@ -1,0 +1,461 @@
+# substitutions:
+#   name: study-aq
+#   friendly_name: Study AQ
+# packages:
+#   LoopOn.AirSense: github://Hankanman/Devices/esphome/LoopOn/AirSense/loopon_airsense_latest.yaml@main
+# esphome:
+#   name: ${name}
+#   name_add_mac_suffix: false
+#   friendly_name: ${friendly_name}
+# api:
+#   encryption:
+#     key: d/ifdW7yrhvrhvhHmNpjQ7Hb9M2UZCQAXpgPAkPFi3s=
+
+
+# wifi:
+#   ssid: !secret wifi_ssid
+#   password: !secret wifi_password
+
+web_server:
+  port: 80
+  version: 3
+
+## AirSense by LoopOn
+## https://loopon.tech/products/airsense
+
+substitutions:
+  name: study-air-quality
+  device_name: Study Air Quality
+  # name: airsense
+  # device_name: AirSense
+  device_make: LoopOn
+  sw_version: "2.0.0"
+  bme680_addr: "0x77" # Addr pad unsoldered=0x77 / soldered=0x76
+  iaq_level_0: Excellent
+  iaq_level_1: Good
+  iaq_level_2: Lightly Polluted
+  iaq_level_3: Moderately Polluted
+  iaq_level_4: Heavily Polluted
+  iaq_level_5: Severely Polluted
+  iaq_level_6: Extremely Polluted
+
+esphome:
+  name: "${name}"
+  friendly_name: "${device_name}"
+  comment: "${device_name} by ${device_make}"
+#  name_add_mac_suffix: true
+  name_add_mac_suffix: false
+  min_version: "2024.6.1"
+  project:
+    name: "${device_make}.${device_name}"
+    version: "${sw_version}"
+  platformio_options:
+  #   board_build.mcu: esp32c3
+  #   board_build.variant: esp32c3
+    board_build.flash_mode: dio
+    board_build.f_cpu: 160000000L
+    board_build.f_flash: 80000000L
+  #   board_build.flash_size: 4MB
+    build_flags:
+      - -DARDUINO_USB_MODE=1
+      - -DARDUINO_USB_CDC_ON_BOOT=1
+      - -DARDUINO_ESP32C3_DEV=1
+  #   upload_speed: 115200
+  on_boot:
+    priority: 600
+    then:
+      - light.turn_on:
+          id: rgb_light
+          effect: "Boot Sequence"
+          red: 100%
+          green: 100%
+          blue: 100%
+      - delay: 2000ms
+      - light.turn_on:
+          id: rgb_light
+          effect: none
+      - light.turn_off:
+          id: rgb_light
+
+esp32:
+  board: esp32-c3-devkitm-1
+  variant: esp32c3
+  framework:
+    type: esp-idf
+    # version: recommended
+    # sdkconfig_options:
+    #   MDNS_STRICT_MODE: y
+
+dashboard_import:
+  package_import_url: github://Hankanman/Devices/esphome/LoopOn/AirSense/loopon_airsense_latest.yaml@main
+  import_full_config: false
+
+# external_components:
+#   - source: github://Hankanman/Devices@main
+#     components: [ bme68x_bsec ]
+
+# external_components:
+#   - source: github://Schluggi/esphome@dev
+#     components:
+#       - bme68x_bsec
+
+logger:
+
+api:
+  # services:
+  #   - service: play_rtttl
+  #     variables:
+  #       song_str: string
+  #     then:
+  #       - rtttl.play:
+  #           rtttl: !lambda "return song_str;"
+  #   - service: stop_rtttl
+  #     then:
+  #       - rtttl.stop:
+  encryption:
+    key: d/ifdW7yrhvrhvhHmNpjQ7Hb9M2UZCQAXpgPAkPFi3s=
+
+ota:
+  platform: esphome
+
+wifi:
+  # ap:
+  # on_connect:
+  #   - delay: 5s # Gives time for improv results to be transmitted
+  #   - ble.disable:
+  # on_disconnect:
+  #   - ble.enable:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+captive_portal:
+
+# esp32_improv:
+#   authorizer: none
+
+# improv_serial:
+
+i2c:
+  sda: GPIO5
+  scl: GPIO6
+  scan: false
+
+# bme680:
+#   address: ${bme680_addr}
+#   state_save_interval: 30min
+
+light:
+  - platform: esp32_rmt_led_strip
+    rmt_channel: 0
+    id: rgb_light
+    rgb_order: GRB
+    chipset: ws2812
+    pin: GPIO2
+    num_leds: 1
+    name: "Light"
+    gamma_correct: 0
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_state:
+      then:
+        if:
+          condition:
+            - lambda: return id(led_effect_presets).state != "";
+          then:
+            - select.set:
+                id: led_effect_presets
+                option: ""
+    effects:
+      - pulse:
+          name: "Slow Pulse"
+          transition_length: 2s
+          update_interval: 2s
+          min_brightness: 10%
+      - pulse:
+          name: "Fast Pulse"
+          transition_length: 0.5s
+          update_interval: 0.5s
+          min_brightness: 10%
+      - addressable_rainbow:
+          name: "Boot Sequence"
+          speed: 50
+          width: 1
+text_sensor:
+  - platform: template
+    name: "Config Version"
+    lambda: return {"${sw_version}"};
+    icon: "mdi:tag"
+    entity_category: diagnostic
+  - platform: wifi_info
+    ip_address:
+      id: ip_address
+      name: "IP Address"
+      icon: "mdi:wan"
+  # - platform: bme68x_bsec
+  #   iaq_accuracy:
+  #     name: "IAQ Accuracy"
+  - platform: template
+    name: "BME680 IAQ Classification"
+    icon: "mdi:checkbox-marked-circle-outline"
+    lambda: |-
+      if (int(id(iaq).state) <= 50) {
+        return {"Excellent"};
+      }
+      else if (int(id(iaq).state) <= 100) {
+        return {"Good"};
+      }
+      else if (int(id(iaq).state) <= 150) {
+        return {"Lightly polluted"};
+      }
+      else if (int(id(iaq).state) <= 200) {
+        return {"Moderately polluted"};
+      }
+      else if (int(id(iaq).state) <= 250) {
+        return {"Heavily polluted"};
+      }
+      else if (int(id(iaq).state) <= 350) {
+        return {"Severely polluted"};
+      }
+      else if (int(id(iaq).state) <= 500) {
+        return {"Extremely polluted"};
+      }
+      else {
+        return {"unknown"};
+      }
+  - platform: template
+    name: "IAQ Classification"
+    id: iaq_classification
+    icon: "mdi:checkbox-marked-circle-outline"
+    update_interval: never
+    on_value:
+      lambda: |-
+        if (id(use_rag_states).state) {
+          if(x == "${iaq_level_0}" || x == "${iaq_level_1}") {
+            id(rgb_green_solid).execute();
+          } else if(x == "${iaq_level_2}" || x == "${iaq_level_3}") {
+            id(rgb_amber_slow_pulse).execute();
+          } else {
+            id(rgb_red_fast_pulse).execute();
+          }
+        }
+
+number:
+  - platform: template
+    name: "Temperature Offset"
+    id: temperature_offset
+    unit_of_measurement: "°C"
+    min_value: -50
+    max_value: 50
+    step: 0.1
+    mode: box
+    update_interval: never
+    optimistic: true
+    restore_value: true
+    initial_value: 0
+    icon: "mdi:thermometer"
+    entity_category: config
+  - platform: template
+    name: "Humidity Offset"
+    id: humidity_offset
+    unit_of_measurement: "%"
+    min_value: -50
+    max_value: 50
+    step: 0.1
+    mode: box
+    update_interval: never
+    optimistic: true
+    restore_value: true
+    initial_value: 0
+    icon: "mdi:water-percent"
+    entity_category: config
+  - platform: template
+    name: "Pressure Offset"
+    id: pressure_offset
+    unit_of_measurement: "hPa"
+    min_value: -500
+    max_value: 500
+    step: 0.1
+    mode: box
+    update_interval: never
+    optimistic: true
+    restore_value: true
+    initial_value: 0
+    icon: "mdi:gauge"
+    entity_category: config
+
+binary_sensor:
+  - platform: gpio
+    id: boot_button
+    icon: "mdi:button-pointer"
+    pin:
+      number: GPIO9
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: "Button"
+
+select:
+  - platform: template
+    name: "LED Effect Presets"
+    icon: "mdi:animation"
+    id: led_effect_presets
+    options:
+      - ""
+      - "Green - Solid"
+      - "Amber - Slow Pulse"
+      - "Red - Fast Pulse"
+    initial_option: ""
+    optimistic: true
+    set_action:
+      - lambda: |-
+          if(x=="Green - Solid")
+            id(rgb_green_solid).execute();
+          else if(x=="Amber - Slow Pulse")
+            id(rgb_amber_slow_pulse).execute();
+          else if(x=="Red - Fast Pulse")
+            id(rgb_red_fast_pulse).execute();
+
+sensor:
+  # - platform: wifi_signal
+  #   name: "WiFi Signal"
+  #   update_interval: 60s
+  - platform: template
+    name: "BME680 Indoor Air Quality"
+    id: iaq
+    icon: "mdi:gauge"
+    # calculation: comp_gas = log(R_gas[ohm]) + 0.04 log(Ohm)/%rh * hum[%rh]
+    lambda: |-
+      return log(id(gas_resistance).state) + 0.04 *  id(humidity).state;
+    state_class: "measurement"
+  - platform: bme680
+    address: ${bme680_addr}
+    temperature:
+      name: "BME680 Temperature"
+      oversampling: 16x
+    pressure:
+      name: "BME680 Pressure"
+    humidity:
+      id: "humidity"
+      name: "BME680 Humidity"
+    gas_resistance:
+      id: "gas_resistance"
+      name: "BME680 Gas Resistance"
+    update_interval: 60s
+
+switch:
+  - platform: template
+    name: "Use RAG Light States"
+    id: use_rag_states
+    icon: "mdi:cog"
+    entity_category: config
+    restore_mode: RESTORE_DEFAULT_ON
+    optimistic: true
+  - platform: template
+    name: "Beep on Amber"
+    id: beep_on_amber
+    icon: "mdi:bell-ring"
+    entity_category: config
+    restore_mode: RESTORE_DEFAULT_ON
+    optimistic: true
+  - platform: template
+    name: "Beep on Red"
+    id: beep_on_red
+    icon: "mdi:bell-ring"
+    entity_category: config
+    restore_mode: RESTORE_DEFAULT_ON
+    optimistic: true
+
+button:
+  - platform: restart
+    name: "Restart"
+    entity_category: diagnostic
+  - platform: factory_reset
+    name: "Factory Reset"
+    icon: "mdi:restart-alert"
+    entity_category: config
+    disabled_by_default: true
+  - platform: template
+    name: "Beep"
+    icon: "mdi:bell-ring"
+    entity_category: diagnostic
+    on_press:
+      - rtttl.play: "beep:d=10,o=2,b=5000:a"
+
+output:
+  - platform: ledc
+    pin: GPIO10
+    id: rtttl_out
+
+rtttl:
+  output: rtttl_out
+
+interval:
+  - interval: 5min
+    then:
+      if:
+        condition:
+          and:
+            - switch.is_on: beep_on_amber
+            - or:
+                - text_sensor.state:
+                    id: iaq_classification
+                    state: "${iaq_level_2}"
+                - text_sensor.state:
+                    id: iaq_classification
+                    state: "${iaq_level_3}"
+        then:
+          - script.execute: single_beep
+  - interval: 30s
+    then:
+      if:
+        condition:
+          and:
+            - switch.is_on: beep_on_red
+            - or:
+                - text_sensor.state:
+                    id: iaq_classification
+                    state: "${iaq_level_4}"
+                - text_sensor.state:
+                    id: iaq_classification
+                    state: "${iaq_level_5}"
+                - text_sensor.state:
+                    id: iaq_classification
+                    state: "${iaq_level_6}"
+        then:
+          - script.execute: double_beep
+
+script:
+  - id: rgb_off
+    then:
+      - light.turn_off:
+          id: rgb_light
+  - id: rgb_green_solid
+    then:
+      - light.turn_on:
+          id: rgb_light
+          effect: none
+          red: 0%
+          green: 100%
+          blue: 0%
+  - id: rgb_amber_slow_pulse
+    then:
+      - light.turn_on:
+          id: rgb_light
+          effect: Slow Pulse
+          red: 100%
+          green: 75%
+          blue: 0%
+  - id: rgb_red_fast_pulse
+    then:
+      - light.turn_on:
+          id: rgb_light
+          effect: Fast Pulse
+          red: 100%
+          green: 0%
+          blue: 0%
+  - id: single_beep
+    then:
+      - rtttl.play: "single:d=10,o=5,b=7000:a"
+  - id: double_beep
+    then:
+      - rtttl.play: "double:d=10,o=5,b=7000:a,d"

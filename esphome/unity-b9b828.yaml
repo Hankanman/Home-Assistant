@@ -1,0 +1,15 @@
+substitutions:
+  name: unity-b9b828
+packages:
+  LoopOn.Unity: github://LoopOnCode/UnitySensor/esphome/loopon_unity.yaml@main
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+api:
+  encryption:
+    key: 2ixFIlNyF4VWu1KZegQS+9tTdCLT6h5vdKyOwrtnlYU=
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password

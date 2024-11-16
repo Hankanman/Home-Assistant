@@ -1,0 +1,17 @@
+substitutions:
+  name: raspiaudio-muse-luxe-6b49cc
+  friendly_name: Bedside Speaker
+packages:
+  moved: github://esphome/media-players/raspiaudio/raspiaudio-muse-luxe.yaml@main
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+api:
+  encryption:
+    key: NlUiWpfk7uTwEzUUpyr2kPmO8H/uIvuXVg+IK2yDEKo=
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password

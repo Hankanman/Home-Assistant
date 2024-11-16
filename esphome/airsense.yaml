@@ -1,0 +1,480 @@
+## AirSense by LoopOn
+## https://loopon.tech/products/airsense
+
+substitutions:
+  name: airsense
+  device_name: AirSense
+  device_make: LoopOn
+  sw_version: "1.0.7"
+  bme680_addr: "0x77" # Addr pad unsoldered=0x77 / soldered=0x76
+  iaq_level_0: Excellent
+  iaq_level_1: Good
+  iaq_level_2: Lightly Polluted
+  iaq_level_3: Moderately Polluted
+  iaq_level_4: Heavily Polluted
+  iaq_level_5: Severely Polluted
+  iaq_level_6: Extremely Polluted
+
+esphome:
+  name: "${name}"
+  friendly_name: "${device_name}"
+  comment: "${device_name} by ${device_make}"
+  name_add_mac_suffix: true
+  min_version: "2024.6.1"
+  project:
+    name: "${device_make}.${device_name}"
+    version: "${sw_version}"
+  platformio_options:
+    board_build.mcu: esp32c3
+    board_build.variant: esp32c3
+    board_build.flash_mode: dio
+    board_build.f_cpu: 160000000L
+    board_build.f_flash: 80000000L
+    board_build.flash_size: 4MB
+    build_flags:
+      - -DARDUINO_USB_MODE=1
+      - -DARDUINO_USB_CDC_ON_BOOT=1
+      - -DARDUINO_ESP32C3_DEV=1
+    upload_speed: 115200
+  on_boot:
+    priority: 600
+    then:
+      - light.turn_on:
+          id: rgb_light
+          effect: "Boot Sequence"
+          red: 100%
+          green: 100%
+          blue: 100%
+      - delay: 2000ms
+      - light.turn_on:
+          id: rgb_light
+          effect: none
+      - light.turn_off:
+          id: rgb_light
+
+esp32:
+  board: esp32-c3-devkitm-1
+  variant: esp32c3
+  framework:
+    type: arduino
+
+dashboard_import:
+  package_import_url: github://LoopOnCode/AirSense/esphome/loopon_airsense.yaml@main
+  import_full_config: false
+
+external_components:
+  - source: github://LoopOnCode/AirSense@main
+    components: [ bme68x_bsec ]
+
+logger:
+
+api:
+  services:
+    - service: play_rtttl
+      variables:
+        song_str: string
+      then:
+        - rtttl.play:
+            rtttl: !lambda "return song_str;"
+    - service: stop_rtttl
+      then:
+        - rtttl.stop:
+
+ota:
+  platform: esphome
+
+wifi:
+  fast_connect: false
+  output_power: 15
+  ap:
+  on_connect:
+    - delay: 5s # Gives time for improv results to be transmitted
+    - ble.disable:
+  on_disconnect:
+    - ble.enable:
+
+captive_portal:
+
+esp32_improv:
+  authorizer: none
+
+improv_serial:
+
+i2c:
+  sda: GPIO5
+  scl: GPIO6
+  scan: false
+
+bme68x_bsec:
+  address: ${bme680_addr}
+  state_save_interval: 30min
+
+light:
+  - platform: neopixelbus
+    id: rgb_light
+    type: GRB
+    variant: WS2812
+    pin: GPIO2
+    num_leds: 1
+    name: "${device_name} Light"
+    gamma_correct: 0
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_state:
+      then:
+        if:
+          condition:
+            - lambda: return id(led_effect_presets).state != "";
+          then:
+            - select.set:
+                id: led_effect_presets
+                option: ""
+    effects:
+      - pulse:
+          name: "Slow Pulse"
+          transition_length: 2s
+          update_interval: 2s
+          min_brightness: 10%
+      - pulse:
+          name: "Fast Pulse"
+          transition_length: 0.5s
+          update_interval: 0.5s
+          min_brightness: 10%
+      - addressable_rainbow:
+          name: "Boot Sequence"
+          speed: 50
+          width: 1
+text_sensor:
+  - platform: template
+    name: "${device_name} Config Version"
+    lambda: return {"${sw_version}"};
+    icon: "mdi:tag"
+    entity_category: diagnostic
+  - platform: wifi_info
+    ip_address:
+      id: ip_address
+      name: "${device_name} IP Address"
+      icon: "mdi:wan"
+  - platform: bme68x_bsec
+    iaq_accuracy:
+      name: "${device_name} IAQ Accuracy"
+  - platform: template
+    name: "${device_name} IAQ Classification"
+    id: iaq_classification
+    icon: "mdi:checkbox-marked-circle-outline"
+    update_interval: never
+    on_value:
+      lambda: |-
+        if (id(use_rag_states).state) {
+          if(x == "${iaq_level_0}" || x == "${iaq_level_1}") {
+            id(rgb_green_solid).execute();
+          } else if(x == "${iaq_level_2}" || x == "${iaq_level_3}") {
+            id(rgb_amber_slow_pulse).execute();
+          } else {
+            id(rgb_red_fast_pulse).execute();
+          }
+        }
+
+number:
+  - platform: template
+    name: "${device_name} Temperature Offset"
+    id: temperature_offset
+    unit_of_measurement: "°C"
+    min_value: -50
+    max_value: 50
+    step: 0.1
+    mode: box
+    update_interval: never
+    optimistic: true
+    restore_value: true
+    initial_value: -6
+    icon: "mdi:thermometer"
+    entity_category: config
+  - platform: template
+    name: "${device_name} Humidity Offset"
+    id: humidity_offset
+    unit_of_measurement: "%"
+    min_value: -50
+    max_value: 50
+    step: 0.1
+    mode: box
+    update_interval: never
+    optimistic: true
+    restore_value: true
+    initial_value: 0
+    icon: "mdi:water-percent"
+    entity_category: config
+  - platform: template
+    name: "${device_name} Pressure Offset"
+    id: pressure_offset
+    unit_of_measurement: "hPa"
+    min_value: -500
+    max_value: 500
+    step: 0.1
+    mode: box
+    update_interval: never
+    optimistic: true
+    restore_value: true
+    initial_value: 0
+    icon: "mdi:gauge"
+    entity_category: config
+
+binary_sensor:
+  - platform: gpio
+    id: boot_button
+    icon: "mdi:button-pointer"
+    pin:
+      number: GPIO9
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: "${device_name} Button"
+
+select:
+  - platform: template
+    name: "${device_name} LED Effect Presets"
+    icon: "mdi:animation"
+    id: led_effect_presets
+    options:
+      - ""
+      - "Green - Solid"
+      - "Amber - Slow Pulse"
+      - "Red - Fast Pulse"
+    initial_option: ""
+    optimistic: true
+    set_action:
+      - lambda: |-
+          if(x=="Green - Solid")
+            id(rgb_green_solid).execute();
+          else if(x=="Amber - Slow Pulse")
+            id(rgb_amber_slow_pulse).execute();
+          else if(x=="Red - Fast Pulse")
+            id(rgb_red_fast_pulse).execute();
+
+sensor:
+  - platform: template
+    id: internal_temp
+    name: "${device_name} Internal Temperature"
+    icon: "mdi:thermometer"
+    unit_of_measurement: "°C"
+    entity_category: diagnostic
+    disabled_by_default: true
+    lambda: return temperatureRead();
+  - platform: wifi_signal
+    name: "${device_name} WiFi Signal"
+    update_interval: 60s
+  - platform: bme68x_bsec
+    temperature:
+      name: "${device_name} Temperature"
+      filters:
+        - median
+        - lambda: "return x-(abs((id(internal_temp).state/2)-x)/2)+id(temperature_offset).state;"
+    pressure:
+      name: "${device_name} Pressure"
+      filters:
+        - median
+        - lambda: "return x+id(pressure_offset).state;"
+    humidity:
+      name: "${device_name} Humidity"
+      filters:
+        - median
+        - lambda: "return x+id(humidity_offset).state;"
+        - clamp: 
+            min_value: 0
+            max_value: 100
+    iaq:
+      name: "${device_name} IAQ"
+      icon: "mdi:leaf"
+      id: iaq
+      filters:
+        - median
+      on_value_range:
+        - below: 50
+          then:
+            - if:
+                condition:
+                  lambda: return id(iaq_classification).state != "${iaq_level_0}";
+                then:
+                  - lambda: id(iaq_classification).publish_state("${iaq_level_0}");
+        - above: 50
+          below: 100
+          then:
+            - if:
+                condition:
+                  lambda: return id(iaq_classification).state != "${iaq_level_1}";
+                then:
+                  - lambda: id(iaq_classification).publish_state("${iaq_level_1}");
+        - above: 100
+          below: 150
+          then:
+            - if:
+                condition:
+                  lambda: return id(iaq_classification).state != "${iaq_level_2}";
+                then:
+                  - lambda: id(iaq_classification).publish_state("${iaq_level_2}");
+        - above: 150
+          below: 200
+          then:
+            - if:
+                condition:
+                  lambda: return id(iaq_classification).state != "${iaq_level_3}";
+                then:
+                  - lambda: id(iaq_classification).publish_state("${iaq_level_3}");
+        - above: 200
+          below: 250
+          then:
+            - if:
+                condition:
+                  lambda: return id(iaq_classification).state != "${iaq_level_4}";
+                then:
+                  - lambda: id(iaq_classification).publish_state("${iaq_level_4}");
+        - above: 250
+          below: 350
+          then:
+            - if:
+                condition:
+                  lambda: return id(iaq_classification).state != "${iaq_level_5}";
+                then:
+                  - lambda: id(iaq_classification).publish_state("${iaq_level_5}");
+        - above: 350
+          then:
+            - if:
+                condition:
+                  lambda: return id(iaq_classification).state != "${iaq_level_6}";
+                then:
+                  - lambda: id(iaq_classification).publish_state("${iaq_level_6}");
+    iaq_static:
+      name: "${device_name} Static IAQ"
+      icon: "mdi:leaf"
+      filters:
+        - median
+    co2_equivalent:
+      name: "${device_name} CO2 Equivalent"
+      filters:
+        - median
+    breath_voc_equivalent:
+      name: "${device_name} Breath VOC Equivalent"
+      filters:
+        - median
+    gas_resistance:
+      name: "${device_name} Gas Resistance"
+      filters:
+        - median
+
+switch:
+  - platform: template
+    name: "${device_name} Use RAG Light States"
+    id: use_rag_states
+    icon: "mdi:cog"
+    entity_category: config
+    restore_mode: RESTORE_DEFAULT_ON
+    optimistic: true
+  - platform: template
+    name: "${device_name} Beep on Amber"
+    id: beep_on_amber
+    icon: "mdi:bell-ring"
+    entity_category: config
+    restore_mode: RESTORE_DEFAULT_ON
+    optimistic: true
+  - platform: template
+    name: "${device_name} Beep on Red"
+    id: beep_on_red
+    icon: "mdi:bell-ring"
+    entity_category: config
+    restore_mode: RESTORE_DEFAULT_ON
+    optimistic: true
+
+button:
+  - platform: restart
+    name: "${device_name} Restart"
+    entity_category: diagnostic
+  - platform: factory_reset
+    name: "${device_name} Factory Reset"
+    icon: "mdi:restart-alert"
+    entity_category: config
+    disabled_by_default: true
+  - platform: template
+    name: "${device_name} Beep"
+    icon: "mdi:bell-ring"
+    entity_category: diagnostic
+    on_press:
+      - rtttl.play: "beep:d=10,o=2,b=5000:a"
+
+output:
+  - platform: ledc
+    pin: GPIO10
+    id: rtttl_out
+
+rtttl:
+  output: rtttl_out
+
+interval:
+  - interval: 5min
+    then:
+      if:
+        condition:
+          and:
+            - switch.is_on: beep_on_amber
+            - or:
+                - text_sensor.state:
+                    id: iaq_classification
+                    state: "${iaq_level_2}"
+                - text_sensor.state:
+                    id: iaq_classification
+                    state: "${iaq_level_3}"
+        then:
+          - script.execute: single_beep
+  - interval: 30s
+    then:
+      if:
+        condition:
+          and:
+            - switch.is_on: beep_on_red
+            - or:
+                - text_sensor.state:
+                    id: iaq_classification
+                    state: "${iaq_level_4}"
+                - text_sensor.state:
+                    id: iaq_classification
+                    state: "${iaq_level_5}"
+                - text_sensor.state:
+                    id: iaq_classification
+                    state: "${iaq_level_6}"
+        then:
+          - script.execute: double_beep
+
+script:
+  - id: rgb_off
+    then:
+      - light.turn_off:
+          id: rgb_light
+  - id: rgb_green_solid
+    then:
+      - light.turn_on:
+          id: rgb_light
+          effect: none
+          red: 0%
+          green: 100%
+          blue: 0%
+  - id: rgb_amber_slow_pulse
+    then:
+      - light.turn_on:
+          id: rgb_light
+          effect: Slow Pulse
+          red: 100%
+          green: 75%
+          blue: 0%
+  - id: rgb_red_fast_pulse
+    then:
+      - light.turn_on:
+          id: rgb_light
+          effect: Fast Pulse
+          red: 100%
+          green: 0%
+          blue: 0%
+  - id: single_beep
+    then:
+      - rtttl.play: "single:d=10,o=5,b=7000:a"
+  - id: double_beep
+    then:
+      - rtttl.play: "double:d=10,o=5,b=7000:a,d"

@@ -11,6 +11,7 @@ api:
 
 ota:
   password: !secret esp_ota
+  platform: esphome
 
 wifi:
   ssid: !secret iot_ssid

@@ -1,0 +1,118 @@
+esphome:
+  name: its-wednesday
+  friendly_name: Its Wednesday
+  # Seed the random number generator on boot
+  on_boot:
+    priority: 600
+    then:
+      - lambda: |-
+          srand(id(sntp_time).now().timestamp);
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+
+  # Enable fallback hotspot (captive portal) in case Wi-Fi connection fails
+  ap:
+    ssid: "Its-Wednesday-My-Dude"
+
+captive_portal:
+
+web_server:
+
+# Define outputs
+output:
+  # RTTTL Buzzer Output
+  - platform: esp8266_pwm
+    pin: GPIO14
+    id: rtttl_out
+
+  # LED PWM Output
+  - platform: esp8266_pwm
+    pin: GPIO2
+    id: led_pwm
+    frequency: 1000 Hz  # Adjust as needed for the LED
+
+# Define Lights
+light:
+  # LED Light with Strobe Effect using Monochromatic Platform
+  - platform: monochromatic
+    name: "LED Light"
+    output: led_pwm
+    id: led_light
+    default_transition_length: 0s
+    effects:
+      - strobe:
+          name: "Flashing"
+
+# Define RTTTL Component
+rtttl:
+  id: rtttl_buzzer
+  output: rtttl_out
+  on_finished_playback:
+    - logger.log: 'Song ended!'
+    - light.turn_off: led_light  # Turn off LED after song finishes
+
+# Define Binary Sensor for Onboard Button
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO4
+      mode: INPUT_PULLUP
+    name: "Onboard Button"
+    on_press:
+      - light.turn_on:
+          id: led_light
+          effect: strobe
+      - lambda: |-
+          // Define the list of songs
+          const char *songs[] = {
+            "star_wars:d=16,o=5,b=100:4e,4e,4e,8c,p,g,4e,8c,p,g,4e,4p,4b,4b,4b,8c6,p,g,4d#,8c,p,g,4e,8p",
+            "zelda:d=4,o=5,b=140:16e6,16e6,16e6,16c6,16e6,16c6,16e6,16g6,16g6,16g6,16e6,16c6,16d6,16b5,p,p,p,p,p,p,p,p",
+            "mario:d=4,o=5,b=100:16c,16c,16p,16c,16p,16c,16p,16g,16p,16g,16p,16e,16p,16c,16p,16g",
+            "minecraft:d=4,o=5,b=120:16e,16e,16p,16e,16p,16e,16p,16c,16g,16p,16c,16e,16a,16p,16a,16e",
+            "pokemon:d=4,o=5,b=150:16g,16g,16p,16g,16p,16g,16p,16c6,16g,16p,16c6,16g,16d6,16p,16d6,16g"
+          };
+          int song_count = sizeof(songs) / sizeof(songs[0]);  // Calculate number of songs
+          int idx = rand() % song_count;  // Select a random index
+          id(rtttl_buzzer).play(songs[idx]);  // Play the selected song
+
+# Define Time Component for Scheduled Playback
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: "Europe/London"  # ⚠️ Replace with your actual timezone, e.g., "America/New_York"
+
+    on_time:
+      - seconds: 0
+        minutes: 0
+        hours: 19  # 7 PM in 24-hour format
+        days_of_week: WED
+        then:
+          - light.turn_on:
+              id: led_light
+              effect: strobe
+          - lambda: |-
+              // Define the list of songs
+              const char *songs[] = {
+                "star_wars:d=16,o=5,b=100:4e,4e,4e,8c,p,g,4e,8c,p,g,4e,4p,4b,4b,4b,8c6,p,g,4d#,8c,p,g,4e,8p",
+                "zelda:d=4,o=5,b=140:16e6,16e6,16e6,16c6,16e6,16c6,16e6,16g6,16g6,16g6,16e6,16c6,16d6,16b5,p,p,p,p,p,p,p,p",
+                "mario:d=4,o=5,b=100:16c,16c,16p,16c,16p,16c,16p,16g,16p,16g,16p,16e,16p,16c,16p,16g",
+                "minecraft:d=4,o=5,b=120:16e,16e,16p,16e,16p,16e,16p,16c,16g,16p,16c,16e,16a,16p,16a,16e",
+                "pokemon:d=4,o=5,b=150:16g,16g,16p,16g,16p,16g,16p,16c6,16g,16p,16c6,16g,16d6,16p,16d6,16g"
+              };
+              int song_count = sizeof(songs) / sizeof(songs[0]);  // Calculate number of songs
+              int idx = rand() % song_count;  // Select a random index
+              id(rtttl_buzzer).play(songs[idx]);  // Play the selected song
+
+

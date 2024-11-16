@@ -1,0 +1,17 @@
+substitutions:
+  name: airsense-a66b10
+  friendly_name: Study AQ
+packages:
+  LoopOn.AirSense: github://LoopOnCode/AirSense/esphome/loopon_airsense.yaml@main
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+api:
+  encryption:
+    key: P31yY/Rp0v3aXs8JSgM1HIcbCLHSzSuRqTvnUMRVk8U=
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password

@@ -1,0 +1,17 @@
+substitutions:
+  name: airsense-b99118
+  friendly_name: Bedroom AQ
+packages:
+  LoopOn.AirSense: github://LoopOnCode/AirSense/esphome/loopon_airsense.yaml@main
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+api:
+  encryption:
+    key: 452m4vvMeqBS5YnyzXTlBEhcqNhvx61hFnYGHzOoB3o=
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password

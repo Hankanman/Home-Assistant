@@ -12,6 +12,7 @@ esp32:
     type: arduino
 
 ota:
+  platform: esphome
 logger:
 api:
 
