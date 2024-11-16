@@ -92,3 +92,4 @@ node-red/*
 !node-red/flows.json
 !node-red/settings.js
 all_entities.csv
+ha-code.md
