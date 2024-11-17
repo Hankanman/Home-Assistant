@@ -243,29 +243,29 @@ lounge:
   # Shell Commands
   #----------------------------------#
   shell_command:
-    lounge_camera_turn_off: !secret loungecam_turn_off
-    lounge_camera_turn_on: !secret loungecam_turn_on
-    lounge_camera_floor: !secret loungecam_floor
+    # lounge_camera_turn_off: !secret loungecam_turn_off
+    # lounge_camera_turn_on: !secret loungecam_turn_on
+    # lounge_camera_floor: !secret loungecam_floor
 
   # Switches
   #----------------------------------#
   switch:
 
   command_line:
-    - switch:
-        unique_id: lounge_camera_ir
-        name: Lounge Camera Night Mode
-        command_on: !secret loungecam_ir_on
-        command_off: !secret loungecam_ir_off
-        command_state: !secret loungecam_ir_state
-        value_template: '{{ value == "1" }}'
-    - switch:
-        unique_id: lounge_camera_motion
-        name: Lounge Camera Motion Detection
-        command_on: !secret loungecam_motion_on
-        command_off: !secret loungecam_motion_off
-        command_state: !secret loungecam_motion_state
-        value_template: '{{ value == "1" }}'
+    # - switch:
+    #     unique_id: lounge_camera_ir
+    #     name: Lounge Camera Night Mode
+    #     command_on: !secret loungecam_ir_on
+    #     command_off: !secret loungecam_ir_off
+    #     command_state: !secret loungecam_ir_state
+    #     value_template: '{{ value == "1" }}'
+    # - switch:
+    #     unique_id: lounge_camera_motion
+    #     name: Lounge Camera Motion Detection
+    #     command_on: !secret loungecam_motion_on
+    #     command_off: !secret loungecam_motion_off
+    #     command_state: !secret loungecam_motion_state
+    #     value_template: '{{ value == "1" }}'
 
   # Cameras
   #----------------------------------#

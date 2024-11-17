@@ -113,32 +113,32 @@ hall:
   # Shell Commands
   #----------------------------------#
   shell_command:
-    hall_camera_turn_off: !secret hallcam_turn_off
-    hall_camera_turn_on: !secret hallcam_turn_on
-    hall_camera_bedroom: !secret hallcam_bedroom
-    hall_camera_study: !secret hallcam_study
-    hall_camera_landing: !secret hallcam_landing
-    hall_camera_stairs: !secret hallcam_stairs
+    # hall_camera_turn_off: !secret hallcam_turn_off
+    # hall_camera_turn_on: !secret hallcam_turn_on
+    # hall_camera_bedroom: !secret hallcam_bedroom
+    # hall_camera_study: !secret hallcam_study
+    # hall_camera_landing: !secret hallcam_landing
+    # hall_camera_stairs: !secret hallcam_stairs
 
   # Switches
   #----------------------------------#
   switch:
 
   command_line:
-    - switch:
-        unique_id: hall_camera_ir
-        name: Hall Camera Night Mode
-        command_on: !secret hallcam_ir_on
-        command_off: !secret hallcam_ir_off
-        command_state: !secret hallcam_ir_state
-        value_template: '{{ value == "1" }}'
-    - switch:
-        unique_id: hall_camera_motion
-        name: Hall Camera Motion Detection
-        command_on: !secret hallcam_motion_on
-        command_off: !secret hallcam_motion_off
-        command_state: !secret hallcam_motion_state
-        value_template: '{{ value == "1" }}'
+    # - switch:
+    #     unique_id: hall_camera_ir
+    #     name: Hall Camera Night Mode
+    #     command_on: !secret hallcam_ir_on
+    #     command_off: !secret hallcam_ir_off
+    #     command_state: !secret hallcam_ir_state
+    #     value_template: '{{ value == "1" }}'
+    # - switch:
+    #     unique_id: hall_camera_motion
+    #     name: Hall Camera Motion Detection
+    #     command_on: !secret hallcam_motion_on
+    #     command_off: !secret hallcam_motion_off
+    #     command_state: !secret hallcam_motion_state
+    #     value_template: '{{ value == "1" }}'
   # Cameras
   #----------------------------------#
   camera:

@@ -102,23 +102,22 @@
 - id: '1638536955468'
   alias: Bedroom - Sleep
   description: ''
-  trigger:
+  triggers:
   - trigger: state
     entity_id: input_boolean.bedroom_sleep_mode
-  condition: []
-  action:
+  conditions: []
+  actions:
   - choose:
     - conditions:
       - condition: state
         entity_id: input_boolean.bedroom_sleep_mode
         state: 'on'
       sequence:
-      - action: mass.play_media
+      - action: media_player.play_media
         target:
-          device_id: b2a0723816d8eb3013e90880816945e6
+          device_id: 8ccc102c468232982a7b44a9a8ed14fa
         data:
-          media_type: track
-          media_id: Rain Sounds
+          media_content_id: rain sounds
       - condition: not
         conditions:
         - condition: state
@@ -333,20 +332,6 @@
         type: notify
         title: Low Sensor Battery
         message: 'The following devices have less than 10% battery: {{sensors}}'
-- id: '1672522095610'
-  alias: Rainbow strip led
-  description: Rotating color every second
-  trigger:
-  - hours: '*'
-    minutes: '*'
-    trigger: time_pattern
-    seconds: /1
-  condition: []
-  action:
-  - action: script.new_script
-    data:
-      entity: light.lounge
-  mode: single
 - id: '1675527344121'
   alias: Seb Medication Reminder
   description: ''
@@ -479,23 +464,6 @@
         target:
           entity_id: light.lounge_lamp
   mode: single
-- id: '1679849164244'
-  alias: The Cube
-  description: ''
-  use_blueprint:
-    path: SirGoodenough/Zigbee2MQTT-Aqara-Magic-Cube-T1-Pro-CTP-R01-Xiaomi-Lumi.yaml
-    input:
-      topic: zigbee2mqtt/The Cube
-      action_rotate_cw_face_1:
-      - action: script.cube_dimmer
-        data:
-          angle: '{{ trigger.payload_json.action_angle | float(0.0)}}'
-          light: light.lounge
-      action_rotate_ccw_face_1:
-      - action: script.cube_dimmer
-        data:
-          angle: '{{ trigger.payload_json.action_angle | float(0.0)}}'
-          light: light.lounge
 - id: '1703428459589'
   alias: Offline Zigbee Sensors
   description: ''
@@ -508,48 +476,6 @@
         type: notify
         message: '{{sensors}} are offline'
         title: Some Zigbee Devices are offline!
-- id: '1704029326852'
-  alias: Zigbee2MQTT Update Notification
-  description: ''
-  use_blueprint:
-    path: EPMatt/addon_update_notification.yaml
-    input:
-      addon: 45df7312_zigbee2mqtt
-      addon_sensor_version: sensor.zigbee2mqtt_version
-      addon_sensor_newest_version: sensor.zigbee2mqtt_newest_version
-      addon_sensor_update_available: update.zigbee2mqtt_update
-      mobile_notify_service: notify.mobile_app_seb_phone
-      notification_title: '{{ addon_name }} update available'
-      notification_message: Update available for {{ addon_name }} ({{ version }} ->
-        {{ newest_version }})
-      update_success_notification_title: '{{ addon_name }} update completed'
-      addon_name: Zigbee2MQTT
-- id: '1704029465898'
-  alias: UniFi Update Notification
-  description: ''
-  use_blueprint:
-    path: EPMatt/addon_update_notification.yaml
-    input:
-      addon: a0d7b954_unifi
-      addon_sensor_version: sensor.unifi_network_application_version
-      addon_sensor_newest_version: sensor.unifi_network_application_newest_version
-      addon_sensor_update_available: binary_sensor.unifi_network_application_running
-      mobile_notify_service: notify.mobile_app_seb_phone
-      notification_title: '{{ addon_name }} update available'
-      notification_message: Update available for {{ addon_name }} ({{ version }} ->
-        {{ newest_version }})
-      update_success_notification_title: '{{ addon_name }} update completed'
-      addon_name: UniFi
-- id: '1704146389662'
-  alias: New Automation
-  description: ''
-  trigger: []
-  condition: []
-  action:
-  - action: recorder.purge_entities
-    data:
-      entity_globs: device_tracker.00*
-  mode: single
 - id: '1711888149640'
   alias: Fridge Left Open
   description: ''
@@ -561,18 +487,6 @@
       notify_services_string: notify.mobiles
       notification_click_url: /lovelace/
       repeat_notification: true
-- id: '1715937768507'
-  alias: 'ehmtxv2: extended show state with unit on 8x32 RGB-matrix'
-  description: ''
-  use_blueprint:
-    path: ehmtxv2/EHMTX_extended_state.yaml
-    input:
-      ehmtx_device: 4a209b5dc3560c18036d11eafb767e45
-      trigger_sensor:
-      - sensor.smart_meter_electricity_power_watts
-      use_friendly: false
-      icon_text: true
-      icon_name: lightbulb
 - id: '1716581107924'
   alias: Battery Notes - Battery Replaced
   description: ''
