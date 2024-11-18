@@ -1,237 +1,165 @@
-study:
-  # Binary Sensors
-  #----------------------------------#
-  # MQTT
-  #----------------------------------#
-  mqtt:
-    binary_sensor:
-      name: Starrunner Online
-      state_topic: homeassistant/sensor/STARRUNNER/availability
-      payload_on: "online"
-      payload_off: "offline"
-      device_class: connectivity
-
-  binary_sensor:
-    # Bayesian
-    #----------------------------------#
-    - platform: bayesian
-      name: Study Occupied
-      prior: 0.25
-      device_class: occupancy
-      probability_threshold: 0.8
-      observations:
-
-        - platform: "state"
-          entity_id: binary_sensor.starrunner_active
-          prob_given_true: 0.4782515
-          prob_given_false: 0.0043238
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.starrunner_microphoneactive
-          prob_given_true: 0.1055744
-          prob_given_false: 0.0016362
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.starrunner_webcamactive
-          prob_given_true: 0.0140238
-          prob_given_false: 0.0002396
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.study_bright
-          prob_given_true: 0.0454762
-          prob_given_false: 0.1286207
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.study_door_contact
-          prob_given_true: 0.0056548
-          prob_given_false: 0.0000974
-          to_state: "off"
-
-        - platform: "state"
-          entity_id: binary_sensor.study_motion
-          prob_given_true: 0.4568765
-          prob_given_false: 0.0042997
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.study_motion_1_occupancy
-          prob_given_true: 0.4568482
-          prob_given_false: 0.0042997
-          to_state: "on"
-
-
-    # Network
-    #----------------------------------#
-    #- platform: ping
-    #  host: !secret starrunner_ip_2gb
-    #  name: "Starrunner State"
-
-    #- platform: ping
-    #  host: !secret endeavor_ip_management
-    #  name: "Endeavor State"
-
-  # Variable Sensors
-  #----------------------------------#
-  sensor:
-
-  # Template Sensors
-  #----------------------------------#
+Study:
   template:
-    # Template Binary Sensors
-    #----------------------------------#
-    binary_sensor:
-      # Bright Sensors
-      #----------------------------------#
-      - unique_id: study_bright
-        name: "Study Bright"
-        device_class: light
-        state: |
-          {% set lux = states('sensor.study_illuminance') %}
-          {% set threshold = states('input_number.study_illuminance_level') %}
-          {% set selfState = states('binary_sensor.study_bright') %}
-          {% set lightState = states('light.study') %}
-          {% set selfLastChanged = states.binary_sensor.study_bright.last_changed %}
-          {% if threshold | int(0) == 0 %}
-            False
-          {% elif lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
-            True
-          {% elif lux | int(0) > (threshold | int(0) * 3) %}
-            True
-          {% elif ((threshold | int(0) < lux | int(0) < (threshold | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(selfLastChanged) < 300) %}
-            {{ selfState }}
-          {% elif lux | int(0) < threshold | int(0) %}
-            False
-          {% else %}
-            False
-          {% endif %}
-
-    # Template Variable Sensors
-    #----------------------------------#
-    sensor:
-      # Probabilities
-      #----------------------------------#
-      - unique_id: study_occupied_probability
-        name: Study Occupied Probability
-        state_class: measurement
-        unit_of_measurement: "%"
-        state: "{{ (state_attr('binary_sensor.study_occupied','probability')*100 | int(0) ) | round(0) }}"
-
-      - unique_id: endeavor_array_free
-        name: Endeavor Array Free
-        state_class: measurement
-        unit_of_measurement: "TB"
-        state: "{{ ((states('sensor.endeavor_mnt_disk1_free') | float(0) + states('sensor.endeavor_mnt_disk2_free') | float(0) + states('sensor.endeavor_mnt_disk3_free') | float(0)) / 1000) | round(2) }}"
-
-      - unique_id: endeavor_array_used
-        name: Endeavor Array Used
-        state_class: measurement
-        unit_of_measurement: "TB"
-        state: "{{ ((states('sensor.endeavor_mnt_disk1_used') | float(0) + states('sensor.endeavor_mnt_disk2_used') | float(0) + states('sensor.endeavor_mnt_disk3_used') | float(0)) / 1000) | round(2) }}"
-
-      - unique_id: endeavor_array_total
-        name: Endeavor Array Total
-        state_class: measurement
-        unit_of_measurement: "TB"
-        state: "{{ states('sensor.endeavor_array_free') | float(0) + states('sensor.endeavor_array_used') | float(0) }}"
-
-      - unique_id: endeavor_array_percent_used
-        name: Endeavor Array Percent Used
-        state_class: measurement
-        unit_of_measurement: "%"
-        state: "{{ (states('sensor.endeavor_array_used') | float(1) / states('sensor.endeavor_array_total') | float(2) * 100) | round(2) }}"
-
-      - unique_id: endeavor_array_cache_free
-        name: Endeavor Array Cache Free
-        state_class: measurement
-        unit_of_measurement: "TB"
-        state: "{{ ((states('sensor.endeavor_mnt_cache_free') | float(0)) / 1000) | round(2) }}"
-
-      - unique_id: endeavor_array_cache_used
-        name: Endeavor Array Cache Used
-        state_class: measurement
-        unit_of_measurement: "TB"
-        state: "{{ ((states('sensor.endeavor_mnt_cache_used') | float(0)) / 1000) | round(2) }}"
-
-      - unique_id: endeavor_array_cache_total
-        name: Endeavor Array Cache Total
-        state_class: measurement
-        unit_of_measurement: "TB"
-        state: "{{ states('sensor.endeavor_array_cache_free') | float(0) + states('sensor.endeavor_array_cache_used') | float(0) }}"
-
-      - unique_id: endeavor_array_cache_percent_used
-        name: Endeavor Array Cache Percent Used
-        state_class: measurement
-        unit_of_measurement: "%"
-        state: "{{ states('sensor.endeavor_mnt_cache_used_percent') | float(0) }}"
-
-
-  # Media Players
-  #----------------------------------#
-  media_player:
-    # - platform: hass_agent_mediaplayer
-    #   name: "Starrunner"
-    #   host: 192.168.1.89
-    #   port: 5115
-    # - platform: universal
-    #   name: Starrunner
-    #   state_template: >
-    #     {% if is_state('binary_sensor.starrunner_online', 'on')  and  is_state_attr('media_player.spotify_seb', 'source', 'STARRUNNER') %}
-    #       {% if is_state('media_player.spotify_seb', 'playing') %}
-    #         playing
-    #       {% else %}
-    #         paused
-    #       {% endif %}
-    #     {% else %}
-    #       idle
-    #     {% endif %}
-    #   children:
-    #     - media_player.spotify_seb
-    #   commands:
-    #     media_play:
-    #       service: switch.toggle
-    #       target:
-    #         entity_id: switch.starrunner_mediaplaypause
-    #     media_pause:
-    #       service: switch.toggle
-    #       target:
-    #         entity_id: switch.starrunner_mediaplaypause
-    #     media_next_track:
-    #       service: switch.toggle
-    #       target:
-    #         entity_id: switch.starrunner_medianext
-    #     media_previous_track:
-    #       service: switch.toggle
-    #       target:
-    #         entity_id: switch.starrunner_mediaprevious
-    #     volume_up:
-    #       service: switch.toggle
-    #       target:
-    #         entity_id: switch.starrunner_mediavolumeup
-    #     volume_down:
-    #       service: switch.toggle
-    #       target:
-    #         entity_id: switch.starrunner_mediavolumedown
-    #     volume_mute:
-    #       service: switch.toggle
-    #       target:
-    #         entity_id: switch.starrunner_mediamute
-
-  # Notification Platforms
-  #----------------------------------#
-  notify:
-
-  # Shell Commands
-  #----------------------------------#
-  shell_command:
-
-  # Switches
-  #----------------------------------#
-  switch:
-
-  # Cameras
-  #----------------------------------#
-  camera:
+    - binary_sensor:
+        - name: Study Occupancy
+          unique_id: study_occupancy
+          state: |-
+            {% set scores = namespace(total=0) %}
+            {% if is_state('binary_sensor.study_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
+            {% if is_state('binary_sensor.study_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
+            {% if is_state('binary_sensor.starrunner_active', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
+            {% if is_state('input_boolean.study_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
+            {{ scores.total >= 3 }}
+          attributes:
+            confidence_score: |-
+              {% set scores = namespace(total=0) %}
+              {% if is_state('binary_sensor.study_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
+              {% if is_state('binary_sensor.study_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
+              {% if is_state('binary_sensor.starrunner_active', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
+              {% if is_state('input_boolean.study_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
+              {{ scores.total }}
+            active_triggers: |-
+              {% set triggers = [] %}
+              {% if is_state('binary_sensor.study_motion', 'on') %}  {% set triggers = triggers + ['Motion Detected'] %}{% endif %}
+              {% if is_state('binary_sensor.study_door_contact', 'off') %}  {% set triggers = triggers + ['Door Closed'] %}{% endif %}
+              {% if is_state('binary_sensor.starrunner_active', 'on') %}  {% set triggers = triggers + ['PC Active'] %}{% endif %}
+              {% if is_state('input_boolean.study_occupied_override', 'on') %}  {% set triggers = triggers + ['Manual Override'] %}{% endif %}
+              {{ triggers|join(', ') }}
+    - binary_sensor:
+        - name: Study PC Active
+          unique_id: study_pc_active
+          state: |-
+            {% set idle_time = states('sensor.pc_idle_time')|int(0) %}
+            {% set power = states('sensor.pc_power')|float(0) %}
+            {{ idle_time < 300 or power > 50 }}
+          attributes:
+            idle_time: >-
+              {{ states('sensor.pc_idle_time')|int(0) }}
+            power_draw: >-
+              {{ states('sensor.pc_power')|float(0) }}
+            apps_running: >-
+              {{ state_attr('sensor.pc_status', 'running_apps')|default([]) }}
+    - binary_sensor:
+        - name: Study Temperature Rising
+          unique_id: study_temp_rising
+          state: |-
+            {% set current = states('sensor.study_temperature')|float(20) %}
+            {% set previous = state_attr('sensor.study_temperature', 'previous_value')|float(20) %}
+            {% set threshold = 0.2 %}
+            {{ (current - previous) > threshold }}
+        - name: Study Temperature Falling
+          unique_id: study_temp_falling
+          state: |-
+            {% set current = states('sensor.study_temperature')|float(20) %}
+            {% set previous = state_attr('sensor.study_temperature', 'previous_value')|float(20) %}
+            {% set threshold = 0.2 %}
+            {{ (current - previous) < threshold }}
+      sensor:
+        - name: Study Temperature Differential
+          unique_id: study_temp_differential
+          state: |-
+            {% set current = states('sensor.study_temperature')|float(20) %}
+            {% set target = state_attr('climate.study', 'temperature')|float(20) %}
+            {{ (current - target)|round(1) }}
+          attributes:
+            current_temp: >-
+              {{ states('sensor.study_temperature')|float(20) }}
+            target_temp: >-
+              {{ state_attr('climate.study', 'temperature')|float(20) }}
+            mode: >-
+              {{ state_attr('climate.study', 'hvac_action')|default('off') }}
+    - binary_sensor:
+        - name: Study High Humidity
+          unique_id: study_high_humidity
+          state: |-
+            {% set current = states('sensor.study_humidity')|float(50) %}
+            {{ current > 75 }}
+      sensor:
+        - name: Study Humidity Change
+          unique_id: study_humidity_change
+          state: |-
+            {% set current = states('sensor.study_humidity')|float(50) %}
+            {% set average = states('sensor.sensor.study_humidity_average')|float(50) %}
+            {{ ((current - average) / average * 100)|round(1) }}
+          attributes:
+            current_humidity: >-
+              {{ states('sensor.study_humidity')|float(50) }}
+            average_humidity: >-
+              {{ states('sensor.sensor.study_humidity_average')|float(50) }}
+    - binary_sensor:
+        - name: Study Windows Open
+          unique_id: study_windows_open
+          state: >-
+            {{ is_state('binary_sensor.study_windows', 'on') }}
+          attributes:
+            climate_impact: |-
+              {% set temp_diff = states('sensor.study_temp_differential')|float(0) %}
+              {% set window_open = is_state('binary_sensor.study_windows', 'on') %}
+              {% if window_open %}
+                {% if temp_diff > 2 %}
+                  'heating_loss'
+                {% elif temp_diff < -2 %}
+                  'cooling_loss'
+                {% else %}
+                  'minimal'
+                {% endif %}
+              {% else %}
+                'none'
+              {% endif %}
+  input_number:
+    study_power_threshold:
+      name: Study Power Alert Threshold
+      min: 100.0
+      max: 1000.0
+      step: 50.0
+      unit_of_measurement: W
+      icon: mdi:flash-alert
+      initial: 400.0
+    study_temp_threshold:
+      name: Study Temperature Threshold
+      min: 19.0
+      max: 25.0
+      step: 0.5
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+      initial: 23.0
+    study_light_brightness:
+      name: Study Light Brightness
+      min: 0.0
+      max: 100.0
+      step: 5.0
+      unit_of_measurement: '%'
+      icon: mdi:brightness-6
+      initial: 100.0
+    study_light_transition:
+      name: Study Light Transition Time
+      min: 0.0
+      max: 10.0
+      step: 0.5
+      unit_of_measurement: s
+      icon: mdi:transition
+      initial: 5.0
+    study_humidity_threshold:
+      name: Study Humidity Threshold
+      min: 30.0
+      max: 80.0
+      step: 1.0
+      unit_of_measurement: '%'
+      icon: mdi:water-percent
+      initial: 60.0
+  input_boolean:
+    study_light_color_mode:
+      name: Study Light Color Mode
+      icon: mdi:palette
+    study_pc_power_management:
+      name: Study PC Power Management
+      icon: mdi:desktop-classic
+    study_occupied_override:
+      name: Study Manual Occupancy Override
+      icon: mdi:account-check
+    study_sleep_mode:
+      name: Study Sleep Mode
+      icon: mdi:power-sleep
+    study_automations:
+      name: Study Automations
+      icon: mdi:robot

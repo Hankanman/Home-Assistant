@@ -81,24 +81,6 @@
       target:
         entity_id: light.wardrobe
   mode: restart
-- id: '1638260394889'
-  alias: System - Auto Snapshot and Backup
-  description: ''
-  trigger:
-  - trigger: time
-    at: '12:00'
-  condition:
-  - condition: template
-    value_template: '{{ now().strftime(''%A'') == "Wednesday" }}'
-  action:
-  - action: hassio.addon_start
-    data:
-      addon: 3490a758_remote_backup
-  - action: notify.mobile_app_seb_phone
-    data:
-      title: Backup Successful!
-      message: Home Assistant Backup Complete
-  mode: single
 - id: '1638536955468'
   alias: Bedroom - Sleep
   description: ''
@@ -596,77 +578,6 @@
     target:
       entity_id: media_player.bedside_speaker
   mode: single
-- id: '1723978228404'
-  alias: Intelligent Study Fan Control
-  description: Controls the study fan based on room occupancy and temperature, providing
-    cooling when needed
-  trigger:
-  - trigger: state
-    entity_id: binary_sensor.study_occupied
-  - trigger: homeassistant
-    event: start
-  - trigger: state
-    entity_id: sensor.study_temperature
-  - trigger: state
-    entity_id: climate.study
-    attribute: temperature
-  condition: []
-  action:
-  - choose:
-    - conditions:
-      - condition: or
-        conditions:
-        - condition: state
-          entity_id: binary_sensor.study_occupied
-          state: 'on'
-        - condition: template
-          value_template: '{{ trigger.entity_id in [''sensor.study_temperature'',
-            ''climate.study'',''binary_sensor.study_occupied''] }}'
-      sequence:
-      - target:
-          entity_id: input_select.study_fan_last_state
-        data:
-          option: '{{ states(''fan.study'') }}'
-        action: input_select.select_option
-      - choose:
-        - conditions:
-          - condition: template
-            value_template: '{{ temp_difference > 0 }}'
-          sequence:
-          - target:
-              entity_id: fan.study
-            data:
-              percentage: "{% if temp_difference > 2 %}\n  100\n{% elif temp_difference
-                > 1 %}\n  66\n{% else %}\n  33\n{% endif %}\n"
-            action: fan.turn_on
-        - conditions:
-          - condition: template
-            value_template: '{{ temp_difference <= 0 }}'
-          sequence:
-          - target:
-              entity_id: fan.study
-            action: fan.turn_off
-            data: {}
-    - conditions:
-      - condition: state
-        entity_id: binary_sensor.study_occupied
-        state: 'off'
-      sequence:
-      - target:
-          entity_id: fan.study
-        action: fan.turn_off
-        data: {}
-    default:
-    - target:
-        entity_id: fan.study
-      data:
-        percentage: '{{ states(''input_select.study_fan_last_state'') }}'
-      action: fan.turn_on
-  variables:
-    current_temp: '{{ states(''sensor.study_temperature'') | float }}'
-    target_temp: '{{ state_attr(''climate.study'', ''temperature'') | float }}'
-    temp_difference: '{{ current_temp - target_temp }}'
-  mode: single
 - id: '1731765448132'
   alias: Smart Lighting Control | Bathroom
   description: ''
@@ -678,8 +589,23 @@
       guest_mode: input_boolean.guest_mode
       sleep_mode_sensor: binary_sensor.upstairs_sleep_mode
       area_lights:
-        area_id: bathroom
+        entity_id: light.bathroom
       occupancy_sensor: binary_sensor.bathroom_occupied
       illuminance_sensor: sensor.bathroom_illuminance
       illuminance_threshold_sensor: sensor.bathroom_average_illuminance
       min_brightness: 1
+- id: '1731850444277'
+  alias: Smart Lighting Control | Study
+  description: ''
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      people_home: binary_sensor.people_home
+      sleep_mode_sensor: input_boolean.study_sleep_mode
+      guest_mode: input_boolean.guest_mode
+      enable_automation: input_boolean.study_automations
+      area_lights:
+        entity_id: light.study
+      occupancy_sensor: binary_sensor.study_occupancy
+      illuminance_sensor: sensor.study_illuminance
+      illuminance_threshold_sensor: sensor.study_illuminance

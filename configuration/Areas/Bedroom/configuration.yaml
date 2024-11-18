@@ -1,197 +1,141 @@
-bedroom:
-  # Binary Sensors
-  #----------------------------------#
-  binary_sensor:
-    # Bayesian
-    #----------------------------------#
-    - platform: bayesian
-      name: Bedroom Occupied
-      prior: 0.11
-      device_class: occupancy
-      probability_threshold: 0.7
-      observations:
-        - platform: "state"
-          entity_id: binary_sensor.bedroom_door_contact
-          prob_given_true: 0.0851935
-          prob_given_false: 0.0009761
-          to_state: "off"
-
-        - platform: "state"
-          entity_id: binary_sensor.bedroom_motion
-          prob_given_true: 0.2749345
-          prob_given_false: 0.0012895
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.bedroom_temperature_motion_lux_1_occupancy
-          prob_given_true: 0.2685164
-          prob_given_false: 0.0012705
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.bedroom_tv_state
-          prob_given_true: 0.3530833
-          prob_given_false: 0.0014775
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.bedroom_windows
-          prob_given_true: 0.0594911
-          prob_given_false: 0.0618896
-          to_state: "off"
-
-        - platform: "state"
-          entity_id: media_player.bedroom_tv
-          prob_given_true: 0.0414211
-          prob_given_false: 0.0002568
-          to_state: "playing"
-
-    - platform: bayesian
-      name: Bed Occupied
-      prior: 0.42
-      device_class: occupancy
-      probability_threshold: 0.9
-      observations:
-        - platform: "state"
-          entity_id: "binary_sensor.bedroom_motion"
-          prob_given_true: 0.11
-          prob_given_false: 0.0267
-          to_state: "on"
-        - platform: "state"
-          entity_id: "input_boolean.sleep_schedule"
-          prob_given_true: 0.93
-          prob_given_false: 0.173
-          to_state: "on"
-        - platform: template
-          value_template: >
-            {{ is_state('binary_sensor.seb_sleeping', 'on') and is_state('person.sebastian_burrell','home') }}
-          prob_given_true: 0.5940
-          prob_given_false: 0.0891
-        - platform: template
-          value_template: >
-            {{ is_state('binary_sensor.laura_sleeping', 'on') and is_state('person.laura_ward','home') }}
-          prob_given_true: 0.9680
-          prob_given_false: 0.1452
-        - platform: "state"
-          entity_id: "media_player.bedroom_echo"
-          prob_given_true: 0.11
-          prob_given_false: 0.0333
-          to_state: "playing"
-        - platform: "state"
-          entity_id: "media_player.bedroom_tv"
-          prob_given_true: 0.21
-          prob_given_false: 0.0667
-          to_state: "playing"
-
-  # Variable Sensors
-  #----------------------------------#
-  sensor:
-    - platform: statistics
-      name: Bed Left Average Voltage
-      entity_id: sensor.bedroom_bed_presence_left_voltage
-      state_characteristic: average_linear
-      max_age:
-        days: 4
-    - platform: statistics
-      name: Bed Right Average Voltage
-      entity_id: sensor.bedroom_bed_presence_right_voltage
-      state_characteristic: average_linear
-      max_age:
-        days: 4
-  # Template Sensors
-  #----------------------------------#
-
+Bedroom:
   template:
-    # Template Binary Sensors
-    #----------------------------------#
-    binary_sensor:
-      # Bright Sensors
-      #----------------------------------#
-      - name: "Bedroom Bright"
-        unique_id: bedroom_bright
-        device_class: light
-        state: >
-          {% set lux = states('sensor.bedroom_illuminance') | float(0) %}
-          {% set threshold = states('input_number.bedroom_illuminance_level') | float(0) %}
-          {% set light_state = states('light.bedroom') %}
-          {% set sun_state = states('sun.sun') %}
-          {% set next_setting = state_attr('sun.sun', 'next_setting') %}
-          {% set next_rising = state_attr('sun.sun', 'next_rising') %}
+    - binary_sensor:
+        - name: Bedroom Occupancy
+          unique_id: bedroom_occupancy
+          state: |-
+            {% set scores = namespace(total=0) %}
+            {% if is_state('binary_sensor.bedroom_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
+            {% if is_state('binary_sensor.bedroom_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
+            {% if is_state('input_boolean.bedroom_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
+            {{ scores.total >= 3 }}
+          attributes:
+            confidence_score: |-
+              {% set scores = namespace(total=0) %}
+              {% if is_state('binary_sensor.bedroom_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
+              {% if is_state('binary_sensor.bedroom_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
+              {% if is_state('input_boolean.bedroom_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
+              {{ scores.total }}
+            active_triggers: |-
+              {% set triggers = [] %}
+              {% if is_state('binary_sensor.bedroom_motion', 'on') %}  {% set triggers = triggers + ['Motion Detected'] %}{% endif %}
+              {% if is_state('binary_sensor.bedroom_door_contact', 'off') %}  {% set triggers = triggers + ['Door Closed'] %}{% endif %}
+              {% if is_state('input_boolean.bedroom_occupied_override', 'on') %}  {% set triggers = triggers + ['Manual Override'] %}{% endif %}
+              {{ triggers|join(', ') }}
+    - binary_sensor:
+        - name: Bedroom Temperature Rising
+          unique_id: bedroom_temp_rising
+          state: |-
+            {% set current = states('sensor.bedroom_temperature')|float(20) %}
+            {% set previous = state_attr('sensor.bedroom_temperature', 'previous_value')|float(20) %}
+            {% set threshold = 0.2 %}
+            {{ (current - previous) > threshold }}
+        - name: Bedroom Temperature Falling
+          unique_id: bedroom_temp_falling
+          state: |-
+            {% set current = states('sensor.bedroom_temperature')|float(20) %}
+            {% set previous = state_attr('sensor.bedroom_temperature', 'previous_value')|float(20) %}
+            {% set threshold = 0.2 %}
+            {{ (current - previous) < threshold }}
+      sensor:
+        - name: Bedroom Temperature Differential
+          unique_id: bedroom_temp_differential
+          state: |-
+            {% set current = states('sensor.bedroom_temperature')|float(20) %}
+            {% set target = state_attr('climate.bedroom', 'temperature')|float(20) %}
+            {{ (current - target)|round(1) }}
+          attributes:
+            current_temp: >-
+              {{ states('sensor.bedroom_temperature')|float(20) }}
+            target_temp: >-
+              {{ state_attr('climate.bedroom', 'temperature')|float(20) }}
+            mode: >-
+              {{ state_attr('climate.bedroom', 'hvac_action')|default('off') }}
+    - binary_sensor:
+        - name: Bedroom High Humidity
+          unique_id: bedroom_high_humidity
+          state: |-
+            {% set current = states('sensor.bedroom_humidity')|float(50) %}
+            {{ current > 75 }}
+      sensor:
+        - name: Bedroom Humidity Change
+          unique_id: bedroom_humidity_change
+          state: |-
+            {% set current = states('sensor.bedroom_humidity')|float(50) %}
+            {% set average = states('sensor.sensor.bedroom_humidity_average')|float(50) %}
+            {{ ((current - average) / average * 100)|round(1) }}
+          attributes:
+            current_humidity: >-
+              {{ states('sensor.bedroom_humidity')|float(50) }}
+            average_humidity: >-
+              {{ states('sensor.sensor.bedroom_humidity_average')|float(50) }}
+    - binary_sensor:
+        - name: Bedroom Windows Open
+          unique_id: bedroom_windows_open
+          state: >-
+            {{ is_state('binary_sensor.bedroom_window', 'on') }}
+          attributes:
+            climate_impact: |-
+              {% set temp_diff = states('sensor.bedroom_temp_differential')|float(0) %}
+              {% set window_open = is_state('binary_sensor.bedroom_window', 'on') %}
+              {% if window_open %}
+                {% if temp_diff > 2 %}
+                  'heating_loss'
+                {% elif temp_diff < -2 %}
+                  'cooling_loss'
+                {% else %}
+                  'minimal'
+                {% endif %}
+              {% else %}
+                'none'
+              {% endif %}
+  input_number:
+    bedroom_temp_threshold:
+      name: Bedroom Temperature Threshold
+      min: 19.0
+      max: 25.0
+      step: 0.5
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+      initial: 23.0
+    bedroom_light_brightness:
+      name: Bedroom Light Brightness
+      min: 0.0
+      max: 100.0
+      step: 5.0
+      unit_of_measurement: '%'
+      icon: mdi:brightness-6
+      initial: 100.0
+    bedroom_light_transition:
+      name: Bedroom Light Transition Time
+      min: 0.0
+      max: 10.0
+      step: 0.5
+      unit_of_measurement: s
+      icon: mdi:transition
+      initial: 5.0
+    bedroom_humidity_threshold:
+      name: Bedroom Humidity Threshold
+      min: 30.0
+      max: 80.0
+      step: 1.0
+      unit_of_measurement: '%'
+      icon: mdi:water-percent
+      initial: 60.0
+  input_boolean:
+    bedroom_light_color_mode:
+      name: Bedroom Light Color Mode
+      icon: mdi:palette
+    bedroom_occupied_override:
+      name: Bedroom Manual Occupancy Override
+      icon: mdi:account-check
+    bedroom_sleep_mode:
+      name: Bedroom Sleep Mode
+      icon: mdi:power-sleep
+    bedroom_automations:
+      name: Bedroom Automations
+      icon: mdi:robot
 
-          {% set minutes_to_sunset = ((as_timestamp(next_setting) - as_timestamp(now())) / 60) | int if next_setting else 0 %}
-          {% set minutes_to_sunrise = ((as_timestamp(next_rising) - as_timestamp(now())) / 60) | int if next_rising else 0 %}
-
-          {% if sun_state == 'below_horizon' %}
-            {% set adjusted_threshold = threshold * 0.8 %}
-          {% elif minutes_to_sunset < 60 %}
-            {% set adjusted_threshold = threshold * (0.8 + 0.2 * (minutes_to_sunset / 60)) %}
-          {% elif minutes_to_sunrise < 60 %}
-            {% set adjusted_threshold = threshold * (0.8 + 0.2 * (1 - minutes_to_sunrise / 60)) %}
-          {% else %}
-            {% set adjusted_threshold = threshold %}
-          {% endif %}
-
-          {% set hysteresis_factor = 1.3 %}
-          {% set min_lux_difference = 1 %}
-
-          {% set history = state_attr('sensor.bedroom_illuminance', 'history') %}
-          {% if history %}
-            {% set oldest_state = history[0] %}
-            {% set newest_state = history[-1] %}
-            {% set time_diff = as_timestamp(newest_state.last_changed) - as_timestamp(oldest_state.last_changed) %}
-            {% set lux_diff = newest_state.state | float - oldest_state.state | float %}
-            {% set lux_change_rate = (lux_diff / time_diff) if time_diff > 0 else 0 %}
-          {% else %}
-            {% set lux_change_rate = 0 %}
-          {% endif %}
-
-          {% if lux >= (adjusted_threshold * hysteresis_factor) and light_state == 'off' and (lux - adjusted_threshold) >= min_lux_difference %}
-            {{ true }}
-          {% elif lux <= (adjusted_threshold / hysteresis_factor) and (adjusted_threshold - lux) >= min_lux_difference %}
-            {{ false }}
-          {% elif (lux_change_rate < -0.1 and lux < adjusted_threshold) or (lux_change_rate > 0.1 and lux > adjusted_threshold) %}
-            {{ lux > adjusted_threshold }}
-          {% else %}
-            {{ states('binary_sensor.bedroom_bright') }}
-          {% endif %}
-        attributes:
-          lux: "{{ states('sensor.bedroom_illuminance') }}"
-          base_threshold: "{{ states('input_number.bedroom_illuminance_level') }}"
-          adjusted_threshold: "{{ adjusted_threshold }}"
-          sun_state: "{{ sun_state }}"
-          minutes_to_sunset: "{{ minutes_to_sunset }}"
-          minutes_to_sunrise: "{{ minutes_to_sunrise }}"
-          lux_change_rate:
-            "{{ lux_change_rate | round(3) }}"
-
-            # Humid Sensors
-            #----------------------------------#
-
-    # Template Variable Sensors
-    #----------------------------------#
-    sensor:
-      # Probabilities
-      #----------------------------------#
-      - unique_id: bedroom_occupied_probability
-        name: Bedroom Occupied Probability
-        state_class: measurement
-        unit_of_measurement: "%"
-        state: "{{ (state_attr('binary_sensor.bedroom_occupied','probability')*100 | int(0) ) | round(0) }}"
-
-      - unique_id: bed_occupied_probability
-        name: Bed Occupied Probability
-        state_class: measurement
-        unit_of_measurement: "%"
-        state: "{{ (state_attr('binary_sensor.bed_occupied','probability')*100 | int(0) ) | round(0) }}"
-      - name: "Bedroom Illuminance 5min Ago"
-        unique_id: bedroom_illuminance_5min_ago
-        unit_of_measurement: "lx"
-        state: "{{ states('sensor.bedroom_illuminance') }}"
-        attributes:
-          lux_5min_ago: "{{ state_attr('sensor.bedroom_illuminance_5min_ago', 'lux_5min_ago') | default(states('sensor.bedroom_illuminance')) }}"
-
-  # Media Players
-  #----------------------------------#
   media_player:
     - platform: universal
       name: Bedroom TV
@@ -244,32 +188,3 @@ bedroom:
         media_title: media_player.bedroom_tv_shield_adb|media_title
         media_duration: media_player.bedroom_tv_shield_adb|media_duration
         media_position: media_player.bedroom_tv_shield_adb|media_position
-  # Notification Platforms
-  #----------------------------------#
-  notify:
-
-  # Shell Commands
-  #----------------------------------#
-  shell_command:
-
-  # Switches
-  #----------------------------------#
-  switch:
-    # - platform: template
-    #   switches:
-    #     bedroom_tv_power:
-    #       friendly_name: Bedroom TV Power
-    #       value_template: >
-    #         {{ iif( states("media_player.bedroom_tv") in ["playing","standby","idle","paused"], "on", "off") }}
-    #       turn_on:
-    #         service: media_player.turn_on
-    #         target:
-    #           entity_id: media_player.bedroom_tv
-    #       turn_off:
-    #         service: media_player.turn_off
-    #         target:
-    #           entity_id: media_player.bedroom_tv
-
-  # Cameras
-  #----------------------------------#
-  camera:

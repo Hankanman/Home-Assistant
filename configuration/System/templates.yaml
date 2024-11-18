@@ -90,12 +90,6 @@ templates:
         device_class: energy
         state_class: total
         state: "{{ float(states('sensor.sockets_wh')) - (float(states('sensor.desk_today_energy'))*1000) - (float(states('sensor.servers_today_energy'))*1000) - (float(states('sensor.washing_machine_today_energy'))*1000) }}"
-      - unique_id: weekday_template
-        name: Weekday Template
-        state: "{{ ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][now().weekday()] }}"
-      - unique_id: month_template
-        name: Month Template
-        state: "{% set months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %} {{ now().day | string + ' ' + months[now().month-1]}}"
       # Power Sensors
       #----------------------------------#
       - unique_id: smart_meter_electricity_power_watts
