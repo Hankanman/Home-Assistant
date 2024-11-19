@@ -16,7 +16,7 @@ bedroom:
             humidity: "sensor.bedroom_humidity"
           state: >
             {% set confidence_score = state_attr('binary_sensor.bedroom_occupancy', 'confidence_score') | int(0) %}
-            {{ confidence_score >= 40 }}
+            {{ confidence_score >= 30 }}
           attributes:
             confidence_score: >
               {# Define all scoring conditions in a list #}
