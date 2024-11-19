@@ -1,28 +1,26 @@
-study:
+wardrobe:
   template:
     - binary_sensor:
-        - name: Study Occupancy
-          unique_id: study_occupancy
+        - name: Wardrobe Occupancy
+          unique_id: wardrobe_occupancy
           device_class: occupancy
           delay_off:
             minutes: 2
           variables:
-            motion: "binary_sensor.study_motion"
-            pc_active: "binary_sensor.starrunner_active"
-            door: "binary_sensor.study_door_contact"
-            occupied_override: "input_boolean.study_occupied_override"
-            illuminance: "sensor.study_illuminance"
-            temperature: "sensor.study_temperature"
-            humidity: "sensor.study_humidity"
+            motion: "binary_sensor.wardrobe_motion"
+            door: "binary_sensor.wardrobe_door_contact"
+            occupied_override: "input_boolean.wardrobe_occupied_override"
+            illuminance: "sensor.wardrobe_illuminance"
+            temperature: "sensor.wardrobe_temperature"
+            humidity: "sensor.wardrobe_humidity"
           state: >
-            {% set confidence_score = state_attr('binary_sensor.study_occupancy', 'confidence_score') | int(0) %}
+            {% set confidence_score = state_attr('binary_sensor.wardrobe_occupancy', 'confidence_score') | int(0) %}
             {{ confidence_score >= 40 }}
           attributes:
             confidence_score: >
               {# Define all scoring conditions in a list #}
               {% set scoring_conditions = [
                 {'entity_id': motion, 'type': 'state', 'state': 'on', 'score': 40},
-                {'entity_id': pc_active, 'type': 'state', 'state': 'on', 'score': 30},
                 {'entity_id': door, 'type': 'state', 'state': 'off', 'score': 20},
                 {'entity_id': occupied_override, 'type': 'state', 'state': 'on', 'score': 50},
                 {'entity_id': illuminance, 'type': 'range', 'min': 0, 'max': 100, 'score': 10},
@@ -56,20 +54,12 @@ study:
               {# Output final percentage #}
               {{ percentage }}
   input_boolean:
-    study_occupied_override:
-      name: Study Manual Occupancy Override
+    wardrobe_occupied_override:
+      name: Wardrobe Manual Occupancy Override
       icon: mdi:account-check
-    study_sleep_mode:
-      name: Study Sleep Mode
+    wardrobe_sleep_mode:
+      name: Wardrobe Sleep Mode
       icon: mdi:power-sleep
-    study_automations:
-      name: Study Automations
+    wardrobe_automations:
+      name: Wardrobe Automations
       icon: mdi:robot
-
-  mqtt:
-    binary_sensor:
-      name: Starrunner Online
-      state_topic: homeassistant/sensor/STARRUNNER/availability
-      payload_on: "online"
-      payload_off: "offline"
-      device_class: connectivity

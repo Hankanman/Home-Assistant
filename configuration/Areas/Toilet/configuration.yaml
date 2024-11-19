@@ -1,128 +1,59 @@
 toilet:
   template:
-    binary_sensor:
-      - name: Toilet Occupancy
-        unique_id: toilet_occupancy
-        device_class: occupancy
-        state: >-
-          {% set scores = namespace(total=0) %}
-          {% if is_state('binary_sensor.toilet_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-          {% if is_state('binary_sensor.toilet_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
-          {% if is_state('input_boolean.toilet_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
-          {{ scores.total >= 3 }}
-        attributes:
-          confidence_score: >-
-            {% set scores = namespace(total=0) %}
-            {% if is_state('binary_sensor.toilet_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-            {% if is_state('binary_sensor.toilet_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
-            {% if is_state('input_boolean.toilet_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
-            {{ scores.total }}
-          active_triggers: >-
-            {% set triggers = [] %}
-            {% if is_state('binary_sensor.toilet_motion', 'on') %}  {% set triggers = triggers + ['Motion Detected'] %}{% endif %}
-            {% if is_state('binary_sensor.toilet_door_contact', 'off') %}  {% set triggers = triggers + ['Door Closed'] %}{% endif %}
-            {% if is_state('input_boolean.toilet_occupied_override', 'on') %}  {% set triggers = triggers + ['Manual Override'] %}{% endif %}
-            {{ triggers|join(', ') }}
-      - name: Toilet Temperature Rising
-        unique_id: toilet_temp_rising
-        state: >-
-          {% set current = states('sensor.toilet_temperature')|float(20) %}
-          {% set previous = state_attr('sensor.toilet_temperature', 'previous_value')|float(20) %}
-          {% set threshold = 0.2 %}
-          {{ (current - previous) > threshold }}
-      - name: Toilet Temperature Falling
-        unique_id: toilet_temp_falling
-        state: >-
-          {% set current = states('sensor.toilet_temperature')|float(20) %}
-          {% set previous = state_attr('sensor.toilet_temperature', 'previous_value')|float(20) %}
-          {% set threshold = 0.2 %}
-          {{ (current - previous) < threshold }}
-      - name: Toilet High Humidity
-        unique_id: toilet_high_humidity
-        state: >-
-          {% set current = states('sensor.toilet_humidity')|float(50) %}
-          {{ current > 75 }}
-      - name: Toilet Windows Open
-        unique_id: toilet_windows_open
-        state: >-
-          {{ is_state('binary_sensor.toilet_window_contact', 'on') }}
-        attributes:
-          climate_impact: >-
-            {% set temp_diff = states('sensor.toilet_temp_differential')|float(0) %}
-            {% set window_open = is_state('binary_sensor.toilet_window_contact', 'on') %}
-            {% if window_open %}
-              {% if temp_diff > 2 %}
-                'heating_loss'
-              {% elif temp_diff < -2 %}
-                'cooling_loss'
-              {% else %}
-                'minimal'
-              {% endif %}
-            {% else %}
-              'none'
-            {% endif %}
-    sensor:
-      - name: Toilet Temperature Differential
-        unique_id: toilet_temp_differential
-        state: >-
-          {% set current = states('sensor.toilet_temperature')|float(20) %}
-          {% set target = state_attr('climate.toilet', 'temperature')|float(20) %}
-          {{ (current - target)|round(1) }}
-        attributes:
-          current_temp: >-
-            {{ states('sensor.toilet_temperature')|float(20) }}
-          target_temp: >-
-            {{ state_attr('climate.toilet', 'temperature')|float(20) }}
-          mode: >-
-            {{ state_attr('climate.toilet', 'hvac_action')|default('off') }}
-      - name: Toilet Humidity Change
-        unique_id: toilet_humidity_change
-        state: >-
-          {% set current = states('sensor.toilet_humidity')|float(50) %}
-          {% set average = states('sensor.sensor.toilet_humidity_average')|float(50) %}
-          {{ ((current - average) / average * 100)|round(1) }}
-        attributes:
-          current_humidity: >-
-            {{ states('sensor.toilet_humidity')|float(50) }}
-          average_humidity: >-
-            {{ states('sensor.sensor.toilet_humidity_average')|float(50) }}
-  input_number:
-    toilet_temp_threshold:
-      name: Toilet Temperature Threshold
-      min: 19.0
-      max: 25.0
-      step: 0.5
-      unit_of_measurement: °C
-      icon: mdi:thermometer
-      initial: 23.0
-    toilet_light_brightness:
-      name: Toilet Light Brightness
-      min: 0.0
-      max: 100.0
-      step: 5.0
-      unit_of_measurement: "%"
-      icon: mdi:brightness-6
-      initial: 100.0
-    toilet_light_transition:
-      name: Toilet Light Transition Time
-      min: 0.0
-      max: 10.0
-      step: 0.5
-      unit_of_measurement: s
-      icon: mdi:transition
-      initial: 5.0
-    toilet_humidity_threshold:
-      name: Toilet Humidity Threshold
-      min: 30.0
-      max: 80.0
-      step: 1.0
-      unit_of_measurement: "%"
-      icon: mdi:water-percent
-      initial: 60.0
+    - binary_sensor:
+        - name: Toilet Occupancy
+          unique_id: toilet_occupancy
+          device_class: occupancy
+          delay_off:
+            minutes: 2
+          variables:
+            motion: "binary_sensor.toilet_motion"
+            door: "binary_sensor.toilet_door_contact"
+            occupied_override: "input_boolean.toilet_occupied_override"
+            illuminance: "sensor.toilet_illuminance"
+            temperature: "sensor.toilet_temperature"
+            humidity: "sensor.toilet_humidity"
+          state: >
+            {% set confidence_score = state_attr('binary_sensor.toilet_occupancy', 'confidence_score') | int(0) %}
+            {{ confidence_score >= 40 }}
+          attributes:
+            confidence_score: >
+              {# Define all scoring conditions in a list #}
+              {% set scoring_conditions = [
+                {'entity_id': motion, 'type': 'state', 'state': 'on', 'score': 40},
+                {'entity_id': door, 'type': 'state', 'state': 'off', 'score': 20},
+                {'entity_id': occupied_override, 'type': 'state', 'state': 'on', 'score': 50},
+                {'entity_id': illuminance, 'type': 'range', 'min': 0, 'max': 100, 'score': 10},
+                {'entity_id': temperature, 'type': 'range', 'min': 18, 'max': 25, 'score': 10},
+                {'entity_id': humidity, 'type': 'range', 'min': 30, 'max': 60, 'score': 10}
+              ] %}
+
+              {# Initialise the scores and active contributors #}
+              {% set scores = namespace(total=0) %}
+
+              {# Loop through each scoring condition #}
+              {% for condition in scoring_conditions %}
+                {% if condition.type == 'state' %}
+                  {# Check if the entity matches the expected state #}
+                  {% if is_state(condition.entity_id, condition.state) %}
+                    {% set scores.total = scores.total + condition.score %}
+                  {% endif %}
+                {% elif condition.type == 'range' %}
+                  {# Check if the entity value falls within the specified range #}
+                  {% set value = states(condition.entity_id) | float(0) %}
+                  {% if value >= condition.min and value <= condition.max %}
+                    {% set scores.total = scores.total + condition.score %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+
+              {# Calculate the maximum score dynamically #}
+              {% set max_score = scoring_conditions | map(attribute='score') | sum %}
+              {# Calculate the percentage score, rounded to the nearest whole number #}
+              {% set percentage = (scores.total / max_score * 100) | round(0) %}
+              {# Output final percentage #}
+              {{ percentage }}
   input_boolean:
-    toilet_light_color_mode:
-      name: Toilet Light Color Mode
-      icon: mdi:palette
     toilet_occupied_override:
       name: Toilet Manual Occupancy Override
       icon: mdi:account-check

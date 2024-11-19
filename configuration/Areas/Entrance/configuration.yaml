@@ -4,54 +4,56 @@ entrance:
         - name: Entrance Occupancy
           unique_id: entrance_occupancy
           device_class: occupancy
-          state: |-
-            {% set scores = namespace(total=0) %}
-            {% if is_state('binary_sensor.entrance_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-            {% if is_state('binary_sensor.entrance_door_contact', 'off') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-            {% if is_state('input_boolean.entrance_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
-            {{ scores.total >= 3 }}
+          delay_off:
+            minutes: 2
+          variables:
+            motion: "binary_sensor.entrance_motion"
+            door: "binary_sensor.entrance_door_contact"
+            occupied_override: "input_boolean.entrance_occupied_override"
+            illuminance: "sensor.entrance_illuminance"
+            temperature: "sensor.entrance_temperature"
+            humidity: "sensor.entrance_humidity"
+          state: >
+            {% set confidence_score = state_attr('binary_sensor.entrance_occupancy', 'confidence_score') | int(0) %}
+            {{ confidence_score >= 40 }}
           attributes:
-            confidence_score: |-
+            confidence_score: >
+              {# Define all scoring conditions in a list #}
+              {% set scoring_conditions = [
+                {'entity_id': motion, 'type': 'state', 'state': 'on', 'score': 40},
+                {'entity_id': door, 'type': 'state', 'state': 'off', 'score': 20},
+                {'entity_id': occupied_override, 'type': 'state', 'state': 'on', 'score': 50},
+                {'entity_id': illuminance, 'type': 'range', 'min': 0, 'max': 100, 'score': 10},
+                {'entity_id': temperature, 'type': 'range', 'min': 18, 'max': 25, 'score': 10},
+                {'entity_id': humidity, 'type': 'range', 'min': 30, 'max': 60, 'score': 10}
+              ] %}
+
+              {# Initialise the scores and active contributors #}
               {% set scores = namespace(total=0) %}
-              {% if is_state('binary_sensor.entrance_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-              {% if is_state('binary_sensor.entrance_door_contact', 'off') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-              {% if is_state('input_boolean.entrance_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
-              {{ scores.total }}
-            active_triggers: |-
-              {% set triggers = [] %}
-              {% if is_state('binary_sensor.entrance_motion', 'on') %}  {% set triggers = triggers + ['Motion Detected'] %}{% endif %}
-              {% if is_state('binary_sensor.entrance_door_contact', 'off') %}  {% set triggers = triggers + ['Door Closed'] %}{% endif %}
-              {% if is_state('input_boolean.entrance_occupied_override', 'on') %}  {% set triggers = triggers + ['Manual Override'] %}{% endif %}
-              {{ triggers|join(', ') }}
-  input_number:
-    entrance_light_brightness:
-      name: Entrance Light Brightness
-      min: 0.0
-      max: 100.0
-      step: 5.0
-      unit_of_measurement: "%"
-      icon: mdi:brightness-6
-      initial: 100.0
-    entrance_light_transition:
-      name: Entrance Light Transition Time
-      min: 0.0
-      max: 10.0
-      step: 0.5
-      unit_of_measurement: s
-      icon: mdi:transition
-      initial: 2.0
-    entrance_humidity_threshold:
-      name: Entrance Humidity Threshold
-      min: 30.0
-      max: 80.0
-      step: 1.0
-      unit_of_measurement: "%"
-      icon: mdi:water-percent
-      initial: 60.0
+
+              {# Loop through each scoring condition #}
+              {% for condition in scoring_conditions %}
+                {% if condition.type == 'state' %}
+                  {# Check if the entity matches the expected state #}
+                  {% if is_state(condition.entity_id, condition.state) %}
+                    {% set scores.total = scores.total + condition.score %}
+                  {% endif %}
+                {% elif condition.type == 'range' %}
+                  {# Check if the entity value falls within the specified range #}
+                  {% set value = states(condition.entity_id) | float(0) %}
+                  {% if value >= condition.min and value <= condition.max %}
+                    {% set scores.total = scores.total + condition.score %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+
+              {# Calculate the maximum score dynamically #}
+              {% set max_score = scoring_conditions | map(attribute='score') | sum %}
+              {# Calculate the percentage score, rounded to the nearest whole number #}
+              {% set percentage = (scores.total / max_score * 100) | round(0) %}
+              {# Output final percentage #}
+              {{ percentage }}
   input_boolean:
-    entrance_light_color_mode:
-      name: Entrance Light Color Mode
-      icon: mdi:palette
     entrance_occupied_override:
       name: Entrance Manual Occupancy Override
       icon: mdi:account-check

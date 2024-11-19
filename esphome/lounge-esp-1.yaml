@@ -4,13 +4,13 @@ substitutions:
 
 esphome:
   name: ${arealower}-esp-1
-  name_add_mac_suffix: false  
+  name_add_mac_suffix: false
   includes:
     - custom_components/lib/OneEuro.h
     - custom_components/ble_dist.h
   on_boot:
     then:
-      lambda: |-
+      lambda: |
         addTracker("seb_phone_ble", "113b66e1-999d-4820-b246-62feffecf7e9");
         addTracker("laura_phone_ble", "29360bbc-24a3-415f-834a-d7ddcab4da74");
         addTracker("tablet_ble", "75be550c-9bf4-4c6d-b503-329fcd3e041b");
@@ -51,7 +51,7 @@ esp32_ble_tracker:
     duration: 60s
   on_ble_advertise:
     then:
-      - lambda: |-
+      - lambda: |
           parseAdvertisement(x);
 
 sensor:
@@ -76,7 +76,7 @@ sensor:
     state_class: "measurement"
     accuracy_decimals: 1
     entity_category: "diagnostic"
-    lambda: |-
+    lambda: |
       return getTracker("seb_phone_ble").get_dist();
   - platform: template
     name: ${area} Laura Phone BLE Distance
@@ -87,7 +87,7 @@ sensor:
     state_class: "measurement"
     accuracy_decimals: 1
     entity_category: "diagnostic"
-    lambda: |-
+    lambda: |
       return getTracker("laura_phone_ble").get_dist();
   - platform: template
     name: ${area} Tablet BLE Distance
@@ -98,7 +98,7 @@ sensor:
     state_class: "measurement"
     accuracy_decimals: 1
     entity_category: "diagnostic"
-    lambda: |-
+    lambda: |
       return getTracker("tablet_ble").get_dist();
 
 binary_sensor:

@@ -4,187 +4,58 @@ lounge:
         - name: Lounge Occupancy
           unique_id: lounge_occupancy
           device_class: occupancy
-          state: |-
-            {% set scores = namespace(total=0) %}
-            {% if is_state('binary_sensor.lounge_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-            {% if is_state('binary_sensor.lounge_doors', 'off') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-            {% if is_state('binary_sensor.lounge_tv_active', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-            {% if is_state('input_boolean.lounge_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
-            {{ scores.total >= 3 }}
+          delay_off:
+            minutes: 2
+          variables:
+            motion: "binary_sensor.lounge_motion"
+            tv: "binary_sensor.lounge_tv_state"
+            door: "binary_sensor.lounge_door_contact"
+            occupied_override: "input_boolean.lounge_occupied_override"
+            illuminance: "sensor.lounge_illuminance"
+            temperature: "sensor.lounge_temperature"
+            humidity: "sensor.lounge_humidity"
+          state: >
+            {% set confidence_score = state_attr('binary_sensor.lounge_occupancy', 'confidence_score') | int(0) %}
+            {{ confidence_score >= 40 }}
           attributes:
-            confidence_score: |-
+            confidence_score: >
+              {# Define all scoring conditions in a list #}
+              {% set scoring_conditions = [
+                {'entity_id': motion, 'type': 'state', 'state': 'on', 'score': 40},
+                {'entity_id': tv, 'type': 'state', 'state': 'on', 'score': 40},
+                {'entity_id': door, 'type': 'state', 'state': 'off', 'score': 20},
+                {'entity_id': occupied_override, 'type': 'state', 'state': 'on', 'score': 50},
+                {'entity_id': illuminance, 'type': 'range', 'min': 0, 'max': 100, 'score': 10},
+                {'entity_id': temperature, 'type': 'range', 'min': 18, 'max': 25, 'score': 10},
+                {'entity_id': humidity, 'type': 'range', 'min': 30, 'max': 60, 'score': 10}
+              ] %}
+
+              {# Initialise the scores and active contributors #}
               {% set scores = namespace(total=0) %}
-              {% if is_state('binary_sensor.lounge_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-              {% if is_state('binary_sensor.lounge_doors', 'off') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-              {% if is_state('binary_sensor.lounge_tv_active', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-              {% if is_state('input_boolean.lounge_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
-              {{ scores.total }}
-            active_triggers: |-
-              {% set triggers = [] %}
-              {% if is_state('binary_sensor.lounge_motion', 'on') %}  {% set triggers = triggers + ['Motion Detected'] %}{% endif %}
-              {% if is_state('binary_sensor.lounge_doors', 'off') %}  {% set triggers = triggers + ['Door Closed'] %}{% endif %}
-              {% if is_state('binary_sensor.lounge_tv_active', 'on') %}  {% set triggers = triggers + ['TV Active'] %}{% endif %}
-              {% if is_state('input_boolean.lounge_occupied_override', 'on') %}  {% set triggers = triggers + ['Manual Override'] %}{% endif %}
-              {{ triggers|join(', ') }}
-    - binary_sensor:
-        - name: Lounge TV Active
-          unique_id: lounge_tv_active
-          state: |-
-            {% set power = states('sensor.tv_power')|float(0) %}
-            {{ power > 10 }}
-          attributes:
-            power_draw: >-
-              {{ states('sensor.tv_power')|float(0) }}
-            current_channel: >-
-              {{ states('sensor.tv_channel') }}
-            volume: >-
-              {{ states('sensor.tv_volume')|int(0) }}
-      sensor:
-        - name: Lounge TV Status
-          unique_id: lounge_tv_status
-          state: >-
-            {{ states('sensor.tv_state') }}
-          attributes:
-            input_source: >-
-              {{ states('sensor.tv_input_source') }}
-            hdmi_connected: >-
-              {{ state_attr('sensor.tv_hdmi', 'connected_devices')|default([]) }}
-        - name: Lounge TV Power State
-          unique_id: lounge_tv_power_state
-          state: |-
-            {% set power = states('sensor.tv_power')|float(0) %}
-            {% if power > 50 %}on{% elif power > 10 %}standby{% else %}off{% endif %}
-    - sensor:
-        - name: Total Power
-          unique_id: total_power
-          state: |-
-            {% set components = [
-                'sensor.lounge_tv_power',
-                'sensor.lounge_entertainment_power'
-            ] %}
 
-            {% set total = namespace(power=0) %}
-            {% for component in components %}
-              {% set total.power = total.power + states(component)|float(0) %}
-            {% endfor %}
-            {{ total.power|round(2) }}
-          attributes:
-            tv: >-
-              {{ states('sensor.lounge_tv_power')|float(0)|round(2) }}
-            entertainment: >-
-              {{ states('sensor.lounge_entertainment_power')|float(0)|round(2) }}
-    - sensor:
-        - name: Daily Energy
-          unique_id: daily_energy
-          state: |-
-            {% set components = [
-                'sensor.lounge_tv_daily_energy',
-                'sensor.lounge_entertainment_daily_energy'
-            ] %}
+              {# Loop through each scoring condition #}
+              {% for condition in scoring_conditions %}
+                {% if condition.type == 'state' %}
+                  {# Check if the entity matches the expected state #}
+                  {% if is_state(condition.entity_id, condition.state) %}
+                    {% set scores.total = scores.total + condition.score %}
+                  {% endif %}
+                {% elif condition.type == 'range' %}
+                  {# Check if the entity value falls within the specified range #}
+                  {% set value = states(condition.entity_id) | float(0) %}
+                  {% if value >= condition.min and value <= condition.max %}
+                    {% set scores.total = scores.total + condition.score %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
 
-            {% set total = namespace(energy=0) %}
-            {% for component in components %}
-              {% set total.energy = total.energy + states(component)|float(0) %}
-            {% endfor %}
-            {{ total.energy|round(3) }}
-          attributes:
-            last_reset: >-
-              {{ now().replace(hour=0, minute=0, second=0, microsecond=0).isoformat() }}
-    - binary_sensor:
-        - name: Lounge Temperature Rising
-          unique_id: lounge_temp_rising
-          state: |-
-            {% set current = states('sensor.lounge_temperature')|float(20) %}
-            {% set previous = state_attr('sensor.lounge_temperature', 'previous_value')|float(20) %}
-            {% set threshold = 0.2 %}
-            {{ (current - previous) > threshold }}
-        - name: Lounge Temperature Falling
-          unique_id: lounge_temp_falling
-          state: |-
-            {% set current = states('sensor.lounge_temperature')|float(20) %}
-            {% set previous = state_attr('sensor.lounge_temperature', 'previous_value')|float(20) %}
-            {% set threshold = 0.2 %}
-            {{ (current - previous) < threshold }}
-      sensor:
-        - name: Lounge Temperature Differential
-          unique_id: lounge_temp_differential
-          state: |-
-            {% set current = states('sensor.lounge_temperature')|float(20) %}
-            {% set target = state_attr('climate.lounge', 'temperature')|float(20) %}
-            {{ (current - target)|round(1) }}
-          attributes:
-            current_temp: >-
-              {{ states('sensor.lounge_temperature')|float(20) }}
-            target_temp: >-
-              {{ state_attr('climate.lounge', 'temperature')|float(20) }}
-            mode: >-
-              {{ state_attr('climate.lounge', 'hvac_action')|default('off') }}
-    - binary_sensor:
-        - name: Lounge High Humidity
-          unique_id: lounge_high_humidity
-          state: |-
-            {% set current = states('sensor.lounge_humidity')|float(50) %}
-            {{ current > 75 }}
-      sensor:
-        - name: Lounge Humidity Change
-          unique_id: lounge_humidity_change
-          state: |-
-            {% set current = states('sensor.lounge_humidity')|float(50) %}
-            {% set average = states('sensor.sensor.lounge_humidity_average')|float(50) %}
-            {{ ((current - average) / average * 100)|round(1) }}
-          attributes:
-            current_humidity: >-
-              {{ states('sensor.lounge_humidity')|float(50) }}
-            average_humidity: >-
-              {{ states('sensor.sensor.lounge_humidity_average')|float(50) }}
-  input_number:
-    lounge_power_threshold:
-      name: Lounge Power Alert Threshold
-      min: 100.0
-      max: 1000.0
-      step: 50.0
-      unit_of_measurement: W
-      icon: mdi:flash-alert
-      initial: 400.0
-    lounge_temp_threshold:
-      name: Lounge Temperature Threshold
-      min: 19.0
-      max: 25.0
-      step: 0.5
-      unit_of_measurement: °C
-      icon: mdi:thermometer
-      initial: 23.0
-    lounge_light_brightness:
-      name: Lounge Light Brightness
-      min: 0.0
-      max: 100.0
-      step: 5.0
-      unit_of_measurement: '%'
-      icon: mdi:brightness-6
-      initial: 100.0
-    lounge_light_transition:
-      name: Lounge Light Transition Time
-      min: 0.0
-      max: 10.0
-      step: 0.5
-      unit_of_measurement: s
-      icon: mdi:transition
-      initial: 5.0
-    lounge_humidity_threshold:
-      name: Lounge Humidity Threshold
-      min: 30.0
-      max: 80.0
-      step: 1.0
-      unit_of_measurement: '%'
-      icon: mdi:water-percent
-      initial: 60.0
+              {# Calculate the maximum score dynamically #}
+              {% set max_score = scoring_conditions | map(attribute='score') | sum %}
+              {# Calculate the percentage score, rounded to the nearest whole number #}
+              {% set percentage = (scores.total / max_score * 100) | round(0) %}
+              {# Output final percentage #}
+              {{ percentage }}
   input_boolean:
-    lounge_light_color_mode:
-      name: Lounge Light Color Mode
-      icon: mdi:palette
-    lounge_tv_power_management:
-      name: Lounge TV Power Management
-      icon: mdi:television
     lounge_occupied_override:
       name: Lounge Manual Occupancy Override
       icon: mdi:account-check

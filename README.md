@@ -55,7 +55,7 @@ This is my Home Assistant config - documentation isn't my strongest skill, so if
 _Stats as at {{ states('sensor.date_time') }}, {{ states('sensor.date_long_format') }}_
 
 | Stat | Qty |
-| ---|--- |
+| ---|-- |
 | HA Version | 2024.5.5 |
 | No. Integrations | {{states('sensor.integrations')}} |
 | No. Custom Integrations | {{states('sensor.custom_integrations')}} |

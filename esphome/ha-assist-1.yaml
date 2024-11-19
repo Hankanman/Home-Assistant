@@ -673,7 +673,7 @@ text_sensor:
   - id: text_request
     platform: template
     on_value:
-      lambda: |-
+      lambda: |
         if(id(text_request).state.length()>32) {
           std::string name = id(text_request).state.c_str();
           std::string truncated = esphome::str_truncate(name.c_str(),31);
@@ -683,7 +683,7 @@ text_sensor:
   - id: text_response
     platform: template
     on_value:
-      lambda: |-
+      lambda: |
         if(id(text_response).state.length()>32) {
           std::string name = id(text_response).state.c_str();
           std::string truncated = esphome::str_truncate(name.c_str(),31);
@@ -728,18 +728,18 @@ display:
     update_interval: never
     pages:
       - id: idle_page
-        lambda: |-
+        lambda: |
           it.fill(id(idle_color));
           it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_idle), ImageAlign::CENTER);
           id(draw_timer_timeline).execute();
           id(draw_active_timer_widget).execute();
       - id: listening_page
-        lambda: |-
+        lambda: |
           it.fill(id(listening_color));
           it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_listening), ImageAlign::CENTER);
           id(draw_timer_timeline).execute();
       - id: thinking_page
-        lambda: |-
+        lambda: |
           it.fill(id(thinking_color));
           it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_thinking), ImageAlign::CENTER);
           if (id(display_conversation).state) {
@@ -749,7 +749,7 @@ display:
           }
           id(draw_timer_timeline).execute();
       - id: replying_page
-        lambda: |-
+        lambda: |
           it.fill(id(replying_color));
           it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_replying), ImageAlign::CENTER);
           if (id(display_conversation).state) {
@@ -762,25 +762,25 @@ display:
           }
           id(draw_timer_timeline).execute();
       - id: timer_finished_page
-        lambda: |-
+        lambda: |
           it.fill(id(idle_color));
           it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_timer_finished), ImageAlign::CENTER);
       - id: error_page
-        lambda: |-
+        lambda: |
           it.fill(id(error_color));
           it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_error), ImageAlign::CENTER);
       - id: no_ha_page
-        lambda: |-
+        lambda: |
           it.image((it.get_width() / 2), (it.get_height() / 2), id(error_no_ha), ImageAlign::CENTER);
       - id: no_wifi_page
-        lambda: |-
+        lambda: |
           it.image((it.get_width() / 2), (it.get_height() / 2), id(error_no_wifi), ImageAlign::CENTER);
       - id: initializing_page
-        lambda: |-
+        lambda: |
           it.fill(id(loading_color));
           it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_initializing), ImageAlign::CENTER);
       - id: muted_page
-        lambda: |-
+        lambda: |
           it.fill(Color::BLACK);
           id(draw_timer_timeline).execute();
           id(draw_active_timer_widget).execute();

@@ -196,7 +196,7 @@ text_sensor:
   - platform: template
     name: "BME680 IAQ Classification"
     icon: "mdi:checkbox-marked-circle-outline"
-    lambda: |-
+    lambda: |
       if (int(id(iaq).state) <= 50) {
         return {"Excellent"};
       }
@@ -227,7 +227,7 @@ text_sensor:
     icon: "mdi:checkbox-marked-circle-outline"
     update_interval: never
     on_value:
-      lambda: |-
+      lambda: |
         if (id(use_rag_states).state) {
           if(x == "${iaq_level_0}" || x == "${iaq_level_1}") {
             id(rgb_green_solid).execute();
@@ -307,7 +307,7 @@ select:
     initial_option: ""
     optimistic: true
     set_action:
-      - lambda: |-
+      - lambda: |
           if(x=="Green - Solid")
             id(rgb_green_solid).execute();
           else if(x=="Amber - Slow Pulse")
@@ -324,7 +324,7 @@ sensor:
     id: iaq
     icon: "mdi:gauge"
     # calculation: comp_gas = log(R_gas[ohm]) + 0.04 log(Ohm)/%rh * hum[%rh]
-    lambda: |-
+    lambda: |
       return log(id(gas_resistance).state) + 0.04 *  id(humidity).state;
     state_class: "measurement"
   - platform: bme680

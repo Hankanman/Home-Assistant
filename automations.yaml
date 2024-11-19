@@ -23,10 +23,10 @@
 - id: d7b2ff77-0e4f-4efb-820f-9a4b67399a3b
   alias: Wardrobe - Lights
   description: ''
-  trigger:
+  triggers:
   - trigger: state
     entity_id:
-    - binary_sensor.wardrobe_motion
+    - binary_sensor.wardrobe_occupancy
     from:
   - trigger: state
     entity_id:
@@ -34,14 +34,14 @@
   - trigger: state
     entity_id:
     - input_boolean.bedroom_sleep_mode
-  condition:
+  conditions:
   - condition: state
     entity_id: input_boolean.bedroom_automations
     state: 'on'
-  action:
+  actions:
   - if:
     - condition: state
-      entity_id: binary_sensor.wardrobe_occupied
+      entity_id: binary_sensor.wardrobe_occupancy
       state: 'on'
     - condition: state
       entity_id: binary_sensor.people_home
@@ -254,8 +254,7 @@
   - trigger: event
     event_type: automation_reloaded
   - trigger: state
-    entity_id:
-    - binary_sensor.bathroom_humidity_falling_trend
+    entity_id: binary_sensor.bathroom_humidity_falling_trend
   conditions:
   - condition: state
     entity_id: input_boolean.bathroom_automations

@@ -4,20 +4,20 @@ hall:
         - name: Hall Occupancy
           unique_id: hall_occupancy
           device_class: occupancy
-          state: |-
+          state: |
             {% set scores = namespace(total=0) %}
             {% if is_state('binary_sensor.hall_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
             {% if is_state('binary_sensor.hall_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
             {% if is_state('input_boolean.hall_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
             {{ scores.total >= 3 }}
           attributes:
-            confidence_score: |-
+            confidence_score: |
               {% set scores = namespace(total=0) %}
               {% if is_state('binary_sensor.hall_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
               {% if is_state('binary_sensor.hall_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
               {% if is_state('input_boolean.hall_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
               {{ scores.total }}
-            active_triggers: |-
+            active_triggers: |
               {% set triggers = [] %}
               {% if is_state('binary_sensor.hall_motion', 'on') %}  {% set triggers = triggers + ['Motion Detected'] %}{% endif %}
               {% if is_state('binary_sensor.hall_door_contact', 'off') %}  {% set triggers = triggers + ['Door Closed'] %}{% endif %}

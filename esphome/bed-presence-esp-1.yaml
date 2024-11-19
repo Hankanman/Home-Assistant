@@ -96,7 +96,7 @@ binary_sensor:
     id: ${arealower}_bed_presence_left_occupied
     device_class: occupancy
     entity_category: diagnostic
-    lambda: |-
+    lambda: |
       if (id(${arealower}_bed_presence_left_voltage).state > id(homeassistant_bed_left_average_voltage).state) {
         return true;
       } else {
@@ -107,7 +107,7 @@ binary_sensor:
     id: ${arealower}_bed_presence_right_occupied
     device_class: occupancy
     entity_category: diagnostic
-    lambda: |-
+    lambda: |
       if (id(${arealower}_bed_presence_right_voltage).state > id(homeassistant_bed_right_average_voltage).state) {
         return true;
       } else {

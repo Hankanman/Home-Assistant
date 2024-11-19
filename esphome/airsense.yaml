@@ -163,7 +163,7 @@ text_sensor:
     icon: "mdi:checkbox-marked-circle-outline"
     update_interval: never
     on_value:
-      lambda: |-
+      lambda: |
         if (id(use_rag_states).state) {
           if(x == "${iaq_level_0}" || x == "${iaq_level_1}") {
             id(rgb_green_solid).execute();
@@ -243,7 +243,7 @@ select:
     initial_option: ""
     optimistic: true
     set_action:
-      - lambda: |-
+      - lambda: |
           if(x=="Green - Solid")
             id(rgb_green_solid).execute();
           else if(x=="Amber - Slow Pulse")
@@ -279,7 +279,7 @@ sensor:
       filters:
         - median
         - lambda: "return x+id(humidity_offset).state;"
-        - clamp: 
+        - clamp:
             min_value: 0
             max_value: 100
     iaq:
