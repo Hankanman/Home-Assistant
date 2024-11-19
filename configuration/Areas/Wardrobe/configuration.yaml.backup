@@ -1,0 +1,13 @@
+wardrobe:
+  binary_sensor:
+    - platform: bayesian
+      name: Wardrobe Occupied
+      prior: 0.08
+      device_class: occupancy
+      probability_threshold: 0.7
+      observations:
+        - platform: "state"
+          entity_id: binary_sensor.wardrobe_motion
+          prob_given_true: 0.2634554
+          prob_given_false: 0.0008475
+          to_state: "on"

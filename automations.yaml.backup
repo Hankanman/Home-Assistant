@@ -1327,16 +1327,6 @@
       message: Washing Machine is finished, time to hang stuff out!
       title: Washing Machine
   mode: single
-- id: '1723383811662'
-  alias: Python Script - Update ha_overview
-  description: ''
-  trigger:
-  - event: start
-    platform: homeassistant
-  - platform: time_pattern
-    minutes: /30
-  action:
-  - action: python_script.ha_overview
 - id: '1723623794274'
   alias: Set Sleep Mode
   description: ''

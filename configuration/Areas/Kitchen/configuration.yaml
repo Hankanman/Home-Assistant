@@ -1,141 +1,139 @@
 kitchen:
-  # Binary Sensors
-  #----------------------------------#
-  binary_sensor:
-    # Bayesian
-    #----------------------------------#
-    - platform: bayesian
-      name: Kitchen Occupied
-      prior: 0.14
-      device_class: occupancy
-      probability_threshold: 0.7
-      observations:
-
-        - platform: "state"
-          entity_id: binary_sensor.kitchen_bright
-          prob_given_true: 0.0406518
-          prob_given_false: 0.0558803
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.kitchen_hob
-          prob_given_true: 0.4288289
-          prob_given_false: 0.0020524
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.kitchen_kettle
-          prob_given_true: 0.2684033
-          prob_given_false: 0.0016454
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.kitchen_microwave
-          prob_given_true: 0.2625506
-          prob_given_false: 0.0016224
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.kitchen_motion
-          prob_given_true: 0.3301250
-          prob_given_false: 0.0018530
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.kitchen_motion_1_occupancy
-          prob_given_true: 0.3321890
-          prob_given_false: 0.0018589
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.kitchen_oven
-          prob_given_true: 0.2781860
-          prob_given_false: 0.0016825
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.kitchen_temperature_motion_lux_1_occupancy
-          prob_given_true: 0.3264211
-          prob_given_false: 0.0018424
-          to_state: "on"
-
-    - platform: trend
-      sensors:
-        kitchen_temperature_rising_trend:
-          friendly_name: Kitchen Temperature Rising Trend
-          entity_id: sensor.kitchen_temperature
-          sample_duration: 600
-          max_samples: 10
-          min_gradient: 0.016667
-          device_class: heat
-  # Variable Sensors
-  #----------------------------------#
-  sensor:
-    - platform: statistics
-      name: "Kitchen Average Temperature"
-      entity_id: sensor.kitchen_temperature
-      unique_id: kitchen_average_temperature
-      state_characteristic: mean
-      max_age:
-        days: 7
-
-  # Template Sensors
-  #----------------------------------#
   template:
-    # Template Binary Sensors
-    #----------------------------------#
-    binary_sensor:
-      # Bright Sensors
-      #----------------------------------#
-      - unique_id: kitchen_bright
-        name: "Kitchen Bright"
-        device_class: light
-        state: |
-          {% set lux = states('sensor.kitchen_illuminance') %}
-          {% set threshold = states('input_number.kitchen_illuminance_level') %}
-          {% set selfState = states('binary_sensor.kitchen_bright') %}
-          {% set lightState = states('light.kitchen') %}
-          {% set selfLastChanged = states.binary_sensor.kitchen_bright.last_changed %}
-          {% if threshold | int(0) == 0 %}
-            False
-          {% elif lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
-            True
-          {% elif lux | int(0) > (threshold | int(0) * 3) %}
-            True
-          {% elif ((threshold | int(0) < lux | int(0) < (threshold | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(selfLastChanged) < 300) %}
-            {{ selfState }}
-          {% elif lux | int(0) < threshold | int(0) %}
-            False
-          {% else %}
-            False
-          {% endif %}
-
-      # Humid Sensors
-      #----------------------------------#
-
-    # Template Variable Sensors
-    #----------------------------------#
-    sensor:
-      # Probabilities
-      #----------------------------------#
-      - unique_id: kitchen_occupied_probability
-        name: Kitchen Occupied Probability
-        state_class: measurement
-        unit_of_measurement: "%"
-        state: "{{ (state_attr('binary_sensor.kitchen_occupied','probability')*100 | int(0) ) | round(0) }}"
-
-  # Media Players
-  #----------------------------------#
-  media_player:
-
-  # Notification Platforms
-  #----------------------------------#
-  notify:
-
-  # Shell Commands
-  #----------------------------------#
-  shell_command:
-
-  # Switches
-  #----------------------------------#
-  switch:
+    - binary_sensor:
+        - name: Kitchen Occupancy
+          unique_id: kitchen_occupancy
+          device_class: occupancy
+          state: |-
+            {% set scores = namespace(total=0) %}
+            {% if is_state('binary_sensor.kitchen_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
+            {% if is_state('binary_sensor.kitchen_appliance_active', 'on') %}  {% set scores.total = scores.total + 2 %}{% endif %}
+            {% if is_state('input_boolean.kitchen_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
+            {{ scores.total >= 3 }}
+          attributes:
+            confidence_score: |-
+              {% set scores = namespace(total=0) %}
+              {% if is_state('binary_sensor.kitchen_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
+              {% if is_state('binary_sensor.kitchen_appliance_active', 'on') %}  {% set scores.total = scores.total + 2 %}{% endif %}
+              {% if is_state('input_boolean.kitchen_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
+              {{ scores.total }}
+            active_triggers: |-
+              {% set triggers = [] %}
+              {% if is_state('binary_sensor.kitchen_motion', 'on') %}  {% set triggers = triggers + ['Motion Detected'] %}{% endif %}
+              {% if is_state('binary_sensor.kitchen_appliance_active', 'on') %}  {% set triggers = triggers + ['Appliance Active'] %}{% endif %}
+              {% if is_state('input_boolean.kitchen_occupied_override', 'on') %}  {% set triggers = triggers + ['Manual Override'] %}{% endif %}
+              {{ triggers|join(', ') }}
+    - binary_sensor:
+        - name: Kitchen Active
+          unique_id: kitchen_active
+          state: >-
+            {{ states('sensor.kitchen_sockets_power')|float(0) > 200 }}
+          attributes:
+            power_draw: >-
+              {{ states('sensor.kitchen_sockets_power')|float(0) }}
+      sensor:
+        - name: Kitchen State
+          unique_id: kitchen_state
+          state: |-
+            {% set power = states('sensor.kitchen_sockets_power')|float(0) %}
+            {% if power > 200 %}
+              running
+            {% elif power > 100 %}
+              standby
+            {% else %}
+              off
+            {% endif %}
+    - binary_sensor:
+        - name: Kitchen Appliance Active
+          unique_id: kitchen_appliance_active
+          state: |-
+            {% set oven_power = states('sensor.oven_power')|float(0) %}
+            {% set kettle_power = states('sensor.kettle_current_power')|float(0) %}
+            {% set kitchen_sockets_power = states('sensor.kitchen_sockets_power')|float(0) %}
+            {{ oven_power > 50 or kitchen_sockets_power > 200 or kettle_power > 100 }}
+          attributes:
+            oven_power: >-
+              {{ states('sensor.oven_power')|float(0) }}
+            kettle_power: >-
+              {{ states('sensor.kettle_current_power')|float(0) }}
+            kitchen_sockets_power: >-
+              {{ states('sensor.kitchen_sockets_power')|float(0) }}
+      sensor:
+        - name: Kitchen Appliance Energy Consumption
+          unique_id: kitchen_energy_consumption
+          state: |-
+            {% set oven_power = states('sensor.oven_power')|float(0) %}
+            {% set kitchen_sockets_power = states('sensor.kitchen_sockets_power')|float(0) %}
+            {{ (oven_power + kitchen_sockets_power )|round(2) }}
+          attributes:
+            oven_state: >-
+              {{ states('sensor.oven_state') }}
+        - name: Kitchen Appliance Status
+          unique_id: kitchen_appliance_status
+          state: |-
+            {% set oven_state = states('sensor.oven_state') %}
+            {% set dishwasher_state = states('sensor.dishwasher_state') %}
+            {% if oven_state == 'on' and dishwasher_state == 'on' %}
+              high_activity
+            {% elif oven_state == 'on' or dishwasher_state == 'on' %}
+              moderate_activity
+            {% else %}
+              idle
+            {% endif %}
+  input_number:
+    kitchen_power_threshold:
+      name: Kitchen Power Alert Threshold
+      min: 100.0
+      max: 1000.0
+      step: 50.0
+      unit_of_measurement: W
+      icon: mdi:flash-alert
+      initial: 400.0
+    kitchen_light_brightness:
+      name: Kitchen Light Brightness
+      min: 0.0
+      max: 100.0
+      step: 5.0
+      unit_of_measurement: '%'
+      icon: mdi:brightness-6
+      initial: 100.0
+    kitchen_light_transition:
+      name: Kitchen Light Transition Time
+      min: 0.0
+      max: 10.0
+      step: 0.5
+      unit_of_measurement: s
+      icon: mdi:transition
+      initial: 5.0
+    kitchen_appliance_power_threshold:
+      name: Kitchen Appliance Power Threshold
+      min: 50.0
+      max: 2000.0
+      step: 50.0
+      unit_of_measurement: W
+      icon: mdi:flash-alert
+      initial: 200.0
+    kitchen_humidity_threshold:
+      name: Kitchen Humidity Threshold
+      min: 30.0
+      max: 80.0
+      step: 1.0
+      unit_of_measurement: '%'
+      icon: mdi:water-percent
+      initial: 60.0
+  input_boolean:
+    kitchen_light_color_mode:
+      name: Kitchen Light Color Mode
+      icon: mdi:palette
+    kitchen_appliance_monitoring:
+      name: Kitchen Appliance Monitoring
+      icon: mdi:washing-machine
+    kitchen_occupied_override:
+      name: Kitchen Manual Occupancy Override
+      icon: mdi:account-check
+    kitchen_sleep_mode:
+      name: Kitchen Sleep Mode
+      icon: mdi:power-sleep
+    kitchen_automations:
+      name: Kitchen Automations
+      icon: mdi:robot

@@ -1,7 +1,7 @@
 play_rain_sounds:
   alias: Play Rain Sounds
   sequence:
-  - service: mass.play_media
+  - action: mass.play_media
     target:
       device_id: b2a0723816d8eb3013e90880816945e6
     data:
@@ -13,7 +13,7 @@ play_rain_sounds:
         entity_id: input_boolean.bedroom_sleep_mode
         state: 'off'
       sequence:
-      - service: input_boolean.turn_on
+      - action: input_boolean.turn_on
         target:
           entity_id: input_boolean.bedroom_sleep_mode
         data: {}
@@ -23,17 +23,17 @@ play_rain_sounds:
 starrunner_wake:
   alias: Starrunner - Wake
   sequence:
-  - service: wake_on_lan.send_magic_packet
+  - action: wake_on_lan.send_magic_packet
     data:
       mac: 00:D8:61:78:02:E0
       broadcast_address: 192.168.1.80
       broadcast_port: 9
-  - service: wake_on_lan.send_magic_packet
+  - action: wake_on_lan.send_magic_packet
     data:
       mac: 00:D8:61:78:02:DF
       broadcast_address: 192.168.1.89
       broadcast_port: 9
-  - service: wake_on_lan.send_magic_packet
+  - action: wake_on_lan.send_magic_packet
     data:
       mac: 38:00:25:AA:A6:95
       broadcast_address: 192.168.1.38
@@ -43,7 +43,7 @@ starrunner_wake:
 print_entities_to_file:
   alias: Print Entities To File
   sequence:
-  - service: notify.entity_log
+  - action: notify.entity_log
     data:
       message: "{% macro is_number(value) %}\n    {{ value|float is number }}\n{%
         endmacro %}\n[ {% for state in states %}\n  {%- if state.entity_id != 'persistent_notification.homeassistant'
@@ -59,13 +59,13 @@ print_entities_to_file:
 endeavor_wake:
   alias: Endeavor - Wake
   sequence:
-  - service: wake_on_lan.send_magic_packet
+  - action: wake_on_lan.send_magic_packet
     data:
       mac: '!secret endeavor_mac_management'
-  - service: wake_on_lan.send_magic_packet
+  - action: wake_on_lan.send_magic_packet
     data:
       mac: '!secret endeavor_mac_eth1'
-  - service: wake_on_lan.send_magic_packet
+  - action: wake_on_lan.send_magic_packet
     data:
       mac: '!secret endeavor_mac_eth2'
   mode: single
@@ -75,7 +75,7 @@ xmas_lights:
   - repeat:
       count: '9000'
       sequence:
-      - service: light.turn_on
+      - action: light.turn_on
         data:
           rgb_color:
           - 255
@@ -84,7 +84,7 @@ xmas_lights:
           transition: 0
         target:
           entity_id: light.lounge_bulb_1
-      - service: light.turn_on
+      - action: light.turn_on
         data:
           rgb_color:
           - 0
@@ -98,7 +98,7 @@ xmas_lights:
           minutes: 0
           seconds: 2
           milliseconds: 0
-      - service: light.turn_on
+      - action: light.turn_on
         data:
           rgb_color:
           - 0
@@ -107,7 +107,7 @@ xmas_lights:
           transition: 0
         target:
           entity_id: light.lounge_bulb_1
-      - service: light.turn_on
+      - action: light.turn_on
         data:
           rgb_color:
           - 255
@@ -139,7 +139,7 @@ new_script:
       \   [0.581,0.245], [0.477,0.196], [0.385,0.155], [0.301,0.116], \n    [0.217,0.077]]
       }}"
   sequence:
-  - service: light.turn_on
+  - action: light.turn_on
     data_template:
       xy_color: '{{  colors[(now().second/2.5)|round(0)] }}
 
@@ -154,7 +154,7 @@ cube_dimmer:
     angle:
     light:
   sequence:
-  - service: light.turn_on
+  - action: light.turn_on
     data_template:
       entity_id: '{{ light }}'
       brightness_pct: "{% set step_size = angle * 0.4 %}\n  {# Use the 0.4 above to

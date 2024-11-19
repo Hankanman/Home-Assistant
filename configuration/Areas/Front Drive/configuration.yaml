@@ -1,9 +1,4 @@
 front_drive:
-  # Thermostats
-  #----------------------------------#
-  climate:
-  # Binary Sensors
-  #----------------------------------#
   binary_sensor:
     - platform: bayesian
       name: Front Drive Occupied
@@ -35,61 +30,3 @@ front_drive:
           prob_given_true: 0.4671964
           prob_given_false: 0.0002967
           to_state: "on"
-    # Bayesian
-    #----------------------------------#
-    # Trends
-    #----------------------------------#
-    # Humidity
-    #----------------------------------#
-    # Temperature
-    #----------------------------------#
-
-  # Variable Sensors
-  #----------------------------------#
-  sensor:
-  #   # Temperature Averages
-  #   #----------------------------------#
-  #   - platform: min_max
-  #     name: Front Drive Temperature
-  #     type: mean
-  #     round_digits: 1
-  #     entity_ids:
-  #       - sensor.front_drive_mot_12_temperature
-    # Humidity Averages
-  #----------------------------------#
-    # Illuminance Averages
-    #----------------------------------#
-
-  # Template Sensors
-  #----------------------------------#
-  template:
-    # Template Binary Sensors
-    #----------------------------------#
-    binary_sensor:
-      # Bright Sensors
-      #----------------------------------#
-
-      # Humid Sensors
-      #----------------------------------#
-
-    # Template Variable Sensors
-    #----------------------------------#
-    sensor:
-      # Probabilities
-      #----------------------------------#
-
-  # Media Players
-  #----------------------------------#
-  media_player:
-
-  # Notification Platforms
-  #----------------------------------#
-  notify:
-
-  # Shell Commands
-  #----------------------------------#
-  shell_command:
-
-  # Switches
-  #----------------------------------#
-  switch:

@@ -1,26 +1,212 @@
-Bedroom:
+bedroom:
+  binary_sensor:
+    - platform: bayesian
+      name: Bedroom Occupancy
+      unique_id: bedroom_occupancy_bayesian
+      device_class: occupancy
+      prior: 0.1  # Initial assumption of occupancy probability (e.g., 10%)
+      probability_threshold: 0.5  # Threshold at which the room is considered occupied (e.g., 50%)
+      observations:
+        # Motion Sensor - high impact
+        - entity_id: binary_sensor.bedroom_motion
+          platform: state
+          to_state: 'on'
+          prob_given_true: 0.9  # High probability if motion is detected
+          prob_given_false: 0.1 # Low probability if no motion
+
+        # Door Contact Sensor - moderate impact
+        - entity_id: binary_sensor.bedroom_door_contact
+          platform: state
+          to_state: 'off'  # Door is closed
+          prob_given_true: 0.6  # Moderate probability room is occupied if door is closed
+          prob_given_false: 0.4 # Room might still be occupied if door is open, but less likely
+
+        # Manual Override - highest impact
+        - entity_id: input_boolean.bedroom_occupied_override
+          platform: state
+          to_state: 'on'
+          prob_given_true: 0.95  # Nearly certain if override is enabled
+          prob_given_false: 0.05 # Very low probability without override
+
+        # Illuminance Sensor - low impact (adds subtlety to the model)
+        - entity_id: sensor.bathroom_illuminance
+          platform: numeric_state
+          below: 100
+          prob_given_true: 0.4  # Low light could indicate occupancy
+          prob_given_false: 0.6 # If light is high, less likely but still possible
+
+        # Temperature Sensor - comfort range, low impact
+        - entity_id: sensor.bathroom_temperature
+          platform: numeric_state
+          above: 18
+          below: 25
+          prob_given_true: 0.5  # Comfortable temperature range adds confidence
+          prob_given_false: 0.5 # No strong inference if temperature is outside this range
+
+        # Humidity Sensor - comfort range, low impact
+        - entity_id: sensor.bathroom_humidity
+          platform: numeric_state
+          above: 30
+          below: 60
+          prob_given_true: 0.4  # Ideal humidity might indicate someone is there
+          prob_given_false: 0.6 # Less likely if humidity is outside the comfort range
   template:
-    - binary_sensor:
+    - trigger:
+        - platform: state
+          entity_id:
+            - binary_sensor.bedroom_motion
+            - binary_sensor.bedroom_door_contact
+            - input_boolean.bedroom_occupied_override
+            - sensor.bedroom_illuminance
+            - sensor.bedroom_temperature
+            - sensor.bedroom_humidity
+      binary_sensor:
         - name: Bedroom Occupancy
           unique_id: bedroom_occupancy
+          device_class: occupancy
+          delay_off:
+            minutes: 2
           state: |-
-            {% set scores = namespace(total=0) %}
-            {% if is_state('binary_sensor.bedroom_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-            {% if is_state('binary_sensor.bedroom_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
-            {% if is_state('input_boolean.bedroom_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
-            {{ scores.total >= 3 }}
+            {% if states('binary_sensor.bedroom_motion') == 'unavailable' and states('binary_sensor.bedroom_door_contact') == 'unavailable' %}
+              false
+            {% else %}
+              {% set scores = namespace(total=0) %}
+
+              # Motion sensor - high weight
+              {% if is_state('binary_sensor.bedroom_motion', 'on') %}
+                {% set scores.total = scores.total + 40 %}
+              {% endif %}
+
+              # Door contact sensor - moderate weight
+              {% if is_state('binary_sensor.bedroom_door_contact', 'off') %}
+                {% set scores.total = scores.total + 20 %}
+              {% endif %}
+
+              # Manual override - highest weight
+              {% if is_state('input_boolean.bedroom_occupied_override', 'on') %}
+                {% set scores.total = scores.total + 50 %}
+              {% endif %}
+
+              # Illuminance sensor - low weight (indirect factor)
+              {% set illuminance = states('sensor.bedroom_illuminance') | float(0) %}
+              {% if illuminance < 100 %}
+                {% set scores.total = scores.total + 10 %}
+              {% endif %}
+
+              # Temperature sensor - low weight (comfortable temperature range)
+              {% set temperature = states('sensor.bedroom_temperature') | float(0) %}
+              {% if temperature > 18 and temperature < 25 %}
+                {% set scores.total = scores.total + 10 %}
+              {% endif %}
+
+              # Humidity sensor - low weight (comfortable range)
+              {% set humidity = states('sensor.bedroom_humidity') | float(0) %}
+              {% if humidity > 30 and humidity < 60 %}
+                {% set scores.total = scores.total + 10 %}
+              {% endif %}
+
+              {{ scores.total >= 50 }}
+            {% endif %}
           attributes:
             confidence_score: |-
               {% set scores = namespace(total=0) %}
-              {% if is_state('binary_sensor.bedroom_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
-              {% if is_state('binary_sensor.bedroom_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
-              {% if is_state('input_boolean.bedroom_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
+
+              # Motion sensor
+              {% if is_state('binary_sensor.bedroom_motion', 'on') %}
+                {% set scores.total = scores.total + 40 %}
+              {% endif %}
+
+              # Door contact sensor
+              {% if is_state('binary_sensor.bedroom_door_contact', 'off') %}
+                {% set scores.total = scores.total + 20 %}
+              {% endif %}
+
+              # Manual override
+              {% if is_state('input_boolean.bedroom_occupied_override', 'on') %}
+                {% set scores.total = scores.total + 50 %}
+              {% endif %}
+
+              # Illuminance sensor
+              {% set illuminance = states('sensor.bedroom_illuminance') | float(0) %}
+              {% if illuminance < 100 %}
+                {% set scores.total = scores.total + 10 %}
+              {% endif %}
+
+              # Temperature sensor
+              {% set temperature = states('sensor.bedroom_temperature') | float(0) %}
+              {% if temperature > 18 and temperature < 25 %}
+                {% set scores.total = scores.total + 10 %}
+              {% endif %}
+
+              # Humidity sensor
+              {% set humidity = states('sensor.bedroom_humidity') | float(0) %}
+              {% if humidity > 30 and humidity < 60 %}
+                {% set scores.total = scores.total + 10 %}
+              {% endif %}
+
               {{ scores.total }}
+
+            occupancy_percentage: |-
+              {% set scores = namespace(total=0) %}
+
+              # Motion sensor
+              {% if is_state('binary_sensor.bedroom_motion', 'on') %}
+                {% set scores.total = scores.total + 40 %}
+              {% endif %}
+
+              # Door contact sensor
+              {% if is_state('binary_sensor.bedroom_door_contact', 'off') %}
+                {% set scores.total = scores.total + 20 %}
+              {% endif %}
+
+              # Manual override
+              {% if is_state('input_boolean.bedroom_occupied_override', 'on') %}
+                {% set scores.total = scores.total + 50 %}
+              {% endif %}
+
+              # Illuminance sensor
+              {% set illuminance = states('sensor.bedroom_illuminance') | float(0) %}
+              {% if illuminance < 100 %}
+                {% set scores.total = scores.total + 10 %}
+              {% endif %}
+
+              # Temperature sensor
+              {% set temperature = states('sensor.bedroom_temperature') | float(0) %}
+              {% if temperature > 18 and temperature < 25 %}
+                {% set scores.total = scores.total + 10 %}
+              {% endif %}
+
+              # Humidity sensor
+              {% set humidity = states('sensor.bedroom_humidity') | float(0) %}
+              {% if humidity > 30 and humidity < 60 %}
+                {% set scores.total = scores.total + 10 %}
+              {% endif %}
+
+              {{ (scores.total / 100) * 100 | round(0) }} %
+
             active_triggers: |-
               {% set triggers = [] %}
-              {% if is_state('binary_sensor.bedroom_motion', 'on') %}  {% set triggers = triggers + ['Motion Detected'] %}{% endif %}
-              {% if is_state('binary_sensor.bedroom_door_contact', 'off') %}  {% set triggers = triggers + ['Door Closed'] %}{% endif %}
-              {% if is_state('input_boolean.bedroom_occupied_override', 'on') %}  {% set triggers = triggers + ['Manual Override'] %}{% endif %}
+              {% if is_state('binary_sensor.bedroom_motion', 'on') %}
+                {% set triggers = triggers + ['Motion Detected'] %}
+              {% endif %}
+              {% if is_state('binary_sensor.bedroom_door_contact', 'off') %}
+                {% set triggers = triggers + ['Door Closed'] %}
+              {% endif %}
+              {% if is_state('input_boolean.bedroom_occupied_override', 'on') %}
+                {% set triggers = triggers + ['Manual Override'] %}
+              {% endif %}
+              {% set illuminance = states('sensor.bedroom_illuminance') | float(0) %}
+              {% if illuminance < 100 %}
+                {% set triggers = triggers + ['Low Illuminance'] %}
+              {% endif %}
+              {% set temperature = states('sensor.bedroom_temperature') | float(0) %}
+              {% if temperature > 18 and temperature < 25 %}
+                {% set triggers = triggers + ['Comfortable Temperature'] %}
+              {% endif %}
+              {% set humidity = states('sensor.bedroom_humidity') | float(0) %}
+              {% if humidity > 30 and humidity < 60 %}
+                {% set triggers = triggers + ['Comfortable Humidity'] %}
+              {% endif %}
               {{ triggers|join(', ') }}
     - binary_sensor:
         - name: Bedroom Temperature Rising

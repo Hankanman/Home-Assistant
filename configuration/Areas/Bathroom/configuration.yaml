@@ -1,26 +1,51 @@
-Bathroom:
+bathroom:
   template:
-    - binary_sensor:
+    - trigger:
+        - platform: state
+          entity_id:
+            - binary_sensor.bathroom_motion
+            - binary_sensor.bathroom_door_contact
+            - input_boolean.bathroom_occupied_override
+      binary_sensor:
         - name: Bathroom Occupancy
           unique_id: bathroom_occupancy
-          state: |-
+          device_class: occupancy
+          state: >-
             {% set scores = namespace(total=0) %}
-            {% if is_state('binary_sensor.bathroom_motion', 'on') %}  {% set scores.total = scores.total + 2 %}{% endif %}
-            {% if is_state('binary_sensor.bathroom_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
-            {% if is_state('input_boolean.bathroom_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
+            {% if is_state('binary_sensor.bathroom_motion', 'on') %}
+              {% set scores.total = scores.total + 3 %}
+            {% endif %}
+            {% if is_state('binary_sensor.bathroom_door_contact', 'off') %}
+              {% set scores.total = scores.total + 1 %}
+            {% endif %}
+            {% if is_state('input_boolean.bathroom_occupied_override', 'on') %}
+              {% set scores.total = scores.total + 5 %}
+            {% endif %}
             {{ scores.total >= 3 }}
           attributes:
-            confidence_score: |-
+            confidence_score: >-
               {% set scores = namespace(total=0) %}
-              {% if is_state('binary_sensor.bathroom_motion', 'on') %}  {% set scores.total = scores.total + 2 %}{% endif %}
-              {% if is_state('binary_sensor.bathroom_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
-              {% if is_state('input_boolean.bathroom_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
+              {% if is_state('binary_sensor.bathroom_motion', 'on') %}
+                {% set scores.total = scores.total + 3 %}
+              {% endif %}
+              {% if is_state('binary_sensor.bathroom_door_contact', 'off') %}
+                {% set scores.total = scores.total + 1 %}
+              {% endif %}
+              {% if is_state('input_boolean.bathroom_occupied_override', 'on') %}
+                {% set scores.total = scores.total + 5 %}
+              {% endif %}
               {{ scores.total }}
-            active_triggers: |-
+            active_triggers: >-
               {% set triggers = [] %}
-              {% if is_state('binary_sensor.bathroom_motion', 'on') %}  {% set triggers = triggers + ['Motion Detected'] %}{% endif %}
-              {% if is_state('binary_sensor.bathroom_door_contact', 'off') %}  {% set triggers = triggers + ['Door Closed'] %}{% endif %}
-              {% if is_state('input_boolean.bathroom_occupied_override', 'on') %}  {% set triggers = triggers + ['Manual Override'] %}{% endif %}
+              {% if is_state('binary_sensor.bathroom_motion', 'on') %}
+                {% set triggers = triggers + ['Motion Detected'] %}
+              {% endif %}
+              {% if is_state('binary_sensor.bathroom_door_contact', 'off') %}
+                {% set triggers = triggers + ['Door Closed'] %}
+              {% endif %}
+              {% if is_state('input_boolean.bathroom_occupied_override', 'on') %}
+                {% set triggers = triggers + ['Manual Override'] %}
+              {% endif %}
               {{ triggers|join(', ') }}
     - binary_sensor:
         - name: Bathroom Temperature Rising
@@ -83,7 +108,7 @@ Bathroom:
       min: 0.0
       max: 100.0
       step: 5.0
-      unit_of_measurement: '%'
+      unit_of_measurement: "%"
       icon: mdi:brightness-6
       initial: 100.0
     bathroom_light_transition:
@@ -99,7 +124,7 @@ Bathroom:
       min: 30.0
       max: 80.0
       step: 1.0
-      unit_of_measurement: '%'
+      unit_of_measurement: "%"
       icon: mdi:water-percent
       initial: 60.0
   input_boolean:

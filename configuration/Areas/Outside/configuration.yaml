@@ -1,15 +1,5 @@
 outside:
-  # Thermostats
-  #----------------------------------#
-  climate:
-  # Binary Sensors
-  #----------------------------------#
-
-  # Binary Sensors
-  #----------------------------------#
   binary_sensor:
-    # Bayesian
-    #----------------------------------#
     - platform: bayesian
       name: Outside Occupied
       prior: 0.02
@@ -22,36 +12,3 @@ outside:
           prob_given_true: 0.5136220
           prob_given_false: 0.0002977
           to_state: "on"
-
-  # Variable Sensors
-  #----------------------------------#
-  sensor:
-
-  # Template Sensors
-  #----------------------------------#
-  template:
-    # Template Binary Sensors
-    #----------------------------------#
-    binary_sensor:
-      # Bright Sensors
-      #----------------------------------#
-
-    # Template Variable Sensors
-    #----------------------------------#
-    sensor:
-
-  # Media Players
-  #----------------------------------#
-  media_player:
-
-  # Notification Platforms
-  #----------------------------------#
-  notify:
-
-  # Shell Commands
-  #----------------------------------#
-  shell_command:
-
-  # Switches
-  #----------------------------------#
-  switch:

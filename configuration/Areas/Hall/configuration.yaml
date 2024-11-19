@@ -1,144 +1,63 @@
 hall:
-  # Binary Sensors
-  #----------------------------------#
-  binary_sensor:
-    # Bayesian
-    #----------------------------------#
-    - platform: bayesian
-      name: Hall Occupied
-      prior: 0.12
-      device_class: occupancy
-      probability_threshold: 0.2
-      observations:
-
-        - platform: "state"
-          entity_id: binary_sensor.hall_bright
-          prob_given_true: 0.0348452
-          prob_given_false: 0.0401773
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.hall_motion
-          prob_given_true: 0.2832188
-          prob_given_false: 0.0014183
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.hall_motion_1
-          prob_given_true: 0.2816637
-          prob_given_false: 0.0014135
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.hall_motion_2
-          prob_given_true: 0.3026146
-          prob_given_false: 0.0014744
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.hall_temperature_motion_lux_1_motion
-          prob_given_true: 0.2889866
-          prob_given_false: 0.0014355
-          to_state: "on"
-
-        - platform: "state"
-          entity_id: binary_sensor.stairs_motion
-          prob_given_true: 0.2706369
-          prob_given_false: 0.0013790
-          to_state: "on"
-
-
-  # Variable Sensors
-  #----------------------------------#
-  sensor:
-
-  # Template Sensors
-  #----------------------------------#
   template:
-    # Template Binary Sensors
-    #----------------------------------#
-    binary_sensor:
-      # Bright Sensors
-      #----------------------------------#
-      - unique_id: hall_bright
-        name: "Hall Bright"
-        device_class: light
-        state: |
-          {% set lux = states('sensor.hall_illuminance') %}
-          {% set threshold = states('input_number.hall_illuminance_level') %}
-          {% set selfState = states('binary_sensor.hall_bright') %}
-          {% set lightState = states('light.hall') %}
-          {% set selfLastChanged = states.binary_sensor.hall_bright.last_changed %}
-          {% if threshold | int(0) == 0 %}
-            False
-          {% elif lux | int(0) > (threshold | int(0) * 1.3) and lightState == 'off' %}
-            True
-          {% elif lux | int(0) > (threshold | int(0) * 3) %}
-            True
-          {% elif ((threshold | int(0) < lux | int(0) < (threshold | int(0) * 1.3 ))) and (as_timestamp(now())-as_timestamp(selfLastChanged) < 300) %}
-            {{ selfState }}
-          {% elif lux | int(0) < threshold | int(0) %}
-            False
-          {% else %}
-            False
-          {% endif %}
-      - unique_id: hall_multi_motion
-        name: "Hall Multi Motion"
-        device_class: motion
-        state: >
-          {% set x = [ states.binary_sensor.hall_motion_1, states.binary_sensor.hall_motion_2, states.binary_sensor.hall_temperature_motion_lux_1_motion] | selectattr('state', 'eq', 'on') | list %}
-          {{ iif( x | count >= 2, 'on', 'off') }}
-
-      # Humid Sensors
-      #----------------------------------#
-
-    # Template Variable Sensors
-    #----------------------------------#
-    sensor:
-      # Probabilities
-      #----------------------------------#
-      - unique_id: hall_occupied_probability
-        name: Hall Occupied Probability
-        unit_of_measurement: "%"
-        state: "{{ (state_attr('binary_sensor.hall_occupied','probability')*100 | int(0) ) | round(0) }}"
-
-  # Media Players
-  #----------------------------------#
-  media_player:
-
-  # Notification Platforms
-  #----------------------------------#
-  notify:
-
-  # Shell Commands
-  #----------------------------------#
-  shell_command:
-    # hall_camera_turn_off: !secret hallcam_turn_off
-    # hall_camera_turn_on: !secret hallcam_turn_on
-    # hall_camera_bedroom: !secret hallcam_bedroom
-    # hall_camera_study: !secret hallcam_study
-    # hall_camera_landing: !secret hallcam_landing
-    # hall_camera_stairs: !secret hallcam_stairs
-
-  # Switches
-  #----------------------------------#
-  switch:
-
-  command_line:
-    # - switch:
-    #     unique_id: hall_camera_ir
-    #     name: Hall Camera Night Mode
-    #     command_on: !secret hallcam_ir_on
-    #     command_off: !secret hallcam_ir_off
-    #     command_state: !secret hallcam_ir_state
-    #     value_template: '{{ value == "1" }}'
-    # - switch:
-    #     unique_id: hall_camera_motion
-    #     name: Hall Camera Motion Detection
-    #     command_on: !secret hallcam_motion_on
-    #     command_off: !secret hallcam_motion_off
-    #     command_state: !secret hallcam_motion_state
-    #     value_template: '{{ value == "1" }}'
-  # Cameras
-  #----------------------------------#
-  camera:
+    - binary_sensor:
+        - name: Hall Occupancy
+          unique_id: hall_occupancy
+          device_class: occupancy
+          state: |-
+            {% set scores = namespace(total=0) %}
+            {% if is_state('binary_sensor.hall_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
+            {% if is_state('binary_sensor.hall_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
+            {% if is_state('input_boolean.hall_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
+            {{ scores.total >= 3 }}
+          attributes:
+            confidence_score: |-
+              {% set scores = namespace(total=0) %}
+              {% if is_state('binary_sensor.hall_motion', 'on') %}  {% set scores.total = scores.total + 3 %}{% endif %}
+              {% if is_state('binary_sensor.hall_door_contact', 'off') %}  {% set scores.total = scores.total + 1 %}{% endif %}
+              {% if is_state('input_boolean.hall_occupied_override', 'on') %}  {% set scores.total = scores.total + 5 %}{% endif %}
+              {{ scores.total }}
+            active_triggers: |-
+              {% set triggers = [] %}
+              {% if is_state('binary_sensor.hall_motion', 'on') %}  {% set triggers = triggers + ['Motion Detected'] %}{% endif %}
+              {% if is_state('binary_sensor.hall_door_contact', 'off') %}  {% set triggers = triggers + ['Door Closed'] %}{% endif %}
+              {% if is_state('input_boolean.hall_occupied_override', 'on') %}  {% set triggers = triggers + ['Manual Override'] %}{% endif %}
+              {{ triggers|join(', ') }}
+  input_number:
+    hall_light_brightness:
+      name: Hall Light Brightness
+      min: 0.0
+      max: 100.0
+      step: 5.0
+      unit_of_measurement: "%"
+      icon: mdi:brightness-6
+      initial: 100.0
+    hall_light_transition:
+      name: Hall Light Transition Time
+      min: 0.0
+      max: 10.0
+      step: 0.5
+      unit_of_measurement: s
+      icon: mdi:transition
+      initial: 2.0
+    hall_humidity_threshold:
+      name: Hall Humidity Threshold
+      min: 30.0
+      max: 80.0
+      step: 1.0
+      unit_of_measurement: "%"
+      icon: mdi:water-percent
+      initial: 60.0
+  input_boolean:
+    hall_light_color_mode:
+      name: Hall Light Color Mode
+      icon: mdi:palette
+    hall_occupied_override:
+      name: Hall Manual Occupancy Override
+      icon: mdi:account-check
+    hall_sleep_mode:
+      name: Hall Sleep Mode
+      icon: mdi:power-sleep
+    hall_automations:
+      name: Hall Automations
+      icon: mdi:robot

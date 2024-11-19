@@ -242,7 +242,7 @@
 - id: '1653422118985'
   alias: Bathroom - Shower
   description: ''
-  trigger:
+  triggers:
   - trigger: numeric_state
     entity_id: sensor.bathroom_humidity_change
     above: '20'
@@ -256,11 +256,11 @@
   - trigger: state
     entity_id:
     - binary_sensor.bathroom_humidity_falling_trend
-  condition:
+  conditions:
   - condition: state
     entity_id: input_boolean.bathroom_automations
     state: 'on'
-  action:
+  actions:
   - if:
     - condition: numeric_state
       entity_id: sensor.bathroom_humidity_change
@@ -326,7 +326,7 @@
 - id: '1678034605165'
   alias: Kitchen - Side Lights
   description: ''
-  trigger:
+  triggers:
   - trigger: state
     entity_id:
     - binary_sensor.kitchen_hob
@@ -338,15 +338,15 @@
     - binary_sensor.kitchen_kettle
   - trigger: state
     entity_id:
-    - binary_sensor.kitchen_occupied
+    - binary_sensor.kitchen_occupancy
   - trigger: state
     entity_id:
     - input_boolean.lounge_sleep_mode
-  condition:
+  conditions:
   - condition: state
     entity_id: input_boolean.kitchen_automations
     state: 'on'
-  action:
+  actions:
   - if:
     - condition: and
       conditions:
@@ -365,7 +365,7 @@
         entity_id: input_boolean.lounge_sleep_mode
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.kitchen_occupied
+        entity_id: binary_sensor.kitchen_occupancy
         state: 'on'
     then:
     - type: turn_on
@@ -375,7 +375,7 @@
     else:
     - if:
       - condition: state
-        entity_id: binary_sensor.kitchen_occupied
+        entity_id: binary_sensor.kitchen_occupancy
         state: 'off'
       then:
       - delay:
@@ -391,23 +391,23 @@
 - id: '1678039107813'
   alias: Lounge - Lamp
   description: ''
-  trigger:
+  triggers:
   - trigger: state
     entity_id:
-    - binary_sensor.lounge_occupied
+    - binary_sensor.lounge_occupancy
   - trigger: state
     entity_id:
     - binary_sensor.lounge_tv_state
   - trigger: state
     entity_id:
     - input_boolean.lounge_sleep_mode
-  condition: []
-  action:
+  conditions: []
+  actions:
   - if:
     - condition: and
       conditions:
       - condition: state
-        entity_id: binary_sensor.lounge_occupied
+        entity_id: binary_sensor.lounge_occupancy
         state: 'on'
       - condition: state
         entity_id: binary_sensor.lounge_tv_state
@@ -521,20 +521,10 @@
       message: Washing Machine is finished, time to hang stuff out!
       title: Washing Machine
   mode: single
-- id: '1723383811662'
-  alias: Python Script - Update ha_overview
-  description: ''
-  trigger:
-  - event: start
-    trigger: homeassistant
-  - trigger: time_pattern
-    minutes: /30
-  action:
-  - action: python_script.ha_overview
 - id: '1723623794274'
   alias: Set Sleep Mode
   description: ''
-  trigger:
+  triggers:
   - trigger: state
     entity_id:
     - binary_sensor.sleeping
@@ -544,11 +534,11 @@
       hours: 1
       minutes: 0
       seconds: 0
-  condition:
+  conditions:
   - condition: sun
     after: sunrise
     before: sunset
-  action:
+  actions:
   - action: input_boolean.turn_off
     target:
       entity_id:
@@ -576,24 +566,8 @@
     metadata: {}
     data: {}
     target:
-      entity_id: media_player.bedside_speaker
+      entity_id: media_player.bedroom_clock
   mode: single
-- id: '1731765448132'
-  alias: Smart Lighting Control | Bathroom
-  description: ''
-  use_blueprint:
-    path: smart_lighting.yaml
-    input:
-      enable_automation: input_boolean.bathroom_automations
-      people_home: binary_sensor.people_home
-      guest_mode: input_boolean.guest_mode
-      sleep_mode_sensor: binary_sensor.upstairs_sleep_mode
-      area_lights:
-        entity_id: light.bathroom
-      occupancy_sensor: binary_sensor.bathroom_occupied
-      illuminance_sensor: sensor.bathroom_illuminance
-      illuminance_threshold_sensor: sensor.bathroom_average_illuminance
-      min_brightness: 1
 - id: '1731850444277'
   alias: Smart Lighting Control | Study
   description: ''
@@ -609,3 +583,115 @@
       occupancy_sensor: binary_sensor.study_occupancy
       illuminance_sensor: sensor.study_illuminance
       illuminance_threshold_sensor: sensor.study_illuminance
+- id: '1731950717960'
+  alias: Smart Lighting Control | Bedroom
+  description: ''
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      enable_automation: input_boolean.bedroom_automations
+      area_lights:
+        entity_id: light.bedroom
+      occupancy_sensor: binary_sensor.bedroom_occupancy
+      illuminance_sensor: sensor.bedroom_illuminance
+      illuminance_threshold_sensor: sensor.bedroom_illuminance_average
+      sleep_mode_sensor: input_boolean.bedroom_sleep_mode
+      people_home: binary_sensor.people_home
+      guest_mode: input_boolean.guest_mode
+      dimming_entity: binary_sensor.bedroom_tv_state
+      dim_brightness: 20
+- id: '1731950797095'
+  alias: Smart Lighting Control | Entrance
+  description: ''
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      enable_automation: input_boolean.entrance_automations
+      area_lights:
+        area_id: entrance
+      occupancy_sensor: binary_sensor.entrance_occupancy
+      illuminance_sensor: sensor.entrance_illuminance
+      illuminance_threshold_sensor: sensor.entrance_illuminance_average
+      sleep_mode_sensor: input_boolean.entrance_sleep_mode
+      people_home: binary_sensor.people_home
+      guest_mode: input_boolean.guest_mode
+- id: '1731950885537'
+  alias: Smart Lighting Control | Kitchen
+  description: ''
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      enable_automation: input_boolean.kitchen_automations
+      area_lights:
+        area_id: kitchen
+      occupancy_sensor: binary_sensor.kitchen_occupancy
+      illuminance_sensor: sensor.kitchen_illuminance
+      illuminance_threshold_sensor: sensor.kitchen_illuminance_average
+      sleep_mode_sensor: input_boolean.kitchen_sleep_mode
+      people_home: binary_sensor.people_home
+      guest_mode: input_boolean.guest_mode
+      dimming_entity: binary_sensor.lounge_tv_state
+      dim_brightness: 70
+- id: '1731950965695'
+  alias: Smart Lighting Control | Hall
+  description: ''
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      enable_automation: input_boolean.hall_automations
+      area_lights:
+        area_id: hall
+      occupancy_sensor: binary_sensor.hall_occupancy
+      illuminance_sensor: sensor.hall_illuminance
+      illuminance_threshold_sensor: sensor.hall_illuminance_average
+      sleep_mode_sensor: input_boolean.hall_sleep_mode
+      people_home: binary_sensor.people_home
+      guest_mode: input_boolean.guest_mode
+- id: '1731951067946'
+  alias: Smart Lighting Control | Lounge
+  description: ''
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      enable_automation: input_boolean.lounge_automations
+      area_lights:
+        area_id: lounge
+      occupancy_sensor: binary_sensor.lounge_occupancy
+      illuminance_sensor: sensor.lounge_illuminance
+      illuminance_threshold_sensor: sensor.lounge_illuminance_average
+      sleep_mode_sensor: input_boolean.lounge_sleep_mode
+      people_home: binary_sensor.people_home
+      guest_mode: input_boolean.guest_mode
+      dimming_entity: binary_sensor.lounge_tv_state
+      transition_time: 5
+      dim_brightness: 20
+- id: '1731951127934'
+  alias: Smart Lighting Control | Toilet
+  description: ''
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      enable_automation: input_boolean.toilet_automations
+      area_lights:
+        area_id: toilet
+      occupancy_sensor: binary_sensor.toilet_occupancy
+      illuminance_sensor: sensor.toilet_illuminance
+      illuminance_threshold_sensor: sensor.toilet_illuminance_average
+      sleep_mode_sensor: input_boolean.toilet_sleep_mode
+      people_home: binary_sensor.people_home
+      guest_mode: input_boolean.guest_mode
+- id: '1731956089902'
+  alias: Smart Lighting Control | Bathroom
+  description: ''
+  use_blueprint:
+    path: smart_lighting.yaml
+    input:
+      enable_automation: input_boolean.bathroom_automations
+      area_lights:
+        area_id: bathroom
+      occupancy_sensor: binary_sensor.bathroom_occupancy
+      illuminance_sensor: sensor.bathroom_illuminance
+      illuminance_threshold_sensor: sensor.bathroom_illuminance_average
+      sleep_mode_sensor: input_boolean.bathroom_sleep_mode
+      people_home: binary_sensor.people_home
+      guest_mode: input_boolean.guest_mode

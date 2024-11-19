@@ -5,8 +5,6 @@ system:
 
   csv_exporter:
 
-  python_script:
-
   readme:
 
   group:
@@ -42,11 +40,6 @@ system:
       timestamp: false
 
   sensor:
-    - platform: email
-      email: !secret seb_email
-      password: !secret seb_email_password
-      imap_server: outlook.office365.com
-      imap_port: 993
     - platform: time_date
       display_options:
         - "date"

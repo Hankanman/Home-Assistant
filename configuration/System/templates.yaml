@@ -80,16 +80,12 @@ templates:
         state: "{{states('sensor.railen_cpu_usage') != 'unavailable' }}"
 
     sensor:
-      - unique_id: count_all_components
-        name: All Components
-        state: "{{ states.sensor.hass_main_config.attributes.components | count }}"
-
       - unique_id: unmonitored_elecricity_usage
         name: Unmonitored Electricity Usage
         unit_of_measurement: Wh
         device_class: energy
         state_class: total
-        state: "{{ float(states('sensor.sockets_wh')) - (float(states('sensor.desk_today_energy'))*1000) - (float(states('sensor.servers_today_energy'))*1000) - (float(states('sensor.washing_machine_today_energy'))*1000) }}"
+        state: "{{ float(states('sensor.sockets_energy')) - (float(states('sensor.desk_today_energy'))*1000) - (float(states('sensor.servers_today_energy'))*1000) - (float(states('sensor.washing_machine_today_energy'))*1000) }}"
       # Power Sensors
       #----------------------------------#
       - unique_id: smart_meter_electricity_power_watts
@@ -231,9 +227,6 @@ templates:
                 {{state}}
               {% endif %}
             {% endif %}
-          Last Area: >
-            {% set x =  [ states.device_tracker.seb_phone, states.device_tracker.seb_phone_tile, states.sensor.seb_phone_wifi_connection] | selectattr('state', 'ne', ['not_home', 'unavailable', 'unknown']) | sort(reverse=true, attribute='last_changed') | list %}
-            {{ iif( x | count > 0, x[0].state, state_attr('sensor.seb_location', 'last_area')) }}
           Devices Home: >
             {{ iif(is_state('device_tracker.seb_phone', 'home') or is_state('sensor.seb_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') or is_state('device_tracker.seb_phone_wifi', 'Home')}}
           Locality: >
@@ -302,9 +295,6 @@ templates:
                 {{state}}
               {% endif %}
             {% endif %}
-          Last Area: >
-            {% set x =  [ states.device_tracker.laura_phone, states.device_tracker.laura_s_phone_tile, states.sensor.laura_phone_wifi_connection] | selectattr('state', 'ne', ['not_home', 'unavailable', 'unknown']) | sort(reverse=true, attribute='last_changed') | list %}
-            {{ iif( x | count > 0, x[0].state, state_attr('sensor.laura_location', 'last_area')) }}
           Devices Home: >
             {{ iif(is_state('device_tracker.laura_phone', 'home') or is_state('sensor.laura_phone_wifi_connection', 'TheDogAteMyWiFi'),'Yes','No') or is_state('device_tracker.laura_phone_wifi', 'Home')}}
           Locality: >
