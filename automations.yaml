@@ -699,3 +699,51 @@
       sleep_mode_sensor: input_boolean.bathroom_sleep_mode
       people_home: binary_sensor.people_home
       guest_mode: input_boolean.guest_mode
+- id: '1732128373701'
+  alias: Heat Demand
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.heat_demand
+    above: 0
+    id: call_for_heat_activated
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  - trigger: numeric_state
+    entity_id:
+    - sensor.heat_demand
+    id: call_for_heat_deactivated
+    below: 1
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - call_for_heat_activated
+      sequence:
+      - action: climate.set_temperature
+        data:
+          hvac_mode: heat
+          temperature: 26
+        target:
+          device_id: a1dcec8316c0b8711defc8520761f3c1
+    - conditions:
+      - condition: trigger
+        id:
+        - call_for_heat_deactivated
+      sequence:
+      - action: climate.set_temperature
+        data:
+          temperature: 10
+          hvac_mode: 'off'
+        target:
+          device_id: a1dcec8316c0b8711defc8520761f3c1
+  mode: single
