@@ -1,7 +1,7 @@
 bathroom:
   template:
     - binary_sensor:
-        - name: Bedroom Occupancy
+        - name: Bathroom Occupancy
           unique_id: bathroom_occupancy
           device_class: occupancy
           delay_off:
@@ -9,21 +9,19 @@ bathroom:
           variables:
             motion: "binary_sensor.bathroom_motion"
             shower: "input_boolean.shower_occupied"
-            door: "binary_sensor.bathroom_door_contact"
             occupied_override: "input_boolean.bathroom_occupied_override"
             illuminance: "sensor.bathroom_illuminance"
             temperature: "sensor.bathroom_temperature"
             humidity: "sensor.bathroom_humidity"
           state: >
             {% set confidence_score = state_attr('binary_sensor.bathroom_occupancy', 'confidence_score') | int(0) %}
-            {{ confidence_score >= 30 }}
+            {{ confidence_score >= 20 }}
           attributes:
             confidence_score: >
               {# Define all scoring conditions in a list #}
               {% set scoring_conditions = [
                 {'entity_id': motion, 'type': 'state', 'state': 'on', 'score': 40},
                 {'entity_id': shower, 'type': 'state', 'state': 'on', 'score': 40},
-                {'entity_id': door, 'type': 'state', 'state': 'off', 'score': 20},
                 {'entity_id': occupied_override, 'type': 'state', 'state': 'on', 'score': 50},
                 {'entity_id': illuminance, 'type': 'range', 'min': 0, 'max': 100, 'score': 10},
                 {'entity_id': temperature, 'type': 'range', 'min': 18, 'max': 25, 'score': 10},

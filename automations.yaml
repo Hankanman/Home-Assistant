@@ -400,7 +400,10 @@
   - trigger: state
     entity_id:
     - input_boolean.lounge_sleep_mode
-  conditions: []
+  conditions:
+  - condition: state
+    entity_id: input_boolean.lounge_automations
+    state: 'on'
   actions:
   - if:
     - condition: and
@@ -411,9 +414,6 @@
       - condition: state
         entity_id: binary_sensor.lounge_tv_state
         state: 'on'
-      - condition: state
-        entity_id: binary_sensor.lounge_bright
-        state: 'off'
       - condition: state
         entity_id: input_boolean.lounge_sleep_mode
         state: 'off'
@@ -582,6 +582,7 @@
       occupancy_sensor: binary_sensor.study_occupancy
       illuminance_sensor: sensor.study_illuminance
       illuminance_threshold_sensor: sensor.study_illuminance
+      min_brightness: 0
 - id: '1731950717960'
   alias: Smart Lighting Control | Bedroom
   description: ''
@@ -599,6 +600,7 @@
       guest_mode: input_boolean.guest_mode
       dimming_entity: binary_sensor.bedroom_tv_state
       dim_brightness: 20
+      min_brightness: 0
 - id: '1731950797095'
   alias: Smart Lighting Control | Entrance
   description: ''
@@ -614,6 +616,7 @@
       sleep_mode_sensor: input_boolean.entrance_sleep_mode
       people_home: binary_sensor.people_home
       guest_mode: input_boolean.guest_mode
+      min_brightness: 0
 - id: '1731950885537'
   alias: Smart Lighting Control | Kitchen
   description: ''
@@ -631,6 +634,7 @@
       guest_mode: input_boolean.guest_mode
       dimming_entity: binary_sensor.lounge_tv_state
       dim_brightness: 70
+      min_brightness: 0
 - id: '1731950965695'
   alias: Smart Lighting Control | Hall
   description: ''
@@ -654,7 +658,7 @@
     input:
       enable_automation: input_boolean.lounge_automations
       area_lights:
-        area_id: lounge
+        entity_id: light.lounge
       occupancy_sensor: binary_sensor.lounge_occupancy
       illuminance_sensor: sensor.lounge_illuminance
       illuminance_threshold_sensor: sensor.lounge_illuminance_average
@@ -664,6 +668,7 @@
       dimming_entity: binary_sensor.lounge_tv_state
       transition_time: 5
       dim_brightness: 20
+      min_brightness: 0
 - id: '1731951127934'
   alias: Smart Lighting Control | Toilet
   description: ''
