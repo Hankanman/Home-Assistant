@@ -599,7 +599,7 @@
       people_home: binary_sensor.people_home
       guest_mode: input_boolean.guest_mode
       dimming_entity: binary_sensor.bedroom_tv_state
-      dim_brightness: 20
+      dim_brightness: 10
       min_brightness: 0
 - id: '1731950797095'
   alias: Smart Lighting Control | Entrance
@@ -647,7 +647,7 @@
       occupancy_sensor: binary_sensor.hall_occupancy
       illuminance_sensor: sensor.hall_illuminance
       illuminance_threshold_sensor: sensor.hall_illuminance_average
-      sleep_mode_sensor: input_boolean.hall_sleep_mode
+      sleep_mode_sensor: binary_sensor.upstairs_sleep_mode
       people_home: binary_sensor.people_home
       guest_mode: input_boolean.guest_mode
 - id: '1731951067946'
@@ -696,9 +696,10 @@
       occupancy_sensor: binary_sensor.bathroom_occupancy
       illuminance_sensor: sensor.bathroom_illuminance
       illuminance_threshold_sensor: sensor.bathroom_illuminance_average
-      sleep_mode_sensor: input_boolean.bathroom_sleep_mode
+      sleep_mode_sensor: binary_sensor.upstairs_sleep_mode
       people_home: binary_sensor.people_home
       guest_mode: input_boolean.guest_mode
+      idle_timeout: 90
 - id: '1732128373701'
   alias: Heat Demand
   description: ''
