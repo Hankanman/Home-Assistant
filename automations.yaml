@@ -693,7 +693,7 @@
       enable_automation: input_boolean.bathroom_automations
       area_lights:
         area_id: bathroom
-      occupancy_sensor: binary_sensor.bathroom_occupancy
+      occupancy_sensor: binary_sensor.bathroom_area_occupancy_status
       illuminance_sensor: sensor.bathroom_illuminance
       illuminance_threshold_sensor: sensor.bathroom_illuminance_average
       sleep_mode_sensor: binary_sensor.upstairs_sleep_mode
