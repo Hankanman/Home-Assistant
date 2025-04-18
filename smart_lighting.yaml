@@ -1,6 +1,38 @@
 blueprint:
   name: Smart Lighting Control
-  description: Controls room lighting based on occupancy, illuminance, home state, and dimming entity status
+  description: |
+    ## Smart Lighting Control
+    Controls room lighting based on:
+    - **Occupancy**: Detects if the room is occupied.
+    - **Illuminance**: Measures ambient light levels.
+    - **Home State**: Checks if people are home or if guest mode is active.
+    - **Dimming Entity Status**: Adjusts brightness based on entities like TV or projector.
+
+    ### Features
+    - **Automatic Lighting**: Turns lights on/off based on room occupancy and ambient light.
+    - **Dimming Functionality**: Lowers brightness when specific entities are active.
+    - **Sleep Mode Integration**: Reduces brightness during designated sleep periods.
+    - **Guest Mode Override**: Allows for lighting control even when main occupants are away.
+
+    [View on GitHub](https://github.com/Hankanman/Area-Occupancy-Detection/blueprints)
+
+    ### Inputs:
+    | **Input**                      | **Description**                                                                                                   | **Selector Type**                             | **Effect on Automation**                                                                                                                                                                                                                   |
+    | ------------------------------ | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | `enable_automation`            | Input boolean to enable or disable the automation.                                                                | `input_boolean`                               | When set to `on`, the automation is active and can control the lights. When set to `off`, the automation is disabled, and no actions are taken regardless of other conditions.                                                             |
+    | `area_lights`                  | Lights entities to control within the specified area.                                                             | `light` entities (Target selector)            | These are the lights that the automation will turn on/off and adjust brightness for based on the defined conditions.                                                                                                                       |
+    | `occupancy_sensor`             | Binary sensor indicating whether the room is occupied.                                                            | `binary_sensor` with `occupancy` device class | Determines if the room is currently occupied. If `on`, the room is considered occupied, triggering lights to turn on if other conditions (like illuminance) are met. If `off`, it may lead to lights turning off after the `idle_timeout`. |
+    | `illuminance_sensor`           | Sensor measuring the current illuminance (ambient light) in the room.                                             | `sensor` with `illuminance` device class      | Provides real-time data on ambient light levels. If illuminance is below a calculated threshold (`is_dark`), it may trigger lights to turn on. If above (`is_bright`), it may lead to lights turning off after `idle_timeout`.             |
+    | `illuminance_threshold_sensor` | Sensor or number entity defining the threshold for illuminance to consider the room dark or bright.               | `sensor` or `input_number`                    | Sets the baseline for determining `is_dark` and `is_bright` states. The automation uses this threshold to decide whether to turn lights on or off based on the current illuminance.                                                        |
+    | `sleep_mode_sensor`            | Binary sensor indicating if the system is in sleep mode.                                                          | `binary_sensor` or `input_boolean`            | When `on`, the automation sets lights to `min_brightness`, ensuring minimal light usage during sleep mode. Overrides other brightness settings like `max_brightness` and `dim_brightness`.                                                 |
+    | `people_home`                  | Binary sensor indicating if people are present at home.                                                           | `binary_sensor` or `input_boolean`            | When `on`, the automation considers that people are home, allowing lights to turn on when occupied and dark. When `off`, it may restrict lights from turning on unless overridden by `guest_mode`.                                         |
+    | `guest_mode`                   | Binary sensor to override people home. Use for scenarios when main occupants are not home but a guest is present. | `binary_sensor` or `input_boolean`            | When `on`, it allows lights to turn on even if `people_home` is `off`, catering to guest scenarios. If not configured or `off`, the automation relies solely on `people_home` for controlling lights.                                      |
+    | `dimming_entity`               | Optional entity that, when active, triggers dimmed lighting (e.g., TV, projector).                                | `binary_sensor`, `media_player`, or `switch`  | When the specified `dimming_entity` is active (`on` or `playing`), the automation sets lights to `dim_brightness`. If not provided or inactive, the automation uses `max_brightness` or `min_brightness` based on other conditions.        |
+    | `dim_brightness`               | Brightness level (percentage) to set when the `dimming_entity` is active.                                         | `number` (1-100)                              | Defines the brightness level for the lights when `dimming_entity` is active. Ensures a comfortable lighting level for activities like watching TV without being too bright. Defaults to `30%`.                                             |
+    | `max_brightness`               | Maximum brightness level (percentage) for the lights under normal conditions.                                     | `number` (1-100)                              | Sets the highest brightness level the lights will reach when conditions are met (e.g., occupied and dark, without any overriding sleep or dimming modes). Defaults to `100%`.                                                              |
+    | `min_brightness`               | Minimum brightness level (percentage) when in sleep mode.                                                         | `number` (0-100)                              | Ensures that lights remain at a minimal brightness level during sleep mode, preventing complete darkness or overly bright conditions. Defaults to `1%`.                                                                                    |
+    | `transition_time`              | Time (in seconds) for lights to transition between states (e.g., off to on).                                      | `number` (1-30)                               | Controls how quickly lights adjust their brightness or turn on/off. A smooth transition can prevent abrupt changes in lighting, enhancing user comfort. Defaults to `2` seconds.                                                           |
+    | `idle_timeout`                 | Duration (in seconds) to wait before turning off lights when the room becomes unoccupied.                         | `number` (0-3600)                             | Determines how long the system waits after the room becomes unoccupied before turning off the lights. Prevents immediate shutdown, allowing for brief absences without disrupting lighting. Defaults to `180` seconds (3 minutes).         |
   domain: automation
   source_url: https://github.com/Hankanman/Area-Occupancy-Detection/blueprints
   input:
@@ -64,7 +96,8 @@ blueprint:
 
     guest_mode:
       name: Guest Mode
-      description: Optional guest mode override
+      description: >
+        Binary sensor to override people home. Use for scenarios when main occupants are not home but a guest is present.
       selector:
         entity:
           domain:
@@ -73,7 +106,8 @@ blueprint:
 
     dimming_entity:
       name: Dimming Entity (Optional)
-      description: Entity that triggers dimmed lighting when on (e.g., TV, projector)
+      description: >
+        Entity that triggers dimmed lighting when active (e.g., TV, projector). If multiple entities are needed, create separate automations.
       selector:
         entity:
           domain:
@@ -117,7 +151,7 @@ blueprint:
       description: Light transition time in seconds
       selector:
         number:
-          min: 0
+          min: 1
           max: 30
           step: 1
       default: 2
@@ -132,7 +166,7 @@ blueprint:
           step: 1
       default: 180
 
-mode: restart
+mode: single
 max_exceeded: silent
 
 trigger:
@@ -179,17 +213,52 @@ condition:
   - condition: state
     entity_id: !input enable_automation
     state: "on"
+  - condition: template
+    value_template: >
+      {{ states(occupancy_sensor) is not none and
+         states(illuminance_sensor) is not none and
+         states(illuminance_threshold_sensor) is not none and
+         (states(people_home) is not none or states(guest_mode_sensor) is not none) and
+         (states(sleep_mode_sensor) is not none) }}
 
 action:
+  - wait_for_trigger:
+      - platform: state
+        entity_id: !input occupancy_sensor
+      - platform: state
+        entity_id: !input sleep_mode_sensor
+      - platform: state
+        entity_id: !input people_home
+      - platform: state
+        entity_id: !input illuminance_sensor
+      - platform: state
+        entity_id: !input guest_mode
+      - platform: state
+        entity_id: !input dimming_entity
+    timeout: "00:00:05"
+    continue_on_timeout: false
+
   - variables:
+      # Validate brightness levels
+      validated_min_bright: >
+        {% if min_bright <= dim_bright and dim_bright <= max_bright %}
+          {{ min_bright }}
+        {% elif min_bright > dim_bright and dim_bright <= max_bright %}
+          {{ min_bright }}
+        {% elif min_bright <= dim_bright and dim_bright > max_bright %}
+          {{ max_bright }}
+        {% else %}
+          {{ min_bright }}
+        {% endif %}
       current_brightness: >
         {% if sleep_mode %}
-          {{ min_bright }}
+          {{ validated_min_bright }}
         {% elif dimming_active %}
           {{ dim_bright }}
         {% else %}
           {{ max_bright }}
         {% endif %}
+
   - choose:
       # Turn on lights when occupied and dark
       - conditions:
@@ -208,7 +277,8 @@ action:
             target: !input area_lights
             data:
               brightness_pct: "{{ current_brightness }}"
-              transition: !input transition_time
+              transition: "{{ transition }}"
+
       # Turn off lights when unoccupied
       - conditions:
           - condition: template
@@ -216,18 +286,24 @@ action:
         sequence:
           - delay:
               seconds: !input idle_timeout
+          - condition: template
+            value_template: "{{ not occupied }}"
           - service: light.turn_off
             target: !input area_lights
             data:
-              transition: !input transition_time
-    default:
-      - if:
+              transition: "{{ transition }}"
+
+      # Default action: Turn off lights if bright
+      - conditions:
           - condition: template
             value_template: "{{ is_bright }}"
-        then:
+        sequence:
           - delay:
               seconds: !input idle_timeout
+          - condition: template
+            value_template: "{{ is_bright }}"
           - service: light.turn_off
             target: !input area_lights
             data:
-              transition: !input transition_time
+              transition: "{{ transition }}"
+    default: []

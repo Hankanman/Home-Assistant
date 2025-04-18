@@ -61,12 +61,7 @@ templates:
 
       - unique_id: downstairs_sleep_mode
         name: Downstairs Sleep Mode
-        state: >
-          {% if is_state('input_boolean.lounge_sleep_mode','on') %}
-            on
-          {% else %}
-            off
-          {% endif %}
+        state: "{{ states('input_boolean.lounge_sleep_mode') }}"
 
       # PC Active Sensors
       #----------------------------------#
@@ -85,26 +80,26 @@ templates:
         unit_of_measurement: Wh
         device_class: energy
         state_class: total
-        state: "{{ float(states('sensor.sockets_energy')) - (float(states('sensor.desk_today_energy'))*1000) - (float(states('sensor.servers_today_energy'))*1000) - (float(states('sensor.washing_machine_today_energy'))*1000) }}"
+        state: "{{ (states('sensor.sockets_energy') | float(0) - (states('sensor.desk_today_energy') | float(0) * 1000) - (states('sensor.servers_today_energy') | float(0) * 1000) - (states('sensor.washing_machine_today_energy') | float(0) * 1000)) | float(1000) }}"
       # Power Sensors
       #----------------------------------#
       - unique_id: smart_meter_electricity_power_watts
         name: "Smart Meter Electricity: Power Watts"
         state_class: measurement
         icon: "mdi:flash"
-        state: "{{ states('sensor.smart_meter_electricity_power') | float(0.5) * 1000 | round(1,'floor') }}"
+        state: "{{ (states('sensor.smart_meter_electricity_power') | float(0.5) * 1000) | round(1, 'floor') }}"
       - unique_id: grid_fossil_fuel_percentage_watts
         name: "Fossil Fuel: Power Watts"
         state_class: measurement
         icon: "mdi:barrel"
-        state: "{{states('sensor.smart_meter_electricity_power_watts') | float(0.5) * (states('sensor.grid_fossil_fuel_percentage') | int / 100) | round(1,'floor') }}"
+        state: "{{ (states('sensor.smart_meter_electricity_power_watts') | float(0.5) * (states('sensor.grid_fossil_fuel_percentage') | int(0) / 100)) | round(1, 'floor') }}"
       # Activity & Availability
       #----------------------------------#
       - unique_id: starrunner_idle_time
         name: "Starrunner Idle Time"
         state_class: measurement
         unit_of_measurement: Minutes
-        state: "{{ ((now() | as_timestamp) | int(0) / 60) | round(0, 'floor') - ((states('sensor.starrunner_lastactive') | as_timestamp(now())) | int(0) / 60) | round(0, 'floor') }}"
+        state: "{{ ((now() | as_timestamp(0) / 60) | round(0, 'floor')) - ((states('sensor.starrunner_lastactive') | as_timestamp(now()) / 60) | round(0, 'floor')) }}"
 
       # Climate Temperature
       #----------------------------------#
@@ -112,27 +107,27 @@ templates:
         name: "Bathroom Radiator Temperature"
         unit_of_measurement: °C
         device_class: temperature
-        state: "{{ state_attr('climate.bathroom_radiator', 'current_temperature') }}"
+        state: "{{ state_attr('climate.bathroom_radiator', 'current_temperature') | float(18.0) }}"
       - unique_id: bedroom_radiator_temperature
         name: "Bedroom Radiator Temperature"
         unit_of_measurement: °C
         device_class: temperature
-        state: "{{ state_attr('climate.bedroom_radiator', 'current_temperature') }}"
+        state: "{{ state_attr('climate.bedroom_radiator', 'current_temperature') | float(18.0) }}"
       - unique_id: study_radiator_temperature
         name: "Study Radiator Temperature"
         unit_of_measurement: °C
         device_class: temperature
-        state: "{{ state_attr('climate.study_radiator', 'current_temperature') }}"
+        state: "{{ state_attr('climate.study_radiator', 'current_temperature') | float(18.0) }}"
       - unique_id: toilet_radiator_temperature
         name: "Toilet Radiator Temperature"
         unit_of_measurement: °C
         device_class: temperature
-        state: "{{ state_attr('climate.toilet_radiator', 'current_temperature') }}"
+        state: "{{ state_attr('climate.toilet_radiator', 'current_temperature') | float(18.0) }}"
       - unique_id: thermostat_temperature
         name: "Thermostat Temperature"
         unit_of_measurement: °C
         device_class: temperature
-        state: "{{ state_attr('climate.thermostat', 'current_temperature') }}"
+        state: "{{ state_attr('climate.thermostat', 'current_temperature') | float(18.0) }}"
       # Trend Gradients
       #----------------------------------#
       - unique_id: bathroom_humidity_falling_trend_gradient

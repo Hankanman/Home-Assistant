@@ -5,6 +5,11 @@ webhook:
 my:
 api:
 
+logger:
+  # default: CRITICAL
+  # logs:
+  #   custom_components.area_occupancy: debug
+
 http:
   use_x_forwarded_for: true
   trusted_proxies:
